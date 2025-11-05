@@ -17,6 +17,12 @@ import {
     availableColors,
     InvalidPokemonException,
 } from './pokemon-collection';
+import {
+    dynamicThrowOff,
+    dynamicThrowOn,
+    setupBallThrowing,
+    throwAndChase,
+} from './pokeball';
 import { BallState, PokemonElementState, PokemonPanelState } from './states';
 import { getRandomPokemonConfig } from '../common/pokemon-data';
 
@@ -391,6 +397,13 @@ export function pokemonPanelApp(
     }
 
     initCanvas();
+    setupBallThrowing(pokemonSize, floor, basePokemonUri);
+
+    if (throwBallWithMouse) {
+        dynamicThrowOn(allPokemon);
+    } else {
+        dynamicThrowOff();
+    }
 
     // Handle messages sent from the extension to the webview
     window.addEventListener('message', (event): void => {
@@ -413,6 +426,10 @@ export function pokemonPanelApp(
                     ),
                 );
                 saveState(stateApi);
+                break;
+
+            case 'throw-ball':
+                throwAndChase(allPokemon);
                 break;
 
             case 'spawn-random-pokemon':

@@ -3,7 +3,6 @@ import { PokemonColor, PokemonConfig, PokemonGeneration, PokemonSize } from '../
 import { BasePokemonType } from './base-pokemon-type';
 import { States } from './states';
 
-
 export class Pokemon extends BasePokemonType {
   private config: PokemonConfig;
 
@@ -44,7 +43,12 @@ export class Pokemon extends BasePokemonType {
       {
         state: States.walkRight,
         possibleNextStates: [States.sitIdle, States.walkLeft],
-      }
+      },
+      {
+        state: States.idleWithBall,
+        // Reset to walking after catching a ball.
+        possibleNextStates: [States.walkRight, States.walkLeft],
+      },
     ],
   };
 

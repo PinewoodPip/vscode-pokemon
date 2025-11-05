@@ -325,6 +325,14 @@ export function activate(context: vscode.ExtensionContext) {
             }
         }),
     );
+    context.subscriptions.push(
+        vscode.commands.registerCommand('vscode-pokemon.throw-ball', () => {
+            const panel = getPokemonPanel();
+            if (panel !== undefined) {
+                panel.throwBall();
+            }
+        }),
+    );
 
     spawnPokemonStatusBar = vscode.window.createStatusBarItem(
         vscode.StatusBarAlignment.Right,
@@ -737,7 +745,7 @@ function getWebviewOptions(
 }
 
 interface IPokemonPanel {
-    // throwBall(): void;
+    throwBall(): void;
     resetPokemon(): void;
     spawnPokemon(spec: PokemonSpecification): void;
     deletePokemon(pokemonName: string): void;

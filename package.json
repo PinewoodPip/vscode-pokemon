@@ -38,6 +38,7 @@
         "onCommand:vscode-pokemon.roll-call",
         "onCommand:vscode-pokemon.export-pokemon-list",
         "onCommand:vscode-pokemon.import-pokemon-list",
+        "onCommand:vscode-pokemon.throw-ball",
         "onWebviewPanel:pokemonCoding",
         "onView:explorer",
         "onView:pokemonView",
@@ -131,6 +132,15 @@
                 "command": "vscode-pokemon.roll-call",
                 "title": "Roll-call",
                 "category": "Pokemon Coding"
+            },
+            {
+                "command": "vscode-pokemon.throw-ball",
+                "title": "Throw Poké Ball",
+                "category": "Pokemon Coding",
+                "icon": {
+                    "dark": "media/icon/dark-circle-outline.svg",
+                    "light": "media/icon/light-circle-outline.svg"
+                }
             }
         ],
         "configuration": [
@@ -166,6 +176,11 @@
                         ],
                         "default": "none",
                         "description": "Background theme assets for your pokemon"
+                    },
+                    "vscode-pokemon.throwBallWithMouse": {
+                        "type": "boolean",
+                        "default": true,
+                        "description": "Enable throwing Pokeballs with mouse clicks. Pokemon will chase the Pokeballs around."
                     }
                 }
             }

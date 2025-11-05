@@ -95,6 +95,7 @@ export class BallState {
     vx: number;
     vy: number;
     paused: boolean;
+    bounceCount: number = 0;
 
     constructor(cx: number, cy: number, vx: number, vy: number) {
         this.cx = cx;
@@ -218,7 +219,8 @@ export class SwipeState extends AbstractStaticState {
 
 export class IdleWithBallState extends AbstractStaticState {
     label = States.idleWithBall;
-    spriteLabel = 'with_ball';
+    // spriteLabel = 'with_ball'; // TODO
+    spriteLabel = 'idle';
     horizontalDirection = HorizontalDirection.left;
     holdTime = 30;
 }
@@ -311,12 +313,21 @@ export class RunLeftState extends WalkLeftState {
 }
 
 export class ChaseState implements IState {
+    private readonly BALL_CATCH_CHANCE = 0.2;
+    private readonly BALL_COOLDOWN_FRAMES = 20;
+    private readonly KICK_BASE_VELOCITY_Y = 3;
+    private readonly KICK_RANDOM_VELOCITY_Y = 7;
+    private readonly KICK_BASE_VELOCITY_X = 5;
+    private readonly KICK_RANDOM_VELOCITY_X = 10;
+
     label = States.chase;
-    spriteLabel = 'run';
+    // spriteLabel = 'run'; // TODO
+    spriteLabel = 'walk';
     horizontalDirection = HorizontalDirection.left;
     ballState: BallState;
     canvas: HTMLCanvasElement;
     pokemon: IPokemonType;
+    ballCooldown: number = 0; // Cooldown between ball interactions, in frames.
 
     constructor(
         pokemon: IPokemonType,
@@ -340,18 +351,44 @@ export class ChaseState implements IState {
             this.pokemon.positionLeft(this.pokemon.left + this.pokemon.speed);
         }
 
+        this.ballCooldown -= 1;
+
+        // Check if the ball was caught
+        let stateResult = FrameResult.stateContinue;
         if (
             this.canvas.height - this.ballState.cy <
             this.pokemon.width + this.pokemon.floor &&
             this.ballState.cx < this.pokemon.left &&
-            this.pokemon.left < this.ballState.cx + 15
+            this.pokemon.left < this.ballState.cx + 15 &&
+            this.ballCooldown <= 0
         ) {
-            // hide ball
-            this.canvas.style.display = 'none';
-            this.ballState.paused = true;
-            return FrameResult.stateComplete;
+            // Random chance to catch the ball and celebrate
+            if (Math.random() < this.BALL_CATCH_CHANCE) {
+                // Hide ball
+                this.canvas.style.display = 'none';
+                this.ballState.paused = true;
+
+                // Celebrate
+                this.pokemon.showSpeechBubble(2000, false);
+                stateResult = FrameResult.stateComplete; // End the state
+            } else {
+                // Otherwise kick the ball
+                this.kickBall()
+            }
         }
-        return FrameResult.stateContinue;
+        return stateResult;
+    }
+
+    kickBall() {
+        let kickDirection = this.horizontalDirection === HorizontalDirection.left ? -1 : 1; // Assumes kicking can only be done when facing left/right
+        let ball = this.ballState;
+
+        // Add velocity to the ball
+        ball.vy += this.KICK_BASE_VELOCITY_Y + Math.random() * this.KICK_RANDOM_VELOCITY_Y;
+        ball.vx += kickDirection * (this.KICK_BASE_VELOCITY_X + Math.random() * this.KICK_RANDOM_VELOCITY_X);
+
+        // Reset kick cooldown
+        this.ballCooldown = this.BALL_COOLDOWN_FRAMES;
     }
 }
 
