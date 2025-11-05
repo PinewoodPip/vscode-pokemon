@@ -91,6 +91,18 @@ function calculateFloor(size: PokemonSize, theme: Theme): number {
                 default:
                     return 45;
             }
+        case Theme.blackAndWhiteRoute:
+            switch (size) {
+                case PokemonSize.small:
+                    return 20;
+                case PokemonSize.medium:
+                    return 20;
+                case PokemonSize.large:
+                    return 20;
+                case PokemonSize.nano:
+                default:
+                    return 20;
+            }
     }
     return 0;
 }

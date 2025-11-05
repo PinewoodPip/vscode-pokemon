@@ -55,6 +55,7 @@ export const enum Theme {
     forest = 'forest',
     castle = 'castle',
     beach = 'beach',
+    blackAndWhiteRoute = 'black-and-white-route',
 }
 
 export const enum ColorThemeKind {
@@ -82,4 +83,4 @@ export const ALL_SCALES = [
     PokemonSize.medium,
     PokemonSize.large,
 ];
-export const ALL_THEMES = [Theme.none, Theme.forest, Theme.castle, Theme.beach];
+export const ALL_THEMES = [Theme.none, Theme.forest, Theme.castle, Theme.beach, Theme.blackAndWhiteRoute];

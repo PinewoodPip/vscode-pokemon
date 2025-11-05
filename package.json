@@ -172,7 +172,8 @@
                             "none",
                             "forest",
                             "castle",
-                            "beach"
+                            "beach",
+                            "black-and-white-route"
                         ],
                         "default": "none",
                         "description": "Background theme assets for your pokemon"
