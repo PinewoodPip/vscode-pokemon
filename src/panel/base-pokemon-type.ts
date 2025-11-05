@@ -45,7 +45,7 @@ export abstract class BasePokemonType implements IPokemonType {
     _floor: number;
     _friend: IPokemonType | undefined;
     private _name: string;
-    private _speed: number;
+    protected _speed: number;
     private _size: PokemonSize;
     private _generation: string;
     private _originalSpriteSize: number;
@@ -78,7 +78,6 @@ export abstract class BasePokemonType implements IPokemonType {
 
         this._name = name;
         this._size = size;
-        this._speed = this.randomizeSpeed(speed);
         this._generation = generation;
 
         // Increment the static count of the Pokemon class that the constructor belongs to
@@ -169,13 +168,6 @@ export abstract class BasePokemonType implements IPokemonType {
 
     get speed(): number {
         return this._speed;
-    }
-
-    randomizeSpeed(speed: number): number {
-        const min = speed * 0.7;
-        const max = speed * 1.3;
-        const newSpeed = Math.random() * (max - min) + min;
-        return newSpeed;
     }
 
     get isMoving(): boolean {

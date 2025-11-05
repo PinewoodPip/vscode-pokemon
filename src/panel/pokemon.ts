@@ -4,6 +4,9 @@ import { BasePokemonType } from './base-pokemon-type';
 import { States } from './states';
 
 export class Pokemon extends BasePokemonType {
+  private readonly BASE_SPEED = 0.8;
+  private readonly SPEED_STAT_MULTIPLIER = 1 / 70;
+
   private config: PokemonConfig;
 
   constructor(
@@ -25,6 +28,7 @@ export class Pokemon extends BasePokemonType {
 
     this.config = POKEMON_DATA[pokemonType] || POKEMON_DATA.bulbasaur;
     this.label = pokemonType;
+    this._speed = this.calculateSpeed();
   }
 
   static possibleColors = [PokemonColor.default];
@@ -59,7 +63,11 @@ export class Pokemon extends BasePokemonType {
   get pokedexNumber(): number {
     return this.config.id;
   }
-
+  
+  calculateSpeed(): number {
+    const speed = this.config.stats.speed;
+    return this.BASE_SPEED + speed * this.SPEED_STAT_MULTIPLIER;
+  }
 
   showSpeechBubble(duration: number = 3000, friend: boolean) {
     super.showSpeechBubble(duration, friend);

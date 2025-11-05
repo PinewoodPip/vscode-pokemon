@@ -27,6 +27,15 @@ export interface PokemonConfig {
     cry: string;
     possibleColors: PokemonColor[];
     originalSpriteSize?: number,
+    types: string[]; // TODO enum
+    stats: {
+        hp: number;
+        attack: number;
+        defense: number;
+        sp_attack: number;
+        sp_defense: number;
+        speed: number;
+    };
 }
 
 export const enum PokemonSpeed {
