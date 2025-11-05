@@ -75,6 +75,7 @@ export abstract class BasePokemonType implements IPokemonType {
         this.initSprite(size, left, bottom, originalSpriteSize);
         this.currentStateEnum = this.sequence.startingState;
         this.currentState = resolveState(this.currentStateEnum, this);
+        this._speed = 1;
 
         this._name = name;
         this._size = size;
