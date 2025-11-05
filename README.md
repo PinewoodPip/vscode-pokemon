@@ -90,5 +90,6 @@ Extracting and creating .gif files involves quite a bit of tedious manual work, 
 ### Acknowledgments
 - All sprites are property of their original creators
 - This repository is a fan project and is not affiliated with Nintendo, The Pokémon Company, or Game Freak
+- Credits for some sprites for Gen 4, 5, 6, 7 go to Dewitty, Chocosrawloid, Kymontonian, milomilotic11, Neo-Spriteman, hamsterskull
 
 This repository is inspired by and based on [vscode-pets](https://github.com/tonybaloney/vscode-pets) by [tonybaloney](https://github.com/tonybaloney).
