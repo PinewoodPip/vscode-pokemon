@@ -26,6 +26,7 @@ const DEFAULT_COLOR = PokemonColor.default;
 const DEFAULT_POKEMON_TYPE = getDefaultPokemon();
 const DEFAULT_POSITION = ExtPosition.panel;
 const DEFAULT_THEME = Theme.none;
+const AFK_THRESHOLD = 5 * 60; // Threshold for deeming the user AFK, in seconds.
 
 class PokemonQuickPickItem implements vscode.QuickPickItem {
     constructor(
@@ -195,7 +196,14 @@ export async function storeCollectionAsMemento(
 }
 
 let spawnPokemonStatusBar: vscode.StatusBarItem;
+
+// Auto-spawn variables
 let autoSpawnTimer: NodeJS.Timeout | undefined;
+let afkCheckTimer: NodeJS.Timeout | undefined;
+let lastActivityTime: number = Date.now();
+let isTimerPaused: boolean = false;
+let pausedSpawnTimerRemainingTime: number = 0; // Time remaining on the spawn timer before it was paused.
+let spawnScheduledTime: number = 0; // Time at which the next random spawn can occur.
 
 interface IPokemonInfo {
     type: PokemonType;
@@ -342,17 +350,33 @@ export function activate(context: vscode.ExtensionContext) {
     spawnPokemonStatusBar.command = 'vscode-pokemon.spawn-pokemon';
     context.subscriptions.push(spawnPokemonStatusBar);
 
+    // Helper function to update AFK status and resume spawn timer if paused
+    const updateActivity = () => {
+        lastActivityTime = Date.now();
+        // Resume spawn timer if it was paused
+        if (isTimerPaused) {
+            isTimerPaused = false;
+            setupAutoSpawn(context);
+        }
+    };
+
+    // Track user activity for auto-spawn
+    const vscActivityListener = () => {
+        updateActivity();
+    };
     context.subscriptions.push(
-        vscode.window.onDidChangeActiveTextEditor(updateStatusBar),
+        // Typing in documents
+        vscode.workspace.onDidChangeTextDocument(vscActivityListener),
+        // Switching files
+        vscode.window.onDidChangeActiveTextEditor(vscActivityListener),
+        // Changing selection (cursor movement)
+        vscode.window.onDidChangeTextEditorSelection(vscActivityListener),
+        // Scrolling viewport
+        vscode.window.onDidChangeTextEditorVisibleRanges(vscActivityListener),
+        // Switching visible text editors (ex. split view)
+        vscode.window.onDidChangeVisibleTextEditors(vscActivityListener)
     );
-    context.subscriptions.push(
-        vscode.window.onDidChangeTextEditorSelection(updateStatusBar),
-    );
-    context.subscriptions.push(
-        vscode.window.onDidChangeActiveTextEditor(
-            updateExtensionPositionContext,
-        ),
-    );
+
     updateStatusBar();
 
     const spec = PokemonSpecification.fromConfiguration();
@@ -737,10 +761,14 @@ export function activate(context: vscode.ExtensionContext) {
 }
 
 function setupAutoSpawn(context: vscode.ExtensionContext): void {
-    // Clear existing timer if any (ex. when changing the settings while extension is running)
+    // Clear existing timers if any (ex. when changing the settings while extension is running)
     if (autoSpawnTimer) {
         clearTimeout(autoSpawnTimer);
         autoSpawnTimer = undefined;
+    }
+    if (afkCheckTimer) {
+        clearTimeout(afkCheckTimer);
+        afkCheckTimer = undefined;
     }
 
     const autoSpawnEnabled = vscode.workspace
@@ -751,11 +779,22 @@ function setupAutoSpawn(context: vscode.ExtensionContext): void {
         .getConfiguration('vscode-pokemon')
         .get<number>('autoSpawnInterval', 3600);
 
-    if (autoSpawnEnabled) {
-        const scheduleNextSpawn = () => {
-            const variance = 0.2;
-            const randomFactor = 1 + (Math.random() * variance * 2 - variance); // +/- variance
-            const randomizedInterval = autoSpawnIntervalSeconds * 1000 * randomFactor;
+    if (autoSpawnEnabled && !isTimerPaused) {
+        const scheduleNextSpawn = (useRemainingTime: boolean = false) => {
+            let intervalToUse: number;
+            
+            if (useRemainingTime && pausedSpawnTimerRemainingTime > 0) {
+                // Resume with remaining time
+                intervalToUse = pausedSpawnTimerRemainingTime;
+                pausedSpawnTimerRemainingTime = 0;
+            } else {
+                // Calculate new randomized interval
+                const variance = 0.2;
+                const randomFactor = 1 + (Math.random() * variance * 2 - variance); // +/- variance
+                intervalToUse = autoSpawnIntervalSeconds * 1000 * randomFactor;
+            }
+
+            spawnScheduledTime = Date.now() + intervalToUse;
 
             autoSpawnTimer = setTimeout(async () => {
                 const panel = getPokemonPanel();
@@ -784,13 +823,41 @@ function setupAutoSpawn(context: vscode.ExtensionContext): void {
                     await storeCollectionAsMemento(context, collection);
                 }
                 
-                // Start new timer
-                scheduleNextSpawn();
-            }, randomizedInterval);
+                // Start new spawn timer if not paused
+                if (!isTimerPaused) {
+                    scheduleNextSpawn(false);
+                }
+            }, intervalToUse);
         };
 
+        // Start inactivity checker
+        const checkAFK = () => {
+            const timeSinceLastActivity = Date.now() - lastActivityTime;
+            
+            if (timeSinceLastActivity >= AFK_THRESHOLD * 1000 && !isTimerPaused) {
+                // Calculate remaining time before pausing
+                pausedSpawnTimerRemainingTime = Math.max(0, spawnScheduledTime - Date.now());
+                
+                // Pause the spawn timer
+                isTimerPaused = true;
+                if (autoSpawnTimer) {
+                    clearTimeout(autoSpawnTimer);
+                    autoSpawnTimer = undefined;
+                }
+            }
+            
+            // Re-schedule the inactivity check
+            afkCheckTimer = setTimeout(checkAFK, 30000);
+        };
+
+        // Check if resuming with remaining time
+        const isResuming = pausedSpawnTimerRemainingTime > 0;
+        
         // Start the first spawn
-        scheduleNextSpawn();
+        scheduleNextSpawn(isResuming);
+        
+        // Track whether the user is actively using VSC
+        checkAFK();
 
         // Clear timers
         context.subscriptions.push({
@@ -798,6 +865,10 @@ function setupAutoSpawn(context: vscode.ExtensionContext): void {
                 if (autoSpawnTimer) {
                     clearTimeout(autoSpawnTimer);
                     autoSpawnTimer = undefined;
+                }
+                if (afkCheckTimer) {
+                    clearTimeout(afkCheckTimer);
+                    afkCheckTimer = undefined;
                 }
             }
         });
@@ -815,6 +886,10 @@ export function spawnPokemonDeactivate() {
     if (autoSpawnTimer) {
         clearTimeout(autoSpawnTimer);
         autoSpawnTimer = undefined;
+    }
+    if (afkCheckTimer) {
+        clearTimeout(afkCheckTimer);
+        afkCheckTimer = undefined;
     }
 }
 
