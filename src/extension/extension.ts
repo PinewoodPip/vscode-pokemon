@@ -342,6 +342,33 @@ export function activate(context: vscode.ExtensionContext) {
             }
         }),
     );
+    context.subscriptions.push(
+        vscode.commands.registerCommand('vscode-pokemon.change-theme', async () => {
+            // Create QuickPick items
+            const currentTheme = getConfiguredTheme();
+            const themes = ALL_THEMES;
+            const themeOptions = themes.map(theme => ({
+                label: theme === currentTheme ? `$(check) ${theme}` : theme,
+                value: theme,
+                description: theme === currentTheme ? 'Current' : undefined
+            }));
+            const selectedTheme = await vscode.window.showQuickPick(
+                themeOptions,
+                {
+                    placeHolder: 'Select a background theme',
+                }
+            );
+            
+            // Set new theme
+            if (selectedTheme) {
+                await vscode.workspace.getConfiguration('vscode-pokemon').update(
+                    'theme',
+                    selectedTheme.value,
+                    vscode.ConfigurationTarget.Global
+                );
+            }
+        }),
+    );
 
     spawnPokemonStatusBar = vscode.window.createStatusBarItem(
         vscode.StatusBarAlignment.Right,

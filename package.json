@@ -39,6 +39,7 @@
         "onCommand:vscode-pokemon.export-pokemon-list",
         "onCommand:vscode-pokemon.import-pokemon-list",
         "onCommand:vscode-pokemon.throw-ball",
+        "onCommand:vscode-pokemon.change-theme",
         "onWebviewPanel:pokemonCoding",
         "onView:explorer",
         "onView:pokemonView",
@@ -73,6 +74,11 @@
                     "command": "vscode-pokemon.delete-pokemon",
                     "when": "view == pokemonView",
                     "group": "navigation@3"
+                },
+                {
+                    "command": "vscode-pokemon.change-theme",
+                    "when": "view == pokemonView",
+                    "group": "navigation@4"
                 }
             ]
         },
@@ -141,6 +147,12 @@
                     "dark": "media/icon/dark-circle-outline.svg",
                     "light": "media/icon/light-circle-outline.svg"
                 }
+            },
+            {
+                "command": "vscode-pokemon.change-theme",
+                "title": "Change background theme",
+                "category": "Pokemon Coding",
+                "icon": "$(symbol-color)"
             }
         ],
         "configuration": [
