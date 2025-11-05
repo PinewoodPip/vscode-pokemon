@@ -195,6 +195,7 @@ export async function storeCollectionAsMemento(
 }
 
 let spawnPokemonStatusBar: vscode.StatusBarItem;
+let autoSpawnTimer: NodeJS.Timeout | undefined;
 
 interface IPokemonInfo {
     type: PokemonType;
@@ -721,6 +722,86 @@ export function activate(context: vscode.ExtensionContext) {
             },
         });
     }
+
+    // Auto-spawn setup
+    setupAutoSpawn(context);
+    // Listen for configuration changes to auto-spawn settings
+    context.subscriptions.push(
+        vscode.workspace.onDidChangeConfiguration((e: vscode.ConfigurationChangeEvent) => {
+            if (e.affectsConfiguration('vscode-pokemon.autoSpawn') || 
+                e.affectsConfiguration('vscode-pokemon.autoSpawnInterval')) {
+                setupAutoSpawn(context);
+            }
+        })
+    );
+}
+
+function setupAutoSpawn(context: vscode.ExtensionContext): void {
+    // Clear existing timer if any (ex. when changing the settings while extension is running)
+    if (autoSpawnTimer) {
+        clearTimeout(autoSpawnTimer);
+        autoSpawnTimer = undefined;
+    }
+
+    const autoSpawnEnabled = vscode.workspace
+        .getConfiguration('vscode-pokemon')
+        .get<boolean>('autoSpawn', false);
+
+    const autoSpawnIntervalSeconds = vscode.workspace
+        .getConfiguration('vscode-pokemon')
+        .get<number>('autoSpawnInterval', 3600);
+
+    if (autoSpawnEnabled) {
+        const scheduleNextSpawn = () => {
+            const variance = 0.2;
+            const randomFactor = 1 + (Math.random() * variance * 2 - variance); // +/- variance
+            const randomizedInterval = autoSpawnIntervalSeconds * 1000 * randomFactor;
+
+            autoSpawnTimer = setTimeout(async () => {
+                const panel = getPokemonPanel();
+                if (panel) {
+                    // Spawn a random pokemon
+                    const [pokemonType, pokemonConfig] = getRandomPokemonConfig();
+                    const spec = new PokemonSpecification(
+                        pokemonConfig.possibleColors[0], // TODO shiny chance, once those are implemented
+                        pokemonType,
+                        getConfiguredSize(),
+                        randomName(pokemonConfig.name),
+                    );
+                    panel.spawnPokemon(spec);
+                    
+                    // Show notification
+                    void vscode.window.showInformationMessage(
+                        `A wild ${pokemonConfig.name} appeared!`
+                    );
+                    
+                    // Update memento
+                    const collection = PokemonSpecification.collectionFromMemento(
+                        context,
+                        getConfiguredSize(),
+                    );
+                    collection.push(spec);
+                    await storeCollectionAsMemento(context, collection);
+                }
+                
+                // Start new timer
+                scheduleNextSpawn();
+            }, randomizedInterval);
+        };
+
+        // Start the first spawn
+        scheduleNextSpawn();
+
+        // Clear timers
+        context.subscriptions.push({
+            dispose: () => {
+                if (autoSpawnTimer) {
+                    clearTimeout(autoSpawnTimer);
+                    autoSpawnTimer = undefined;
+                }
+            }
+        });
+    }
 }
 
 function updateStatusBar(): void {
@@ -731,6 +812,10 @@ function updateStatusBar(): void {
 
 export function spawnPokemonDeactivate() {
     spawnPokemonStatusBar.dispose();
+    if (autoSpawnTimer) {
+        clearTimeout(autoSpawnTimer);
+        autoSpawnTimer = undefined;
+    }
 }
 
 function getWebviewOptions(

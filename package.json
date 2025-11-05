@@ -182,6 +182,16 @@
                         "type": "boolean",
                         "default": true,
                         "description": "Enable throwing Pokeballs with mouse clicks. Pokemon will chase the Pokeballs around."
+                    },
+                    "vscode-pokemon.autoSpawn": {
+                        "type": "boolean",
+                        "default": false,
+                        "description": "Automatically spawn random pokemon periodically"
+                    },
+                    "vscode-pokemon.autoSpawnInterval": {
+                        "type": "number",
+                        "default": 3600,
+                        "description": "Time interval in seconds between auto-spawns. Will be randomized slightly."
                     }
                 }
             }
