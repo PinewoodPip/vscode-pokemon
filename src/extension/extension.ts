@@ -5,17 +5,17 @@ import {
     PokemonColor,
     PokemonType,
     ExtPosition,
-    Theme,
     WebviewMessage,
     ALL_COLORS,
     ALL_SCALES,
-    ALL_THEMES,
     PokemonGeneration,
+    PokemonConfig,
 } from '../common/types';
 import { randomName } from '../common/names';
 import * as localize from '../common/localize';
 import { availableColors, normalizeColor } from '../panel/pokemon-collection';
-import { getDefaultPokemon, getPokemonByGeneration, getRandomPokemonConfig, POKEMON_DATA } from '../common/pokemon-data';
+import { getDefaultPokemon, getPokemonByGeneration, getRandomPokemonConfig, getRandomPokemonByTypes, POKEMON_DATA } from '../common/pokemon-data';
+import { ALL_THEMES, Theme } from '../panel/themes';
 
 const EXTRA_POKEMON_KEY = 'vscode-pokemon.extra-pokemon';
 const EXTRA_POKEMON_KEY_TYPES = EXTRA_POKEMON_KEY + '.types';
@@ -62,13 +62,14 @@ function getConfiguredSize(): PokemonSize {
 }
 
 function getConfiguredTheme(): Theme {
-    var theme = vscode.workspace
+    var themeID = vscode.workspace
         .getConfiguration('vscode-pokemon')
         .get<Theme>('theme', DEFAULT_THEME);
-    if (ALL_THEMES.lastIndexOf(theme) === -1) {
-        theme = DEFAULT_THEME;
+    // Reset to default theme if the setting was invalid
+    if (!ALL_THEMES.find(t => t.id === themeID)) {
+        themeID = DEFAULT_THEME;
     }
-    return theme;
+    return themeID;
 }
 
 function getConfiguredThemeKind(): ColorThemeKind {
@@ -348,9 +349,9 @@ export function activate(context: vscode.ExtensionContext) {
             const currentTheme = getConfiguredTheme();
             const themes = ALL_THEMES;
             const themeOptions = themes.map(theme => ({
-                label: theme === currentTheme ? `$(check) ${theme}` : theme,
-                value: theme,
-                description: theme === currentTheme ? 'Current' : undefined
+                label: theme.id === currentTheme ? `$(check) ${theme.id}` : theme.id,
+                value: theme.id,
+                description: theme.id === currentTheme ? 'Current' : undefined
             }));
             const selectedTheme = await vscode.window.showQuickPick(
                 themeOptions,
@@ -691,7 +692,7 @@ export function activate(context: vscode.ExtensionContext) {
                     ),
                 );
             }
-        }))
+        }));
 
     context.subscriptions.push(
         vscode.commands.registerCommand(
@@ -804,7 +805,7 @@ function setupAutoSpawn(context: vscode.ExtensionContext): void {
 
     const autoSpawnIntervalSeconds = vscode.workspace
         .getConfiguration('vscode-pokemon')
-        .get<number>('autoSpawnInterval', 3600);
+        .get<number>('autoSpawnInterval', 2700);
 
     if (autoSpawnEnabled && !isTimerPaused) {
         const scheduleNextSpawn = (useRemainingTime: boolean = false) => {
@@ -826,8 +827,27 @@ function setupAutoSpawn(context: vscode.ExtensionContext): void {
             autoSpawnTimer = setTimeout(async () => {
                 const panel = getPokemonPanel();
                 if (panel) {
-                    // Spawn a random pokemon
-                    const [pokemonType, pokemonConfig] = getRandomPokemonConfig();
+                    // Get current theme
+                    const currentTheme = getConfiguredTheme();
+                    const themeConfig = ALL_THEMES.find(t => t.id === currentTheme);
+                    
+                    let pokemonType: PokemonType;
+                    let pokemonConfig: PokemonConfig;
+                    
+                    // Pick a random pokemon from the theme's spawnable types
+                    if (themeConfig && themeConfig.autoSpawnTypes.length > 0) {
+                        const result = getRandomPokemonByTypes(themeConfig.autoSpawnTypes);
+                        if (result) {
+                            [pokemonType, pokemonConfig] = result;
+                        } else {
+                            // Fallback to random
+                            [pokemonType, pokemonConfig] = getRandomPokemonConfig();
+                        }
+                    } else {
+                        // Fallback for themes with no types set: pick randomly
+                        [pokemonType, pokemonConfig] = getRandomPokemonConfig();
+                    }
+                    
                     const spec = new PokemonSpecification(
                         pokemonConfig.possibleColors[0], // TODO shiny chance, once those are implemented
                         pokemonType,

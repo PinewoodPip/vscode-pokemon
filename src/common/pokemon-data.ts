@@ -1,4 +1,4 @@
-import { PokemonColor, PokemonConfig, PokemonGeneration, PokemonType } from "./types";
+import { PokemonColor, PokemonCombatType, PokemonConfig, PokemonGeneration, PokemonType } from "./types";
 
 export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
   bulbasaur: {
@@ -7,7 +7,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen1,
     cry: 'Bulbasaur!',
     possibleColors: [PokemonColor.default],
-    types: ["Grass", "Poison"],
+    types: [PokemonCombatType.grass, PokemonCombatType.poison],
     stats: { hp: 45, attack: 49, defense: 49, sp_attack: 65, sp_defense: 65, speed: 45 }
   },
   ivysaur: {
@@ -16,7 +16,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen1,
     cry: 'Ivysaur!',
     possibleColors: [PokemonColor.default],
-    types: ["Grass", "Poison"],
+    types: [PokemonCombatType.grass, PokemonCombatType.poison],
     stats: { hp: 60, attack: 62, defense: 63, sp_attack: 80, sp_defense: 80, speed: 60 }
   },
   venusaur: {
@@ -25,7 +25,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen1,
     cry: 'Venusaur!',
     possibleColors: [PokemonColor.default],
-    types: ["Grass", "Poison"],
+    types: [PokemonCombatType.grass, PokemonCombatType.poison],
     stats: { hp: 80, attack: 100, defense: 123, sp_attack: 122, sp_defense: 120, speed: 80 }
   },
   charmander: {
@@ -34,7 +34,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen1,
     cry: 'Charmander!',
     possibleColors: [PokemonColor.default],
-    types: ["Fire"],
+    types: [PokemonCombatType.fire],
     stats: { hp: 39, attack: 52, defense: 43, sp_attack: 60, sp_defense: 50, speed: 65 }
   },
   charmeleon: {
@@ -43,7 +43,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen1,
     cry: 'Charmeleon!',
     possibleColors: [PokemonColor.default],
-    types: ["Fire"],
+    types: [PokemonCombatType.fire],
     stats: { hp: 58, attack: 64, defense: 58, sp_attack: 80, sp_defense: 65, speed: 80 }
   },
   charizard: {
@@ -52,7 +52,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen1,
     cry: 'Charizard!',
     possibleColors: [PokemonColor.default],
-    types: ["Fire", "Flying"],
+    types: [PokemonCombatType.fire, PokemonCombatType.flying],
     stats: { hp: 78, attack: 104, defense: 78, sp_attack: 159, sp_defense: 115, speed: 100 }
   },
   squirtle: {
@@ -61,7 +61,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen1,
     cry: 'Squritle!',
     possibleColors: [PokemonColor.default],
-    types: ["Water"],
+    types: [PokemonCombatType.water],
     stats: { hp: 44, attack: 48, defense: 65, sp_attack: 50, sp_defense: 64, speed: 43 }
   },
   wartortle: {
@@ -70,7 +70,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen1,
     cry: 'Wartortle!',
     possibleColors: [PokemonColor.default],
-    types: ["Water"],
+    types: [PokemonCombatType.water],
     stats: { hp: 59, attack: 63, defense: 80, sp_attack: 65, sp_defense: 80, speed: 58 }
   },
   blastoise: {
@@ -79,7 +79,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen1,
     cry: 'Blastoise!',
     possibleColors: [PokemonColor.default],
-    types: ["Water"],
+    types: [PokemonCombatType.water],
     stats: { hp: 79, attack: 103, defense: 120, sp_attack: 135, sp_defense: 115, speed: 78 }
   },
   caterpie: {
@@ -88,7 +88,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen1,
     cry: 'Caterpie!',
     possibleColors: [PokemonColor.default],
-    types: ["Bug"],
+    types: [PokemonCombatType.bug],
     stats: { hp: 45, attack: 30, defense: 35, sp_attack: 20, sp_defense: 20, speed: 45 }
   },
   metapod: {
@@ -97,7 +97,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen1,
     cry: 'Metapod!',
     possibleColors: [PokemonColor.default],
-    types: ["Bug"],
+    types: [PokemonCombatType.bug],
     stats: { hp: 50, attack: 20, defense: 55, sp_attack: 25, sp_defense: 25, speed: 30 }
   },
   butterfree: {
@@ -106,7 +106,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen1,
     cry: 'Butterfree!',
     possibleColors: [PokemonColor.default],
-    types: ["Bug", "Flying"],
+    types: [PokemonCombatType.bug, PokemonCombatType.flying],
     stats: { hp: 60, attack: 45, defense: 50, sp_attack: 90, sp_defense: 80, speed: 70 }
   },
   weedle: {
@@ -115,7 +115,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen1,
     cry: 'Weedle!',
     possibleColors: [PokemonColor.default],
-    types: ["Bug", "Poison"],
+    types: [PokemonCombatType.bug, PokemonCombatType.poison],
     stats: { hp: 40, attack: 35, defense: 30, sp_attack: 20, sp_defense: 20, speed: 50 }
   },
   kakuna: {
@@ -124,7 +124,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen1,
     cry: 'Kakuna!',
     possibleColors: [PokemonColor.default],
-    types: ["Bug", "Poison"],
+    types: [PokemonCombatType.bug, PokemonCombatType.poison],
     stats: { hp: 45, attack: 25, defense: 50, sp_attack: 25, sp_defense: 25, speed: 35 }
   },
   beedrill: {
@@ -133,7 +133,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen1,
     cry: 'Beedrill!',
     possibleColors: [PokemonColor.default],
-    types: ["Bug", "Poison"],
+    types: [PokemonCombatType.bug, PokemonCombatType.poison],
     stats: { hp: 65, attack: 150, defense: 40, sp_attack: 15, sp_defense: 80, speed: 145 }
   },
   pidgey: {
@@ -142,7 +142,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen1,
     cry: 'Pidgey!',
     possibleColors: [PokemonColor.default],
-    types: ["Normal", "Flying"],
+    types: [PokemonCombatType.normal, PokemonCombatType.flying],
     stats: { hp: 40, attack: 45, defense: 40, sp_attack: 35, sp_defense: 35, speed: 56 }
   },
   pidgeotto: {
@@ -151,7 +151,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen1,
     cry: 'Pidgeotto!',
     possibleColors: [PokemonColor.default],
-    types: ["Normal", "Flying"],
+    types: [PokemonCombatType.normal, PokemonCombatType.flying],
     stats: { hp: 63, attack: 60, defense: 55, sp_attack: 50, sp_defense: 50, speed: 71 }
   },
   pidgeot: {
@@ -160,7 +160,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen1,
     cry: 'Pidgeot!',
     possibleColors: [PokemonColor.default],
-    types: ["Normal", "Flying"],
+    types: [PokemonCombatType.normal, PokemonCombatType.flying],
     stats: { hp: 83, attack: 80, defense: 80, sp_attack: 135, sp_defense: 80, speed: 121 }
   },
   rattata: {
@@ -169,7 +169,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen1,
     cry: 'Rattata!',
     possibleColors: [PokemonColor.default],
-    types: ["Dark", "Normal"],
+    types: [PokemonCombatType.dark, PokemonCombatType.normal],
     stats: { hp: 30, attack: 56, defense: 35, sp_attack: 25, sp_defense: 35, speed: 72 }
   },
   raticate: {
@@ -178,7 +178,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen1,
     cry: 'Raticate!',
     possibleColors: [PokemonColor.default],
-    types: ["Dark", "Normal"],
+    types: [PokemonCombatType.dark, PokemonCombatType.normal],
     stats: { hp: 75, attack: 71, defense: 70, sp_attack: 40, sp_defense: 80, speed: 77 }
   },
   spearow: {
@@ -187,7 +187,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen1,
     cry: 'Spearow!',
     possibleColors: [PokemonColor.default],
-    types: ["Normal", "Flying"],
+    types: [PokemonCombatType.normal, PokemonCombatType.flying],
     stats: { hp: 40, attack: 60, defense: 30, sp_attack: 31, sp_defense: 31, speed: 70 }
   },
   fearow: {
@@ -196,7 +196,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen1,
     cry: 'Fearow!',
     possibleColors: [PokemonColor.default],
-    types: ["Normal", "Flying"],
+    types: [PokemonCombatType.normal, PokemonCombatType.flying],
     stats: { hp: 65, attack: 90, defense: 65, sp_attack: 61, sp_defense: 61, speed: 100 }
   },
   ekans: {
@@ -205,7 +205,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen1,
     cry: 'Ekans!',
     possibleColors: [PokemonColor.default],
-    types: ["Poison"],
+    types: [PokemonCombatType.poison],
     stats: { hp: 35, attack: 60, defense: 44, sp_attack: 40, sp_defense: 54, speed: 55 }
   },
   arbok: {
@@ -214,7 +214,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen1,
     cry: 'Arbok!',
     possibleColors: [PokemonColor.default],
-    types: ["Poison"],
+    types: [PokemonCombatType.poison],
     stats: { hp: 60, attack: 95, defense: 69, sp_attack: 65, sp_defense: 79, speed: 80 }
   },
   pikachu: {
@@ -223,7 +223,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen1,
     cry: 'Pikachu!',
     possibleColors: [PokemonColor.default],
-    types: ["Electric"],
+    types: [PokemonCombatType.electric],
     stats: { hp: 45, attack: 80, defense: 50, sp_attack: 75, sp_defense: 60, speed: 120 }
   },
   raichu: {
@@ -232,7 +232,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen1,
     cry: 'Raichu!',
     possibleColors: [PokemonColor.default],
-    types: ["Electric", "Psychic"],
+    types: [PokemonCombatType.electric, PokemonCombatType.psychic],
     stats: { hp: 60, attack: 85, defense: 50, sp_attack: 95, sp_defense: 85, speed: 110 }
   },
   sandshrew: {
@@ -241,7 +241,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen1,
     cry: 'Sandshrew!',
     possibleColors: [PokemonColor.default],
-    types: ["Ice", "Steel"],
+    types: [PokemonCombatType.ice, PokemonCombatType.steel],
     stats: { hp: 50, attack: 75, defense: 90, sp_attack: 10, sp_defense: 35, speed: 40 }
   },
   sandslash: {
@@ -250,7 +250,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen1,
     cry: 'Sandslash!',
     possibleColors: [PokemonColor.default],
-    types: ["Ice", "Steel"],
+    types: [PokemonCombatType.ice, PokemonCombatType.steel],
     stats: { hp: 75, attack: 100, defense: 120, sp_attack: 25, sp_defense: 65, speed: 65 }
   },
   nidoran_female: {
@@ -259,7 +259,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen1,
     cry: 'Nidoran!',
     possibleColors: [PokemonColor.default],
-    types: ["Poison"],
+    types: [PokemonCombatType.poison],
     stats: { hp: 55, attack: 47, defense: 52, sp_attack: 40, sp_defense: 40, speed: 41 }
   },
   nidorina: {
@@ -268,7 +268,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen1,
     cry: 'Nidorina!',
     possibleColors: [PokemonColor.default],
-    types: ["Poison"],
+    types: [PokemonCombatType.poison],
     stats: { hp: 70, attack: 62, defense: 67, sp_attack: 55, sp_defense: 55, speed: 56 }
   },
   nidoqueen: {
@@ -277,7 +277,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen1,
     cry: 'Nidoqueen!',
     possibleColors: [PokemonColor.default],
-    types: ["Poison", "Ground"],
+    types: [PokemonCombatType.poison, PokemonCombatType.ground],
     stats: { hp: 90, attack: 92, defense: 87, sp_attack: 75, sp_defense: 85, speed: 76 }
   },
   nidoran_male: {
@@ -286,7 +286,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen1,
     cry: 'Nidoran!',
     possibleColors: [PokemonColor.default],
-    types: ["Poison"],
+    types: [PokemonCombatType.poison],
     stats: { hp: 46, attack: 57, defense: 40, sp_attack: 40, sp_defense: 40, speed: 50 }
   },
   nidorino: {
@@ -295,7 +295,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen1,
     cry: 'Nidorino!',
     possibleColors: [PokemonColor.default],
-    types: ["Poison"],
+    types: [PokemonCombatType.poison],
     stats: { hp: 61, attack: 72, defense: 57, sp_attack: 55, sp_defense: 55, speed: 65 }
   },
   nidoking: {
@@ -304,7 +304,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen1,
     cry: 'Nidoking!',
     possibleColors: [PokemonColor.default],
-    types: ["Poison", "Ground"],
+    types: [PokemonCombatType.poison, PokemonCombatType.ground],
     stats: { hp: 81, attack: 102, defense: 77, sp_attack: 85, sp_defense: 75, speed: 85 }
   },
   clefairy: {
@@ -313,7 +313,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen1,
     cry: 'Clefairy!',
     possibleColors: [PokemonColor.default],
-    types: ["Fairy"],
+    types: [PokemonCombatType.fairy],
     stats: { hp: 70, attack: 45, defense: 48, sp_attack: 60, sp_defense: 65, speed: 35 }
   },
   clefable: {
@@ -322,7 +322,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen1,
     cry: 'Clefable!',
     possibleColors: [PokemonColor.default],
-    types: ["Fairy"],
+    types: [PokemonCombatType.fairy],
     stats: { hp: 95, attack: 70, defense: 73, sp_attack: 95, sp_defense: 90, speed: 60 }
   },
   vulpix: {
@@ -331,7 +331,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen1,
     cry: 'Vulpix!',
     possibleColors: [PokemonColor.default],
-    types: ["Ice"],
+    types: [PokemonCombatType.ice],
     stats: { hp: 38, attack: 41, defense: 40, sp_attack: 50, sp_defense: 65, speed: 65 }
   },
   ninetales: {
@@ -340,7 +340,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen1,
     cry: 'Ninetales!',
     possibleColors: [PokemonColor.default],
-    types: ["Ice", "Fairy"],
+    types: [PokemonCombatType.ice, PokemonCombatType.fairy],
     stats: { hp: 73, attack: 67, defense: 75, sp_attack: 81, sp_defense: 100, speed: 109 }
   },
   jigglypuff: {
@@ -349,7 +349,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen1,
     cry: 'Jigglypuff!',
     possibleColors: [PokemonColor.default],
-    types: ["Normal", "Fairy"],
+    types: [PokemonCombatType.normal, PokemonCombatType.fairy],
     stats: { hp: 115, attack: 45, defense: 20, sp_attack: 45, sp_defense: 25, speed: 20 }
   },
   wigglytuff: {
@@ -358,7 +358,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen1,
     cry: 'Wigglytuff!',
     possibleColors: [PokemonColor.default],
-    types: ["Normal", "Fairy"],
+    types: [PokemonCombatType.normal, PokemonCombatType.fairy],
     stats: { hp: 140, attack: 70, defense: 45, sp_attack: 85, sp_defense: 50, speed: 45 }
   },
   zubat: {
@@ -367,7 +367,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen1,
     cry: 'Zubat!',
     possibleColors: [PokemonColor.default],
-    types: ["Poison", "Flying"],
+    types: [PokemonCombatType.poison, PokemonCombatType.flying],
     stats: { hp: 40, attack: 45, defense: 35, sp_attack: 30, sp_defense: 40, speed: 55 }
   },
   golbat: {
@@ -376,7 +376,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen1,
     cry: 'Golbat!',
     possibleColors: [PokemonColor.default],
-    types: ["Poison", "Flying"],
+    types: [PokemonCombatType.poison, PokemonCombatType.flying],
     stats: { hp: 75, attack: 80, defense: 70, sp_attack: 65, sp_defense: 75, speed: 90 }
   },
   oddish: {
@@ -385,7 +385,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen1,
     cry: 'Oddish!',
     possibleColors: [PokemonColor.default],
-    types: ["Grass", "Poison"],
+    types: [PokemonCombatType.grass, PokemonCombatType.poison],
     stats: { hp: 45, attack: 50, defense: 55, sp_attack: 75, sp_defense: 65, speed: 30 }
   },
   gloom: {
@@ -394,7 +394,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen1,
     cry: 'Gloom!',
     possibleColors: [PokemonColor.default],
-    types: ["Grass", "Poison"],
+    types: [PokemonCombatType.grass, PokemonCombatType.poison],
     stats: { hp: 60, attack: 65, defense: 70, sp_attack: 85, sp_defense: 75, speed: 40 }
   },
   vileplume: {
@@ -403,7 +403,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen1,
     cry: 'Vileplume!',
     possibleColors: [PokemonColor.default],
-    types: ["Grass", "Poison"],
+    types: [PokemonCombatType.grass, PokemonCombatType.poison],
     stats: { hp: 75, attack: 80, defense: 85, sp_attack: 110, sp_defense: 90, speed: 50 }
   },
   paras: {
@@ -412,7 +412,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen1,
     cry: 'Paras!',
     possibleColors: [PokemonColor.default],
-    types: ["Bug", "Grass"],
+    types: [PokemonCombatType.bug, PokemonCombatType.grass],
     stats: { hp: 35, attack: 70, defense: 55, sp_attack: 45, sp_defense: 55, speed: 25 }
   },
   parasect: {
@@ -421,7 +421,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen1,
     cry: 'Parasect!',
     possibleColors: [PokemonColor.default],
-    types: ["Bug", "Grass"],
+    types: [PokemonCombatType.bug, PokemonCombatType.grass],
     stats: { hp: 60, attack: 95, defense: 80, sp_attack: 60, sp_defense: 80, speed: 30 }
   },
   venonat: {
@@ -430,7 +430,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen1,
     cry: 'Venonat!',
     possibleColors: [PokemonColor.default],
-    types: ["Bug", "Poison"],
+    types: [PokemonCombatType.bug, PokemonCombatType.poison],
     stats: { hp: 60, attack: 55, defense: 50, sp_attack: 40, sp_defense: 55, speed: 45 }
   },
   venomoth: {
@@ -439,7 +439,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen1,
     cry: 'Venomoth!',
     possibleColors: [PokemonColor.default],
-    types: ["Bug", "Poison"],
+    types: [PokemonCombatType.bug, PokemonCombatType.poison],
     stats: { hp: 70, attack: 65, defense: 60, sp_attack: 90, sp_defense: 75, speed: 90 }
   },
   diglett: {
@@ -448,7 +448,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen1,
     cry: 'Diglett!',
     possibleColors: [PokemonColor.default],
-    types: ["Ground", "Steel"],
+    types: [PokemonCombatType.ground, PokemonCombatType.steel],
     stats: { hp: 10, attack: 55, defense: 30, sp_attack: 35, sp_defense: 45, speed: 90 }
   },
   dugtrio: {
@@ -457,7 +457,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen1,
     cry: 'Dugtrio!',
     possibleColors: [PokemonColor.default],
-    types: ["Ground", "Steel"],
+    types: [PokemonCombatType.ground, PokemonCombatType.steel],
     stats: { hp: 35, attack: 100, defense: 60, sp_attack: 50, sp_defense: 70, speed: 110 }
   },
   meowth: {
@@ -466,7 +466,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen1,
     cry: 'Meowth!',
     possibleColors: [PokemonColor.default],
-    types: ["Steel"],
+    types: [PokemonCombatType.steel],
     stats: { hp: 50, attack: 65, defense: 55, sp_attack: 40, sp_defense: 40, speed: 40 }
   },
   persian: {
@@ -475,7 +475,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen1,
     cry: 'Persian!',
     possibleColors: [PokemonColor.default],
-    types: ["Dark"],
+    types: [PokemonCombatType.dark],
     stats: { hp: 65, attack: 60, defense: 60, sp_attack: 75, sp_defense: 65, speed: 115 }
   },
   psyduck: {
@@ -484,7 +484,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen1,
     cry: 'Psyduck!',
     possibleColors: [PokemonColor.default],
-    types: ["Water"],
+    types: [PokemonCombatType.water],
     stats: { hp: 50, attack: 52, defense: 48, sp_attack: 65, sp_defense: 50, speed: 55 }
   },
   golduck: {
@@ -493,7 +493,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen1,
     cry: 'Golduck!',
     possibleColors: [PokemonColor.default],
-    types: ["Water"],
+    types: [PokemonCombatType.water],
     stats: { hp: 80, attack: 82, defense: 78, sp_attack: 95, sp_defense: 80, speed: 85 }
   },
   mankey: {
@@ -502,7 +502,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen1,
     cry: 'Mankey!',
     possibleColors: [PokemonColor.default],
-    types: ["Fighting"],
+    types: [PokemonCombatType.fighting],
     stats: { hp: 40, attack: 80, defense: 35, sp_attack: 35, sp_defense: 45, speed: 70 }
   },
   primeape: {
@@ -511,7 +511,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen1,
     cry: 'Primeape!',
     possibleColors: [PokemonColor.default],
-    types: ["Fighting"],
+    types: [PokemonCombatType.fighting],
     stats: { hp: 65, attack: 105, defense: 60, sp_attack: 60, sp_defense: 70, speed: 95 }
   },
   growlithe: {
@@ -520,7 +520,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen1,
     cry: 'Growlithe!',
     possibleColors: [PokemonColor.default],
-    types: ["Fire", "Rock"],
+    types: [PokemonCombatType.fire, PokemonCombatType.rock],
     stats: { hp: 60, attack: 75, defense: 45, sp_attack: 65, sp_defense: 50, speed: 55 }
   },
   arcanine: {
@@ -529,7 +529,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen1,
     cry: 'Arcanine!',
     possibleColors: [PokemonColor.default],
-    types: ["Fire", "Rock"],
+    types: [PokemonCombatType.fire, PokemonCombatType.rock],
     stats: { hp: 95, attack: 115, defense: 80, sp_attack: 95, sp_defense: 80, speed: 90 }
   },
   poliwag: {
@@ -538,7 +538,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen1,
     cry: 'Poliwag!',
     possibleColors: [PokemonColor.default],
-    types: ["Water"],
+    types: [PokemonCombatType.water],
     stats: { hp: 40, attack: 50, defense: 40, sp_attack: 40, sp_defense: 40, speed: 90 }
   },
   poliwhirl: {
@@ -547,7 +547,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen1,
     cry: 'Poliwhirl!',
     possibleColors: [PokemonColor.default],
-    types: ["Water"],
+    types: [PokemonCombatType.water],
     stats: { hp: 65, attack: 65, defense: 65, sp_attack: 50, sp_defense: 50, speed: 90 }
   },
   poliwrath: {
@@ -556,7 +556,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen1,
     cry: 'Poliwrath!',
     possibleColors: [PokemonColor.default],
-    types: ["Water", "Fighting"],
+    types: [PokemonCombatType.water, PokemonCombatType.fighting],
     stats: { hp: 90, attack: 95, defense: 95, sp_attack: 70, sp_defense: 90, speed: 70 }
   },
   abra: {
@@ -565,7 +565,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen1,
     cry: 'Abra!',
     possibleColors: [PokemonColor.default],
-    types: ["Psychic"],
+    types: [PokemonCombatType.psychic],
     stats: { hp: 25, attack: 20, defense: 15, sp_attack: 105, sp_defense: 55, speed: 90 }
   },
   kadabra: {
@@ -574,7 +574,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen1,
     cry: 'Kadabra!',
     possibleColors: [PokemonColor.default],
-    types: ["Psychic"],
+    types: [PokemonCombatType.psychic],
     stats: { hp: 40, attack: 35, defense: 30, sp_attack: 120, sp_defense: 70, speed: 105 }
   },
   alakazam: {
@@ -583,7 +583,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen1,
     cry: 'Alakazam!',
     possibleColors: [PokemonColor.default],
-    types: ["Psychic"],
+    types: [PokemonCombatType.psychic],
     stats: { hp: 55, attack: 50, defense: 65, sp_attack: 175, sp_defense: 105, speed: 150 }
   },
   machop: {
@@ -592,7 +592,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen1,
     cry: 'Machop!',
     possibleColors: [PokemonColor.default],
-    types: ["Fighting"],
+    types: [PokemonCombatType.fighting],
     stats: { hp: 70, attack: 80, defense: 50, sp_attack: 35, sp_defense: 35, speed: 35 }
   },
   machoke: {
@@ -601,7 +601,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen1,
     cry: 'Machoke!',
     possibleColors: [PokemonColor.default],
-    types: ["Fighting"],
+    types: [PokemonCombatType.fighting],
     stats: { hp: 80, attack: 100, defense: 70, sp_attack: 50, sp_defense: 60, speed: 45 }
   },
   machamp: {
@@ -610,7 +610,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen1,
     cry: 'Alakazam!',
     possibleColors: [PokemonColor.default],
-    types: ["Fighting"],
+    types: [PokemonCombatType.fighting],
     stats: { hp: 90, attack: 130, defense: 80, sp_attack: 65, sp_defense: 85, speed: 55 }
   },
   bellsprout: {
@@ -619,7 +619,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen1,
     cry: 'Bellsprout!',
     possibleColors: [PokemonColor.default],
-    types: ["Grass", "Poison"],
+    types: [PokemonCombatType.grass, PokemonCombatType.poison],
     stats: { hp: 50, attack: 75, defense: 35, sp_attack: 70, sp_defense: 30, speed: 40 }
   },
   weepinbell: {
@@ -628,7 +628,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen1,
     cry: 'Weepinbell!',
     possibleColors: [PokemonColor.default],
-    types: ["Grass", "Poison"],
+    types: [PokemonCombatType.grass, PokemonCombatType.poison],
     stats: { hp: 65, attack: 90, defense: 50, sp_attack: 85, sp_defense: 45, speed: 55 }
   },
   victreebel: {
@@ -637,7 +637,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen1,
     cry: 'Victreebel!',
     possibleColors: [PokemonColor.default],
-    types: ["Grass", "Poison"],
+    types: [PokemonCombatType.grass, PokemonCombatType.poison],
     stats: { hp: 80, attack: 125, defense: 85, sp_attack: 135, sp_defense: 95, speed: 70 }
   },
   tentacool: {
@@ -646,7 +646,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen1,
     cry: 'Tentacool!',
     possibleColors: [PokemonColor.default],
-    types: ["Water", "Poison"],
+    types: [PokemonCombatType.water, PokemonCombatType.poison],
     stats: { hp: 40, attack: 40, defense: 35, sp_attack: 50, sp_defense: 100, speed: 70 }
   },
   tentacruel: {
@@ -655,7 +655,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen1,
     cry: 'Tentacruel!',
     possibleColors: [PokemonColor.default],
-    types: ["Water", "Poison"],
+    types: [PokemonCombatType.water, PokemonCombatType.poison],
     stats: { hp: 80, attack: 70, defense: 65, sp_attack: 80, sp_defense: 120, speed: 100 }
   },
   geodude: {
@@ -664,7 +664,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen1,
     cry: 'Geodude!',
     possibleColors: [PokemonColor.default],
-    types: ["Rock", "Electric"],
+    types: [PokemonCombatType.rock, PokemonCombatType.electric],
     stats: { hp: 40, attack: 80, defense: 100, sp_attack: 30, sp_defense: 30, speed: 20 }
   },
   graveler: {
@@ -673,7 +673,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen1,
     cry: 'Graveler!',
     possibleColors: [PokemonColor.default],
-    types: ["Rock", "Electric"],
+    types: [PokemonCombatType.rock, PokemonCombatType.electric],
     stats: { hp: 55, attack: 95, defense: 115, sp_attack: 45, sp_defense: 45, speed: 35 }
   },
   golem: {
@@ -682,7 +682,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen1,
     cry: 'Golem!',
     possibleColors: [PokemonColor.default],
-    types: ["Rock", "Electric"],
+    types: [PokemonCombatType.rock, PokemonCombatType.electric],
     stats: { hp: 80, attack: 120, defense: 130, sp_attack: 55, sp_defense: 65, speed: 45 }
   },
   ponyta: {
@@ -691,7 +691,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen1,
     cry: 'Ponyta!',
     possibleColors: [PokemonColor.default],
-    types: ["Psychic"],
+    types: [PokemonCombatType.psychic],
     stats: { hp: 50, attack: 85, defense: 55, sp_attack: 65, sp_defense: 65, speed: 90 }
   },
   rapidash: {
@@ -700,7 +700,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen1,
     cry: 'Rapidash!',
     possibleColors: [PokemonColor.default],
-    types: ["Psychic", "Fairy"],
+    types: [PokemonCombatType.psychic, PokemonCombatType.fairy],
     stats: { hp: 65, attack: 100, defense: 70, sp_attack: 80, sp_defense: 80, speed: 105 }
   },
   slowpoke: {
@@ -709,7 +709,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen1,
     cry: 'Slowpoke!',
     possibleColors: [PokemonColor.default],
-    types: ["Psychic"],
+    types: [PokemonCombatType.psychic],
     stats: { hp: 90, attack: 65, defense: 65, sp_attack: 40, sp_defense: 40, speed: 15 }
   },
   slowbro: {
@@ -718,7 +718,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen1,
     cry: 'Slowbro!',
     possibleColors: [PokemonColor.default],
-    types: ["Poison", "Psychic"],
+    types: [PokemonCombatType.poison, PokemonCombatType.psychic],
     stats: { hp: 95, attack: 100, defense: 95, sp_attack: 100, sp_defense: 70, speed: 30 }
   },
   magnemite: {
@@ -727,7 +727,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen1,
     cry: 'Magnemite!',
     possibleColors: [PokemonColor.default],
-    types: ["Electric", "Steel"],
+    types: [PokemonCombatType.electric, PokemonCombatType.steel],
     stats: { hp: 25, attack: 35, defense: 70, sp_attack: 95, sp_defense: 55, speed: 45 }
   },
   magneton: {
@@ -736,7 +736,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen1,
     cry: 'Magneton!',
     possibleColors: [PokemonColor.default],
-    types: ["Electric", "Steel"],
+    types: [PokemonCombatType.electric, PokemonCombatType.steel],
     stats: { hp: 50, attack: 60, defense: 95, sp_attack: 120, sp_defense: 70, speed: 70 }
   },
   farfetchd: {
@@ -745,7 +745,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen1,
     cry: 'Farfetch\'d!',
     possibleColors: [PokemonColor.default],
-    types: ["Fighting"],
+    types: [PokemonCombatType.fighting],
     stats: { hp: 52, attack: 95, defense: 55, sp_attack: 58, sp_defense: 62, speed: 55 }
   },
   doduo: {
@@ -754,7 +754,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen1,
     cry: 'Doduo!',
     possibleColors: [PokemonColor.default],
-    types: ["Normal", "Flying"],
+    types: [PokemonCombatType.normal, PokemonCombatType.flying],
     stats: { hp: 35, attack: 85, defense: 45, sp_attack: 35, sp_defense: 35, speed: 75 }
   },
   dodrio: {
@@ -763,7 +763,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen1,
     cry: 'Dodrio!',
     possibleColors: [PokemonColor.default],
-    types: ["Normal", "Flying"],
+    types: [PokemonCombatType.normal, PokemonCombatType.flying],
     stats: { hp: 60, attack: 110, defense: 70, sp_attack: 60, sp_defense: 60, speed: 110 }
   },
   seel: {
@@ -772,7 +772,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen1,
     cry: 'Seel!',
     possibleColors: [PokemonColor.default],
-    types: ["Water"],
+    types: [PokemonCombatType.water],
     stats: { hp: 65, attack: 45, defense: 55, sp_attack: 45, sp_defense: 70, speed: 45 }
   },
   dewgong: {
@@ -781,7 +781,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen1,
     cry: 'Dewgong!',
     possibleColors: [PokemonColor.default],
-    types: ["Water", "Ice"],
+    types: [PokemonCombatType.water, PokemonCombatType.ice],
     stats: { hp: 90, attack: 70, defense: 80, sp_attack: 70, sp_defense: 95, speed: 70 }
   },
   grimer: {
@@ -790,7 +790,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen1,
     cry: 'Grimer!',
     possibleColors: [PokemonColor.default],
-    types: ["Poison", "Dark"],
+    types: [PokemonCombatType.poison, PokemonCombatType.dark],
     stats: { hp: 80, attack: 80, defense: 50, sp_attack: 40, sp_defense: 50, speed: 25 }
   },
   muk: {
@@ -799,7 +799,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen1,
     cry: 'Muk!',
     possibleColors: [PokemonColor.default],
-    types: ["Poison", "Dark"],
+    types: [PokemonCombatType.poison, PokemonCombatType.dark],
     stats: { hp: 105, attack: 105, defense: 75, sp_attack: 65, sp_defense: 100, speed: 50 }
   },
   shellder: {
@@ -808,7 +808,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen1,
     cry: 'Shellder!',
     possibleColors: [PokemonColor.default],
-    types: ["Water"],
+    types: [PokemonCombatType.water],
     stats: { hp: 30, attack: 65, defense: 100, sp_attack: 45, sp_defense: 25, speed: 40 }
   },
   cloyster: {
@@ -817,7 +817,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen1,
     cry: 'Cloyster!',
     possibleColors: [PokemonColor.default],
-    types: ["Water", "Ice"],
+    types: [PokemonCombatType.water, PokemonCombatType.ice],
     stats: { hp: 50, attack: 95, defense: 180, sp_attack: 85, sp_defense: 45, speed: 70 }
   },
   gastly: {
@@ -826,7 +826,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen1,
     cry: 'Gastly!',
     possibleColors: [PokemonColor.default],
-    types: ["Ghost", "Poison"],
+    types: [PokemonCombatType.ghost, PokemonCombatType.poison],
     stats: { hp: 30, attack: 35, defense: 30, sp_attack: 100, sp_defense: 35, speed: 80 }
   },
   haunter: {
@@ -835,7 +835,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen1,
     cry: 'Haunter!',
     possibleColors: [PokemonColor.default],
-    types: ["Ghost", "Poison"],
+    types: [PokemonCombatType.ghost, PokemonCombatType.poison],
     stats: { hp: 45, attack: 50, defense: 45, sp_attack: 115, sp_defense: 55, speed: 95 }
   },
   gengar: {
@@ -844,7 +844,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen1,
     cry: 'Gengar!',
     possibleColors: [PokemonColor.default],
-    types: ["Ghost", "Poison"],
+    types: [PokemonCombatType.ghost, PokemonCombatType.poison],
     stats: { hp: 60, attack: 65, defense: 80, sp_attack: 170, sp_defense: 95, speed: 130 }
   },
   onix: {
@@ -853,7 +853,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen1,
     cry: 'Onix!',
     possibleColors: [PokemonColor.default],
-    types: ["Rock", "Ground"],
+    types: [PokemonCombatType.rock, PokemonCombatType.ground],
     stats: { hp: 35, attack: 45, defense: 160, sp_attack: 30, sp_defense: 45, speed: 70 }
   },
   drowzee: {
@@ -862,7 +862,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen1,
     cry: 'Drowzee!',
     possibleColors: [PokemonColor.default],
-    types: ["Psychic"],
+    types: [PokemonCombatType.psychic],
     stats: { hp: 60, attack: 48, defense: 45, sp_attack: 43, sp_defense: 90, speed: 42 }
   },
   hypno: {
@@ -871,7 +871,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen1,
     cry: 'Hypno!',
     possibleColors: [PokemonColor.default],
-    types: ["Psychic"],
+    types: [PokemonCombatType.psychic],
     stats: { hp: 85, attack: 73, defense: 70, sp_attack: 73, sp_defense: 115, speed: 67 }
   },
   krabby: {
@@ -880,7 +880,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen1,
     cry: 'Krabby!',
     possibleColors: [PokemonColor.default],
-    types: ["Water"],
+    types: [PokemonCombatType.water],
     stats: { hp: 30, attack: 105, defense: 90, sp_attack: 25, sp_defense: 25, speed: 50 }
   },
   kingler: {
@@ -889,7 +889,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen1,
     cry: 'Kingler!',
     possibleColors: [PokemonColor.default],
-    types: ["Water"],
+    types: [PokemonCombatType.water],
     stats: { hp: 55, attack: 130, defense: 115, sp_attack: 50, sp_defense: 50, speed: 75 }
   },
   voltorb: {
@@ -898,7 +898,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen1,
     cry: 'Voltorb!',
     possibleColors: [PokemonColor.default],
-    types: ["Electric", "Grass"],
+    types: [PokemonCombatType.electric, PokemonCombatType.grass],
     stats: { hp: 40, attack: 30, defense: 50, sp_attack: 55, sp_defense: 55, speed: 100 }
   },
   electrode: {
@@ -907,7 +907,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen1,
     cry: 'Electrode!',
     possibleColors: [PokemonColor.default],
-    types: ["Electric", "Grass"],
+    types: [PokemonCombatType.electric, PokemonCombatType.grass],
     stats: { hp: 60, attack: 50, defense: 70, sp_attack: 80, sp_defense: 80, speed: 150 }
   },
   exeggcute: {
@@ -916,7 +916,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen1,
     cry: 'Exeggcute!',
     possibleColors: [PokemonColor.default],
-    types: ["Grass", "Psychic"],
+    types: [PokemonCombatType.grass, PokemonCombatType.psychic],
     stats: { hp: 60, attack: 40, defense: 80, sp_attack: 60, sp_defense: 45, speed: 40 }
   },
   exeggutor: {
@@ -925,7 +925,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen1,
     cry: 'Exeggutor!',
     possibleColors: [PokemonColor.default],
-    types: ["Grass", "Dragon"],
+    types: [PokemonCombatType.grass, PokemonCombatType.dragon],
     stats: { hp: 95, attack: 105, defense: 85, sp_attack: 125, sp_defense: 75, speed: 45 }
   },
   cubone: {
@@ -934,7 +934,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen1,
     cry: 'Cubone!',
     possibleColors: [PokemonColor.default],
-    types: ["Ground"],
+    types: [PokemonCombatType.ground],
     stats: { hp: 50, attack: 50, defense: 95, sp_attack: 40, sp_defense: 50, speed: 35 }
   },
   marowak: {
@@ -943,7 +943,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen1,
     cry: 'Marowak!',
     possibleColors: [PokemonColor.default],
-    types: ["Fire", "Ghost"],
+    types: [PokemonCombatType.fire, PokemonCombatType.ghost],
     stats: { hp: 60, attack: 80, defense: 110, sp_attack: 50, sp_defense: 80, speed: 45 }
   },
   hitmonlee: {
@@ -952,7 +952,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen1,
     cry: 'Hitmonlee!',
     possibleColors: [PokemonColor.default],
-    types: ["Fighting"],
+    types: [PokemonCombatType.fighting],
     stats: { hp: 50, attack: 120, defense: 53, sp_attack: 35, sp_defense: 110, speed: 87 }
   },
   hitmonchan: {
@@ -961,7 +961,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen1,
     cry: 'Hitmonchan!',
     possibleColors: [PokemonColor.default],
-    types: ["Fighting"],
+    types: [PokemonCombatType.fighting],
     stats: { hp: 50, attack: 105, defense: 79, sp_attack: 35, sp_defense: 110, speed: 76 }
   },
   lickitung: {
@@ -970,7 +970,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen1,
     cry: 'Lickitung!',
     possibleColors: [PokemonColor.default],
-    types: ["Normal"],
+    types: [PokemonCombatType.normal],
     stats: { hp: 90, attack: 55, defense: 75, sp_attack: 60, sp_defense: 75, speed: 30 }
   },
   koffing: {
@@ -979,7 +979,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen1,
     cry: 'Koffing!',
     possibleColors: [PokemonColor.default],
-    types: ["Poison"],
+    types: [PokemonCombatType.poison],
     stats: { hp: 40, attack: 65, defense: 95, sp_attack: 60, sp_defense: 45, speed: 35 }
   },
   weezing: {
@@ -988,7 +988,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen1,
     cry: 'Weezing!',
     possibleColors: [PokemonColor.default],
-    types: ["Poison", "Fairy"],
+    types: [PokemonCombatType.poison, PokemonCombatType.fairy],
     stats: { hp: 65, attack: 90, defense: 120, sp_attack: 85, sp_defense: 70, speed: 60 }
   },
   rhyhorn: {
@@ -997,7 +997,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen1,
     cry: 'Rhyhorn!',
     possibleColors: [PokemonColor.default],
-    types: ["Ground", "Rock"],
+    types: [PokemonCombatType.ground, PokemonCombatType.rock],
     stats: { hp: 80, attack: 85, defense: 95, sp_attack: 30, sp_defense: 30, speed: 25 }
   },
   rhydon: {
@@ -1006,7 +1006,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen1,
     cry: 'Rhydon!',
     possibleColors: [PokemonColor.default],
-    types: ["Ground", "Rock"],
+    types: [PokemonCombatType.ground, PokemonCombatType.rock],
     stats: { hp: 105, attack: 130, defense: 120, sp_attack: 45, sp_defense: 45, speed: 40 }
   },
   chansey: {
@@ -1015,7 +1015,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen1,
     cry: 'Chansey!',
     possibleColors: [PokemonColor.default],
-    types: ["Normal"],
+    types: [PokemonCombatType.normal],
     stats: { hp: 250, attack: 5, defense: 5, sp_attack: 35, sp_defense: 105, speed: 50 }
   },
   tangela: {
@@ -1024,7 +1024,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen1,
     cry: 'Tangela!',
     possibleColors: [PokemonColor.default],
-    types: ["Grass"],
+    types: [PokemonCombatType.grass],
     stats: { hp: 65, attack: 55, defense: 115, sp_attack: 100, sp_defense: 40, speed: 60 }
   },
   kangaskhan: {
@@ -1033,7 +1033,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen1,
     cry: 'Kangaskhan!',
     possibleColors: [PokemonColor.default],
-    types: ["Normal"],
+    types: [PokemonCombatType.normal],
     stats: { hp: 105, attack: 125, defense: 100, sp_attack: 60, sp_defense: 100, speed: 100 }
   },
   horsea: {
@@ -1042,7 +1042,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen1,
     cry: 'Horsea!',
     possibleColors: [PokemonColor.default],
-    types: ["Water"],
+    types: [PokemonCombatType.water],
     stats: { hp: 30, attack: 40, defense: 70, sp_attack: 70, sp_defense: 25, speed: 60 }
   },
   seadra: {
@@ -1051,7 +1051,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen1,
     cry: 'Seadra!',
     possibleColors: [PokemonColor.default],
-    types: ["Water"],
+    types: [PokemonCombatType.water],
     stats: { hp: 55, attack: 65, defense: 95, sp_attack: 95, sp_defense: 45, speed: 85 }
   },
   goldeen: {
@@ -1060,7 +1060,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen1,
     cry: 'Goldeen!',
     possibleColors: [PokemonColor.default],
-    types: ["Water"],
+    types: [PokemonCombatType.water],
     stats: { hp: 45, attack: 67, defense: 60, sp_attack: 35, sp_defense: 50, speed: 63 }
   },
   seaking: {
@@ -1069,7 +1069,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen1,
     cry: 'Seaking!',
     possibleColors: [PokemonColor.default],
-    types: ["Water"],
+    types: [PokemonCombatType.water],
     stats: { hp: 80, attack: 92, defense: 65, sp_attack: 65, sp_defense: 80, speed: 68 }
   },
   staryu: {
@@ -1078,7 +1078,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen1,
     cry: 'Staryu!',
     possibleColors: [PokemonColor.default],
-    types: ["Water"],
+    types: [PokemonCombatType.water],
     stats: { hp: 30, attack: 45, defense: 55, sp_attack: 70, sp_defense: 55, speed: 85 }
   },
   starmie: {
@@ -1087,7 +1087,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen1,
     cry: 'Starmie!',
     possibleColors: [PokemonColor.default],
-    types: ["Water", "Psychic"],
+    types: [PokemonCombatType.water, PokemonCombatType.psychic],
     stats: { hp: 60, attack: 75, defense: 85, sp_attack: 100, sp_defense: 85, speed: 115 }
   },
   mrmime: {
@@ -1096,7 +1096,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen1,
     cry: 'Mr. Mime!',
     possibleColors: [PokemonColor.default],
-    types: ["Ice", "Psychic"],
+    types: [PokemonCombatType.ice, PokemonCombatType.psychic],
     stats: { hp: 50, attack: 65, defense: 65, sp_attack: 90, sp_defense: 90, speed: 100 }
   },
   scyther: {
@@ -1105,7 +1105,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen1,
     cry: 'Scyther!',
     possibleColors: [PokemonColor.default],
-    types: ["Bug", "Flying"],
+    types: [PokemonCombatType.bug, PokemonCombatType.flying],
     stats: { hp: 70, attack: 110, defense: 80, sp_attack: 55, sp_defense: 80, speed: 105 }
   },
   jynx: {
@@ -1114,7 +1114,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen1,
     cry: 'Jynx!',
     possibleColors: [PokemonColor.default],
-    types: ["Ice", "Psychic"],
+    types: [PokemonCombatType.ice, PokemonCombatType.psychic],
     stats: { hp: 65, attack: 50, defense: 35, sp_attack: 115, sp_defense: 95, speed: 95 }
   },
   electabuzz: {
@@ -1123,7 +1123,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen1,
     cry: 'Electabuzz!',
     possibleColors: [PokemonColor.default],
-    types: ["Electric"],
+    types: [PokemonCombatType.electric],
     stats: { hp: 65, attack: 83, defense: 57, sp_attack: 95, sp_defense: 85, speed: 105 }
   },
   magmar: {
@@ -1132,7 +1132,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen1,
     cry: 'Magmar!',
     possibleColors: [PokemonColor.default],
-    types: ["Fire"],
+    types: [PokemonCombatType.fire],
     stats: { hp: 65, attack: 95, defense: 57, sp_attack: 100, sp_defense: 85, speed: 93 }
   },
   pinsir: {
@@ -1141,7 +1141,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen1,
     cry: 'Pinsir!',
     possibleColors: [PokemonColor.default],
-    types: ["Bug", "Flying"],
+    types: [PokemonCombatType.bug, PokemonCombatType.flying],
     stats: { hp: 65, attack: 155, defense: 120, sp_attack: 65, sp_defense: 90, speed: 105 }
   },
   tauros: {
@@ -1150,7 +1150,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen1,
     cry: 'Tauros!',
     possibleColors: [PokemonColor.default],
-    types: ["Fighting", "Water"],
+    types: [PokemonCombatType.fighting, PokemonCombatType.water],
     stats: { hp: 75, attack: 110, defense: 105, sp_attack: 30, sp_defense: 70, speed: 100 }
   },
   magikarp: {
@@ -1159,7 +1159,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen1,
     cry: 'Magikarp!',
     possibleColors: [PokemonColor.default],
-    types: ["Water"],
+    types: [PokemonCombatType.water],
     stats: { hp: 20, attack: 10, defense: 55, sp_attack: 15, sp_defense: 20, speed: 80 }
   },
   gyarados: {
@@ -1168,7 +1168,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen1,
     cry: 'Gyarados!',
     possibleColors: [PokemonColor.default],
-    types: ["Water", "Dark"],
+    types: [PokemonCombatType.water, PokemonCombatType.dark],
     stats: { hp: 95, attack: 155, defense: 109, sp_attack: 70, sp_defense: 130, speed: 81 }
   },
   lapras: {
@@ -1177,7 +1177,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen1,
     cry: 'Lapras!',
     possibleColors: [PokemonColor.default],
-    types: ["Water", "Ice"],
+    types: [PokemonCombatType.water, PokemonCombatType.ice],
     stats: { hp: 130, attack: 85, defense: 80, sp_attack: 85, sp_defense: 95, speed: 60 }
   },
   ditto: {
@@ -1186,7 +1186,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen1,
     cry: 'Ditto!',
     possibleColors: [PokemonColor.default],
-    types: ["Normal"],
+    types: [PokemonCombatType.normal],
     stats: { hp: 48, attack: 48, defense: 48, sp_attack: 48, sp_defense: 48, speed: 48 }
   },
   eevee: {
@@ -1195,7 +1195,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen1,
     cry: 'Eevee!',
     possibleColors: [PokemonColor.default],
-    types: ["Normal"],
+    types: [PokemonCombatType.normal],
     stats: { hp: 65, attack: 75, defense: 70, sp_attack: 65, sp_defense: 85, speed: 75 }
   },
   vaporeon: {
@@ -1204,7 +1204,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen1,
     cry: 'Vaporeon!',
     possibleColors: [PokemonColor.default],
-    types: ["Water"],
+    types: [PokemonCombatType.water],
     stats: { hp: 130, attack: 65, defense: 60, sp_attack: 110, sp_defense: 95, speed: 65 }
   },
   jolteon: {
@@ -1213,7 +1213,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen1,
     cry: 'Jolteon!',
     possibleColors: [PokemonColor.default],
-    types: ["Electric"],
+    types: [PokemonCombatType.electric],
     stats: { hp: 65, attack: 65, defense: 60, sp_attack: 110, sp_defense: 95, speed: 130 }
   },
   flareon: {
@@ -1222,7 +1222,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen1,
     cry: 'Flareon!',
     possibleColors: [PokemonColor.default],
-    types: ["Fire"],
+    types: [PokemonCombatType.fire],
     stats: { hp: 65, attack: 130, defense: 60, sp_attack: 95, sp_defense: 110, speed: 65 }
   },
   porygon: {
@@ -1231,7 +1231,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen1,
     cry: 'Porygon!',
     possibleColors: [PokemonColor.default],
-    types: ["Normal"],
+    types: [PokemonCombatType.normal],
     stats: { hp: 65, attack: 60, defense: 70, sp_attack: 85, sp_defense: 75, speed: 40 }
   },
   omanyte: {
@@ -1240,7 +1240,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen1,
     cry: 'Omanyte!',
     possibleColors: [PokemonColor.default],
-    types: ["Rock", "Water"],
+    types: [PokemonCombatType.rock, PokemonCombatType.water],
     stats: { hp: 35, attack: 40, defense: 100, sp_attack: 90, sp_defense: 55, speed: 35 }
   },
   omastar: {
@@ -1249,7 +1249,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen1,
     cry: 'Omastar!',
     possibleColors: [PokemonColor.default],
-    types: ["Rock", "Water"],
+    types: [PokemonCombatType.rock, PokemonCombatType.water],
     stats: { hp: 70, attack: 60, defense: 125, sp_attack: 115, sp_defense: 70, speed: 55 }
   },
   kabuto: {
@@ -1258,7 +1258,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen1,
     cry: 'Kabuto!',
     possibleColors: [PokemonColor.default],
-    types: ["Rock", "Water"],
+    types: [PokemonCombatType.rock, PokemonCombatType.water],
     stats: { hp: 30, attack: 80, defense: 90, sp_attack: 55, sp_defense: 45, speed: 55 }
   },
   kabutops: {
@@ -1267,7 +1267,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen1,
     cry: 'Kabutops!',
     possibleColors: [PokemonColor.default],
-    types: ["Rock", "Water"],
+    types: [PokemonCombatType.rock, PokemonCombatType.water],
     stats: { hp: 60, attack: 115, defense: 105, sp_attack: 65, sp_defense: 70, speed: 80 }
   },
   aerodactyl: {
@@ -1276,7 +1276,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen1,
     cry: 'Aerodactyl!',
     possibleColors: [PokemonColor.default],
-    types: ["Rock", "Flying"],
+    types: [PokemonCombatType.rock, PokemonCombatType.flying],
     stats: { hp: 80, attack: 135, defense: 85, sp_attack: 70, sp_defense: 95, speed: 150 }
   },
   snorlax: {
@@ -1285,7 +1285,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen1,
     cry: 'Snorlax!',
     possibleColors: [PokemonColor.default],
-    types: ["Normal"],
+    types: [PokemonCombatType.normal],
     stats: { hp: 160, attack: 110, defense: 65, sp_attack: 65, sp_defense: 110, speed: 30 }
   },
   articuno: {
@@ -1294,7 +1294,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen1,
     cry: 'Articuno!',
     possibleColors: [PokemonColor.default],
-    types: ["Psychic", "Flying"],
+    types: [PokemonCombatType.psychic, PokemonCombatType.flying],
     stats: { hp: 90, attack: 85, defense: 85, sp_attack: 125, sp_defense: 100, speed: 95 }
   },
   zapdos: {
@@ -1303,7 +1303,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen1,
     cry: 'Zapdos!',
     possibleColors: [PokemonColor.default],
-    types: ["Fighting", "Flying"],
+    types: [PokemonCombatType.fighting, PokemonCombatType.flying],
     stats: { hp: 90, attack: 125, defense: 90, sp_attack: 85, sp_defense: 90, speed: 100 }
   },
   moltres: {
@@ -1312,7 +1312,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen1,
     cry: 'Moltres!',
     possibleColors: [PokemonColor.default],
-    types: ["Dark", "Flying"],
+    types: [PokemonCombatType.dark, PokemonCombatType.flying],
     stats: { hp: 90, attack: 85, defense: 90, sp_attack: 100, sp_defense: 125, speed: 90 }
   },
   dratini: {
@@ -1321,25 +1321,25 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen1,
     cry: 'Dratini!',
     possibleColors: [PokemonColor.default],
-    types: ["Dragon"],
+    types: [PokemonCombatType.dragon],
     stats: { hp: 41, attack: 64, defense: 45, sp_attack: 50, sp_defense: 50, speed: 50 }
   },
   dragonair: {
     id: 148,
-    name: 'Dragonair',
+    name: 'dragonair',
     generation: PokemonGeneration.Gen1,
-    cry: 'Dragonair!',
+    cry: 'dragonair!',
     possibleColors: [PokemonColor.default],
-    types: ["Dragon"],
+    types: [PokemonCombatType.dragon],
     stats: { hp: 61, attack: 84, defense: 65, sp_attack: 70, sp_defense: 70, speed: 70 }
   },
   dragonite: {
     id: 149,
-    name: 'Dragonite',
+    name: 'dragonite',
     generation: PokemonGeneration.Gen1,
-    cry: 'Dragonite!',
+    cry: 'dragonite!',
     possibleColors: [PokemonColor.default],
-    types: ["Dragon", "Flying"],
+    types: [PokemonCombatType.dragon, PokemonCombatType.flying],
     stats: { hp: 91, attack: 124, defense: 115, sp_attack: 145, sp_defense: 125, speed: 100 }
   },
   mewtwo: {
@@ -1348,7 +1348,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen1,
     cry: 'Mewtwo!',
     possibleColors: [PokemonColor.default],
-    types: ["Psychic"],
+    types: [PokemonCombatType.psychic],
     stats: { hp: 106, attack: 150, defense: 70, sp_attack: 194, sp_defense: 120, speed: 140 }
   },
   mew: {
@@ -1357,7 +1357,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen1,
     cry: 'Mew!',
     possibleColors: [PokemonColor.default],
-    types: ["Psychic"],
+    types: [PokemonCombatType.psychic],
     stats: { hp: 100, attack: 100, defense: 100, sp_attack: 100, sp_defense: 100, speed: 100 }
   },
   // Generation 2
@@ -1367,7 +1367,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen2,
     cry: 'Chikorita!',
     possibleColors: [PokemonColor.default],
-    types: ["Grass"],
+    types: [PokemonCombatType.grass],
     stats: { hp: 45, attack: 49, defense: 65, sp_attack: 49, sp_defense: 65, speed: 45 }
   },
   bayleef: {
@@ -1376,7 +1376,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen2,
     cry: 'Bayleef!',
     possibleColors: [PokemonColor.default],
-    types: ["Grass"],
+    types: [PokemonCombatType.grass],
     stats: { hp: 60, attack: 62, defense: 80, sp_attack: 63, sp_defense: 80, speed: 60 }
   },
   meganium: {
@@ -1385,7 +1385,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen2,
     cry: 'Meganium!',
     possibleColors: [PokemonColor.default],
-    types: ["Grass"],
+    types: [PokemonCombatType.grass],
     stats: { hp: 80, attack: 82, defense: 100, sp_attack: 83, sp_defense: 100, speed: 80 }
   },
   cyndaquil: {
@@ -1394,7 +1394,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen2,
     cry: 'Cyndaquil!',
     possibleColors: [PokemonColor.default],
-    types: ["Fire"],
+    types: [PokemonCombatType.fire],
     stats: { hp: 39, attack: 52, defense: 43, sp_attack: 60, sp_defense: 50, speed: 65 }
   },
   quilava: {
@@ -1403,7 +1403,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen2,
     cry: 'Quilava!',
     possibleColors: [PokemonColor.default],
-    types: ["Fire"],
+    types: [PokemonCombatType.fire],
     stats: { hp: 58, attack: 64, defense: 58, sp_attack: 80, sp_defense: 65, speed: 80 }
   },
   typhlosion: {
@@ -1412,7 +1412,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen2,
     cry: 'Typhlosion!',
     possibleColors: [PokemonColor.default],
-    types: ["Fire", "Ghost"],
+    types: [PokemonCombatType.fire, PokemonCombatType.ghost],
     stats: { hp: 73, attack: 84, defense: 78, sp_attack: 119, sp_defense: 85, speed: 95 }
   },
   totodile: {
@@ -1421,7 +1421,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen2,
     cry: 'Totodile!',
     possibleColors: [PokemonColor.default],
-    types: ["Water"],
+    types: [PokemonCombatType.water],
     stats: { hp: 50, attack: 65, defense: 64, sp_attack: 44, sp_defense: 48, speed: 43 }
   },
   croconaw: {
@@ -1430,7 +1430,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen2,
     cry: 'Croconaw!',
     possibleColors: [PokemonColor.default],
-    types: ["Water"],
+    types: [PokemonCombatType.water],
     stats: { hp: 65, attack: 80, defense: 80, sp_attack: 59, sp_defense: 63, speed: 58 }
   },
   feraligatr: {
@@ -1439,7 +1439,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen2,
     cry: 'Feraligatr!',
     possibleColors: [PokemonColor.default],
-    types: ["Water"],
+    types: [PokemonCombatType.water],
     stats: { hp: 85, attack: 105, defense: 100, sp_attack: 79, sp_defense: 83, speed: 78 }
   },
   sentret: {
@@ -1448,7 +1448,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen2,
     cry: 'Sentret!',
     possibleColors: [PokemonColor.default],
-    types: ["Normal"],
+    types: [PokemonCombatType.normal],
     stats: { hp: 35, attack: 46, defense: 34, sp_attack: 35, sp_defense: 45, speed: 20 }
   },
   furret: {
@@ -1457,7 +1457,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen2,
     cry: 'Furret!',
     possibleColors: [PokemonColor.default],
-    types: ["Normal"],
+    types: [PokemonCombatType.normal],
     stats: { hp: 85, attack: 76, defense: 64, sp_attack: 45, sp_defense: 55, speed: 90 }
   },
   hoothoot: {
@@ -1466,7 +1466,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen2,
     cry: 'Hoothoot!',
     possibleColors: [PokemonColor.default],
-    types: ["Normal", "Flying"],
+    types: [PokemonCombatType.normal, PokemonCombatType.flying],
     stats: { hp: 60, attack: 30, defense: 30, sp_attack: 36, sp_defense: 56, speed: 50 }
   },
   noctowl: {
@@ -1475,7 +1475,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen2,
     cry: 'Noctowl!',
     possibleColors: [PokemonColor.default],
-    types: ["Normal", "Flying"],
+    types: [PokemonCombatType.normal, PokemonCombatType.flying],
     stats: { hp: 100, attack: 50, defense: 50, sp_attack: 86, sp_defense: 96, speed: 70 }
   },
   ledyba: {
@@ -1484,7 +1484,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen2,
     cry: 'Ledyba!',
     possibleColors: [PokemonColor.default],
-    types: ["Bug", "Flying"],
+    types: [PokemonCombatType.bug, PokemonCombatType.flying],
     stats: { hp: 40, attack: 20, defense: 30, sp_attack: 40, sp_defense: 80, speed: 55 }
   },
   ledian: {
@@ -1493,7 +1493,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen2,
     cry: 'Ledian!',
     possibleColors: [PokemonColor.default],
-    types: ["Bug", "Flying"],
+    types: [PokemonCombatType.bug, PokemonCombatType.flying],
     stats: { hp: 55, attack: 35, defense: 50, sp_attack: 55, sp_defense: 110, speed: 85 }
   },
   spinarak: {
@@ -1502,7 +1502,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen2,
     cry: 'Spinarak!',
     possibleColors: [PokemonColor.default],
-    types: ["Bug", "Poison"],
+    types: [PokemonCombatType.bug, PokemonCombatType.poison],
     stats: { hp: 40, attack: 60, defense: 40, sp_attack: 40, sp_defense: 40, speed: 30 }
   },
   ariados: {
@@ -1511,7 +1511,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen2,
     cry: 'Ariados!',
     possibleColors: [PokemonColor.default],
-    types: ["Bug", "Poison"],
+    types: [PokemonCombatType.bug, PokemonCombatType.poison],
     stats: { hp: 70, attack: 90, defense: 70, sp_attack: 60, sp_defense: 70, speed: 40 }
   },
   crobat: {
@@ -1520,7 +1520,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen2,
     cry: 'Crobat!',
     possibleColors: [PokemonColor.default],
-    types: ["Poison", "Flying"],
+    types: [PokemonCombatType.poison, PokemonCombatType.flying],
     stats: { hp: 85, attack: 90, defense: 80, sp_attack: 70, sp_defense: 80, speed: 130 }
   },
   chinchou: {
@@ -1529,7 +1529,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen2,
     cry: 'Chinchou!',
     possibleColors: [PokemonColor.default],
-    types: ["Water", "Electric"],
+    types: [PokemonCombatType.water, PokemonCombatType.electric],
     stats: { hp: 75, attack: 38, defense: 38, sp_attack: 56, sp_defense: 56, speed: 67 }
   },
   lanturn: {
@@ -1538,7 +1538,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen2,
     cry: 'Lanturn!',
     possibleColors: [PokemonColor.default],
-    types: ["Water", "Electric"],
+    types: [PokemonCombatType.water, PokemonCombatType.electric],
     stats: { hp: 125, attack: 58, defense: 58, sp_attack: 76, sp_defense: 76, speed: 67 }
   },
   pichu: {
@@ -1547,7 +1547,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen2,
     cry: 'Pichu!',
     possibleColors: [PokemonColor.default],
-    types: ["Electric"],
+    types: [PokemonCombatType.electric],
     stats: { hp: 20, attack: 40, defense: 15, sp_attack: 35, sp_defense: 35, speed: 60 }
   },
   cleffa: {
@@ -1556,7 +1556,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen2,
     cry: 'Cleffa!',
     possibleColors: [PokemonColor.default],
-    types: ["Fairy"],
+    types: [PokemonCombatType.fairy],
     stats: { hp: 50, attack: 25, defense: 28, sp_attack: 45, sp_defense: 55, speed: 15 }
   },
   igglybuff: {
@@ -1565,7 +1565,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen2,
     cry: 'Igglybuff!',
     possibleColors: [PokemonColor.default],
-    types: ["Normal", "Fairy"],
+    types: [PokemonCombatType.normal, PokemonCombatType.fairy],
     stats: { hp: 90, attack: 30, defense: 15, sp_attack: 40, sp_defense: 20, speed: 15 }
   },
   togepi: {
@@ -1574,7 +1574,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen2,
     cry: 'Togepi!',
     possibleColors: [PokemonColor.default],
-    types: ["Fairy"],
+    types: [PokemonCombatType.fairy],
     stats: { hp: 35, attack: 20, defense: 65, sp_attack: 40, sp_defense: 65, speed: 20 }
   },
   togetic: {
@@ -1583,7 +1583,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen2,
     cry: 'Togetic!',
     possibleColors: [PokemonColor.default],
-    types: ["Fairy", "Flying"],
+    types: [PokemonCombatType.fairy, PokemonCombatType.flying],
     stats: { hp: 55, attack: 40, defense: 85, sp_attack: 80, sp_defense: 105, speed: 40 }
   },
   natu: {
@@ -1592,7 +1592,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen2,
     cry: 'Natu!',
     possibleColors: [PokemonColor.default],
-    types: ["Psychic", "Flying"],
+    types: [PokemonCombatType.psychic, PokemonCombatType.flying],
     stats: { hp: 40, attack: 50, defense: 45, sp_attack: 70, sp_defense: 45, speed: 70 }
   },
   xatu: {
@@ -1601,7 +1601,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen2,
     cry: 'Xatu!',
     possibleColors: [PokemonColor.default],
-    types: ["Psychic", "Flying"],
+    types: [PokemonCombatType.psychic, PokemonCombatType.flying],
     stats: { hp: 65, attack: 75, defense: 70, sp_attack: 95, sp_defense: 70, speed: 95 }
   },
   mareep: {
@@ -1610,7 +1610,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen2,
     cry: 'Mareep!',
     possibleColors: [PokemonColor.default],
-    types: ["Electric"],
+    types: [PokemonCombatType.electric],
     stats: { hp: 55, attack: 40, defense: 40, sp_attack: 65, sp_defense: 45, speed: 35 }
   },
   flaaffy: {
@@ -1619,7 +1619,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen2,
     cry: 'Flaaffy!',
     possibleColors: [PokemonColor.default],
-    types: ["Electric"],
+    types: [PokemonCombatType.electric],
     stats: { hp: 70, attack: 55, defense: 55, sp_attack: 80, sp_defense: 60, speed: 45 }
   },
   ampharos: {
@@ -1628,7 +1628,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen2,
     cry: 'Ampharos!',
     possibleColors: [PokemonColor.default],
-    types: ["Electric", "Dragon"],
+    types: [PokemonCombatType.electric, PokemonCombatType.dragon],
     stats: { hp: 90, attack: 95, defense: 105, sp_attack: 165, sp_defense: 110, speed: 45 }
   },
   bellossom: {
@@ -1637,7 +1637,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen2,
     cry: 'Bellossom!',
     possibleColors: [PokemonColor.default],
-    types: ["Grass"],
+    types: [PokemonCombatType.grass],
     stats: { hp: 75, attack: 80, defense: 95, sp_attack: 90, sp_defense: 100, speed: 50 }
   },
   marill: {
@@ -1646,7 +1646,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen2,
     cry: 'Marill!',
     possibleColors: [PokemonColor.default],
-    types: ["Water", "Fairy"],
+    types: [PokemonCombatType.water, PokemonCombatType.fairy],
     stats: { hp: 70, attack: 20, defense: 50, sp_attack: 20, sp_defense: 50, speed: 40 }
   },
   azumarill: {
@@ -1655,7 +1655,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen2,
     cry: 'Azumarill!',
     possibleColors: [PokemonColor.default],
-    types: ["Water", "Fairy"],
+    types: [PokemonCombatType.water, PokemonCombatType.fairy],
     stats: { hp: 100, attack: 50, defense: 80, sp_attack: 60, sp_defense: 80, speed: 50 }
   },
   sudowoodo: {
@@ -1664,7 +1664,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen2,
     cry: 'Sudowoodo!',
     possibleColors: [PokemonColor.default],
-    types: ["Rock"],
+    types: [PokemonCombatType.rock],
     stats: { hp: 70, attack: 100, defense: 115, sp_attack: 30, sp_defense: 65, speed: 30 }
   },
   politoed: {
@@ -1673,7 +1673,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen2,
     cry: 'Politoed!',
     possibleColors: [PokemonColor.default],
-    types: ["Water"],
+    types: [PokemonCombatType.water],
     stats: { hp: 90, attack: 75, defense: 75, sp_attack: 90, sp_defense: 100, speed: 70 }
   },
   hoppip: {
@@ -1682,7 +1682,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen2,
     cry: 'Hoppip!',
     possibleColors: [PokemonColor.default],
-    types: ["Grass", "Flying"],
+    types: [PokemonCombatType.grass, PokemonCombatType.flying],
     stats: { hp: 35, attack: 35, defense: 40, sp_attack: 35, sp_defense: 55, speed: 50 }
   },
   skiploom: {
@@ -1691,7 +1691,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen2,
     cry: 'Skiploom!',
     possibleColors: [PokemonColor.default],
-    types: ["Grass", "Flying"],
+    types: [PokemonCombatType.grass, PokemonCombatType.flying],
     stats: { hp: 55, attack: 45, defense: 50, sp_attack: 45, sp_defense: 65, speed: 80 }
   },
   jumpluff: {
@@ -1700,7 +1700,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen2,
     cry: 'Jumpluff!',
     possibleColors: [PokemonColor.default],
-    types: ["Grass", "Flying"],
+    types: [PokemonCombatType.grass, PokemonCombatType.flying],
     stats: { hp: 75, attack: 55, defense: 70, sp_attack: 55, sp_defense: 95, speed: 110 }
   },
   aipom: {
@@ -1709,7 +1709,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen2,
     cry: 'Aipom!',
     possibleColors: [PokemonColor.default],
-    types: ["Normal"],
+    types: [PokemonCombatType.normal],
     stats: { hp: 55, attack: 70, defense: 55, sp_attack: 40, sp_defense: 55, speed: 85 }
   },
   sunkern: {
@@ -1718,7 +1718,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen2,
     cry: 'Sunkern!',
     possibleColors: [PokemonColor.default],
-    types: ["Grass"],
+    types: [PokemonCombatType.grass],
     stats: { hp: 30, attack: 30, defense: 30, sp_attack: 30, sp_defense: 30, speed: 30 }
   },
   sunflora: {
@@ -1727,7 +1727,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen2,
     cry: 'Sunflora!',
     possibleColors: [PokemonColor.default],
-    types: ["Grass"],
+    types: [PokemonCombatType.grass],
     stats: { hp: 75, attack: 75, defense: 55, sp_attack: 105, sp_defense: 85, speed: 30 }
   },
   yanma: {
@@ -1736,7 +1736,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen2,
     cry: 'Yanma!',
     possibleColors: [PokemonColor.default],
-    types: ["Bug", "Flying"],
+    types: [PokemonCombatType.bug, PokemonCombatType.flying],
     stats: { hp: 65, attack: 65, defense: 45, sp_attack: 75, sp_defense: 45, speed: 95 }
   },
   wooper: {
@@ -1745,7 +1745,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen2,
     cry: 'Wooper!',
     possibleColors: [PokemonColor.default],
-    types: ["Poison", "Ground"],
+    types: [PokemonCombatType.poison, PokemonCombatType.ground],
     stats: { hp: 55, attack: 45, defense: 45, sp_attack: 25, sp_defense: 25, speed: 15 }
   },
   quagsire: {
@@ -1754,7 +1754,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen2,
     cry: 'Quagsire!',
     possibleColors: [PokemonColor.default],
-    types: ["Water", "Ground"],
+    types: [PokemonCombatType.water, PokemonCombatType.ground],
     stats: { hp: 95, attack: 85, defense: 85, sp_attack: 65, sp_defense: 65, speed: 35 }
   },
   espeon: {
@@ -1763,7 +1763,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen2,
     cry: 'Espeon!',
     possibleColors: [PokemonColor.default],
-    types: ["Psychic"],
+    types: [PokemonCombatType.psychic],
     stats: { hp: 65, attack: 65, defense: 60, sp_attack: 130, sp_defense: 95, speed: 110 }
   },
   umbreon: {
@@ -1772,7 +1772,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen2,
     cry: 'Umbreon!',
     possibleColors: [PokemonColor.default],
-    types: ["Dark"],
+    types: [PokemonCombatType.dark],
     stats: { hp: 95, attack: 65, defense: 110, sp_attack: 60, sp_defense: 130, speed: 65 }
   },
   murkrow: {
@@ -1781,7 +1781,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen2,
     cry: 'Murkrow!',
     possibleColors: [PokemonColor.default],
-    types: ["Dark", "Flying"],
+    types: [PokemonCombatType.dark, PokemonCombatType.flying],
     stats: { hp: 60, attack: 85, defense: 42, sp_attack: 85, sp_defense: 42, speed: 91 }
   },
   slowking: {
@@ -1790,7 +1790,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen2,
     cry: 'Slowking!',
     possibleColors: [PokemonColor.default],
-    types: ["Poison", "Psychic"],
+    types: [PokemonCombatType.poison, PokemonCombatType.psychic],
     stats: { hp: 95, attack: 65, defense: 80, sp_attack: 110, sp_defense: 110, speed: 30 }
   },
   misdreavus: {
@@ -1799,7 +1799,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen2,
     cry: 'Misdreavus!',
     possibleColors: [PokemonColor.default],
-    types: ["Ghost"],
+    types: [PokemonCombatType.ghost],
     stats: { hp: 60, attack: 60, defense: 60, sp_attack: 85, sp_defense: 85, speed: 85 }
   },
   wobbuffet: {
@@ -1808,7 +1808,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen2,
     cry: 'Wobbuffet!',
     possibleColors: [PokemonColor.default],
-    types: ["Psychic"],
+    types: [PokemonCombatType.psychic],
     stats: { hp: 190, attack: 33, defense: 58, sp_attack: 33, sp_defense: 58, speed: 33 }
   },
   girafarig: {
@@ -1817,7 +1817,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen2,
     cry: 'Girafarig!',
     possibleColors: [PokemonColor.default],
-    types: ["Normal", "Psychic"],
+    types: [PokemonCombatType.normal, PokemonCombatType.psychic],
     stats: { hp: 70, attack: 80, defense: 65, sp_attack: 90, sp_defense: 65, speed: 85 }
   },
   pineco: {
@@ -1826,7 +1826,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen2,
     cry: 'Pineco!',
     possibleColors: [PokemonColor.default],
-    types: ["Bug"],
+    types: [PokemonCombatType.bug],
     stats: { hp: 50, attack: 65, defense: 90, sp_attack: 35, sp_defense: 35, speed: 15 }
   },
   forretress: {
@@ -1835,7 +1835,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen2,
     cry: 'Forretress!',
     possibleColors: [PokemonColor.default],
-    types: ["Bug", "Steel"],
+    types: [PokemonCombatType.bug, PokemonCombatType.steel],
     stats: { hp: 75, attack: 90, defense: 140, sp_attack: 60, sp_defense: 60, speed: 40 }
   },
   dunsparce: {
@@ -1844,7 +1844,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen2,
     cry: 'Dunsparce!',
     possibleColors: [PokemonColor.default],
-    types: ["Normal"],
+    types: [PokemonCombatType.normal],
     stats: { hp: 100, attack: 70, defense: 70, sp_attack: 65, sp_defense: 65, speed: 45 }
   },
   gligar: {
@@ -1853,7 +1853,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen2,
     cry: 'Gligar!',
     possibleColors: [PokemonColor.default],
-    types: ["Ground", "Flying"],
+    types: [PokemonCombatType.ground, PokemonCombatType.flying],
     stats: { hp: 65, attack: 75, defense: 105, sp_attack: 35, sp_defense: 65, speed: 85 }
   },
   steelix: {
@@ -1863,7 +1863,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Steelix!',
     possibleColors: [PokemonColor.default],
     originalSpriteSize: 64,
-    types: ["Steel", "Ground"],
+    types: [PokemonCombatType.steel, PokemonCombatType.ground],
     stats: { hp: 75, attack: 125, defense: 230, sp_attack: 55, sp_defense: 95, speed: 30 }
   },
   snubbull: {
@@ -1872,7 +1872,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen2,
     cry: 'Snubbull!',
     possibleColors: [PokemonColor.default],
-    types: ["Fairy"],
+    types: [PokemonCombatType.fairy],
     stats: { hp: 60, attack: 80, defense: 50, sp_attack: 40, sp_defense: 40, speed: 30 }
   },
   granbull: {
@@ -1881,7 +1881,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen2,
     cry: 'Granbull!',
     possibleColors: [PokemonColor.default],
-    types: ["Fairy"],
+    types: [PokemonCombatType.fairy],
     stats: { hp: 90, attack: 120, defense: 75, sp_attack: 60, sp_defense: 60, speed: 45 }
   },
   qwilfish: {
@@ -1890,7 +1890,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen2,
     cry: 'Qwilfish!',
     possibleColors: [PokemonColor.default],
-    types: ["Dark", "Poison"],
+    types: [PokemonCombatType.dark, PokemonCombatType.poison],
     stats: { hp: 65, attack: 95, defense: 85, sp_attack: 55, sp_defense: 55, speed: 85 }
   },
   scizor: {
@@ -1899,7 +1899,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen2,
     cry: 'Scizor!',
     possibleColors: [PokemonColor.default],
-    types: ["Bug", "Steel"],
+    types: [PokemonCombatType.bug, PokemonCombatType.steel],
     stats: { hp: 70, attack: 150, defense: 140, sp_attack: 65, sp_defense: 100, speed: 75 }
   },
   shuckle: {
@@ -1908,7 +1908,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen2,
     cry: 'Shuckle!',
     possibleColors: [PokemonColor.default],
-    types: ["Bug", "Rock"],
+    types: [PokemonCombatType.bug, PokemonCombatType.rock],
     stats: { hp: 20, attack: 10, defense: 230, sp_attack: 10, sp_defense: 230, speed: 5 }
   },
   heracross: {
@@ -1917,7 +1917,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen2,
     cry: 'Heracross!',
     possibleColors: [PokemonColor.default],
-    types: ["Bug", "Fighting"],
+    types: [PokemonCombatType.bug, PokemonCombatType.fighting],
     stats: { hp: 80, attack: 185, defense: 115, sp_attack: 40, sp_defense: 105, speed: 75 }
   },
   sneasel: {
@@ -1926,7 +1926,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen2,
     cry: 'Sneasel!',
     possibleColors: [PokemonColor.default],
-    types: ["Fighting", "Poison"],
+    types: [PokemonCombatType.fighting, PokemonCombatType.poison],
     stats: { hp: 55, attack: 95, defense: 55, sp_attack: 35, sp_defense: 75, speed: 115 }
   },
   teddiursa: {
@@ -1935,7 +1935,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen2,
     cry: 'Teddiursa!',
     possibleColors: [PokemonColor.default],
-    types: ["Normal"],
+    types: [PokemonCombatType.normal],
     stats: { hp: 60, attack: 80, defense: 50, sp_attack: 50, sp_defense: 50, speed: 40 }
   },
   ursaring: {
@@ -1944,7 +1944,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen2,
     cry: 'Ursaring!',
     possibleColors: [PokemonColor.default],
-    types: ["Normal"],
+    types: [PokemonCombatType.normal],
     stats: { hp: 90, attack: 130, defense: 75, sp_attack: 75, sp_defense: 75, speed: 55 }
   },
   slugma: {
@@ -1953,7 +1953,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen2,
     cry: 'Slugma!',
     possibleColors: [PokemonColor.default],
-    types: ["Fire"],
+    types: [PokemonCombatType.fire],
     stats: { hp: 40, attack: 40, defense: 40, sp_attack: 70, sp_defense: 40, speed: 20 }
   },
   magcargo: {
@@ -1962,7 +1962,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen2,
     cry: 'Magcargo!',
     possibleColors: [PokemonColor.default],
-    types: ["Fire", "Rock"],
+    types: [PokemonCombatType.fire, PokemonCombatType.rock],
     stats: { hp: 60, attack: 50, defense: 120, sp_attack: 90, sp_defense: 80, speed: 30 }
   },
   swinub: {
@@ -1971,7 +1971,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen2,
     cry: 'Swinub!',
     possibleColors: [PokemonColor.default],
-    types: ["Ice", "Ground"],
+    types: [PokemonCombatType.ice, PokemonCombatType.ground],
     stats: { hp: 50, attack: 50, defense: 40, sp_attack: 30, sp_defense: 30, speed: 50 }
   },
   piloswine: {
@@ -1980,7 +1980,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen2,
     cry: 'Piloswine!',
     possibleColors: [PokemonColor.default],
-    types: ["Ice", "Ground"],
+    types: [PokemonCombatType.ice, PokemonCombatType.ground],
     stats: { hp: 100, attack: 100, defense: 80, sp_attack: 60, sp_defense: 60, speed: 50 }
   },
   corsola: {
@@ -1989,7 +1989,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen2,
     cry: 'Corsola!',
     possibleColors: [PokemonColor.default],
-    types: ["Ghost"],
+    types: [PokemonCombatType.ghost],
     stats: { hp: 60, attack: 55, defense: 100, sp_attack: 65, sp_defense: 100, speed: 30 }
   },
   remoraid: {
@@ -1998,7 +1998,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen2,
     cry: 'Remoraid!',
     possibleColors: [PokemonColor.default],
-    types: ["Water"],
+    types: [PokemonCombatType.water],
     stats: { hp: 35, attack: 65, defense: 35, sp_attack: 65, sp_defense: 35, speed: 65 }
   },
   octillery: {
@@ -2007,7 +2007,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen2,
     cry: 'Octillery!',
     possibleColors: [PokemonColor.default],
-    types: ["Water"],
+    types: [PokemonCombatType.water],
     stats: { hp: 75, attack: 105, defense: 75, sp_attack: 105, sp_defense: 75, speed: 45 }
   },
   delibird: {
@@ -2016,7 +2016,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen2,
     cry: 'Delibird!',
     possibleColors: [PokemonColor.default],
-    types: ["Ice", "Flying"],
+    types: [PokemonCombatType.ice, PokemonCombatType.flying],
     stats: { hp: 45, attack: 55, defense: 45, sp_attack: 65, sp_defense: 45, speed: 75 }
   },
   mantine: {
@@ -2025,7 +2025,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen2,
     cry: 'Mantine!',
     possibleColors: [PokemonColor.default],
-    types: ["Water", "Flying"],
+    types: [PokemonCombatType.water, PokemonCombatType.flying],
     stats: { hp: 85, attack: 40, defense: 70, sp_attack: 80, sp_defense: 140, speed: 70 }
   },
   skarmory: {
@@ -2034,7 +2034,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen2,
     cry: 'Skarmory!',
     possibleColors: [PokemonColor.default],
-    types: ["Steel", "Flying"],
+    types: [PokemonCombatType.steel, PokemonCombatType.flying],
     stats: { hp: 65, attack: 80, defense: 140, sp_attack: 40, sp_defense: 70, speed: 70 }
   },
   houndour: {
@@ -2043,7 +2043,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen2,
     cry: 'Houndour!',
     possibleColors: [PokemonColor.default],
-    types: ["Dark", "Fire"],
+    types: [PokemonCombatType.dark, PokemonCombatType.fire],
     stats: { hp: 45, attack: 60, defense: 30, sp_attack: 80, sp_defense: 50, speed: 65 }
   },
   houndoom: {
@@ -2052,7 +2052,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen2,
     cry: 'Houndoom!',
     possibleColors: [PokemonColor.default],
-    types: ["Dark", "Fire"],
+    types: [PokemonCombatType.dark, PokemonCombatType.fire],
     stats: { hp: 75, attack: 90, defense: 90, sp_attack: 140, sp_defense: 90, speed: 115 }
   },
   kingdra: {
@@ -2061,7 +2061,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen2,
     cry: 'Kingdra!',
     possibleColors: [PokemonColor.default],
-    types: ["Water", "Dragon"],
+    types: [PokemonCombatType.water, PokemonCombatType.dragon],
     stats: { hp: 75, attack: 95, defense: 95, sp_attack: 95, sp_defense: 95, speed: 85 }
   },
   phanpy: {
@@ -2070,7 +2070,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen2,
     cry: 'Phanpy!',
     possibleColors: [PokemonColor.default],
-    types: ["Ground"],
+    types: [PokemonCombatType.ground],
     stats: { hp: 90, attack: 60, defense: 60, sp_attack: 40, sp_defense: 40, speed: 40 }
   },
   donphan: {
@@ -2079,7 +2079,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen2,
     cry: 'Donphan!',
     possibleColors: [PokemonColor.default],
-    types: ["Ground"],
+    types: [PokemonCombatType.ground],
     stats: { hp: 90, attack: 120, defense: 120, sp_attack: 60, sp_defense: 60, speed: 50 }
   },
   porygon2: {
@@ -2088,7 +2088,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen2,
     cry: 'Porygon2!',
     possibleColors: [PokemonColor.default],
-    types: ["Normal"],
+    types: [PokemonCombatType.normal],
     stats: { hp: 85, attack: 80, defense: 90, sp_attack: 105, sp_defense: 95, speed: 60 }
   },
   stantler: {
@@ -2097,7 +2097,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen2,
     cry: 'Stantler!',
     possibleColors: [PokemonColor.default],
-    types: ["Normal"],
+    types: [PokemonCombatType.normal],
     stats: { hp: 73, attack: 95, defense: 62, sp_attack: 85, sp_defense: 65, speed: 85 }
   },
   smeargle: {
@@ -2106,7 +2106,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen2,
     cry: 'Smeargle!',
     possibleColors: [PokemonColor.default],
-    types: ["Normal"],
+    types: [PokemonCombatType.normal],
     stats: { hp: 55, attack: 20, defense: 35, sp_attack: 20, sp_defense: 45, speed: 75 }
   },
   tyrogue: {
@@ -2115,7 +2115,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen2,
     cry: 'Tyrogue!',
     possibleColors: [PokemonColor.default],
-    types: ["Fighting"],
+    types: [PokemonCombatType.fighting],
     stats: { hp: 35, attack: 35, defense: 35, sp_attack: 35, sp_defense: 35, speed: 35 }
   },
   hitmontop: {
@@ -2124,7 +2124,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen2,
     cry: 'Hitmontop!',
     possibleColors: [PokemonColor.default],
-    types: ["Fighting"],
+    types: [PokemonCombatType.fighting],
     stats: { hp: 50, attack: 95, defense: 95, sp_attack: 35, sp_defense: 110, speed: 70 }
   },
   smoochum: {
@@ -2133,7 +2133,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen2,
     cry: 'Smoochum!',
     possibleColors: [PokemonColor.default],
-    types: ["Ice", "Psychic"],
+    types: [PokemonCombatType.ice, PokemonCombatType.psychic],
     stats: { hp: 45, attack: 30, defense: 15, sp_attack: 85, sp_defense: 65, speed: 65 }
   },
   elekid: {
@@ -2142,7 +2142,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen2,
     cry: 'Elekid!',
     possibleColors: [PokemonColor.default],
-    types: ["Electric"],
+    types: [PokemonCombatType.electric],
     stats: { hp: 45, attack: 63, defense: 37, sp_attack: 65, sp_defense: 55, speed: 95 }
   },
   magby: {
@@ -2151,7 +2151,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen2,
     cry: 'Magby!',
     possibleColors: [PokemonColor.default],
-    types: ["Fire"],
+    types: [PokemonCombatType.fire],
     stats: { hp: 45, attack: 75, defense: 37, sp_attack: 70, sp_defense: 55, speed: 83 }
   },
   miltank: {
@@ -2160,7 +2160,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen2,
     cry: 'Miltank!',
     possibleColors: [PokemonColor.default],
-    types: ["Normal"],
+    types: [PokemonCombatType.normal],
     stats: { hp: 95, attack: 80, defense: 105, sp_attack: 40, sp_defense: 70, speed: 100 }
   },
   blissey: {
@@ -2169,7 +2169,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen2,
     cry: 'Blissey!',
     possibleColors: [PokemonColor.default],
-    types: ["Normal"],
+    types: [PokemonCombatType.normal],
     stats: { hp: 255, attack: 10, defense: 10, sp_attack: 75, sp_defense: 135, speed: 55 }
   },
   raikou: {
@@ -2178,7 +2178,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen2,
     cry: 'Raikou!',
     possibleColors: [PokemonColor.default],
-    types: ["Electric"],
+    types: [PokemonCombatType.electric],
     stats: { hp: 90, attack: 85, defense: 75, sp_attack: 115, sp_defense: 100, speed: 115 }
   },
   entei: {
@@ -2187,7 +2187,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen2,
     cry: 'Entei!',
     possibleColors: [PokemonColor.default],
-    types: ["Fire"],
+    types: [PokemonCombatType.fire],
     stats: { hp: 115, attack: 115, defense: 85, sp_attack: 90, sp_defense: 75, speed: 100 }
   },
   suicune: {
@@ -2196,7 +2196,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen2,
     cry: 'Suicune!',
     possibleColors: [PokemonColor.default],
-    types: ["Water"],
+    types: [PokemonCombatType.water],
     stats: { hp: 100, attack: 75, defense: 115, sp_attack: 90, sp_defense: 115, speed: 85 }
   },
   larvitar: {
@@ -2205,7 +2205,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen2,
     cry: 'Larvitar!',
     possibleColors: [PokemonColor.default],
-    types: ["Rock", "Ground"],
+    types: [PokemonCombatType.rock, PokemonCombatType.ground],
     stats: { hp: 50, attack: 64, defense: 50, sp_attack: 45, sp_defense: 50, speed: 41 }
   },
   pupitar: {
@@ -2214,7 +2214,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen2,
     cry: 'Pupitar!',
     possibleColors: [PokemonColor.default],
-    types: ["Rock", "Ground"],
+    types: [PokemonCombatType.rock, PokemonCombatType.ground],
     stats: { hp: 70, attack: 84, defense: 70, sp_attack: 65, sp_defense: 70, speed: 51 }
   },
   tyranitar: {
@@ -2223,7 +2223,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen2,
     cry: 'Tyranitar!',
     possibleColors: [PokemonColor.default],
-    types: ["Rock", "Dark"],
+    types: [PokemonCombatType.rock, PokemonCombatType.dark],
     stats: { hp: 100, attack: 164, defense: 150, sp_attack: 95, sp_defense: 120, speed: 71 }
   },
   lugia: {
@@ -2233,7 +2233,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Lugia!',
     possibleColors: [PokemonColor.default],
     originalSpriteSize: 64,
-    types: ["Psychic", "Flying"],
+    types: [PokemonCombatType.psychic, PokemonCombatType.flying],
     stats: { hp: 106, attack: 90, defense: 130, sp_attack: 90, sp_defense: 154, speed: 110 }
   },
   hooh: {
@@ -2243,7 +2243,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Ho-Oh!',
     possibleColors: [PokemonColor.default],
     originalSpriteSize: 64,
-    types: ["Fire", "Flying"],
+    types: [PokemonCombatType.fire, PokemonCombatType.flying],
     stats: { hp: 106, attack: 130, defense: 90, sp_attack: 110, sp_defense: 154, speed: 90 }
   },
   celebi: {
@@ -2252,7 +2252,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen2,
     cry: 'Celebi!',
     possibleColors: [PokemonColor.default],
-    types: ["Psychic", "Grass"],
+    types: [PokemonCombatType.psychic, PokemonCombatType.grass],
     stats: { hp: 100, attack: 100, defense: 100, sp_attack: 100, sp_defense: 100, speed: 100 }
   },
   // Generation 3
@@ -2262,7 +2262,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen3,
     cry: 'Treecko!',
     possibleColors: [PokemonColor.default],
-    types: ["Grass"],
+    types: [PokemonCombatType.grass],
     stats: { hp: 40, attack: 45, defense: 35, sp_attack: 65, sp_defense: 55, speed: 70 }
   },
   grovyle: {
@@ -2271,7 +2271,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen3,
     cry: 'Grovyle!',
     possibleColors: [PokemonColor.default],
-    types: ["Grass"],
+    types: [PokemonCombatType.grass],
     stats: { hp: 50, attack: 65, defense: 45, sp_attack: 85, sp_defense: 65, speed: 95 }
   },
   sceptile: {
@@ -2280,7 +2280,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen3,
     cry: 'Sceptile!',
     possibleColors: [PokemonColor.default],
-    types: ["Grass", "Dragon"],
+    types: [PokemonCombatType.grass, PokemonCombatType.dragon],
     stats: { hp: 70, attack: 110, defense: 75, sp_attack: 145, sp_defense: 85, speed: 145 }
   },
   torchic: {
@@ -2289,7 +2289,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen3,
     cry: 'Torchic!',
     possibleColors: [PokemonColor.default],
-    types: ["Fire"],
+    types: [PokemonCombatType.fire],
     stats: { hp: 45, attack: 60, defense: 40, sp_attack: 70, sp_defense: 50, speed: 45 }
   },
   combusken: {
@@ -2298,7 +2298,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen3,
     cry: 'Combusken!',
     possibleColors: [PokemonColor.default],
-    types: ["Fire", "Fighting"],
+    types: [PokemonCombatType.fire, PokemonCombatType.fighting],
     stats: { hp: 60, attack: 85, defense: 60, sp_attack: 85, sp_defense: 60, speed: 55 }
   },
   blaziken: {
@@ -2307,7 +2307,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen3,
     cry: 'Blaziken!',
     possibleColors: [PokemonColor.default],
-    types: ["Fire", "Fighting"],
+    types: [PokemonCombatType.fire, PokemonCombatType.fighting],
     stats: { hp: 80, attack: 160, defense: 80, sp_attack: 130, sp_defense: 80, speed: 100 }
   },
   mudkip: {
@@ -2316,7 +2316,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen3,
     cry: 'Mudkip!',
     possibleColors: [PokemonColor.default],
-    types: ["Water"],
+    types: [PokemonCombatType.water],
     stats: { hp: 50, attack: 70, defense: 50, sp_attack: 50, sp_defense: 50, speed: 40 }
   },
   marshtomp: {
@@ -2325,7 +2325,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen3,
     cry: 'Marshtomp!',
     possibleColors: [PokemonColor.default],
-    types: ["Water", "Ground"],
+    types: [PokemonCombatType.water, PokemonCombatType.ground],
     stats: { hp: 70, attack: 85, defense: 70, sp_attack: 60, sp_defense: 70, speed: 50 }
   },
   swampert: {
@@ -2334,7 +2334,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen3,
     cry: 'Swampert!',
     possibleColors: [PokemonColor.default],
-    types: ["Water", "Ground"],
+    types: [PokemonCombatType.water, PokemonCombatType.ground],
     stats: { hp: 100, attack: 150, defense: 110, sp_attack: 95, sp_defense: 110, speed: 70 }
   },
   poochyena: {
@@ -2343,7 +2343,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen3,
     cry: 'Poochyena!',
     possibleColors: [PokemonColor.default],
-    types: ["Dark"],
+    types: [PokemonCombatType.dark],
     stats: { hp: 35, attack: 55, defense: 35, sp_attack: 30, sp_defense: 30, speed: 35 }
   },
   mightyena: {
@@ -2352,7 +2352,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen3,
     cry: 'Mightyena!',
     possibleColors: [PokemonColor.default],
-    types: ["Dark"],
+    types: [PokemonCombatType.dark],
     stats: { hp: 70, attack: 90, defense: 70, sp_attack: 60, sp_defense: 60, speed: 70 }
   },
   zigzagoon: {
@@ -2361,7 +2361,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen3,
     cry: 'Zigzagoon!',
     possibleColors: [PokemonColor.default],
-    types: ["Dark", "Normal"],
+    types: [PokemonCombatType.dark, PokemonCombatType.normal],
     stats: { hp: 38, attack: 30, defense: 41, sp_attack: 30, sp_defense: 41, speed: 60 }
   },
   linoone: {
@@ -2370,7 +2370,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen3,
     cry: 'Linoone!',
     possibleColors: [PokemonColor.default],
-    types: ["Dark", "Normal"],
+    types: [PokemonCombatType.dark, PokemonCombatType.normal],
     stats: { hp: 78, attack: 70, defense: 61, sp_attack: 50, sp_defense: 61, speed: 100 }
   },
   wurmple: {
@@ -2379,7 +2379,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen3,
     cry: 'Wurmple!',
     possibleColors: [PokemonColor.default],
-    types: ["Bug"],
+    types: [PokemonCombatType.bug],
     stats: { hp: 45, attack: 45, defense: 35, sp_attack: 20, sp_defense: 30, speed: 20 }
   },
   silcoon: {
@@ -2388,7 +2388,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen3,
     cry: 'Silcoon!',
     possibleColors: [PokemonColor.default],
-    types: ["Bug"],
+    types: [PokemonCombatType.bug],
     stats: { hp: 50, attack: 35, defense: 55, sp_attack: 25, sp_defense: 25, speed: 15 }
   },
   beautifly: {
@@ -2397,7 +2397,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen3,
     cry: 'Beautifly!',
     possibleColors: [PokemonColor.default],
-    types: ["Bug", "Flying"],
+    types: [PokemonCombatType.bug, PokemonCombatType.flying],
     stats: { hp: 60, attack: 70, defense: 50, sp_attack: 100, sp_defense: 50, speed: 65 }
   },
   cascoon: {
@@ -2406,7 +2406,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen3,
     cry: 'Cascoon!',
     possibleColors: [PokemonColor.default],
-    types: ["Bug"],
+    types: [PokemonCombatType.bug],
     stats: { hp: 50, attack: 35, defense: 55, sp_attack: 25, sp_defense: 25, speed: 15 }
   },
   dustox: {
@@ -2415,7 +2415,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen3,
     cry: 'Dustox!',
     possibleColors: [PokemonColor.default],
-    types: ["Bug", "Poison"],
+    types: [PokemonCombatType.bug, PokemonCombatType.poison],
     stats: { hp: 60, attack: 50, defense: 70, sp_attack: 50, sp_defense: 90, speed: 65 }
   },
   lotad: {
@@ -2424,7 +2424,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen3,
     cry: 'Lotad!',
     possibleColors: [PokemonColor.default],
-    types: ["Water", "Grass"],
+    types: [PokemonCombatType.water, PokemonCombatType.grass],
     stats: { hp: 40, attack: 30, defense: 30, sp_attack: 40, sp_defense: 50, speed: 30 }
   },
   lombre: {
@@ -2433,7 +2433,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen3,
     cry: 'Lombre!',
     possibleColors: [PokemonColor.default],
-    types: ["Water", "Grass"],
+    types: [PokemonCombatType.water, PokemonCombatType.grass],
     stats: { hp: 60, attack: 50, defense: 50, sp_attack: 60, sp_defense: 70, speed: 50 }
   },
   ludicolo: {
@@ -2442,7 +2442,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen3,
     cry: 'Ludicolo!',
     possibleColors: [PokemonColor.default],
-    types: ["Water", "Grass"],
+    types: [PokemonCombatType.water, PokemonCombatType.grass],
     stats: { hp: 80, attack: 70, defense: 70, sp_attack: 90, sp_defense: 100, speed: 70 }
   },
   seedot: {
@@ -2451,7 +2451,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen3,
     cry: 'Seedot!',
     possibleColors: [PokemonColor.default],
-    types: ["Grass"],
+    types: [PokemonCombatType.grass],
     stats: { hp: 40, attack: 40, defense: 50, sp_attack: 30, sp_defense: 30, speed: 30 }
   },
   nuzleaf: {
@@ -2460,7 +2460,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen3,
     cry: 'Nuzleaf!',
     possibleColors: [PokemonColor.default],
-    types: ["Grass", "Dark"],
+    types: [PokemonCombatType.grass, PokemonCombatType.dark],
     stats: { hp: 70, attack: 70, defense: 40, sp_attack: 60, sp_defense: 40, speed: 60 }
   },
   shiftry: {
@@ -2469,7 +2469,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen3,
     cry: 'Shiftry!',
     possibleColors: [PokemonColor.default],
-    types: ["Grass", "Dark"],
+    types: [PokemonCombatType.grass, PokemonCombatType.dark],
     stats: { hp: 90, attack: 100, defense: 60, sp_attack: 90, sp_defense: 60, speed: 80 }
   },
   taillow: {
@@ -2478,7 +2478,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen3,
     cry: 'Taillow!',
     possibleColors: [PokemonColor.default],
-    types: ["Normal", "Flying"],
+    types: [PokemonCombatType.normal, PokemonCombatType.flying],
     stats: { hp: 40, attack: 55, defense: 30, sp_attack: 30, sp_defense: 30, speed: 85 }
   },
   swellow: {
@@ -2487,7 +2487,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen3,
     cry: 'Swellow!',
     possibleColors: [PokemonColor.default],
-    types: ["Normal", "Flying"],
+    types: [PokemonCombatType.normal, PokemonCombatType.flying],
     stats: { hp: 60, attack: 85, defense: 60, sp_attack: 75, sp_defense: 50, speed: 125 }
   },
   wingull: {
@@ -2496,7 +2496,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen3,
     cry: 'Wingull!',
     possibleColors: [PokemonColor.default],
-    types: ["Water", "Flying"],
+    types: [PokemonCombatType.water, PokemonCombatType.flying],
     stats: { hp: 40, attack: 30, defense: 30, sp_attack: 55, sp_defense: 30, speed: 85 }
   },
   pelipper: {
@@ -2505,7 +2505,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen3,
     cry: 'Pelipper!',
     possibleColors: [PokemonColor.default],
-    types: ["Water", "Flying"],
+    types: [PokemonCombatType.water, PokemonCombatType.flying],
     stats: { hp: 60, attack: 50, defense: 100, sp_attack: 95, sp_defense: 70, speed: 65 }
   },
   ralts: {
@@ -2514,7 +2514,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen3,
     cry: 'Ralts!',
     possibleColors: [PokemonColor.default],
-    types: ["Psychic", "Fairy"],
+    types: [PokemonCombatType.psychic, PokemonCombatType.fairy],
     stats: { hp: 28, attack: 25, defense: 25, sp_attack: 45, sp_defense: 35, speed: 40 }
   },
   kirlia: {
@@ -2523,7 +2523,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen3,
     cry: 'Kirlia!',
     possibleColors: [PokemonColor.default],
-    types: ["Psychic", "Fairy"],
+    types: [PokemonCombatType.psychic, PokemonCombatType.fairy],
     stats: { hp: 38, attack: 35, defense: 35, sp_attack: 65, sp_defense: 55, speed: 50 }
   },
   gardevoir: {
@@ -2532,7 +2532,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen3,
     cry: 'Gardevoir!',
     possibleColors: [PokemonColor.default],
-    types: ["Psychic", "Fairy"],
+    types: [PokemonCombatType.psychic, PokemonCombatType.fairy],
     stats: { hp: 68, attack: 85, defense: 65, sp_attack: 165, sp_defense: 135, speed: 100 }
   },
   surskit: {
@@ -2541,7 +2541,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen3,
     cry: 'Surskit!',
     possibleColors: [PokemonColor.default],
-    types: ["Bug", "Water"],
+    types: [PokemonCombatType.bug, PokemonCombatType.water],
     stats: { hp: 40, attack: 30, defense: 32, sp_attack: 50, sp_defense: 52, speed: 65 }
   },
   masquerain: {
@@ -2550,7 +2550,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen3,
     cry: 'Masquerain!',
     possibleColors: [PokemonColor.default],
-    types: ["Bug", "Flying"],
+    types: [PokemonCombatType.bug, PokemonCombatType.flying],
     stats: { hp: 70, attack: 60, defense: 62, sp_attack: 100, sp_defense: 82, speed: 80 }
   },
   shroomish: {
@@ -2559,7 +2559,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen3,
     cry: 'Shroomish!',
     possibleColors: [PokemonColor.default],
-    types: ["Grass"],
+    types: [PokemonCombatType.grass],
     stats: { hp: 60, attack: 40, defense: 60, sp_attack: 40, sp_defense: 60, speed: 35 }
   },
   breloom: {
@@ -2568,7 +2568,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen3,
     cry: 'Breloom!',
     possibleColors: [PokemonColor.default],
-    types: ["Grass", "Fighting"],
+    types: [PokemonCombatType.grass, PokemonCombatType.fighting],
     stats: { hp: 60, attack: 130, defense: 80, sp_attack: 60, sp_defense: 60, speed: 70 }
   },
   slakoth: {
@@ -2577,7 +2577,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen3,
     cry: 'Slakoth!',
     possibleColors: [PokemonColor.default],
-    types: ["Normal"],
+    types: [PokemonCombatType.normal],
     stats: { hp: 60, attack: 60, defense: 60, sp_attack: 35, sp_defense: 35, speed: 30 }
   },
   vigoroth: {
@@ -2586,7 +2586,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen3,
     cry: 'Vigoroth!',
     possibleColors: [PokemonColor.default],
-    types: ["Normal"],
+    types: [PokemonCombatType.normal],
     stats: { hp: 80, attack: 80, defense: 80, sp_attack: 55, sp_defense: 55, speed: 90 }
   },
   slaking: {
@@ -2595,7 +2595,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen3,
     cry: 'Slaking!',
     possibleColors: [PokemonColor.default],
-    types: ["Normal"],
+    types: [PokemonCombatType.normal],
     stats: { hp: 150, attack: 160, defense: 100, sp_attack: 95, sp_defense: 65, speed: 100 }
   },
   nincada: {
@@ -2604,7 +2604,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen3,
     cry: 'Nincada!',
     possibleColors: [PokemonColor.default],
-    types: ["Bug", "Ground"],
+    types: [PokemonCombatType.bug, PokemonCombatType.ground],
     stats: { hp: 31, attack: 45, defense: 90, sp_attack: 30, sp_defense: 30, speed: 40 }
   },
   ninjask: {
@@ -2613,7 +2613,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen3,
     cry: 'Ninjask!',
     possibleColors: [PokemonColor.default],
-    types: ["Bug", "Flying"],
+    types: [PokemonCombatType.bug, PokemonCombatType.flying],
     stats: { hp: 61, attack: 90, defense: 45, sp_attack: 50, sp_defense: 50, speed: 160 }
   },
   shedinja: {
@@ -2622,7 +2622,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen3,
     cry: 'Shedinja!',
     possibleColors: [PokemonColor.default],
-    types: ["Bug", "Ghost"],
+    types: [PokemonCombatType.bug, PokemonCombatType.ghost],
     stats: { hp: 1, attack: 90, defense: 45, sp_attack: 30, sp_defense: 30, speed: 40 }
   },
   whismur: {
@@ -2631,7 +2631,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen3,
     cry: 'Whismur!',
     possibleColors: [PokemonColor.default],
-    types: ["Normal"],
+    types: [PokemonCombatType.normal],
     stats: { hp: 64, attack: 51, defense: 23, sp_attack: 51, sp_defense: 23, speed: 28 }
   },
   loudred: {
@@ -2640,7 +2640,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen3,
     cry: 'Loudred!',
     possibleColors: [PokemonColor.default],
-    types: ["Normal"],
+    types: [PokemonCombatType.normal],
     stats: { hp: 84, attack: 71, defense: 43, sp_attack: 71, sp_defense: 43, speed: 48 }
   },
   exploud: {
@@ -2649,7 +2649,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen3,
     cry: 'Exploud!',
     possibleColors: [PokemonColor.default],
-    types: ["Normal"],
+    types: [PokemonCombatType.normal],
     stats: { hp: 104, attack: 91, defense: 63, sp_attack: 91, sp_defense: 73, speed: 68 }
   },
   makuhita: {
@@ -2658,7 +2658,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen3,
     cry: 'Makuhita!',
     possibleColors: [PokemonColor.default],
-    types: ["Fighting"],
+    types: [PokemonCombatType.fighting],
     stats: { hp: 72, attack: 60, defense: 30, sp_attack: 20, sp_defense: 30, speed: 25 }
   },
   hariyama: {
@@ -2667,7 +2667,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen3,
     cry: 'Hariyama!',
     possibleColors: [PokemonColor.default],
-    types: ["Fighting"],
+    types: [PokemonCombatType.fighting],
     stats: { hp: 144, attack: 120, defense: 60, sp_attack: 40, sp_defense: 60, speed: 50 }
   },
   azurill: {
@@ -2676,7 +2676,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen3,
     cry: 'Azurill!',
     possibleColors: [PokemonColor.default],
-    types: ["Normal", "Fairy"],
+    types: [PokemonCombatType.normal, PokemonCombatType.fairy],
     stats: { hp: 50, attack: 20, defense: 40, sp_attack: 20, sp_defense: 40, speed: 20 }
   },
   nosepass: {
@@ -2685,7 +2685,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen3,
     cry: 'Nosepass!',
     possibleColors: [PokemonColor.default],
-    types: ["Rock"],
+    types: [PokemonCombatType.rock],
     stats: { hp: 30, attack: 45, defense: 135, sp_attack: 45, sp_defense: 90, speed: 30 }
   },
   skitty: {
@@ -2694,7 +2694,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen3,
     cry: 'Skitty!',
     possibleColors: [PokemonColor.default],
-    types: ["Normal"],
+    types: [PokemonCombatType.normal],
     stats: { hp: 50, attack: 45, defense: 45, sp_attack: 35, sp_defense: 35, speed: 50 }
   },
   delcatty: {
@@ -2703,7 +2703,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen3,
     cry: 'Delcatty!',
     possibleColors: [PokemonColor.default],
-    types: ["Normal"],
+    types: [PokemonCombatType.normal],
     stats: { hp: 70, attack: 65, defense: 65, sp_attack: 55, sp_defense: 55, speed: 90 }
   },
   sableye: {
@@ -2712,7 +2712,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen3,
     cry: 'Sableye!',
     possibleColors: [PokemonColor.default],
-    types: ["Dark", "Ghost"],
+    types: [PokemonCombatType.dark, PokemonCombatType.ghost],
     stats: { hp: 50, attack: 85, defense: 125, sp_attack: 85, sp_defense: 115, speed: 20 }
   },
   mawile: {
@@ -2721,7 +2721,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen3,
     cry: 'Mawile!',
     possibleColors: [PokemonColor.default],
-    types: ["Steel", "Fairy"],
+    types: [PokemonCombatType.steel, PokemonCombatType.fairy],
     stats: { hp: 50, attack: 105, defense: 125, sp_attack: 55, sp_defense: 95, speed: 50 }
   },
   aron: {
@@ -2730,7 +2730,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen3,
     cry: 'Aron!',
     possibleColors: [PokemonColor.default],
-    types: ["Steel", "Rock"],
+    types: [PokemonCombatType.steel, PokemonCombatType.rock],
     stats: { hp: 50, attack: 70, defense: 100, sp_attack: 40, sp_defense: 40, speed: 30 }
   },
   lairon: {
@@ -2739,7 +2739,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen3,
     cry: 'Lairon!',
     possibleColors: [PokemonColor.default],
-    types: ["Steel", "Rock"],
+    types: [PokemonCombatType.steel, PokemonCombatType.rock],
     stats: { hp: 60, attack: 90, defense: 140, sp_attack: 50, sp_defense: 50, speed: 40 }
   },
   aggron: {
@@ -2748,7 +2748,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen3,
     cry: 'Aggron!',
     possibleColors: [PokemonColor.default],
-    types: ["Steel"],
+    types: [PokemonCombatType.steel],
     stats: { hp: 70, attack: 140, defense: 230, sp_attack: 60, sp_defense: 80, speed: 50 }
   },
   meditite: {
@@ -2757,7 +2757,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen3,
     cry: 'Meditite!',
     possibleColors: [PokemonColor.default],
-    types: ["Fighting", "Psychic"],
+    types: [PokemonCombatType.fighting, PokemonCombatType.psychic],
     stats: { hp: 30, attack: 40, defense: 55, sp_attack: 40, sp_defense: 55, speed: 60 }
   },
   medicham: {
@@ -2766,7 +2766,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen3,
     cry: 'Medicham!',
     possibleColors: [PokemonColor.default],
-    types: ["Fighting", "Psychic"],
+    types: [PokemonCombatType.fighting, PokemonCombatType.psychic],
     stats: { hp: 60, attack: 100, defense: 85, sp_attack: 80, sp_defense: 85, speed: 100 }
   },
   electrike: {
@@ -2775,7 +2775,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen3,
     cry: 'Electrike!',
     possibleColors: [PokemonColor.default],
-    types: ["Electric"],
+    types: [PokemonCombatType.electric],
     stats: { hp: 40, attack: 45, defense: 40, sp_attack: 65, sp_defense: 40, speed: 65 }
   },
   manectric: {
@@ -2784,7 +2784,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen3,
     cry: 'Manectric!',
     possibleColors: [PokemonColor.default],
-    types: ["Electric"],
+    types: [PokemonCombatType.electric],
     stats: { hp: 70, attack: 75, defense: 80, sp_attack: 135, sp_defense: 80, speed: 135 }
   },
   plusle: {
@@ -2793,7 +2793,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen3,
     cry: 'Plusle!',
     possibleColors: [PokemonColor.default],
-    types: ["Electric"],
+    types: [PokemonCombatType.electric],
     stats: { hp: 60, attack: 50, defense: 40, sp_attack: 85, sp_defense: 75, speed: 95 }
   },
   minun: {
@@ -2802,7 +2802,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen3,
     cry: 'Minun!',
     possibleColors: [PokemonColor.default],
-    types: ["Electric"],
+    types: [PokemonCombatType.electric],
     stats: { hp: 60, attack: 40, defense: 50, sp_attack: 75, sp_defense: 85, speed: 95 }
   },
   volbeat: {
@@ -2811,7 +2811,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen3,
     cry: 'Volbeat!',
     possibleColors: [PokemonColor.default],
-    types: ["Bug"],
+    types: [PokemonCombatType.bug],
     stats: { hp: 65, attack: 73, defense: 75, sp_attack: 47, sp_defense: 85, speed: 85 }
   },
   illumise: {
@@ -2820,7 +2820,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen3,
     cry: 'Illumise!',
     possibleColors: [PokemonColor.default],
-    types: ["Bug"],
+    types: [PokemonCombatType.bug],
     stats: { hp: 65, attack: 47, defense: 75, sp_attack: 73, sp_defense: 85, speed: 85 }
   },
   roselia: {
@@ -2829,7 +2829,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen3,
     cry: 'Roselia!',
     possibleColors: [PokemonColor.default],
-    types: ["Grass", "Poison"],
+    types: [PokemonCombatType.grass, PokemonCombatType.poison],
     stats: { hp: 50, attack: 60, defense: 45, sp_attack: 100, sp_defense: 80, speed: 65 }
   },
   gulpin: {
@@ -2838,7 +2838,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen3,
     cry: 'Gulpin!',
     possibleColors: [PokemonColor.default],
-    types: ["Poison"],
+    types: [PokemonCombatType.poison],
     stats: { hp: 70, attack: 43, defense: 53, sp_attack: 43, sp_defense: 53, speed: 40 }
   },
   swalot: {
@@ -2847,7 +2847,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen3,
     cry: 'Swalot!',
     possibleColors: [PokemonColor.default],
-    types: ["Poison"],
+    types: [PokemonCombatType.poison],
     stats: { hp: 100, attack: 73, defense: 83, sp_attack: 73, sp_defense: 83, speed: 55 }
   },
   carvanha: {
@@ -2856,7 +2856,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen3,
     cry: 'Carvanha!',
     possibleColors: [PokemonColor.default],
-    types: ["Water", "Dark"],
+    types: [PokemonCombatType.water, PokemonCombatType.dark],
     stats: { hp: 45, attack: 90, defense: 20, sp_attack: 65, sp_defense: 20, speed: 65 }
   },
   sharpedo: {
@@ -2865,7 +2865,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen3,
     cry: 'Sharpedo!',
     possibleColors: [PokemonColor.default],
-    types: ["Water", "Dark"],
+    types: [PokemonCombatType.water, PokemonCombatType.dark],
     stats: { hp: 70, attack: 140, defense: 70, sp_attack: 110, sp_defense: 65, speed: 105 }
   },
   wailmer: {
@@ -2874,7 +2874,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen3,
     cry: 'Wailmer!',
     possibleColors: [PokemonColor.default],
-    types: ["Water"],
+    types: [PokemonCombatType.water],
     stats: { hp: 130, attack: 70, defense: 35, sp_attack: 70, sp_defense: 35, speed: 60 }
   },
   wailord: {
@@ -2884,7 +2884,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Wailord!',
     possibleColors: [PokemonColor.default],
     originalSpriteSize: 64,
-    types: ["Water"],
+    types: [PokemonCombatType.water],
     stats: { hp: 170, attack: 90, defense: 45, sp_attack: 90, sp_defense: 45, speed: 60 }
   },
   numel: {
@@ -2893,7 +2893,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen3,
     cry: 'Numel!',
     possibleColors: [PokemonColor.default],
-    types: ["Fire", "Ground"],
+    types: [PokemonCombatType.fire, PokemonCombatType.ground],
     stats: { hp: 60, attack: 60, defense: 40, sp_attack: 65, sp_defense: 45, speed: 35 }
   },
   camerupt: {
@@ -2902,7 +2902,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen3,
     cry: 'Camerupt!',
     possibleColors: [PokemonColor.default],
-    types: ["Fire", "Ground"],
+    types: [PokemonCombatType.fire, PokemonCombatType.ground],
     stats: { hp: 70, attack: 120, defense: 100, sp_attack: 145, sp_defense: 105, speed: 20 }
   },
   torkoal: {
@@ -2911,7 +2911,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen3,
     cry: 'Torkoal!',
     possibleColors: [PokemonColor.default],
-    types: ["Fire"],
+    types: [PokemonCombatType.fire],
     stats: { hp: 70, attack: 85, defense: 140, sp_attack: 85, sp_defense: 70, speed: 20 }
   },
   spoink: {
@@ -2920,7 +2920,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen3,
     cry: 'Spoink!',
     possibleColors: [PokemonColor.default],
-    types: ["Psychic"],
+    types: [PokemonCombatType.psychic],
     stats: { hp: 60, attack: 25, defense: 35, sp_attack: 70, sp_defense: 80, speed: 60 }
   },
   grumpig: {
@@ -2929,7 +2929,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen3,
     cry: 'Grumpig!',
     possibleColors: [PokemonColor.default],
-    types: ["Psychic"],
+    types: [PokemonCombatType.psychic],
     stats: { hp: 80, attack: 45, defense: 65, sp_attack: 90, sp_defense: 110, speed: 80 }
   },
   spinda: {
@@ -2938,7 +2938,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen3,
     cry: 'Spinda!',
     possibleColors: [PokemonColor.default],
-    types: ["Normal"],
+    types: [PokemonCombatType.normal],
     stats: { hp: 60, attack: 60, defense: 60, sp_attack: 60, sp_defense: 60, speed: 60 }
   },
   trapinch: {
@@ -2947,7 +2947,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen3,
     cry: 'Trapinch!',
     possibleColors: [PokemonColor.default],
-    types: ["Ground"],
+    types: [PokemonCombatType.ground],
     stats: { hp: 45, attack: 100, defense: 45, sp_attack: 45, sp_defense: 45, speed: 10 }
   },
   vibrava: {
@@ -2956,7 +2956,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen3,
     cry: 'Vibrava!',
     possibleColors: [PokemonColor.default],
-    types: ["Ground", "Dragon"],
+    types: [PokemonCombatType.ground, PokemonCombatType.dragon],
     stats: { hp: 50, attack: 70, defense: 50, sp_attack: 50, sp_defense: 50, speed: 70 }
   },
   flygon: {
@@ -2965,7 +2965,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen3,
     cry: 'Flygon!',
     possibleColors: [PokemonColor.default],
-    types: ["Ground", "Dragon"],
+    types: [PokemonCombatType.ground, PokemonCombatType.dragon],
     stats: { hp: 80, attack: 100, defense: 80, sp_attack: 80, sp_defense: 80, speed: 100 }
   },
   cacnea: {
@@ -2974,7 +2974,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen3,
     cry: 'Cacnea!',
     possibleColors: [PokemonColor.default],
-    types: ["Grass"],
+    types: [PokemonCombatType.grass],
     stats: { hp: 50, attack: 85, defense: 40, sp_attack: 85, sp_defense: 40, speed: 35 }
   },
   cacturne: {
@@ -2983,7 +2983,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen3,
     cry: 'Cacturne!',
     possibleColors: [PokemonColor.default],
-    types: ["Grass", "Dark"],
+    types: [PokemonCombatType.grass, PokemonCombatType.dark],
     stats: { hp: 70, attack: 115, defense: 60, sp_attack: 115, sp_defense: 60, speed: 55 }
   },
   swablu: {
@@ -2992,7 +2992,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen3,
     cry: 'Swablu!',
     possibleColors: [PokemonColor.default],
-    types: ["Normal", "Flying"],
+    types: [PokemonCombatType.normal, PokemonCombatType.flying],
     stats: { hp: 45, attack: 40, defense: 60, sp_attack: 40, sp_defense: 75, speed: 50 }
   },
   altaria: {
@@ -3001,7 +3001,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen3,
     cry: 'Altaria!',
     possibleColors: [PokemonColor.default],
-    types: ["Dragon", "Fairy"],
+    types: [PokemonCombatType.dragon, PokemonCombatType.fairy],
     stats: { hp: 75, attack: 110, defense: 110, sp_attack: 110, sp_defense: 105, speed: 80 }
   },
   zangoose: {
@@ -3010,7 +3010,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen3,
     cry: 'Zangoose!',
     possibleColors: [PokemonColor.default],
-    types: ["Normal"],
+    types: [PokemonCombatType.normal],
     stats: { hp: 73, attack: 115, defense: 60, sp_attack: 60, sp_defense: 60, speed: 90 }
   },
   seviper: {
@@ -3019,7 +3019,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen3,
     cry: 'Seviper!',
     possibleColors: [PokemonColor.default],
-    types: ["Poison"],
+    types: [PokemonCombatType.poison],
     stats: { hp: 73, attack: 100, defense: 60, sp_attack: 100, sp_defense: 60, speed: 65 }
   },
   lunatone: {
@@ -3028,7 +3028,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen3,
     cry: 'Lunatone!',
     possibleColors: [PokemonColor.default],
-    types: ["Rock", "Psychic"],
+    types: [PokemonCombatType.rock, PokemonCombatType.psychic],
     stats: { hp: 90, attack: 55, defense: 65, sp_attack: 95, sp_defense: 85, speed: 70 }
   },
   solrock: {
@@ -3037,7 +3037,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen3,
     cry: 'Solrock!',
     possibleColors: [PokemonColor.default],
-    types: ["Rock", "Psychic"],
+    types: [PokemonCombatType.rock, PokemonCombatType.psychic],
     stats: { hp: 90, attack: 95, defense: 85, sp_attack: 55, sp_defense: 65, speed: 70 }
   },
   barboach: {
@@ -3046,7 +3046,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen3,
     cry: 'Barboach!',
     possibleColors: [PokemonColor.default],
-    types: ["Water", "Ground"],
+    types: [PokemonCombatType.water, PokemonCombatType.ground],
     stats: { hp: 50, attack: 48, defense: 43, sp_attack: 46, sp_defense: 41, speed: 60 }
   },
   whiscash: {
@@ -3055,7 +3055,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen3,
     cry: 'Whiscash!',
     possibleColors: [PokemonColor.default],
-    types: ["Water", "Ground"],
+    types: [PokemonCombatType.water, PokemonCombatType.ground],
     stats: { hp: 110, attack: 78, defense: 73, sp_attack: 76, sp_defense: 71, speed: 60 }
   },
   corpish: {
@@ -3064,7 +3064,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen3,
     cry: 'Corpish!',
     possibleColors: [PokemonColor.default],
-    types: ["Water"],
+    types: [PokemonCombatType.water],
     stats: { hp: 43, attack: 80, defense: 65, sp_attack: 50, sp_defense: 35, speed: 35 }
   },
   crawdaunt: {
@@ -3073,7 +3073,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen3,
     cry: 'Crawdaunt!',
     possibleColors: [PokemonColor.default],
-    types: ["Water", "Dark"],
+    types: [PokemonCombatType.water, PokemonCombatType.dark],
     stats: { hp: 63, attack: 120, defense: 85, sp_attack: 90, sp_defense: 55, speed: 55 }
   },
   baltoy: {
@@ -3082,7 +3082,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen3,
     cry: 'Baltoy!',
     possibleColors: [PokemonColor.default],
-    types: ["Ground", "Psychic"],
+    types: [PokemonCombatType.ground, PokemonCombatType.psychic],
     stats: { hp: 40, attack: 40, defense: 55, sp_attack: 40, sp_defense: 70, speed: 55 }
   },
   claydol: {
@@ -3091,7 +3091,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen3,
     cry: 'Claydol!',
     possibleColors: [PokemonColor.default],
-    types: ["Ground", "Psychic"],
+    types: [PokemonCombatType.ground, PokemonCombatType.psychic],
     stats: { hp: 60, attack: 70, defense: 105, sp_attack: 70, sp_defense: 120, speed: 75 }
   },
   lileep: {
@@ -3100,7 +3100,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen3,
     cry: 'Lileep!',
     possibleColors: [PokemonColor.default],
-    types: ["Rock", "Grass"],
+    types: [PokemonCombatType.rock, PokemonCombatType.grass],
     stats: { hp: 66, attack: 41, defense: 77, sp_attack: 61, sp_defense: 87, speed: 23 }
   },
   cradily: {
@@ -3109,7 +3109,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen3,
     cry: 'Cradily!',
     possibleColors: [PokemonColor.default],
-    types: ["Rock", "Grass"],
+    types: [PokemonCombatType.rock, PokemonCombatType.grass],
     stats: { hp: 86, attack: 81, defense: 97, sp_attack: 81, sp_defense: 107, speed: 43 }
   },
   anorith: {
@@ -3118,7 +3118,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen3,
     cry: 'Anorith!',
     possibleColors: [PokemonColor.default],
-    types: ["Rock", "Bug"],
+    types: [PokemonCombatType.rock, PokemonCombatType.bug],
     stats: { hp: 45, attack: 95, defense: 50, sp_attack: 40, sp_defense: 50, speed: 75 }
   },
   armaldo: {
@@ -3127,7 +3127,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen3,
     cry: 'Armaldo!',
     possibleColors: [PokemonColor.default],
-    types: ["Rock", "Bug"],
+    types: [PokemonCombatType.rock, PokemonCombatType.bug],
     stats: { hp: 75, attack: 125, defense: 100, sp_attack: 70, sp_defense: 80, speed: 45 }
   },
   feebas: {
@@ -3136,7 +3136,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen3,
     cry: 'Feebas!',
     possibleColors: [PokemonColor.default],
-    types: ["Water"],
+    types: [PokemonCombatType.water],
     stats: { hp: 20, attack: 15, defense: 20, sp_attack: 10, sp_defense: 55, speed: 80 }
   },
   milotic: {
@@ -3145,7 +3145,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen3,
     cry: 'Milotic!',
     possibleColors: [PokemonColor.default],
-    types: ["Water"],
+    types: [PokemonCombatType.water],
     stats: { hp: 95, attack: 60, defense: 79, sp_attack: 100, sp_defense: 125, speed: 81 }
   },
   castform: {
@@ -3154,7 +3154,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen3,
     cry: 'Castform!',
     possibleColors: [PokemonColor.default],
-    types: ["Ice"],
+    types: [PokemonCombatType.ice],
     stats: { hp: 70, attack: 70, defense: 70, sp_attack: 70, sp_defense: 70, speed: 70 }
   },
   kecleon: {
@@ -3163,7 +3163,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen3,
     cry: 'Kecleon!',
     possibleColors: [PokemonColor.default],
-    types: ["Normal"],
+    types: [PokemonCombatType.normal],
     stats: { hp: 60, attack: 90, defense: 70, sp_attack: 60, sp_defense: 120, speed: 40 }
   },
   shuppet: {
@@ -3172,7 +3172,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen3,
     cry: 'Shuppet!',
     possibleColors: [PokemonColor.default],
-    types: ["Ghost"],
+    types: [PokemonCombatType.ghost],
     stats: { hp: 44, attack: 75, defense: 35, sp_attack: 63, sp_defense: 33, speed: 45 }
   },
   banette: {
@@ -3181,7 +3181,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen3,
     cry: 'Banette!',
     possibleColors: [PokemonColor.default],
-    types: ["Ghost"],
+    types: [PokemonCombatType.ghost],
     stats: { hp: 64, attack: 165, defense: 75, sp_attack: 93, sp_defense: 83, speed: 75 }
   },
   duskull: {
@@ -3190,7 +3190,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen3,
     cry: 'Duskull!',
     possibleColors: [PokemonColor.default],
-    types: ["Ghost"],
+    types: [PokemonCombatType.ghost],
     stats: { hp: 20, attack: 40, defense: 90, sp_attack: 30, sp_defense: 90, speed: 25 }
   },
   dusclops: {
@@ -3199,7 +3199,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen3,
     cry: 'Dusclops!',
     possibleColors: [PokemonColor.default],
-    types: ["Ghost"],
+    types: [PokemonCombatType.ghost],
     stats: { hp: 40, attack: 70, defense: 130, sp_attack: 60, sp_defense: 130, speed: 25 }
   },
   tropius: {
@@ -3208,7 +3208,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen3,
     cry: 'Tropius!',
     possibleColors: [PokemonColor.default],
-    types: ["Grass", "Flying"],
+    types: [PokemonCombatType.grass, PokemonCombatType.flying],
     stats: { hp: 99, attack: 68, defense: 83, sp_attack: 72, sp_defense: 87, speed: 51 }
   },
   chimecho: {
@@ -3217,7 +3217,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen3,
     cry: 'Chimecho!',
     possibleColors: [PokemonColor.default],
-    types: ["Psychic"],
+    types: [PokemonCombatType.psychic],
     stats: { hp: 75, attack: 50, defense: 80, sp_attack: 95, sp_defense: 90, speed: 65 }
   },
   absol: {
@@ -3226,7 +3226,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen3,
     cry: 'Absol!',
     possibleColors: [PokemonColor.default],
-    types: ["Dark"],
+    types: [PokemonCombatType.dark],
     stats: { hp: 65, attack: 150, defense: 60, sp_attack: 115, sp_defense: 60, speed: 115 }
   },
   wynaut: {
@@ -3235,7 +3235,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen3,
     cry: 'Wynaut!',
     possibleColors: [PokemonColor.default],
-    types: ["Psychic"],
+    types: [PokemonCombatType.psychic],
     stats: { hp: 95, attack: 23, defense: 48, sp_attack: 23, sp_defense: 48, speed: 23 }
   },
   snorunt: {
@@ -3244,7 +3244,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen3,
     cry: 'Snorunt!',
     possibleColors: [PokemonColor.default],
-    types: ["Ice"],
+    types: [PokemonCombatType.ice],
     stats: { hp: 50, attack: 50, defense: 50, sp_attack: 50, sp_defense: 50, speed: 50 }
   },
   glalie: {
@@ -3253,7 +3253,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen3,
     cry: 'Glalie!',
     possibleColors: [PokemonColor.default],
-    types: ["Ice"],
+    types: [PokemonCombatType.ice],
     stats: { hp: 80, attack: 120, defense: 80, sp_attack: 120, sp_defense: 80, speed: 100 }
   },
   spheal: {
@@ -3262,7 +3262,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen3,
     cry: 'Spheal!',
     possibleColors: [PokemonColor.default],
-    types: ["Ice", "Water"],
+    types: [PokemonCombatType.ice, PokemonCombatType.water],
     stats: { hp: 70, attack: 40, defense: 50, sp_attack: 55, sp_defense: 50, speed: 25 }
   },
   sealeo: {
@@ -3271,7 +3271,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen3,
     cry: 'Sealeo!',
     possibleColors: [PokemonColor.default],
-    types: ["Ice", "Water"],
+    types: [PokemonCombatType.ice, PokemonCombatType.water],
     stats: { hp: 90, attack: 60, defense: 70, sp_attack: 75, sp_defense: 70, speed: 45 }
   },
   walrein: {
@@ -3280,7 +3280,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen3,
     cry: 'Walrein!',
     possibleColors: [PokemonColor.default],
-    types: ["Ice", "Water"],
+    types: [PokemonCombatType.ice, PokemonCombatType.water],
     stats: { hp: 110, attack: 80, defense: 90, sp_attack: 95, sp_defense: 90, speed: 65 }
   },
   clamperl: {
@@ -3289,7 +3289,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen3,
     cry: 'Clamperl!',
     possibleColors: [PokemonColor.default],
-    types: ["Water"],
+    types: [PokemonCombatType.water],
     stats: { hp: 35, attack: 64, defense: 85, sp_attack: 74, sp_defense: 55, speed: 32 }
   },
   huntail: {
@@ -3298,7 +3298,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen3,
     cry: 'Huntail!',
     possibleColors: [PokemonColor.default],
-    types: ["Water"],
+    types: [PokemonCombatType.water],
     stats: { hp: 55, attack: 104, defense: 105, sp_attack: 94, sp_defense: 75, speed: 52 }
   },
   gorebyss: {
@@ -3307,7 +3307,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen3,
     cry: 'Gorebyss!',
     possibleColors: [PokemonColor.default],
-    types: ["Water"],
+    types: [PokemonCombatType.water],
     stats: { hp: 55, attack: 84, defense: 105, sp_attack: 114, sp_defense: 75, speed: 52 }
   },
   relicanth: {
@@ -3316,7 +3316,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen3,
     cry: 'Relicanth!',
     possibleColors: [PokemonColor.default],
-    types: ["Water", "Rock"],
+    types: [PokemonCombatType.water, PokemonCombatType.rock],
     stats: { hp: 100, attack: 90, defense: 130, sp_attack: 45, sp_defense: 65, speed: 55 }
   },
   luvdisc: {
@@ -3325,7 +3325,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen3,
     cry: 'Luvdisc!',
     possibleColors: [PokemonColor.default],
-    types: ["Water"],
+    types: [PokemonCombatType.water],
     stats: { hp: 43, attack: 30, defense: 55, sp_attack: 40, sp_defense: 65, speed: 97 }
   },
   bagon: {
@@ -3334,7 +3334,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen3,
     cry: 'Bagon!',
     possibleColors: [PokemonColor.default],
-    types: ["Dragon"],
+    types: [PokemonCombatType.dragon],
     stats: { hp: 45, attack: 75, defense: 60, sp_attack: 40, sp_defense: 30, speed: 50 }
   },
   shelgon: {
@@ -3343,7 +3343,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen3,
     cry: 'Shelgon!',
     possibleColors: [PokemonColor.default],
-    types: ["Dragon"],
+    types: [PokemonCombatType.dragon],
     stats: { hp: 65, attack: 95, defense: 100, sp_attack: 60, sp_defense: 50, speed: 50 }
   },
   salamence: {
@@ -3352,7 +3352,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen3,
     cry: 'Salamence!',
     possibleColors: [PokemonColor.default],
-    types: ["Dragon", "Flying"],
+    types: [PokemonCombatType.dragon, PokemonCombatType.flying],
     stats: { hp: 95, attack: 145, defense: 130, sp_attack: 120, sp_defense: 90, speed: 120 }
   },
   beldum: {
@@ -3361,7 +3361,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen3,
     cry: 'Beldum!',
     possibleColors: [PokemonColor.default],
-    types: ["Steel", "Psychic"],
+    types: [PokemonCombatType.steel, PokemonCombatType.psychic],
     stats: { hp: 40, attack: 55, defense: 80, sp_attack: 35, sp_defense: 60, speed: 30 }
   },
   metang: {
@@ -3370,7 +3370,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen3,
     cry: 'Metang!',
     possibleColors: [PokemonColor.default],
-    types: ["Steel", "Psychic"],
+    types: [PokemonCombatType.steel, PokemonCombatType.psychic],
     stats: { hp: 60, attack: 75, defense: 100, sp_attack: 55, sp_defense: 80, speed: 50 }
   },
   metagross: {
@@ -3379,7 +3379,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen3,
     cry: 'Metagross!',
     possibleColors: [PokemonColor.default],
-    types: ["Steel", "Psychic"],
+    types: [PokemonCombatType.steel, PokemonCombatType.psychic],
     stats: { hp: 80, attack: 145, defense: 150, sp_attack: 105, sp_defense: 110, speed: 110 }
   },
   regirock: {
@@ -3388,7 +3388,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen3,
     cry: 'Regirock!',
     possibleColors: [PokemonColor.default],
-    types: ["Rock"],
+    types: [PokemonCombatType.rock],
     stats: { hp: 80, attack: 100, defense: 200, sp_attack: 50, sp_defense: 100, speed: 50 }
   },
   regice: {
@@ -3397,7 +3397,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen3,
     cry: 'Regice!',
     possibleColors: [PokemonColor.default],
-    types: ["Ice"],
+    types: [PokemonCombatType.ice],
     stats: { hp: 80, attack: 50, defense: 100, sp_attack: 100, sp_defense: 200, speed: 50 }
   },
   registeel: {
@@ -3406,7 +3406,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen3,
     cry: 'Registeel!',
     possibleColors: [PokemonColor.default],
-    types: ["Steel"],
+    types: [PokemonCombatType.steel],
     stats: { hp: 80, attack: 75, defense: 150, sp_attack: 75, sp_defense: 150, speed: 50 }
   },
   latias: {
@@ -3415,7 +3415,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen3,
     cry: 'Latias!',
     possibleColors: [PokemonColor.default],
-    types: ["Dragon", "Psychic"],
+    types: [PokemonCombatType.dragon, PokemonCombatType.psychic],
     stats: { hp: 80, attack: 100, defense: 120, sp_attack: 140, sp_defense: 150, speed: 110 }
   },
   latios: {
@@ -3424,7 +3424,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen3,
     cry: 'Latios!',
     possibleColors: [PokemonColor.default],
-    types: ["Dragon", "Psychic"],
+    types: [PokemonCombatType.dragon, PokemonCombatType.psychic],
     stats: { hp: 80, attack: 130, defense: 100, sp_attack: 160, sp_defense: 120, speed: 110 }
   },
   kyogre: {
@@ -3434,7 +3434,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Kyogre!',
     possibleColors: [PokemonColor.default],
     originalSpriteSize: 64,
-    types: ["Water"],
+    types: [PokemonCombatType.water],
     stats: { hp: 100, attack: 150, defense: 90, sp_attack: 180, sp_defense: 160, speed: 90 }
   },
   groudon: {
@@ -3444,7 +3444,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Groudon!',
     possibleColors: [PokemonColor.default],
     originalSpriteSize: 64,
-    types: ["Ground", "Fire"],
+    types: [PokemonCombatType.ground, PokemonCombatType.fire],
     stats: { hp: 100, attack: 180, defense: 160, sp_attack: 150, sp_defense: 90, speed: 90 }
   },
   rayquaza: {
@@ -3454,7 +3454,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Rayquaza!',
     possibleColors: [PokemonColor.default],
     originalSpriteSize: 64,
-    types: ["Dragon", "Flying"],
+    types: [PokemonCombatType.dragon, PokemonCombatType.flying],
     stats: { hp: 105, attack: 180, defense: 100, sp_attack: 180, sp_defense: 100, speed: 115 }
   },
   jirachi: {
@@ -3463,7 +3463,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen3,
     cry: 'Jirachi!',
     possibleColors: [PokemonColor.default],
-    types: ["Steel", "Psychic"],
+    types: [PokemonCombatType.steel, PokemonCombatType.psychic],
     stats: { hp: 100, attack: 100, defense: 100, sp_attack: 100, sp_defense: 100, speed: 100 }
   },
   deoxys: {
@@ -3472,7 +3472,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen3,
     cry: 'Deoxys!',
     possibleColors: [PokemonColor.default],
-    types: ["Psychic"],
+    types: [PokemonCombatType.psychic],
     stats: { hp: 50, attack: 95, defense: 90, sp_attack: 95, sp_defense: 90, speed: 180 }
   },
   deoxys_speed: {
@@ -3481,7 +3481,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen3,
     cry: 'Deoxys!',
     possibleColors: [PokemonColor.default],
-    types: ["Psychic"],
+    types: [PokemonCombatType.psychic],
     stats: { hp: 50, attack: 95, defense: 90, sp_attack: 95, sp_defense: 90, speed: 180 }
   },
   deoxys_attack: {
@@ -3490,7 +3490,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen3,
     cry: 'Deoxys!',
     possibleColors: [PokemonColor.default],
-    types: ["Psychic"],
+    types: [PokemonCombatType.psychic],
     stats: { hp: 50, attack: 95, defense: 90, sp_attack: 95, sp_defense: 90, speed: 180 }
   },
   deoxys_defense: {
@@ -3499,7 +3499,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen3,
     cry: 'Deoxys!',
     possibleColors: [PokemonColor.default],
-    types: ["Psychic"],
+    types: [PokemonCombatType.psychic],
     stats: { hp: 50, attack: 95, defense: 90, sp_attack: 95, sp_defense: 90, speed: 180 }
   },
   // Generation 4
@@ -3509,7 +3509,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen4,
     cry: 'Turtwig!',
     possibleColors: [PokemonColor.default],
-    types: ["Grass"],
+    types: [PokemonCombatType.grass],
     stats: { hp: 55, attack: 68, defense: 64, sp_attack: 45, sp_defense: 55, speed: 31 }
   },
   grotle: {
@@ -3518,7 +3518,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen4,
     cry: 'Grotle!',
     possibleColors: [PokemonColor.default],
-    types: ["Grass"],
+    types: [PokemonCombatType.grass],
     stats: { hp: 75, attack: 89, defense: 85, sp_attack: 55, sp_defense: 65, speed: 36 }
   },
   torterra: {
@@ -3527,7 +3527,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen4,
     cry: 'Torterra!',
     possibleColors: [PokemonColor.default],
-    types: ["Grass", "Ground"],
+    types: [PokemonCombatType.grass, PokemonCombatType.ground],
     stats: { hp: 95, attack: 109, defense: 105, sp_attack: 75, sp_defense: 85, speed: 56 }
   },
   chimchar: {
@@ -3536,7 +3536,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen4,
     cry: 'Chimchar!',
     possibleColors: [PokemonColor.default],
-    types: ["Fire"],
+    types: [PokemonCombatType.fire],
     stats: { hp: 44, attack: 58, defense: 44, sp_attack: 58, sp_defense: 44, speed: 61 }
   },
   monferno: {
@@ -3545,7 +3545,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen4,
     cry: 'Monferno!',
     possibleColors: [PokemonColor.default],
-    types: ["Fire", "Fighting"],
+    types: [PokemonCombatType.fire, PokemonCombatType.fighting],
     stats: { hp: 64, attack: 78, defense: 52, sp_attack: 78, sp_defense: 52, speed: 81 }
   },
   infernape: {
@@ -3554,7 +3554,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen4,
     cry: 'Infernape!',
     possibleColors: [PokemonColor.default],
-    types: ["Fire", "Fighting"],
+    types: [PokemonCombatType.fire, PokemonCombatType.fighting],
     stats: { hp: 76, attack: 104, defense: 71, sp_attack: 104, sp_defense: 71, speed: 108 }
   },
   piplup: {
@@ -3563,7 +3563,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen4,
     cry: 'Piplup!',
     possibleColors: [PokemonColor.default],
-    types: ["Water"],
+    types: [PokemonCombatType.water],
     stats: { hp: 53, attack: 51, defense: 53, sp_attack: 61, sp_defense: 56, speed: 40 }
   },
   prinplup: {
@@ -3572,7 +3572,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen4,
     cry: 'Prinplup!',
     possibleColors: [PokemonColor.default],
-    types: ["Water"],
+    types: [PokemonCombatType.water],
     stats: { hp: 64, attack: 66, defense: 68, sp_attack: 81, sp_defense: 76, speed: 50 }
   },
   empoleon: {
@@ -3581,7 +3581,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen4,
     cry: 'Empoleon!',
     possibleColors: [PokemonColor.default],
-    types: ["Water", "Steel"],
+    types: [PokemonCombatType.water, PokemonCombatType.steel],
     stats: { hp: 84, attack: 86, defense: 88, sp_attack: 111, sp_defense: 101, speed: 60 }
   },
   starly: {
@@ -3590,7 +3590,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen4,
     cry: 'Starly!',
     possibleColors: [PokemonColor.default],
-    types: ["Normal", "Flying"],
+    types: [PokemonCombatType.normal, PokemonCombatType.flying],
     stats: { hp: 40, attack: 55, defense: 30, sp_attack: 30, sp_defense: 30, speed: 60 }
   },
   staravia: {
@@ -3599,7 +3599,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen4,
     cry: 'Staravia!',
     possibleColors: [PokemonColor.default],
-    types: ["Normal", "Flying"],
+    types: [PokemonCombatType.normal, PokemonCombatType.flying],
     stats: { hp: 55, attack: 75, defense: 50, sp_attack: 40, sp_defense: 40, speed: 80 }
   },
   staraptor: {
@@ -3608,7 +3608,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen4,
     cry: 'Staraptor!',
     possibleColors: [PokemonColor.default],
-    types: ["Normal", "Flying"],
+    types: [PokemonCombatType.normal, PokemonCombatType.flying],
     stats: { hp: 85, attack: 120, defense: 70, sp_attack: 50, sp_defense: 60, speed: 100 }
   },
   bidoof: {
@@ -3617,7 +3617,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen4,
     cry: 'Bidoof!',
     possibleColors: [PokemonColor.default],
-    types: ["Normal"],
+    types: [PokemonCombatType.normal],
     stats: { hp: 59, attack: 45, defense: 40, sp_attack: 35, sp_defense: 40, speed: 31 }
   },
   bibarel: {
@@ -3626,7 +3626,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen4,
     cry: 'Bibarel!',
     possibleColors: [PokemonColor.default],
-    types: ["Normal", "Water"],
+    types: [PokemonCombatType.normal, PokemonCombatType.water],
     stats: { hp: 79, attack: 85, defense: 60, sp_attack: 55, sp_defense: 60, speed: 71 }
   },
   kricketot: {
@@ -3635,7 +3635,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen4,
     cry: 'Kricketot!',
     possibleColors: [PokemonColor.default],
-    types: ["Bug"],
+    types: [PokemonCombatType.bug],
     stats: { hp: 37, attack: 25, defense: 41, sp_attack: 25, sp_defense: 41, speed: 25 }
   },
   kricketune: {
@@ -3644,7 +3644,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen4,
     cry: 'Kricketune!',
     possibleColors: [PokemonColor.default],
-    types: ["Bug"],
+    types: [PokemonCombatType.bug],
     stats: { hp: 77, attack: 85, defense: 51, sp_attack: 55, sp_defense: 51, speed: 65 }
   },
   shinx: {
@@ -3653,7 +3653,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen4,
     cry: 'Shinx!',
     possibleColors: [PokemonColor.default],
-    types: ["Electric"],
+    types: [PokemonCombatType.electric],
     stats: { hp: 45, attack: 65, defense: 34, sp_attack: 40, sp_defense: 34, speed: 45 }
   },
   luxio: {
@@ -3662,7 +3662,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen4,
     cry: 'Luxio!',
     possibleColors: [PokemonColor.default],
-    types: ["Electric"],
+    types: [PokemonCombatType.electric],
     stats: { hp: 60, attack: 85, defense: 49, sp_attack: 60, sp_defense: 49, speed: 60 }
   },
   luxray: {
@@ -3671,7 +3671,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen4,
     cry: 'Luxray!',
     possibleColors: [PokemonColor.default],
-    types: ["Electric"],
+    types: [PokemonCombatType.electric],
     stats: { hp: 80, attack: 120, defense: 79, sp_attack: 95, sp_defense: 79, speed: 70 }
   },
   budew: {
@@ -3680,7 +3680,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen4,
     cry: 'Budew!',
     possibleColors: [PokemonColor.default],
-    types: ["Grass", "Poison"],
+    types: [PokemonCombatType.grass, PokemonCombatType.poison],
     stats: { hp: 40, attack: 30, defense: 35, sp_attack: 50, sp_defense: 70, speed: 55 }
   },
   roserade: {
@@ -3689,7 +3689,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen4,
     cry: 'Roserade!',
     possibleColors: [PokemonColor.default],
-    types: ["Grass", "Poison"],
+    types: [PokemonCombatType.grass, PokemonCombatType.poison],
     stats: { hp: 60, attack: 70, defense: 65, sp_attack: 125, sp_defense: 105, speed: 90 }
   },
   cranidos: {
@@ -3698,7 +3698,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen4,
     cry: 'Cranidos!',
     possibleColors: [PokemonColor.default],
-    types: ["Rock"],
+    types: [PokemonCombatType.rock],
     stats: { hp: 67, attack: 125, defense: 40, sp_attack: 30, sp_defense: 30, speed: 58 }
   },
   rampardos: {
@@ -3707,7 +3707,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen4,
     cry: 'Rampardos!',
     possibleColors: [PokemonColor.default],
-    types: ["Rock"],
+    types: [PokemonCombatType.rock],
     stats: { hp: 97, attack: 165, defense: 60, sp_attack: 65, sp_defense: 50, speed: 58 }
   },
   shieldon: {
@@ -3716,7 +3716,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen4,
     cry: 'Shieldon!',
     possibleColors: [PokemonColor.default],
-    types: ["Rock", "Steel"],
+    types: [PokemonCombatType.rock, PokemonCombatType.steel],
     stats: { hp: 30, attack: 42, defense: 118, sp_attack: 42, sp_defense: 88, speed: 30 }
   },
   bastiodon: {
@@ -3725,7 +3725,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen4,
     cry: 'Bastiodon!',
     possibleColors: [PokemonColor.default],
-    types: ["Rock", "Steel"],
+    types: [PokemonCombatType.rock, PokemonCombatType.steel],
     stats: { hp: 60, attack: 52, defense: 168, sp_attack: 47, sp_defense: 138, speed: 30 }
   },
   burmy: {
@@ -3734,7 +3734,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen4,
     cry: 'Burmy!',
     possibleColors: [PokemonColor.default],
-    types: ["Bug"],
+    types: [PokemonCombatType.bug],
     stats: { hp: 40, attack: 29, defense: 45, sp_attack: 29, sp_defense: 45, speed: 36 }
   },
   wormadam: {
@@ -3743,7 +3743,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen4,
     cry: 'Wormadam!',
     possibleColors: [PokemonColor.default],
-    types: ["Bug", "Steel"],
+    types: [PokemonCombatType.bug, PokemonCombatType.steel],
     stats: { hp: 60, attack: 69, defense: 95, sp_attack: 69, sp_defense: 95, speed: 36 }
   },
   mothim: {
@@ -3752,7 +3752,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen4,
     cry: 'Mothim!',
     possibleColors: [PokemonColor.default],
-    types: ["Bug", "Flying"],
+    types: [PokemonCombatType.bug, PokemonCombatType.flying],
     stats: { hp: 70, attack: 94, defense: 50, sp_attack: 94, sp_defense: 50, speed: 66 }
   },
   combee: {
@@ -3761,7 +3761,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen4,
     cry: 'Combee!',
     possibleColors: [PokemonColor.default],
-    types: ["Bug", "Flying"],
+    types: [PokemonCombatType.bug, PokemonCombatType.flying],
     stats: { hp: 30, attack: 30, defense: 42, sp_attack: 30, sp_defense: 42, speed: 70 }
   },
   vespiquen: {
@@ -3770,7 +3770,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen4,
     cry: 'Vespiquen!',
     possibleColors: [PokemonColor.default],
-    types: ["Bug", "Flying"],
+    types: [PokemonCombatType.bug, PokemonCombatType.flying],
     stats: { hp: 70, attack: 80, defense: 102, sp_attack: 80, sp_defense: 102, speed: 40 }
   },
   pachirisu: {
@@ -3779,7 +3779,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen4,
     cry: 'Pachirisu!',
     possibleColors: [PokemonColor.default],
-    types: ["Electric"],
+    types: [PokemonCombatType.electric],
     stats: { hp: 60, attack: 45, defense: 70, sp_attack: 45, sp_defense: 90, speed: 95 }
   },
   buizel: {
@@ -3788,7 +3788,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen4,
     cry: 'Buizel!',
     possibleColors: [PokemonColor.default],
-    types: ["Water"],
+    types: [PokemonCombatType.water],
     stats: { hp: 55, attack: 65, defense: 35, sp_attack: 60, sp_defense: 30, speed: 85 }
   },
   floatzel: {
@@ -3797,7 +3797,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen4,
     cry: 'Floatzel!',
     possibleColors: [PokemonColor.default],
-    types: ["Water"],
+    types: [PokemonCombatType.water],
     stats: { hp: 85, attack: 105, defense: 55, sp_attack: 85, sp_defense: 50, speed: 115 }
   },
   cherubi: {
@@ -3806,7 +3806,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen4,
     cry: 'Cherubi!',
     possibleColors: [PokemonColor.default],
-    types: ["Grass"],
+    types: [PokemonCombatType.grass],
     stats: { hp: 45, attack: 35, defense: 45, sp_attack: 62, sp_defense: 53, speed: 35 }
   },
   cherrim: {
@@ -3815,7 +3815,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen4,
     cry: 'Cherrim!',
     possibleColors: [PokemonColor.default],
-    types: ["Grass"],
+    types: [PokemonCombatType.grass],
     stats: { hp: 70, attack: 60, defense: 70, sp_attack: 87, sp_defense: 78, speed: 85 }
   },
   shellos: {
@@ -3824,7 +3824,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen4,
     cry: 'Shellos!',
     possibleColors: [PokemonColor.default],
-    types: ["Water"],
+    types: [PokemonCombatType.water],
     stats: { hp: 76, attack: 48, defense: 48, sp_attack: 57, sp_defense: 62, speed: 34 }
   },
   gastrodon: {
@@ -3833,7 +3833,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen4,
     cry: 'Gastrodon!',
     possibleColors: [PokemonColor.default],
-    types: ["Water", "Ground"],
+    types: [PokemonCombatType.water, PokemonCombatType.ground],
     stats: { hp: 111, attack: 83, defense: 68, sp_attack: 92, sp_defense: 82, speed: 39 }
   },
   ambipom: {
@@ -3842,7 +3842,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen4,
     cry: 'Ambipom!',
     possibleColors: [PokemonColor.default],
-    types: ["Normal"],
+    types: [PokemonCombatType.normal],
     stats: { hp: 75, attack: 100, defense: 66, sp_attack: 60, sp_defense: 66, speed: 115 }
   },
   drifloon: {
@@ -3851,7 +3851,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen4,
     cry: 'Drifloon!',
     possibleColors: [PokemonColor.default],
-    types: ["Ghost", "Flying"],
+    types: [PokemonCombatType.ghost, PokemonCombatType.flying],
     stats: { hp: 90, attack: 50, defense: 34, sp_attack: 60, sp_defense: 44, speed: 70 }
   },
   drifblim: {
@@ -3860,7 +3860,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen4,
     cry: 'Drifblim!',
     possibleColors: [PokemonColor.default],
-    types: ["Ghost", "Flying"],
+    types: [PokemonCombatType.ghost, PokemonCombatType.flying],
     stats: { hp: 150, attack: 80, defense: 44, sp_attack: 90, sp_defense: 54, speed: 80 }
   },
   buneary: {
@@ -3869,7 +3869,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen4,
     cry: 'Buneary!',
     possibleColors: [PokemonColor.default],
-    types: ["Normal"],
+    types: [PokemonCombatType.normal],
     stats: { hp: 55, attack: 66, defense: 44, sp_attack: 44, sp_defense: 56, speed: 85 }
   },
   lopunny: {
@@ -3878,7 +3878,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen4,
     cry: 'Lopunny!',
     possibleColors: [PokemonColor.default],
-    types: ["Normal", "Fighting"],
+    types: [PokemonCombatType.normal, PokemonCombatType.fighting],
     stats: { hp: 65, attack: 136, defense: 94, sp_attack: 54, sp_defense: 96, speed: 135 }
   },
   mismagius: {
@@ -3887,7 +3887,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen4,
     cry: 'Mismagius!',
     possibleColors: [PokemonColor.default],
-    types: ["Ghost"],
+    types: [PokemonCombatType.ghost],
     stats: { hp: 60, attack: 60, defense: 60, sp_attack: 105, sp_defense: 105, speed: 105 }
   },
   honchkrow: {
@@ -3896,7 +3896,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen4,
     cry: 'Honchkrow!',
     possibleColors: [PokemonColor.default],
-    types: ["Dark", "Flying"],
+    types: [PokemonCombatType.dark, PokemonCombatType.flying],
     stats: { hp: 100, attack: 125, defense: 52, sp_attack: 105, sp_defense: 52, speed: 71 }
   },
   glameow: {
@@ -3905,7 +3905,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen4,
     cry: 'Glameow!',
     possibleColors: [PokemonColor.default],
-    types: ["Normal"],
+    types: [PokemonCombatType.normal],
     stats: { hp: 49, attack: 55, defense: 42, sp_attack: 42, sp_defense: 37, speed: 85 }
   },
   purugly: {
@@ -3914,7 +3914,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen4,
     cry: 'Purugly!',
     possibleColors: [PokemonColor.default],
-    types: ["Normal"],
+    types: [PokemonCombatType.normal],
     stats: { hp: 71, attack: 82, defense: 64, sp_attack: 64, sp_defense: 59, speed: 112 }
   },
   chingling: {
@@ -3923,7 +3923,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen4,
     cry: 'Chingling!',
     possibleColors: [PokemonColor.default],
-    types: ["Psychic"],
+    types: [PokemonCombatType.psychic],
     stats: { hp: 45, attack: 30, defense: 50, sp_attack: 65, sp_defense: 50, speed: 45 }
   },
   stunky: {
@@ -3932,7 +3932,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen4,
     cry: 'Stunky!',
     possibleColors: [PokemonColor.default],
-    types: ["Poison", "Dark"],
+    types: [PokemonCombatType.poison, PokemonCombatType.dark],
     stats: { hp: 63, attack: 63, defense: 47, sp_attack: 41, sp_defense: 41, speed: 74 }
   },
   skuntank: {
@@ -3941,7 +3941,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen4,
     cry: 'Skuntank!',
     possibleColors: [PokemonColor.default],
-    types: ["Poison", "Dark"],
+    types: [PokemonCombatType.poison, PokemonCombatType.dark],
     stats: { hp: 103, attack: 93, defense: 67, sp_attack: 71, sp_defense: 61, speed: 84 }
   },
   bronzor: {
@@ -3950,7 +3950,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen4,
     cry: 'Bronzor!',
     possibleColors: [PokemonColor.default],
-    types: ["Steel", "Psychic"],
+    types: [PokemonCombatType.steel, PokemonCombatType.psychic],
     stats: { hp: 57, attack: 24, defense: 86, sp_attack: 24, sp_defense: 86, speed: 23 }
   },
   bronzong: {
@@ -3959,7 +3959,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen4,
     cry: 'Bronzong!',
     possibleColors: [PokemonColor.default],
-    types: ["Steel", "Psychic"],
+    types: [PokemonCombatType.steel, PokemonCombatType.psychic],
     stats: { hp: 67, attack: 89, defense: 116, sp_attack: 79, sp_defense: 116, speed: 33 }
   },
   bonsly: {
@@ -3968,7 +3968,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen4,
     cry: 'Bonsly!',
     possibleColors: [PokemonColor.default],
-    types: ["Rock"],
+    types: [PokemonCombatType.rock],
     stats: { hp: 50, attack: 80, defense: 95, sp_attack: 10, sp_defense: 45, speed: 10 }
   },
   mimejr: {
@@ -3977,7 +3977,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen4,
     cry: 'Mime Jr.!',
     possibleColors: [PokemonColor.default],
-    types: ["Psychic", "Fairy"],
+    types: [PokemonCombatType.psychic, PokemonCombatType.fairy],
     stats: { hp: 20, attack: 25, defense: 45, sp_attack: 70, sp_defense: 90, speed: 60 }
   },
   happiny: {
@@ -3986,7 +3986,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen4,
     cry: 'Happiny!',
     possibleColors: [PokemonColor.default],
-    types: ["Normal"],
+    types: [PokemonCombatType.normal],
     stats: { hp: 100, attack: 5, defense: 5, sp_attack: 15, sp_defense: 65, speed: 30 }
   },
   chatot: {
@@ -3995,7 +3995,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen4,
     cry: 'Chatot!',
     possibleColors: [PokemonColor.default],
-    types: ["Normal", "Flying"],
+    types: [PokemonCombatType.normal, PokemonCombatType.flying],
     stats: { hp: 76, attack: 65, defense: 45, sp_attack: 92, sp_defense: 42, speed: 91 }
   },
   spiritomb: {
@@ -4004,7 +4004,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen4,
     cry: 'Spiritomb!',
     possibleColors: [PokemonColor.default],
-    types: ["Ghost", "Dark"],
+    types: [PokemonCombatType.ghost, PokemonCombatType.dark],
     stats: { hp: 50, attack: 92, defense: 108, sp_attack: 92, sp_defense: 108, speed: 35 }
   },
   gible: {
@@ -4013,7 +4013,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen4,
     cry: 'Gible!',
     possibleColors: [PokemonColor.default],
-    types: ["Dragon", "Ground"],
+    types: [PokemonCombatType.dragon, PokemonCombatType.ground],
     stats: { hp: 58, attack: 70, defense: 45, sp_attack: 40, sp_defense: 45, speed: 42 }
   },
   gabite: {
@@ -4022,7 +4022,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen4,
     cry: 'Gabite!',
     possibleColors: [PokemonColor.default],
-    types: ["Dragon", "Ground"],
+    types: [PokemonCombatType.dragon, PokemonCombatType.ground],
     stats: { hp: 68, attack: 90, defense: 65, sp_attack: 50, sp_defense: 55, speed: 82 }
   },
   garchomp: {
@@ -4031,7 +4031,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen4,
     cry: 'Garchomp!',
     possibleColors: [PokemonColor.default],
-    types: ["Dragon", "Ground"],
+    types: [PokemonCombatType.dragon, PokemonCombatType.ground],
     stats: { hp: 108, attack: 170, defense: 115, sp_attack: 120, sp_defense: 95, speed: 92 }
   },
   munchlax: {
@@ -4040,7 +4040,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen4,
     cry: 'Munchlax!',
     possibleColors: [PokemonColor.default],
-    types: ["Normal"],
+    types: [PokemonCombatType.normal],
     stats: { hp: 135, attack: 85, defense: 40, sp_attack: 40, sp_defense: 85, speed: 5 }
   },
   riolu: {
@@ -4049,7 +4049,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen4,
     cry: 'Riolu!',
     possibleColors: [PokemonColor.default],
-    types: ["Fighting"],
+    types: [PokemonCombatType.fighting],
     stats: { hp: 40, attack: 70, defense: 40, sp_attack: 35, sp_defense: 40, speed: 60 }
   },
   lucario: {
@@ -4058,7 +4058,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen4,
     cry: 'Lucario!',
     possibleColors: [PokemonColor.default],
-    types: ["Fighting", "Steel"],
+    types: [PokemonCombatType.fighting, PokemonCombatType.steel],
     stats: { hp: 70, attack: 145, defense: 88, sp_attack: 140, sp_defense: 70, speed: 112 }
   },
   hippopotas: {
@@ -4067,7 +4067,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen4,
     cry: 'Hippopotas!',
     possibleColors: [PokemonColor.default],
-    types: ["Ground"],
+    types: [PokemonCombatType.ground],
     stats: { hp: 68, attack: 72, defense: 78, sp_attack: 38, sp_defense: 42, speed: 32 }
   },
   hippowdon: {
@@ -4076,7 +4076,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen4,
     cry: 'Hippowdon!',
     possibleColors: [PokemonColor.default],
-    types: ["Ground"],
+    types: [PokemonCombatType.ground],
     stats: { hp: 108, attack: 112, defense: 118, sp_attack: 68, sp_defense: 72, speed: 47 }
   },
   skorupi: {
@@ -4085,7 +4085,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen4,
     cry: 'Skorupi!',
     possibleColors: [PokemonColor.default],
-    types: ["Poison", "Bug"],
+    types: [PokemonCombatType.poison, PokemonCombatType.bug],
     stats: { hp: 40, attack: 50, defense: 90, sp_attack: 30, sp_defense: 55, speed: 65 }
   },
   drapion: {
@@ -4094,7 +4094,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen4,
     cry: 'Drapion!',
     possibleColors: [PokemonColor.default],
-    types: ["Poison", "Dark"],
+    types: [PokemonCombatType.poison, PokemonCombatType.dark],
     stats: { hp: 70, attack: 90, defense: 110, sp_attack: 60, sp_defense: 75, speed: 95 }
   },
   croagunk: {
@@ -4103,7 +4103,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen4,
     cry: 'Croagunk!',
     possibleColors: [PokemonColor.default],
-    types: ["Poison", "Fighting"],
+    types: [PokemonCombatType.poison, PokemonCombatType.fighting],
     stats: { hp: 48, attack: 61, defense: 40, sp_attack: 61, sp_defense: 40, speed: 50 }
   },
   toxicroak: {
@@ -4112,7 +4112,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen4,
     cry: 'Toxicroak!',
     possibleColors: [PokemonColor.default],
-    types: ["Poison", "Fighting"],
+    types: [PokemonCombatType.poison, PokemonCombatType.fighting],
     stats: { hp: 83, attack: 106, defense: 65, sp_attack: 86, sp_defense: 65, speed: 85 }
   },
   carnivine: {
@@ -4121,7 +4121,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen4,
     cry: 'Carnivine!',
     possibleColors: [PokemonColor.default],
-    types: ["Grass"],
+    types: [PokemonCombatType.grass],
     stats: { hp: 74, attack: 100, defense: 72, sp_attack: 90, sp_defense: 72, speed: 46 }
   },
   finneon: {
@@ -4130,7 +4130,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen4,
     cry: 'Finneon!',
     possibleColors: [PokemonColor.default],
-    types: ["Water"],
+    types: [PokemonCombatType.water],
     stats: { hp: 49, attack: 49, defense: 56, sp_attack: 49, sp_defense: 61, speed: 66 }
   },
   lumineon: {
@@ -4139,7 +4139,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen4,
     cry: 'Lumineon!',
     possibleColors: [PokemonColor.default],
-    types: ["Water"],
+    types: [PokemonCombatType.water],
     stats: { hp: 69, attack: 69, defense: 76, sp_attack: 69, sp_defense: 86, speed: 91 }
   },
   mantyke: {
@@ -4148,7 +4148,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen4,
     cry: 'Mantyke!',
     possibleColors: [PokemonColor.default],
-    types: ["Water", "Flying"],
+    types: [PokemonCombatType.water, PokemonCombatType.flying],
     stats: { hp: 45, attack: 20, defense: 50, sp_attack: 60, sp_defense: 120, speed: 50 }
   },
   snover: {
@@ -4157,7 +4157,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen4,
     cry: 'Snover!',
     possibleColors: [PokemonColor.default],
-    types: ["Grass", "Ice"],
+    types: [PokemonCombatType.grass, PokemonCombatType.ice],
     stats: { hp: 60, attack: 62, defense: 50, sp_attack: 62, sp_defense: 60, speed: 40 }
   },
   abomasnow: {
@@ -4166,7 +4166,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen4,
     cry: 'Abomasnow!',
     possibleColors: [PokemonColor.default],
-    types: ["Grass", "Ice"],
+    types: [PokemonCombatType.grass, PokemonCombatType.ice],
     stats: { hp: 90, attack: 132, defense: 105, sp_attack: 132, sp_defense: 105, speed: 30 }
   },
   weavile: {
@@ -4175,7 +4175,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen4,
     cry: 'Weavile!',
     possibleColors: [PokemonColor.default],
-    types: ["Dark", "Ice"],
+    types: [PokemonCombatType.dark, PokemonCombatType.ice],
     stats: { hp: 70, attack: 120, defense: 65, sp_attack: 45, sp_defense: 85, speed: 125 }
   },
   magnezone: {
@@ -4184,7 +4184,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen4,
     cry: 'Magnezone!',
     possibleColors: [PokemonColor.default],
-    types: ["Electric", "Steel"],
+    types: [PokemonCombatType.electric, PokemonCombatType.steel],
     stats: { hp: 70, attack: 70, defense: 115, sp_attack: 130, sp_defense: 90, speed: 60 }
   },
   lickilicky: {
@@ -4193,7 +4193,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen4,
     cry: 'Lickilicky!',
     possibleColors: [PokemonColor.default],
-    types: ["Normal"],
+    types: [PokemonCombatType.normal],
     stats: { hp: 110, attack: 85, defense: 95, sp_attack: 80, sp_defense: 95, speed: 50 }
   },
   rhyperior: {
@@ -4202,7 +4202,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen4,
     cry: 'Rhyperior!',
     possibleColors: [PokemonColor.default],
-    types: ["Ground", "Rock"],
+    types: [PokemonCombatType.ground, PokemonCombatType.rock],
     stats: { hp: 115, attack: 140, defense: 130, sp_attack: 55, sp_defense: 55, speed: 40 }
   },
   tangrowth: {
@@ -4211,7 +4211,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen4,
     cry: 'Tangrowth!',
     possibleColors: [PokemonColor.default],
-    types: ["Grass"],
+    types: [PokemonCombatType.grass],
     stats: { hp: 100, attack: 100, defense: 125, sp_attack: 110, sp_defense: 50, speed: 50 }
   },
   electivire: {
@@ -4220,7 +4220,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen4,
     cry: 'Electivire!',
     possibleColors: [PokemonColor.default],
-    types: ["Electric"],
+    types: [PokemonCombatType.electric],
     stats: { hp: 75, attack: 123, defense: 67, sp_attack: 95, sp_defense: 85, speed: 95 }
   },
   magmortar: {
@@ -4229,7 +4229,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen4,
     cry: 'Magmortar!',
     possibleColors: [PokemonColor.default],
-    types: ["Fire"],
+    types: [PokemonCombatType.fire],
     stats: { hp: 75, attack: 95, defense: 67, sp_attack: 125, sp_defense: 95, speed: 83 }
   },
   togekiss: {
@@ -4238,7 +4238,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen4,
     cry: 'Togekiss!',
     possibleColors: [PokemonColor.default],
-    types: ["Fairy", "Flying"],
+    types: [PokemonCombatType.fairy, PokemonCombatType.flying],
     stats: { hp: 85, attack: 50, defense: 95, sp_attack: 120, sp_defense: 115, speed: 80 }
   },
   yanmega: {
@@ -4247,7 +4247,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen4,
     cry: 'Yanmega!',
     possibleColors: [PokemonColor.default],
-    types: ["Bug", "Flying"],
+    types: [PokemonCombatType.bug, PokemonCombatType.flying],
     stats: { hp: 86, attack: 76, defense: 86, sp_attack: 116, sp_defense: 56, speed: 95 }
   },
   leafeon: {
@@ -4256,7 +4256,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen4,
     cry: 'Leafeon!',
     possibleColors: [PokemonColor.default],
-    types: ["Grass"],
+    types: [PokemonCombatType.grass],
     stats: { hp: 65, attack: 110, defense: 130, sp_attack: 60, sp_defense: 65, speed: 95 }
   },
   glaceon: {
@@ -4265,7 +4265,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen4,
     cry: 'Glaceon!',
     possibleColors: [PokemonColor.default],
-    types: ["Ice"],
+    types: [PokemonCombatType.ice],
     stats: { hp: 65, attack: 60, defense: 110, sp_attack: 130, sp_defense: 95, speed: 65 }
   },
   gliscor: {
@@ -4274,7 +4274,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen4,
     cry: 'Gliscor!',
     possibleColors: [PokemonColor.default],
-    types: ["Ground", "Flying"],
+    types: [PokemonCombatType.ground, PokemonCombatType.flying],
     stats: { hp: 75, attack: 95, defense: 125, sp_attack: 45, sp_defense: 75, speed: 95 }
   },
   mamoswine: {
@@ -4283,7 +4283,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen4,
     cry: 'Mamoswine!',
     possibleColors: [PokemonColor.default],
-    types: ["Ice", "Ground"],
+    types: [PokemonCombatType.ice, PokemonCombatType.ground],
     stats: { hp: 110, attack: 130, defense: 80, sp_attack: 70, sp_defense: 60, speed: 80 }
   },
   porygonz: {
@@ -4292,7 +4292,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen4,
     cry: 'Porygon-Z!',
     possibleColors: [PokemonColor.default],
-    types: ["Normal"],
+    types: [PokemonCombatType.normal],
     stats: { hp: 85, attack: 80, defense: 70, sp_attack: 135, sp_defense: 75, speed: 90 }
   },
   gallade: {
@@ -4301,7 +4301,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen4,
     cry: 'Gallade!',
     possibleColors: [PokemonColor.default],
-    types: ["Psychic", "Fighting"],
+    types: [PokemonCombatType.psychic, PokemonCombatType.fighting],
     stats: { hp: 68, attack: 165, defense: 95, sp_attack: 65, sp_defense: 115, speed: 110 }
   },
   probopass: {
@@ -4310,7 +4310,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen4,
     cry: 'Probopass!',
     possibleColors: [PokemonColor.default],
-    types: ["Rock", "Steel"],
+    types: [PokemonCombatType.rock, PokemonCombatType.steel],
     stats: { hp: 60, attack: 55, defense: 145, sp_attack: 75, sp_defense: 150, speed: 40 }
   },
   dusknoir: {
@@ -4319,7 +4319,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen4,
     cry: 'Dusknoir!',
     possibleColors: [PokemonColor.default],
-    types: ["Ghost"],
+    types: [PokemonCombatType.ghost],
     stats: { hp: 45, attack: 100, defense: 135, sp_attack: 65, sp_defense: 135, speed: 45 }
   },
   froslass: {
@@ -4328,7 +4328,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen4,
     cry: 'Froslass!',
     possibleColors: [PokemonColor.default],
-    types: ["Ice", "Ghost"],
+    types: [PokemonCombatType.ice, PokemonCombatType.ghost],
     stats: { hp: 70, attack: 80, defense: 70, sp_attack: 80, sp_defense: 70, speed: 110 }
   },
   rotom: {
@@ -4337,7 +4337,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen4,
     cry: 'Rotom!',
     possibleColors: [PokemonColor.default],
-    types: ["Electric", "Grass"],
+    types: [PokemonCombatType.electric, PokemonCombatType.grass],
     stats: { hp: 50, attack: 65, defense: 107, sp_attack: 105, sp_defense: 107, speed: 86 }
   },
   uxie: {
@@ -4346,7 +4346,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen4,
     cry: 'Uxie!',
     possibleColors: [PokemonColor.default],
-    types: ["Psychic"],
+    types: [PokemonCombatType.psychic],
     stats: { hp: 75, attack: 75, defense: 130, sp_attack: 75, sp_defense: 130, speed: 95 }
   },
   mesprit: {
@@ -4355,7 +4355,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen4,
     cry: 'Mesprit!',
     possibleColors: [PokemonColor.default],
-    types: ["Psychic"],
+    types: [PokemonCombatType.psychic],
     stats: { hp: 80, attack: 105, defense: 105, sp_attack: 105, sp_defense: 105, speed: 80 }
   },
   azelf: {
@@ -4364,7 +4364,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen4,
     cry: 'Azelf!',
     possibleColors: [PokemonColor.default],
-    types: ["Psychic"],
+    types: [PokemonCombatType.psychic],
     stats: { hp: 75, attack: 125, defense: 70, sp_attack: 125, sp_defense: 70, speed: 115 }
   },
   dialga: {
@@ -4373,7 +4373,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen4,
     cry: 'Dialga!',
     possibleColors: [PokemonColor.default],
-    types: ["Steel", "Dragon"],
+    types: [PokemonCombatType.steel, PokemonCombatType.dragon],
     stats: { hp: 100, attack: 100, defense: 120, sp_attack: 150, sp_defense: 120, speed: 90 }
   },
   palkia: {
@@ -4382,7 +4382,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen4,
     cry: 'Palkia!',
     possibleColors: [PokemonColor.default],
-    types: ["Water", "Dragon"],
+    types: [PokemonCombatType.water, PokemonCombatType.dragon],
     stats: { hp: 90, attack: 100, defense: 100, sp_attack: 150, sp_defense: 120, speed: 120 }
   },
   heatran: {
@@ -4391,7 +4391,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen4,
     cry: 'Heatran!',
     possibleColors: [PokemonColor.default],
-    types: ["Fire", "Steel"],
+    types: [PokemonCombatType.fire, PokemonCombatType.steel],
     stats: { hp: 91, attack: 90, defense: 106, sp_attack: 130, sp_defense: 106, speed: 77 }
   },
   regigigas: {
@@ -4400,7 +4400,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen4,
     cry: 'Regigigas!',
     possibleColors: [PokemonColor.default],
-    types: ["Normal"],
+    types: [PokemonCombatType.normal],
     stats: { hp: 110, attack: 160, defense: 110, sp_attack: 80, sp_defense: 110, speed: 100 }
   },
   giratina: {
@@ -4409,7 +4409,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen4,
     cry: 'Giratina!',
     possibleColors: [PokemonColor.default],
-    types: ["Ghost", "Dragon"],
+    types: [PokemonCombatType.ghost, PokemonCombatType.dragon],
     stats: { hp: 150, attack: 120, defense: 100, sp_attack: 120, sp_defense: 100, speed: 90 }
   },
   cresselia: {
@@ -4418,7 +4418,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen4,
     cry: 'Cresselia!',
     possibleColors: [PokemonColor.default],
-    types: ["Psychic"],
+    types: [PokemonCombatType.psychic],
     stats: { hp: 120, attack: 70, defense: 110, sp_attack: 75, sp_defense: 120, speed: 85 }
   },
   phione: {
@@ -4427,7 +4427,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen4,
     cry: 'Phione!',
     possibleColors: [PokemonColor.default],
-    types: ["Water"],
+    types: [PokemonCombatType.water],
     stats: { hp: 80, attack: 80, defense: 80, sp_attack: 80, sp_defense: 80, speed: 80 }
   },
   manaphy: {
@@ -4436,16 +4436,16 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen4,
     cry: 'Manaphy!',
     possibleColors: [PokemonColor.default],
-    types: ["Water"],
+    types: [PokemonCombatType.water],
     stats: { hp: 100, attack: 100, defense: 100, sp_attack: 100, sp_defense: 100, speed: 100 }
   },
   darkrai: {
     id: 491,
-    name: 'Darkrai',
+    name: 'darkrai',
     generation: PokemonGeneration.Gen4,
-    cry: 'Darkrai!',
+    cry: 'darkrai!',
     possibleColors: [PokemonColor.default],
-    types: ["Dark"],
+    types: [PokemonCombatType.dark],
     stats: { hp: 70, attack: 90, defense: 90, sp_attack: 135, sp_defense: 90, speed: 125 }
   },
   shaymin: {
@@ -4454,7 +4454,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen4,
     cry: 'Shaymin!',
     possibleColors: [PokemonColor.default],
-    types: ["Grass", "Flying"],
+    types: [PokemonCombatType.grass, PokemonCombatType.flying],
     stats: { hp: 100, attack: 103, defense: 75, sp_attack: 120, sp_defense: 75, speed: 127 }
   },
   arceus: {
@@ -4463,7 +4463,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen4,
     cry: 'Arceus!',
     possibleColors: [PokemonColor.default],
-    types: ["Normal"],
+    types: [PokemonCombatType.normal],
     stats: { hp: 120, attack: 120, defense: 120, sp_attack: 120, sp_defense: 120, speed: 120 }
   },
   // Generation 5
@@ -4473,7 +4473,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen5,
     cry: 'Victini!',
     possibleColors: [PokemonColor.default],
-    types: ["Psychic", "Fire"],
+    types: [PokemonCombatType.psychic, PokemonCombatType.fire],
     stats: { hp: 100, attack: 100, defense: 100, sp_attack: 100, sp_defense: 100, speed: 100 }
   },
   snivy: {
@@ -4482,7 +4482,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen5,
     cry: 'Snivy!',
     possibleColors: [PokemonColor.default],
-    types: ["Grass"],
+    types: [PokemonCombatType.grass],
     stats: { hp: 45, attack: 45, defense: 55, sp_attack: 45, sp_defense: 55, speed: 63 }
   },
   servine: {
@@ -4491,7 +4491,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen5,
     cry: 'Servine!',
     possibleColors: [PokemonColor.default],
-    types: ["Grass"],
+    types: [PokemonCombatType.grass],
     stats: { hp: 60, attack: 60, defense: 75, sp_attack: 60, sp_defense: 75, speed: 83 }
   },
   serperior: {
@@ -4500,7 +4500,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen5,
     cry: 'Serperior!',
     possibleColors: [PokemonColor.default],
-    types: ["Grass"],
+    types: [PokemonCombatType.grass],
     stats: { hp: 75, attack: 75, defense: 95, sp_attack: 75, sp_defense: 95, speed: 113 }
   },
   tepig: {
@@ -4509,7 +4509,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen5,
     cry: 'Tepig!',
     possibleColors: [PokemonColor.default],
-    types: ["Fire"],
+    types: [PokemonCombatType.fire],
     stats: { hp: 65, attack: 63, defense: 45, sp_attack: 45, sp_defense: 45, speed: 45 }
   },
   pignite: {
@@ -4518,7 +4518,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen5,
     cry: 'Pignite!',
     possibleColors: [PokemonColor.default],
-    types: ["Fire", "Fighting"],
+    types: [PokemonCombatType.fire, PokemonCombatType.fighting],
     stats: { hp: 90, attack: 93, defense: 55, sp_attack: 70, sp_defense: 55, speed: 55 }
   },
   emboar: {
@@ -4527,7 +4527,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen5,
     cry: 'Emboar!',
     possibleColors: [PokemonColor.default],
-    types: ["Fire", "Fighting"],
+    types: [PokemonCombatType.fire, PokemonCombatType.fighting],
     stats: { hp: 110, attack: 123, defense: 65, sp_attack: 100, sp_defense: 65, speed: 65 }
   },
   oshawott: {
@@ -4536,7 +4536,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen5,
     cry: 'Oshawott!',
     possibleColors: [PokemonColor.default],
-    types: ["Water"],
+    types: [PokemonCombatType.water],
     stats: { hp: 55, attack: 55, defense: 45, sp_attack: 63, sp_defense: 45, speed: 45 }
   },
   dewott: {
@@ -4545,7 +4545,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen5,
     cry: 'Dewott!',
     possibleColors: [PokemonColor.default],
-    types: ["Water"],
+    types: [PokemonCombatType.water],
     stats: { hp: 75, attack: 75, defense: 60, sp_attack: 83, sp_defense: 60, speed: 60 }
   },
   samurott: {
@@ -4554,7 +4554,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen5,
     cry: 'Samurott!',
     possibleColors: [PokemonColor.default],
-    types: ["Water", "Dark"],
+    types: [PokemonCombatType.water, PokemonCombatType.dark],
     stats: { hp: 90, attack: 108, defense: 80, sp_attack: 100, sp_defense: 65, speed: 85 }
   },
   patrat: {
@@ -4563,7 +4563,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen5,
     cry: 'Patrat!',
     possibleColors: [PokemonColor.default],
-    types: ["Normal"],
+    types: [PokemonCombatType.normal],
     stats: { hp: 45, attack: 55, defense: 39, sp_attack: 35, sp_defense: 39, speed: 42 }
   },
   watchog: {
@@ -4572,7 +4572,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen5,
     cry: 'Watchog!',
     possibleColors: [PokemonColor.default],
-    types: ["Normal"],
+    types: [PokemonCombatType.normal],
     stats: { hp: 60, attack: 85, defense: 69, sp_attack: 60, sp_defense: 69, speed: 77 }
   },
   lillipup: {
@@ -4581,7 +4581,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen5,
     cry: 'Lillipup!',
     possibleColors: [PokemonColor.default],
-    types: ["Normal"],
+    types: [PokemonCombatType.normal],
     stats: { hp: 45, attack: 60, defense: 45, sp_attack: 25, sp_defense: 45, speed: 55 }
   },
   herdier: {
@@ -4590,7 +4590,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen5,
     cry: 'Herdier!',
     possibleColors: [PokemonColor.default],
-    types: ["Normal"],
+    types: [PokemonCombatType.normal],
     stats: { hp: 65, attack: 80, defense: 65, sp_attack: 35, sp_defense: 65, speed: 60 }
   },
   stoutland: {
@@ -4599,7 +4599,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen5,
     cry: 'Stoutland!',
     possibleColors: [PokemonColor.default],
-    types: ["Normal"],
+    types: [PokemonCombatType.normal],
     stats: { hp: 85, attack: 110, defense: 90, sp_attack: 45, sp_defense: 90, speed: 80 }
   },
   purrloin: {
@@ -4608,7 +4608,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen5,
     cry: 'Purrloin!',
     possibleColors: [PokemonColor.default],
-    types: ["Dark"],
+    types: [PokemonCombatType.dark],
     stats: { hp: 41, attack: 50, defense: 37, sp_attack: 50, sp_defense: 37, speed: 66 }
   },
   liepard: {
@@ -4617,7 +4617,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen5,
     cry: 'Liepard!',
     possibleColors: [PokemonColor.default],
-    types: ["Dark"],
+    types: [PokemonCombatType.dark],
     stats: { hp: 64, attack: 88, defense: 50, sp_attack: 88, sp_defense: 50, speed: 106 }
   },
   pansage: {
@@ -4626,7 +4626,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen5,
     cry: 'Pansage!',
     possibleColors: [PokemonColor.default],
-    types: ["Grass"],
+    types: [PokemonCombatType.grass],
     stats: { hp: 50, attack: 53, defense: 48, sp_attack: 53, sp_defense: 48, speed: 64 }
   },
   simisage: {
@@ -4635,7 +4635,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen5,
     cry: 'Simisage!',
     possibleColors: [PokemonColor.default],
-    types: ["Grass"],
+    types: [PokemonCombatType.grass],
     stats: { hp: 75, attack: 98, defense: 63, sp_attack: 98, sp_defense: 63, speed: 101 }
   },
   pansear: {
@@ -4644,7 +4644,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen5,
     cry: 'Pansear!',
     possibleColors: [PokemonColor.default],
-    types: ["Fire"],
+    types: [PokemonCombatType.fire],
     stats: { hp: 50, attack: 53, defense: 48, sp_attack: 53, sp_defense: 48, speed: 64 }
   },
   simisear: {
@@ -4653,7 +4653,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen5,
     cry: 'Simisear!',
     possibleColors: [PokemonColor.default],
-    types: ["Fire"],
+    types: [PokemonCombatType.fire],
     stats: { hp: 75, attack: 98, defense: 63, sp_attack: 98, sp_defense: 63, speed: 101 }
   },
   panpour: {
@@ -4662,7 +4662,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen5,
     cry: 'Panpour!',
     possibleColors: [PokemonColor.default],
-    types: ["Water"],
+    types: [PokemonCombatType.water],
     stats: { hp: 50, attack: 53, defense: 48, sp_attack: 53, sp_defense: 48, speed: 64 }
   },
   simipour: {
@@ -4671,7 +4671,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen5,
     cry: 'Simipour!',
     possibleColors: [PokemonColor.default],
-    types: ["Water"],
+    types: [PokemonCombatType.water],
     stats: { hp: 75, attack: 98, defense: 63, sp_attack: 98, sp_defense: 63, speed: 101 }
   },
   munna: {
@@ -4680,7 +4680,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen5,
     cry: 'Munna!',
     possibleColors: [PokemonColor.default],
-    types: ["Psychic"],
+    types: [PokemonCombatType.psychic],
     stats: { hp: 76, attack: 25, defense: 45, sp_attack: 67, sp_defense: 55, speed: 24 }
   },
   musharna: {
@@ -4689,7 +4689,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen5,
     cry: 'Musharna!',
     possibleColors: [PokemonColor.default],
-    types: ["Psychic"],
+    types: [PokemonCombatType.psychic],
     stats: { hp: 116, attack: 55, defense: 85, sp_attack: 107, sp_defense: 95, speed: 29 }
   },
   pidove: {
@@ -4698,7 +4698,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen5,
     cry: 'Pidove!',
     possibleColors: [PokemonColor.default],
-    types: ["Normal", "Flying"],
+    types: [PokemonCombatType.normal, PokemonCombatType.flying],
     stats: { hp: 50, attack: 55, defense: 50, sp_attack: 36, sp_defense: 30, speed: 43 }
   },
   tranquill: {
@@ -4707,7 +4707,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen5,
     cry: 'Tranquill!',
     possibleColors: [PokemonColor.default],
-    types: ["Normal", "Flying"],
+    types: [PokemonCombatType.normal, PokemonCombatType.flying],
     stats: { hp: 62, attack: 77, defense: 62, sp_attack: 50, sp_defense: 42, speed: 65 }
   },
   unfezant: {
@@ -4716,7 +4716,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen5,
     cry: 'Unfezant!',
     possibleColors: [PokemonColor.default],
-    types: ["Normal", "Flying"],
+    types: [PokemonCombatType.normal, PokemonCombatType.flying],
     stats: { hp: 80, attack: 115, defense: 80, sp_attack: 65, sp_defense: 55, speed: 93 }
   },
   blitzle: {
@@ -4725,7 +4725,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen5,
     cry: 'Blitzle!',
     possibleColors: [PokemonColor.default],
-    types: ["Electric"],
+    types: [PokemonCombatType.electric],
     stats: { hp: 45, attack: 60, defense: 32, sp_attack: 50, sp_defense: 32, speed: 76 }
   },
   zebstrika: {
@@ -4734,7 +4734,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen5,
     cry: 'Zebstrika!',
     possibleColors: [PokemonColor.default],
-    types: ["Electric"],
+    types: [PokemonCombatType.electric],
     stats: { hp: 75, attack: 100, defense: 63, sp_attack: 80, sp_defense: 63, speed: 116 }
   },
   roggenrola: {
@@ -4743,7 +4743,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen5,
     cry: 'Roggenrola!',
     possibleColors: [PokemonColor.default],
-    types: ["Rock"],
+    types: [PokemonCombatType.rock],
     stats: { hp: 55, attack: 75, defense: 85, sp_attack: 25, sp_defense: 25, speed: 15 }
   },
   boldore: {
@@ -4752,7 +4752,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen5,
     cry: 'Boldore!',
     possibleColors: [PokemonColor.default],
-    types: ["Rock"],
+    types: [PokemonCombatType.rock],
     stats: { hp: 70, attack: 105, defense: 105, sp_attack: 50, sp_defense: 40, speed: 20 }
   },
   gigalith: {
@@ -4761,7 +4761,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen5,
     cry: 'Gigalith!',
     possibleColors: [PokemonColor.default],
-    types: ["Rock"],
+    types: [PokemonCombatType.rock],
     stats: { hp: 85, attack: 135, defense: 130, sp_attack: 60, sp_defense: 80, speed: 25 }
   },
   woobat: {
@@ -4770,7 +4770,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen5,
     cry: 'Woobat!',
     possibleColors: [PokemonColor.default],
-    types: ["Psychic", "Flying"],
+    types: [PokemonCombatType.psychic, PokemonCombatType.flying],
     stats: { hp: 65, attack: 45, defense: 43, sp_attack: 55, sp_defense: 43, speed: 72 }
   },
   swoobat: {
@@ -4779,7 +4779,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen5,
     cry: 'Swoobat!',
     possibleColors: [PokemonColor.default],
-    types: ["Psychic", "Flying"],
+    types: [PokemonCombatType.psychic, PokemonCombatType.flying],
     stats: { hp: 67, attack: 57, defense: 55, sp_attack: 77, sp_defense: 55, speed: 114 }
   },
   drilbur: {
@@ -4788,7 +4788,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen5,
     cry: 'Drilbur!',
     possibleColors: [PokemonColor.default],
-    types: ["Ground"],
+    types: [PokemonCombatType.ground],
     stats: { hp: 60, attack: 85, defense: 40, sp_attack: 30, sp_defense: 45, speed: 68 }
   },
   excadrill: {
@@ -4797,7 +4797,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen5,
     cry: 'Excadrill!',
     possibleColors: [PokemonColor.default],
-    types: ["Ground", "Steel"],
+    types: [PokemonCombatType.ground, PokemonCombatType.steel],
     stats: { hp: 110, attack: 135, defense: 60, sp_attack: 50, sp_defense: 65, speed: 88 }
   },
   audino: {
@@ -4806,7 +4806,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen5,
     cry: 'Audino!',
     possibleColors: [PokemonColor.default],
-    types: ["Normal", "Fairy"],
+    types: [PokemonCombatType.normal, PokemonCombatType.fairy],
     stats: { hp: 103, attack: 60, defense: 126, sp_attack: 80, sp_defense: 126, speed: 50 }
   },
   timburr: {
@@ -4815,7 +4815,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen5,
     cry: 'Timburr!',
     possibleColors: [PokemonColor.default],
-    types: ["Fighting"],
+    types: [PokemonCombatType.fighting],
     stats: { hp: 75, attack: 80, defense: 55, sp_attack: 25, sp_defense: 35, speed: 35 }
   },
   gurdurr: {
@@ -4824,7 +4824,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen5,
     cry: 'Gurdurr!',
     possibleColors: [PokemonColor.default],
-    types: ["Fighting"],
+    types: [PokemonCombatType.fighting],
     stats: { hp: 85, attack: 105, defense: 85, sp_attack: 40, sp_defense: 50, speed: 40 }
   },
   conkeldurr: {
@@ -4833,7 +4833,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen5,
     cry: 'Conkeldurr!',
     possibleColors: [PokemonColor.default],
-    types: ["Fighting"],
+    types: [PokemonCombatType.fighting],
     stats: { hp: 105, attack: 140, defense: 95, sp_attack: 55, sp_defense: 65, speed: 45 }
   },
   tympole: {
@@ -4842,7 +4842,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen5,
     cry: 'Tympole!',
     possibleColors: [PokemonColor.default],
-    types: ["Water"],
+    types: [PokemonCombatType.water],
     stats: { hp: 50, attack: 50, defense: 40, sp_attack: 50, sp_defense: 40, speed: 64 }
   },
   palpitoad: {
@@ -4851,7 +4851,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen5,
     cry: 'Palpitoad!',
     possibleColors: [PokemonColor.default],
-    types: ["Water", "Ground"],
+    types: [PokemonCombatType.water, PokemonCombatType.ground],
     stats: { hp: 75, attack: 65, defense: 55, sp_attack: 65, sp_defense: 55, speed: 69 }
   },
   seismitoad: {
@@ -4860,7 +4860,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen5,
     cry: 'Seismitoad!',
     possibleColors: [PokemonColor.default],
-    types: ["Water", "Ground"],
+    types: [PokemonCombatType.water, PokemonCombatType.ground],
     stats: { hp: 105, attack: 95, defense: 75, sp_attack: 85, sp_defense: 75, speed: 74 }
   },
   throh: {
@@ -4869,7 +4869,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen5,
     cry: 'Throh!',
     possibleColors: [PokemonColor.default],
-    types: ["Fighting"],
+    types: [PokemonCombatType.fighting],
     stats: { hp: 120, attack: 100, defense: 85, sp_attack: 30, sp_defense: 85, speed: 45 }
   },
   sawk: {
@@ -4878,7 +4878,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen5,
     cry: 'Sawk!',
     possibleColors: [PokemonColor.default],
-    types: ["Fighting"],
+    types: [PokemonCombatType.fighting],
     stats: { hp: 75, attack: 125, defense: 75, sp_attack: 30, sp_defense: 75, speed: 85 }
   },
   sewaddle: {
@@ -4887,7 +4887,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen5,
     cry: 'Sewaddle!',
     possibleColors: [PokemonColor.default],
-    types: ["Bug", "Grass"],
+    types: [PokemonCombatType.bug, PokemonCombatType.grass],
     stats: { hp: 45, attack: 53, defense: 70, sp_attack: 40, sp_defense: 60, speed: 42 }
   },
   swadloon: {
@@ -4896,7 +4896,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen5,
     cry: 'Swadloon!',
     possibleColors: [PokemonColor.default],
-    types: ["Bug", "Grass"],
+    types: [PokemonCombatType.bug, PokemonCombatType.grass],
     stats: { hp: 55, attack: 63, defense: 90, sp_attack: 50, sp_defense: 80, speed: 42 }
   },
   leavanny: {
@@ -4905,7 +4905,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen5,
     cry: 'Leavanny!',
     possibleColors: [PokemonColor.default],
-    types: ["Bug", "Grass"],
+    types: [PokemonCombatType.bug, PokemonCombatType.grass],
     stats: { hp: 75, attack: 103, defense: 80, sp_attack: 70, sp_defense: 80, speed: 92 }
   },
   venipede: {
@@ -4914,7 +4914,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen5,
     cry: 'Venipede!',
     possibleColors: [PokemonColor.default],
-    types: ["Bug", "Poison"],
+    types: [PokemonCombatType.bug, PokemonCombatType.poison],
     stats: { hp: 30, attack: 45, defense: 59, sp_attack: 30, sp_defense: 39, speed: 57 }
   },
   whirlipede: {
@@ -4923,7 +4923,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen5,
     cry: 'Whirlipede!',
     possibleColors: [PokemonColor.default],
-    types: ["Bug", "Poison"],
+    types: [PokemonCombatType.bug, PokemonCombatType.poison],
     stats: { hp: 40, attack: 55, defense: 99, sp_attack: 40, sp_defense: 79, speed: 47 }
   },
   scolipede: {
@@ -4932,7 +4932,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen5,
     cry: 'Scolipede!',
     possibleColors: [PokemonColor.default],
-    types: ["Bug", "Poison"],
+    types: [PokemonCombatType.bug, PokemonCombatType.poison],
     stats: { hp: 60, attack: 100, defense: 89, sp_attack: 55, sp_defense: 69, speed: 112 }
   },
   cottonee: {
@@ -4941,7 +4941,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen5,
     cry: 'Cottonee!',
     possibleColors: [PokemonColor.default],
-    types: ["Grass", "Fairy"],
+    types: [PokemonCombatType.grass, PokemonCombatType.fairy],
     stats: { hp: 40, attack: 27, defense: 60, sp_attack: 37, sp_defense: 50, speed: 66 }
   },
   whimsicott: {
@@ -4950,7 +4950,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen5,
     cry: 'Whimsicott!',
     possibleColors: [PokemonColor.default],
-    types: ["Grass", "Fairy"],
+    types: [PokemonCombatType.grass, PokemonCombatType.fairy],
     stats: { hp: 60, attack: 67, defense: 85, sp_attack: 77, sp_defense: 75, speed: 116 }
   },
   petilil: {
@@ -4959,7 +4959,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen5,
     cry: 'Petilil!',
     possibleColors: [PokemonColor.default],
-    types: ["Grass"],
+    types: [PokemonCombatType.grass],
     stats: { hp: 45, attack: 35, defense: 50, sp_attack: 70, sp_defense: 50, speed: 30 }
   },
   lilligant: {
@@ -4968,7 +4968,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen5,
     cry: 'Lilligant!',
     possibleColors: [PokemonColor.default],
-    types: ["Grass", "Fighting"],
+    types: [PokemonCombatType.grass, PokemonCombatType.fighting],
     stats: { hp: 70, attack: 105, defense: 75, sp_attack: 50, sp_defense: 75, speed: 105 }
   },
   basculin: {
@@ -4977,7 +4977,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen5,
     cry: 'Basculin!',
     possibleColors: [PokemonColor.default],
-    types: ["Water"],
+    types: [PokemonCombatType.water],
     stats: { hp: 70, attack: 92, defense: 65, sp_attack: 80, sp_defense: 55, speed: 98 }
   },
   sandile: {
@@ -4986,7 +4986,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen5,
     cry: 'Sandile!',
     possibleColors: [PokemonColor.default],
-    types: ["Ground", "Dark"],
+    types: [PokemonCombatType.ground, PokemonCombatType.dark],
     stats: { hp: 50, attack: 72, defense: 35, sp_attack: 35, sp_defense: 35, speed: 65 }
   },
   krokorok: {
@@ -4995,7 +4995,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen5,
     cry: 'Krokorok!',
     possibleColors: [PokemonColor.default],
-    types: ["Ground", "Dark"],
+    types: [PokemonCombatType.ground, PokemonCombatType.dark],
     stats: { hp: 60, attack: 82, defense: 45, sp_attack: 45, sp_defense: 45, speed: 74 }
   },
   krookodile: {
@@ -5004,7 +5004,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen5,
     cry: 'Krookodile!',
     possibleColors: [PokemonColor.default],
-    types: ["Ground", "Dark"],
+    types: [PokemonCombatType.ground, PokemonCombatType.dark],
     stats: { hp: 95, attack: 117, defense: 80, sp_attack: 65, sp_defense: 70, speed: 92 }
   },
   darumaka: {
@@ -5013,7 +5013,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen5,
     cry: 'Darumaka!',
     possibleColors: [PokemonColor.default],
-    types: ["Ice"],
+    types: [PokemonCombatType.ice],
     stats: { hp: 70, attack: 90, defense: 45, sp_attack: 15, sp_defense: 45, speed: 50 }
   },
   darmanitan: {
@@ -5022,7 +5022,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen5,
     cry: 'Darmanitan!',
     possibleColors: [PokemonColor.default],
-    types: ["Ice", "Fire"],
+    types: [PokemonCombatType.ice, PokemonCombatType.fire],
     stats: { hp: 105, attack: 160, defense: 55, sp_attack: 30, sp_defense: 55, speed: 135 }
   },
   maractus: {
@@ -5031,7 +5031,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen5,
     cry: 'Maractus!',
     possibleColors: [PokemonColor.default],
-    types: ["Grass"],
+    types: [PokemonCombatType.grass],
     stats: { hp: 75, attack: 86, defense: 67, sp_attack: 106, sp_defense: 67, speed: 60 }
   },
   dwebble: {
@@ -5040,7 +5040,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen5,
     cry: 'Dwebble!',
     possibleColors: [PokemonColor.default],
-    types: ["Bug", "Rock"],
+    types: [PokemonCombatType.bug, PokemonCombatType.rock],
     stats: { hp: 50, attack: 65, defense: 85, sp_attack: 35, sp_defense: 35, speed: 55 }
   },
   crustle: {
@@ -5049,7 +5049,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen5,
     cry: 'Crustle!',
     possibleColors: [PokemonColor.default],
-    types: ["Bug", "Rock"],
+    types: [PokemonCombatType.bug, PokemonCombatType.rock],
     stats: { hp: 70, attack: 105, defense: 125, sp_attack: 65, sp_defense: 75, speed: 45 }
   },
   scraggy: {
@@ -5058,7 +5058,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen5,
     cry: 'Scraggy!',
     possibleColors: [PokemonColor.default],
-    types: ["Dark", "Fighting"],
+    types: [PokemonCombatType.dark, PokemonCombatType.fighting],
     stats: { hp: 50, attack: 75, defense: 70, sp_attack: 35, sp_defense: 70, speed: 48 }
   },
   scrafty: {
@@ -5067,7 +5067,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen5,
     cry: 'Scrafty!',
     possibleColors: [PokemonColor.default],
-    types: ["Dark", "Fighting"],
+    types: [PokemonCombatType.dark, PokemonCombatType.fighting],
     stats: { hp: 65, attack: 90, defense: 115, sp_attack: 45, sp_defense: 115, speed: 58 }
   },
   sigilyph: {
@@ -5076,7 +5076,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen5,
     cry: 'Sigilyph!',
     possibleColors: [PokemonColor.default],
-    types: ["Psychic", "Flying"],
+    types: [PokemonCombatType.psychic, PokemonCombatType.flying],
     stats: { hp: 72, attack: 58, defense: 80, sp_attack: 103, sp_defense: 80, speed: 97 }
   },
   yamask: {
@@ -5085,7 +5085,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen5,
     cry: 'Yamask!',
     possibleColors: [PokemonColor.default],
-    types: ["Ground", "Ghost"],
+    types: [PokemonCombatType.ground, PokemonCombatType.ghost],
     stats: { hp: 38, attack: 55, defense: 85, sp_attack: 30, sp_defense: 65, speed: 30 }
   },
   cofagrigus: {
@@ -5094,7 +5094,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen5,
     cry: 'Cofagrigus!',
     possibleColors: [PokemonColor.default],
-    types: ["Ghost"],
+    types: [PokemonCombatType.ghost],
     stats: { hp: 58, attack: 50, defense: 145, sp_attack: 95, sp_defense: 105, speed: 30 }
   },
   tirtouga: {
@@ -5103,7 +5103,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen5,
     cry: 'Tirtouga!',
     possibleColors: [PokemonColor.default],
-    types: ["Water", "Rock"],
+    types: [PokemonCombatType.water, PokemonCombatType.rock],
     stats: { hp: 54, attack: 78, defense: 103, sp_attack: 53, sp_defense: 45, speed: 22 }
   },
   carracosta: {
@@ -5112,7 +5112,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen5,
     cry: 'Carracosta!',
     possibleColors: [PokemonColor.default],
-    types: ["Water", "Rock"],
+    types: [PokemonCombatType.water, PokemonCombatType.rock],
     stats: { hp: 74, attack: 108, defense: 133, sp_attack: 83, sp_defense: 65, speed: 32 }
   },
   archen: {
@@ -5121,7 +5121,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen5,
     cry: 'Archen!',
     possibleColors: [PokemonColor.default],
-    types: ["Rock", "Flying"],
+    types: [PokemonCombatType.rock, PokemonCombatType.flying],
     stats: { hp: 55, attack: 112, defense: 45, sp_attack: 74, sp_defense: 45, speed: 70 }
   },
   archeops: {
@@ -5130,7 +5130,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen5,
     cry: 'Archeops!',
     possibleColors: [PokemonColor.default],
-    types: ["Rock", "Flying"],
+    types: [PokemonCombatType.rock, PokemonCombatType.flying],
     stats: { hp: 75, attack: 140, defense: 65, sp_attack: 112, sp_defense: 65, speed: 110 }
   },
   trubbish: {
@@ -5139,7 +5139,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen5,
     cry: 'Trubbish!',
     possibleColors: [PokemonColor.default],
-    types: ["Poison"],
+    types: [PokemonCombatType.poison],
     stats: { hp: 50, attack: 50, defense: 62, sp_attack: 40, sp_defense: 62, speed: 65 }
   },
   garbodor: {
@@ -5148,7 +5148,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen5,
     cry: 'Garbodor!',
     possibleColors: [PokemonColor.default],
-    types: ["Poison"],
+    types: [PokemonCombatType.poison],
     stats: { hp: 80, attack: 95, defense: 82, sp_attack: 60, sp_defense: 82, speed: 75 }
   },
   zorua: {
@@ -5157,7 +5157,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen5,
     cry: 'Zorua!',
     possibleColors: [PokemonColor.default],
-    types: ["Normal", "Ghost"],
+    types: [PokemonCombatType.normal, PokemonCombatType.ghost],
     stats: { hp: 35, attack: 60, defense: 40, sp_attack: 85, sp_defense: 40, speed: 70 }
   },
   zoroark: {
@@ -5166,7 +5166,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen5,
     cry: 'Zoroark!',
     possibleColors: [PokemonColor.default],
-    types: ["Normal", "Ghost"],
+    types: [PokemonCombatType.normal, PokemonCombatType.ghost],
     stats: { hp: 55, attack: 100, defense: 60, sp_attack: 125, sp_defense: 60, speed: 110 }
   },
   minccino: {
@@ -5175,7 +5175,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen5,
     cry: 'Minccino!',
     possibleColors: [PokemonColor.default],
-    types: ["Normal"],
+    types: [PokemonCombatType.normal],
     stats: { hp: 55, attack: 50, defense: 40, sp_attack: 40, sp_defense: 40, speed: 75 }
   },
   cinccino: {
@@ -5184,7 +5184,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen5,
     cry: 'Cinccino!',
     possibleColors: [PokemonColor.default],
-    types: ["Normal"],
+    types: [PokemonCombatType.normal],
     stats: { hp: 75, attack: 95, defense: 60, sp_attack: 65, sp_defense: 60, speed: 115 }
   },
   gothita: {
@@ -5193,7 +5193,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen5,
     cry: 'Gothita!',
     possibleColors: [PokemonColor.default],
-    types: ["Psychic"],
+    types: [PokemonCombatType.psychic],
     stats: { hp: 45, attack: 30, defense: 50, sp_attack: 55, sp_defense: 65, speed: 45 }
   },
   gothorita: {
@@ -5202,7 +5202,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen5,
     cry: 'Gothorita!',
     possibleColors: [PokemonColor.default],
-    types: ["Psychic"],
+    types: [PokemonCombatType.psychic],
     stats: { hp: 60, attack: 45, defense: 70, sp_attack: 75, sp_defense: 85, speed: 55 }
   },
   gothitelle: {
@@ -5211,7 +5211,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen5,
     cry: 'Gothitelle!',
     possibleColors: [PokemonColor.default],
-    types: ["Psychic"],
+    types: [PokemonCombatType.psychic],
     stats: { hp: 70, attack: 55, defense: 95, sp_attack: 95, sp_defense: 110, speed: 65 }
   },
   solosis: {
@@ -5220,7 +5220,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen5,
     cry: 'Solosis!',
     possibleColors: [PokemonColor.default],
-    types: ["Psychic"],
+    types: [PokemonCombatType.psychic],
     stats: { hp: 45, attack: 30, defense: 40, sp_attack: 105, sp_defense: 50, speed: 20 }
   },
   duosion: {
@@ -5229,7 +5229,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen5,
     cry: 'Duosion!',
     possibleColors: [PokemonColor.default],
-    types: ["Psychic"],
+    types: [PokemonCombatType.psychic],
     stats: { hp: 65, attack: 40, defense: 50, sp_attack: 125, sp_defense: 60, speed: 30 }
   },
   reuniclus: {
@@ -5238,7 +5238,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen5,
     cry: 'Reuniclus!',
     possibleColors: [PokemonColor.default],
-    types: ["Psychic"],
+    types: [PokemonCombatType.psychic],
     stats: { hp: 110, attack: 65, defense: 75, sp_attack: 125, sp_defense: 85, speed: 30 }
   },
   ducklett: {
@@ -5247,7 +5247,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen5,
     cry: 'Ducklett!',
     possibleColors: [PokemonColor.default],
-    types: ["Water", "Flying"],
+    types: [PokemonCombatType.water, PokemonCombatType.flying],
     stats: { hp: 62, attack: 44, defense: 50, sp_attack: 44, sp_defense: 50, speed: 55 }
   },
   swanna: {
@@ -5256,7 +5256,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen5,
     cry: 'Swanna!',
     possibleColors: [PokemonColor.default],
-    types: ["Water", "Flying"],
+    types: [PokemonCombatType.water, PokemonCombatType.flying],
     stats: { hp: 75, attack: 87, defense: 63, sp_attack: 87, sp_defense: 63, speed: 98 }
   },
   vanillite: {
@@ -5265,7 +5265,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen5,
     cry: 'Vanillite!',
     possibleColors: [PokemonColor.default],
-    types: ["Ice"],
+    types: [PokemonCombatType.ice],
     stats: { hp: 36, attack: 50, defense: 50, sp_attack: 65, sp_defense: 60, speed: 44 }
   },
   vanillish: {
@@ -5274,7 +5274,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen5,
     cry: 'Vanillish!',
     possibleColors: [PokemonColor.default],
-    types: ["Ice"],
+    types: [PokemonCombatType.ice],
     stats: { hp: 51, attack: 65, defense: 65, sp_attack: 80, sp_defense: 75, speed: 59 }
   },
   vanilluxe: {
@@ -5283,7 +5283,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen5,
     cry: 'Vanilluxe!',
     possibleColors: [PokemonColor.default],
-    types: ["Ice"],
+    types: [PokemonCombatType.ice],
     stats: { hp: 71, attack: 95, defense: 85, sp_attack: 110, sp_defense: 95, speed: 79 }
   },
   deerling: {
@@ -5292,7 +5292,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen5,
     cry: 'Deerling!',
     possibleColors: [PokemonColor.default],
-    types: ["Normal", "Grass"],
+    types: [PokemonCombatType.normal, PokemonCombatType.grass],
     stats: { hp: 60, attack: 60, defense: 50, sp_attack: 40, sp_defense: 50, speed: 75 }
   },
   sawsbuck: {
@@ -5301,7 +5301,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen5,
     cry: 'Sawsbuck!',
     possibleColors: [PokemonColor.default],
-    types: ["Normal", "Grass"],
+    types: [PokemonCombatType.normal, PokemonCombatType.grass],
     stats: { hp: 80, attack: 100, defense: 70, sp_attack: 60, sp_defense: 70, speed: 95 }
   },
   emolga: {
@@ -5310,7 +5310,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen5,
     cry: 'Emolga!',
     possibleColors: [PokemonColor.default],
-    types: ["Electric", "Flying"],
+    types: [PokemonCombatType.electric, PokemonCombatType.flying],
     stats: { hp: 55, attack: 75, defense: 60, sp_attack: 75, sp_defense: 60, speed: 103 }
   },
   karrablast: {
@@ -5319,7 +5319,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen5,
     cry: 'Karrablast!',
     possibleColors: [PokemonColor.default],
-    types: ["Bug"],
+    types: [PokemonCombatType.bug],
     stats: { hp: 50, attack: 75, defense: 45, sp_attack: 40, sp_defense: 45, speed: 60 }
   },
   escavalier: {
@@ -5328,7 +5328,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen5,
     cry: 'Escavalier!',
     possibleColors: [PokemonColor.default],
-    types: ["Bug", "Steel"],
+    types: [PokemonCombatType.bug, PokemonCombatType.steel],
     stats: { hp: 70, attack: 135, defense: 105, sp_attack: 60, sp_defense: 105, speed: 20 }
   },
   foongus: {
@@ -5337,7 +5337,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen5,
     cry: 'Foongus!',
     possibleColors: [PokemonColor.default],
-    types: ["Grass", "Poison"],
+    types: [PokemonCombatType.grass, PokemonCombatType.poison],
     stats: { hp: 69, attack: 55, defense: 45, sp_attack: 55, sp_defense: 55, speed: 15 }
   },
   amoonguss: {
@@ -5346,7 +5346,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen5,
     cry: 'Amoonguss!',
     possibleColors: [PokemonColor.default],
-    types: ["Grass", "Poison"],
+    types: [PokemonCombatType.grass, PokemonCombatType.poison],
     stats: { hp: 114, attack: 85, defense: 70, sp_attack: 85, sp_defense: 80, speed: 30 }
   },
   frillish: {
@@ -5355,7 +5355,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen5,
     cry: 'Frillish!',
     possibleColors: [PokemonColor.default],
-    types: ["Water", "Ghost"],
+    types: [PokemonCombatType.water, PokemonCombatType.ghost],
     stats: { hp: 55, attack: 40, defense: 50, sp_attack: 65, sp_defense: 85, speed: 40 }
   },
   jellicent: {
@@ -5364,7 +5364,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen5,
     cry: 'Jellicent!',
     possibleColors: [PokemonColor.default],
-    types: ["Water", "Ghost"],
+    types: [PokemonCombatType.water, PokemonCombatType.ghost],
     stats: { hp: 100, attack: 60, defense: 70, sp_attack: 85, sp_defense: 105, speed: 60 }
   },
   alomomola: {
@@ -5373,7 +5373,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen5,
     cry: 'Alomomola!',
     possibleColors: [PokemonColor.default],
-    types: ["Water"],
+    types: [PokemonCombatType.water],
     stats: { hp: 165, attack: 75, defense: 80, sp_attack: 40, sp_defense: 45, speed: 65 }
   },
   joltik: {
@@ -5382,7 +5382,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen5,
     cry: 'Joltik!',
     possibleColors: [PokemonColor.default],
-    types: ["Bug", "Electric"],
+    types: [PokemonCombatType.bug, PokemonCombatType.electric],
     stats: { hp: 50, attack: 47, defense: 50, sp_attack: 57, sp_defense: 50, speed: 65 }
   },
   galvantula: {
@@ -5391,7 +5391,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen5,
     cry: 'Galvantula!',
     possibleColors: [PokemonColor.default],
-    types: ["Bug", "Electric"],
+    types: [PokemonCombatType.bug, PokemonCombatType.electric],
     stats: { hp: 70, attack: 77, defense: 60, sp_attack: 97, sp_defense: 60, speed: 108 }
   },
   ferroseed: {
@@ -5400,7 +5400,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen5,
     cry: 'Ferroseed!',
     possibleColors: [PokemonColor.default],
-    types: ["Grass", "Steel"],
+    types: [PokemonCombatType.grass, PokemonCombatType.steel],
     stats: { hp: 44, attack: 50, defense: 91, sp_attack: 24, sp_defense: 86, speed: 10 }
   },
   ferrothorn: {
@@ -5409,7 +5409,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen5,
     cry: 'Ferrothorn!',
     possibleColors: [PokemonColor.default],
-    types: ["Grass", "Steel"],
+    types: [PokemonCombatType.grass, PokemonCombatType.steel],
     stats: { hp: 74, attack: 94, defense: 131, sp_attack: 54, sp_defense: 116, speed: 20 }
   },
   klink: {
@@ -5418,7 +5418,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen5,
     cry: 'Klink!',
     possibleColors: [PokemonColor.default],
-    types: ["Steel"],
+    types: [PokemonCombatType.steel],
     stats: { hp: 40, attack: 55, defense: 70, sp_attack: 45, sp_defense: 60, speed: 30 }
   },
   klang: {
@@ -5427,7 +5427,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen5,
     cry: 'Klang!',
     possibleColors: [PokemonColor.default],
-    types: ["Steel"],
+    types: [PokemonCombatType.steel],
     stats: { hp: 60, attack: 80, defense: 95, sp_attack: 70, sp_defense: 85, speed: 50 }
   },
   klinklang: {
@@ -5436,7 +5436,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen5,
     cry: 'Klinklang!',
     possibleColors: [PokemonColor.default],
-    types: ["Steel"],
+    types: [PokemonCombatType.steel],
     stats: { hp: 60, attack: 100, defense: 115, sp_attack: 70, sp_defense: 85, speed: 90 }
   },
   tynamo: {
@@ -5445,7 +5445,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen5,
     cry: 'Tynamo!',
     possibleColors: [PokemonColor.default],
-    types: ["Electric"],
+    types: [PokemonCombatType.electric],
     stats: { hp: 35, attack: 55, defense: 40, sp_attack: 45, sp_defense: 40, speed: 60 }
   },
   eelektrik: {
@@ -5454,7 +5454,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen5,
     cry: 'Eelektrik!',
     possibleColors: [PokemonColor.default],
-    types: ["Electric"],
+    types: [PokemonCombatType.electric],
     stats: { hp: 65, attack: 85, defense: 70, sp_attack: 75, sp_defense: 70, speed: 40 }
   },
   eelektross: {
@@ -5463,7 +5463,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen5,
     cry: 'Eelektross!',
     possibleColors: [PokemonColor.default],
-    types: ["Electric"],
+    types: [PokemonCombatType.electric],
     stats: { hp: 85, attack: 115, defense: 80, sp_attack: 105, sp_defense: 80, speed: 50 }
   },
   elgyem: {
@@ -5472,7 +5472,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen5,
     cry: 'Elgyem!',
     possibleColors: [PokemonColor.default],
-    types: ["Psychic"],
+    types: [PokemonCombatType.psychic],
     stats: { hp: 55, attack: 55, defense: 55, sp_attack: 85, sp_defense: 55, speed: 30 }
   },
   beheeyem: {
@@ -5481,7 +5481,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen5,
     cry: 'Beheeyem!',
     possibleColors: [PokemonColor.default],
-    types: ["Psychic"],
+    types: [PokemonCombatType.psychic],
     stats: { hp: 75, attack: 75, defense: 75, sp_attack: 125, sp_defense: 95, speed: 40 }
   },
   litwick: {
@@ -5490,7 +5490,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen5,
     cry: 'Litwick!',
     possibleColors: [PokemonColor.default],
-    types: ["Ghost", "Fire"],
+    types: [PokemonCombatType.ghost, PokemonCombatType.fire],
     stats: { hp: 50, attack: 30, defense: 55, sp_attack: 65, sp_defense: 55, speed: 20 }
   },
   lampent: {
@@ -5499,7 +5499,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen5,
     cry: 'Lampent!',
     possibleColors: [PokemonColor.default],
-    types: ["Ghost", "Fire"],
+    types: [PokemonCombatType.ghost, PokemonCombatType.fire],
     stats: { hp: 60, attack: 40, defense: 60, sp_attack: 95, sp_defense: 60, speed: 55 }
   },
   chandelure: {
@@ -5508,7 +5508,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen5,
     cry: 'Chandelure!',
     possibleColors: [PokemonColor.default],
-    types: ["Ghost", "Fire"],
+    types: [PokemonCombatType.ghost, PokemonCombatType.fire],
     stats: { hp: 60, attack: 55, defense: 90, sp_attack: 145, sp_defense: 90, speed: 80 }
   },
   axew: {
@@ -5517,7 +5517,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen5,
     cry: 'Axew!',
     possibleColors: [PokemonColor.default],
-    types: ["Dragon"],
+    types: [PokemonCombatType.dragon],
     stats: { hp: 46, attack: 87, defense: 60, sp_attack: 30, sp_defense: 40, speed: 57 }
   },
   fraxure: {
@@ -5526,7 +5526,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen5,
     cry: 'Fraxure!',
     possibleColors: [PokemonColor.default],
-    types: ["Dragon"],
+    types: [PokemonCombatType.dragon],
     stats: { hp: 66, attack: 117, defense: 70, sp_attack: 40, sp_defense: 50, speed: 67 }
   },
   haxorus: {
@@ -5535,7 +5535,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen5,
     cry: 'Haxorus!',
     possibleColors: [PokemonColor.default],
-    types: ["Dragon"],
+    types: [PokemonCombatType.dragon],
     stats: { hp: 76, attack: 147, defense: 90, sp_attack: 60, sp_defense: 70, speed: 97 }
   },
   cubchoo: {
@@ -5544,7 +5544,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen5,
     cry: 'Cubchoo!',
     possibleColors: [PokemonColor.default],
-    types: ["Ice"],
+    types: [PokemonCombatType.ice],
     stats: { hp: 55, attack: 70, defense: 40, sp_attack: 60, sp_defense: 40, speed: 40 }
   },
   beartic: {
@@ -5553,7 +5553,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen5,
     cry: 'Beartic!',
     possibleColors: [PokemonColor.default],
-    types: ["Ice"],
+    types: [PokemonCombatType.ice],
     stats: { hp: 95, attack: 130, defense: 80, sp_attack: 70, sp_defense: 80, speed: 50 }
   },
   cryogonal: {
@@ -5562,7 +5562,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen5,
     cry: 'Cryogonal!',
     possibleColors: [PokemonColor.default],
-    types: ["Ice"],
+    types: [PokemonCombatType.ice],
     stats: { hp: 80, attack: 50, defense: 50, sp_attack: 95, sp_defense: 135, speed: 105 }
   },
   shelmet: {
@@ -5571,7 +5571,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen5,
     cry: 'Shelmet!',
     possibleColors: [PokemonColor.default],
-    types: ["Bug"],
+    types: [PokemonCombatType.bug],
     stats: { hp: 50, attack: 40, defense: 85, sp_attack: 40, sp_defense: 65, speed: 25 }
   },
   accelgor: {
@@ -5580,7 +5580,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen5,
     cry: 'Accelgor!',
     possibleColors: [PokemonColor.default],
-    types: ["Bug"],
+    types: [PokemonCombatType.bug],
     stats: { hp: 80, attack: 70, defense: 40, sp_attack: 100, sp_defense: 60, speed: 145 }
   },
   stunfisk: {
@@ -5589,7 +5589,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen5,
     cry: 'Stunfisk!',
     possibleColors: [PokemonColor.default],
-    types: ["Ground", "Steel"],
+    types: [PokemonCombatType.ground, PokemonCombatType.steel],
     stats: { hp: 109, attack: 81, defense: 99, sp_attack: 66, sp_defense: 84, speed: 32 }
   },
   mienfoo: {
@@ -5598,7 +5598,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen5,
     cry: 'Mienfoo!',
     possibleColors: [PokemonColor.default],
-    types: ["Fighting"],
+    types: [PokemonCombatType.fighting],
     stats: { hp: 45, attack: 85, defense: 50, sp_attack: 55, sp_defense: 50, speed: 65 }
   },
   mienshao: {
@@ -5607,7 +5607,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen5,
     cry: 'Mienshao!',
     possibleColors: [PokemonColor.default],
-    types: ["Fighting"],
+    types: [PokemonCombatType.fighting],
     stats: { hp: 65, attack: 125, defense: 60, sp_attack: 95, sp_defense: 60, speed: 105 }
   },
   druddigon: {
@@ -5616,7 +5616,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen5,
     cry: 'Druddigon!',
     possibleColors: [PokemonColor.default],
-    types: ["Dragon"],
+    types: [PokemonCombatType.dragon],
     stats: { hp: 77, attack: 120, defense: 90, sp_attack: 60, sp_defense: 90, speed: 48 }
   },
   golett: {
@@ -5625,7 +5625,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen5,
     cry: 'Golett!',
     possibleColors: [PokemonColor.default],
-    types: ["Ground", "Ghost"],
+    types: [PokemonCombatType.ground, PokemonCombatType.ghost],
     stats: { hp: 59, attack: 74, defense: 50, sp_attack: 35, sp_defense: 50, speed: 35 }
   },
   golurk: {
@@ -5634,7 +5634,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen5,
     cry: 'Golurk!',
     possibleColors: [PokemonColor.default],
-    types: ["Ground", "Ghost"],
+    types: [PokemonCombatType.ground, PokemonCombatType.ghost],
     stats: { hp: 89, attack: 124, defense: 80, sp_attack: 55, sp_defense: 80, speed: 55 }
   },
   pawniard: {
@@ -5643,7 +5643,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen5,
     cry: 'Pawniard!',
     possibleColors: [PokemonColor.default],
-    types: ["Dark", "Steel"],
+    types: [PokemonCombatType.dark, PokemonCombatType.steel],
     stats: { hp: 45, attack: 85, defense: 70, sp_attack: 40, sp_defense: 40, speed: 60 }
   },
   bisharp: {
@@ -5652,7 +5652,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen5,
     cry: 'Bisharp!',
     possibleColors: [PokemonColor.default],
-    types: ["Dark", "Steel"],
+    types: [PokemonCombatType.dark, PokemonCombatType.steel],
     stats: { hp: 65, attack: 125, defense: 100, sp_attack: 60, sp_defense: 70, speed: 70 }
   },
   bouffalant: {
@@ -5661,7 +5661,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen5,
     cry: 'Bouffalant!',
     possibleColors: [PokemonColor.default],
-    types: ["Normal"],
+    types: [PokemonCombatType.normal],
     stats: { hp: 95, attack: 110, defense: 95, sp_attack: 40, sp_defense: 95, speed: 55 }
   },
   rufflet: {
@@ -5670,7 +5670,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen5,
     cry: 'Rufflet!',
     possibleColors: [PokemonColor.default],
-    types: ["Normal", "Flying"],
+    types: [PokemonCombatType.normal, PokemonCombatType.flying],
     stats: { hp: 70, attack: 83, defense: 50, sp_attack: 37, sp_defense: 50, speed: 60 }
   },
   braviary: {
@@ -5679,7 +5679,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen5,
     cry: 'Braviary!',
     possibleColors: [PokemonColor.default],
-    types: ["Psychic", "Flying"],
+    types: [PokemonCombatType.psychic, PokemonCombatType.flying],
     stats: { hp: 110, attack: 83, defense: 70, sp_attack: 112, sp_defense: 70, speed: 65 }
   },
   vullaby: {
@@ -5688,7 +5688,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen5,
     cry: 'Vullaby!',
     possibleColors: [PokemonColor.default],
-    types: ["Dark", "Flying"],
+    types: [PokemonCombatType.dark, PokemonCombatType.flying],
     stats: { hp: 70, attack: 55, defense: 75, sp_attack: 45, sp_defense: 65, speed: 60 }
   },
   mandibuzz: {
@@ -5697,7 +5697,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen5,
     cry: 'Mandibuzz!',
     possibleColors: [PokemonColor.default],
-    types: ["Dark", "Flying"],
+    types: [PokemonCombatType.dark, PokemonCombatType.flying],
     stats: { hp: 110, attack: 65, defense: 105, sp_attack: 55, sp_defense: 95, speed: 80 }
   },
   heatmor: {
@@ -5706,7 +5706,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen5,
     cry: 'Heatmor!',
     possibleColors: [PokemonColor.default],
-    types: ["Fire"],
+    types: [PokemonCombatType.fire],
     stats: { hp: 85, attack: 97, defense: 66, sp_attack: 105, sp_defense: 66, speed: 65 }
   },
   durant: {
@@ -5715,7 +5715,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen5,
     cry: 'Durant!',
     possibleColors: [PokemonColor.default],
-    types: ["Bug", "Steel"],
+    types: [PokemonCombatType.bug, PokemonCombatType.steel],
     stats: { hp: 58, attack: 109, defense: 112, sp_attack: 48, sp_defense: 48, speed: 109 }
   },
   deino: {
@@ -5724,7 +5724,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen5,
     cry: 'Deino!',
     possibleColors: [PokemonColor.default],
-    types: ["Dark", "Dragon"],
+    types: [PokemonCombatType.dark, PokemonCombatType.dragon],
     stats: { hp: 52, attack: 65, defense: 50, sp_attack: 45, sp_defense: 50, speed: 38 }
   },
   zweilous: {
@@ -5733,7 +5733,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen5,
     cry: 'Zweilous!',
     possibleColors: [PokemonColor.default],
-    types: ["Dark", "Dragon"],
+    types: [PokemonCombatType.dark, PokemonCombatType.dragon],
     stats: { hp: 72, attack: 85, defense: 70, sp_attack: 65, sp_defense: 70, speed: 58 }
   },
   hydreigon: {
@@ -5742,7 +5742,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen5,
     cry: 'Hydreigon!',
     possibleColors: [PokemonColor.default],
-    types: ["Dark", "Dragon"],
+    types: [PokemonCombatType.dark, PokemonCombatType.dragon],
     stats: { hp: 92, attack: 105, defense: 90, sp_attack: 125, sp_defense: 90, speed: 98 }
   },
   larvesta: {
@@ -5751,7 +5751,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen5,
     cry: 'Larvesta!',
     possibleColors: [PokemonColor.default],
-    types: ["Bug", "Fire"],
+    types: [PokemonCombatType.bug, PokemonCombatType.fire],
     stats: { hp: 55, attack: 85, defense: 55, sp_attack: 50, sp_defense: 55, speed: 60 }
   },
   volcarona: {
@@ -5760,7 +5760,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen5,
     cry: 'Volcarona!',
     possibleColors: [PokemonColor.default],
-    types: ["Bug", "Fire"],
+    types: [PokemonCombatType.bug, PokemonCombatType.fire],
     stats: { hp: 85, attack: 60, defense: 65, sp_attack: 135, sp_defense: 105, speed: 100 }
   },
   cobalion: {
@@ -5769,7 +5769,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen5,
     cry: 'Cobalion!',
     possibleColors: [PokemonColor.default],
-    types: ["Steel", "Fighting"],
+    types: [PokemonCombatType.steel, PokemonCombatType.fighting],
     stats: { hp: 91, attack: 90, defense: 129, sp_attack: 90, sp_defense: 72, speed: 108 }
   },
   terrakion: {
@@ -5778,7 +5778,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen5,
     cry: 'Terrakion!',
     possibleColors: [PokemonColor.default],
-    types: ["Rock", "Fighting"],
+    types: [PokemonCombatType.rock, PokemonCombatType.fighting],
     stats: { hp: 91, attack: 129, defense: 90, sp_attack: 72, sp_defense: 90, speed: 108 }
   },
   virizion: {
@@ -5787,7 +5787,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen5,
     cry: 'Virizion!',
     possibleColors: [PokemonColor.default],
-    types: ["Grass", "Fighting"],
+    types: [PokemonCombatType.grass, PokemonCombatType.fighting],
     stats: { hp: 91, attack: 90, defense: 72, sp_attack: 90, sp_defense: 129, speed: 108 }
   },
   tornadus: {
@@ -5796,7 +5796,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen5,
     cry: 'Tornadus!',
     possibleColors: [PokemonColor.default],
-    types: ["Flying"],
+    types: [PokemonCombatType.flying],
     stats: { hp: 79, attack: 100, defense: 80, sp_attack: 110, sp_defense: 90, speed: 121 }
   },
   thundurus: {
@@ -5805,7 +5805,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen5,
     cry: 'Thundurus!',
     possibleColors: [PokemonColor.default],
-    types: ["Electric", "Flying"],
+    types: [PokemonCombatType.electric, PokemonCombatType.flying],
     stats: { hp: 79, attack: 105, defense: 70, sp_attack: 145, sp_defense: 80, speed: 101 }
   },
   reshiram: {
@@ -5814,7 +5814,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen5,
     cry: 'Reshiram!',
     possibleColors: [PokemonColor.default],
-    types: ["Dragon", "Fire"],
+    types: [PokemonCombatType.dragon, PokemonCombatType.fire],
     stats: { hp: 100, attack: 120, defense: 100, sp_attack: 150, sp_defense: 120, speed: 90 }
   },
   zekrom: {
@@ -5823,7 +5823,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen5,
     cry: 'Zekrom!',
     possibleColors: [PokemonColor.default],
-    types: ["Dragon", "Electric"],
+    types: [PokemonCombatType.dragon, PokemonCombatType.electric],
     stats: { hp: 100, attack: 150, defense: 120, sp_attack: 120, sp_defense: 100, speed: 90 }
   },
   landorus: {
@@ -5832,7 +5832,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen5,
     cry: 'Landorus!',
     possibleColors: [PokemonColor.default],
-    types: ["Ground", "Flying"],
+    types: [PokemonCombatType.ground, PokemonCombatType.flying],
     stats: { hp: 89, attack: 145, defense: 90, sp_attack: 105, sp_defense: 80, speed: 91 }
   },
   kyurem: {
@@ -5841,7 +5841,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen5,
     cry: 'Kyurem!',
     possibleColors: [PokemonColor.default],
-    types: ["Dragon", "Ice"],
+    types: [PokemonCombatType.dragon, PokemonCombatType.ice],
     stats: { hp: 125, attack: 170, defense: 100, sp_attack: 120, sp_defense: 90, speed: 95 }
   },
   keldeo: {
@@ -5850,7 +5850,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen5,
     cry: 'Keldeo!',
     possibleColors: [PokemonColor.default],
-    types: ["Water", "Fighting"],
+    types: [PokemonCombatType.water, PokemonCombatType.fighting],
     stats: { hp: 91, attack: 72, defense: 90, sp_attack: 129, sp_defense: 90, speed: 108 }
   },
   meloetta: {
@@ -5859,7 +5859,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen5,
     cry: 'Meloetta!',
     possibleColors: [PokemonColor.default],
-    types: ["Normal", "Fighting"],
+    types: [PokemonCombatType.normal, PokemonCombatType.fighting],
     stats: { hp: 100, attack: 128, defense: 90, sp_attack: 77, sp_defense: 77, speed: 128 }
   },
   genesect: {
@@ -5868,7 +5868,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen5,
     cry: 'Genesect!',
     possibleColors: [PokemonColor.default],
-    types: ["Bug", "Steel"],
+    types: [PokemonCombatType.bug, PokemonCombatType.steel],
     stats: { hp: 71, attack: 120, defense: 95, sp_attack: 120, sp_defense: 95, speed: 99 }
   },
   chespin: {
@@ -5877,7 +5877,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen6,
     cry: 'Chespin!',
     possibleColors: [PokemonColor.default],
-    types: ["Grass"],
+    types: [PokemonCombatType.grass],
     stats: { hp: 56, attack: 61, defense: 65, sp_attack: 48, sp_defense: 45, speed: 38 }
   },
   quilladin: {
@@ -5886,7 +5886,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen6,
     cry: 'Quilladin!',
     possibleColors: [PokemonColor.default],
-    types: ["Grass"],
+    types: [PokemonCombatType.grass],
     stats: { hp: 61, attack: 78, defense: 95, sp_attack: 56, sp_defense: 58, speed: 57 }
   },
   chesnaught: {
@@ -5895,7 +5895,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen6,
     cry: 'Chesnaught!',
     possibleColors: [PokemonColor.default],
-    types: ["Grass", "Fighting"],
+    types: [PokemonCombatType.grass, PokemonCombatType.fighting],
     stats: { hp: 88, attack: 107, defense: 122, sp_attack: 74, sp_defense: 75, speed: 64 }
   },
   fennekin: {
@@ -5904,7 +5904,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen6,
     cry: 'Fennekin!',
     possibleColors: [PokemonColor.default],
-    types: ["Fire"],
+    types: [PokemonCombatType.fire],
     stats: { hp: 40, attack: 45, defense: 40, sp_attack: 62, sp_defense: 60, speed: 60 }
   },
   braixen: {
@@ -5913,7 +5913,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen6,
     cry: 'Braixen!',
     possibleColors: [PokemonColor.default],
-    types: ["Fire"],
+    types: [PokemonCombatType.fire],
     stats: { hp: 59, attack: 59, defense: 58, sp_attack: 90, sp_defense: 70, speed: 73 }
   },
   delphox: {
@@ -5922,7 +5922,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen6,
     cry: 'Delphox!',
     possibleColors: [PokemonColor.default],
-    types: ["Fire", "Psychic"],
+    types: [PokemonCombatType.fire, PokemonCombatType.psychic],
     stats: { hp: 75, attack: 69, defense: 72, sp_attack: 114, sp_defense: 100, speed: 104 }
   },
   froakie: {
@@ -5931,7 +5931,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen6,
     cry: 'Froakie!',
     possibleColors: [PokemonColor.default],
-    types: ["Water"],
+    types: [PokemonCombatType.water],
     stats: { hp: 41, attack: 56, defense: 40, sp_attack: 62, sp_defense: 44, speed: 71 }
   },
   frogadier: {
@@ -5940,7 +5940,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen6,
     cry: 'Frogadier!',
     possibleColors: [PokemonColor.default],
-    types: ["Water"],
+    types: [PokemonCombatType.water],
     stats: { hp: 54, attack: 63, defense: 52, sp_attack: 83, sp_defense: 56, speed: 97 }
   },
   greninja: {
@@ -5949,7 +5949,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen6,
     cry: 'Greninja!',
     possibleColors: [PokemonColor.default],
-    types: ["Water", "Dark"],
+    types: [PokemonCombatType.water, PokemonCombatType.dark],
     stats: { hp: 72, attack: 145, defense: 67, sp_attack: 153, sp_defense: 71, speed: 132 }
   },
   bunnelby: {
@@ -5958,7 +5958,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen6,
     cry: 'Bunnelby!',
     possibleColors: [PokemonColor.default],
-    types: ["Normal"],
+    types: [PokemonCombatType.normal],
     stats: { hp: 38, attack: 36, defense: 38, sp_attack: 32, sp_defense: 36, speed: 57 }
   },
   diggersby: {
@@ -5967,7 +5967,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen6,
     cry: 'Diggersby!',
     possibleColors: [PokemonColor.default],
-    types: ["Normal", "Ground"],
+    types: [PokemonCombatType.normal, PokemonCombatType.ground],
     stats: { hp: 85, attack: 56, defense: 77, sp_attack: 50, sp_defense: 77, speed: 78 }
   },
   fletchling: {
@@ -5976,7 +5976,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen6,
     cry: 'Fletchling!',
     possibleColors: [PokemonColor.default],
-    types: ["Normal", "Flying"],
+    types: [PokemonCombatType.normal, PokemonCombatType.flying],
     stats: { hp: 45, attack: 50, defense: 43, sp_attack: 40, sp_defense: 38, speed: 62 }
   },
   fletchinder: {
@@ -5985,7 +5985,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen6,
     cry: 'Fletchinder!',
     possibleColors: [PokemonColor.default],
-    types: ["Fire", "Flying"],
+    types: [PokemonCombatType.fire, PokemonCombatType.flying],
     stats: { hp: 62, attack: 73, defense: 55, sp_attack: 56, sp_defense: 52, speed: 84 }
   },
   talonflame: {
@@ -5994,7 +5994,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen6,
     cry: 'Talonflame!',
     possibleColors: [PokemonColor.default],
-    types: ["Fire", "Flying"],
+    types: [PokemonCombatType.fire, PokemonCombatType.flying],
     stats: { hp: 78, attack: 81, defense: 71, sp_attack: 74, sp_defense: 69, speed: 126 }
   },
   scatterbug: {
@@ -6003,7 +6003,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen6,
     cry: 'Scatterbug!',
     possibleColors: [PokemonColor.default],
-    types: ["Bug"],
+    types: [PokemonCombatType.bug],
     stats: { hp: 38, attack: 35, defense: 40, sp_attack: 27, sp_defense: 25, speed: 35 }
   },
   spewpa: {
@@ -6012,7 +6012,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen6,
     cry: 'Spewpa!',
     possibleColors: [PokemonColor.default],
-    types: ["Bug"],
+    types: [PokemonCombatType.bug],
     stats: { hp: 45, attack: 22, defense: 60, sp_attack: 27, sp_defense: 30, speed: 29 }
   },
   vivillon: {
@@ -6021,7 +6021,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen6,
     cry: 'Vivillon!',
     possibleColors: [PokemonColor.default],
-    types: ["Bug", "Flying"],
+    types: [PokemonCombatType.bug, PokemonCombatType.flying],
     stats: { hp: 80, attack: 52, defense: 50, sp_attack: 90, sp_defense: 50, speed: 89 }
   },
   litleo: {
@@ -6030,7 +6030,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen6,
     cry: 'Litleo!',
     possibleColors: [PokemonColor.default],
-    types: ["Fire", "Normal"],
+    types: [PokemonCombatType.fire, PokemonCombatType.normal],
     stats: { hp: 62, attack: 50, defense: 58, sp_attack: 73, sp_defense: 54, speed: 72 }
   },
   pyroar: {
@@ -6039,7 +6039,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen6,
     cry: 'Pyroar!',
     possibleColors: [PokemonColor.default],
-    types: ["Fire", "Normal"],
+    types: [PokemonCombatType.fire, PokemonCombatType.normal],
     stats: { hp: 86, attack: 68, defense: 72, sp_attack: 109, sp_defense: 66, speed: 106 }
   },
   flabebe: {
@@ -6048,7 +6048,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen6,
     cry: 'Flabébé!',
     possibleColors: [PokemonColor.default],
-    types: ["Fairy"],
+    types: [PokemonCombatType.fairy],
     stats: { hp: 44, attack: 38, defense: 39, sp_attack: 61, sp_defense: 79, speed: 42 }
   },
   floette: {
@@ -6057,7 +6057,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen6,
     cry: 'Floette!',
     possibleColors: [PokemonColor.default],
-    types: ["Fairy"],
+    types: [PokemonCombatType.fairy],
     stats: { hp: 54, attack: 45, defense: 47, sp_attack: 75, sp_defense: 98, speed: 52 }
   },
   florges: {
@@ -6066,7 +6066,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen6,
     cry: 'Florges!',
     possibleColors: [PokemonColor.default],
-    types: ["Fairy"],
+    types: [PokemonCombatType.fairy],
     stats: { hp: 78, attack: 65, defense: 68, sp_attack: 112, sp_defense: 154, speed: 75 }
   },
   skiddo: {
@@ -6075,7 +6075,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen6,
     cry: 'Skiddo!',
     possibleColors: [PokemonColor.default],
-    types: ["Grass"],
+    types: [PokemonCombatType.grass],
     stats: { hp: 66, attack: 65, defense: 48, sp_attack: 62, sp_defense: 57, speed: 52 }
   },
   gogoat: {
@@ -6084,7 +6084,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen6,
     cry: 'Gogoat!',
     possibleColors: [PokemonColor.default],
-    types: ["Grass"],
+    types: [PokemonCombatType.grass],
     stats: { hp: 123, attack: 100, defense: 62, sp_attack: 97, sp_defense: 81, speed: 68 }
   },
   pancham: {
@@ -6093,7 +6093,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen6,
     cry: 'Pancham!',
     possibleColors: [PokemonColor.default],
-    types: ["Fighting"],
+    types: [PokemonCombatType.fighting],
     stats: { hp: 67, attack: 82, defense: 62, sp_attack: 46, sp_defense: 48, speed: 43 }
   },
   pangoro: {
@@ -6102,7 +6102,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen6,
     cry: 'Pangoro!',
     possibleColors: [PokemonColor.default],
-    types: ["Fighting", "Dark"],
+    types: [PokemonCombatType.fighting, PokemonCombatType.dark],
     stats: { hp: 95, attack: 124, defense: 78, sp_attack: 69, sp_defense: 71, speed: 58 }
   },
   furfrou: {
@@ -6111,7 +6111,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen6,
     cry: 'Furfrou!',
     possibleColors: [PokemonColor.default],
-    types: ["Normal"],
+    types: [PokemonCombatType.normal],
     stats: { hp: 75, attack: 80, defense: 60, sp_attack: 65, sp_defense: 90, speed: 102 }
   },
   espurr: {
@@ -6120,7 +6120,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen6,
     cry: 'Espurr!',
     possibleColors: [PokemonColor.default],
-    types: ["Psychic"],
+    types: [PokemonCombatType.psychic],
     stats: { hp: 62, attack: 48, defense: 54, sp_attack: 63, sp_defense: 60, speed: 68 }
   },
   meowstic: {
@@ -6129,7 +6129,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen6,
     cry: 'Meowstic!',
     possibleColors: [PokemonColor.default],
-    types: ["Psychic"],
+    types: [PokemonCombatType.psychic],
     stats: { hp: 74, attack: 48, defense: 76, sp_attack: 83, sp_defense: 81, speed: 104 }
   },
   honedge: {
@@ -6138,7 +6138,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen6,
     cry: 'Honedge!',
     possibleColors: [PokemonColor.default],
-    types: ["Steel", "Ghost"],
+    types: [PokemonCombatType.steel, PokemonCombatType.ghost],
     stats: { hp: 45, attack: 80, defense: 100, sp_attack: 35, sp_defense: 37, speed: 28 }
   },
   doublade: {
@@ -6147,7 +6147,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen6,
     cry: 'Doublade!',
     possibleColors: [PokemonColor.default],
-    types: ["Steel", "Ghost"],
+    types: [PokemonCombatType.steel, PokemonCombatType.ghost],
     stats: { hp: 59, attack: 110, defense: 150, sp_attack: 45, sp_defense: 49, speed: 35 }
   },
   aegislash: {
@@ -6156,7 +6156,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen6,
     cry: 'Aegislash!',
     possibleColors: [PokemonColor.default],
-    types: ["Steel", "Ghost"],
+    types: [PokemonCombatType.steel, PokemonCombatType.ghost],
     stats: { hp: 60, attack: 140, defense: 50, sp_attack: 140, sp_defense: 50, speed: 60 }
   },
   spritzee: {
@@ -6165,7 +6165,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen6,
     cry: 'Spritzee!',
     possibleColors: [PokemonColor.default],
-    types: ["Fairy"],
+    types: [PokemonCombatType.fairy],
     stats: { hp: 78, attack: 52, defense: 60, sp_attack: 63, sp_defense: 65, speed: 23 }
   },
   aromatisse: {
@@ -6174,7 +6174,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen6,
     cry: 'Aromatisse!',
     possibleColors: [PokemonColor.default],
-    types: ["Fairy"],
+    types: [PokemonCombatType.fairy],
     stats: { hp: 101, attack: 72, defense: 72, sp_attack: 99, sp_defense: 89, speed: 29 }
   },
   swirlix: {
@@ -6183,7 +6183,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen6,
     cry: 'Swirlix!',
     possibleColors: [PokemonColor.default],
-    types: ["Fairy"],
+    types: [PokemonCombatType.fairy],
     stats: { hp: 62, attack: 48, defense: 66, sp_attack: 59, sp_defense: 57, speed: 49 }
   },
   slurpuff: {
@@ -6192,7 +6192,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen6,
     cry: 'Slurpuff!',
     possibleColors: [PokemonColor.default],
-    types: ["Fairy"],
+    types: [PokemonCombatType.fairy],
     stats: { hp: 82, attack: 80, defense: 86, sp_attack: 85, sp_defense: 75, speed: 72 }
   },
   inkay: {
@@ -6201,7 +6201,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen6,
     cry: 'Inkay!',
     possibleColors: [PokemonColor.default],
-    types: ["Dark", "Psychic"],
+    types: [PokemonCombatType.dark, PokemonCombatType.psychic],
     stats: { hp: 53, attack: 54, defense: 53, sp_attack: 37, sp_defense: 46, speed: 45 }
   },
   malamar: {
@@ -6210,7 +6210,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen6,
     cry: 'Malamar!',
     possibleColors: [PokemonColor.default],
-    types: ["Dark", "Psychic"],
+    types: [PokemonCombatType.dark, PokemonCombatType.psychic],
     stats: { hp: 86, attack: 102, defense: 88, sp_attack: 98, sp_defense: 120, speed: 88 }
   },
   binacle: {
@@ -6219,7 +6219,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen6,
     cry: 'Binacle!',
     possibleColors: [PokemonColor.default],
-    types: ["Rock", "Water"],
+    types: [PokemonCombatType.rock, PokemonCombatType.water],
     stats: { hp: 42, attack: 52, defense: 67, sp_attack: 39, sp_defense: 56, speed: 50 }
   },
   barbaracle: {
@@ -6228,7 +6228,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen6,
     cry: 'Barbaracle!',
     possibleColors: [PokemonColor.default],
-    types: ["Rock", "Water"],
+    types: [PokemonCombatType.rock, PokemonCombatType.water],
     stats: { hp: 72, attack: 105, defense: 115, sp_attack: 54, sp_defense: 86, speed: 68 }
   },
   skrelp: {
@@ -6237,7 +6237,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen6,
     cry: 'Skrelp!',
     possibleColors: [PokemonColor.default],
-    types: ["Poison", "Water"],
+    types: [PokemonCombatType.poison, PokemonCombatType.water],
     stats: { hp: 50, attack: 60, defense: 60, sp_attack: 60, sp_defense: 60, speed: 30 }
   },
   dragalge: {
@@ -6246,7 +6246,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen6,
     cry: 'Dragalge!',
     possibleColors: [PokemonColor.default],
-    types: ["Poison", "Dragon"],
+    types: [PokemonCombatType.poison, PokemonCombatType.dragon],
     stats: { hp: 65, attack: 75, defense: 90, sp_attack: 97, sp_defense: 123, speed: 44 }
   },
   clauncher: {
@@ -6255,7 +6255,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen6,
     cry: 'Clauncher!',
     possibleColors: [PokemonColor.default],
-    types: ["Water"],
+    types: [PokemonCombatType.water],
     stats: { hp: 50, attack: 53, defense: 62, sp_attack: 58, sp_defense: 63, speed: 44 }
   },
   clawitzer: {
@@ -6264,7 +6264,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen6,
     cry: 'Clawitzer!',
     possibleColors: [PokemonColor.default],
-    types: ["Water"],
+    types: [PokemonCombatType.water],
     stats: { hp: 71, attack: 73, defense: 88, sp_attack: 120, sp_defense: 89, speed: 59 }
   },
   helioptile: {
@@ -6273,7 +6273,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen6,
     cry: 'Helioptile!',
     possibleColors: [PokemonColor.default],
-    types: ["Electric", "Normal"],
+    types: [PokemonCombatType.electric, PokemonCombatType.normal],
     stats: { hp: 44, attack: 38, defense: 33, sp_attack: 61, sp_defense: 43, speed: 70 }
   },
   heliolisk: {
@@ -6282,7 +6282,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen6,
     cry: 'Heliolisk!',
     possibleColors: [PokemonColor.default],
-    types: ["Electric", "Normal"],
+    types: [PokemonCombatType.electric, PokemonCombatType.normal],
     stats: { hp: 62, attack: 55, defense: 52, sp_attack: 109, sp_defense: 94, speed: 109 }
   },
   tyrunt: {
@@ -6291,7 +6291,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen6,
     cry: 'Tyrunt!',
     possibleColors: [PokemonColor.default],
-    types: ["Rock", "Dragon"],
+    types: [PokemonCombatType.rock, PokemonCombatType.dragon],
     stats: { hp: 58, attack: 89, defense: 77, sp_attack: 45, sp_defense: 45, speed: 48 }
   },
   tyrantrum: {
@@ -6300,7 +6300,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen6,
     cry: 'Tyrantrum!',
     possibleColors: [PokemonColor.default],
-    types: ["Rock", "Dragon"],
+    types: [PokemonCombatType.rock, PokemonCombatType.dragon],
     stats: { hp: 82, attack: 121, defense: 119, sp_attack: 69, sp_defense: 59, speed: 71 }
   },
   amaura: {
@@ -6309,7 +6309,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen6,
     cry: 'Amaura!',
     possibleColors: [PokemonColor.default],
-    types: ["Rock", "Ice"],
+    types: [PokemonCombatType.rock, PokemonCombatType.ice],
     stats: { hp: 77, attack: 59, defense: 50, sp_attack: 67, sp_defense: 63, speed: 46 }
   },
   aurorus: {
@@ -6318,7 +6318,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen6,
     cry: 'Aurorus!',
     possibleColors: [PokemonColor.default],
-    types: ["Rock", "Ice"],
+    types: [PokemonCombatType.rock, PokemonCombatType.ice],
     stats: { hp: 123, attack: 77, defense: 72, sp_attack: 99, sp_defense: 92, speed: 58 }
   },
   sylveon: {
@@ -6327,7 +6327,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen6,
     cry: 'Sylveon!',
     possibleColors: [PokemonColor.default],
-    types: ["Fairy"],
+    types: [PokemonCombatType.fairy],
     stats: { hp: 95, attack: 65, defense: 65, sp_attack: 110, sp_defense: 130, speed: 60 }
   },
   hawlucha: {
@@ -6336,7 +6336,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen6,
     cry: 'Hawlucha!',
     possibleColors: [PokemonColor.default],
-    types: ["Fighting", "Flying"],
+    types: [PokemonCombatType.fighting, PokemonCombatType.flying],
     stats: { hp: 78, attack: 137, defense: 100, sp_attack: 74, sp_defense: 93, speed: 118 }
   },
   dedenne: {
@@ -6345,7 +6345,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen6,
     cry: 'Dedenne!',
     possibleColors: [PokemonColor.default],
-    types: ["Electric", "Fairy"],
+    types: [PokemonCombatType.electric, PokemonCombatType.fairy],
     stats: { hp: 67, attack: 58, defense: 57, sp_attack: 81, sp_defense: 67, speed: 101 }
   },
   carbink: {
@@ -6354,7 +6354,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen6,
     cry: 'Carbink!',
     possibleColors: [PokemonColor.default],
-    types: ["Rock", "Fairy"],
+    types: [PokemonCombatType.rock, PokemonCombatType.fairy],
     stats: { hp: 50, attack: 50, defense: 150, sp_attack: 50, sp_defense: 150, speed: 50 }
   },
   goomy: {
@@ -6363,7 +6363,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen6,
     cry: 'Goomy!',
     possibleColors: [PokemonColor.default],
-    types: ["Dragon"],
+    types: [PokemonCombatType.dragon],
     stats: { hp: 45, attack: 50, defense: 35, sp_attack: 55, sp_defense: 75, speed: 40 }
   },
   sliggoo: {
@@ -6372,7 +6372,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen6,
     cry: 'Sliggoo!',
     possibleColors: [PokemonColor.default],
-    types: ["Steel", "Dragon"],
+    types: [PokemonCombatType.steel, PokemonCombatType.dragon],
     stats: { hp: 58, attack: 75, defense: 83, sp_attack: 83, sp_defense: 113, speed: 40 }
   },
   goodra: {
@@ -6381,7 +6381,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen6,
     cry: 'Goodra!',
     possibleColors: [PokemonColor.default],
-    types: ["Steel", "Dragon"],
+    types: [PokemonCombatType.steel, PokemonCombatType.dragon],
     stats: { hp: 80, attack: 100, defense: 100, sp_attack: 110, sp_defense: 150, speed: 60 }
   },
   klefki: {
@@ -6390,7 +6390,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen6,
     cry: 'Klefki!',
     possibleColors: [PokemonColor.default],
-    types: ["Steel", "Fairy"],
+    types: [PokemonCombatType.steel, PokemonCombatType.fairy],
     stats: { hp: 57, attack: 80, defense: 91, sp_attack: 80, sp_defense: 87, speed: 75 }
   },
   phantump: {
@@ -6399,7 +6399,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen6,
     cry: 'Phantump!',
     possibleColors: [PokemonColor.default],
-    types: ["Ghost", "Grass"],
+    types: [PokemonCombatType.ghost, PokemonCombatType.grass],
     stats: { hp: 43, attack: 70, defense: 48, sp_attack: 50, sp_defense: 60, speed: 38 }
   },
   trevenant: {
@@ -6408,7 +6408,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen6,
     cry: 'Trevenant!',
     possibleColors: [PokemonColor.default],
-    types: ["Ghost", "Grass"],
+    types: [PokemonCombatType.ghost, PokemonCombatType.grass],
     stats: { hp: 85, attack: 110, defense: 76, sp_attack: 65, sp_defense: 82, speed: 56 }
   },
   pumpkaboo: {
@@ -6417,7 +6417,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen6,
     cry: 'Pumpkaboo!',
     possibleColors: [PokemonColor.default],
-    types: ["Ghost", "Grass"],
+    types: [PokemonCombatType.ghost, PokemonCombatType.grass],
     stats: { hp: 59, attack: 66, defense: 70, sp_attack: 44, sp_defense: 55, speed: 41 }
   },
   gourgeist: {
@@ -6426,7 +6426,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen6,
     cry: 'Gourgeist!',
     possibleColors: [PokemonColor.default],
-    types: ["Ghost", "Grass"],
+    types: [PokemonCombatType.ghost, PokemonCombatType.grass],
     stats: { hp: 85, attack: 100, defense: 122, sp_attack: 58, sp_defense: 75, speed: 54 }
   },
   bergmite: {
@@ -6435,7 +6435,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen6,
     cry: 'Bergmite!',
     possibleColors: [PokemonColor.default],
-    types: ["Ice"],
+    types: [PokemonCombatType.ice],
     stats: { hp: 55, attack: 69, defense: 85, sp_attack: 32, sp_defense: 35, speed: 28 }
   },
   avalugg: {
@@ -6444,7 +6444,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen6,
     cry: 'Avalugg!',
     possibleColors: [PokemonColor.default],
-    types: ["Ice", "Rock"],
+    types: [PokemonCombatType.ice, PokemonCombatType.rock],
     stats: { hp: 95, attack: 127, defense: 184, sp_attack: 34, sp_defense: 36, speed: 38 }
   },
   noibat: {
@@ -6453,7 +6453,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen6,
     cry: 'Noibat!',
     possibleColors: [PokemonColor.default],
-    types: ["Flying", "Dragon"],
+    types: [PokemonCombatType.flying, PokemonCombatType.dragon],
     stats: { hp: 40, attack: 30, defense: 35, sp_attack: 45, sp_defense: 40, speed: 55 }
   },
   noivern: {
@@ -6462,7 +6462,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen6,
     cry: 'Noivern!',
     possibleColors: [PokemonColor.default],
-    types: ["Flying", "Dragon"],
+    types: [PokemonCombatType.flying, PokemonCombatType.dragon],
     stats: { hp: 85, attack: 70, defense: 80, sp_attack: 97, sp_defense: 80, speed: 123 }
   },
   xerneas: {
@@ -6471,7 +6471,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen6,
     cry: 'Xerneas!',
     possibleColors: [PokemonColor.default],
-    types: ["Fairy"],
+    types: [PokemonCombatType.fairy],
     stats: { hp: 126, attack: 131, defense: 95, sp_attack: 131, sp_defense: 98, speed: 99 }
   },
   yveltal: {
@@ -6480,7 +6480,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen6,
     cry: 'Yveltal!',
     possibleColors: [PokemonColor.default],
-    types: ["Dark", "Flying"],
+    types: [PokemonCombatType.dark, PokemonCombatType.flying],
     stats: { hp: 126, attack: 131, defense: 95, sp_attack: 131, sp_defense: 98, speed: 99 }
   },
   zygarde: {
@@ -6489,7 +6489,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen6,
     cry: 'Zygarde!',
     possibleColors: [PokemonColor.default],
-    types: ["Dragon", "Ground"],
+    types: [PokemonCombatType.dragon, PokemonCombatType.ground],
     stats: { hp: 216, attack: 100, defense: 121, sp_attack: 91, sp_defense: 95, speed: 85 }
   },
   diancie: {
@@ -6498,7 +6498,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen6,
     cry: 'Diancie!',
     possibleColors: [PokemonColor.default],
-    types: ["Rock", "Fairy"],
+    types: [PokemonCombatType.rock, PokemonCombatType.fairy],
     stats: { hp: 50, attack: 160, defense: 110, sp_attack: 160, sp_defense: 110, speed: 110 }
   },
   hoopa: {
@@ -6507,7 +6507,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen6,
     cry: 'Hoopa!',
     possibleColors: [PokemonColor.default],
-    types: ["Psychic", "Dark"],
+    types: [PokemonCombatType.psychic, PokemonCombatType.dark],
     stats: { hp: 80, attack: 160, defense: 60, sp_attack: 170, sp_defense: 130, speed: 80 }
   },
   volcanion: {
@@ -6516,7 +6516,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen6,
     cry: 'Volcanion!',
     possibleColors: [PokemonColor.default],
-    types: ["Fire", "Water"],
+    types: [PokemonCombatType.fire, PokemonCombatType.water],
     stats: { hp: 80, attack: 110, defense: 120, sp_attack: 130, sp_defense: 90, speed: 70 }
   },
   rowlet: {
@@ -6525,7 +6525,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen7,
     cry: 'Rowlet!',
     possibleColors: [PokemonColor.default],
-    types: ["Grass", "Flying"],
+    types: [PokemonCombatType.grass, PokemonCombatType.flying],
     stats: { hp: 68, attack: 55, defense: 55, sp_attack: 50, sp_defense: 50, speed: 42 }
   },
   dartrix: {
@@ -6534,7 +6534,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen7,
     cry: 'Dartrix!',
     possibleColors: [PokemonColor.default],
-    types: ["Grass", "Flying"],
+    types: [PokemonCombatType.grass, PokemonCombatType.flying],
     stats: { hp: 78, attack: 75, defense: 75, sp_attack: 70, sp_defense: 70, speed: 52 }
   },
   decidueye: {
@@ -6543,7 +6543,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen7,
     cry: 'Decidueye!',
     possibleColors: [PokemonColor.default],
-    types: ["Grass", "Fighting"],
+    types: [PokemonCombatType.grass, PokemonCombatType.fighting],
     stats: { hp: 88, attack: 112, defense: 80, sp_attack: 95, sp_defense: 95, speed: 60 }
   },
   litten: {
@@ -6552,7 +6552,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen7,
     cry: 'Litten!',
     possibleColors: [PokemonColor.default],
-    types: ["Fire"],
+    types: [PokemonCombatType.fire],
     stats: { hp: 45, attack: 65, defense: 40, sp_attack: 60, sp_defense: 40, speed: 70 }
   },
   torracat: {
@@ -6561,7 +6561,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen7,
     cry: 'Torracat!',
     possibleColors: [PokemonColor.default],
-    types: ["Fire"],
+    types: [PokemonCombatType.fire],
     stats: { hp: 65, attack: 85, defense: 50, sp_attack: 80, sp_defense: 50, speed: 90 }
   },
   incineroar: {
@@ -6570,7 +6570,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen7,
     cry: 'Incineroar!',
     possibleColors: [PokemonColor.default],
-    types: ["Fire", "Dark"],
+    types: [PokemonCombatType.fire, PokemonCombatType.dark],
     stats: { hp: 95, attack: 115, defense: 90, sp_attack: 80, sp_defense: 90, speed: 60 }
   },
   popplio: {
@@ -6579,7 +6579,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen7,
     cry: 'Popplio!',
     possibleColors: [PokemonColor.default],
-    types: ["Water"],
+    types: [PokemonCombatType.water],
     stats: { hp: 50, attack: 54, defense: 54, sp_attack: 66, sp_defense: 56, speed: 40 }
   },
   brionne: {
@@ -6588,7 +6588,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen7,
     cry: 'Brionne!',
     possibleColors: [PokemonColor.default],
-    types: ["Water"],
+    types: [PokemonCombatType.water],
     stats: { hp: 60, attack: 69, defense: 69, sp_attack: 91, sp_defense: 81, speed: 50 }
   },
   primarina: {
@@ -6597,7 +6597,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen7,
     cry: 'Primarina!',
     possibleColors: [PokemonColor.default],
-    types: ["Water", "Fairy"],
+    types: [PokemonCombatType.water, PokemonCombatType.fairy],
     stats: { hp: 80, attack: 74, defense: 74, sp_attack: 126, sp_defense: 116, speed: 60 }
   },
   pikipek: {
@@ -6606,7 +6606,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen7,
     cry: 'Pikipek!',
     possibleColors: [PokemonColor.default],
-    types: ["Normal", "Flying"],
+    types: [PokemonCombatType.normal, PokemonCombatType.flying],
     stats: { hp: 35, attack: 75, defense: 30, sp_attack: 30, sp_defense: 30, speed: 65 }
   },
   trumbeak: {
@@ -6615,7 +6615,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen7,
     cry: 'Trumbeak!',
     possibleColors: [PokemonColor.default],
-    types: ["Normal", "Flying"],
+    types: [PokemonCombatType.normal, PokemonCombatType.flying],
     stats: { hp: 55, attack: 85, defense: 50, sp_attack: 40, sp_defense: 50, speed: 75 }
   },
   toucannon: {
@@ -6624,7 +6624,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen7,
     cry: 'Toucannon!',
     possibleColors: [PokemonColor.default],
-    types: ["Normal", "Flying"],
+    types: [PokemonCombatType.normal, PokemonCombatType.flying],
     stats: { hp: 80, attack: 120, defense: 75, sp_attack: 75, sp_defense: 75, speed: 60 }
   },
   yungoos: {
@@ -6633,7 +6633,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen7,
     cry: 'Yungoos!',
     possibleColors: [PokemonColor.default],
-    types: ["Normal"],
+    types: [PokemonCombatType.normal],
     stats: { hp: 48, attack: 70, defense: 30, sp_attack: 30, sp_defense: 30, speed: 45 }
   },
   gumshoos: {
@@ -6642,7 +6642,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen7,
     cry: 'Gumshoos!',
     possibleColors: [PokemonColor.default],
-    types: ["Normal"],
+    types: [PokemonCombatType.normal],
     stats: { hp: 88, attack: 110, defense: 60, sp_attack: 55, sp_defense: 60, speed: 45 }
   },
   grubbin: {
@@ -6651,7 +6651,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen7,
     cry: 'Grubbin!',
     possibleColors: [PokemonColor.default],
-    types: ["Bug"],
+    types: [PokemonCombatType.bug],
     stats: { hp: 47, attack: 62, defense: 45, sp_attack: 55, sp_defense: 45, speed: 46 }
   },
   charjabug: {
@@ -6660,7 +6660,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen7,
     cry: 'Charjabug!',
     possibleColors: [PokemonColor.default],
-    types: ["Bug", "Electric"],
+    types: [PokemonCombatType.bug, PokemonCombatType.electric],
     stats: { hp: 57, attack: 82, defense: 95, sp_attack: 55, sp_defense: 75, speed: 36 }
   },
   vikavolt: {
@@ -6669,7 +6669,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen7,
     cry: 'Vikavolt!',
     possibleColors: [PokemonColor.default],
-    types: ["Bug", "Electric"],
+    types: [PokemonCombatType.bug, PokemonCombatType.electric],
     stats: { hp: 77, attack: 70, defense: 90, sp_attack: 145, sp_defense: 75, speed: 43 }
   },
   crabrawler: {
@@ -6678,7 +6678,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen7,
     cry: 'Crabrawler!',
     possibleColors: [PokemonColor.default],
-    types: ["Fighting"],
+    types: [PokemonCombatType.fighting],
     stats: { hp: 47, attack: 82, defense: 57, sp_attack: 42, sp_defense: 47, speed: 63 }
   },
   crabominable: {
@@ -6687,7 +6687,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen7,
     cry: 'Crabominable!',
     possibleColors: [PokemonColor.default],
-    types: ["Fighting", "Ice"],
+    types: [PokemonCombatType.fighting, PokemonCombatType.ice],
     stats: { hp: 97, attack: 132, defense: 77, sp_attack: 62, sp_defense: 67, speed: 43 }
   },
   oricorio: {
@@ -6696,7 +6696,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen7,
     cry: 'Oricorio!',
     possibleColors: [PokemonColor.default],
-    types: ["Ghost", "Flying"],
+    types: [PokemonCombatType.ghost, PokemonCombatType.flying],
     stats: { hp: 75, attack: 70, defense: 70, sp_attack: 98, sp_defense: 70, speed: 93 }
   },
   cutiefly: {
@@ -6705,7 +6705,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen7,
     cry: 'Cutiefly!',
     possibleColors: [PokemonColor.default],
-    types: ["Bug", "Fairy"],
+    types: [PokemonCombatType.bug, PokemonCombatType.fairy],
     stats: { hp: 40, attack: 45, defense: 40, sp_attack: 55, sp_defense: 40, speed: 84 }
   },
   ribombee: {
@@ -6714,16 +6714,16 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen7,
     cry: 'Ribombee!',
     possibleColors: [PokemonColor.default],
-    types: ["Bug", "Fairy"],
+    types: [PokemonCombatType.bug, PokemonCombatType.fairy],
     stats: { hp: 60, attack: 55, defense: 60, sp_attack: 95, sp_defense: 70, speed: 124 }
   },
   rockruff: {
     id: 744,
-    name: 'Rockruff',
+    name: 'rockruff',
     generation: PokemonGeneration.Gen7,
-    cry: 'Rockruff!',
+    cry: 'rockruff!',
     possibleColors: [PokemonColor.default],
-    types: ["Rock"],
+    types: [PokemonCombatType.rock],
     stats: { hp: 45, attack: 65, defense: 40, sp_attack: 30, sp_defense: 40, speed: 60 }
   },
   lycanroc: {
@@ -6732,7 +6732,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen7,
     cry: 'Lycanroc!',
     possibleColors: [PokemonColor.default],
-    types: ["Rock"],
+    types: [PokemonCombatType.rock],
     stats: { hp: 75, attack: 117, defense: 65, sp_attack: 55, sp_defense: 65, speed: 110 }
   },
   wishiwashi: {
@@ -6741,7 +6741,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen7,
     cry: 'Wishiwashi!',
     possibleColors: [PokemonColor.default],
-    types: ["Water"],
+    types: [PokemonCombatType.water],
     stats: { hp: 45, attack: 140, defense: 130, sp_attack: 140, sp_defense: 135, speed: 30 }
   },
   mareanie: {
@@ -6750,7 +6750,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen7,
     cry: 'Mareanie!',
     possibleColors: [PokemonColor.default],
-    types: ["Poison", "Water"],
+    types: [PokemonCombatType.poison, PokemonCombatType.water],
     stats: { hp: 50, attack: 53, defense: 62, sp_attack: 43, sp_defense: 52, speed: 45 }
   },
   toxapex: {
@@ -6759,7 +6759,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen7,
     cry: 'Toxapex!',
     possibleColors: [PokemonColor.default],
-    types: ["Poison", "Water"],
+    types: [PokemonCombatType.poison, PokemonCombatType.water],
     stats: { hp: 50, attack: 63, defense: 152, sp_attack: 53, sp_defense: 142, speed: 35 }
   },
   mudbray: {
@@ -6768,7 +6768,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen7,
     cry: 'Mudbray!',
     possibleColors: [PokemonColor.default],
-    types: ["Ground"],
+    types: [PokemonCombatType.ground],
     stats: { hp: 70, attack: 100, defense: 70, sp_attack: 45, sp_defense: 55, speed: 45 }
   },
   mudsdale: {
@@ -6777,7 +6777,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen7,
     cry: 'Mudsdale!',
     possibleColors: [PokemonColor.default],
-    types: ["Ground"],
+    types: [PokemonCombatType.ground],
     stats: { hp: 100, attack: 125, defense: 100, sp_attack: 55, sp_defense: 85, speed: 35 }
   },
   dewpider: {
@@ -6786,7 +6786,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen7,
     cry: 'Dewpider!',
     possibleColors: [PokemonColor.default],
-    types: ["Water", "Bug"],
+    types: [PokemonCombatType.water, PokemonCombatType.bug],
     stats: { hp: 38, attack: 40, defense: 52, sp_attack: 40, sp_defense: 72, speed: 27 }
   },
   araquanid: {
@@ -6795,7 +6795,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen7,
     cry: 'Araquanid!',
     possibleColors: [PokemonColor.default],
-    types: ["Water", "Bug"],
+    types: [PokemonCombatType.water, PokemonCombatType.bug],
     stats: { hp: 68, attack: 70, defense: 92, sp_attack: 50, sp_defense: 132, speed: 42 }
   },
   fomantis: {
@@ -6804,7 +6804,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen7,
     cry: 'Fomantis!',
     possibleColors: [PokemonColor.default],
-    types: ["Grass"],
+    types: [PokemonCombatType.grass],
     stats: { hp: 40, attack: 55, defense: 35, sp_attack: 50, sp_defense: 35, speed: 35 }
   },
   lurantis: {
@@ -6813,7 +6813,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen7,
     cry: 'Lurantis!',
     possibleColors: [PokemonColor.default],
-    types: ["Grass"],
+    types: [PokemonCombatType.grass],
     stats: { hp: 70, attack: 105, defense: 90, sp_attack: 80, sp_defense: 90, speed: 45 }
   },
   morelull: {
@@ -6822,7 +6822,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen7,
     cry: 'Morelull!',
     possibleColors: [PokemonColor.default],
-    types: ["Grass", "Fairy"],
+    types: [PokemonCombatType.grass, PokemonCombatType.fairy],
     stats: { hp: 40, attack: 35, defense: 55, sp_attack: 65, sp_defense: 75, speed: 15 }
   },
   shiinotic: {
@@ -6831,7 +6831,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen7,
     cry: 'Shiinotic!',
     possibleColors: [PokemonColor.default],
-    types: ["Grass", "Fairy"],
+    types: [PokemonCombatType.grass, PokemonCombatType.fairy],
     stats: { hp: 60, attack: 45, defense: 80, sp_attack: 90, sp_defense: 100, speed: 30 }
   },
   salandit: {
@@ -6840,7 +6840,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen7,
     cry: 'Salandit!',
     possibleColors: [PokemonColor.default],
-    types: ["Poison", "Fire"],
+    types: [PokemonCombatType.poison, PokemonCombatType.fire],
     stats: { hp: 48, attack: 44, defense: 40, sp_attack: 71, sp_defense: 40, speed: 77 }
   },
   salazzle: {
@@ -6849,7 +6849,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen7,
     cry: 'Salazzle!',
     possibleColors: [PokemonColor.default],
-    types: ["Poison", "Fire"],
+    types: [PokemonCombatType.poison, PokemonCombatType.fire],
     stats: { hp: 68, attack: 64, defense: 60, sp_attack: 111, sp_defense: 60, speed: 117 }
   },
   stufful: {
@@ -6858,7 +6858,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen7,
     cry: 'Stufful!',
     possibleColors: [PokemonColor.default],
-    types: ["Normal", "Fighting"],
+    types: [PokemonCombatType.normal, PokemonCombatType.fighting],
     stats: { hp: 70, attack: 75, defense: 50, sp_attack: 45, sp_defense: 50, speed: 50 }
   },
   bewear: {
@@ -6867,7 +6867,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen7,
     cry: 'Bewear!',
     possibleColors: [PokemonColor.default],
-    types: ["Normal", "Fighting"],
+    types: [PokemonCombatType.normal, PokemonCombatType.fighting],
     stats: { hp: 120, attack: 125, defense: 80, sp_attack: 55, sp_defense: 60, speed: 60 }
   },
   bounsweet: {
@@ -6876,7 +6876,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen7,
     cry: 'Bounsweet!',
     possibleColors: [PokemonColor.default],
-    types: ["Grass"],
+    types: [PokemonCombatType.grass],
     stats: { hp: 42, attack: 30, defense: 38, sp_attack: 30, sp_defense: 38, speed: 32 }
   },
   steenee: {
@@ -6885,7 +6885,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen7,
     cry: 'Steenee!',
     possibleColors: [PokemonColor.default],
-    types: ["Grass"],
+    types: [PokemonCombatType.grass],
     stats: { hp: 52, attack: 40, defense: 48, sp_attack: 40, sp_defense: 48, speed: 62 }
   },
   tsareena: {
@@ -6894,7 +6894,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen7,
     cry: 'Tsareena!',
     possibleColors: [PokemonColor.default],
-    types: ["Grass"],
+    types: [PokemonCombatType.grass],
     stats: { hp: 72, attack: 120, defense: 98, sp_attack: 50, sp_defense: 98, speed: 72 }
   },
   comfey: {
@@ -6903,7 +6903,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen7,
     cry: 'Comfey!',
     possibleColors: [PokemonColor.default],
-    types: ["Fairy"],
+    types: [PokemonCombatType.fairy],
     stats: { hp: 51, attack: 52, defense: 90, sp_attack: 82, sp_defense: 110, speed: 100 }
   },
   oranguru: {
@@ -6912,7 +6912,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen7,
     cry: 'Oranguru!',
     possibleColors: [PokemonColor.default],
-    types: ["Normal", "Psychic"],
+    types: [PokemonCombatType.normal, PokemonCombatType.psychic],
     stats: { hp: 90, attack: 60, defense: 80, sp_attack: 90, sp_defense: 110, speed: 60 }
   },
   passimian: {
@@ -6921,7 +6921,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen7,
     cry: 'Passimian!',
     possibleColors: [PokemonColor.default],
-    types: ["Fighting"],
+    types: [PokemonCombatType.fighting],
     stats: { hp: 100, attack: 120, defense: 90, sp_attack: 40, sp_defense: 60, speed: 80 }
   },
   wimpod: {
@@ -6930,7 +6930,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen7,
     cry: 'Wimpod!',
     possibleColors: [PokemonColor.default],
-    types: ["Bug", "Water"],
+    types: [PokemonCombatType.bug, PokemonCombatType.water],
     stats: { hp: 25, attack: 35, defense: 40, sp_attack: 20, sp_defense: 30, speed: 80 }
   },
   golisopod: {
@@ -6939,7 +6939,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen7,
     cry: 'Golisopod!',
     possibleColors: [PokemonColor.default],
-    types: ["Bug", "Water"],
+    types: [PokemonCombatType.bug, PokemonCombatType.water],
     stats: { hp: 75, attack: 125, defense: 140, sp_attack: 60, sp_defense: 90, speed: 40 }
   },
   sandygast: {
@@ -6948,7 +6948,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen7,
     cry: 'Sandygast!',
     possibleColors: [PokemonColor.default],
-    types: ["Ghost", "Ground"],
+    types: [PokemonCombatType.ghost, PokemonCombatType.ground],
     stats: { hp: 55, attack: 55, defense: 80, sp_attack: 70, sp_defense: 45, speed: 15 }
   },
   palossand: {
@@ -6957,7 +6957,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen7,
     cry: 'Palossand!',
     possibleColors: [PokemonColor.default],
-    types: ["Ghost", "Ground"],
+    types: [PokemonCombatType.ghost, PokemonCombatType.ground],
     stats: { hp: 85, attack: 75, defense: 110, sp_attack: 100, sp_defense: 75, speed: 35 }
   },
   pyukumuku: {
@@ -6966,7 +6966,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen7,
     cry: 'Pyukumuku!',
     possibleColors: [PokemonColor.default],
-    types: ["Water"],
+    types: [PokemonCombatType.water],
     stats: { hp: 55, attack: 60, defense: 130, sp_attack: 30, sp_defense: 130, speed: 5 }
   },
   typenull: {
@@ -6975,7 +6975,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen7,
     cry: 'Type: Null!',
     possibleColors: [PokemonColor.default],
-    types: ["Normal"],
+    types: [PokemonCombatType.normal],
     stats: { hp: 95, attack: 95, defense: 95, sp_attack: 95, sp_defense: 95, speed: 59 }
   },
   silvally: {
@@ -6984,7 +6984,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen7,
     cry: 'Silvally!',
     possibleColors: [PokemonColor.default],
-    types: ["Normal"],
+    types: [PokemonCombatType.normal],
     stats: { hp: 95, attack: 95, defense: 95, sp_attack: 95, sp_defense: 95, speed: 95 }
   },
   minior: {
@@ -6993,7 +6993,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen7,
     cry: 'Minior!',
     possibleColors: [PokemonColor.default],
-    types: ["Rock", "Flying"],
+    types: [PokemonCombatType.rock, PokemonCombatType.flying],
     stats: { hp: 60, attack: 100, defense: 60, sp_attack: 100, sp_defense: 60, speed: 120 }
   },
   komala: {
@@ -7002,7 +7002,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen7,
     cry: 'Komala!',
     possibleColors: [PokemonColor.default],
-    types: ["Normal"],
+    types: [PokemonCombatType.normal],
     stats: { hp: 65, attack: 115, defense: 65, sp_attack: 75, sp_defense: 95, speed: 65 }
   },
   turtonator: {
@@ -7011,7 +7011,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen7,
     cry: 'Turtonator!',
     possibleColors: [PokemonColor.default],
-    types: ["Fire", "Dragon"],
+    types: [PokemonCombatType.fire, PokemonCombatType.dragon],
     stats: { hp: 60, attack: 78, defense: 135, sp_attack: 91, sp_defense: 85, speed: 36 }
   },
   togedemaru: {
@@ -7020,7 +7020,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen7,
     cry: 'Togedemaru!',
     possibleColors: [PokemonColor.default],
-    types: ["Electric", "Steel"],
+    types: [PokemonCombatType.electric, PokemonCombatType.steel],
     stats: { hp: 65, attack: 98, defense: 63, sp_attack: 40, sp_defense: 73, speed: 96 }
   },
   mimikyu: {
@@ -7029,7 +7029,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen7,
     cry: 'Mimikyu!',
     possibleColors: [PokemonColor.default],
-    types: ["Ghost", "Fairy"],
+    types: [PokemonCombatType.ghost, PokemonCombatType.fairy],
     stats: { hp: 55, attack: 90, defense: 80, sp_attack: 50, sp_defense: 105, speed: 96 }
   },
   bruxish: {
@@ -7038,7 +7038,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen7,
     cry: 'Bruxish!',
     possibleColors: [PokemonColor.default],
-    types: ["Water", "Psychic"],
+    types: [PokemonCombatType.water, PokemonCombatType.psychic],
     stats: { hp: 68, attack: 105, defense: 70, sp_attack: 70, sp_defense: 70, speed: 92 }
   },
   drampa: {
@@ -7047,7 +7047,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen7,
     cry: 'Drampa!',
     possibleColors: [PokemonColor.default],
-    types: ["Normal", "Dragon"],
+    types: [PokemonCombatType.normal, PokemonCombatType.dragon],
     stats: { hp: 78, attack: 60, defense: 85, sp_attack: 135, sp_defense: 91, speed: 36 }
   },
   dhelmise: {
@@ -7056,7 +7056,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen7,
     cry: 'Dhelmise!',
     possibleColors: [PokemonColor.default],
-    types: ["Ghost", "Grass"],
+    types: [PokemonCombatType.ghost, PokemonCombatType.grass],
     stats: { hp: 70, attack: 131, defense: 100, sp_attack: 86, sp_defense: 90, speed: 40 }
   },
   jangmoo: {
@@ -7065,7 +7065,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen7,
     cry: 'Jangmo-o!',
     possibleColors: [PokemonColor.default],
-    types: ["Dragon"],
+    types: [PokemonCombatType.dragon],
     stats: { hp: 45, attack: 55, defense: 65, sp_attack: 45, sp_defense: 45, speed: 45 }
   },
   hakamoo: {
@@ -7074,7 +7074,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen7,
     cry: 'Hakamo-o!',
     possibleColors: [PokemonColor.default],
-    types: ["Dragon", "Fighting"],
+    types: [PokemonCombatType.dragon, PokemonCombatType.fighting],
     stats: { hp: 55, attack: 75, defense: 90, sp_attack: 65, sp_defense: 70, speed: 65 }
   },
   kommoo: {
@@ -7083,7 +7083,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen7,
     cry: 'Kommo-o!',
     possibleColors: [PokemonColor.default],
-    types: ["Dragon", "Fighting"],
+    types: [PokemonCombatType.dragon, PokemonCombatType.fighting],
     stats: { hp: 75, attack: 110, defense: 125, sp_attack: 100, sp_defense: 105, speed: 85 }
   },
   tapukoko: {
@@ -7092,7 +7092,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen7,
     cry: 'Tapu Koko!',
     possibleColors: [PokemonColor.default],
-    types: ["Electric", "Fairy"],
+    types: [PokemonCombatType.electric, PokemonCombatType.fairy],
     stats: { hp: 70, attack: 115, defense: 85, sp_attack: 95, sp_defense: 75, speed: 130 }
   },
   tapulele: {
@@ -7101,7 +7101,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen7,
     cry: 'Tapu Lele!',
     possibleColors: [PokemonColor.default],
-    types: ["Psychic", "Fairy"],
+    types: [PokemonCombatType.psychic, PokemonCombatType.fairy],
     stats: { hp: 70, attack: 85, defense: 75, sp_attack: 130, sp_defense: 115, speed: 95 }
   },
   tapubulu: {
@@ -7110,7 +7110,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen7,
     cry: 'Tapu Bulu!',
     possibleColors: [PokemonColor.default],
-    types: ["Grass", "Fairy"],
+    types: [PokemonCombatType.grass, PokemonCombatType.fairy],
     stats: { hp: 70, attack: 130, defense: 115, sp_attack: 85, sp_defense: 95, speed: 75 }
   },
   tapufini: {
@@ -7119,7 +7119,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen7,
     cry: 'Tapu Fini!',
     possibleColors: [PokemonColor.default],
-    types: ["Water", "Fairy"],
+    types: [PokemonCombatType.water, PokemonCombatType.fairy],
     stats: { hp: 70, attack: 75, defense: 115, sp_attack: 95, sp_defense: 130, speed: 85 }
   },
   cosmog: {
@@ -7128,7 +7128,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen7,
     cry: 'Cosmog!',
     possibleColors: [PokemonColor.default],
-    types: ["Psychic"],
+    types: [PokemonCombatType.psychic],
     stats: { hp: 43, attack: 29, defense: 31, sp_attack: 29, sp_defense: 31, speed: 37 }
   },
   cosmoem: {
@@ -7137,7 +7137,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen7,
     cry: 'Cosmoem!',
     possibleColors: [PokemonColor.default],
-    types: ["Psychic"],
+    types: [PokemonCombatType.psychic],
     stats: { hp: 43, attack: 29, defense: 131, sp_attack: 29, sp_defense: 131, speed: 37 }
   },
   solgaleo: {
@@ -7146,7 +7146,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen7,
     cry: 'Solgaleo!',
     possibleColors: [PokemonColor.default],
-    types: ["Psychic", "Steel"],
+    types: [PokemonCombatType.psychic, PokemonCombatType.steel],
     stats: { hp: 137, attack: 137, defense: 107, sp_attack: 113, sp_defense: 89, speed: 97 }
   },
   lunala: {
@@ -7155,7 +7155,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen7,
     cry: 'Lunala!',
     possibleColors: [PokemonColor.default],
-    types: ["Psychic", "Ghost"],
+    types: [PokemonCombatType.psychic, PokemonCombatType.ghost],
     stats: { hp: 137, attack: 113, defense: 89, sp_attack: 137, sp_defense: 107, speed: 97 }
   },
   nihilego: {
@@ -7164,7 +7164,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen7,
     cry: 'Nihilego!',
     possibleColors: [PokemonColor.default],
-    types: ["Rock", "Poison"],
+    types: [PokemonCombatType.rock, PokemonCombatType.poison],
     stats: { hp: 109, attack: 53, defense: 47, sp_attack: 127, sp_defense: 131, speed: 103 }
   },
   buzzwole: {
@@ -7173,7 +7173,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen7,
     cry: 'Buzzwole!',
     possibleColors: [PokemonColor.default],
-    types: ["Bug", "Fighting"],
+    types: [PokemonCombatType.bug, PokemonCombatType.fighting],
     stats: { hp: 107, attack: 139, defense: 139, sp_attack: 53, sp_defense: 53, speed: 79 }
   },
   pheromosa: {
@@ -7182,7 +7182,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen7,
     cry: 'Pheromosa!',
     possibleColors: [PokemonColor.default],
-    types: ["Bug", "Fighting"],
+    types: [PokemonCombatType.bug, PokemonCombatType.fighting],
     stats: { hp: 71, attack: 137, defense: 37, sp_attack: 137, sp_defense: 37, speed: 151 }
   },
   xurkitree: {
@@ -7191,7 +7191,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen7,
     cry: 'Xurkitree!',
     possibleColors: [PokemonColor.default],
-    types: ["Electric"],
+    types: [PokemonCombatType.electric],
     stats: { hp: 83, attack: 89, defense: 71, sp_attack: 173, sp_defense: 71, speed: 83 }
   },
   celesteela: {
@@ -7200,7 +7200,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen7,
     cry: 'Celesteela!',
     possibleColors: [PokemonColor.default],
-    types: ["Steel", "Flying"],
+    types: [PokemonCombatType.steel, PokemonCombatType.flying],
     stats: { hp: 97, attack: 101, defense: 103, sp_attack: 107, sp_defense: 101, speed: 61 }
   },
   kartana: {
@@ -7209,7 +7209,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen7,
     cry: 'Kartana!',
     possibleColors: [PokemonColor.default],
-    types: ["Grass", "Steel"],
+    types: [PokemonCombatType.grass, PokemonCombatType.steel],
     stats: { hp: 59, attack: 181, defense: 131, sp_attack: 59, sp_defense: 31, speed: 109 }
   },
   guzzlord: {
@@ -7218,7 +7218,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen7,
     cry: 'Guzzlord!',
     possibleColors: [PokemonColor.default],
-    types: ["Dark", "Dragon"],
+    types: [PokemonCombatType.dark, PokemonCombatType.dragon],
     stats: { hp: 223, attack: 101, defense: 53, sp_attack: 97, sp_defense: 53, speed: 43 }
   },
   necrozma: {
@@ -7227,7 +7227,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen7,
     cry: 'Necrozma!',
     possibleColors: [PokemonColor.default],
-    types: ["Psychic", "Dragon"],
+    types: [PokemonCombatType.psychic, PokemonCombatType.dragon],
     stats: { hp: 97, attack: 167, defense: 97, sp_attack: 167, sp_defense: 97, speed: 129 }
   },
   magearna: {
@@ -7236,7 +7236,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen7,
     cry: 'Magearna!',
     possibleColors: [PokemonColor.default],
-    types: ["Steel", "Fairy"],
+    types: [PokemonCombatType.steel, PokemonCombatType.fairy],
     stats: { hp: 80, attack: 95, defense: 115, sp_attack: 130, sp_defense: 115, speed: 65 }
   },
   marshadow: {
@@ -7245,7 +7245,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen7,
     cry: 'Marshadow!',
     possibleColors: [PokemonColor.default],
-    types: ["Fighting", "Ghost"],
+    types: [PokemonCombatType.fighting, PokemonCombatType.ghost],
     stats: { hp: 90, attack: 125, defense: 80, sp_attack: 90, sp_defense: 90, speed: 125 }
   },
   poipole: {
@@ -7254,7 +7254,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen7,
     cry: 'Poipole!',
     possibleColors: [PokemonColor.default],
-    types: ["Poison"],
+    types: [PokemonCombatType.poison],
     stats: { hp: 67, attack: 73, defense: 67, sp_attack: 73, sp_defense: 67, speed: 73 }
   },
   naganadel: {
@@ -7263,7 +7263,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen7,
     cry: 'Naganadel!',
     possibleColors: [PokemonColor.default],
-    types: ["Poison", "Dragon"],
+    types: [PokemonCombatType.poison, PokemonCombatType.dragon],
     stats: { hp: 73, attack: 73, defense: 73, sp_attack: 127, sp_defense: 73, speed: 121 }
   },
   stakataka: {
@@ -7272,7 +7272,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen7,
     cry: 'Stakataka!',
     possibleColors: [PokemonColor.default],
-    types: ["Rock", "Steel"],
+    types: [PokemonCombatType.rock, PokemonCombatType.steel],
     stats: { hp: 61, attack: 131, defense: 211, sp_attack: 53, sp_defense: 101, speed: 13 }
   },
   blacephalon: {
@@ -7281,7 +7281,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen7,
     cry: 'Blacephalon!',
     possibleColors: [PokemonColor.default],
-    types: ["Fire", "Ghost"],
+    types: [PokemonCombatType.fire, PokemonCombatType.ghost],
     stats: { hp: 53, attack: 127, defense: 53, sp_attack: 151, sp_defense: 79, speed: 107 }
   },
   zeraora: {
@@ -7290,7 +7290,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen7,
     cry: 'Zeraora!',
     possibleColors: [PokemonColor.default],
-    types: ["Electric"],
+    types: [PokemonCombatType.electric],
     stats: { hp: 88, attack: 112, defense: 75, sp_attack: 102, sp_defense: 80, speed: 143 }
   },
   meltan: {
@@ -7299,7 +7299,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen7,
     cry: 'Meltan!',
     possibleColors: [PokemonColor.default],
-    types: ["Steel"],
+    types: [PokemonCombatType.steel],
     stats: { hp: 46, attack: 65, defense: 65, sp_attack: 55, sp_defense: 35, speed: 34 }
   },
   melmetal: {
@@ -7308,7 +7308,7 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     generation: PokemonGeneration.Gen7,
     cry: 'Melmetal!',
     possibleColors: [PokemonColor.default],
-    types: ["Steel"],
+    types: [PokemonCombatType.steel],
     stats: { hp: 135, attack: 143, defense: 143, sp_attack: 80, sp_defense: 65, speed: 34 }
   },
  };
@@ -7330,4 +7330,20 @@ export function getRandomPokemonConfig(): [PokemonType, PokemonConfig] {
   var keys = Object.keys(POKEMON_DATA);
   var randomKey = keys[Math.floor(Math.random() * keys.length)];
   return [randomKey as PokemonType, POKEMON_DATA[randomKey]];
+}
+
+export function getRandomPokemonByTypes(types: PokemonCombatType[]): [PokemonType, PokemonConfig] | null {
+  // Get all pokemon that have at least one of the specified types
+  const matchingPokemon = Object.entries(POKEMON_DATA)
+    .filter(([_, config]) => 
+      config.types.some(pokemonType => types.includes(pokemonType))
+    );
+  
+  if (matchingPokemon.length === 0) {
+    return null;
+  }
+  
+  const randomIndex = Math.floor(Math.random() * matchingPokemon.length);
+  const [key, config] = matchingPokemon[randomIndex];
+  return [key as PokemonType, config];
 }

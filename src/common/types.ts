@@ -20,6 +20,27 @@ export type PokemonTypeString = string & keyof typeof POKEMON_DATA;
 
 export type PokemonType = PokemonTypeString;
 
+export enum PokemonCombatType {
+    normal = 'normal',
+    fighting = 'fighting',
+    flying = 'flying',
+    poison = 'poison',
+    ground = 'ground',
+    rock = 'rock',
+    bug = 'bug',
+    ghost = 'ghost',
+    steel = 'steel',
+    fire = 'fire',
+    water = 'water',
+    grass = 'grass',
+    electric = 'electric',
+    psychic = 'psychic',
+    ice = 'ice',
+    dragon = 'dragon',
+    dark = 'dark',
+    fairy = 'fairy',
+}
+
 export interface PokemonConfig {
     id: number;
     name: string;
@@ -27,7 +48,7 @@ export interface PokemonConfig {
     cry: string;
     possibleColors: PokemonColor[];
     originalSpriteSize?: number,
-    types: string[]; // TODO enum
+    types: PokemonCombatType[];
     stats: {
         hp: number;
         attack: number;
@@ -59,19 +80,6 @@ export const enum ExtPosition {
     explorer = 'explorer',
 }
 
-export const enum Theme {
-    none = 'none',
-    forest = 'forest',
-    castle = 'castle',
-    beach = 'beach',
-    blackAndWhiteRoute = 'black-and-white-route',
-    grassyRoute = 'grassy-route',
-    seasideGazebo = 'seaside-gazebo',
-    cabin = 'cabin',
-    hauntedWoods = 'haunted-woods',
-    coastalCave = 'coastal-cave',
-}
-
 export const enum ColorThemeKind {
     light = 1,
     dark = 2,
@@ -97,10 +105,3 @@ export const ALL_SCALES = [
     PokemonSize.medium,
     PokemonSize.large,
 ];
-export const ALL_THEMES = [Theme.none, Theme.forest, Theme.castle, Theme.beach, Theme.blackAndWhiteRoute, Theme.grassyRoute, Theme.seasideGazebo, Theme.cabin, Theme.hauntedWoods, Theme.coastalCave];
-export const THEMES_WITH_DARK_AND_SIZE_VARIANTS = [Theme.forest, Theme.castle, Theme.beach, Theme.blackAndWhiteRoute];
-export const BACKGROUND_SIZE_OVERRIDE: { [key in Theme]?: string } = {
-    [Theme.grassyRoute]: '720px',
-    [Theme.seasideGazebo]: '720px',
-    [Theme.coastalCave]: '320px',
-};

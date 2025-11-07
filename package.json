@@ -207,7 +207,7 @@
                     },
                     "vscode-pokemon.autoSpawnInterval": {
                         "type": "number",
-                        "default": 3600,
+                        "default": 2700,
                         "description": "Time interval in seconds between auto-spawns. Will be randomized slightly."
                     }
                 }
