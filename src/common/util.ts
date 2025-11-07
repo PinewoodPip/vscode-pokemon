@@ -15,3 +15,7 @@ export function getWeightedRandom<T>(items: (T & IWeighted)[]): T {
     }
     throw new Error('getWeightedRandom failed?');
 }
+
+export function clamp(value: number, min: number, max: number): number {
+    return Math.max(min, Math.min(max, value));
+}

@@ -25,6 +25,7 @@ import {
 } from './pokeball';
 import { BallState, PokemonElementState, PokemonPanelState } from './states';
 import { getRandomPokemonConfig } from '../common/pokemon-data';
+import { clamp } from '../common/util';
 
 /* This is how the VS Code API can be invoked from the panel */
 declare global {
@@ -38,6 +39,7 @@ declare global {
 
 export var allPokemon: IPokemonCollection = new PokemonCollection();
 var pokemonCounter: number;
+var lastMouseX: number | undefined;
 
 function calculateBallRadius(size: PokemonSize): number {
     if (size === PokemonSize.nano) {
@@ -509,6 +511,8 @@ export function pokemonPanelApp(
                         text: `${pokemon.pokemon.emoji} ${pokemon.pokemon.name} (${pokemon.color} ${pokemon.type}): ${pokemon.pokemon.hello}`,
                     });
                 });
+                break;
+                
             case 'delete-pokemon':
                 var pokemon = allPokemon.locate(message.name);
                 if (pokemon) {
@@ -531,6 +535,24 @@ export function pokemonPanelApp(
                 pokemonCounter = 0;
                 saveState(stateApi);
                 break;
+            case 'reset-pokemon-position':
+                const panelRect = document.getElementById('pokemonContainer')?.getBoundingClientRect();
+
+                // Calculate teleport position - mouse position or panel center
+                let targetX = lastMouseX !== undefined ? lastMouseX : 
+                               (panelRect ? (panelRect.left + panelRect.right) / 2 : window.innerWidth / 2);
+                // Clamp position to panel bounds - necessary in case the panel was resized since the last time mouse pos was updated
+                if (panelRect) {
+                    targetX = clamp(targetX, panelRect.left, panelRect.right);
+                }
+
+                // Teleport all pokemon
+                allPokemon.pokemonCollection.forEach((pokemonElement) => {
+                    pokemonElement.pokemon.positionLeft(targetX);
+                });
+
+                saveState(stateApi);
+                break;
             case 'pause-pokemon':
                 pokemonCounter = 1;
                 saveState(stateApi);
@@ -540,4 +562,9 @@ export function pokemonPanelApp(
 }
 window.addEventListener('resize', function () {
     initCanvas();
+});
+
+// Track mouse position for reset-pokemon-position command
+window.addEventListener('mousemove', function (e) {
+    lastMouseX = e.clientX;
 });

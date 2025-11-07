@@ -370,6 +370,15 @@ export function activate(context: vscode.ExtensionContext) {
             }
         }),
     );
+    context.subscriptions.push(
+        vscode.commands.registerCommand('vscode-pokemon.reset-pokemon-position', () => {
+            // The webview will use the mouse position directly
+            console.log('Sending reset-pokemon-position command');
+            void getWebview()?.postMessage({
+                command: 'reset-pokemon-position'
+            });
+        }),
+    );
 
     spawnPokemonStatusBar = vscode.window.createStatusBarItem(
         vscode.StatusBarAlignment.Right,
