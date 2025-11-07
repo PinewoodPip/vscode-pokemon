@@ -1,4 +1,4 @@
-import { PokemonColor, PokemonGeneration, PokemonType } from '../common/types';
+import { PokemonColor, PokemonType } from '../common/types';
 
 export interface IPokemonType {
     nextFrame(): void;
@@ -34,6 +34,7 @@ export interface IPokemonType {
     isPlaying: boolean;
 
     showSpeechBubble(duration: number, friend: boolean): void;
+    showSleepingBubble(duration: number): void;
 }
 
 export class PokemonInstanceState {
@@ -80,6 +81,7 @@ export const enum States {
     chaseFriend = 'chase-friend',
     standRight = 'stand-right',
     standLeft = 'stand-left',
+    sleep = 'sleep',
 }
 
 export enum FrameResult {
@@ -147,6 +149,8 @@ export function resolveState(state: string, pokemon: IPokemonType): IState {
             return new StandRightState(pokemon);
         case States.standLeft:
             return new StandLeftState(pokemon);
+        case States.sleep:
+            return new SleepState(pokemon);
     }
     return new SitIdleState(pokemon);
 }
@@ -373,15 +377,15 @@ export class ChaseState implements IState {
                 stateResult = FrameResult.stateComplete; // End the state
             } else {
                 // Otherwise kick the ball
-                this.kickBall()
+                this.kickBall();
             }
         }
         return stateResult;
     }
 
     kickBall() {
-        let kickDirection = this.horizontalDirection === HorizontalDirection.left ? -1 : 1; // Assumes kicking can only be done when facing left/right
-        let ball = this.ballState;
+        const kickDirection = this.horizontalDirection === HorizontalDirection.left ? -1 : 1; // Assumes kicking can only be done when facing left/right
+        const ball = this.ballState;
 
         // Add velocity to the ball
         ball.vy += this.KICK_BASE_VELOCITY_Y + Math.random() * this.KICK_RANDOM_VELOCITY_Y;
@@ -470,4 +474,33 @@ export class StandLeftState extends AbstractStaticState {
     spriteLabel = 'stand';
     horizontalDirection = HorizontalDirection.left;
     holdTime = 60;
+}
+
+export class SleepState extends AbstractStaticState {
+    private readonly MIN_SLEEP_DURATION = 50; // In seconds.
+    private readonly MAX_SLEEP_DURATION = 150; // In seconds.
+    label = States.sleep;
+    spriteLabel = 'idle';
+    horizontalDirection = HorizontalDirection.natural;
+
+    private sleepDuration: number; // Frames to sleep for.
+
+    constructor(pokemon: IPokemonType) {
+        super(pokemon);
+        this.idleCounter = 0;
+        this.pokemon = pokemon;
+
+        // Randomize sleeping time
+        const sleepSeconds = Math.random() * (this.MAX_SLEEP_DURATION - this.MIN_SLEEP_DURATION) + this.MIN_SLEEP_DURATION;
+        this.sleepDuration = sleepSeconds * 10; // Convert to frames
+        this.pokemon.showSleepingBubble(this.sleepDuration * 1000);
+    }
+
+    nextFrame(): FrameResult {
+        this.idleCounter++;
+        if (this.idleCounter > this.sleepDuration) {
+            return FrameResult.stateComplete;
+        }
+        return FrameResult.stateContinue;
+    }
 }

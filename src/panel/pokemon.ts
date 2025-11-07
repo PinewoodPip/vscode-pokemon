@@ -38,20 +38,48 @@ export class Pokemon extends BasePokemonType {
     sequenceStates: [
       {
         state: States.sitIdle,
-        possibleNextStates: [States.walkLeft, States.walkRight],
+        possibleNextStates: [
+          { state: States.walkLeft, weight: 1 },
+          { state: States.walkRight, weight: 1 },
+          { state: States.sleep, weight: 0.1 },
+        ],
       },
       {
         state: States.walkLeft,
-        possibleNextStates: [States.sitIdle, States.walkRight],
+        possibleNextStates: [
+          { state: States.sitIdle, weight: 1 },
+          { state: States.walkRight, weight: 1 },
+        ],
       },
       {
         state: States.walkRight,
-        possibleNextStates: [States.sitIdle, States.walkLeft],
+        possibleNextStates: [
+          { state: States.sitIdle, weight: 1 },
+          { state: States.walkLeft, weight: 1 },
+        ],
       },
       {
         state: States.idleWithBall,
         // Reset to walking after catching a ball.
-        possibleNextStates: [States.walkRight, States.walkLeft],
+        possibleNextStates: [
+          { state: States.walkRight, weight: 1 },
+          { state: States.walkLeft, weight: 1 },
+        ],
+      },
+      {
+        state: States.sleep,
+        possibleNextStates: [
+          { state: States.sitIdle, weight: 1 }, // Wake up and stand a little first before moving around
+        ],
+      },
+      {
+        // Note: exiting from this state onto another only happens if the pokemon was sleeping; otherwsie swiping stores the previous state & restores it afterwards
+        state: States.swipe,
+        possibleNextStates: [
+          { state: States.sitIdle, weight: 1 },
+          { state: States.walkLeft, weight: 1 },
+          { state: States.walkRight, weight: 1 },
+        ],
       },
     ],
   };

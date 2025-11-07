@@ -1,5 +1,6 @@
 import { PokemonColor, PokemonGeneration, PokemonSize, PokemonSpeed } from '../common/types';
-import { ISequenceTree } from './sequences';
+import { getWeightedRandom } from '../common/util';
+import { ISequenceTree, SequenceStateEntry } from './sequences';
 import {
     States,
     IState,
@@ -34,6 +35,7 @@ export abstract class BasePokemonType implements IPokemonType {
     static possibleColors: PokemonColor[];
     currentState: IState;
     currentStateEnum: States;
+    /** State to return to after current one completes. Used to temporarily override currentstate with another. */
     holdState: IState | undefined;
     holdStateEnum: States | undefined;
     private el: HTMLImageElement;
@@ -218,6 +220,17 @@ export abstract class BasePokemonType implements IPokemonType {
         }, duration);
     }
 
+    showSleepingBubble(duration: number = 3000) {
+        // Extract the media folder
+        const segments = this.pokemonRoot.split('/');
+        const basePath = segments.slice(0, segments.length - 3).join('/');
+        this.speech.src = `${basePath}/sleeping.png`;
+        this.speech.style.display = 'block';
+        setTimeout(() => {
+            this.hideSpeechBubble();
+        }, duration);
+    }
+
     hideSpeechBubble() {
         this.speech.style.display = 'none';
     }
@@ -226,8 +239,13 @@ export abstract class BasePokemonType implements IPokemonType {
         if (this.currentStateEnum === States.swipe) {
             return;
         }
-        this.holdState = this.currentState;
-        this.holdStateEnum = this.currentStateEnum;
+        // Only restore state after swiping if not sleeping
+        // ie. swipe will cause the pokemon to roll a new state after the swipe,
+        // rather than returning to sleep
+        if (this.currentStateEnum !== States.sleep) {
+            this.holdState = this.currentState;
+            this.holdStateEnum = this.currentStateEnum;
+        }
         this.currentStateEnum = States.swipe;
         this.currentState = resolveState(this.currentStateEnum, this);
         this.showSpeechBubble();
@@ -255,7 +273,7 @@ export abstract class BasePokemonType implements IPokemonType {
 
     chooseNextState(fromState: States): States {
         // Work out next state
-        var possibleNextStates: States[] | undefined = undefined;
+        var possibleNextStates: SequenceStateEntry[] | undefined = undefined;
         for (var i = 0; i < this.sequence.sequenceStates.length; i++) {
             if (this.sequence.sequenceStates[i].state === fromState) {
                 possibleNextStates =
@@ -265,9 +283,9 @@ export abstract class BasePokemonType implements IPokemonType {
         if (!possibleNextStates) {
             throw new InvalidStateError(fromState, this.label);
         }
-        // randomly choose the next state
-        const idx = Math.floor(Math.random() * possibleNextStates.length);
-        return possibleNextStates[idx];
+        // randomly choose the next state based on weight
+        const nextState = getWeightedRandom(possibleNextStates);
+        return nextState.state;
     }
 
     nextFrame() {
