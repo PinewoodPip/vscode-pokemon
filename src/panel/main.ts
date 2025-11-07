@@ -7,6 +7,8 @@ import {
     Theme,
     ColorThemeKind,
     WebviewMessage,
+    THEMES_WITH_DARK_AND_SIZE_VARIANTS,
+    BACKGROUND_SIZE_OVERRIDE,
 } from '../common/types';
 import { IPokemonType } from './states';
 import {
@@ -102,6 +104,18 @@ function calculateFloor(size: PokemonSize, theme: Theme): number {
                 case PokemonSize.nano:
                 default:
                     return 20;
+            }
+        default:
+            switch (size) {
+                case PokemonSize.small:
+                    return 40;
+                case PokemonSize.medium:
+                    return 50;
+                case PokemonSize.large:
+                    return 75;
+                case PokemonSize.nano:
+                default:
+                    return 30;
             }
     }
     return 0;
@@ -363,9 +377,16 @@ export function pokemonPanelApp(
                 break;
         }
 
-        document.body.style.backgroundImage = `url('${basePokemonUri}/backgrounds/${theme}/background-${_themeKind}-${pokemonSize}.png')`;
-        // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-        foregroundEl!.style.backgroundImage = `url('${basePokemonUri}/backgrounds/${theme}/foreground-${_themeKind}-${pokemonSize}.png')`;
+        if (THEMES_WITH_DARK_AND_SIZE_VARIANTS.includes(theme)) {
+            document.body.style.backgroundImage = `url('${basePokemonUri}/backgrounds/${theme}/background-${_themeKind}-${pokemonSize}.png')`;
+            // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+            foregroundEl!.style.backgroundImage = `url('${basePokemonUri}/backgrounds/${theme}/foreground-${_themeKind}-${pokemonSize}.png')`;
+        } else {
+            document.body.style.backgroundImage = `url('${basePokemonUri}/backgrounds/${theme}/background.png')`;
+            document.body.style.backgroundSize = BACKGROUND_SIZE_OVERRIDE[theme] || '550px'; // Tileset-based backgrounds are built for this default size
+            foregroundEl!.style.backgroundImage = `url('${basePokemonUri}/backgrounds/${theme}/foreground.png')`;
+            foregroundEl!.style.backgroundSize = BACKGROUND_SIZE_OVERRIDE[theme] || '550px';
+        }
 
         floor = calculateFloor(pokemonSize, theme); // Themes have pokemonCollection at a specified height from the ground
     } else {

@@ -185,7 +185,12 @@
                             "forest",
                             "castle",
                             "beach",
-                            "black-and-white-route"
+                            "black-and-white-route",
+                            "grassy-route",
+                            "seaside-gazebo",
+                            "cabin",
+                            "haunted-woods",
+                            "coastal-cave"
                         ],
                         "default": "none",
                         "description": "Background theme assets for your pokemon"

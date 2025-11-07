@@ -65,6 +65,11 @@ export const enum Theme {
     castle = 'castle',
     beach = 'beach',
     blackAndWhiteRoute = 'black-and-white-route',
+    grassyRoute = 'grassy-route',
+    seasideGazebo = 'seaside-gazebo',
+    cabin = 'cabin',
+    hauntedWoods = 'haunted-woods',
+    coastalCave = 'coastal-cave',
 }
 
 export const enum ColorThemeKind {
@@ -92,4 +97,10 @@ export const ALL_SCALES = [
     PokemonSize.medium,
     PokemonSize.large,
 ];
-export const ALL_THEMES = [Theme.none, Theme.forest, Theme.castle, Theme.beach, Theme.blackAndWhiteRoute];
+export const ALL_THEMES = [Theme.none, Theme.forest, Theme.castle, Theme.beach, Theme.blackAndWhiteRoute, Theme.grassyRoute, Theme.seasideGazebo, Theme.cabin, Theme.hauntedWoods, Theme.coastalCave];
+export const THEMES_WITH_DARK_AND_SIZE_VARIANTS = [Theme.forest, Theme.castle, Theme.beach, Theme.blackAndWhiteRoute];
+export const BACKGROUND_SIZE_OVERRIDE: { [key in Theme]?: string } = {
+    [Theme.grassyRoute]: '720px',
+    [Theme.seasideGazebo]: '720px',
+    [Theme.coastalCave]: '320px',
+};
