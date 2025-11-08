@@ -603,6 +603,7 @@ export function pokemonPanelApp(
                 // Make hungry pokemon that like the berry chase it
                 allPokemon.pokemonCollection.forEach((pokeEl) => {
                     if (pokeEl.pokemon.needs.isHungry() && pokeEl.pokemon.likesBerry(berry.foodConfig) && !pokeEl.pokemon.isChasingEntity()) {
+                        pokeEl.pokemon.showBubble('hungry.png', 2000);
                         pokeEl.pokemon.chaseEntity(berry, canvas, (entity) => {
                             const berry = entity as Berry;
                             pokeEl.pokemon.needs.feed(berry.foodConfig.hungerRestored);
