@@ -47,6 +47,7 @@ var entityManager: PhysicsEntityManager | null = null;
 var floor: number;
 var mediaPath: string;
 var pokemonSize: PokemonSize;
+var activePokeballs: Pokeball[] = [];
 
 export function setupBallThrowing(
     pokemonSize_: PokemonSize,
@@ -63,13 +64,23 @@ export function setupBallThrowing(
     }
 }
 
-function throwBallWithManager(startX: number, startY: number, velocityX: number, velocityY: number, pokemon: IPokemonCollection): void {
+function throwBallWithManager(startX: number, startY: number, velocityX: number, velocityY: number, pokemon: IPokemonCollection, removeOldBalls: boolean = false): void {
     if (!entityManager) {
         return;
     }
     
+    // Remove old balls if requested
+    if (removeOldBalls) {
+        activePokeballs.forEach(ball => ball.deactivate());
+        activePokeballs = [];
+    }
+    
     const pokeball = new Pokeball(pokemonSize, mediaPath, floor, startX, startY, velocityX, velocityY);
     entityManager.addEntity(pokeball);
+    activePokeballs.push(pokeball);
+    
+    // Clean up inactive pokeballs from the list
+    activePokeballs = activePokeballs.filter(ball => ball.isActive());
     
     // Make pokemon chase the pokeball
     pokemon.pokemonCollection.forEach((pokeEl) => {
@@ -127,7 +138,8 @@ export function dynamicThrowOn(pokemon: IPokemonCollection) {
                 endMouseY,
                 endMouseX - startMouseX,
                 endMouseY - startMouseY,
-                pokemon
+                pokemon,
+                true // Remove old balls when throwing a new one
             );
         };
     };

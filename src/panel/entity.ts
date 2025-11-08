@@ -230,6 +230,7 @@ export class PhysicsEntityManager {
             if (this.entities.some(e => e.isActive())) {
                 this.animationFrameId = requestAnimationFrame(loop);
             } else {
+                this.clearCanvas();
                 this.animationFrameId = null;
             }
         };
@@ -254,7 +255,7 @@ export class PhysicsEntityManager {
 
         // Clear canvas and redraw all entities
         const ctx = this.canvas.getContext('2d') as CanvasRenderingContext2D;
-        ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+        this.clearCanvas();
 
         for (const entity of this.entities) {
             if (entity.isActive()) {
@@ -264,6 +265,11 @@ export class PhysicsEntityManager {
 
         // Remove inactive entities
         this.entities = this.entities.filter(e => e.isActive());
+    }
+
+    clearCanvas(): void {
+        const ctx = this.canvas.getContext('2d') as CanvasRenderingContext2D;
+        ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
     }
 
     clear(): void {
