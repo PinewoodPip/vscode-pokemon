@@ -6,6 +6,7 @@ import {
     PokemonType,
     ColorThemeKind,
     WebviewMessage,
+    CombatPokemon,
 } from '../common/types';
 import { ALL_THEMES, Theme } from './themes';
 import { IPokemonType } from './states';
@@ -24,7 +25,7 @@ import {
     throwAndChase,
 } from './pokeball';
 import { PokemonElementState, PokemonPanelState } from './states';
-import { getRandomPokemonConfig } from '../common/pokemon-data';
+import { getRandomPokemonConfig, POKEMON_DATA, getRandomPokemonByTypes } from '../common/pokemon-data';
 import { clamp } from '../common/util';
 import { PhysicsEntityManager, Berry } from './entity';
 import { Pokemon, PokemonNeedsState } from './pokemon';
@@ -43,6 +44,12 @@ export var allPokemon: IPokemonCollection = new PokemonCollection();
 var pokemonCounter: number;
 var lastMouseX: number | undefined;
 var physicsEntityManager: PhysicsEntityManager;
+
+// Combat state
+let combatActive = false;
+let playerPokemon: CombatPokemon | null = null;
+let enemyPokemon: CombatPokemon | null = null;
+let combatInterval: number | null = null;
 
 // Tooltip management
 export interface TooltipLine {
@@ -505,6 +512,10 @@ export function pokemonPanelApp(
     }
 
     initCanvas();
+
+    // Hide combat UI
+    const combatContainer = document.getElementById('combatContainer') as HTMLDivElement;
+    combatContainer.style.display = 'none';
     
     // Initialize physics entity manager
     const canvas = document.getElementById('pokemonCanvas') as HTMLCanvasElement;
@@ -518,10 +529,326 @@ export function pokemonPanelApp(
         dynamicThrowOff();
     }
 
+    // Combat functions
+    function getTypeEffectiveness(attackerTypes: string[], defenderTypes: string[]): number {
+        // Simplified type effectiveness chart
+        const typeChart: { [key: string]: { [key: string]: number } } = {
+            fire: { grass: 2, ice: 2, bug: 2, steel: 2, water: 0.5, fire: 0.5, rock: 0.5, dragon: 0.5 },
+            water: { fire: 2, ground: 2, rock: 2, grass: 0.5, water: 0.5, dragon: 0.5 },
+            grass: { water: 2, ground: 2, rock: 2, fire: 0.5, grass: 0.5, poison: 0.5, flying: 0.5, bug: 0.5, dragon: 0.5, steel: 0.5 },
+            electric: { water: 2, flying: 2, grass: 0.5, electric: 0.5, ground: 0, dragon: 0.5 },
+            normal: { rock: 0.5, ghost: 0, steel: 0.5 },
+            fighting: { normal: 2, ice: 2, rock: 2, dark: 2, steel: 2, poison: 0.5, flying: 0.5, psychic: 0.5, bug: 0.5, fairy: 0.5, ghost: 0 },
+            flying: { grass: 2, fighting: 2, bug: 2, electric: 0.5, rock: 0.5, steel: 0.5 },
+            poison: { grass: 2, fairy: 2, poison: 0.5, ground: 0.5, rock: 0.5, ghost: 0.5, steel: 0 },
+            ground: { fire: 2, electric: 2, poison: 2, rock: 2, steel: 2, grass: 0.5, bug: 0.5, flying: 0 },
+            rock: { fire: 2, ice: 2, flying: 2, bug: 2, fighting: 0.5, ground: 0.5, steel: 0.5 },
+            bug: { grass: 2, psychic: 2, dark: 2, fire: 0.5, fighting: 0.5, poison: 0.5, flying: 0.5, ghost: 0.5, steel: 0.5, fairy: 0.5 },
+            ghost: { psychic: 2, ghost: 2, dark: 0.5, normal: 0 },
+            steel: { ice: 2, rock: 2, fairy: 2, fire: 0.5, water: 0.5, electric: 0.5, steel: 0.5 },
+            psychic: { fighting: 2, poison: 2, psychic: 0.5, steel: 0.5, dark: 0 },
+            ice: { grass: 2, ground: 2, flying: 2, dragon: 2, fire: 0.5, water: 0.5, ice: 0.5, steel: 0.5 },
+            dragon: { dragon: 2, steel: 0.5, fairy: 0 },
+            dark: { psychic: 2, ghost: 2, fighting: 0.5, dark: 0.5, fairy: 0.5 },
+            fairy: { fighting: 2, dragon: 2, dark: 2, fire: 0.5, poison: 0.5, steel: 0.5 }
+        };
+
+        let effectiveness = 1;
+        for (const attackType of attackerTypes) {
+            for (const defenderType of defenderTypes) {
+                const typeMultiplier = typeChart[attackType]?.[defenderType];
+                if (typeMultiplier !== undefined) {
+                    effectiveness *= typeMultiplier;
+                }
+            }
+        }
+        return effectiveness;
+    }
+
+    function calculateDamage(attacker: CombatPokemon, defender: CombatPokemon): { damage: number, effectiveness: number } {
+        const baseDamage = Math.floor(attacker.config.stats.attack * 0.4);
+        const effectiveness = getTypeEffectiveness(attacker.config.types, defender.config.types);
+        const randomFactor = 0.85 + Math.random() * 0.15; // 85-100%
+        const damage = Math.max(1, Math.floor(baseDamage * effectiveness * randomFactor));
+        return { damage, effectiveness };
+    }
+
+    function updateCombatUI() {
+        if (!playerPokemon || !enemyPokemon) {
+            return;
+        }
+
+        // Update player info
+        const playerNameEl = document.getElementById('playerName');
+        const playerHpFill = document.getElementById('playerHpFill');
+        const playerHpText = document.getElementById('playerHpText');
+        if (playerNameEl) {
+            playerNameEl.textContent = playerPokemon.name;
+        }
+        if (playerHpFill) {
+            const hpPercent = (playerPokemon.currentHp / playerPokemon.maxHp) * 100;
+            playerHpFill.style.width = `${hpPercent}%`;
+            playerHpFill.className = 'hp-fill';
+            if (hpPercent < 25) {
+                playerHpFill.classList.add('critical');
+            } else if (hpPercent < 50) {
+                playerHpFill.classList.add('low');
+            }
+        }
+        if (playerHpText) {
+            playerHpText.textContent = `HP: ${playerPokemon.currentHp}/${playerPokemon.maxHp}`;
+        }
+
+        // Update enemy info
+        const enemyNameEl = document.getElementById('enemyName');
+        const enemyHpFill = document.getElementById('enemyHpFill');
+        const enemyHpText = document.getElementById('enemyHpText');
+        if (enemyNameEl) {
+            enemyNameEl.textContent = enemyPokemon.name;
+        }
+        if (enemyHpFill) {
+            const hpPercent = (enemyPokemon.currentHp / enemyPokemon.maxHp) * 100;
+            enemyHpFill.style.width = `${hpPercent}%`;
+            enemyHpFill.className = 'hp-fill';
+            if (hpPercent < 25) {
+                enemyHpFill.classList.add('critical');
+            } else if (hpPercent < 50) {
+                enemyHpFill.classList.add('low');
+            }
+        }
+        if (enemyHpText) {
+            enemyHpText.textContent = `HP: ${enemyPokemon.currentHp}/${enemyPokemon.maxHp}`;
+        }
+
+        // Update sprites
+        const playerSprite = document.getElementById('playerSprite') as HTMLImageElement;
+        const enemySprite = document.getElementById('enemySprite') as HTMLImageElement;
+        if (playerSprite) {
+            playerSprite.src = `${basePokemonUri}/${playerPokemon.generation}/${playerPokemon.type}/default_walk_8fps.gif`;
+            console.log(playerSprite.src);
+        }
+        if (enemySprite) {
+            enemySprite.src = `${basePokemonUri}/${enemyPokemon.generation}/${enemyPokemon.type}/default_walk_8fps.gif`;
+        }
+    }
+
+    function addCombatLog(message: string, className: string = '') {
+        const logEl = document.getElementById('combatLog');
+        if (logEl) {
+            const entry = document.createElement('div');
+            entry.className = `combat-log-entry ${className}`;
+            entry.textContent = message;
+            logEl.appendChild(entry);
+            logEl.scrollTop = logEl.scrollHeight;
+        }
+    }
+
+    function endCombat(playerWon: boolean) {
+        combatActive = false;
+        if (combatInterval) {
+            clearInterval(combatInterval);
+            combatInterval = null;
+        }
+
+        // Show victory/defeat message
+        const message = playerWon 
+            ? `Victory! ${playerPokemon?.name} defeated ${enemyPokemon?.name}!`
+            : `${playerPokemon?.name} fainted! ${enemyPokemon?.name} won!`;
+        addCombatLog(message, 'info');
+        stateApi?.postMessage({
+            command: 'info',
+            text: message,
+        });
+        
+        setTimeout(() => {
+            const combatContainer = document.getElementById('combatContainer');
+            const pokemonContainer = document.getElementById('pokemonContainer');
+            const foreground = document.getElementById('foreground');
+            if (combatContainer) {
+                combatContainer.style.display = 'none';
+            }
+            if (pokemonContainer) {
+                pokemonContainer.style.display = 'block';
+            }
+            if (foreground) {
+                foreground.style.display = 'block';
+            }
+            
+            // Clear combat log
+            const logEl = document.getElementById('combatLog');
+            if (logEl) {
+                logEl.innerHTML = '';
+            }
+        }, 3000);
+    }
+
+    function executeCombatTurn() {
+        if (!playerPokemon || !enemyPokemon || !combatActive) {
+            return;
+        }
+
+        // Determine who goes first based on speed
+        const playerFirst = playerPokemon.config.stats.speed >= enemyPokemon.config.stats.speed;
+        
+        const attackers = playerFirst 
+            ? [{ pokemon: playerPokemon, target: enemyPokemon, isPlayer: true }, { pokemon: enemyPokemon, target: playerPokemon, isPlayer: false }]
+            : [{ pokemon: enemyPokemon, target: playerPokemon, isPlayer: false }, { pokemon: playerPokemon, target: enemyPokemon, isPlayer: true }];
+
+        for (const { pokemon, target, isPlayer } of attackers) {
+            if (target.currentHp <= 0) {
+                continue;
+            }
+
+            const { damage, effectiveness } = calculateDamage(pokemon, target);
+            target.currentHp = Math.max(0, target.currentHp - damage);
+
+            let effectivenessText = '';
+            let logClass = 'damage';
+            if (effectiveness > 1) {
+                effectivenessText = " It's super effective!";
+                logClass = 'super-effective';
+            } else if (effectiveness < 1 && effectiveness > 0) {
+                effectivenessText = " It's not very effective...";
+                logClass = 'not-very-effective';
+            } else if (effectiveness === 0) {
+                effectivenessText = " It had no effect...";
+                logClass = 'not-very-effective';
+            }
+
+            addCombatLog(`${pokemon.name} attacks ${target.name} for ${damage} damage!${effectivenessText}`, logClass);
+
+            if (target.currentHp <= 0) {
+                endCombat(isPlayer);
+                break;
+            }
+        }
+
+        updateCombatUI();
+    }
+
+    function startCombat() {
+        // Pick random pokemon from user's collection
+        if (allPokemon.pokemonCollection.length === 0) {
+            stateApi?.postMessage({
+                command: 'info',
+                text: 'You need at least one Pokemon to start combat!',
+            });
+            return;
+        }
+
+        const playerPokemonEl = allPokemon.pokemonCollection[Math.floor(Math.random() * allPokemon.pokemonCollection.length)];
+        
+        // Pick random enemy pokemon from current theme
+        const currentTheme = getConfiguredTheme();
+        const themeConfig = ALL_THEMES.find(t => t.id === currentTheme);
+        
+        let enemyPokemonType: PokemonType;
+        let enemyPokemonConfig;
+        
+        if (themeConfig && themeConfig.autoSpawnTypes.length > 0) {
+            const result = getRandomPokemonByTypes(themeConfig.autoSpawnTypes);
+            if (result) {
+                [enemyPokemonType, enemyPokemonConfig] = result;
+            } else {
+                [enemyPokemonType, enemyPokemonConfig] = getRandomPokemonConfig();
+            }
+        } else {
+            [enemyPokemonType, enemyPokemonConfig] = getRandomPokemonConfig();
+        }
+
+        // Initialize combat pokemon
+        playerPokemon = {
+            name: playerPokemonEl.pokemon.name,
+            type: playerPokemonEl.type,
+            color: playerPokemonEl.color,
+            generation: playerPokemonEl.generation,
+            originalSpriteSize: playerPokemonEl.originalSpriteSize,
+            config: POKEMON_DATA[playerPokemonEl.type],
+            currentHp: POKEMON_DATA[playerPokemonEl.type].stats.hp,
+            maxHp: POKEMON_DATA[playerPokemonEl.type].stats.hp,
+        };
+
+        enemyPokemon = {
+            name: enemyPokemonConfig.name,
+            type: enemyPokemonType,
+            color: enemyPokemonConfig.possibleColors[0],
+            generation: `gen${enemyPokemonConfig.generation}`,
+            originalSpriteSize: enemyPokemonConfig.originalSpriteSize ?? 32,
+            config: enemyPokemonConfig,
+            currentHp: enemyPokemonConfig.stats.hp,
+            maxHp: enemyPokemonConfig.stats.hp,
+        };
+
+        combatActive = true;
+
+        // Show combat UI, hide pokemon container
+        const combatContainer = document.getElementById('combatContainer');
+        const pokemonContainer = document.getElementById('pokemonContainer');
+        const foreground = document.getElementById('foreground');
+        if (combatContainer) {
+            combatContainer.style.display = 'flex';
+        }
+        if (pokemonContainer) {
+            pokemonContainer.style.display = 'none';
+        }
+        if (foreground) {
+            foreground.style.display = 'none';
+        }
+
+        updateCombatUI();
+        addCombatLog(`A wild ${enemyPokemon.name} appeared!`, 'info');
+        addCombatLog(`Go! ${playerPokemon.name}!`, 'info');
+
+        // Start combat turns
+        combatInterval = window.setInterval(() => {
+            executeCombatTurn();
+        }, 2000);
+    }
+
+    function getConfiguredTheme(): Theme {
+        // Extract from initial params - we'll use the theme passed to the function
+        return theme;
+    }
+
+    // Setup exit combat button
+    const exitCombatBtn = document.getElementById('exitCombatBtn');
+    if (exitCombatBtn) {
+        exitCombatBtn.addEventListener('click', () => {
+            if (combatInterval) {
+                clearInterval(combatInterval);
+                combatInterval = null;
+            }
+            combatActive = false;
+            
+            const combatContainer = document.getElementById('combatContainer');
+            const pokemonContainer = document.getElementById('pokemonContainer');
+            const foreground = document.getElementById('foreground');
+            if (combatContainer) {
+                combatContainer.style.display = 'none';
+            }
+            if (pokemonContainer) {
+                pokemonContainer.style.display = 'block';
+            }
+            if (foreground) {
+                foreground.style.display = 'block';
+            }
+            
+            // Clear combat log
+            const logEl = document.getElementById('combatLog');
+            if (logEl) {
+                logEl.innerHTML = '';
+            }
+        });
+    }
+
     // Handle messages sent from the extension to the webview
     window.addEventListener('message', (event): void => {
         const message = event.data; // The json data that the extension sent
         switch (message.command) {
+            case 'start-combat':
+                startCombat();
+                break;
+
             case 'spawn-pokemon':
                 allPokemon.push(
                     addPokemonToPanel(

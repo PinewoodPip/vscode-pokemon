@@ -337,6 +337,21 @@ export function activate(context: vscode.ExtensionContext) {
         }),
     );
     context.subscriptions.push(
+        vscode.commands.registerCommand('vscode-pokemon.start-combat', async () => {
+            const panel = getPokemonPanel();
+            if (getConfigurationPosition() === ExtPosition.explorer && webviewViewProvider) {
+                await vscode.commands.executeCommand('pokemonView.focus');
+            }
+            if (panel) {
+                panel.startCombat();
+            } else {
+                await vscode.window.showInformationMessage(
+                    vscode.l10n.t('Please start the Pokemon panel first using the "Start Pokemon" command.'),
+                );
+            }
+        }),
+    );
+    context.subscriptions.push(
         vscode.commands.registerCommand('vscode-pokemon.throw-ball', () => {
             const panel = getPokemonPanel();
             if (panel !== undefined) {
@@ -1001,6 +1016,7 @@ interface IPokemonPanel {
     updateTheme(newTheme: Theme, themeKind: vscode.ColorThemeKind): void;
     update(): void;
     setThrowWithMouse(newThrowWithMouse: boolean): void;
+    startCombat(): void;
 }
 
 class PokemonWebviewContainer implements IPokemonPanel {
@@ -1101,6 +1117,12 @@ class PokemonWebviewContainer implements IPokemonPanel {
     public throwBall() {
         void this.getWebview().postMessage({
             command: 'throw-ball',
+        });
+    }
+
+    public startCombat() {
+        void this.getWebview().postMessage({
+            command: 'start-combat',
         });
     }
 
@@ -1228,6 +1250,41 @@ class PokemonWebviewContainer implements IPokemonPanel {
                 <div id="pokemonContainer"></div>
                 <div id="foreground"></div>
                 <div id="pokemonTooltip" class="pokemon-tooltip"></div>
+                <div id="combatContainer" style="display: none;">
+                    <div id="combatUI">
+                        <div id="combatTitle">POKEMON BATTLE!</div>
+                        <div id="combatArena">
+                            <div id="playerPokemonSection" class="combat-pokemon-section">
+                                <div class="pokemon-info">
+                                    <div class="pokemon-name" id="playerName">???</div>
+                                    <div class="hp-bar-container">
+                                        <div class="hp-bar" id="playerHpBar">
+                                            <div class="hp-fill" id="playerHpFill"></div>
+                                        </div>
+                                        <div class="hp-text" id="playerHpText">HP: 0/0</div>
+                                    </div>
+                                </div>
+                                <img id="playerSprite" class="combat-sprite" />
+                            </div>
+                            <div id="enemyPokemonSection" class="combat-pokemon-section">
+                                <div class="pokemon-info">
+                                    <div class="pokemon-name" id="enemyName">???</div>
+                                    <div class="hp-bar-container">
+                                        <div class="hp-bar" id="enemyHpBar">
+                                            <div class="hp-fill" id="enemyHpFill"></div>
+                                        </div>
+                                        <div class="hp-text" id="enemyHpText">HP: 0/0</div>
+                                    </div>
+                                </div>
+                                <img id="enemySprite" class="combat-sprite flip-x" />
+                            </div>
+                        </div>
+                        <div id="combatLog"></div>
+                        <div id="combatActions">
+                            <button id="exitCombatBtn">Exit Combat</button>
+                        </div>
+                    </div>
+                </div>
                 <script nonce="${nonce}" src="${scriptUri}"></script>
                 <script nonce="${nonce}">
                     pokemonApp.pokemonPanelApp(

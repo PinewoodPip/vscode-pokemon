@@ -96,6 +96,17 @@ export class WebviewMessage {
     }
 }
 
+export interface CombatPokemon {
+    name: string;
+    type: PokemonType;
+    color: PokemonColor;
+    generation: string;
+    originalSpriteSize: number;
+    config: PokemonConfig;
+    currentHp: number;
+    maxHp: number;
+}
+
 export const ALL_COLORS = [
     PokemonColor.default,
 ];
