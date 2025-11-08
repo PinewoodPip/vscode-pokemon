@@ -39,6 +39,7 @@
         "onCommand:vscode-pokemon.export-pokemon-list",
         "onCommand:vscode-pokemon.import-pokemon-list",
         "onCommand:vscode-pokemon.throw-ball",
+        "onCommand:vscode-pokemon.throw-berry",
         "onCommand:vscode-pokemon.change-theme",
         "onCommand:vscode-pokemon.reset-pokemon-position",
         "onWebviewPanel:pokemonCoding",
@@ -148,6 +149,11 @@
                     "dark": "media/icon/dark-circle-outline.svg",
                     "light": "media/icon/light-circle-outline.svg"
                 }
+            },
+            {
+                "command": "vscode-pokemon.throw-berry",
+                "title": "Throw Berry",
+                "category": "Pokemon Coding"
             },
             {
                 "command": "vscode-pokemon.change-theme",

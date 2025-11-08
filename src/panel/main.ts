@@ -26,6 +26,8 @@ import {
 import { BallState, PokemonElementState, PokemonPanelState } from './states';
 import { getRandomPokemonConfig } from '../common/pokemon-data';
 import { clamp } from '../common/util';
+import { PhysicsEntityManager, Berry } from './entity';
+import { PokemonNeedsState } from './pokemon';
 
 /* This is how the VS Code API can be invoked from the panel */
 declare global {
@@ -40,6 +42,7 @@ declare global {
 export var allPokemon: IPokemonCollection = new PokemonCollection();
 var pokemonCounter: number;
 var lastMouseX: number | undefined;
+var physicsEntityManager: PhysicsEntityManager;
 
 function calculateBallRadius(size: PokemonSize): number {
     if (size === PokemonSize.nano) {
@@ -144,6 +147,8 @@ function startAnimations(
     }
 
     collision.addEventListener('mouseover', handleMouseOver);
+
+    // Interval for updating pokemon
     setInterval(() => {
         var updates = allPokemon.seekNewFriends();
         updates.forEach((message) => {
@@ -152,7 +157,7 @@ function startAnimations(
                 command: 'info',
             });
         });
-        pokemon.nextFrame();
+        pokemon.update();
         saveState(stateApi);
     }, 100);
 }
@@ -169,7 +174,8 @@ function addPokemonToPanel(
     floor: number,
     name: string,
     stateApi?: VscodeStateApi,
-    incrementCounter: boolean = true
+    incrementCounter: boolean = true,
+    needs: PokemonNeedsState | undefined = undefined,
 ): PokemonElement {
     var pokemonSpriteElement: HTMLImageElement = document.createElement('img');
     pokemonSpriteElement.className = 'pokemon';
@@ -179,6 +185,7 @@ function addPokemonToPanel(
 
     var collisionElement: HTMLDivElement = document.createElement('div');
     collisionElement.className = 'collision';
+    collisionElement.title = name; // Set tooltip
     (document.getElementById('pokemonContainer') as HTMLDivElement).appendChild(
         collisionElement,
     );
@@ -208,7 +215,8 @@ function addPokemonToPanel(
             floor,
             name,
             gen,
-            originalSpriteSize
+            originalSpriteSize,
+            needs,
         );
         if (incrementCounter) {
             pokemonCounter++;
@@ -252,6 +260,7 @@ export function saveState(stateApi?: VscodeStateApi) {
             pokemonFriend: pokemonItem.pokemon.friend?.name ?? undefined,
             elLeft: pokemonItem.el.style.left,
             elBottom: pokemonItem.el.style.bottom,
+            needs: pokemonItem.pokemon.needs.serialize(),
         });
     });
     state.pokemonCounter = pokemonCounter;
@@ -294,7 +303,8 @@ function recoverState(
                 floor,
                 p.pokemonName ?? randomName(p.pokemonType ?? 'bulbasaur'),
                 stateApi,
-                false
+                false,
+                p.needs,
             );
             allPokemon.push(newPokemon);
             recoveryMap.set(newPokemon.pokemon, p);
@@ -435,6 +445,10 @@ export function pokemonPanelApp(
 
     initCanvas();
     setupBallThrowing(pokemonSize, floor, basePokemonUri);
+    
+    // Initialize physics entity manager
+    const canvas = document.getElementById('pokemonCanvas') as HTMLCanvasElement;
+    physicsEntityManager = new PhysicsEntityManager(canvas);
 
     if (throwBallWithMouse) {
         dynamicThrowOn(allPokemon);
@@ -512,7 +526,29 @@ export function pokemonPanelApp(
                     });
                 });
                 break;
+
+            case 'throw-berry':
+                var berryId = message.berry;
+                // Spawn berry at random position near top with random velocity
+                const startX = Math.random() * window.innerWidth;
+                const startY = floor + 25;
+                const velocityX = (Math.random() - 0.5) * 20;
+                const velocityY = Math.random() * 5 + 5;
                 
+                const berry = new Berry(berryId, basePokemonUri, floor, startX, startY, velocityX, velocityY);
+                physicsEntityManager.addEntity(berry);
+
+                // Make hungry pokemon that like the berry chase it
+                allPokemon.pokemonCollection.forEach((pokeEl) => {
+                    if (pokeEl.pokemon.needs.isHungry() && pokeEl.pokemon.likesBerry(berry.foodConfig) && !pokeEl.pokemon.isChasingEntity()) {
+                        pokeEl.pokemon.chaseEntity(berry, canvas, (entity) => {
+                            const berry = entity as Berry;
+                            pokeEl.pokemon.needs.feed(berry.foodConfig.hungerRestored);
+                        });
+                    }
+                });
+                break;
+
             case 'delete-pokemon':
                 var pokemon = allPokemon.locate(message.name);
                 if (pokemon) {

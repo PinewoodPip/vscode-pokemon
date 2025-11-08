@@ -16,6 +16,7 @@ import * as localize from '../common/localize';
 import { availableColors, normalizeColor } from '../panel/pokemon-collection';
 import { getDefaultPokemon, getPokemonByGeneration, getRandomPokemonConfig, getRandomPokemonByTypes, POKEMON_DATA } from '../common/pokemon-data';
 import { ALL_THEMES, Theme } from '../panel/themes';
+import { ALL_FOOD } from '../panel/food';
 
 const EXTRA_POKEMON_KEY = 'vscode-pokemon.extra-pokemon';
 const EXTRA_POKEMON_KEY_TYPES = EXTRA_POKEMON_KEY + '.types';
@@ -340,6 +341,30 @@ export function activate(context: vscode.ExtensionContext) {
             const panel = getPokemonPanel();
             if (panel !== undefined) {
                 panel.throwBall();
+            }
+        }),
+    );
+    context.subscriptions.push(
+        vscode.commands.registerCommand('vscode-pokemon.throw-berry', async () => {
+            const panel = getPokemonPanel();
+            if (panel !== undefined) {
+                const berryOptions = ALL_FOOD.map(food => ({
+                    label: food.name,
+                    value: food.id,
+                    // description: `Restores ${food.hungerRestored} hunger`, // Unnecessary unless we make them restore less than full hunger.
+                    detail: `Enjoyed by Pokemon of types ${food.enjoyedByTypes.join(', ')}`
+                }));
+
+                const selectedBerry = await vscode.window.showQuickPick(
+                    berryOptions,
+                    {
+                        placeHolder: 'Select a berry to throw',
+                    }
+                );
+
+                if (selectedBerry) {
+                    panel.throwBerry(selectedBerry.value);
+                }
             }
         }),
     );
@@ -962,6 +987,7 @@ function getWebviewOptions(
 
 interface IPokemonPanel {
     throwBall(): void;
+    throwBerry(berryId: string): void;
     resetPokemon(): void;
     spawnPokemon(spec: PokemonSpecification): void;
     deletePokemon(pokemonName: string): void;
@@ -1075,6 +1101,13 @@ class PokemonWebviewContainer implements IPokemonPanel {
     public throwBall() {
         void this.getWebview().postMessage({
             command: 'throw-ball',
+        });
+    }
+
+    public throwBerry(berryId: string) {
+        void this.getWebview().postMessage({
+            command: 'throw-berry',
+            berry: berryId,
         });
     }
 

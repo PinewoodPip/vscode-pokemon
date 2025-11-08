@@ -1,6 +1,13 @@
 import { PokemonColor, PokemonType } from '../common/types';
+import { PhysicsEntity } from './entity';
+import { PokemonFoodConfig } from './food';
+import { PokemonNeeds, PokemonNeedsState } from './pokemon';
 
 export interface IPokemonType {
+    isChasingEntity(): unknown;
+    chaseEntity(entity: PhysicsEntity, canvas: HTMLCanvasElement, onCaughtCallback: (entity: PhysicsEntity) => void): void;
+    likesBerry(berry: PokemonFoodConfig): unknown;
+    update(): unknown;
     nextFrame(): void;
 
     // Special methods for actions
@@ -11,6 +18,7 @@ export interface IPokemonType {
     speed: number;
     isMoving: boolean;
     hello: string;
+    needs: PokemonNeeds;
 
     // State API
     getState(): PokemonInstanceState;
@@ -34,14 +42,15 @@ export interface IPokemonType {
     isPlaying: boolean;
 
     showSpeechBubble(duration: number, friend: boolean): void;
-    showSleepingBubble(duration: number): void;
+    showBubble(img: string, duration: number): void;
 }
 
 export class PokemonInstanceState {
     currentStateEnum: States | undefined;
 }
 
-export class PokemonElementState {
+/** Serialized pokemon class. */
+export interface PokemonElementState {
     pokemonState: PokemonInstanceState | undefined;
     pokemonGeneration: string | undefined;
     originalSpriteSize: number | undefined;
@@ -51,6 +60,7 @@ export class PokemonElementState {
     elBottom: string | undefined;
     pokemonName: string | undefined;
     pokemonFriend: string | undefined;
+    needs: PokemonNeedsState;
 }
 
 export class PokemonPanelState {
@@ -82,6 +92,7 @@ export const enum States {
     standRight = 'stand-right',
     standLeft = 'stand-left',
     sleep = 'sleep',
+    chaseEntity = 'chase-entity',
 }
 
 export enum FrameResult {
@@ -396,6 +407,98 @@ export class ChaseState implements IState {
     }
 }
 
+export type ChaseEntityOnCaughtCallback = (entity: PhysicsEntity) => void;
+
+export class ChaseEntityState implements IState {
+    private readonly ENTITY_CATCH_CHANCE = 1;
+    private readonly INTERACTION_COOLDOWN_FRAMES = 20;
+    private readonly KICK_BASE_VELOCITY_Y = 3;
+    private readonly KICK_RANDOM_VELOCITY_Y = 7;
+    private readonly KICK_BASE_VELOCITY_X = 5;
+    private readonly KICK_RANDOM_VELOCITY_X = 10;
+
+    label = States.chaseEntity;
+    spriteLabel = 'walk';
+    horizontalDirection = HorizontalDirection.left;
+    targetEntity: PhysicsEntity;
+    canvas: HTMLCanvasElement;
+    pokemon: IPokemonType;
+    interactionCooldown: number = 0; // Cooldown between entity interactions, in frames.
+    onCaughtCallback: ChaseEntityOnCaughtCallback | undefined;
+
+    constructor(
+        pokemon: IPokemonType,
+        targetEntity: PhysicsEntity,
+        canvas: HTMLCanvasElement,
+        onCaughtCallback?: ChaseEntityOnCaughtCallback,
+    ) {
+        this.pokemon = pokemon;
+        this.targetEntity = targetEntity;
+        this.canvas = canvas;
+        this.onCaughtCallback = onCaughtCallback;
+    }
+
+    nextFrame(): FrameResult {
+        if (!this.targetEntity.isActive()) {
+            return FrameResult.stateComplete; // Entity was already caught (could also have been caught by another pokemon)
+        }
+        const state = this.targetEntity.state;
+        if (this.pokemon.left > state.cx) {
+            this.horizontalDirection = HorizontalDirection.left;
+            this.pokemon.positionLeft(this.pokemon.left - this.pokemon.speed);
+        } else {
+            this.horizontalDirection = HorizontalDirection.right;
+            this.pokemon.positionLeft(this.pokemon.left + this.pokemon.speed);
+        }
+
+        this.interactionCooldown -= 1;
+
+        // Check if the ball was caught
+        let stateResult = FrameResult.stateContinue;
+        if (
+            this.canvas.height - state.cy <
+            this.pokemon.width + this.pokemon.floor &&
+            state.cx < this.pokemon.left &&
+            this.pokemon.left < state.cx + 15 &&
+            this.interactionCooldown <= 0
+        ) {
+            // Random chance to catch the ball and celebrate
+            if (Math.random() < this.ENTITY_CATCH_CHANCE) {
+                this.catchEntity();
+                stateResult = FrameResult.stateComplete; // End the state
+            } else {
+                // Otherwise kick the ball
+                this.kickEntity();
+            }
+        }
+        return stateResult;
+    }
+
+    catchEntity() {
+        this.targetEntity.deactivate();
+
+        // Celebrate
+        this.pokemon.showSpeechBubble(2000, false);
+
+        // Run callback
+        if (this.onCaughtCallback) {
+            this.onCaughtCallback(this.targetEntity);
+        }
+    }
+
+    kickEntity() {
+        const kickDirection = this.horizontalDirection === HorizontalDirection.left ? -1 : 1; // Assumes kicking can only be done when facing left/right
+        const state = this.targetEntity.state;
+
+        // Add velocity to the ball
+        state.vy += this.KICK_BASE_VELOCITY_Y + Math.random() * this.KICK_RANDOM_VELOCITY_Y;
+        state.vx += kickDirection * (this.KICK_BASE_VELOCITY_X + Math.random() * this.KICK_RANDOM_VELOCITY_X);
+
+        // Reset kick cooldown
+        this.interactionCooldown = this.INTERACTION_COOLDOWN_FRAMES;
+    }
+}
+
 export class ChaseFriendState implements IState {
     label = States.chaseFriend;
     spriteLabel = 'run';
@@ -493,7 +596,7 @@ export class SleepState extends AbstractStaticState {
         // Randomize sleeping time
         const sleepSeconds = Math.random() * (this.MAX_SLEEP_DURATION - this.MIN_SLEEP_DURATION) + this.MIN_SLEEP_DURATION;
         this.sleepDuration = sleepSeconds * 10; // Convert to frames
-        this.pokemon.showSleepingBubble(this.sleepDuration * 1000);
+        this.pokemon.showBubble('sleeping.png', this.sleepDuration * 1000);
     }
 
     nextFrame(): FrameResult {

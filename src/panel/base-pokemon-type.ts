@@ -1,5 +1,7 @@
-import { PokemonColor, PokemonGeneration, PokemonSize, PokemonSpeed } from '../common/types';
+import { PokemonColor, PokemonSize, PokemonSpeed } from '../common/types';
 import { getWeightedRandom } from '../common/util';
+import { PhysicsEntity } from './entity';
+import { PokemonNeeds } from './pokemon';
 import { ISequenceTree, SequenceStateEntry } from './sequences';
 import {
     States,
@@ -12,6 +14,8 @@ import {
     HorizontalDirection,
     FrameResult,
     IPokemonType,
+    ChaseEntityState,
+    ChaseEntityOnCaughtCallback,
 } from './states';
 
 export class InvalidStateError extends Error {
@@ -38,8 +42,8 @@ export abstract class BasePokemonType implements IPokemonType {
     /** State to return to after current one completes. Used to temporarily override currentstate with another. */
     holdState: IState | undefined;
     holdStateEnum: States | undefined;
-    private el: HTMLImageElement;
-    private collision: HTMLDivElement;
+    protected el: HTMLImageElement;
+    protected collision: HTMLDivElement;
     private speech: HTMLImageElement;
     private _left: number;
     private _bottom: number;
@@ -51,6 +55,7 @@ export abstract class BasePokemonType implements IPokemonType {
     private _size: PokemonSize;
     private _generation: string;
     private _originalSpriteSize: number;
+    needs: PokemonNeeds;
 
     constructor(
         spriteElement: HTMLImageElement,
@@ -82,6 +87,8 @@ export abstract class BasePokemonType implements IPokemonType {
         this._name = name;
         this._size = size;
         this._generation = generation;
+
+        this.needs = new PokemonNeeds();
 
         // Increment the static count of the Pokemon class that the constructor belongs to
         (this.constructor as any).count += 1;
@@ -196,13 +203,14 @@ export abstract class BasePokemonType implements IPokemonType {
     }
 
     get canSwipe() {
-        return !isStateAboveGround(this.currentStateEnum);
+        return !isStateAboveGround(this.currentStateEnum) && !this.isChasingEntity();
     }
 
     get canChase() {
         return !isStateAboveGround(this.currentStateEnum) && this.isMoving;
     }
 
+    // TODO consolidate with showBubble()
     showSpeechBubble(duration: number = 3000, friend: boolean = false) {
         // Extract the media folder
         const segments = this.pokemonRoot.split('/');
@@ -220,11 +228,11 @@ export abstract class BasePokemonType implements IPokemonType {
         }, duration);
     }
 
-    showSleepingBubble(duration: number = 3000) {
+    showBubble(img: string, duration: number = 3000) {
         // Extract the media folder
         const segments = this.pokemonRoot.split('/');
         const basePath = segments.slice(0, segments.length - 3).join('/');
-        this.speech.src = `${basePath}/sleeping.png`;
+        this.speech.src = `${basePath}/${img}`;
         this.speech.style.display = 'block';
         setTimeout(() => {
             this.hideSpeechBubble();
@@ -254,6 +262,11 @@ export abstract class BasePokemonType implements IPokemonType {
     chase(ballState: BallState, canvas: HTMLCanvasElement) {
         this.currentStateEnum = States.chase;
         this.currentState = new ChaseState(this, ballState, canvas);
+    }
+
+    chaseEntity(entity: PhysicsEntity, canvas: HTMLCanvasElement, onCaughtCallback: ChaseEntityOnCaughtCallback | undefined) {
+        this.currentStateEnum = States.chaseEntity;
+        this.currentState = new ChaseEntityState(this, entity, canvas, onCaughtCallback);
     }
 
     faceLeft() {
@@ -371,5 +384,17 @@ export abstract class BasePokemonType implements IPokemonType {
 
     get emoji(): string {
         return '🐶';
+    }
+
+    isChasingEntity(): boolean {
+        return this.currentStateEnum === States.chaseEntity;
+    }
+
+    update(): unknown {
+        throw new Error('Method not implemented.');
+    }
+
+    likesBerry(_: any): unknown {
+        throw new Error('Method not implemented.');
     }
 }

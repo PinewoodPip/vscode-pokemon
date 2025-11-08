@@ -1,5 +1,5 @@
-import { PokemonColor, PokemonGeneration, PokemonSize, PokemonSpeed, PokemonType } from '../common/types';
-import { Pokemon } from './pokemon';
+import { PokemonColor, PokemonSize, PokemonSpeed, PokemonType } from '../common/types';
+import { Pokemon, PokemonNeedsState } from './pokemon';
 import { IPokemonType } from './states';
 
 export class PokemonElement {
@@ -149,13 +149,14 @@ export function createPokemon(
     name: string,
     generation: string,
     originalSpriteSize: number,
+    needs: PokemonNeedsState | undefined,
 ): IPokemonType {
     if (!name) {
         throw new InvalidPokemonException('name is undefined');
     }
 
     try {
-        return new Pokemon(
+        const pokemon = new Pokemon(
             pokemonType,
             el,
             collision,
@@ -168,8 +169,12 @@ export function createPokemon(
             name,
             PokemonSpeed.normal,
             generation,
-            originalSpriteSize 
+            originalSpriteSize,
         );
+        if (needs) {
+            pokemon.setNeeds(needs);
+        }
+        return pokemon;
     } catch (error) {
         throw new InvalidPokemonException(`Invalid Pokemon type: ${pokemonType}`);
     }
