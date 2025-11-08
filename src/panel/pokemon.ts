@@ -67,7 +67,7 @@ export class Pokemon extends BasePokemonType {
   private readonly BASE_SPEED = 0.8;
   private readonly SPEED_STAT_MULTIPLIER = 1 / 70;
 
-  private config: PokemonConfig;
+  config: PokemonConfig;
 
   constructor(
     pokemonType: string,
@@ -87,7 +87,6 @@ export class Pokemon extends BasePokemonType {
     super(spriteElement, collisionElement, speechElement, size, left, bottom, pokemonRoot, floor, name, speed, generation, originalSpriteSize);
 
     this.config = POKEMON_DATA[pokemonType] || POKEMON_DATA.bulbasaur;
-    this.label = pokemonType;
     this._speed = this.calculateSpeed();
   }
 
@@ -163,9 +162,6 @@ export class Pokemon extends BasePokemonType {
 
     // Update state machine
     this.nextFrame();
-
-    // Update tooltip
-    this.collision.title = `${this.name}\nHunger: ${this.needs.hunger}/100\nHappiness: ${this.needs.happiness}/100`;
   }
 
   likesBerry(berry: PokemonFoodConfig): boolean {

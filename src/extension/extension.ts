@@ -1227,6 +1227,7 @@ class PokemonWebviewContainer implements IPokemonPanel {
                 <canvas id="pokemonCanvas"></canvas>
                 <div id="pokemonContainer"></div>
                 <div id="foreground"></div>
+                <div id="pokemonTooltip" class="pokemon-tooltip"></div>
                 <script nonce="${nonce}" src="${scriptUri}"></script>
                 <script nonce="${nonce}">
                     pokemonApp.pokemonPanelApp(

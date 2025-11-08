@@ -27,7 +27,7 @@ import { BallState, PokemonElementState, PokemonPanelState } from './states';
 import { getRandomPokemonConfig } from '../common/pokemon-data';
 import { clamp } from '../common/util';
 import { PhysicsEntityManager, Berry } from './entity';
-import { PokemonNeedsState } from './pokemon';
+import { Pokemon, PokemonNeedsState } from './pokemon';
 
 /* This is how the VS Code API can be invoked from the panel */
 declare global {
@@ -43,6 +43,67 @@ export var allPokemon: IPokemonCollection = new PokemonCollection();
 var pokemonCounter: number;
 var lastMouseX: number | undefined;
 var physicsEntityManager: PhysicsEntityManager;
+
+// Tooltip management
+export interface TooltipLine {
+    text: string;
+    className?: string;
+}
+
+class PokemonTooltip {
+    private tooltipElement: HTMLElement | null = null;
+    private hideTimeout: number | null = null;
+
+    constructor() {
+        this.tooltipElement = document.getElementById('pokemonTooltip');
+    }
+
+    show(content: string | TooltipLine[]) {
+        if (!this.tooltipElement) {
+            return;
+        }
+        
+        // Clear existing content
+        this.tooltipElement.innerHTML = '';
+        
+        if (typeof content === 'string') {
+            // Simple text content
+            this.tooltipElement.textContent = content;
+        } else {
+            // Structured content with classes
+            content.forEach((line) => {
+                const lineElement = document.createElement('div');
+                lineElement.textContent = line.text;
+                if (line.className) {
+                    lineElement.className = line.className;
+                }
+                this.tooltipElement?.appendChild(lineElement);
+            });
+        }
+        
+        // Clear any existing hide timeout
+        if (this.hideTimeout !== null) {
+            clearTimeout(this.hideTimeout);
+            this.hideTimeout = null;
+        }
+        
+        // Show the tooltip
+        this.tooltipElement.classList.add('visible');
+    }
+
+    hide() {
+        if (!this.tooltipElement) {
+            return;
+        }
+        
+        // Add a small delay before hiding to prevent flicker
+        this.hideTimeout = window.setTimeout(() => {
+            this.tooltipElement?.classList.remove('visible');
+        }, 100);
+    }
+}
+
+const pokemonTooltip = new PokemonTooltip();
 
 function calculateBallRadius(size: PokemonSize): number {
     if (size === PokemonSize.nano) {
@@ -133,8 +194,23 @@ function handleMouseOver(e: MouseEvent) {
                 return;
             }
             element.pokemon.swipe();
+            
+            // Show tooltip with styled lines
+            const pokemon = element.pokemon as Pokemon;
+            const nameLabel = pokemon.name !== pokemon.config.name ? `${pokemon.name} (${pokemon.config.name})` : pokemon.name; // If nickname is same as species type, show only species name
+            const tooltipContent: TooltipLine[] = [
+                { text: nameLabel, className: 'tooltip-name' },
+                { text: `Type: ${pokemon.config.types.join(", ")}`, className: 'tooltip-type' },
+                { text: `Hunger: ${pokemon.needs.hunger}/100`, className: 'tooltip-stat' },
+                { text: `Happiness: ${pokemon.needs.happiness}/100`, className: 'tooltip-stat' }
+            ];
+            pokemonTooltip.show(tooltipContent);
         }
     });
+}
+
+function handleMouseOut() {
+    pokemonTooltip.hide();
 }
 
 function startAnimations(
@@ -147,6 +223,7 @@ function startAnimations(
     }
 
     collision.addEventListener('mouseover', handleMouseOver);
+    collision.addEventListener('mouseout', handleMouseOut);
 
     // Interval for updating pokemon
     setInterval(() => {
@@ -185,7 +262,6 @@ function addPokemonToPanel(
 
     var collisionElement: HTMLDivElement = document.createElement('div');
     collisionElement.className = 'collision';
-    collisionElement.title = name; // Set tooltip
     (document.getElementById('pokemonContainer') as HTMLDivElement).appendChild(
         collisionElement,
     );
