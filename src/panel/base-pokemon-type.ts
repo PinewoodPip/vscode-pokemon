@@ -57,6 +57,8 @@ export abstract class BasePokemonType implements IPokemonType {
     private _originalSpriteSize: number;
     needs: PokemonNeeds;
 
+    private readonly HAPPINESS_PER_SWIPE = 10;
+
     constructor(
         spriteElement: HTMLImageElement,
         collisionElement: HTMLDivElement,
@@ -257,6 +259,7 @@ export abstract class BasePokemonType implements IPokemonType {
         this.currentStateEnum = States.swipe;
         this.currentState = resolveState(this.currentStateEnum, this);
         this.showSpeechBubble();
+        this.needs.addHappiness(this.HAPPINESS_PER_SWIPE);
     }
 
     chase(ballState: BallState, canvas: HTMLCanvasElement) {
