@@ -9,7 +9,6 @@ import {
     resolveState,
     PokemonInstanceState,
     isStateAboveGround,
-    BallState,
     ChaseState,
     HorizontalDirection,
     FrameResult,
@@ -262,9 +261,9 @@ export abstract class BasePokemonType implements IPokemonType {
         this.needs.addHappiness(this.HAPPINESS_PER_SWIPE);
     }
 
-    chase(ballState: BallState, canvas: HTMLCanvasElement) {
+    chase(ball: PhysicsEntity, canvas: HTMLCanvasElement) {
         this.currentStateEnum = States.chase;
-        this.currentState = new ChaseState(this, ballState, canvas);
+        this.currentState = new ChaseState(this, ball, canvas);
     }
 
     chaseEntity(entity: PhysicsEntity, canvas: HTMLCanvasElement, onCaughtCallback: ChaseEntityOnCaughtCallback | undefined) {

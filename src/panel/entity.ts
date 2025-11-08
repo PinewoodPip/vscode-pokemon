@@ -14,7 +14,7 @@ const defaultPhysicsMaterial: PhysicsEntityMaterial = {
 };
 const interval: number = 1000 / 24; // msec for single frame
 
-class PhysicsEntityState {
+export class PhysicsEntityState {
     cx: number;
     cy: number;
     vx: number;
@@ -32,11 +32,11 @@ class PhysicsEntityState {
 }
 
 export abstract class PhysicsEntity {
-    protected MAX_LIFETIME = -1;
+    protected MAX_LIFETIME = -1; // Maximum duration for the entity to continue being active after physics settle, in frames. -1 for infinite.
 
     public material: PhysicsEntityMaterial = defaultPhysicsMaterial;
     public state: PhysicsEntityState;
-    private canvas: HTMLCanvasElement | null;
+    private canvas: HTMLCanvasElement;
     private spriteReferenceElement: HTMLImageElement | undefined;
     private floor: number;
     protected mediaPath: string;
@@ -50,6 +50,9 @@ export abstract class PhysicsEntity {
 
         // Setup
         this.canvas = document.getElementById("pokemonCanvas") as HTMLCanvasElement;
+        if (!this.canvas) {
+            throw new Error("pokemonCanvas element missing");
+        }
         this.mediaPath = mediaPath;
     }
 
@@ -90,7 +93,7 @@ export abstract class PhysicsEntity {
     }
 
     tryUpdate() {
-        if (!this.canvas || !this.active) {
+        if (!this.active) {
             return;
         }
 
@@ -111,65 +114,73 @@ export abstract class PhysicsEntity {
     }
 
     updatePhysics() {
-        if (!this.canvas || !this.active) {
+        if (!this.active) {
             return;
         }
 
         const ballRadius = this.getRadius();
         const material = this.material;
+        let wasAtFloor = false;
         if (this.state.cx + ballRadius >= this.canvas.width) {
             // Bounce from right wall
+            this.tryIncrementBounceCount();
             this.state.vx = -this.state.vx * material.damping;
             this.state.cx = this.canvas.width - ballRadius;
-            this.tryIncrementBounceCount();
         } else if (this.state.cx - ballRadius <= 0) {
             // Bounce from left wall
+            this.tryIncrementBounceCount();
             this.state.vx = -this.state.vx * material.damping;
             this.state.cx = ballRadius;
-            this.tryIncrementBounceCount();
         }
         if (this.state.cy + ballRadius + this.floor >= this.canvas.height) {
-            // Bounce from ceiling
+            // Bounce from floor (note: canvas coordinate system is (0, 0 at top-left!))
+            this.tryIncrementBounceCount()
             this.state.vy = -this.state.vy * material.damping;
             this.state.cy = this.canvas.height - ballRadius - this.floor;
             // traction here
             this.state.vx *= material.traction;
-            this.tryIncrementBounceCount();
-            
-            // Deactivate if velocity is too low
-            // if (Math.abs(this.state.vx) < 0.5 && Math.abs(this.state.vy) < 0.5) {
-            //     this.active = false;
-            // }
         } else if (this.state.cy - ballRadius <= 0) {
-            // Bounce from floor
+            // Bounce from ceiling
+            this.tryIncrementBounceCount()
             this.state.vy = -this.state.vy * material.damping;
             this.state.cy = ballRadius;
-            this.tryIncrementBounceCount();
+            wasAtFloor = true;
         }
 
-        this.state.vy += material.gravity;
+        if (!wasAtFloor || !this.isIdle()) {
+            this.state.vy += material.gravity;
 
-        this.state.cx += this.state.vx;
-        this.state.cy += this.state.vy;
+            this.state.cx += this.state.vx;
+            this.state.cy += this.state.vy;
+        }
     }
 
     tryIncrementBounceCount() {
-        if (Math.abs(this.state.vx) < 0.1 && Math.abs(this.state.vy) < 0.1) {
+        if (Math.abs(this.state.vy) > this.material.gravity + 0.1) {
             this.state.bounceCount++;
         }
     }
 
+    isIdle(): boolean {
+        return Math.abs(this.state.vx) < 0.1 && Math.abs(this.state.vy) < this.material.gravity + 0.1 && this.state.cy + this.getRadius() + this.floor >= this.canvas.height;
+    }
+
     update() {
-        if (!this.canvas || !this.active) {
+        if (!this.active) {
             return;
         }
+
+        this.updatePhysics();
+
         const ctx = this.canvas.getContext('2d') as CanvasRenderingContext2D;
         this.draw(ctx);
 
         // Update lifetime
-        this.lifetimeFrames++;
-        if (this.MAX_LIFETIME > 0 && this.lifetimeFrames >= this.MAX_LIFETIME) {
-            this.deactivate();
+        if (this.isIdle()) {
+            this.lifetimeFrames++;
+            if (this.MAX_LIFETIME > 0 && this.lifetimeFrames >= this.MAX_LIFETIME) {
+                this.deactivate();
+            }
         }
     }
 
@@ -194,11 +205,11 @@ export abstract class PhysicsEntity {
 
 export class PhysicsEntityManager {
     private entities: PhysicsEntity[] = [];
-    private canvas: HTMLCanvasElement | null = null;
+    private canvas: HTMLCanvasElement;
     private animationFrameId: number | null = null;
     private then: number = 0;
 
-    constructor(canvas: HTMLCanvasElement | null) {
+    constructor(canvas: HTMLCanvasElement) {
         this.canvas = canvas;
     }
 
@@ -226,10 +237,6 @@ export class PhysicsEntityManager {
     }
 
     update(): void {
-        if (!this.canvas) {
-            return;
-        }
-
         // Throttle frame rate
         const now = Date.now();
         const elapsed = now - this.then;
@@ -241,7 +248,7 @@ export class PhysicsEntityManager {
         // Update physics for all entities
         for (const entity of this.entities) {
             if (entity.isActive()) {
-                entity.updatePhysics();
+                entity.update();
             }
         }
 
@@ -265,10 +272,8 @@ export class PhysicsEntityManager {
             cancelAnimationFrame(this.animationFrameId);
             this.animationFrameId = null;
         }
-        if (this.canvas) {
-            const ctx = this.canvas.getContext('2d') as CanvasRenderingContext2D;
-            ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-        }
+        const ctx = this.canvas.getContext('2d') as CanvasRenderingContext2D;
+        ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
     }
 }
 
@@ -279,6 +284,7 @@ export class Berry extends PhysicsEntity {
         traction: 0.8,
     };
     public foodConfig: PokemonFoodConfig;
+    public MAX_LIFETIME = 1000; // High to allow slow pokemon to reach the berry even if far away
 
     constructor(berryId: string, mediaPath: string, floor: number, initialX: number, initialY: number, initialVX: number, initialVY: number) {
         const foodConfig = ALL_FOOD.find(f => f.id === berryId);

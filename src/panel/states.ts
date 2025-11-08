@@ -14,7 +14,7 @@ export interface IPokemonType {
     canSwipe: boolean;
     canChase: boolean;
     swipe(): void;
-    chase(ballState: BallState, canvas: HTMLCanvasElement): void;
+    chase(ball: PhysicsEntity, canvas: HTMLCanvasElement): void;
     speed: number;
     isMoving: boolean;
     hello: string;
@@ -100,23 +100,6 @@ export enum FrameResult {
     stateComplete,
     // Special states
     stateCancel,
-}
-
-export class BallState {
-    cx: number;
-    cy: number;
-    vx: number;
-    vy: number;
-    paused: boolean;
-    bounceCount: number = 0;
-
-    constructor(cx: number, cy: number, vx: number, vy: number) {
-        this.cx = cx;
-        this.cy = cy;
-        this.vx = vx;
-        this.vy = vy;
-        this.paused = false;
-    }
 }
 
 export function isStateAboveGround(state: States): boolean {
@@ -339,26 +322,27 @@ export class ChaseState implements IState {
     // spriteLabel = 'run'; // TODO
     spriteLabel = 'walk';
     horizontalDirection = HorizontalDirection.left;
-    ballState: BallState;
+    ball: PhysicsEntity;
     canvas: HTMLCanvasElement;
     pokemon: IPokemonType;
     ballCooldown: number = 0; // Cooldown between ball interactions, in frames.
 
     constructor(
         pokemon: IPokemonType,
-        ballState: BallState,
+        ball: PhysicsEntity,
         canvas: HTMLCanvasElement,
     ) {
         this.pokemon = pokemon;
-        this.ballState = ballState;
+        this.ball = ball;
         this.canvas = canvas;
     }
 
     nextFrame(): FrameResult {
-        if (this.ballState.paused) {
+        if (!this.ball.isActive()) {
             return FrameResult.stateCancel; // Ball is already caught
         }
-        if (this.pokemon.left > this.ballState.cx) {
+        const ballState = this.ball.state;
+        if (this.pokemon.left > ballState.cx) {
             this.horizontalDirection = HorizontalDirection.left;
             this.pokemon.positionLeft(this.pokemon.left - this.pokemon.speed);
         } else {
@@ -371,17 +355,16 @@ export class ChaseState implements IState {
         // Check if the ball was caught
         let stateResult = FrameResult.stateContinue;
         if (
-            this.canvas.height - this.ballState.cy <
+            this.canvas.height - ballState.cy <
             this.pokemon.width + this.pokemon.floor &&
-            this.ballState.cx < this.pokemon.left &&
-            this.pokemon.left < this.ballState.cx + 15 &&
+            ballState.cx < this.pokemon.left &&
+            this.pokemon.left < ballState.cx + 15 &&
             this.ballCooldown <= 0
         ) {
             // Random chance to catch the ball and celebrate
             if (Math.random() < this.BALL_CATCH_CHANCE) {
                 // Hide ball
-                this.canvas.style.display = 'none';
-                this.ballState.paused = true;
+                this.ball.deactivate();
 
                 // Celebrate
                 this.pokemon.showSpeechBubble(2000, false);
@@ -396,7 +379,7 @@ export class ChaseState implements IState {
 
     kickBall() {
         const kickDirection = this.horizontalDirection === HorizontalDirection.left ? -1 : 1; // Assumes kicking can only be done when facing left/right
-        const ball = this.ballState;
+        const ball = this.ball.state;
 
         // Add velocity to the ball
         ball.vy += this.KICK_BASE_VELOCITY_Y + Math.random() * this.KICK_RANDOM_VELOCITY_Y;

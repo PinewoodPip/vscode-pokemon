@@ -23,7 +23,7 @@ import {
     setupBallThrowing,
     throwAndChase,
 } from './pokeball';
-import { BallState, PokemonElementState, PokemonPanelState } from './states';
+import { PokemonElementState, PokemonPanelState } from './states';
 import { getRandomPokemonConfig } from '../common/pokemon-data';
 import { clamp } from '../common/util';
 import { PhysicsEntityManager, Berry } from './entity';
@@ -104,20 +104,6 @@ class PokemonTooltip {
 }
 
 const pokemonTooltip = new PokemonTooltip();
-
-function calculateBallRadius(size: PokemonSize): number {
-    if (size === PokemonSize.nano) {
-        return 2;
-    } else if (size === PokemonSize.small) {
-        return 3;
-    } else if (size === PokemonSize.medium) {
-        return 4;
-    } else if (size === PokemonSize.large) {
-        return 8;
-    } else {
-        return 1; // Shrug
-    }
-}
 
 function calculateFloor(size: PokemonSize, theme: Theme): number {
     switch (theme) {
@@ -441,7 +427,6 @@ export function pokemonPanelApp(
     originalSpriteSize: number,
     stateApi?: VscodeStateApi,
 ) {
-    const ballRadius: number = calculateBallRadius(pokemonSize);
     var floor = 0;
     if (!stateApi) {
         stateApi = acquireVsCodeApi();
@@ -520,11 +505,12 @@ export function pokemonPanelApp(
     }
 
     initCanvas();
-    setupBallThrowing(pokemonSize, floor, basePokemonUri);
     
     // Initialize physics entity manager
     const canvas = document.getElementById('pokemonCanvas') as HTMLCanvasElement;
     physicsEntityManager = new PhysicsEntityManager(canvas);
+    
+    setupBallThrowing(pokemonSize, floor, basePokemonUri, physicsEntityManager);
 
     if (throwBallWithMouse) {
         dynamicThrowOn(allPokemon);

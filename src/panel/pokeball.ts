@@ -1,22 +1,7 @@
 // import { PetSize } from '../common/types';
 import { PokemonSize } from '../common/types';
-import { Pokemon } from './pokemon';
-import { IPokemonCollection, PokemonCollection } from './pokemon-collection';
-import { BallState } from './states';
-
-/// Bouncing ball components, credit https://stackoverflow.com/a/29982343
-const gravity: number = 0.6,
-    damping: number = 0.9,
-    traction: number = 0.8,
-    interval: number = 1000 / 24; // msec for single frame
-let then: number = 0; // last draw
-var ballState: BallState;
-
-var canvas: HTMLCanvasElement | null;
-var pokeballSpriteReferenceElement: HTMLImageElement;
-var ballRadius: number;
-var floor: number;
-var mediaPath: string;
+import { IPokemonCollection } from './pokemon-collection';
+import { PhysicsEntity, PhysicsEntityManager } from './entity';
 
 function calculateBallRadius(size: PokemonSize): number {
     if (size === PokemonSize.nano) {
@@ -32,33 +17,66 @@ function calculateBallRadius(size: PokemonSize): number {
     }
 }
 
-export function setupBallThrowing(
-    pokemonSize: PokemonSize,
-    floor_: number,
-    mediaPath_: string,
-): void {
-    canvas = document.getElementById("pokemonCanvas") as HTMLCanvasElement;
-    ballRadius = calculateBallRadius(pokemonSize);
-    floor = floor_;
-    mediaPath = mediaPath_;
+export class Pokeball extends PhysicsEntity {
+    public material = {
+        gravity: 0.6,
+        damping: 0.9,
+        traction: 0.8,
+    };
+    private pokemonSize: PokemonSize;
+    public MAX_LIFETIME = 300;
 
-    // Setup pokeball image
-    const w = ballRadius * 2;
-    const h = ballRadius * 2;
-    pokeballSpriteReferenceElement = document.createElement('img');
-    pokeballSpriteReferenceElement.width = w;
-    pokeballSpriteReferenceElement.height = h;
-    pokeballSpriteReferenceElement.src = mediaPath + '/pokeball.png';
+    constructor(pokemonSize: PokemonSize, mediaPath: string, floor: number, initialX: number, initialY: number, initialVX: number, initialVY: number) {
+        super(mediaPath, floor, initialX, initialY, initialVX, initialVY);
+        this.pokemonSize = pokemonSize;
+        this.setupSprite();
+    }
+
+    getRadius(): number {
+        return calculateBallRadius(this.pokemonSize);
+    }
+
+    getSpritePath(): string {
+        return this.mediaPath + '/pokeball.png';
+    }
 }
 
-function resetBall(): void {
-    if (ballState) {
-        ballState.paused = true;
+// Keep module-level variables for backward compatibility
+var canvas: HTMLCanvasElement | null;
+var entityManager: PhysicsEntityManager | null = null;
+var floor: number;
+var mediaPath: string;
+var pokemonSize: PokemonSize;
+
+export function setupBallThrowing(
+    pokemonSize_: PokemonSize,
+    floor_: number,
+    mediaPath_: string,
+    entityManager_?: PhysicsEntityManager,
+): void {
+    canvas = document.getElementById("pokemonCanvas") as HTMLCanvasElement;
+    pokemonSize = pokemonSize_;
+    floor = floor_;
+    mediaPath = mediaPath_;
+    if (entityManager_) {
+        entityManager = entityManager_;
     }
-    if (canvas) {
-        canvas.style.display = 'block';
+}
+
+function throwBallWithManager(startX: number, startY: number, velocityX: number, velocityY: number, pokemon: IPokemonCollection): void {
+    if (!entityManager) {
+        return;
     }
-    ballState = new BallState(100, 100, 4, 5);
+    
+    const pokeball = new Pokeball(pokemonSize, mediaPath, floor, startX, startY, velocityX, velocityY);
+    entityManager.addEntity(pokeball);
+    
+    // Make pokemon chase the pokeball
+    pokemon.pokemonCollection.forEach((pokeEl) => {
+        if (pokeEl.pokemon.canChase && canvas) {
+            pokeEl.pokemon.chase(pokeball, canvas);
+        }
+    });
 }
 
 export function dynamicThrowOn(pokemon: IPokemonCollection) {
@@ -66,11 +84,9 @@ export function dynamicThrowOn(pokemon: IPokemonCollection) {
     let startMouseY: number;
     let endMouseX: number;
     let endMouseY: number;
+    let previewPokeball: Pokeball | null = null;
     console.log('Enabling dynamic throw');
     window.onmousedown = (e) => {
-        if (ballState) {
-            ballState.paused = true;
-        }
         if (canvas) {
             canvas.style.display = 'block';
         }
@@ -78,46 +94,41 @@ export function dynamicThrowOn(pokemon: IPokemonCollection) {
         endMouseY = e.clientY;
         startMouseX = e.clientX;
         startMouseY = e.clientY;
-        ballState = new BallState(e.clientX, e.clientY, 0, 0);
+        previewPokeball = new Pokeball(pokemonSize, mediaPath, floor, e.clientX, e.clientY, 0, 0);
+        previewPokeball.state.paused = true;
 
-        pokemon.pokemonCollection.forEach((pokeEl) => {
-            if (pokeEl.pokemon.canChase && canvas) {
-                pokeEl.pokemon.chase(ballState, canvas);
-            }
-        });
-        ballState.paused = true;
-
-        drawBall();
+        if (previewPokeball && canvas) {
+            const ctx = canvas.getContext('2d') as CanvasRenderingContext2D;
+            // ctx.clearRect(0, 0, canvas.width, canvas.height);
+            previewPokeball.draw(ctx);
+        }
 
         window.onmousemove = (ev) => {
             ev.preventDefault();
-            if (ballState) {
-                ballState.paused = true;
-            }
             startMouseX = endMouseX;
             startMouseY = endMouseY;
             endMouseX = ev.clientX;
             endMouseY = ev.clientY;
-            ballState = new BallState(ev.clientX, ev.clientY, 0, 0);
-            drawBall();
+            previewPokeball = new Pokeball(pokemonSize, mediaPath, floor, ev.clientX, ev.clientY, 0, 0);
+            previewPokeball.state.paused = true;
+            if (previewPokeball && canvas) {
+                const ctx = canvas.getContext('2d') as CanvasRenderingContext2D;
+                // ctx.clearRect(0, 0, canvas.width, canvas.height);
+                previewPokeball.draw(ctx);
+            }
         };
         window.onmouseup = (ev) => {
             ev.preventDefault();
             window.onmouseup = null;
             window.onmousemove = null;
 
-            ballState = new BallState(
+            throwBallWithManager(
                 endMouseX,
                 endMouseY,
                 endMouseX - startMouseX,
                 endMouseY - startMouseY,
+                pokemon
             );
-            pokemon.pokemonCollection.forEach((pokeEl) => {
-                if (pokeEl.pokemon.canChase && canvas) {
-                    pokeEl.pokemon.chase(ballState, canvas);
-                }
-            });
-            throwBall();
         };
     };
 }
@@ -125,91 +136,8 @@ export function dynamicThrowOn(pokemon: IPokemonCollection) {
 export function dynamicThrowOff() {
     console.log('Disabling dynamic throw');
     window.onmousedown = null;
-    if (ballState) {
-        ballState.paused = true;
-    }
-    if (canvas) {
-        canvas.style.display = 'none';
-    }
-}
-
-export function throwBall() {
-    if (!canvas) {
-        return;
-    }
-
-    if (!ballState.paused) {
-        requestAnimationFrame(throwBall);
-    }
-
-    // throttling the frame rate
-    const now = Date.now();
-    const elapsed = now - then;
-    if (elapsed <= interval) {
-        return;
-    }
-    then = now - (elapsed % interval);
-
-    if (ballState.cx + ballRadius >= canvas.width) {
-        // Bounce from right wall
-        ballState.vx = -ballState.vx * damping;
-        ballState.cx = canvas.width - ballRadius;
-        ballState.bounceCount++;
-    } else if (ballState.cx - ballRadius <= 0) {
-        // Bounce from left wall
-        ballState.vx = -ballState.vx * damping;
-        ballState.cx = ballRadius;
-        ballState.bounceCount++;
-    }
-    if (ballState.cy + ballRadius + floor >= canvas.height) {
-        // Bounce from ceiling
-        ballState.vy = -ballState.vy * damping;
-        ballState.cy = canvas.height - ballRadius - floor;
-        // traction here
-        ballState.vx *= traction;
-        ballState.bounceCount++;
-    } else if (ballState.cy - ballRadius <= 0) {
-        // Bounce from floor
-        ballState.vy = -ballState.vy * damping;
-        ballState.cy = ballRadius;
-        ballState.bounceCount++;
-    }
-
-    ballState.vy += gravity;
-
-    ballState.cx += ballState.vx;
-    ballState.cy += ballState.vy;
-    drawBall();
-}
-
-function drawBall() {
-    if (!canvas) {
-        return;
-    }
-    // Clear previous frame
-    const ctx = canvas.getContext('2d') as CanvasRenderingContext2D;
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-    const w = ballRadius * 2;
-    const h = ballRadius * 2;
-
-    // Rotate ball based on velocity
-    const angle = Math.atan2(ballState.vy, ballState.vx || 0.0001) + Math.PI * 1.5 + ballState.bounceCount * 0.5;
-
-    // Draw ball
-    ctx.save();
-    ctx.translate(ballState.cx, ballState.cy);
-    ctx.rotate(angle);
-    ctx.drawImage(pokeballSpriteReferenceElement, -w / 2, -h / 2, w, h);
-    ctx.restore();
 }
 
 export function throwAndChase(pets: IPokemonCollection) {
-    resetBall();
-    throwBall();
-    pets.pokemonCollection.forEach((petEl) => {
-        if (petEl.pokemon.canChase && canvas) {
-            petEl.pokemon.chase(ballState, canvas);
-        }
-    });
+    throwBallWithManager(100, 100, 4, 5, pets);
 }
