@@ -771,9 +771,30 @@ export function pokemonPanelApp(
             /^teampreview/,
             /^poke/,
             /^\|$/,
+            // Used by the "request" message
+            /^p1$/,
+            /^p2$/,
         ];
         const lines = output.split('\n');
+        let linesToParseBeforeIgnore = -1;
         lines.forEach((line) => {
+            if (linesToParseBeforeIgnore > 0) {
+                linesToParseBeforeIgnore--;
+                if (linesToParseBeforeIgnore === 0) {
+                    linesToParseBeforeIgnore = -1;
+                    return; // Ignore this line
+                }
+            }
+            // Check for secret/public information split
+            // Should be checked *after* the early return,
+            // as the public information comes after the secret one.
+            // ie. when we receive a |split message, we want to process the next line but ignore the one after it.
+            if (line.startsWith('|split')) {
+                linesToParseBeforeIgnore  = 2; // For simplicity, we use only secret information (ie. show all details of the game state)
+                return;
+            }
+
+            // Parse line
             let match;
             // Fainting
             if (match = line.match(/^\|-damage\|p(\d)a: ([^|]+)\|0 fnt\|?(\[from\] \w+)?$/)) {
@@ -796,37 +817,34 @@ export function pokemonPanelApp(
             }
             // Skill failure
             else if (match = line.match(/^\|-fail\|p(\d)a: ([^|]+)$/)) {
-                log(match);
                 const playerIndex = match[1];
                 const pokemon = match[2];
                 addCombatLog(`${pokemon} failed to use their move!`, 'info');
             }
             // Damage lines
             else if (match = line.match(/^\|-damage\|p(\d)a: ([^|]+)\|(\d+)\/(\d+)( \w+)?\|?(\[[\w]+\] \w+)?/)) {
-                log(match);
                 const playerIndex = match[1];
                 const pokemon = match[2];
                 const remainingHP = match[3];
                 const totalHP = parseInt(match[4]);
                 const status = match[5];
                 const cause = match[6]; // TODO parse further; has a [from] prefix
-                if (totalHP !== 100) { // TODO handle this properly
-                    addCombatLog(`${pokemon} was reduced to ${remainingHP}/${totalHP} HP${cause ? ` due to ${cause}` : ''}!`, 'info'); // TODO calc damage
 
-                    if (status) {
-                        // TODO show status
-                    }
+                addCombatLog(`${pokemon} was reduced to ${remainingHP}/${totalHP} HP${cause ? ` due to ${cause}` : ''}!`, 'info'); // TODO calc damage
 
-                    // Update HPs
-                    if (playerIndex === '1' && playerPokemon) {
-                        playerPokemon.currentHp = parseInt(remainingHP);
-                        playerPokemon.maxHp = totalHP;
-                    } else if (playerIndex === '2' && enemyPokemon) {
-                        enemyPokemon.currentHp = parseInt(remainingHP);
-                        enemyPokemon.maxHp = totalHP;
-                    }
-                    updateCombatUI();
+                if (status) {
+                    // TODO show status
                 }
+
+                // Update HPs
+                if (playerIndex === '1' && playerPokemon) {
+                    playerPokemon.currentHp = parseInt(remainingHP);
+                    playerPokemon.maxHp = totalHP;
+                } else if (playerIndex === '2' && enemyPokemon) {
+                    enemyPokemon.currentHp = parseInt(remainingHP);
+                    enemyPokemon.maxHp = totalHP;
+                }
+                updateCombatUI();
             }
             // Healing
             else if (match = line.match(/^\|-heal\|p(\d)a: ([^|]+)\|(\d+)\/(\d+)\|([^|]+)\|([^|]+)$/)) {
@@ -836,19 +854,18 @@ export function pokemonPanelApp(
                 const totalHP = parseInt(match[4]);
                 const source = match[5];
                 const target = match[6];
-                if (totalHP !== 100) { // TODO handle this properly
-                    addCombatLog(`${pokemon} healed to ${remainingHP}/${totalHP} HP from using ${source} on ${target}`, 'info'); // TODO calc damage
 
-                    // Update HPs
-                    if (playerIndex === '1' && playerPokemon) {
-                        playerPokemon.currentHp = parseInt(remainingHP);
-                        playerPokemon.maxHp = totalHP;
-                    } else if (playerIndex === '2' && enemyPokemon) {
-                        enemyPokemon.currentHp = parseInt(remainingHP);
-                        enemyPokemon.maxHp = totalHP;
-                    }
-                    updateCombatUI();
+                addCombatLog(`${pokemon} healed to ${remainingHP}/${totalHP} HP from using ${source} on ${target}`, 'info'); // TODO calc damage
+
+                // Update HPs
+                if (playerIndex === '1' && playerPokemon) {
+                    playerPokemon.currentHp = parseInt(remainingHP);
+                    playerPokemon.maxHp = totalHP;
+                } else if (playerIndex === '2' && enemyPokemon) {
+                    enemyPokemon.currentHp = parseInt(remainingHP);
+                    enemyPokemon.maxHp = totalHP;
                 }
+                updateCombatUI();
             }
             // "Not very effective" message
             else if (match = line.match(/^\|-resisted\|p(\d)a: ([^|]+)$/)) {
