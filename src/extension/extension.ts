@@ -1322,6 +1322,13 @@ class PokemonWebviewContainer implements IPokemonPanel {
                 'Silkscreen-Regular.ttf',
             ),
         );
+        const moveTypesCSSUri = webview.asWebviewUri(
+            vscode.Uri.joinPath(
+                this._extensionUri,
+                'media',
+                'move-types.css',
+            ),
+        );
 
         // Uri to load styles into webview
         const stylesResetUri = webview.asWebviewUri(styleResetPath);
@@ -1350,6 +1357,7 @@ class PokemonWebviewContainer implements IPokemonPanel {
 				<meta name="viewport" content="width=device-width, initial-scale=1.0">
 				<link href="${stylesResetUri}" rel="stylesheet" nonce="${nonce}">
 				<link href="${stylesMainUri}" rel="stylesheet" nonce="${nonce}">
+				<link href="${moveTypesCSSUri}" rel="stylesheet" nonce="${nonce}">
                 <style nonce="${nonce}">
                 @font-face {
                     font-family: 'silkscreen';

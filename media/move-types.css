@@ -1,0 +1,29 @@
+.tooltip-move {
+  font-size: 11px;
+  font-family: inherit;
+  font-weight: bold;
+  margin-right: 6px;
+  padding: 1px 6px;
+  border-radius: 8px;
+  display: inline-block;
+  background: #222;
+  color: #fff;
+}
+.tooltip-move-normal { background: #A8A77A; color: #222; }
+.tooltip-move-fire { background: #EE8130; color: #fff; }
+.tooltip-move-water { background: #6390F0; color: #fff; }
+.tooltip-move-electric { background: #F7D02C; color: #222; }
+.tooltip-move-grass { background: #7AC74C; color: #222; }
+.tooltip-move-ice { background: #96D9D6; color: #222; }
+.tooltip-move-fighting { background: #C22E28; color: #fff; }
+.tooltip-move-poison { background: #A33EA1; color: #fff; }
+.tooltip-move-ground { background: #E2BF65; color: #222; }
+.tooltip-move-flying { background: #A98FF3; color: #222; }
+.tooltip-move-psychic { background: #F95587; color: #fff; }
+.tooltip-move-bug { background: #A6B91A; color: #222; }
+.tooltip-move-rock { background: #B6A136; color: #222; }
+.tooltip-move-ghost { background: #735797; color: #fff; }
+.tooltip-move-dragon { background: #6F35FC; color: #fff; }
+.tooltip-move-dark { background: #705746; color: #fff; }
+.tooltip-move-steel { background: #B7B7CE; color: #222; }
+.tooltip-move-fairy { background: #D685AD; color: #222; }

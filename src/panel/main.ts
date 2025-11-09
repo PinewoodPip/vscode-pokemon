@@ -201,8 +201,12 @@ function calculateFloor(size: PokemonSize, theme: Theme): number {
     return 0;
 }
 
+function getMoveTypeClass(type: string): string {
+    return `tooltip-move tooltip-move-${type.toLowerCase()}`;
+}
 
 function handleMouseOver(e: MouseEvent) {
+    const isShiftPressed = e.shiftKey;
     var el = e.currentTarget as HTMLDivElement;
     allPokemon.pokemonCollection.forEach((element) => {
         if (element.collision === el) {
@@ -210,19 +214,30 @@ function handleMouseOver(e: MouseEvent) {
                 return;
             }
             element.pokemon.swipe();
-            
+
             // Show tooltip with styled lines
             const pokemon = element.pokemon as Pokemon;
             const nameLabel = pokemon.name !== pokemon.config.name ? `${pokemon.name} (${pokemon.config.name})` : pokemon.name; // If nickname is same as species type, show only species name
             const speciesID = sanitizeName(pokemon.config.name);
-            const moves = getMoves(speciesID, 25).map(m => m.name); // TODO set level
+            const moves = getMoves(speciesID, 25); // TODO set level
             const tooltipContent: TooltipLine[] = [
                 { text: nameLabel, className: 'tooltip-name' },
                 { text: `Type: ${pokemon.config.types.join(", ")}`, className: 'tooltip-type' },
                 { text: `Hunger: ${pokemon.needs.hunger}/100`, className: 'tooltip-stat' },
                 { text: `Happiness: ${pokemon.needs.happiness}/100`, className: 'tooltip-stat' },
-                { text: `Moves: ${moves.join(", ")}`, className: 'tooltip-stat' },
             ];
+
+            // Show moves if Shift is pressed
+            if (isShiftPressed && moves.length > 0) {
+                tooltipContent.push({ text: 'Moves:', className: 'tooltip-stat' });
+                moves.forEach(move => {
+                    tooltipContent.push({
+                        text: move.name,
+                        className: getMoveTypeClass(move.type),
+                    });
+                });
+            }
+
             pokemonTooltip.show(tooltipContent);
         }
     });
