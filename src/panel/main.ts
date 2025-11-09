@@ -763,6 +763,8 @@ export function pokemonPanelApp(
             /^gametype/,
             /^player/,
             /^\|t:/,
+            /^\|upkeep/, // Weather effects ticking
+            /^\|request/, // Prompting players for input(?)
             /^tier/,
             /^rule/,
             /^clearpoke/,
@@ -774,10 +776,11 @@ export function pokemonPanelApp(
         lines.forEach((line) => {
             let match;
             // Fainting
-            if (match = line.match(/^\|-damage\|p(\d)a: ([^|]+)\|0 fnt$/)) {
+            if (match = line.match(/^\|-damage\|p(\d)a: ([^|]+)\|0 fnt\|?(\[from\] \w+)?$/)) {
                 const playerIndex = match[1];
                 const pokemon = match[2];
-                addCombatLog(`${pokemon} fainted!`, 'info');
+                const cause = match[3]; // TODO parse further; has a [from] prefix
+                addCombatLog(`${pokemon} fainted${cause ? ` due to ${cause}` : ''}!`, 'info');
 
                 // Set HP to 0
                 // TODO handle ending combat by the "win" message instead.
@@ -791,15 +794,28 @@ export function pokemonPanelApp(
                     endCombat(true);
                 }
             }
+            // Skill failure
+            else if (match = line.match(/^\|-fail\|p(\d)a: ([^|]+)$/)) {
+                log(match);
+                const playerIndex = match[1];
+                const pokemon = match[2];
+                addCombatLog(`${pokemon} failed to use their move!`, 'info');
+            }
             // Damage lines
-            else if (match = line.match(/^\|-damage\|p(\d)a: ([^|]+)\|(\d+)\/(\d+)$/)) {
+            else if (match = line.match(/^\|-damage\|p(\d)a: ([^|]+)\|(\d+)\/(\d+)( \w+)?\|?(\[[\w]+\] \w+)?/)) {
                 log(match);
                 const playerIndex = match[1];
                 const pokemon = match[2];
                 const remainingHP = match[3];
                 const totalHP = parseInt(match[4]);
+                const status = match[5];
+                const cause = match[6]; // TODO parse further; has a [from] prefix
                 if (totalHP !== 100) { // TODO handle this properly
-                    addCombatLog(`${pokemon} was reduced to ${remainingHP}/${totalHP} HP!`, 'info'); // TODO calc damage
+                    addCombatLog(`${pokemon} was reduced to ${remainingHP}/${totalHP} HP${cause ? ` due to ${cause}` : ''}!`, 'info'); // TODO calc damage
+
+                    if (status) {
+                        // TODO show status
+                    }
 
                     // Update HPs
                     if (playerIndex === '1' && playerPokemon) {
@@ -812,9 +828,49 @@ export function pokemonPanelApp(
                     updateCombatUI();
                 }
             }
+            // Healing
+            else if (match = line.match(/^\|-heal\|p(\d)a: ([^|]+)\|(\d+)\/(\d+)\|([^|]+)\|([^|]+)$/)) {
+                const playerIndex = match[1];
+                const pokemon = match[2];
+                const remainingHP = match[3];
+                const totalHP = parseInt(match[4]);
+                const source = match[5];
+                const target = match[6];
+                if (totalHP !== 100) { // TODO handle this properly
+                    addCombatLog(`${pokemon} healed to ${remainingHP}/${totalHP} HP from using ${source} on ${target}`, 'info'); // TODO calc damage
+
+                    // Update HPs
+                    if (playerIndex === '1' && playerPokemon) {
+                        playerPokemon.currentHp = parseInt(remainingHP);
+                        playerPokemon.maxHp = totalHP;
+                    } else if (playerIndex === '2' && enemyPokemon) {
+                        enemyPokemon.currentHp = parseInt(remainingHP);
+                        enemyPokemon.maxHp = totalHP;
+                    }
+                    updateCombatUI();
+                }
+            }
+            // "Not very effective" message
+            else if (match = line.match(/^\|-resisted\|p(\d)a: ([^|]+)$/)) {
+                const playerIndex = match[1];
+                const pokemon = match[2];
+                addCombatLog(`It's not very effective on ${pokemon}... `, 'info');
+            }
+            // Turn counter
+            else if (match = line.match(/^\|turn\|(\d)+$/)) {
+                const newTurn = match[1];
+                addCombatLog(`Turn ${newTurn} started.`, 'info'); 
+            }
+            // Charging moves
+            else if (match = line.match(/^\|move\|p(\d)a: ([^|]+)\|(\w+)\|\|(\[\w+\])/)) {
+                const playerIndex = match[1];
+                const pokemon = match[2];
+                const move = match[3];
+                const chargeInfo = match[4];
+                addCombatLog(`${pokemon} is ${chargeInfo} using ${move}!`, 'info');
+            }
             // Used moves
             else if (match = line.match(/^\|move\|p(\d)a: ([^|]+)\|([^|]+)\|p(\d)a: ([^|]+)$/)) {
-                log(match);
                 const playerIndex = match[1];
                 const userPokemon = match[2];
                 const move = match[3];
@@ -824,7 +880,6 @@ export function pokemonPanelApp(
             }
             // Stat decreases (unboost)
             else if (match = line.match(/^\|-unboost\|p(\d)a: ([^|]+)\|([^|]+)\|([1-9]+)$/)) {
-                log(match);
                 const playerIndex = match[1];
                 const pokemon = match[2];
                 const stat = match[3];
@@ -840,9 +895,15 @@ export function pokemonPanelApp(
                 const amount = match[4];
                 addCombatLog(`${pokemon}'s ${stat} rose by ${amount}!`, 'info');
             }
+            // Miscellaneous effects (ex. struggle)
+            else if (match = line.match(/^\|-activate\|p(\d)a: ([^|]+)\|(.+)$/)) {
+                const playerIndex = match[1];
+                const pokemon = match[2];
+                const effect = match[3];
+                addCombatLog(`${pokemon} activated ${effect}!`, 'info');
+            }
             // Switching in pokemon
             else if (match = line.match(/^\|switch\|p(\d)a: ([^|]+)\|[^|]+\|(\d+)\/(\d+)$/)) {
-                log(match);
                 const playerIndex = match[1];
                 const pokemon = match[2];
                 const hp = match[3];
