@@ -255,33 +255,22 @@ img.pokemon {
 }
 
 #combatUI {
-	width: 90%;
+	width: 100%;
 	max-width: 800px;
 	background-color: var(--vscode-editor-background);
 	border: 3px solid var(--vscode-panel-border);
 	border-radius: 8px;
-	padding: 20px;
+	padding: 5px;
 	font-family: 'silkscreen', var(--vscode-font-family);
-}
-
-#combatTitle {
-	text-align: center;
-	font-size: 24px;
-	font-weight: bold;
-	color: var(--vscode-foreground);
-	margin-bottom: 20px;
-	text-transform: uppercase;
 }
 
 #combatArena {
 	display: flex;
 	justify-content: space-between;
-	align-items: flex-end;
-	margin-bottom: 20px;
+	margin-bottom: 5px;
 	padding: 20px;
 	background-color: var(--vscode-editorWidget-background);
 	border-radius: 4px;
-	min-height: 200px;
 }
 
 .combat-pokemon-section {
@@ -289,13 +278,13 @@ img.pokemon {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	gap: 10px;
+	gap: 5px;
 }
 
 .combat-sprite {
 	image-rendering: pixelated;
-	width: 128px;
-	height: 128px;
+	width: 48px;
+	height: 48px;
 	object-fit: contain;
 }
 
@@ -309,10 +298,10 @@ img.pokemon {
 }
 
 .pokemon-name {
-	font-size: 16px;
+	font-size: 14px;
 	font-weight: bold;
 	color: var(--vscode-foreground);
-	margin-bottom: 5px;
+	margin-bottom: 3px;
 	text-align: center;
 }
 
@@ -322,7 +311,7 @@ img.pokemon {
 
 .hp-bar {
 	width: 100%;
-	height: 20px;
+	height: 10px;
 	background-color: var(--vscode-input-background);
 	border: 2px solid var(--vscode-input-border);
 	border-radius: 4px;
@@ -345,15 +334,15 @@ img.pokemon {
 }
 
 .hp-text {
-	font-size: 12px;
+	font-size: 10px;
 	text-align: center;
-	margin-top: 5px;
+	margin-top: 3px;
 	color: var(--vscode-descriptionForeground);
 }
 
 #combatLog {
-	min-height: 100px;
-	max-height: 150px;
+	height: 120px;
+	/* max-height: 150px; */
 	overflow-y: auto;
 	background-color: var(--vscode-input-background);
 	border: 1px solid var(--vscode-input-border);

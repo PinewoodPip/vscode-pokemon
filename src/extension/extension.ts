@@ -1373,7 +1373,6 @@ class PokemonWebviewContainer implements IPokemonPanel {
                 <div id="pokemonTooltip" class="pokemon-tooltip"></div>
                 <div id="combatContainer" style="display: none;">
                     <div id="combatUI">
-                        <div id="combatTitle">POKEMON BATTLE!</div>
                         <div id="combatArena">
                             <div id="playerPokemonSection" class="combat-pokemon-section">
                                 <div class="pokemon-info">
@@ -1401,9 +1400,9 @@ class PokemonWebviewContainer implements IPokemonPanel {
                             </div>
                         </div>
                         <div id="combatLog"></div>
-                        <div id="combatActions">
+                        <!-- <div id="combatActions">
                             <button id="exitCombatBtn">Exit Combat</button>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
                 <script nonce="${nonce}" src="${scriptUri}"></script>
