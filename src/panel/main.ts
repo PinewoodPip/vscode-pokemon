@@ -52,6 +52,28 @@ let playerPokemon: CombatPokemon | null = null;
 let enemyPokemon: CombatPokemon | null = null;
 let combatInterval: number | null = null;
 
+const STATUS_ACRONYM_TO_STRING: Record<string, string> = {
+    brn: 'burned',
+    par: 'paralyzed',
+    slp: 'sleeping',
+    frz: 'frozen',
+    psn: 'poisoned',
+    tox: 'badly poisoned',
+    confusion: 'confused',
+    flinched: 'flinched',
+    trapped: 'trapped',
+    trapper: 'trapping',
+    partiallytrapped: 'partially trapped',
+    lockedmove: 'locked into a move',
+    twoturnmove: 'in a two-turn move',
+    choicelock: 'locked by Choice item',
+    mustrecharge: 'tired and must recharge', // Definitely not what the games show for this, TODO?
+    futuremove: 'preparing a future move',
+    healreplacement: 'healing replacement', // ?
+    stall: 'protecting itself', // Protect, Detect, Endure counter
+    gem: 'powered up by a Gem', // ?
+}
+
 // Tooltip management
 export interface TooltipLine {
     text: string;
@@ -824,6 +846,12 @@ export function pokemonPanelApp(
                 const pokemon = match[2];
                 addCombatLog(`${pokemon} failed to use their move!`, 'info');
             }
+            // Critical hits
+            else if (match = line.match(/^\|-crit\|p(\d)a: ([^|]+)$/)) {
+                const playerIndex = match[1];
+                const pokemon = match[2];
+                addCombatLog(`${pokemon} landed a critical hit!`, 'info');
+            }
             // Damage lines
             else if (match = line.match(/^\|-damage\|p(\d)a: ([^|]+)\|(\d+)\/(\d+)( \w+)?\|?(\[[\w]+\] \w+)?/)) {
                 const playerIndex = match[1];
@@ -880,6 +908,29 @@ export function pokemonPanelApp(
             else if (match = line.match(/^\|turn\|(\d)+$/)) {
                 const newTurn = match[1];
                 addCombatLog(`Turn ${newTurn} started.`, 'info'); 
+            }
+            // Starting charged moves
+            else if (match = line.match(/^\|-start\|p(\d)a: ([^|]+)\|([^|]+)\|([^|+]+)$/)) {
+                const playerIndex = match[1];
+                const pokemon = match[2];
+                const move = match[3];
+                const details = match[4]; // TODO parse further; ex. [of] p1a: Hippopotas
+                addCombatLog(`${pokemon} started ${move} ${details}!`, 'info');
+            }
+            // Status applications
+            else if (match = line.match(/^\|-status\|p(\d)a: ([^|]+)\|([^|]+)$/)) {
+                const playerIndex = match[1];
+                const pokemon = match[2];
+                const status = match[3];
+                addCombatLog(`${pokemon} is ${STATUS_ACRONYM_TO_STRING[status] ?? status}!`, 'info');
+            }
+            // Ending charged moves
+            else if (match = line.match(/^\|-end\|p(\d)a: ([^|]+)\|([^|]+)\|([^|+]+)$/)) {
+                const playerIndex = match[1];
+                const pokemon = match[2];
+                const move = match[3];
+                const details = match[4]; // TODO parse further; ex. [of] p1a: Hippopotas
+                addCombatLog(`${pokemon} ended ${move} ${details}!`, 'info');
             }
             // Charging moves
             else if (match = line.match(/^\|move\|p(\d)a: ([^|]+)\|(\w+)\|\|(\[\w+\])/)) {
