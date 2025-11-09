@@ -829,15 +829,12 @@ export function pokemonPanelApp(
                 addCombatLog(`${pokemon} fainted${cause ? ` due to ${cause}` : ''}!`, 'info');
 
                 // Set HP to 0
-                // TODO handle ending combat by the "win" message instead.
                 if (playerIndex === '1' && playerPokemon) {
                     playerPokemon.currentHp = 0;
                     updateCombatUI();
-                    endCombat(false);
                 } else if (playerIndex === '2' && enemyPokemon) {
                     enemyPokemon.currentHp = 0;
                     updateCombatUI();
-                    endCombat(true);
                 }
             }
             // Skill failure
@@ -989,7 +986,14 @@ export function pokemonPanelApp(
                     enemyPokemon.currentHp = parseInt(hp);
                     enemyPokemon.maxHp = parseInt(maxHp);
                 }
-            } else {
+            }
+            // Victory/defeat
+            else if (match = line.match(/^\|win\|(.+)$/)) {
+                const winner = match[1];
+                const playerWon = (winner === 'Player');
+                endCombat(playerWon);
+            }
+            else {
                 const trimmedLine = line.trim();
                 if (trimmedLine && !IGNORED_LINES.some((regex) => regex.test(trimmedLine))) {
                     log(`Unhandled Showdown output: ${trimmedLine}`);
