@@ -11,15 +11,33 @@
         "unused-imports"
     ],
     "rules": {
-        "@typescript-eslint/naming-convention": "warn",
+        "@typescript-eslint/naming-convention": [
+            "error",
+            {
+                "selector": "variable",
+                "format": ["camelCase", "UPPER_CASE"],
+                "filter": {
+                    "regex": "^_$", // Allow single underscore to denote discarded variables
+                    "match": false
+                }
+            }
+        ],
+        "@typescript-eslint/no-unused-vars": [
+            "error",
+            {
+                // Allow underscore prefix to denote discarded unused variables
+                "argsIgnorePattern": "^_",
+                "varsIgnorePattern": "^_",
+                "destructuredArrayIgnorePattern": "^_"
+            }
+        ],
         "@typescript-eslint/semi": "warn",
         "curly": "warn",
         "eqeqeq": "warn",
         "no-throw-literal": "warn",
         "semi": "off",
-        "no-unused-vars": "error",
-        "unused-imports/no-unused-imports": "error",
-        "prefer-const": "error",
+        "unused-imports/no-unused-imports": "warn",
+        "prefer-const": "warn",
         "@typescript-eslint/no-non-null-assertion": "warn",
         "@typescript-eslint/no-floating-promises": "warn"
     }

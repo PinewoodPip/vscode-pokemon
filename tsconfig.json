@@ -6,5 +6,6 @@
         "lib": ["es2016", "dom"],
         "target": "esnext"
     },
+    "sourceMap": true,
     "include": ["src"]
 }
