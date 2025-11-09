@@ -29,6 +29,7 @@ import { getRandomPokemonConfig, POKEMON_DATA, getRandomPokemonByTypes } from '.
 import { clamp, log, logError } from '../common/util';
 import { PhysicsEntityManager, Berry } from './entity';
 import { Pokemon, PokemonNeedsState } from './pokemon';
+import { getMoves } from '../common/learnsets-data';
 
 /* This is how the VS Code API can be invoked from the panel */
 declare global {
@@ -746,10 +747,12 @@ export function pokemonPanelApp(
 
         const playerLevel = 25; // TODO
         const enemyLevel = 25;
+        const playerMoveIDs = getMoves(playerPokemon.type, playerLevel).map(m => m.id);
+        const enemyMoveIDs = getMoves(enemyPokemon.type, enemyLevel).map(m => m.id);
         log('[combat] Sending combat start command');
         sendShowdownCommand(`>start {"formatid":"gen7ou"}
->player p1 {"name":"Player","team":"${capitalizeString(playerPokemon.config.name)}|||pressure|tackle,leer,aircutter,surf|Modest|252,,,252,4,||,,,30,30,||${playerLevel}|"}
->player p2 {"name":"Enemy","team":"${capitalizeString(enemyPokemon.config.name)}|||swiftswim|surf,gigadrain,tackle,leer|Modest|252,,,4,,252||||${enemyLevel}|"}
+>player p1 {"name":"Player","team":"${capitalizeString(playerPokemon.config.name)}|||noability|${playerMoveIDs.join(',')}|Modest|252,,,252,4,||,,,30,30,||${playerLevel}|"}
+>player p2 {"name":"Enemy","team":"${capitalizeString(enemyPokemon.config.name)}|||noability|${enemyMoveIDs.join(',')}|Modest|252,,,4,,252||||${enemyLevel}|"}
 >p1 team 1
 >p2 team 1`);
     }
