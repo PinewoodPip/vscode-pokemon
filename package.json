@@ -82,6 +82,11 @@
                     "command": "vscode-pokemon.change-theme",
                     "when": "view == pokemonView",
                     "group": "navigation@4"
+                },
+                {
+                    "command": "vscode-pokemon.start-combat",
+                    "when": "view == pokemonView",
+                    "group": "navigation@5"
                 }
             ]
         },
@@ -94,7 +99,11 @@
             {
                 "command": "vscode-pokemon.start-combat",
                 "title": "Start Pokemon Battle",
-                "category": "Pokemon Coding"
+                "category": "Pokemon Coding",
+                "icon": {
+                    "dark": "media/icon/dark-swords.svg",
+                    "light": "media/icon/light-swords.svg"
+                }
             },
             {
                 "command": "vscode-pokemon.export-pokemon-list",
