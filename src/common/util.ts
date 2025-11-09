@@ -28,3 +28,7 @@ export function log(msg: any) {
 export function logError(msg: any) {
     console.error(`[vscode-pokemon] ${msg}`);
 }
+
+export function sanitizeName(name: string): string {
+    return name.toLowerCase().replace(' ', '');
+}

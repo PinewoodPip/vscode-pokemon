@@ -26,7 +26,7 @@ import {
 } from './pokeball';
 import { PokemonElementState, PokemonPanelState } from './states';
 import { getRandomPokemonConfig, POKEMON_DATA, getRandomPokemonByTypes } from '../common/pokemon-data';
-import { clamp, log, logError } from '../common/util';
+import { clamp, log, logError, sanitizeName } from '../common/util';
 import { PhysicsEntityManager, Berry } from './entity';
 import { Pokemon, PokemonNeedsState } from './pokemon';
 import { getMoves } from '../common/learnsets-data';
@@ -192,11 +192,14 @@ function handleMouseOver(e: MouseEvent) {
             // Show tooltip with styled lines
             const pokemon = element.pokemon as Pokemon;
             const nameLabel = pokemon.name !== pokemon.config.name ? `${pokemon.name} (${pokemon.config.name})` : pokemon.name; // If nickname is same as species type, show only species name
+            const speciesID = sanitizeName(pokemon.config.name);
+            const moves = getMoves(speciesID, 25).map(m => m.name); // TODO set level
             const tooltipContent: TooltipLine[] = [
                 { text: nameLabel, className: 'tooltip-name' },
                 { text: `Type: ${pokemon.config.types.join(", ")}`, className: 'tooltip-type' },
                 { text: `Hunger: ${pokemon.needs.hunger}/100`, className: 'tooltip-stat' },
-                { text: `Happiness: ${pokemon.needs.happiness}/100`, className: 'tooltip-stat' }
+                { text: `Happiness: ${pokemon.needs.happiness}/100`, className: 'tooltip-stat' },
+                { text: `Moves: ${moves.join(", ")}`, className: 'tooltip-stat' },
             ];
             pokemonTooltip.show(tooltipContent);
         }
