@@ -1,0 +1,5 @@
+# Ignore webpack configuration files that are not part of the TS project used by eslint
+
+webpack.config.js
+
+webpack.config.*.js

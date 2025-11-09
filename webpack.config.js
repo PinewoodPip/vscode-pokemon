@@ -91,7 +91,8 @@ const webExtensionConfig = {
 		}),
 	],
 	externals: {
-		vscode: 'commonjs vscode', // ignored because it doesn't exist
+		vscode: 'commonjs vscode',
+		child_process: 'commonjs child_process' // Mark as external // ignored because it doesn't exist
 	},
 	performance: {
 		hints: false,

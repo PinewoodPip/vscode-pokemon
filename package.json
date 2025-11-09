@@ -176,6 +176,11 @@
         "configuration": [
             {
                 "properties": {
+                    "vscode-pokemon.showdownPath": {
+                        "type": "string",
+                        "default": "",
+                        "description": "Absolute path to the pokemon-showdown Node.js entry script. If empty, a fallback path will attempt to be used."
+                    },
                     "vscode-pokemon.pokemonSize": {
                         "type": "string",
                         "enum": [

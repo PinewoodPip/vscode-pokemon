@@ -19,3 +19,12 @@ export function getWeightedRandom<T>(items: (T & IWeighted)[]): T {
 export function clamp(value: number, min: number, max: number): number {
     return Math.max(min, Math.min(max, value));
 }
+
+/** Logs a message to the console, prefixed with the extension's name. */
+export function log(msg: any) {
+    console.log(`[vscode-pokemon] ${msg}`);
+}
+
+export function logError(msg: any) {
+    console.error(`[vscode-pokemon] ${msg}`);
+}

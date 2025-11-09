@@ -29,6 +29,83 @@ const DEFAULT_POSITION = ExtPosition.panel;
 const DEFAULT_THEME = Theme.none;
 const AFK_THRESHOLD = 5 * 60; // Threshold for deeming the user AFK, in seconds.
 
+import * as cp from 'child_process';
+import { log, logError } from '../common/util';
+
+export class ShowdownBattleProcess {
+    private process: cp.ChildProcess | null = null;
+    private webview: vscode.Webview | undefined;
+
+    constructor(webview?: vscode.Webview) {
+        this.webview = webview;
+    }
+
+    start(extensionPath: string, showdownPath: string): Promise<void> {
+        return new Promise((resolve, reject) => {
+            const spawnCmd = 'node';
+            const spawnArgs = [showdownPath, 'simulate-battle'];
+            
+            log('Starting Showdown process');
+
+            this.process = cp.spawn(spawnCmd, spawnArgs, {
+                cwd: extensionPath,
+                stdio: ['pipe', 'pipe', 'pipe'] // IPC messages are not used by showdown.
+            });
+
+            // Read stdout and forward to webview
+            this.process.stdout?.on('data', (data: Buffer) => {
+                const output = data.toString();
+                void this.webview?.postMessage({
+                    command: 'showdown-output',
+                    text: output
+                });
+            });
+
+            // Read stderr and forward to webview
+            this.process.stderr?.on('data', (data: Buffer) => {
+                const error = data.toString();
+                logError(`Showdown stderr: ${error}`);
+                
+                // Forward to webview
+                void this.webview?.postMessage({
+                    command: 'showdown-error',
+                    text: error
+                });
+            });
+
+            this.process.on('error', reject);
+            this.process.on('exit', (code) => {
+                log(`Process exited with code: ${code}`);
+                void this.webview?.postMessage({
+                    command: 'showdown-exit',
+                    text: `Process exited with code: ${code}`
+                });
+                this.process = null;
+            });
+
+            resolve();
+        });
+    }
+
+    // Write to stdin
+    writeCommand(command: string): void {
+        if (this.process?.stdin) {
+            this.process.stdin.write(command + '\n');
+        }
+    }
+
+    // Send IPC message (if using fork)
+    sendMessage(command: string): void {
+        this.process?.send({ command });
+    }
+
+    stop(): void {
+        this.process?.kill();
+    }
+}
+
+var combatProcess: ShowdownBattleProcess | null = null;
+
 class PokemonQuickPickItem implements vscode.QuickPickItem {
     constructor(
         public readonly name_: string,
@@ -344,6 +421,23 @@ export function activate(context: vscode.ExtensionContext) {
             }
             if (panel) {
                 panel.startCombat();
+                
+                // Get webview and start Showdown process
+                const webview = getWebview();
+                if (webview) {
+                    combatProcess = new ShowdownBattleProcess(webview);
+                    console.log('Starting Showdown battle process...');
+                    const showdownPathSetting = vscode.workspace.getConfiguration('vscode-pokemon').get<string>('showdownPath', '').trim();
+
+                    try {
+                        const resolvedShowdownPath = resolveShowdownPath(showdownPathSetting);
+                        await combatProcess.start(context.extensionPath, resolvedShowdownPath);
+
+                    } catch (e) {
+                        // Show error notification
+                        await vscode.window.showErrorMessage('Failed to start Pokemon Showdown battle process. Double-check that the pokemon-showdown node module is installed and that your showdownPath setting is correct.');
+                    }
+                }
             } else {
                 await vscode.window.showInformationMessage(
                     vscode.l10n.t('Please start the Pokemon panel first using the "Start Pokemon" command.'),
@@ -837,6 +931,21 @@ export function activate(context: vscode.ExtensionContext) {
     );
 }
 
+function resolveShowdownPath(configured: string): string {
+    if (configured) {
+        return configured;
+    }
+    try {
+        // Attempt to resolve installed module entry point
+        // eslint-disable-next-line @typescript-eslint/no-var-requires
+        const pkgPath = require.resolve('pokemon-showdown');
+        return pkgPath;
+    } catch (e) {
+        console.warn('Could not resolve pokemon-showdown from node_modules, combat minigame will be unavailable');
+        throw e;
+    }
+}
+
 function setupAutoSpawn(context: vscode.ExtensionContext): void {
     // Clear existing timers if any (ex. when changing the settings while extension is running)
     if (autoSpawnTimer) {
@@ -1312,6 +1421,13 @@ function handleWebviewMessage(message: WebviewMessage) {
         case 'info':
             void vscode.window.showInformationMessage(message.text);
             return;
+        // In handleWebviewMessage function
+        case 'showdown-input':
+            // console.log('Writing combat input from webview');
+            if (combatProcess) {
+                combatProcess.writeCommand(message.text);
+            }
+            break;
     }
 }
 

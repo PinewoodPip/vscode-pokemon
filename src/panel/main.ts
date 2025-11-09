@@ -26,7 +26,7 @@ import {
 } from './pokeball';
 import { PokemonElementState, PokemonPanelState } from './states';
 import { getRandomPokemonConfig, POKEMON_DATA, getRandomPokemonByTypes } from '../common/pokemon-data';
-import { clamp } from '../common/util';
+import { clamp, log, logError } from '../common/util';
 import { PhysicsEntityManager, Berry } from './entity';
 import { Pokemon, PokemonNeedsState } from './pokemon';
 
@@ -267,7 +267,7 @@ function addPokemonToPanel(
     );
 
     const root = `${basePokemonUri}/${gen}/${pokemonType}/${pokemonColor}`;
-    console.log('Creating new pokemon : ', pokemonType, root, pokemonColor, pokemonSize, name, originalSpriteSize);
+    log(`Creating new pokemon : ${pokemonType}, ${root}, ${pokemonColor}, ${pokemonSize}, ${name}, ${originalSpriteSize}`);
     try {
         if (!availableColors(pokemonType).includes(pokemonColor)) {
             throw new InvalidPokemonException('Invalid color for pokemon type');
@@ -378,7 +378,7 @@ function recoverState(
             allPokemon.push(newPokemon);
             recoveryMap.set(newPokemon.pokemon, p);
         } catch (InvalidPokemonException) {
-            console.log(
+            log(
                 'State had invalid pokemon (' + p.pokemonType + '), discarding.',
             );
         }
@@ -409,12 +409,12 @@ let canvas: HTMLCanvasElement, ctx: CanvasRenderingContext2D;
 function initCanvas() {
     canvas = document.getElementById('pokemonCanvas') as HTMLCanvasElement;
     if (!canvas) {
-        console.log('Canvas not ready');
+        log('Canvas not ready');
         return;
     }
     ctx = canvas.getContext('2d') as CanvasRenderingContext2D;
     if (!ctx) {
-        console.log('Canvas context not ready');
+        log('Canvas context not ready');
         return;
     }
     ctx.canvas.width = window.innerWidth;
@@ -477,18 +477,12 @@ export function pokemonPanelApp(
         foregroundEl!.style.backgroundImage = '';
     }
 
-    console.log(
-        'Starting pokemon session',
-        pokemonColor,
-        basePokemonUri,
-        pokemonType,
-        throwBallWithMouse,
-    );
+    log(`Starting pokemon session: color=${pokemonColor}, baseUri=${basePokemonUri}, type=${pokemonType}, throwBallWithMouse=${throwBallWithMouse}`);
 
     // New session
     var state = stateApi?.getState();
     if (!state) {
-        console.log('No state, starting a new session.');
+        log('No state, starting a new session.');
         pokemonCounter = 1;
         allPokemon.push(
             addPokemonToPanel(
@@ -507,7 +501,7 @@ export function pokemonPanelApp(
         );
         saveState(stateApi);
     } else {
-        console.log('Recovering state - ', state);
+        log(`Recovering state - ${state}`);
         recoverState(basePokemonUri, gen, pokemonSize, floor, stateApi);
     }
 
@@ -529,54 +523,11 @@ export function pokemonPanelApp(
         dynamicThrowOff();
     }
 
-    // Combat functions
-    function getTypeEffectiveness(attackerTypes: string[], defenderTypes: string[]): number {
-        // Simplified type effectiveness chart
-        const typeChart: { [key: string]: { [key: string]: number } } = {
-            fire: { grass: 2, ice: 2, bug: 2, steel: 2, water: 0.5, fire: 0.5, rock: 0.5, dragon: 0.5 },
-            water: { fire: 2, ground: 2, rock: 2, grass: 0.5, water: 0.5, dragon: 0.5 },
-            grass: { water: 2, ground: 2, rock: 2, fire: 0.5, grass: 0.5, poison: 0.5, flying: 0.5, bug: 0.5, dragon: 0.5, steel: 0.5 },
-            electric: { water: 2, flying: 2, grass: 0.5, electric: 0.5, ground: 0, dragon: 0.5 },
-            normal: { rock: 0.5, ghost: 0, steel: 0.5 },
-            fighting: { normal: 2, ice: 2, rock: 2, dark: 2, steel: 2, poison: 0.5, flying: 0.5, psychic: 0.5, bug: 0.5, fairy: 0.5, ghost: 0 },
-            flying: { grass: 2, fighting: 2, bug: 2, electric: 0.5, rock: 0.5, steel: 0.5 },
-            poison: { grass: 2, fairy: 2, poison: 0.5, ground: 0.5, rock: 0.5, ghost: 0.5, steel: 0 },
-            ground: { fire: 2, electric: 2, poison: 2, rock: 2, steel: 2, grass: 0.5, bug: 0.5, flying: 0 },
-            rock: { fire: 2, ice: 2, flying: 2, bug: 2, fighting: 0.5, ground: 0.5, steel: 0.5 },
-            bug: { grass: 2, psychic: 2, dark: 2, fire: 0.5, fighting: 0.5, poison: 0.5, flying: 0.5, ghost: 0.5, steel: 0.5, fairy: 0.5 },
-            ghost: { psychic: 2, ghost: 2, dark: 0.5, normal: 0 },
-            steel: { ice: 2, rock: 2, fairy: 2, fire: 0.5, water: 0.5, electric: 0.5, steel: 0.5 },
-            psychic: { fighting: 2, poison: 2, psychic: 0.5, steel: 0.5, dark: 0 },
-            ice: { grass: 2, ground: 2, flying: 2, dragon: 2, fire: 0.5, water: 0.5, ice: 0.5, steel: 0.5 },
-            dragon: { dragon: 2, steel: 0.5, fairy: 0 },
-            dark: { psychic: 2, ghost: 2, fighting: 0.5, dark: 0.5, fairy: 0.5 },
-            fairy: { fighting: 2, dragon: 2, dark: 2, fire: 0.5, poison: 0.5, steel: 0.5 }
-        };
-
-        let effectiveness = 1;
-        for (const attackType of attackerTypes) {
-            for (const defenderType of defenderTypes) {
-                const typeMultiplier = typeChart[attackType]?.[defenderType];
-                if (typeMultiplier !== undefined) {
-                    effectiveness *= typeMultiplier;
-                }
-            }
-        }
-        return effectiveness;
-    }
-
-    function calculateDamage(attacker: CombatPokemon, defender: CombatPokemon): { damage: number, effectiveness: number } {
-        const baseDamage = Math.floor(attacker.config.stats.attack * 0.4);
-        const effectiveness = getTypeEffectiveness(attacker.config.types, defender.config.types);
-        const randomFactor = 0.85 + Math.random() * 0.15; // 85-100%
-        const damage = Math.max(1, Math.floor(baseDamage * effectiveness * randomFactor));
-        return { damage, effectiveness };
-    }
-
     function updateCombatUI() {
         if (!playerPokemon || !enemyPokemon) {
             return;
         }
+        log('Updating combat UI');
 
         // Update player info
         const playerNameEl = document.getElementById('playerName');
@@ -625,7 +576,6 @@ export function pokemonPanelApp(
         const enemySprite = document.getElementById('enemySprite') as HTMLImageElement;
         if (playerSprite) {
             playerSprite.src = `${basePokemonUri}/${playerPokemon.generation}/${playerPokemon.type}/default_walk_8fps.gif`;
-            console.log(playerSprite.src);
         }
         if (enemySprite) {
             enemySprite.src = `${basePokemonUri}/${enemyPokemon.generation}/${enemyPokemon.type}/default_walk_8fps.gif`;
@@ -641,6 +591,7 @@ export function pokemonPanelApp(
             logEl.appendChild(entry);
             logEl.scrollTop = logEl.scrollHeight;
         }
+        log(`[Combat Log] ${message}`);
     }
 
     function endCombat(playerWon: boolean) {
@@ -660,6 +611,7 @@ export function pokemonPanelApp(
             text: message,
         });
         
+        // Hide combat UI after a delay
         setTimeout(() => {
             const combatContainer = document.getElementById('combatContainer');
             const pokemonContainer = document.getElementById('pokemonContainer');
@@ -687,43 +639,22 @@ export function pokemonPanelApp(
             return;
         }
 
-        // Determine who goes first based on speed
-        const playerFirst = playerPokemon.config.stats.speed >= enemyPokemon.config.stats.speed;
-        
-        const attackers = playerFirst 
-            ? [{ pokemon: playerPokemon, target: enemyPokemon, isPlayer: true }, { pokemon: enemyPokemon, target: playerPokemon, isPlayer: false }]
-            : [{ pokemon: enemyPokemon, target: playerPokemon, isPlayer: false }, { pokemon: playerPokemon, target: enemyPokemon, isPlayer: true }];
-
-        for (const { pokemon, target, isPlayer } of attackers) {
-            if (target.currentHp <= 0) {
-                continue;
-            }
-
-            const { damage, effectiveness } = calculateDamage(pokemon, target);
-            target.currentHp = Math.max(0, target.currentHp - damage);
-
-            let effectivenessText = '';
-            let logClass = 'damage';
-            if (effectiveness > 1) {
-                effectivenessText = " It's super effective!";
-                logClass = 'super-effective';
-            } else if (effectiveness < 1 && effectiveness > 0) {
-                effectivenessText = " It's not very effective...";
-                logClass = 'not-very-effective';
-            } else if (effectiveness === 0) {
-                effectivenessText = " It had no effect...";
-                logClass = 'not-very-effective';
-            }
-
-            addCombatLog(`${pokemon.name} attacks ${target.name} for ${damage} damage!${effectivenessText}`, logClass);
-
-            if (target.currentHp <= 0) {
-                endCombat(isPlayer);
-                break;
-            }
+        function randomIntegerInRange(min: number, max: number): number {
+            return Math.floor(Math.random() * (max - min + 1)) + min;
         }
+        const player1Move = randomIntegerInRange(1, 4);
+        const player2Move = randomIntegerInRange(1, 4);
+        sendShowdownCommand(`>p1 move ${player1Move}`);
+        sendShowdownCommand(`>p2 move ${player2Move}`);
 
         updateCombatUI();
+    }
+
+    function sendShowdownCommand(command: string) {
+        stateApi?.postMessage({
+            command: 'showdown-input',
+            text: command,
+        });
     }
 
     function startCombat() {
@@ -802,7 +733,129 @@ export function pokemonPanelApp(
         // Start combat turns
         combatInterval = window.setInterval(() => {
             executeCombatTurn();
-        }, 2000);
+        }, 3000);
+
+        function capitalizeString(s: string): string {
+            return s.charAt(0).toUpperCase() + s.slice(1);
+        }
+
+        const playerLevel = 25; // TODO
+        const enemyLevel = 25;
+        log('[combat] Sending combat start command');
+        sendShowdownCommand(`>start {"formatid":"gen7ou"}
+>player p1 {"name":"Player","team":"${capitalizeString(playerPokemon.config.name)}|||pressure|tackle,leer,aircutter,surf|Modest|252,,,252,4,||,,,30,30,||${playerLevel}|"}
+>player p2 {"name":"Enemy","team":"${capitalizeString(enemyPokemon.config.name)}|||swiftswim|surf,gigadrain,tackle,leer|Modest|252,,,4,,252||||${enemyLevel}|"}
+>p1 team 1
+>p2 team 1`);
+    }
+
+    function parseShowdownOutput(output: string) {
+        const IGNORED_LINES = [
+            /^update$/,
+            /^gametype/,
+            /^player/,
+            /^\|t:/,
+            /^tier/,
+            /^rule/,
+            /^clearpoke/,
+            /^teampreview/,
+            /^poke/,
+            /^\|$/,
+        ];
+        const lines = output.split('\n');
+        lines.forEach((line) => {
+            let match;
+            // Fainting
+            if (match = line.match(/^\|-damage\|p(\d)a: ([^|]+)\|0 fnt$/)) {
+                const playerIndex = match[1];
+                const pokemon = match[2];
+                addCombatLog(`${pokemon} fainted!`, 'info');
+
+                // Set HP to 0
+                // TODO handle ending combat by the "win" message instead.
+                if (playerIndex === '1' && playerPokemon) {
+                    playerPokemon.currentHp = 0;
+                    updateCombatUI();
+                    endCombat(false);
+                } else if (playerIndex === '2' && enemyPokemon) {
+                    enemyPokemon.currentHp = 0;
+                    updateCombatUI();
+                    endCombat(true);
+                }
+            }
+            // Damage lines
+            else if (match = line.match(/^\|-damage\|p(\d)a: ([^|]+)\|(\d+)\/(\d+)$/)) {
+                log(match);
+                const playerIndex = match[1];
+                const pokemon = match[2];
+                const remainingHP = match[3];
+                const totalHP = parseInt(match[4]);
+                if (totalHP !== 100) { // TODO handle this properly
+                    addCombatLog(`${pokemon} was reduced to ${remainingHP}/${totalHP} HP!`, 'info'); // TODO calc damage
+
+                    // Update HPs
+                    if (playerIndex === '1' && playerPokemon) {
+                        playerPokemon.currentHp = parseInt(remainingHP);
+                        playerPokemon.maxHp = totalHP;
+                    } else if (playerIndex === '2' && enemyPokemon) {
+                        enemyPokemon.currentHp = parseInt(remainingHP);
+                        enemyPokemon.maxHp = totalHP;
+                    }
+                    updateCombatUI();
+                }
+            }
+            // Used moves
+            else if (match = line.match(/^\|move\|p(\d)a: ([^|]+)\|([^|]+)\|p(\d)a: ([^|]+)$/)) {
+                log(match);
+                const playerIndex = match[1];
+                const userPokemon = match[2];
+                const move = match[3];
+                const targetPlayerIndex = match[4];
+                const targetPlayerPokemon = match[5];
+                addCombatLog(`${userPokemon} used ${move} on ${targetPlayerPokemon}!`, 'info');
+            }
+            // Stat decreases (unboost)
+            else if (match = line.match(/^\|-unboost\|p(\d)a: ([^|]+)\|([^|]+)\|([1-9]+)$/)) {
+                log(match);
+                const playerIndex = match[1];
+                const pokemon = match[2];
+                const stat = match[3];
+                const amount = match[4];
+                addCombatLog(`${pokemon}'s ${stat} fell by ${amount}!`, 'info');
+            }
+            // Stat increases (boost)
+            else if (match = line.match(/^\|-boost\|p(\d)a: ([^|]+)\|([^|]+)\|[1-9]+$/)) {
+                log(match);
+                const playerIndex = match[1];
+                const pokemon = match[2];
+                const stat = match[3];
+                const amount = match[4];
+                addCombatLog(`${pokemon}'s ${stat} rose by ${amount}!`, 'info');
+            }
+            // Switching in pokemon
+            else if (match = line.match(/^\|switch\|p(\d)a: ([^|]+)\|[^|]+\|(\d+)\/(\d+)$/)) {
+                log(match);
+                const playerIndex = match[1];
+                const pokemon = match[2];
+                const hp = match[3];
+                const maxHp = match[4];
+                addCombatLog(`${playerIndex === '1' ? 'Your' : 'Enemy'} ${pokemon} switched in with ${hp}/${maxHp} HP!`, 'info');
+
+                // Update HPs
+                if (playerIndex === '1' && playerPokemon) {
+                    playerPokemon.currentHp = parseInt(hp);
+                    playerPokemon.maxHp = parseInt(maxHp);
+                } else if (playerIndex === '2' && enemyPokemon) {
+                    enemyPokemon.currentHp = parseInt(hp);
+                    enemyPokemon.maxHp = parseInt(maxHp);
+                }
+            } else {
+                const trimmedLine = line.trim();
+                if (trimmedLine && !IGNORED_LINES.some((regex) => regex.test(trimmedLine))) {
+                    log(`Unhandled Showdown output: ${trimmedLine}`);
+                }
+            }
+        });
     }
 
     function getConfiguredTheme(): Theme {
@@ -845,6 +898,25 @@ export function pokemonPanelApp(
     window.addEventListener('message', (event): void => {
         const message = event.data; // The json data that the extension sent
         switch (message.command) {
+            case 'showdown-output':
+                log('Showdown: ' + message.text);
+                parseShowdownOutput(message.text);
+                // addCombatLog(message.text, 'info');
+                break;
+
+            case 'showdown-error':
+                logError('Showdown error: ' + message.text);
+                addCombatLog(message.text, 'damage');
+                break;
+
+            case 'showdown-message':
+                log('Showdown IPC: ' + message.text);
+                break;
+
+            case 'showdown-exit':
+                log('Showdown exited: ' + message.text);
+                break;
+
             case 'start-combat':
                 startCombat();
                 break;
