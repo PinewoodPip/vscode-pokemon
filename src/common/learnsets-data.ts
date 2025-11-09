@@ -3088,18 +3088,31 @@ export const LEARNSETS: { [key: string]: PokemonLearnset } = {
 
 export function getMoves(pokemonID: string, pokemonLevel: number): PokemonMove[] {
     // Get learnset
-    const availableMoves: PokemonMove[] = [];
+    let availableMoves: PokemonMove[] = [];
     const learnset = LEARNSETS[pokemonID];
     if (!learnset) {
       logError(`No learnset found for Pokemon ID ${pokemonID}`);
       return availableMoves;
     }
-    for (const moveName of Object.keys(learnset.moves)) {
+    for (const [moveName, moveSource] of Object.entries(learnset.moves)) {
       const move = ALL_MOVES[moveName];
-      availableMoves.push(move); // TODO level check
-      if (availableMoves.length >= 4) {
-        break;
+
+      // TODO
+      if (moveSource === 'Evo.' || moveSource === 'Rem.') {
+        continue;
+      }
+
+      // Add moves available at the pokemon's level
+      if (pokemonLevel >= moveSource) {
+        availableMoves.push(move);
       }
     }
+    // Keep only the 4 latest moves (highest-level ones)
+    availableMoves.sort((a, b) => {
+      const levelA = learnset.moves[a.name] as number;
+      const levelB = learnset.moves[b.name] as number;
+      return levelB - levelA;
+    });
+    availableMoves = availableMoves.slice(0, 4);
     return availableMoves;
   }
