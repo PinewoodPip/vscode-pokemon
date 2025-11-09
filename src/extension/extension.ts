@@ -419,6 +419,10 @@ export function activate(context: vscode.ExtensionContext) {
             if (getConfigurationPosition() === ExtPosition.explorer && webviewViewProvider) {
                 await vscode.commands.executeCommand('pokemonView.focus');
             }
+            if (combatProcess) {
+                await vscode.window.showInformationMessage("You're already in combat!");
+                return;
+            }
             if (panel) {
                 panel.startCombat();
                 
@@ -1426,6 +1430,13 @@ function handleWebviewMessage(message: WebviewMessage) {
             // console.log('Writing combat input from webview');
             if (combatProcess) {
                 combatProcess.writeCommand(message.text);
+            }
+            break;
+        case 'showdown-stop':
+            // Gracefully terminate the Showdown battle process
+            if (combatProcess) {
+                combatProcess.stop();
+                combatProcess = null;
             }
             break;
     }

@@ -610,6 +610,11 @@ export function pokemonPanelApp(
             command: 'info',
             text: message,
         });
+        // Ask the extension to stop the Showdown process
+        stateApi?.postMessage({
+            command: 'showdown-stop',
+            text: 'End of combat: terminate Showdown process'
+        });
         
         // Hide combat UI after a delay
         setTimeout(() => {
@@ -872,6 +877,11 @@ export function pokemonPanelApp(
                 combatInterval = null;
             }
             combatActive = false;
+            // Ensure the Showdown process is stopped when exiting early
+            stateApi?.postMessage({
+                command: 'showdown-stop',
+                text: 'User exited combat: terminate Showdown process'
+            });
             
             const combatContainer = document.getElementById('combatContainer');
             const pokemonContainer = document.getElementById('pokemonContainer');
