@@ -1329,90 +1329,27 @@ class PokemonWebviewContainer implements IPokemonPanel {
         // Use a nonce to only allow specific scripts to be run
         const nonce = getNonce();
 
-        return `<!DOCTYPE html>
-			<html lang="en">
-			<head>
-				<meta charset="UTF-8">
-				<!--
-					Use a content security policy to only allow loading images from https or from our extension directory,
-					and only allow scripts that have a specific nonce.
-				-->
-				<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src ${webview.cspSource
-            } 'nonce-${nonce}'; img-src ${webview.cspSource
-            } https:; script-src 'nonce-${nonce}';
-                font-src ${webview.cspSource};">
-				<meta name="viewport" content="width=device-width, initial-scale=1.0">
-				<link href="${stylesResetUri}" rel="stylesheet" nonce="${nonce}">
-				<link href="${stylesMainUri}" rel="stylesheet" nonce="${nonce}">
-				<link href="${moveTypesCSSUri}" rel="stylesheet" nonce="${nonce}">
-                <style nonce="${nonce}">
-                @font-face {
-                    font-family: 'silkscreen';
-                    src: url('${silkScreenFontPath}') format('truetype');
-                }
-                </style>
-				<title>VS Code Pokemon</title>
-			</head>
-			<body>
-                <canvas id="pokemonCanvas"></canvas>
-                <div id="pokemonContainer"></div>
-                <div id="foreground"></div>
-                <div id="pokemonTooltip" class="pokemon-tooltip"></div>
-                <div id="combatContainer" style="display: none;">
-                    <div id="combatUI">
-                        <div id="combatArena">
-                            <div id="playerPokemonSection" class="combat-pokemon-section">
-                                <div class="pokemon-info">
-                                    <div class="pokemon-name" id="playerName">???</div>
-                                    <div class="hp-bar-container">
-                                        <div class="hp-bar" id="playerHpBar">
-                                            <div class="hp-fill" id="playerHpFill"></div>
-                                        </div>
-                                        <div class="hp-text" id="playerHpText">HP: 0/0</div>
-                                        <div class="status-badges" id="playerStatusBadges"></div>
-                                        <div class="stat-modifier-badges" id="playerStatModifiers"></div>
-                                    </div>
-                                </div>
-                                <img id="playerSprite" class="combat-sprite" />
-                            </div>
-                            <div id="enemyPokemonSection" class="combat-pokemon-section">
-                                <div class="pokemon-info">
-                                    <div class="pokemon-name" id="enemyName">???</div>
-                                    <div class="hp-bar-container">
-                                        <div class="hp-bar" id="enemyHpBar">
-                                            <div class="hp-fill" id="enemyHpFill"></div>
-                                        </div>
-                                        <div class="hp-text" id="enemyHpText">HP: 0/0</div>
-                                        <div class="status-badges" id="enemyStatusBadges"></div>
-                                        <div class="stat-modifier-badges" id="enemyStatModifiers"></div>
-                                    </div>
-                                </div>
-                                <img id="enemySprite" class="combat-sprite flip-x" />
-                            </div>
-                            <div id="turnCounter" class="turn-counter">Turn 1</div>
-                        </div>
-                        <div id="combatLog"></div>
-                        <!-- <div id="combatActions">
-                            <button id="exitCombatBtn">Exit Combat</button>
-                        </div> -->
-                    </div>
-                </div>
-                <script nonce="${nonce}" src="${scriptUri}"></script>
-                <script nonce="${nonce}">
-                    pokemonApp.pokemonPanelApp(
-                        "${basePokemonUri}",
-                        "${this.theme()}",
-                        ${this.themeKind()},
-                        "${this.pokemonColor()}",
-                        "${this.pokemonSize()}",
-                        "${this.pokemonType()}",
-                        "${this.throwBallWithMouse()}",
-                        "${this.pokemonGeneration()}",
-                        "${this.pokemonOriginalSpriteSize()}",
-                    );
-                </script>
-            </body>
-			</html>`;
+        // Load HTML template and replace placeholders
+        const htmlTemplatePath = vscode.Uri.joinPath(this._extensionUri, 'src', 'extension', 'webview-body.html');
+        const html = require('fs').readFileSync(htmlTemplatePath.fsPath, 'utf-8')
+            .replace(/{nonce}/g, nonce)
+            .replace(/{cspSource}/g, webview.cspSource)
+            .replace(/{stylesResetUri}/g, stylesResetUri.toString())
+            .replace(/{stylesMainUri}/g, stylesMainUri.toString())
+            .replace(/{moveTypesCSSUri}/g, moveTypesCSSUri.toString())
+            .replace(/{silkScreenFontPath}/g, silkScreenFontPath.toString())
+            .replace(/{scriptUri}/g, scriptUri.toString())
+            .replace(/{basePokemonUri}/g, basePokemonUri.toString())
+            .replace(/{theme}/g, this.theme())
+            .replace(/{themeKind}/g, this.themeKind().toString())
+            .replace(/{pokemonColor}/g, this.pokemonColor())
+            .replace(/{pokemonSize}/g, this.pokemonSize())
+            .replace(/{pokemonType}/g, this.pokemonType())
+            .replace(/{throwBallWithMouse}/g, this.throwBallWithMouse().toString())
+            .replace(/{pokemonGeneration}/g, this.pokemonGeneration())
+            .replace(/{pokemonOriginalSpriteSize}/g, this.pokemonOriginalSpriteSize().toString());
+
+        return html;
     }
 }
 
