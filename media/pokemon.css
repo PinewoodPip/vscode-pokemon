@@ -388,3 +388,36 @@ img.pokemon {
 	font-family: 'silkscreen', var(--vscode-font-family);
 	font-size: 14px;
 }
+
+/**
+ * Overheads
+ */
+.overhead {
+	position: absolute;
+	font-family: 'silkscreen', var(--vscode-font-family);
+	font-weight: bold;
+	font-size: 20px;
+	pointer-events: none;
+	z-index: 2001;
+	text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+	animation: floatUp 1s ease-out forwards;
+}
+
+.overhead.damage {
+	color: #ff6b6b;
+}
+
+.overhead.heal {
+	color: #51cf66;
+}
+
+@keyframes floatUp {
+	0% {
+		opacity: 1;
+		transform: translateY(0) scale(1);
+	}
+	100% {
+		opacity: 0;
+		transform: translateY(-60px) scale(1.2);
+	}
+}
