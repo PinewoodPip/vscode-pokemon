@@ -3,28 +3,7 @@ import { ABREVIATION_TO_STAT, Combat, CombatPokemon, CombatPokemonStat } from ".
 import { getMoves } from "../common/learnsets-data";
 import { capitalizeString, randomIntegerInRange } from "../common/util";
 import { VscodeStateApi } from "../common/vscode-api";
-
-const STATUS_ACRONYM_TO_STRING: Record<string, string> = {
-    brn: 'burned',
-    par: 'paralyzed',
-    slp: 'sleeping',
-    frz: 'frozen',
-    psn: 'poisoned',
-    tox: 'badly poisoned',
-    confusion: 'confused',
-    flinched: 'flinched',
-    trapped: 'trapped',
-    trapper: 'trapping',
-    partiallytrapped: 'partially trapped',
-    lockedmove: 'locked into a move',
-    twoturnmove: 'in a two-turn move',
-    choicelock: 'locked by Choice item',
-    mustrecharge: 'tired and must recharge', // Definitely not what the games show for this, TODO?
-    futuremove: 'preparing a future move',
-    healreplacement: 'healing replacement', // ?
-    stall: 'protecting itself', // Protect, Detect, Endure counter
-    gem: 'powered up by a Gem', // ?
-}
+import { MESSAGE_HANDLERS } from "./message-handlers";
 
 interface ParticipantWidgets {
     nameEl: HTMLElement;
@@ -260,228 +239,18 @@ export class CombatUIManager {
                 return;
             }
 
-            // Parse line
-            let match;
-            // Fainting hits
-            if (match = line.match(/^\|-damage\|p(\d)a: ([^|]+)\|0 fnt\|?(\[from\] \w+)?$/)) {
-                const playerIndex = parseInt(match[1]);
-                const pokemonName = match[2];
-                const cause = match[3]; // TODO parse further; has a [from] prefix
-                this.addCombatLog(`${pokemonName} fainted${cause ? ` due to ${cause}` : ''}!`, 'info');
-
-                // Set HP to 0
-                const pokemonEl = this.getCombatPokemonElement(playerIndex);
-                pokemonEl.currentHp = 0;
-                this.updateUI();
-            }
-            // Generic faint message
-            else if (match = line.match(/^\|faint\|p(\d)a: ([^|]+)$/)){
-                const _playerIndex = parseInt(match[1]);
-                const pokemonName = match[2];
-                this.addCombatLog(`${pokemonName} fainted!`, 'info');
-            }
-            // Skill failure
-            else if (match = line.match(/^\|-fail\|p(\d)a: ([^|]+)$/)) {
-                const _playerIndex = parseInt(match[1]);
-                const pokemonName = match[2];
-                this.addCombatLog(`${pokemonName} failed to use their move!`, 'info');
-            }
-            // Critical hits
-            else if (match = line.match(/^\|-crit\|p(\d)a: ([^|]+)$/)) {
-                const _playerIndex = parseInt(match[1]);
-                const pokemonName = match[2];
-                this.addCombatLog(`${pokemonName} landed a critical hit!`, 'info');
-            }
-            // Damage lines
-            else if (match = line.match(/^\|-damage\|p(\d)a: ([^|]+)\|(\d+)\/(\d+)( \w+)?\|?(\[[\w]+\] \w+)?/)) {
-                const playerIndex = parseInt(match[1]);
-                const pokemonName = match[2];
-                const remainingHP = parseInt(match[3]);
-                const totalHP = parseInt(match[4]);
-                const status = match[5];
-                const cause = match[6]; // TODO parse further; has a [from] prefix
-
-                if (cause) {
-                    this.addCombatLog(`${pokemonName} was reduced to ${remainingHP}/${totalHP} HP${cause ? ` due to ${cause}` : ''}!`, 'info');
+            // Try each message handler
+            let handled = false;
+            for (const handler of MESSAGE_HANDLERS) {
+                if (handler.canHandle(line)) {
+                    handler.handle(line, this);
+                    handled = true;
+                    break;
                 }
+            }
 
-                if (status) {
-                    // TODO show status
-                }
-
-                // Calculate and display damage
-                const pokemonEl = this.getCombatPokemonElement(playerIndex);
-                let previousHP = totalHP;
-                previousHP = pokemonEl.currentHp;
-                pokemonEl.currentHp = remainingHP;
-                pokemonEl.maxHp = totalHP;
-                const damage = previousHP - remainingHP;
-                const combatSectionEl = this.getCombatSectionElement(playerIndex);
-                this.showDamageOverhead(combatSectionEl, damage);
-                this.updateUI();
-            }
-            // Healing
-            else if (match = line.match(/^\|-heal\|p(\d)a: ([^|]+)\|(\d+)\/(\d+)\|([^|]+)\|([^|]+)$/)) {
-                const playerIndex = match[1];
-                const pokemonName = match[2];
-                const remainingHP = parseInt(match[3]);
-                const totalHP = parseInt(match[4]);
-                const source = match[5];
-                const target = match[6];
-
-                // Calculate and display healing
-                const pokemonEl = this.getCombatPokemonElement(parseInt(playerIndex));
-                let previousHP = totalHP;
-                previousHP = pokemonEl.currentHp;
-                pokemonEl.currentHp = remainingHP;
-                pokemonEl.maxHp = totalHP;
-                const healing = remainingHP - previousHP;
-                const combatSectionEl = this.getCombatSectionElement(parseInt(playerIndex));
-                this.showHealOverhead(combatSectionEl, healing);
-                this.addCombatLog(`${pokemonName} healed ${healing} HP from using ${source} on ${target}`, 'info');
-
-                this.updateUI();
-            }
-            // "Not very effective" message
-            else if (match = line.match(/^\|-resisted\|p(\d)a: ([^|]+)$/)) {
-                const _playerIndex = match[1];
-                const pokemonName = match[2];
-                this.addCombatLog(`It's not very effective on ${pokemonName}... `, 'info');
-            }
-            // Turn counter
-            else if (match = line.match(/^\|turn\|(\d+)$/)) {
-                this.combat.turn = parseInt(match[1]);
-                this.updateTurnCounter()
-            }
-            // Starting charged moves
-            else if (match = line.match(/^\|-start\|p(\d)a: ([^|]+)\|([^|]+)\|([^|+]+)$/)) {
-                const _playerIndex = match[1];
-                const pokemon = match[2];
-                const move = match[3];
-                const details = match[4]; // TODO parse further; ex. [of] p1a: Hippopotas
-                this.addCombatLog(`${pokemon} started ${move} ${details}!`, 'info');
-            }
-            // Status applications
-            else if (match = line.match(/^\|-status\|p(\d)a: ([^|]+)\|([^|]+)$/)) {
-                const _playerIndex = match[1];
-                const pokemon = match[2];
-                const status = match[3];
-                this.addCombatLog(`${pokemon} is ${STATUS_ACRONYM_TO_STRING[status] ?? status}!`, 'info');
-                const combatPokemon = this.getCombatPokemonElement(parseInt(_playerIndex));
-                combatPokemon.addStatus(status);
-            }
-            // Status removals
-            else if (match = line.match(/^\|-curestatus\|p(\d)a: ([^|]+)\|([^|]+)$/)) {
-                const _playerIndex = match[1];
-                const pokemon = match[2];
-                const status = match[3];
-                this.addCombatLog(`${pokemon} is no longer ${STATUS_ACRONYM_TO_STRING[status] ?? status}!`, 'info');
-                const combatPokemon = this.getCombatPokemonElement(parseInt(_playerIndex));
-                combatPokemon.removeStatus(status);
-            }
-            // Status immunities
-            else if (match = line.match(/^\|cant\|p(\d)a: ([^|]+)\|(\w+)$/)) {
-                const _playerIndex = match[1];
-                const pokemon = match[2];
-                const status = match[3];
-                const statusName = STATUS_ACRONYM_TO_STRING[status] ?? status;
-                this.addCombatLog(`${pokemon} cannot be ${statusName}!`, 'info');
-            }
-            // Ending charged moves
-            else if (match = line.match(/^\|-end\|p(\d)a: ([^|]+)\|([^|]+)\|([^|+]+)$/)) {
-                const _playerIndex = match[1];
-                const pokemon = match[2];
-                const move = match[3];
-                const details = match[4]; // TODO parse further; ex. [of] p1a: Hippopotasu
-                this.addCombatLog(`${pokemon} ended ${move} ${details}!`, 'info');
-            }
-            // Charging moves
-            else if (match = line.match(/^\|move\|p(\d)a: ([^|]+)\|(\w+)\|\|(\[\w+\])/)) {
-                const _playerIndex = match[1];
-                const pokemon = match[2];
-                const move = match[3];
-                const chargeInfo = match[4];
-                this.addCombatLog(`${pokemon} is ${chargeInfo} using ${move}!`, 'info');
-            }
-            // Used moves
-            else if (match = line.match(/^\|move\|p(\d)a: ([^|]+)\|([^|]+)\|p(\d)a: ([^|]+)$/)) {
-                const _playerIndex = match[1];
-                const userPokemon = match[2];
-                const move = match[3];
-                const _targetPlayerIndex = match[4];
-                const targetPlayerPokemon = match[5];
-                this.addCombatLog(`${userPokemon} used ${move} on ${targetPlayerPokemon}!`, 'info');
-            }
-            // Stat decreases (unboost)
-            else if (match = line.match(/^\|-unboost\|p(\d)a: ([^|]+)\|([^|]+)\|([1-9]+)$/)) {
-                const _playerIndex = match[1];
-                const pokemon = match[2];
-                const stat = match[3];
-                const amount = match[4];
-                this.addCombatLog(`${pokemon}'s ${stat} fell by ${amount}!`, 'info');
-
-                // Update stat modifiers
-                const statEnum = ABREVIATION_TO_STAT[stat];
-                const combatPokemon = this.getCombatPokemonElement(parseInt(_playerIndex));
-                combatPokemon.addBoost(statEnum, -parseInt(amount));
-                this.updateUI();
-            }
-            // Stat increases (boost)
-            else if (match = line.match(/^\|-boost\|p(\d)a: ([^|]+)\|([^|]+)\|([1-9]+)$/)) {
-                log(match);
-                const _playerIndex = match[1];
-                const pokemon = match[2];
-                const stat = match[3];
-                const amount = match[4];
-                this.addCombatLog(`${pokemon}'s ${stat} rose by ${amount}!`, 'info');
-                
-                // Update stat modifiers
-                const statEnum = ABREVIATION_TO_STAT[stat];
-                const combatPokemon = this.getCombatPokemonElement(parseInt(_playerIndex));
-                combatPokemon.addBoost(statEnum, parseInt(amount));
-                this.updateUI();
-            }
-            // Setting stats to specific stages
-            else if (match = line.match(/^\|-setboost\|p(\d)a: ([^|]+)\|([^|]+)\|([1-9]+)$/)) {
-                const _playerIndex = match[1];
-                const pokemon = match[2];
-                const stat = match[3];
-                const amount = match[4];
-                this.addCombatLog(`${pokemon}'s ${stat} rose by ${amount}!`, 'info');
-                
-                // Update stat modifiers
-                const statEnum = ABREVIATION_TO_STAT[stat];
-                const combatPokemon = this.getCombatPokemonElement(parseInt(_playerIndex));
-                combatPokemon.setBoost(statEnum, parseInt(amount));
-                this.updateUI();
-            }
-            // Miscellaneous effects (ex. struggle)
-            else if (match = line.match(/^\|-activate\|p(\d)a: ([^|]+)\|(.+)$/)) {
-                const _playerIndex = match[1];
-                const pokemon = match[2];
-                const effect = match[3];
-                this.addCombatLog(`${pokemon} activated ${effect}!`, 'info');
-            }
-            // Switching in pokemon
-            else if (match = line.match(/^\|switch\|p(\d)a: ([^|]+)\|[^|]+\|(\d+)\/(\d+)$/)) {
-                const playerIndex = match[1];
-                const pokemonName = match[2];
-                const hp = match[3];
-                const maxHp = match[4];
-                this.addCombatLog(`${playerIndex === '1' ? 'Your' : 'Enemy'} ${pokemonName} switched in with ${hp}/${maxHp} HP!`, 'info');
-
-                // Update HPs
-                const pokemonEl = this.getCombatPokemonElement(parseInt(playerIndex));
-                pokemonEl.currentHp = parseInt(hp);
-                pokemonEl.maxHp = parseInt(maxHp);
-            }
-            // Victory/defeat
-            else if (match = line.match(/^\|win\|(.+)$/)) {
-                const winner = match[1];
-                const playerWon = (winner === 'Player');
-                this.endCombat(playerWon);
-            }
-            else {
+            // Log unhandled lines
+            if (!handled) {
                 const trimmedLine = line.trim();
                 if (trimmedLine && !IGNORED_LINES.some((regex) => regex.test(trimmedLine))) {
                     log(`Unhandled Showdown output: ${trimmedLine}`);
