@@ -981,7 +981,7 @@ export function pokemonPanelApp(
                 addCombatLog(`It's not very effective on ${pokemonName}... `, 'info');
             }
             // Turn counter
-            else if (match = line.match(/^\|turn\|(\d)+$/)) {
+            else if (match = line.match(/^\|turn\|(\d+)$/)) {
                 const newTurn = match[1];
                 addCombatLog(`Turn ${newTurn} started.`, 'info'); 
             }
