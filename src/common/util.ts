@@ -32,3 +32,11 @@ export function logError(msg: any) {
 export function sanitizeName(name: string): string {
     return name.toLowerCase().replace(' ', '');
 }
+
+export function capitalizeString(s: string): string {
+    return s.charAt(0).toUpperCase() + s.slice(1);
+}
+
+export function randomIntegerInRange(min: number, max: number): number {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+}

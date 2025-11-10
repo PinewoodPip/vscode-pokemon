@@ -1,4 +1,6 @@
 import { PokemonType, PokemonColor, PokemonConfig } from "../common/types";
+import { log } from "../common/util";
+
 
 /** A pokemon participating in a combat. */
 export class CombatPokemon {
@@ -34,5 +36,20 @@ export class CombatPokemon {
         if (index !== -1) {
             this.statuses.splice(index, 1);
         }
+    }
+}
+
+/** Manages the state of a combat session. */
+export class Combat {
+    player: CombatPokemon;
+    enemy: CombatPokemon;
+    interval: number | null = null;
+    turn: number = 0;
+
+    constructor(player: CombatPokemon, enemy: CombatPokemon) {
+        this.player = player;
+        this.enemy = enemy;
+        this.interval = null;
+        this.turn = 0;
     }
 }
