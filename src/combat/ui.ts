@@ -1,5 +1,5 @@
 import { log } from "../common/util";
-import { Combat, CombatPokemon } from "./combat";
+import { ABREVIATION_TO_STAT, Combat, CombatPokemon, CombatPokemonStat } from "./combat";
 import { getMoves } from "../common/learnsets-data";
 import { capitalizeString, randomIntegerInRange } from "../common/util";
 import { VscodeStateApi } from "../common/vscode-api";
@@ -31,6 +31,7 @@ interface ParticipantWidgets {
     hpFill: HTMLElement;
     hpText: HTMLElement;
     statusBadges: HTMLElement;
+    statModifierBadges: HTMLElement;
     pokemonSprite: HTMLImageElement;
 }
 
@@ -68,6 +69,7 @@ export class CombatUIManager {
             hpFill: document.getElementById('playerHpFill')!,
             hpText: document.getElementById('playerHpText')!,
             statusBadges: document.getElementById('playerStatusBadges')!,
+            statModifierBadges: document.getElementById('playerStatModifiers')!,
             pokemonSprite: document.getElementById('playerSprite')! as HTMLImageElement,
         };
         this.enemyWidgets = {
@@ -75,6 +77,7 @@ export class CombatUIManager {
             hpFill: document.getElementById('enemyHpFill')!,
             hpText: document.getElementById('enemyHpText')!,
             statusBadges: document.getElementById('enemyStatusBadges')!,
+            statModifierBadges: document.getElementById('enemyStatModifiers')!,
             pokemonSprite: document.getElementById('enemySprite')! as HTMLImageElement,
         };
 
@@ -159,6 +162,9 @@ export class CombatUIManager {
 
         // Update statuses
         this.renderStatusBadges(widgets.statusBadges, pokemon.statuses);
+
+        // Update stat modifiers
+        this.renderStatModifierBadges(widgets.statModifierBadges, pokemon.statModifierStages);
 
         // Update sprites
         const pokemonSprite = widgets.pokemonSprite;
@@ -411,6 +417,11 @@ export class CombatUIManager {
                 const stat = match[3];
                 const amount = match[4];
                 this.addCombatLog(`${pokemon}'s ${stat} fell by ${amount}!`, 'info');
+
+                // Update stat modifiers
+                const statEnum = ABREVIATION_TO_STAT[stat];
+                const combatPokemon = this.getCombatPokemonElement(parseInt(_playerIndex));
+                combatPokemon.addBoost(statEnum, -parseInt(amount));
             }
             // Stat increases (boost)
             else if (match = line.match(/^\|-boost\|p(\d)a: ([^|]+)\|([^|]+)\|[1-9]+$/)) {
@@ -420,6 +431,24 @@ export class CombatUIManager {
                 const stat = match[3];
                 const amount = match[4];
                 this.addCombatLog(`${pokemon}'s ${stat} rose by ${amount}!`, 'info');
+                
+                // Update stat modifiers
+                const statEnum = ABREVIATION_TO_STAT[stat];
+                const combatPokemon = this.getCombatPokemonElement(parseInt(_playerIndex));
+                combatPokemon.addBoost(statEnum, parseInt(amount));
+            }
+            // Setting stats to specific stages
+            else if (match = line.match(/^\|-setboost\|p(\d)a: ([^|]+)\|([^|]+)\|([1-9]+)$/)) {
+                const _playerIndex = match[1];
+                const pokemon = match[2];
+                const stat = match[3];
+                const amount = match[4];
+                this.addCombatLog(`${pokemon}'s ${stat} rose by ${amount}!`, 'info');
+                
+                // Update stat modifiers
+                const statEnum = ABREVIATION_TO_STAT[stat];
+                const combatPokemon = this.getCombatPokemonElement(parseInt(_playerIndex));
+                combatPokemon.setBoost(statEnum, parseInt(amount));
             }
             // Miscellaneous effects (ex. struggle)
             else if (match = line.match(/^\|-activate\|p(\d)a: ([^|]+)\|(.+)$/)) {
@@ -505,6 +534,23 @@ export class CombatUIManager {
             const badge = document.createElement('div');
             badge.className = `status-badge ${status}`;
             badge.textContent = status.toUpperCase();
+            container.appendChild(badge);
+        });
+    }
+
+    renderStatModifierBadges(container: HTMLElement, statModifiers: Record<CombatPokemonStat, number>) {
+        container.innerHTML = '';
+        Object.entries(statModifiers).forEach(([stat, stage]) => {
+            if (stage === 0) {
+                return; // Skip stats with 0 modifier
+            }
+            const badge = document.createElement('div');
+            const abbreviation = Object.entries(ABREVIATION_TO_STAT)
+                .find(([_, value]) => value === stat)?.[0]
+                .toUpperCase() || stat;
+            const sign = stage > 0 ? '+' : '';
+            badge.className = `stat-modifier-badge ${stage > 0 ? 'positive' : 'negative'}`;
+            badge.textContent = `${abbreviation} ${sign}${stage}`;
             container.appendChild(badge);
         });
     }

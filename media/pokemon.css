@@ -408,6 +408,46 @@ img.pokemon {
 }
 /* TODO add badges for more statuses? */
 
+/**
+ * Stat modifier badges
+ */
+
+.stat-modifier-badges {
+	display: flex;
+	gap: 4px;
+	margin-top: 4px;
+	justify-content: center;
+	flex-wrap: wrap;
+}
+
+.stat-modifier-badge {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	font-size: 8px;
+	font-weight: bold;
+	padding: 1px 4px;
+	border-radius: 3px;
+	text-transform: uppercase;
+	letter-spacing: 0.3px;
+	font-family: 'silkscreen', var(--vscode-font-family);
+	color: #fff;
+	text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
+	white-space: nowrap;
+}
+
+.stat-modifier-badge.positive {
+	background: linear-gradient(135deg, #51cf66 0%, #69db7c 100%);
+}
+
+.stat-modifier-badge.negative {
+	background: linear-gradient(135deg, #ff6b6b 0%, #ff8787 100%);
+}
+
+/**
+ * Combat log styles
+ */
+
 #combatLog {
 	height: 120px;
 	/* max-height: 150px; */

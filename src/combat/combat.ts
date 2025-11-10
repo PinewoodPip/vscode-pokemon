@@ -1,6 +1,23 @@
 import { PokemonType, PokemonColor, PokemonConfig } from "../common/types";
 import { log } from "../common/util";
 
+export enum CombatPokemonStat {
+    hp = 'hp',
+    attack = 'attack',
+    defense = 'defense',
+    sp_atk = 'sp_atk',
+    sp_def = 'sp_def',
+    speed = 'speed',
+}
+
+export const ABREVIATION_TO_STAT: Record<string, CombatPokemonStat> = {
+    'hp': CombatPokemonStat.hp,
+    'atk': CombatPokemonStat.attack,
+    'def': CombatPokemonStat.defense,
+    'spa': CombatPokemonStat.sp_atk,
+    'spd': CombatPokemonStat.sp_def,
+    'spe': CombatPokemonStat.speed,
+};
 
 /** A pokemon participating in a combat. */
 export class CombatPokemon {
@@ -13,6 +30,14 @@ export class CombatPokemon {
     currentHp: number;
     maxHp: number;
     statuses: string[] = [];
+    statModifierStages: Record<CombatPokemonStat, number> = {
+        [CombatPokemonStat.hp]: 0,
+        [CombatPokemonStat.attack]: 0,
+        [CombatPokemonStat.defense]: 0,
+        [CombatPokemonStat.sp_atk]: 0,
+        [CombatPokemonStat.sp_def]: 0,
+        [CombatPokemonStat.speed]: 0,
+    };
 
     constructor(name: string, type: PokemonType, color: PokemonColor, generation: string, originalSpriteSize: number, config: PokemonConfig, currentHp: number, maxHp: number) {
         this.name = name;
@@ -23,6 +48,15 @@ export class CombatPokemon {
         this.config = config;
         this.currentHp = currentHp;
         this.maxHp = maxHp;
+    }
+
+    addBoost(stat: CombatPokemonStat, stage: number) {
+        const currentStage = this.statModifierStages[stat] || 0;
+        this.statModifierStages[stat] = currentStage + stage;
+    }
+
+    setBoost(stat: CombatPokemonStat, stage: number) {
+        this.statModifierStages[stat] = stage;
     }
 
     addStatus(status: string) {
