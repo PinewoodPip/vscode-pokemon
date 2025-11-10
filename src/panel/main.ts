@@ -6,8 +6,8 @@ import {
     PokemonType,
     ColorThemeKind,
     WebviewMessage,
-    CombatPokemon,
 } from '../common/types';
+import { CombatPokemon } from "../combat/combat";
 import { ALL_THEMES, Theme } from './themes';
 import { IPokemonType } from './states';
 import {
@@ -590,6 +590,11 @@ export function pokemonPanelApp(
         if (playerHpText) {
             playerHpText.textContent = `HP: ${playerPokemon.currentHp}/${playerPokemon.maxHp}`;
         }
+        // Update player status badges
+        const playerStatusBadges = document.getElementById('playerStatusBadges');
+        if (playerStatusBadges) {
+            renderStatusBadges(playerStatusBadges, playerPokemon.statuses);
+        }
 
         // Update enemy info
         const enemyNameEl = document.getElementById('enemyName');
@@ -611,6 +616,11 @@ export function pokemonPanelApp(
         if (enemyHpText) {
             enemyHpText.textContent = `HP: ${enemyPokemon.currentHp}/${enemyPokemon.maxHp}`;
         }
+        // Update enemy status badges
+        const enemyStatusBadges = document.getElementById('enemyStatusBadges');
+        if (enemyStatusBadges) {
+            renderStatusBadges(enemyStatusBadges, enemyPokemon.statuses);
+        }
 
         // Update sprites
         const playerSprite = document.getElementById('playerSprite') as HTMLImageElement;
@@ -621,6 +631,16 @@ export function pokemonPanelApp(
         if (enemySprite) {
             enemySprite.src = `${basePokemonUri}/${enemyPokemon.generation}/${enemyPokemon.type}/default_walk_8fps.gif`;
         }
+    }
+
+    function renderStatusBadges(container: HTMLElement, statuses: string[]) {
+        container.innerHTML = '';
+        statuses.forEach(status => {
+            const badge = document.createElement('div');
+            badge.className = `status-badge ${status}`;
+            badge.textContent = status.toUpperCase();
+            container.appendChild(badge);
+        });
     }
 
     function addCombatLog(message: string, className: string = '') {
@@ -763,27 +783,27 @@ export function pokemonPanelApp(
         }
 
         // Initialize combat pokemon
-        playerPokemon = {
-            name: playerPokemonEl.pokemon.name,
-            type: playerPokemonEl.type,
-            color: playerPokemonEl.color,
-            generation: playerPokemonEl.generation,
-            originalSpriteSize: playerPokemonEl.originalSpriteSize,
-            config: POKEMON_DATA[playerPokemonEl.type],
-            currentHp: POKEMON_DATA[playerPokemonEl.type].stats.hp,
-            maxHp: POKEMON_DATA[playerPokemonEl.type].stats.hp,
-        };
+        playerPokemon = new CombatPokemon(
+            playerPokemonEl.pokemon.name,
+            playerPokemonEl.type,
+            playerPokemonEl.color,
+            playerPokemonEl.generation,
+            playerPokemonEl.originalSpriteSize,
+            POKEMON_DATA[playerPokemonEl.type],
+            POKEMON_DATA[playerPokemonEl.type].stats.hp,
+            POKEMON_DATA[playerPokemonEl.type].stats.hp,
+        );
 
-        enemyPokemon = {
-            name: enemyPokemonConfig.name,
-            type: enemyPokemonType,
-            color: enemyPokemonConfig.possibleColors[0],
-            generation: `gen${enemyPokemonConfig.generation}`,
-            originalSpriteSize: enemyPokemonConfig.originalSpriteSize ?? 32,
-            config: enemyPokemonConfig,
-            currentHp: enemyPokemonConfig.stats.hp,
-            maxHp: enemyPokemonConfig.stats.hp,
-        };
+        enemyPokemon = new CombatPokemon(
+            enemyPokemonConfig.name,
+            enemyPokemonType,
+            enemyPokemonConfig.possibleColors[0],
+            `gen${enemyPokemonConfig.generation}`,
+            enemyPokemonConfig.originalSpriteSize ?? 32,
+            enemyPokemonConfig,
+            enemyPokemonConfig.stats.hp,
+            enemyPokemonConfig.stats.hp,
+        );
 
         combatActive = true;
 
@@ -979,6 +999,17 @@ export function pokemonPanelApp(
                 const pokemon = match[2];
                 const status = match[3];
                 addCombatLog(`${pokemon} is ${STATUS_ACRONYM_TO_STRING[status] ?? status}!`, 'info');
+                const combatPokemon = getCombatPokemonElement(parseInt(_playerIndex));
+                combatPokemon.addStatus(status);
+            }
+            // Status removals
+            else if (match = line.match(/^\|-curestatus\|p(\d)a: ([^|]+)\|([^|]+)$/)) {
+                const _playerIndex = match[1];
+                const pokemon = match[2];
+                const status = match[3];
+                addCombatLog(`${pokemon} is no longer ${STATUS_ACRONYM_TO_STRING[status] ?? status}!`, 'info');
+                const combatPokemon = getCombatPokemonElement(parseInt(_playerIndex));
+                combatPokemon.removeStatus(status);
             }
             // Ending charged moves
             else if (match = line.match(/^\|-end\|p(\d)a: ([^|]+)\|([^|]+)\|([^|+]+)$/)) {

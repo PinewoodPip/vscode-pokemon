@@ -1382,6 +1382,7 @@ class PokemonWebviewContainer implements IPokemonPanel {
                                             <div class="hp-fill" id="playerHpFill"></div>
                                         </div>
                                         <div class="hp-text" id="playerHpText">HP: 0/0</div>
+                                        <div class="status-badges" id="playerStatusBadges"></div>
                                     </div>
                                 </div>
                                 <img id="playerSprite" class="combat-sprite" />
@@ -1394,6 +1395,7 @@ class PokemonWebviewContainer implements IPokemonPanel {
                                             <div class="hp-fill" id="enemyHpFill"></div>
                                         </div>
                                         <div class="hp-text" id="enemyHpText">HP: 0/0</div>
+                                        <div class="status-badges" id="enemyStatusBadges"></div>
                                     </div>
                                 </div>
                                 <img id="enemySprite" class="combat-sprite flip-x" />

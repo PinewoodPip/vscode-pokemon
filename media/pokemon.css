@@ -340,6 +340,56 @@ img.pokemon {
 	color: var(--vscode-descriptionForeground);
 }
 
+.status-badges {
+	display: flex;
+	gap: 4px;
+	margin-top: 5px;
+	justify-content: center;
+	flex-wrap: wrap;
+}
+
+.status-badge {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	font-size: 9px;
+	font-weight: bold;
+	padding: 2px 6px;
+	border-radius: 4px;
+	text-transform: uppercase;
+	letter-spacing: 0.5px;
+	font-family: 'silkscreen', var(--vscode-font-family);
+	color: #fff;
+	text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.status-badge.brn {
+	background: linear-gradient(135deg, #ff6b6b 0%, #ff8787 100%);
+}
+
+.status-badge.par {
+	background: linear-gradient(135deg, #ffd43b 0%, #ffe066 100%);
+	color: #333;
+}
+
+.status-badge.slp {
+	background: linear-gradient(135deg, #748ffc 0%, #a78bfa 100%);
+}
+
+.status-badge.frz {
+	background: linear-gradient(135deg, #74c0fc 0%, #a5d8ff 100%);
+	color: #333;
+}
+
+.status-badge.psn {
+	background: linear-gradient(135deg, #a78bfa 0%, #d6bcfa 100%);
+}
+
+.status-badge.tox {
+	background: linear-gradient(135deg, #9333ea 0%, #c084fc 100%);
+}
+/* TODO add badges for more statuses? */
+
 #combatLog {
 	height: 120px;
 	/* max-height: 150px; */
