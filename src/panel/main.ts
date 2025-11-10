@@ -904,7 +904,7 @@ export function pokemonPanelApp(
 
             // Parse line
             let match;
-            // Fainting
+            // Fainting hits
             if (match = line.match(/^\|-damage\|p(\d)a: ([^|]+)\|0 fnt\|?(\[from\] \w+)?$/)) {
                 const playerIndex = parseInt(match[1]);
                 const pokemonName = match[2];
@@ -916,15 +916,21 @@ export function pokemonPanelApp(
                 pokemonEl.currentHp = 0;
                 updateCombatUI();
             }
+            // Generic faint message
+            else if (match = line.match(/^\|faint\|p(\d)a: ([^|]+)$/)){
+                const _playerIndex = parseInt(match[1]);
+                const pokemonName = match[2];
+                addCombatLog(`${pokemonName} fainted!`, 'info');
+            }
             // Skill failure
             else if (match = line.match(/^\|-fail\|p(\d)a: ([^|]+)$/)) {
-                const playerIndex = parseInt(match[1]);
+                const _playerIndex = parseInt(match[1]);
                 const pokemonName = match[2];
                 addCombatLog(`${pokemonName} failed to use their move!`, 'info');
             }
             // Critical hits
             else if (match = line.match(/^\|-crit\|p(\d)a: ([^|]+)$/)) {
-                const playerIndex = parseInt(match[1]);
+                const _playerIndex = parseInt(match[1]);
                 const pokemonName = match[2];
                 addCombatLog(`${pokemonName} landed a critical hit!`, 'info');
             }
@@ -1015,6 +1021,14 @@ export function pokemonPanelApp(
                 addCombatLog(`${pokemon} is no longer ${STATUS_ACRONYM_TO_STRING[status] ?? status}!`, 'info');
                 const combatPokemon = getCombatPokemonElement(parseInt(_playerIndex));
                 combatPokemon.removeStatus(status);
+            }
+            // Status immunities
+            else if (match = line.match(/^\|cant\|p(\d)a: ([^|]+)\|(\w+)$/)) {
+                const _playerIndex = match[1];
+                const pokemon = match[2];
+                const status = match[3];
+                const statusName = STATUS_ACRONYM_TO_STRING[status] ?? status;
+                addCombatLog(`${pokemon} cannot be ${statusName}!`, 'info');
             }
             // Ending charged moves
             else if (match = line.match(/^\|-end\|p(\d)a: ([^|]+)\|([^|]+)\|([^|+]+)$/)) {
