@@ -424,7 +424,7 @@ export class CombatUIManager {
                 combatPokemon.addBoost(statEnum, -parseInt(amount));
             }
             // Stat increases (boost)
-            else if (match = line.match(/^\|-boost\|p(\d)a: ([^|]+)\|([^|]+)\|[1-9]+$/)) {
+            else if (match = line.match(/^\|-boost\|p(\d)a: ([^|]+)\|([^|]+)\|([1-9]+)$/)) {
                 log(match);
                 const _playerIndex = match[1];
                 const pokemon = match[2];
