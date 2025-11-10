@@ -301,7 +301,9 @@ export class CombatUIManager {
                 const status = match[5];
                 const cause = match[6]; // TODO parse further; has a [from] prefix
 
-                this.addCombatLog(`${pokemonName} was reduced to ${remainingHP}/${totalHP} HP${cause ? ` due to ${cause}` : ''}!`, 'info'); // TODO calc damage
+                if (cause) {
+                    this.addCombatLog(`${pokemonName} was reduced to ${remainingHP}/${totalHP} HP${cause ? ` due to ${cause}` : ''}!`, 'info');
+                }
 
                 if (status) {
                     // TODO show status
