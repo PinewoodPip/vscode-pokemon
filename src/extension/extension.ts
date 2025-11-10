@@ -434,8 +434,10 @@ export function activate(context: vscode.ExtensionContext) {
                     const showdownPathSetting = vscode.workspace.getConfiguration('vscode-pokemon').get<string>('showdownPath', '').trim();
 
                     try {
-                        const resolvedShowdownPath = resolveShowdownPath(showdownPathSetting);
-                        await combatProcess.start(context.extensionPath, resolvedShowdownPath);
+                        if (!showdownPathSetting) {
+                            throw new Error('Could not resolve pokemon-showdown from node_modules');
+                        }
+                        await combatProcess.start(context.extensionPath, showdownPathSetting);
 
                     } catch (e) {
                         // Show error notification
@@ -933,21 +935,6 @@ export function activate(context: vscode.ExtensionContext) {
             }
         })
     );
-}
-
-function resolveShowdownPath(configured: string): string {
-    if (configured) {
-        return configured;
-    }
-    try {
-        // Attempt to resolve installed module entry point
-        // eslint-disable-next-line @typescript-eslint/no-var-requires
-        const pkgPath = require.resolve('pokemon-showdown');
-        return pkgPath;
-    } catch (e) {
-        console.warn('Could not resolve pokemon-showdown from node_modules, combat minigame will be unavailable');
-        throw e;
-    }
 }
 
 function setupAutoSpawn(context: vscode.ExtensionContext): void {
