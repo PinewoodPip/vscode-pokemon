@@ -424,6 +424,7 @@ export class CombatUIManager {
                 const statEnum = ABREVIATION_TO_STAT[stat];
                 const combatPokemon = this.getCombatPokemonElement(parseInt(_playerIndex));
                 combatPokemon.addBoost(statEnum, -parseInt(amount));
+                this.updateUI();
             }
             // Stat increases (boost)
             else if (match = line.match(/^\|-boost\|p(\d)a: ([^|]+)\|([^|]+)\|([1-9]+)$/)) {
@@ -438,6 +439,7 @@ export class CombatUIManager {
                 const statEnum = ABREVIATION_TO_STAT[stat];
                 const combatPokemon = this.getCombatPokemonElement(parseInt(_playerIndex));
                 combatPokemon.addBoost(statEnum, parseInt(amount));
+                this.updateUI();
             }
             // Setting stats to specific stages
             else if (match = line.match(/^\|-setboost\|p(\d)a: ([^|]+)\|([^|]+)\|([1-9]+)$/)) {
@@ -451,6 +453,7 @@ export class CombatUIManager {
                 const statEnum = ABREVIATION_TO_STAT[stat];
                 const combatPokemon = this.getCombatPokemonElement(parseInt(_playerIndex));
                 combatPokemon.setBoost(statEnum, parseInt(amount));
+                this.updateUI();
             }
             // Miscellaneous effects (ex. struggle)
             else if (match = line.match(/^\|-activate\|p(\d)a: ([^|]+)\|(.+)$/)) {

@@ -8,6 +8,8 @@ export enum CombatPokemonStat {
     sp_atk = 'sp_atk',
     sp_def = 'sp_def',
     speed = 'speed',
+    accuracy = 'accuracy',
+    evasion = 'evasion',
 }
 
 export const ABREVIATION_TO_STAT: Record<string, CombatPokemonStat> = {
@@ -17,6 +19,8 @@ export const ABREVIATION_TO_STAT: Record<string, CombatPokemonStat> = {
     'spa': CombatPokemonStat.sp_atk,
     'spd': CombatPokemonStat.sp_def,
     'spe': CombatPokemonStat.speed,
+    'accuracy': CombatPokemonStat.accuracy, // Not abbreviated by Showdown.
+    'evasion': CombatPokemonStat.evasion,
 };
 
 /** A pokemon participating in a combat. */
@@ -37,6 +41,8 @@ export class CombatPokemon {
         [CombatPokemonStat.sp_atk]: 0,
         [CombatPokemonStat.sp_def]: 0,
         [CombatPokemonStat.speed]: 0,
+        [CombatPokemonStat.accuracy]: 0,
+        [CombatPokemonStat.evasion]: 0,
     };
 
     constructor(name: string, type: PokemonType, color: PokemonColor, generation: string, originalSpriteSize: number, config: PokemonConfig, currentHp: number, maxHp: number) {
