@@ -1400,6 +1400,7 @@ class PokemonWebviewContainer implements IPokemonPanel {
                                 </div>
                                 <img id="enemySprite" class="combat-sprite flip-x" />
                             </div>
+                            <div id="turnCounter" class="turn-counter">Turn 1</div>
                         </div>
                         <div id="combatLog"></div>
                         <!-- <div id="combatActions">

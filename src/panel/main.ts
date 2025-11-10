@@ -51,6 +51,7 @@ let combatActive = false;
 let playerPokemon: CombatPokemon | null = null;
 let enemyPokemon: CombatPokemon | null = null;
 let combatInterval: number | null = null;
+let currentTurn: number = 0;
 
 const STATUS_ACRONYM_TO_STRING: Record<string, string> = {
     brn: 'burned',
@@ -806,6 +807,7 @@ export function pokemonPanelApp(
         );
 
         combatActive = true;
+        currentTurn = 0;
 
         // Show combat UI, hide pokemon container
         const combatContainer = document.getElementById('combatContainer');
@@ -982,8 +984,11 @@ export function pokemonPanelApp(
             }
             // Turn counter
             else if (match = line.match(/^\|turn\|(\d+)$/)) {
-                const newTurn = match[1];
-                addCombatLog(`Turn ${newTurn} started.`, 'info'); 
+                currentTurn = parseInt(match[1]);
+                const turnCounterEl = document.getElementById('turnCounter');
+                if (turnCounterEl) {
+                    turnCounterEl.textContent = `Turn ${currentTurn}`;
+                }
             }
             // Starting charged moves
             else if (match = line.match(/^\|-start\|p(\d)a: ([^|]+)\|([^|]+)\|([^|+]+)$/)) {

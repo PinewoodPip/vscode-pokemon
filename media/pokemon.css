@@ -262,10 +262,28 @@ img.pokemon {
 	border-radius: 8px;
 	padding: 5px;
 	font-family: 'silkscreen', var(--vscode-font-family);
+	position: relative;
+}
+
+.turn-counter {
+	position: absolute;
+	bottom: 10px;
+	/* Center horizontally */
+	left: 50%;
+	transform: translateX(-50%);
+
+	font-size: 14px;
+	font-weight: bold;
+	font-family: 'silkscreen', var(--vscode-font-family);
+	color: var(--vscode-foreground);
+	opacity: 0.4;
+	z-index: 10;
+	pointer-events: none;
 }
 
 #combatArena {
 	display: flex;
+	position: relative;
 	justify-content: space-between;
 	margin-bottom: 5px;
 	padding: 20px;
