@@ -6,6 +6,7 @@ import {
     PokemonType,
     ColorThemeKind,
     WebviewMessage,
+    PokemonProgression,
 } from '../common/types';
 import { Combat, CombatPokemon } from "../combat/combat";
 import { ALL_THEMES, Theme } from './themes';
@@ -57,10 +58,10 @@ class PokemonTooltip {
     private hideTimeout: number | null = null;
 
     constructor() {
-        this.tooltipElement = document.getElementById('pokemonTooltip');
     }
 
     show(content: string | TooltipLine[]) {
+        this.tooltipElement = document.getElementById('pokemonTooltip');
         if (!this.tooltipElement) {
             return;
         }
@@ -194,6 +195,7 @@ function handleMouseOver(e: MouseEvent) {
             const moves = getMoves(speciesID, 25); // TODO set level
             const tooltipContent: TooltipLine[] = [
                 { text: nameLabel, className: 'tooltip-name' },
+                { text: `Level ${pokemon.progression.level}`, className: 'tooltip-stat' },
                 { text: `Type: ${pokemon.config.types.join(", ")}`, className: 'tooltip-type' },
                 { text: `Hunger: ${pokemon.needs.hunger}/100`, className: 'tooltip-stat' },
                 { text: `Happiness: ${pokemon.needs.happiness}/100`, className: 'tooltip-stat' },
@@ -343,6 +345,7 @@ export function saveState(stateApi?: VscodeStateApi) {
             elLeft: pokemonItem.el.style.left,
             elBottom: pokemonItem.el.style.bottom,
             needs: pokemonItem.pokemon.needs.serialize(),
+            progression: pokemonItem.pokemon.progression.serialize(),
         });
     });
     state.pokemonCounter = pokemonCounter;
@@ -388,6 +391,7 @@ function recoverState(
                 false,
                 p.needs,
             );
+            newPokemon.pokemon.progression = PokemonProgression.deserialize(p.progression);
             allPokemon.push(newPokemon);
             recoveryMap.set(newPokemon.pokemon, p);
         } catch (InvalidPokemonException) {
@@ -568,6 +572,7 @@ export function pokemonPanelApp(
 
         // Initialize combat pokemon
         const playerPokemon = new CombatPokemon(
+            playerPokemonEl.pokemon as Pokemon,
             playerPokemonEl.pokemon.name,
             playerPokemonEl.type,
             playerPokemonEl.color,
@@ -579,6 +584,7 @@ export function pokemonPanelApp(
         );
 
         const enemyPokemon = new CombatPokemon(
+            null,
             enemyPokemonConfig.name,
             enemyPokemonType,
             enemyPokemonConfig.possibleColors[0],

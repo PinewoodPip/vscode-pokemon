@@ -1,5 +1,5 @@
 import { POKEMON_DATA } from '../common/pokemon-data';
-import { PokemonColor, PokemonConfig, PokemonGeneration, PokemonSize } from '../common/types';
+import { PokemonColor, PokemonConfig, PokemonGeneration, PokemonProgression, PokemonSize } from '../common/types';
 import { BasePokemonType } from './base-pokemon-type';
 import { PokemonFoodConfig } from './food';
 import { States } from './states';
@@ -68,6 +68,7 @@ export class Pokemon extends BasePokemonType {
   private readonly SPEED_STAT_MULTIPLIER = 1 / 70;
 
   config: PokemonConfig;
+  progression: PokemonProgression = new PokemonProgression();
 
   constructor(
     pokemonType: string,

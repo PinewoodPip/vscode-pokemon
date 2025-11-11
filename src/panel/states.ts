@@ -1,4 +1,4 @@
-import { PokemonColor, PokemonType } from '../common/types';
+import { PokemonColor, PokemonProgression, PokemonProgressionState, PokemonType } from '../common/types';
 import { PhysicsEntity } from './entity';
 import { PokemonFoodConfig } from './food';
 import { PokemonNeeds, PokemonNeedsState } from './pokemon';
@@ -19,6 +19,7 @@ export interface IPokemonType {
     isMoving: boolean;
     hello: string;
     needs: PokemonNeeds;
+    progression: PokemonProgression;
 
     // State API
     getState(): PokemonInstanceState;
@@ -61,6 +62,7 @@ export interface PokemonElementState {
     pokemonName: string | undefined;
     pokemonFriend: string | undefined;
     needs: PokemonNeedsState;
+    progression: PokemonProgressionState;
 }
 
 export class PokemonPanelState {

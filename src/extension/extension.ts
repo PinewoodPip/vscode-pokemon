@@ -10,6 +10,7 @@ import {
     ALL_SCALES,
     PokemonGeneration,
     PokemonConfig,
+    PokemonProgression,
 } from '../common/types';
 import { randomName } from '../common/names';
 import * as localize from '../common/localize';
@@ -18,19 +19,13 @@ import { getDefaultPokemon, getPokemonByGeneration, getRandomPokemonConfig, getR
 import { ALL_THEMES, Theme } from '../panel/themes';
 import { ALL_FOOD } from '../panel/food';
 
-const EXTRA_POKEMON_KEY = 'vscode-pokemon.extra-pokemon';
-const EXTRA_POKEMON_KEY_TYPES = EXTRA_POKEMON_KEY + '.types';
-const EXTRA_POKEMON_KEY_COLORS = EXTRA_POKEMON_KEY + '.colors';
-const EXTRA_POKEMON_KEY_NAMES = EXTRA_POKEMON_KEY + '.names';
-const DEFAULT_POKEMON_SCALE = PokemonSize.medium;
 const DEFAULT_COLOR = PokemonColor.default;
-const DEFAULT_POKEMON_TYPE = getDefaultPokemon();
-const DEFAULT_POSITION = ExtPosition.panel;
-const DEFAULT_THEME = Theme.none;
 const AFK_THRESHOLD = 5 * 60; // Threshold for deeming the user AFK, in seconds.
 
 import * as cp from 'child_process';
 import { log, logError } from '../common/util';
+import { PokemonSpecification, storeCollectionAsMemento as saveExtensionState } from '../common/persistence';
+import { getThrowWithMouseConfiguration, getConfigurationPosition, getConfiguredTheme, getConfiguredThemeKind, getConfiguredSize } from '../common/settings';
 
 export class ShowdownBattleProcess {
     private process: cp.ChildProcess | null = null;
@@ -129,43 +124,6 @@ class PokemonQuickPickItem implements vscode.QuickPickItem {
 
 let webviewViewProvider: PokemonWebviewViewProvider;
 
-function getConfiguredSize(): PokemonSize {
-    var size = vscode.workspace
-        .getConfiguration('vscode-pokemon')
-        .get<PokemonSize>('pokemonSize', DEFAULT_POKEMON_SCALE);
-    if (ALL_SCALES.lastIndexOf(size) === -1) {
-        size = DEFAULT_POKEMON_SCALE;
-    }
-    return size;
-}
-
-function getConfiguredTheme(): Theme {
-    var themeID = vscode.workspace
-        .getConfiguration('vscode-pokemon')
-        .get<Theme>('theme', DEFAULT_THEME);
-    // Reset to default theme if the setting was invalid
-    if (!ALL_THEMES.find(t => t.id === themeID)) {
-        themeID = DEFAULT_THEME;
-    }
-    return themeID;
-}
-
-function getConfiguredThemeKind(): ColorThemeKind {
-    return vscode.window.activeColorTheme.kind;
-}
-
-function getConfigurationPosition() {
-    return vscode.workspace
-        .getConfiguration('vscode-pokemon')
-        .get<ExtPosition>('position', DEFAULT_POSITION);
-}
-
-function getThrowWithMouseConfiguration(): boolean {
-    return vscode.workspace
-        .getConfiguration('vscode-pokemon')
-        .get<boolean>('throwBallWithMouse', true);
-}
-
 function updatePanelThrowWithMouse(): void {
     const panel = getPokemonPanel();
     if (panel !== undefined) {
@@ -179,99 +137,6 @@ async function updateExtensionPositionContext() {
         'vscode-pokemon.position',
         getConfigurationPosition(),
     );
-}
-
-export class PokemonSpecification {
-    color: PokemonColor;
-    type: PokemonType;
-    size: PokemonSize;
-    name: string;
-    generation: string;
-    originalSpriteSize: number;
-
-    constructor(color: PokemonColor, type: PokemonType, size: PokemonSize, name?: string, generation?: string, originalSpriteSize?: number) {
-        this.color = color;
-        this.type = type;
-        this.size = size;
-        if (!name) {
-            this.name = randomName(type);
-        } else {
-            this.name = name;
-        }
-        this.generation = generation || `gen${POKEMON_DATA[type].generation}`;
-        this.originalSpriteSize = POKEMON_DATA[type].originalSpriteSize || 32;
-    }
-
-    static fromConfiguration(): PokemonSpecification {
-        var color = vscode.workspace
-            .getConfiguration('vscode-pokemon')
-            .get<PokemonColor>('pokemonColor', DEFAULT_COLOR);
-        if (ALL_COLORS.lastIndexOf(color) === -1) {
-            color = DEFAULT_COLOR;
-        }
-        var type = vscode.workspace
-            .getConfiguration('vscode-pokemon')
-            .get<PokemonType>('pokemonType', DEFAULT_POKEMON_TYPE);
-
-        // Use POKEMON_DATA to validate the type
-        if (!POKEMON_DATA[type]) {
-            type = DEFAULT_POKEMON_TYPE;
-        }
-
-        return new PokemonSpecification(color, type, getConfiguredSize());
-    }
-
-    static collectionFromMemento(
-        context: vscode.ExtensionContext,
-        size: PokemonSize,
-    ): PokemonSpecification[] {
-        var contextTypes = context.globalState.get<PokemonType[]>(
-            EXTRA_POKEMON_KEY_TYPES,
-            [],
-        );
-        var contextColors = context.globalState.get<PokemonColor[]>(
-            EXTRA_POKEMON_KEY_COLORS,
-            [],
-        );
-        var contextNames = context.globalState.get<string[]>(
-            EXTRA_POKEMON_KEY_NAMES,
-            [],
-        );
-        var result: PokemonSpecification[] = new Array();
-        for (let index = 0; index < contextTypes.length; index++) {
-            result.push(
-                new PokemonSpecification(
-                    contextColors?.[index] ?? DEFAULT_COLOR,
-                    contextTypes[index],
-                    size,
-                    contextNames[index],
-                ),
-            );
-        }
-        return result;
-    }
-}
-
-export async function storeCollectionAsMemento(
-    context: vscode.ExtensionContext,
-    collection: PokemonSpecification[],
-) {
-    var contextTypes = new Array(collection.length);
-    var contextColors = new Array(collection.length);
-    var contextNames = new Array(collection.length);
-    for (let index = 0; index < collection.length; index++) {
-        contextTypes[index] = collection[index].type;
-        contextColors[index] = collection[index].color;
-        contextNames[index] = collection[index].name;
-    }
-    await context.globalState.update(EXTRA_POKEMON_KEY_TYPES, contextTypes);
-    await context.globalState.update(EXTRA_POKEMON_KEY_COLORS, contextColors);
-    await context.globalState.update(EXTRA_POKEMON_KEY_NAMES, contextNames);
-    context.globalState.setKeysForSync([
-        EXTRA_POKEMON_KEY_TYPES,
-        EXTRA_POKEMON_KEY_COLORS,
-        EXTRA_POKEMON_KEY_NAMES,
-    ]);
 }
 
 let spawnPokemonStatusBar: vscode.StatusBarItem;
@@ -408,7 +273,7 @@ export function activate(context: vscode.ExtensionContext) {
                         PokemonPanel.currentPanel?.spawnPokemon(item);
                     });
                     // Store the collection in the memento, incase any of the null values (e.g. name) have been set
-                    await storeCollectionAsMemento(context, collection);
+                    await saveExtensionState(context, collection);
                 }
             }
         }),
@@ -695,7 +560,7 @@ export function activate(context: vscode.ExtensionContext) {
                                 panel.spawnPokemon(pokemonSpec);
                             }
                         }
-                        await storeCollectionAsMemento(context, collection);
+                        await saveExtensionState(context, collection);
                     } catch (e: any) {
                         await vscode.window.showErrorMessage(
                             vscode.l10n.t(
@@ -798,7 +663,7 @@ export function activate(context: vscode.ExtensionContext) {
                     getConfiguredSize(),
                 );
                 collection.push(spec);
-                await storeCollectionAsMemento(context, collection);
+                await saveExtensionState(context, collection);
             } else {
                 await createPokemonPlayground(context);
                 await vscode.window.showInformationMessage(
@@ -831,7 +696,7 @@ export function activate(context: vscode.ExtensionContext) {
                     getConfiguredSize(),
                 );
                 collection.push(spec);
-                await storeCollectionAsMemento(context, collection);
+                await saveExtensionState(context, collection);
 
             } else {
                 await createPokemonPlayground(context);
@@ -850,7 +715,7 @@ export function activate(context: vscode.ExtensionContext) {
                 const panel = getPokemonPanel();
                 if (panel !== undefined) {
                     panel.resetPokemon();
-                    await storeCollectionAsMemento(context, []);
+                    await saveExtensionState(context, []);
                 } else {
                     await createPokemonPlayground(context);
                     await vscode.window.showInformationMessage(
@@ -1001,7 +866,7 @@ function setupAutoSpawn(context: vscode.ExtensionContext): void {
                         pokemonConfig.possibleColors[0], // TODO shiny chance, once those are implemented
                         pokemonType,
                         getConfiguredSize(),
-                        randomName(pokemonConfig.name),
+                        randomName(pokemonConfig.name)
                     );
                     panel.spawnPokemon(spec);
                     
@@ -1016,7 +881,7 @@ function setupAutoSpawn(context: vscode.ExtensionContext): void {
                         getConfiguredSize(),
                     );
                     collection.push(spec);
-                    await storeCollectionAsMemento(context, collection);
+                    await saveExtensionState(context, collection);
                 }
                 
                 // Start new spawn timer if not paused
@@ -1631,13 +1496,13 @@ async function createPokemonPlayground(context: vscode.ExtensionContext) {
         collection.forEach((item) => {
             PokemonPanel.currentPanel?.spawnPokemon(item);
         });
-        await storeCollectionAsMemento(context, collection);
+        await saveExtensionState(context, collection);
     } else {
         var collection = PokemonSpecification.collectionFromMemento(
             context,
             getConfiguredSize(),
         );
         collection.push(spec);
-        await storeCollectionAsMemento(context, collection);
+        await saveExtensionState(context, collection);
     }
 }

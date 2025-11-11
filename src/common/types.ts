@@ -1,4 +1,6 @@
+import * as vscode from 'vscode';
 import { POKEMON_DATA } from "./pokemon-data";
+import { log } from './util';
 
 export const enum PokemonColor {
     default = 'default',
@@ -39,6 +41,51 @@ export enum PokemonCombatType {
     dragon = 'dragon',
     dark = 'dark',
     fairy = 'fairy',
+}
+
+export interface PokemonProgressionState {
+    level: number;
+    experience: number;
+}
+
+const EXTRA_POKEMON_KEY = 'vscode-pokemon.extra-pokemon';
+const EXTRA_POKEMON_KEY_LEVELS = EXTRA_POKEMON_KEY + '.progression.levels';
+const EXTRA_POKEMON_KEY_EXPERIENCE = EXTRA_POKEMON_KEY + '.progression.experience';
+export class PokemonProgression implements PokemonProgressionState {
+    level: number;
+    experience: number;
+
+    constructor(level: number = 1, experience: number = 0) {
+        this.level = level;
+        this.experience = experience;
+    }
+
+    addXP(amount: number) {
+        this.experience += amount;
+        while (this.experience >= this.getXPForNextLevel()) {
+            this.levelUp();
+        }
+    }
+
+    levelUp() {
+        this.level += 1;
+        this.experience -= this.getXPForNextLevel(); // Reset experience on level up.
+    }
+
+    getXPForNextLevel(): number {
+        return 100 * this.level; // TODO
+    }
+
+    serialize(): PokemonProgressionState {
+        return {
+            level: this.level,
+            experience: this.experience,
+        };
+    }
+
+    static deserialize(data: PokemonProgressionState): PokemonProgression {
+        return new PokemonProgression(data.level, data.experience);
+    }
 }
 
 export interface PokemonConfig {

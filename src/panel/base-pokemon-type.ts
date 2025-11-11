@@ -1,4 +1,4 @@
-import { PokemonColor, PokemonSize, PokemonSpeed } from '../common/types';
+import { PokemonColor, PokemonProgression, PokemonSize, PokemonSpeed } from '../common/types';
 import { getWeightedRandom } from '../common/util';
 import { PhysicsEntity } from './entity';
 import { PokemonNeeds } from './pokemon';
@@ -55,6 +55,7 @@ export abstract class BasePokemonType implements IPokemonType {
     private _generation: string;
     private _originalSpriteSize: number;
     needs: PokemonNeeds;
+    progression: PokemonProgression = new PokemonProgression();
 
     private readonly HAPPINESS_PER_SWIPE = 10;
 

@@ -96,8 +96,8 @@ export class CombatUIManager {
         this.addCombatLog(`Go! ${this.combat.player.name}!`, 'info');
 
         // TODO move to combat class
-        const playerLevel = 25; // TODO
-        const enemyLevel = 25;
+        const playerLevel = playerPokemon.pokemon!.progression.level;
+        const enemyLevel = 5; // TODO roll based on average party level?
         const playerMoveIDs = getMoves(playerPokemon.type, playerLevel).map(m => m.id);
         const enemyMoveIDs = getMoves(enemyPokemon.type, enemyLevel).map(m => m.id);
         log('[combat] Sending combat start command');
@@ -172,6 +172,12 @@ export class CombatUIManager {
         }
         const playerPokemon = this.combat.player;
         const enemyPokemon = this.combat.enemy;
+
+        if (playerWon) {
+            // Add XP
+            const xpGained = 500; // Example fixed XP gain
+            playerPokemon.pokemon!.progression.addXP(xpGained);
+        }
 
         // Show victory/defeat message
         const message = playerWon 

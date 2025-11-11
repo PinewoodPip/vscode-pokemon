@@ -1,5 +1,6 @@
 import { PokemonType, PokemonColor, PokemonConfig } from "../common/types";
 import { log } from "../common/util";
+import { Pokemon } from "../panel/pokemon";
 
 export enum CombatPokemonStat {
     hp = 'hp',
@@ -44,8 +45,11 @@ export class CombatPokemon {
         [CombatPokemonStat.accuracy]: 0,
         [CombatPokemonStat.evasion]: 0,
     };
+    /** Ref to the correspoding pokemon wandering in the panel; null for enemy pokemon. */
+    pokemon: Pokemon | null;
 
-    constructor(name: string, type: PokemonType, color: PokemonColor, generation: string, originalSpriteSize: number, config: PokemonConfig, currentHp: number, maxHp: number) {
+    constructor(pokemon: Pokemon | null, name: string, type: PokemonType, color: PokemonColor, generation: string, originalSpriteSize: number, config: PokemonConfig, currentHp: number, maxHp: number) {
+        this.pokemon = pokemon;
         this.name = name;
         this.type = type;
         this.color = color;
