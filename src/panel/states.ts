@@ -44,6 +44,7 @@ export interface IPokemonType {
 
     showSpeechBubble(duration: number, friend: boolean): void;
     showBubble(img: string, duration: number): void;
+    hideSpeechBubble(): unknown;
 }
 
 export class PokemonInstanceState {
@@ -588,6 +589,7 @@ export class SleepState extends AbstractStaticState {
     nextFrame(): FrameResult {
         this.idleCounter++;
         if (this.idleCounter > this.sleepDuration) {
+            this.pokemon.hideSpeechBubble(); // Ensure pokemon don't end up walking around with zzz over their heads
             return FrameResult.stateComplete;
         }
         return FrameResult.stateContinue;
