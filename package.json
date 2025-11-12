@@ -74,12 +74,12 @@
                     "group": "navigation@2"
                 },
                 {
-                    "command": "vscode-pokemon.delete-pokemon",
+                    "command": "vscode-pokemon.change-theme",
                     "when": "view == pokemonView",
                     "group": "navigation@3"
                 },
                 {
-                    "command": "vscode-pokemon.change-theme",
+                    "command": "vscode-pokemon.throw-berry",
                     "when": "view == pokemonView",
                     "group": "navigation@4"
                 },
