@@ -1,6 +1,7 @@
 import * as vscode from 'vscode';
 import { POKEMON_DATA } from "./pokemon-data";
 import { log } from './util';
+import { ExperienceGroup, XP_TABLE } from './xp-tables';
 
 export const enum PokemonColor {
     default = 'default',
@@ -54,17 +55,17 @@ const EXTRA_POKEMON_KEY_EXPERIENCE = EXTRA_POKEMON_KEY + '.progression.experienc
 export class PokemonProgression implements PokemonProgressionState {
     level: number;
     experience: number;
+    experience_group: ExperienceGroup;
 
-    constructor(level: number = 1, experience: number = 0) {
+    constructor(level: number = 1, experience: number = 0, experience_group: ExperienceGroup = ExperienceGroup.medium_fast) {
         this.level = level;
         this.experience = experience;
+        this.experience_group = experience_group;
     }
 
     addXP(amount: number) {
         this.experience += amount;
-        while (this.experience >= this.getXPForNextLevel()) {
-            this.levelUp();
-        }
+        this.level = this.getLevelForXP(this.experience);
     }
 
     levelUp() {
@@ -72,8 +73,22 @@ export class PokemonProgression implements PokemonProgressionState {
         this.experience -= this.getXPForNextLevel(); // Reset experience on level up.
     }
 
+    getLevelForXP(xp: number): number {
+        let level = 0;
+        // TODO create reverse lookup table to optimize
+        while (xp >= this.getXPForLevel(level + 1)) {
+            level += 1;
+        }
+        return level;
+    }
+
+    /** Returns the amount of experience required for a pokemon to be at a given level. */
+    getXPForLevel(level: number): number {
+        return XP_TABLE[this.experience_group][level];
+    }
+
     getXPForNextLevel(): number {
-        return 100 * this.level; // TODO
+        return this.getXPForLevel(this.level + 1);
     }
 
     serialize(): PokemonProgressionState {
@@ -104,6 +119,8 @@ export interface PokemonConfig {
         sp_defense: number;
         speed: number;
     };
+    experience_group: ExperienceGroup;
+    experience_yield: number;
 }
 
 export const enum PokemonSpeed {

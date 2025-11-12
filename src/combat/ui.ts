@@ -175,8 +175,24 @@ export class CombatUIManager {
 
         if (playerWon) {
             // Add XP
-            const xpGained = 500; // Example fixed XP gain
+            const previousLevel = playerPokemon.pokemon!.progression.level;
+            const xpGained = playerPokemon.getXPGain(enemyPokemon);
             playerPokemon.pokemon!.progression.addXP(xpGained);
+
+            // Show notification
+            this.stateApi.postMessage({
+                command: 'info',
+                text: `${playerPokemon.name} gained ${Math.floor(xpGained)} XP!`,
+            });
+
+            // Show level-up notification
+            const newLevel = playerPokemon.pokemon!.progression.level;
+            if (newLevel > previousLevel) {
+                this.stateApi.postMessage({
+                    command: 'info',
+                    text: `${playerPokemon.name} leveled up to level ${newLevel}!`,
+                });
+            }
         }
 
         // Show victory/defeat message

@@ -571,6 +571,7 @@ export function pokemonPanelApp(
         }
 
         // Initialize combat pokemon
+        const playerLevel = (playerPokemonEl.pokemon as Pokemon).progression.level
         const playerPokemon = new CombatPokemon(
             playerPokemonEl.pokemon as Pokemon,
             playerPokemonEl.pokemon.name,
@@ -581,6 +582,7 @@ export function pokemonPanelApp(
             POKEMON_DATA[playerPokemonEl.type],
             POKEMON_DATA[playerPokemonEl.type].stats.hp,
             POKEMON_DATA[playerPokemonEl.type].stats.hp,
+            playerLevel,
         );
 
         const enemyPokemon = new CombatPokemon(
@@ -593,6 +595,7 @@ export function pokemonPanelApp(
             enemyPokemonConfig,
             enemyPokemonConfig.stats.hp,
             enemyPokemonConfig.stats.hp,
+            Math.max(playerLevel - 15, 1), // TODO!
         );
 
         combat = new Combat(playerPokemon, enemyPokemon);

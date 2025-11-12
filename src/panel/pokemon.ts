@@ -89,6 +89,9 @@ export class Pokemon extends BasePokemonType {
 
     this.config = POKEMON_DATA[pokemonType] || POKEMON_DATA.bulbasaur;
     this._speed = this.calculateSpeed();
+
+    // Set leveling group from config
+    this.progression.experience_group = this.config.experience_group;
   }
 
   static possibleColors = [PokemonColor.default];

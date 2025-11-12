@@ -1,4 +1,5 @@
 import { PokemonColor, PokemonCombatType, PokemonConfig, PokemonGeneration, PokemonType } from "./types";
+import { ExperienceGroup } from "./xp-tables";
 
 export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
   bulbasaur: {
@@ -8,7 +9,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Bulbasaur!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.grass, PokemonCombatType.poison],
-    stats: { hp: 45, attack: 49, defense: 49, sp_attack: 65, sp_defense: 65, speed: 45 }
+    stats: { hp: 45, attack: 49, defense: 49, sp_attack: 65, sp_defense: 65, speed: 45 },
+    experience_group: ExperienceGroup.medium_slow,
+    experience_yield: 64
   },
   ivysaur: {
     id: 2,
@@ -17,7 +20,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Ivysaur!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.grass, PokemonCombatType.poison],
-    stats: { hp: 60, attack: 62, defense: 63, sp_attack: 80, sp_defense: 80, speed: 60 }
+    stats: { hp: 60, attack: 62, defense: 63, sp_attack: 80, sp_defense: 80, speed: 60 },
+    experience_group: ExperienceGroup.medium_slow,
+    experience_yield: 142
   },
   venusaur: {
     id: 3,
@@ -26,7 +31,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Venusaur!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.grass, PokemonCombatType.poison],
-    stats: { hp: 80, attack: 100, defense: 123, sp_attack: 122, sp_defense: 120, speed: 80 }
+    stats: { hp: 80, attack: 100, defense: 123, sp_attack: 122, sp_defense: 120, speed: 80 },
+    experience_group: ExperienceGroup.medium_slow,
+    experience_yield: 236
   },
   charmander: {
     id: 4,
@@ -35,7 +42,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Charmander!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.fire],
-    stats: { hp: 39, attack: 52, defense: 43, sp_attack: 60, sp_defense: 50, speed: 65 }
+    stats: { hp: 39, attack: 52, defense: 43, sp_attack: 60, sp_defense: 50, speed: 65 },
+    experience_group: ExperienceGroup.medium_slow,
+    experience_yield: 62
   },
   charmeleon: {
     id: 5,
@@ -44,7 +53,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Charmeleon!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.fire],
-    stats: { hp: 58, attack: 64, defense: 58, sp_attack: 80, sp_defense: 65, speed: 80 }
+    stats: { hp: 58, attack: 64, defense: 58, sp_attack: 80, sp_defense: 65, speed: 80 },
+    experience_group: ExperienceGroup.medium_slow,
+    experience_yield: 142
   },
   charizard: {
     id: 6,
@@ -53,7 +64,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Charizard!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.fire, PokemonCombatType.flying],
-    stats: { hp: 78, attack: 104, defense: 78, sp_attack: 159, sp_defense: 115, speed: 100 }
+    stats: { hp: 78, attack: 104, defense: 78, sp_attack: 159, sp_defense: 115, speed: 100 },
+    experience_group: ExperienceGroup.medium_slow,
+    experience_yield: 267
   },
   squirtle: {
     id: 7,
@@ -62,7 +75,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Squritle!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.water],
-    stats: { hp: 44, attack: 48, defense: 65, sp_attack: 50, sp_defense: 64, speed: 43 }
+    stats: { hp: 44, attack: 48, defense: 65, sp_attack: 50, sp_defense: 64, speed: 43 },
+    experience_group: ExperienceGroup.medium_slow,
+    experience_yield: 63
   },
   wartortle: {
     id: 8,
@@ -71,7 +86,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Wartortle!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.water],
-    stats: { hp: 59, attack: 63, defense: 80, sp_attack: 65, sp_defense: 80, speed: 58 }
+    stats: { hp: 59, attack: 63, defense: 80, sp_attack: 65, sp_defense: 80, speed: 58 },
+    experience_group: ExperienceGroup.medium_slow,
+    experience_yield: 142
   },
   blastoise: {
     id: 9,
@@ -80,7 +97,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Blastoise!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.water],
-    stats: { hp: 79, attack: 103, defense: 120, sp_attack: 135, sp_defense: 115, speed: 78 }
+    stats: { hp: 79, attack: 103, defense: 120, sp_attack: 135, sp_defense: 115, speed: 78 },
+    experience_group: ExperienceGroup.medium_slow,
+    experience_yield: 239
   },
   caterpie: {
     id: 10,
@@ -89,7 +108,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Caterpie!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.bug],
-    stats: { hp: 45, attack: 30, defense: 35, sp_attack: 20, sp_defense: 20, speed: 45 }
+    stats: { hp: 45, attack: 30, defense: 35, sp_attack: 20, sp_defense: 20, speed: 45 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 39
   },
   metapod: {
     id: 11,
@@ -98,7 +119,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Metapod!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.bug],
-    stats: { hp: 50, attack: 20, defense: 55, sp_attack: 25, sp_defense: 25, speed: 30 }
+    stats: { hp: 50, attack: 20, defense: 55, sp_attack: 25, sp_defense: 25, speed: 30 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 72
   },
   butterfree: {
     id: 12,
@@ -107,7 +130,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Butterfree!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.bug, PokemonCombatType.flying],
-    stats: { hp: 60, attack: 45, defense: 50, sp_attack: 90, sp_defense: 80, speed: 70 }
+    stats: { hp: 60, attack: 45, defense: 50, sp_attack: 90, sp_defense: 80, speed: 70 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 178
   },
   weedle: {
     id: 13,
@@ -116,7 +141,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Weedle!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.bug, PokemonCombatType.poison],
-    stats: { hp: 40, attack: 35, defense: 30, sp_attack: 20, sp_defense: 20, speed: 50 }
+    stats: { hp: 40, attack: 35, defense: 30, sp_attack: 20, sp_defense: 20, speed: 50 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 39
   },
   kakuna: {
     id: 14,
@@ -125,7 +152,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Kakuna!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.bug, PokemonCombatType.poison],
-    stats: { hp: 45, attack: 25, defense: 50, sp_attack: 25, sp_defense: 25, speed: 35 }
+    stats: { hp: 45, attack: 25, defense: 50, sp_attack: 25, sp_defense: 25, speed: 35 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 72
   },
   beedrill: {
     id: 15,
@@ -134,7 +163,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Beedrill!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.bug, PokemonCombatType.poison],
-    stats: { hp: 65, attack: 150, defense: 40, sp_attack: 15, sp_defense: 80, speed: 145 }
+    stats: { hp: 65, attack: 150, defense: 40, sp_attack: 15, sp_defense: 80, speed: 145 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 178
   },
   pidgey: {
     id: 16,
@@ -143,7 +174,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Pidgey!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.normal, PokemonCombatType.flying],
-    stats: { hp: 40, attack: 45, defense: 40, sp_attack: 35, sp_defense: 35, speed: 56 }
+    stats: { hp: 40, attack: 45, defense: 40, sp_attack: 35, sp_defense: 35, speed: 56 },
+    experience_group: ExperienceGroup.medium_slow,
+    experience_yield: 50
   },
   pidgeotto: {
     id: 17,
@@ -152,7 +185,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Pidgeotto!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.normal, PokemonCombatType.flying],
-    stats: { hp: 63, attack: 60, defense: 55, sp_attack: 50, sp_defense: 50, speed: 71 }
+    stats: { hp: 63, attack: 60, defense: 55, sp_attack: 50, sp_defense: 50, speed: 71 },
+    experience_group: ExperienceGroup.medium_slow,
+    experience_yield: 122
   },
   pidgeot: {
     id: 18,
@@ -161,7 +196,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Pidgeot!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.normal, PokemonCombatType.flying],
-    stats: { hp: 83, attack: 80, defense: 80, sp_attack: 135, sp_defense: 80, speed: 121 }
+    stats: { hp: 83, attack: 80, defense: 80, sp_attack: 135, sp_defense: 80, speed: 121 },
+    experience_group: ExperienceGroup.medium_slow,
+    experience_yield: 216
   },
   rattata: {
     id: 19,
@@ -170,7 +207,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Rattata!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.dark, PokemonCombatType.normal],
-    stats: { hp: 30, attack: 56, defense: 35, sp_attack: 25, sp_defense: 35, speed: 72 }
+    stats: { hp: 30, attack: 56, defense: 35, sp_attack: 25, sp_defense: 35, speed: 72 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 51
   },
   raticate: {
     id: 20,
@@ -179,7 +218,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Raticate!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.dark, PokemonCombatType.normal],
-    stats: { hp: 75, attack: 71, defense: 70, sp_attack: 40, sp_defense: 80, speed: 77 }
+    stats: { hp: 75, attack: 71, defense: 70, sp_attack: 40, sp_defense: 80, speed: 77 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 145
   },
   spearow: {
     id: 21,
@@ -188,7 +229,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Spearow!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.normal, PokemonCombatType.flying],
-    stats: { hp: 40, attack: 60, defense: 30, sp_attack: 31, sp_defense: 31, speed: 70 }
+    stats: { hp: 40, attack: 60, defense: 30, sp_attack: 31, sp_defense: 31, speed: 70 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 52
   },
   fearow: {
     id: 22,
@@ -197,7 +240,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Fearow!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.normal, PokemonCombatType.flying],
-    stats: { hp: 65, attack: 90, defense: 65, sp_attack: 61, sp_defense: 61, speed: 100 }
+    stats: { hp: 65, attack: 90, defense: 65, sp_attack: 61, sp_defense: 61, speed: 100 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 155
   },
   ekans: {
     id: 23,
@@ -206,7 +251,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Ekans!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.poison],
-    stats: { hp: 35, attack: 60, defense: 44, sp_attack: 40, sp_defense: 54, speed: 55 }
+    stats: { hp: 35, attack: 60, defense: 44, sp_attack: 40, sp_defense: 54, speed: 55 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 58
   },
   arbok: {
     id: 24,
@@ -215,7 +262,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Arbok!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.poison],
-    stats: { hp: 60, attack: 95, defense: 69, sp_attack: 65, sp_defense: 79, speed: 80 }
+    stats: { hp: 60, attack: 95, defense: 69, sp_attack: 65, sp_defense: 79, speed: 80 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 157
   },
   pikachu: {
     id: 25,
@@ -224,7 +273,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Pikachu!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.electric],
-    stats: { hp: 45, attack: 80, defense: 50, sp_attack: 75, sp_defense: 60, speed: 120 }
+    stats: { hp: 45, attack: 80, defense: 50, sp_attack: 75, sp_defense: 60, speed: 120 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 112
   },
   raichu: {
     id: 26,
@@ -233,7 +284,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Raichu!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.electric, PokemonCombatType.psychic],
-    stats: { hp: 60, attack: 85, defense: 50, sp_attack: 95, sp_defense: 85, speed: 110 }
+    stats: { hp: 60, attack: 85, defense: 50, sp_attack: 95, sp_defense: 85, speed: 110 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 243
   },
   sandshrew: {
     id: 27,
@@ -242,7 +295,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Sandshrew!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.ice, PokemonCombatType.steel],
-    stats: { hp: 50, attack: 75, defense: 90, sp_attack: 10, sp_defense: 35, speed: 40 }
+    stats: { hp: 50, attack: 75, defense: 90, sp_attack: 10, sp_defense: 35, speed: 40 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 60
   },
   sandslash: {
     id: 28,
@@ -251,7 +306,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Sandslash!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.ice, PokemonCombatType.steel],
-    stats: { hp: 75, attack: 100, defense: 120, sp_attack: 25, sp_defense: 65, speed: 65 }
+    stats: { hp: 75, attack: 100, defense: 120, sp_attack: 25, sp_defense: 65, speed: 65 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 158
   },
   nidoran_female: {
     id: 29,
@@ -260,7 +317,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Nidoran!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.poison],
-    stats: { hp: 55, attack: 47, defense: 52, sp_attack: 40, sp_defense: 40, speed: 41 }
+    stats: { hp: 55, attack: 47, defense: 52, sp_attack: 40, sp_defense: 40, speed: 41 },
+    experience_group: ExperienceGroup.medium_slow,
+    experience_yield: 55
   },
   nidorina: {
     id: 30,
@@ -269,7 +328,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Nidorina!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.poison],
-    stats: { hp: 70, attack: 62, defense: 67, sp_attack: 55, sp_defense: 55, speed: 56 }
+    stats: { hp: 70, attack: 62, defense: 67, sp_attack: 55, sp_defense: 55, speed: 56 },
+    experience_group: ExperienceGroup.medium_slow,
+    experience_yield: 128
   },
   nidoqueen: {
     id: 31,
@@ -278,7 +339,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Nidoqueen!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.poison, PokemonCombatType.ground],
-    stats: { hp: 90, attack: 92, defense: 87, sp_attack: 75, sp_defense: 85, speed: 76 }
+    stats: { hp: 90, attack: 92, defense: 87, sp_attack: 75, sp_defense: 85, speed: 76 },
+    experience_group: ExperienceGroup.medium_slow,
+    experience_yield: 227
   },
   nidoran_male: {
     id: 32,
@@ -287,7 +350,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Nidoran!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.poison],
-    stats: { hp: 46, attack: 57, defense: 40, sp_attack: 40, sp_defense: 40, speed: 50 }
+    stats: { hp: 46, attack: 57, defense: 40, sp_attack: 40, sp_defense: 40, speed: 50 },
+    experience_group: ExperienceGroup.medium_slow,
+    experience_yield: 55
   },
   nidorino: {
     id: 33,
@@ -296,7 +361,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Nidorino!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.poison],
-    stats: { hp: 61, attack: 72, defense: 57, sp_attack: 55, sp_defense: 55, speed: 65 }
+    stats: { hp: 61, attack: 72, defense: 57, sp_attack: 55, sp_defense: 55, speed: 65 },
+    experience_group: ExperienceGroup.medium_slow,
+    experience_yield: 128
   },
   nidoking: {
     id: 34,
@@ -305,7 +372,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Nidoking!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.poison, PokemonCombatType.ground],
-    stats: { hp: 81, attack: 102, defense: 77, sp_attack: 85, sp_defense: 75, speed: 85 }
+    stats: { hp: 81, attack: 102, defense: 77, sp_attack: 85, sp_defense: 75, speed: 85 },
+    experience_group: ExperienceGroup.medium_slow,
+    experience_yield: 227
   },
   clefairy: {
     id: 35,
@@ -314,7 +383,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Clefairy!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.fairy],
-    stats: { hp: 70, attack: 45, defense: 48, sp_attack: 60, sp_defense: 65, speed: 35 }
+    stats: { hp: 70, attack: 45, defense: 48, sp_attack: 60, sp_defense: 65, speed: 35 },
+    experience_group: ExperienceGroup.fast,
+    experience_yield: 113
   },
   clefable: {
     id: 36,
@@ -323,7 +394,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Clefable!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.fairy],
-    stats: { hp: 95, attack: 70, defense: 73, sp_attack: 95, sp_defense: 90, speed: 60 }
+    stats: { hp: 95, attack: 70, defense: 73, sp_attack: 95, sp_defense: 90, speed: 60 },
+    experience_group: ExperienceGroup.fast,
+    experience_yield: 217
   },
   vulpix: {
     id: 37,
@@ -332,7 +405,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Vulpix!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.ice],
-    stats: { hp: 38, attack: 41, defense: 40, sp_attack: 50, sp_defense: 65, speed: 65 }
+    stats: { hp: 38, attack: 41, defense: 40, sp_attack: 50, sp_defense: 65, speed: 65 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 60
   },
   ninetales: {
     id: 38,
@@ -341,7 +416,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Ninetales!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.ice, PokemonCombatType.fairy],
-    stats: { hp: 73, attack: 67, defense: 75, sp_attack: 81, sp_defense: 100, speed: 109 }
+    stats: { hp: 73, attack: 67, defense: 75, sp_attack: 81, sp_defense: 100, speed: 109 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 177
   },
   jigglypuff: {
     id: 39,
@@ -350,7 +427,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Jigglypuff!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.normal, PokemonCombatType.fairy],
-    stats: { hp: 115, attack: 45, defense: 20, sp_attack: 45, sp_defense: 25, speed: 20 }
+    stats: { hp: 115, attack: 45, defense: 20, sp_attack: 45, sp_defense: 25, speed: 20 },
+    experience_group: ExperienceGroup.fast,
+    experience_yield: 95
   },
   wigglytuff: {
     id: 40,
@@ -359,7 +438,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Wigglytuff!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.normal, PokemonCombatType.fairy],
-    stats: { hp: 140, attack: 70, defense: 45, sp_attack: 85, sp_defense: 50, speed: 45 }
+    stats: { hp: 140, attack: 70, defense: 45, sp_attack: 85, sp_defense: 50, speed: 45 },
+    experience_group: ExperienceGroup.fast,
+    experience_yield: 218
   },
   zubat: {
     id: 41,
@@ -368,7 +449,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Zubat!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.poison, PokemonCombatType.flying],
-    stats: { hp: 40, attack: 45, defense: 35, sp_attack: 30, sp_defense: 40, speed: 55 }
+    stats: { hp: 40, attack: 45, defense: 35, sp_attack: 30, sp_defense: 40, speed: 55 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 49
   },
   golbat: {
     id: 42,
@@ -377,7 +460,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Golbat!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.poison, PokemonCombatType.flying],
-    stats: { hp: 75, attack: 80, defense: 70, sp_attack: 65, sp_defense: 75, speed: 90 }
+    stats: { hp: 75, attack: 80, defense: 70, sp_attack: 65, sp_defense: 75, speed: 90 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 159
   },
   oddish: {
     id: 43,
@@ -386,7 +471,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Oddish!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.grass, PokemonCombatType.poison],
-    stats: { hp: 45, attack: 50, defense: 55, sp_attack: 75, sp_defense: 65, speed: 30 }
+    stats: { hp: 45, attack: 50, defense: 55, sp_attack: 75, sp_defense: 65, speed: 30 },
+    experience_group: ExperienceGroup.medium_slow,
+    experience_yield: 64
   },
   gloom: {
     id: 44,
@@ -395,7 +482,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Gloom!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.grass, PokemonCombatType.poison],
-    stats: { hp: 60, attack: 65, defense: 70, sp_attack: 85, sp_defense: 75, speed: 40 }
+    stats: { hp: 60, attack: 65, defense: 70, sp_attack: 85, sp_defense: 75, speed: 40 },
+    experience_group: ExperienceGroup.medium_slow,
+    experience_yield: 138
   },
   vileplume: {
     id: 45,
@@ -404,7 +493,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Vileplume!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.grass, PokemonCombatType.poison],
-    stats: { hp: 75, attack: 80, defense: 85, sp_attack: 110, sp_defense: 90, speed: 50 }
+    stats: { hp: 75, attack: 80, defense: 85, sp_attack: 110, sp_defense: 90, speed: 50 },
+    experience_group: ExperienceGroup.medium_slow,
+    experience_yield: 221
   },
   paras: {
     id: 46,
@@ -413,7 +504,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Paras!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.bug, PokemonCombatType.grass],
-    stats: { hp: 35, attack: 70, defense: 55, sp_attack: 45, sp_defense: 55, speed: 25 }
+    stats: { hp: 35, attack: 70, defense: 55, sp_attack: 45, sp_defense: 55, speed: 25 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 57
   },
   parasect: {
     id: 47,
@@ -422,7 +515,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Parasect!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.bug, PokemonCombatType.grass],
-    stats: { hp: 60, attack: 95, defense: 80, sp_attack: 60, sp_defense: 80, speed: 30 }
+    stats: { hp: 60, attack: 95, defense: 80, sp_attack: 60, sp_defense: 80, speed: 30 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 142
   },
   venonat: {
     id: 48,
@@ -431,7 +526,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Venonat!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.bug, PokemonCombatType.poison],
-    stats: { hp: 60, attack: 55, defense: 50, sp_attack: 40, sp_defense: 55, speed: 45 }
+    stats: { hp: 60, attack: 55, defense: 50, sp_attack: 40, sp_defense: 55, speed: 45 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 61
   },
   venomoth: {
     id: 49,
@@ -440,7 +537,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Venomoth!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.bug, PokemonCombatType.poison],
-    stats: { hp: 70, attack: 65, defense: 60, sp_attack: 90, sp_defense: 75, speed: 90 }
+    stats: { hp: 70, attack: 65, defense: 60, sp_attack: 90, sp_defense: 75, speed: 90 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 158
   },
   diglett: {
     id: 50,
@@ -449,7 +548,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Diglett!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.ground, PokemonCombatType.steel],
-    stats: { hp: 10, attack: 55, defense: 30, sp_attack: 35, sp_defense: 45, speed: 90 }
+    stats: { hp: 10, attack: 55, defense: 30, sp_attack: 35, sp_defense: 45, speed: 90 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 53
   },
   dugtrio: {
     id: 51,
@@ -458,7 +559,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Dugtrio!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.ground, PokemonCombatType.steel],
-    stats: { hp: 35, attack: 100, defense: 60, sp_attack: 50, sp_defense: 70, speed: 110 }
+    stats: { hp: 35, attack: 100, defense: 60, sp_attack: 50, sp_defense: 70, speed: 110 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 149
   },
   meowth: {
     id: 52,
@@ -467,7 +570,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Meowth!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.steel],
-    stats: { hp: 50, attack: 65, defense: 55, sp_attack: 40, sp_defense: 40, speed: 40 }
+    stats: { hp: 50, attack: 65, defense: 55, sp_attack: 40, sp_defense: 40, speed: 40 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 58
   },
   persian: {
     id: 53,
@@ -476,7 +581,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Persian!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.dark],
-    stats: { hp: 65, attack: 60, defense: 60, sp_attack: 75, sp_defense: 65, speed: 115 }
+    stats: { hp: 65, attack: 60, defense: 60, sp_attack: 75, sp_defense: 65, speed: 115 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 154
   },
   psyduck: {
     id: 54,
@@ -485,7 +592,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Psyduck!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.water],
-    stats: { hp: 50, attack: 52, defense: 48, sp_attack: 65, sp_defense: 50, speed: 55 }
+    stats: { hp: 50, attack: 52, defense: 48, sp_attack: 65, sp_defense: 50, speed: 55 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 64
   },
   golduck: {
     id: 55,
@@ -494,7 +603,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Golduck!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.water],
-    stats: { hp: 80, attack: 82, defense: 78, sp_attack: 95, sp_defense: 80, speed: 85 }
+    stats: { hp: 80, attack: 82, defense: 78, sp_attack: 95, sp_defense: 80, speed: 85 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 175
   },
   mankey: {
     id: 56,
@@ -503,7 +614,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Mankey!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.fighting],
-    stats: { hp: 40, attack: 80, defense: 35, sp_attack: 35, sp_defense: 45, speed: 70 }
+    stats: { hp: 40, attack: 80, defense: 35, sp_attack: 35, sp_defense: 45, speed: 70 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 61
   },
   primeape: {
     id: 57,
@@ -512,7 +625,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Primeape!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.fighting],
-    stats: { hp: 65, attack: 105, defense: 60, sp_attack: 60, sp_defense: 70, speed: 95 }
+    stats: { hp: 65, attack: 105, defense: 60, sp_attack: 60, sp_defense: 70, speed: 95 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 159
   },
   growlithe: {
     id: 58,
@@ -521,7 +636,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Growlithe!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.fire, PokemonCombatType.rock],
-    stats: { hp: 60, attack: 75, defense: 45, sp_attack: 65, sp_defense: 50, speed: 55 }
+    stats: { hp: 60, attack: 75, defense: 45, sp_attack: 65, sp_defense: 50, speed: 55 },
+    experience_group: ExperienceGroup.slow,
+    experience_yield: 70
   },
   arcanine: {
     id: 59,
@@ -530,7 +647,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Arcanine!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.fire, PokemonCombatType.rock],
-    stats: { hp: 95, attack: 115, defense: 80, sp_attack: 95, sp_defense: 80, speed: 90 }
+    stats: { hp: 95, attack: 115, defense: 80, sp_attack: 95, sp_defense: 80, speed: 90 },
+    experience_group: ExperienceGroup.slow,
+    experience_yield: 194
   },
   poliwag: {
     id: 60,
@@ -539,7 +658,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Poliwag!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.water],
-    stats: { hp: 40, attack: 50, defense: 40, sp_attack: 40, sp_defense: 40, speed: 90 }
+    stats: { hp: 40, attack: 50, defense: 40, sp_attack: 40, sp_defense: 40, speed: 90 },
+    experience_group: ExperienceGroup.medium_slow,
+    experience_yield: 60
   },
   poliwhirl: {
     id: 61,
@@ -548,7 +669,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Poliwhirl!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.water],
-    stats: { hp: 65, attack: 65, defense: 65, sp_attack: 50, sp_defense: 50, speed: 90 }
+    stats: { hp: 65, attack: 65, defense: 65, sp_attack: 50, sp_defense: 50, speed: 90 },
+    experience_group: ExperienceGroup.medium_slow,
+    experience_yield: 135
   },
   poliwrath: {
     id: 62,
@@ -557,7 +680,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Poliwrath!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.water, PokemonCombatType.fighting],
-    stats: { hp: 90, attack: 95, defense: 95, sp_attack: 70, sp_defense: 90, speed: 70 }
+    stats: { hp: 90, attack: 95, defense: 95, sp_attack: 70, sp_defense: 90, speed: 70 },
+    experience_group: ExperienceGroup.medium_slow,
+    experience_yield: 230
   },
   abra: {
     id: 63,
@@ -566,7 +691,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Abra!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.psychic],
-    stats: { hp: 25, attack: 20, defense: 15, sp_attack: 105, sp_defense: 55, speed: 90 }
+    stats: { hp: 25, attack: 20, defense: 15, sp_attack: 105, sp_defense: 55, speed: 90 },
+    experience_group: ExperienceGroup.medium_slow,
+    experience_yield: 62
   },
   kadabra: {
     id: 64,
@@ -575,7 +702,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Kadabra!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.psychic],
-    stats: { hp: 40, attack: 35, defense: 30, sp_attack: 120, sp_defense: 70, speed: 105 }
+    stats: { hp: 40, attack: 35, defense: 30, sp_attack: 120, sp_defense: 70, speed: 105 },
+    experience_group: ExperienceGroup.medium_slow,
+    experience_yield: 140
   },
   alakazam: {
     id: 65,
@@ -584,7 +713,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Alakazam!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.psychic],
-    stats: { hp: 55, attack: 50, defense: 65, sp_attack: 175, sp_defense: 105, speed: 150 }
+    stats: { hp: 55, attack: 50, defense: 65, sp_attack: 175, sp_defense: 105, speed: 150 },
+    experience_group: ExperienceGroup.medium_slow,
+    experience_yield: 225
   },
   machop: {
     id: 66,
@@ -593,7 +724,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Machop!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.fighting],
-    stats: { hp: 70, attack: 80, defense: 50, sp_attack: 35, sp_defense: 35, speed: 35 }
+    stats: { hp: 70, attack: 80, defense: 50, sp_attack: 35, sp_defense: 35, speed: 35 },
+    experience_group: ExperienceGroup.medium_slow,
+    experience_yield: 61
   },
   machoke: {
     id: 67,
@@ -602,7 +735,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Machoke!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.fighting],
-    stats: { hp: 80, attack: 100, defense: 70, sp_attack: 50, sp_defense: 60, speed: 45 }
+    stats: { hp: 80, attack: 100, defense: 70, sp_attack: 50, sp_defense: 60, speed: 45 },
+    experience_group: ExperienceGroup.medium_slow,
+    experience_yield: 142
   },
   machamp: {
     id: 68,
@@ -611,7 +746,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Alakazam!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.fighting],
-    stats: { hp: 90, attack: 130, defense: 80, sp_attack: 65, sp_defense: 85, speed: 55 }
+    stats: { hp: 90, attack: 130, defense: 80, sp_attack: 65, sp_defense: 85, speed: 55 },
+    experience_group: ExperienceGroup.medium_slow,
+    experience_yield: 227
   },
   bellsprout: {
     id: 69,
@@ -620,7 +757,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Bellsprout!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.grass, PokemonCombatType.poison],
-    stats: { hp: 50, attack: 75, defense: 35, sp_attack: 70, sp_defense: 30, speed: 40 }
+    stats: { hp: 50, attack: 75, defense: 35, sp_attack: 70, sp_defense: 30, speed: 40 },
+    experience_group: ExperienceGroup.medium_slow,
+    experience_yield: 60
   },
   weepinbell: {
     id: 70,
@@ -629,7 +768,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Weepinbell!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.grass, PokemonCombatType.poison],
-    stats: { hp: 65, attack: 90, defense: 50, sp_attack: 85, sp_defense: 45, speed: 55 }
+    stats: { hp: 65, attack: 90, defense: 50, sp_attack: 85, sp_defense: 45, speed: 55 },
+    experience_group: ExperienceGroup.medium_slow,
+    experience_yield: 137
   },
   victreebel: {
     id: 71,
@@ -638,7 +779,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Victreebel!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.grass, PokemonCombatType.poison],
-    stats: { hp: 80, attack: 125, defense: 85, sp_attack: 135, sp_defense: 95, speed: 70 }
+    stats: { hp: 80, attack: 125, defense: 85, sp_attack: 135, sp_defense: 95, speed: 70 },
+    experience_group: ExperienceGroup.medium_slow,
+    experience_yield: 221
   },
   tentacool: {
     id: 72,
@@ -647,7 +790,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Tentacool!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.water, PokemonCombatType.poison],
-    stats: { hp: 40, attack: 40, defense: 35, sp_attack: 50, sp_defense: 100, speed: 70 }
+    stats: { hp: 40, attack: 40, defense: 35, sp_attack: 50, sp_defense: 100, speed: 70 },
+    experience_group: ExperienceGroup.slow,
+    experience_yield: 67
   },
   tentacruel: {
     id: 73,
@@ -656,7 +801,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Tentacruel!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.water, PokemonCombatType.poison],
-    stats: { hp: 80, attack: 70, defense: 65, sp_attack: 80, sp_defense: 120, speed: 100 }
+    stats: { hp: 80, attack: 70, defense: 65, sp_attack: 80, sp_defense: 120, speed: 100 },
+    experience_group: ExperienceGroup.slow,
+    experience_yield: 180
   },
   geodude: {
     id: 74,
@@ -665,7 +812,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Geodude!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.rock, PokemonCombatType.electric],
-    stats: { hp: 40, attack: 80, defense: 100, sp_attack: 30, sp_defense: 30, speed: 20 }
+    stats: { hp: 40, attack: 80, defense: 100, sp_attack: 30, sp_defense: 30, speed: 20 },
+    experience_group: ExperienceGroup.medium_slow,
+    experience_yield: 60
   },
   graveler: {
     id: 75,
@@ -674,7 +823,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Graveler!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.rock, PokemonCombatType.electric],
-    stats: { hp: 55, attack: 95, defense: 115, sp_attack: 45, sp_defense: 45, speed: 35 }
+    stats: { hp: 55, attack: 95, defense: 115, sp_attack: 45, sp_defense: 45, speed: 35 },
+    experience_group: ExperienceGroup.medium_slow,
+    experience_yield: 137
   },
   golem: {
     id: 76,
@@ -683,7 +834,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Golem!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.rock, PokemonCombatType.electric],
-    stats: { hp: 80, attack: 120, defense: 130, sp_attack: 55, sp_defense: 65, speed: 45 }
+    stats: { hp: 80, attack: 120, defense: 130, sp_attack: 55, sp_defense: 65, speed: 45 },
+    experience_group: ExperienceGroup.medium_slow,
+    experience_yield: 223
   },
   ponyta: {
     id: 77,
@@ -692,7 +845,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Ponyta!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.psychic],
-    stats: { hp: 50, attack: 85, defense: 55, sp_attack: 65, sp_defense: 65, speed: 90 }
+    stats: { hp: 50, attack: 85, defense: 55, sp_attack: 65, sp_defense: 65, speed: 90 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 82
   },
   rapidash: {
     id: 78,
@@ -701,7 +856,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Rapidash!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.psychic, PokemonCombatType.fairy],
-    stats: { hp: 65, attack: 100, defense: 70, sp_attack: 80, sp_defense: 80, speed: 105 }
+    stats: { hp: 65, attack: 100, defense: 70, sp_attack: 80, sp_defense: 80, speed: 105 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 175
   },
   slowpoke: {
     id: 79,
@@ -710,7 +867,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Slowpoke!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.psychic],
-    stats: { hp: 90, attack: 65, defense: 65, sp_attack: 40, sp_defense: 40, speed: 15 }
+    stats: { hp: 90, attack: 65, defense: 65, sp_attack: 40, sp_defense: 40, speed: 15 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 63
   },
   slowbro: {
     id: 80,
@@ -719,7 +878,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Slowbro!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.poison, PokemonCombatType.psychic],
-    stats: { hp: 95, attack: 100, defense: 95, sp_attack: 100, sp_defense: 70, speed: 30 }
+    stats: { hp: 95, attack: 100, defense: 95, sp_attack: 100, sp_defense: 70, speed: 30 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 172
   },
   magnemite: {
     id: 81,
@@ -728,7 +889,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Magnemite!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.electric, PokemonCombatType.steel],
-    stats: { hp: 25, attack: 35, defense: 70, sp_attack: 95, sp_defense: 55, speed: 45 }
+    stats: { hp: 25, attack: 35, defense: 70, sp_attack: 95, sp_defense: 55, speed: 45 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 65
   },
   magneton: {
     id: 82,
@@ -737,7 +900,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Magneton!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.electric, PokemonCombatType.steel],
-    stats: { hp: 50, attack: 60, defense: 95, sp_attack: 120, sp_defense: 70, speed: 70 }
+    stats: { hp: 50, attack: 60, defense: 95, sp_attack: 120, sp_defense: 70, speed: 70 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 163
   },
   farfetchd: {
     id: 83,
@@ -746,7 +911,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Farfetch\'d!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.fighting],
-    stats: { hp: 52, attack: 95, defense: 55, sp_attack: 58, sp_defense: 62, speed: 55 }
+    stats: { hp: 52, attack: 95, defense: 55, sp_attack: 58, sp_defense: 62, speed: 55 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 132
   },
   doduo: {
     id: 84,
@@ -755,7 +922,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Doduo!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.normal, PokemonCombatType.flying],
-    stats: { hp: 35, attack: 85, defense: 45, sp_attack: 35, sp_defense: 35, speed: 75 }
+    stats: { hp: 35, attack: 85, defense: 45, sp_attack: 35, sp_defense: 35, speed: 75 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 62
   },
   dodrio: {
     id: 85,
@@ -764,7 +933,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Dodrio!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.normal, PokemonCombatType.flying],
-    stats: { hp: 60, attack: 110, defense: 70, sp_attack: 60, sp_defense: 60, speed: 110 }
+    stats: { hp: 60, attack: 110, defense: 70, sp_attack: 60, sp_defense: 60, speed: 110 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 165
   },
   seel: {
     id: 86,
@@ -773,7 +944,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Seel!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.water],
-    stats: { hp: 65, attack: 45, defense: 55, sp_attack: 45, sp_defense: 70, speed: 45 }
+    stats: { hp: 65, attack: 45, defense: 55, sp_attack: 45, sp_defense: 70, speed: 45 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 65
   },
   dewgong: {
     id: 87,
@@ -782,7 +955,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Dewgong!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.water, PokemonCombatType.ice],
-    stats: { hp: 90, attack: 70, defense: 80, sp_attack: 70, sp_defense: 95, speed: 70 }
+    stats: { hp: 90, attack: 70, defense: 80, sp_attack: 70, sp_defense: 95, speed: 70 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 166
   },
   grimer: {
     id: 88,
@@ -791,7 +966,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Grimer!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.poison, PokemonCombatType.dark],
-    stats: { hp: 80, attack: 80, defense: 50, sp_attack: 40, sp_defense: 50, speed: 25 }
+    stats: { hp: 80, attack: 80, defense: 50, sp_attack: 40, sp_defense: 50, speed: 25 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 65
   },
   muk: {
     id: 89,
@@ -800,7 +977,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Muk!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.poison, PokemonCombatType.dark],
-    stats: { hp: 105, attack: 105, defense: 75, sp_attack: 65, sp_defense: 100, speed: 50 }
+    stats: { hp: 105, attack: 105, defense: 75, sp_attack: 65, sp_defense: 100, speed: 50 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 175
   },
   shellder: {
     id: 90,
@@ -809,7 +988,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Shellder!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.water],
-    stats: { hp: 30, attack: 65, defense: 100, sp_attack: 45, sp_defense: 25, speed: 40 }
+    stats: { hp: 30, attack: 65, defense: 100, sp_attack: 45, sp_defense: 25, speed: 40 },
+    experience_group: ExperienceGroup.slow,
+    experience_yield: 61
   },
   cloyster: {
     id: 91,
@@ -818,7 +999,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Cloyster!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.water, PokemonCombatType.ice],
-    stats: { hp: 50, attack: 95, defense: 180, sp_attack: 85, sp_defense: 45, speed: 70 }
+    stats: { hp: 50, attack: 95, defense: 180, sp_attack: 85, sp_defense: 45, speed: 70 },
+    experience_group: ExperienceGroup.slow,
+    experience_yield: 184
   },
   gastly: {
     id: 92,
@@ -827,7 +1010,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Gastly!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.ghost, PokemonCombatType.poison],
-    stats: { hp: 30, attack: 35, defense: 30, sp_attack: 100, sp_defense: 35, speed: 80 }
+    stats: { hp: 30, attack: 35, defense: 30, sp_attack: 100, sp_defense: 35, speed: 80 },
+    experience_group: ExperienceGroup.medium_slow,
+    experience_yield: 62
   },
   haunter: {
     id: 93,
@@ -836,7 +1021,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Haunter!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.ghost, PokemonCombatType.poison],
-    stats: { hp: 45, attack: 50, defense: 45, sp_attack: 115, sp_defense: 55, speed: 95 }
+    stats: { hp: 45, attack: 50, defense: 45, sp_attack: 115, sp_defense: 55, speed: 95 },
+    experience_group: ExperienceGroup.medium_slow,
+    experience_yield: 142
   },
   gengar: {
     id: 94,
@@ -845,7 +1032,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Gengar!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.ghost, PokemonCombatType.poison],
-    stats: { hp: 60, attack: 65, defense: 80, sp_attack: 170, sp_defense: 95, speed: 130 }
+    stats: { hp: 60, attack: 65, defense: 80, sp_attack: 170, sp_defense: 95, speed: 130 },
+    experience_group: ExperienceGroup.medium_slow,
+    experience_yield: 250
   },
   onix: {
     id: 95,
@@ -854,7 +1043,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Onix!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.rock, PokemonCombatType.ground],
-    stats: { hp: 35, attack: 45, defense: 160, sp_attack: 30, sp_defense: 45, speed: 70 }
+    stats: { hp: 35, attack: 45, defense: 160, sp_attack: 30, sp_defense: 45, speed: 70 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 77
   },
   drowzee: {
     id: 96,
@@ -863,7 +1054,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Drowzee!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.psychic],
-    stats: { hp: 60, attack: 48, defense: 45, sp_attack: 43, sp_defense: 90, speed: 42 }
+    stats: { hp: 60, attack: 48, defense: 45, sp_attack: 43, sp_defense: 90, speed: 42 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 66
   },
   hypno: {
     id: 97,
@@ -872,7 +1065,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Hypno!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.psychic],
-    stats: { hp: 85, attack: 73, defense: 70, sp_attack: 73, sp_defense: 115, speed: 67 }
+    stats: { hp: 85, attack: 73, defense: 70, sp_attack: 73, sp_defense: 115, speed: 67 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 169
   },
   krabby: {
     id: 98,
@@ -881,7 +1076,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Krabby!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.water],
-    stats: { hp: 30, attack: 105, defense: 90, sp_attack: 25, sp_defense: 25, speed: 50 }
+    stats: { hp: 30, attack: 105, defense: 90, sp_attack: 25, sp_defense: 25, speed: 50 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 65
   },
   kingler: {
     id: 99,
@@ -890,7 +1087,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Kingler!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.water],
-    stats: { hp: 55, attack: 130, defense: 115, sp_attack: 50, sp_defense: 50, speed: 75 }
+    stats: { hp: 55, attack: 130, defense: 115, sp_attack: 50, sp_defense: 50, speed: 75 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 166
   },
   voltorb: {
     id: 100,
@@ -899,7 +1098,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Voltorb!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.electric, PokemonCombatType.grass],
-    stats: { hp: 40, attack: 30, defense: 50, sp_attack: 55, sp_defense: 55, speed: 100 }
+    stats: { hp: 40, attack: 30, defense: 50, sp_attack: 55, sp_defense: 55, speed: 100 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 66
   },
   electrode: {
     id: 101,
@@ -908,7 +1109,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Electrode!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.electric, PokemonCombatType.grass],
-    stats: { hp: 60, attack: 50, defense: 70, sp_attack: 80, sp_defense: 80, speed: 150 }
+    stats: { hp: 60, attack: 50, defense: 70, sp_attack: 80, sp_defense: 80, speed: 150 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 172
   },
   exeggcute: {
     id: 102,
@@ -917,7 +1120,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Exeggcute!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.grass, PokemonCombatType.psychic],
-    stats: { hp: 60, attack: 40, defense: 80, sp_attack: 60, sp_defense: 45, speed: 40 }
+    stats: { hp: 60, attack: 40, defense: 80, sp_attack: 60, sp_defense: 45, speed: 40 },
+    experience_group: ExperienceGroup.slow,
+    experience_yield: 65
   },
   exeggutor: {
     id: 103,
@@ -926,7 +1131,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Exeggutor!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.grass, PokemonCombatType.dragon],
-    stats: { hp: 95, attack: 105, defense: 85, sp_attack: 125, sp_defense: 75, speed: 45 }
+    stats: { hp: 95, attack: 105, defense: 85, sp_attack: 125, sp_defense: 75, speed: 45 },
+    experience_group: ExperienceGroup.slow,
+    experience_yield: 186
   },
   cubone: {
     id: 104,
@@ -935,7 +1142,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Cubone!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.ground],
-    stats: { hp: 50, attack: 50, defense: 95, sp_attack: 40, sp_defense: 50, speed: 35 }
+    stats: { hp: 50, attack: 50, defense: 95, sp_attack: 40, sp_defense: 50, speed: 35 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 64
   },
   marowak: {
     id: 105,
@@ -944,7 +1153,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Marowak!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.fire, PokemonCombatType.ghost],
-    stats: { hp: 60, attack: 80, defense: 110, sp_attack: 50, sp_defense: 80, speed: 45 }
+    stats: { hp: 60, attack: 80, defense: 110, sp_attack: 50, sp_defense: 80, speed: 45 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 149
   },
   hitmonlee: {
     id: 106,
@@ -953,7 +1164,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Hitmonlee!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.fighting],
-    stats: { hp: 50, attack: 120, defense: 53, sp_attack: 35, sp_defense: 110, speed: 87 }
+    stats: { hp: 50, attack: 120, defense: 53, sp_attack: 35, sp_defense: 110, speed: 87 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 159
   },
   hitmonchan: {
     id: 107,
@@ -962,7 +1175,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Hitmonchan!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.fighting],
-    stats: { hp: 50, attack: 105, defense: 79, sp_attack: 35, sp_defense: 110, speed: 76 }
+    stats: { hp: 50, attack: 105, defense: 79, sp_attack: 35, sp_defense: 110, speed: 76 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 159
   },
   lickitung: {
     id: 108,
@@ -971,7 +1186,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Lickitung!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.normal],
-    stats: { hp: 90, attack: 55, defense: 75, sp_attack: 60, sp_defense: 75, speed: 30 }
+    stats: { hp: 90, attack: 55, defense: 75, sp_attack: 60, sp_defense: 75, speed: 30 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 77
   },
   koffing: {
     id: 109,
@@ -980,7 +1197,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Koffing!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.poison],
-    stats: { hp: 40, attack: 65, defense: 95, sp_attack: 60, sp_defense: 45, speed: 35 }
+    stats: { hp: 40, attack: 65, defense: 95, sp_attack: 60, sp_defense: 45, speed: 35 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 68
   },
   weezing: {
     id: 110,
@@ -989,7 +1208,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Weezing!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.poison, PokemonCombatType.fairy],
-    stats: { hp: 65, attack: 90, defense: 120, sp_attack: 85, sp_defense: 70, speed: 60 }
+    stats: { hp: 65, attack: 90, defense: 120, sp_attack: 85, sp_defense: 70, speed: 60 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 172
   },
   rhyhorn: {
     id: 111,
@@ -998,7 +1219,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Rhyhorn!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.ground, PokemonCombatType.rock],
-    stats: { hp: 80, attack: 85, defense: 95, sp_attack: 30, sp_defense: 30, speed: 25 }
+    stats: { hp: 80, attack: 85, defense: 95, sp_attack: 30, sp_defense: 30, speed: 25 },
+    experience_group: ExperienceGroup.slow,
+    experience_yield: 69
   },
   rhydon: {
     id: 112,
@@ -1007,7 +1230,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Rhydon!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.ground, PokemonCombatType.rock],
-    stats: { hp: 105, attack: 130, defense: 120, sp_attack: 45, sp_defense: 45, speed: 40 }
+    stats: { hp: 105, attack: 130, defense: 120, sp_attack: 45, sp_defense: 45, speed: 40 },
+    experience_group: ExperienceGroup.slow,
+    experience_yield: 170
   },
   chansey: {
     id: 113,
@@ -1016,7 +1241,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Chansey!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.normal],
-    stats: { hp: 250, attack: 5, defense: 5, sp_attack: 35, sp_defense: 105, speed: 50 }
+    stats: { hp: 250, attack: 5, defense: 5, sp_attack: 35, sp_defense: 105, speed: 50 },
+    experience_group: ExperienceGroup.fast,
+    experience_yield: 395
   },
   tangela: {
     id: 114,
@@ -1025,7 +1252,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Tangela!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.grass],
-    stats: { hp: 65, attack: 55, defense: 115, sp_attack: 100, sp_defense: 40, speed: 60 }
+    stats: { hp: 65, attack: 55, defense: 115, sp_attack: 100, sp_defense: 40, speed: 60 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 87
   },
   kangaskhan: {
     id: 115,
@@ -1034,7 +1263,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Kangaskhan!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.normal],
-    stats: { hp: 105, attack: 125, defense: 100, sp_attack: 60, sp_defense: 100, speed: 100 }
+    stats: { hp: 105, attack: 125, defense: 100, sp_attack: 60, sp_defense: 100, speed: 100 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 172
   },
   horsea: {
     id: 116,
@@ -1043,7 +1274,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Horsea!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.water],
-    stats: { hp: 30, attack: 40, defense: 70, sp_attack: 70, sp_defense: 25, speed: 60 }
+    stats: { hp: 30, attack: 40, defense: 70, sp_attack: 70, sp_defense: 25, speed: 60 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 59
   },
   seadra: {
     id: 117,
@@ -1052,7 +1285,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Seadra!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.water],
-    stats: { hp: 55, attack: 65, defense: 95, sp_attack: 95, sp_defense: 45, speed: 85 }
+    stats: { hp: 55, attack: 65, defense: 95, sp_attack: 95, sp_defense: 45, speed: 85 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 154
   },
   goldeen: {
     id: 118,
@@ -1061,7 +1296,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Goldeen!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.water],
-    stats: { hp: 45, attack: 67, defense: 60, sp_attack: 35, sp_defense: 50, speed: 63 }
+    stats: { hp: 45, attack: 67, defense: 60, sp_attack: 35, sp_defense: 50, speed: 63 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 64
   },
   seaking: {
     id: 119,
@@ -1070,7 +1307,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Seaking!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.water],
-    stats: { hp: 80, attack: 92, defense: 65, sp_attack: 65, sp_defense: 80, speed: 68 }
+    stats: { hp: 80, attack: 92, defense: 65, sp_attack: 65, sp_defense: 80, speed: 68 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 158
   },
   staryu: {
     id: 120,
@@ -1079,7 +1318,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Staryu!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.water],
-    stats: { hp: 30, attack: 45, defense: 55, sp_attack: 70, sp_defense: 55, speed: 85 }
+    stats: { hp: 30, attack: 45, defense: 55, sp_attack: 70, sp_defense: 55, speed: 85 },
+    experience_group: ExperienceGroup.slow,
+    experience_yield: 68
   },
   starmie: {
     id: 121,
@@ -1088,7 +1329,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Starmie!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.water, PokemonCombatType.psychic],
-    stats: { hp: 60, attack: 75, defense: 85, sp_attack: 100, sp_defense: 85, speed: 115 }
+    stats: { hp: 60, attack: 75, defense: 85, sp_attack: 100, sp_defense: 85, speed: 115 },
+    experience_group: ExperienceGroup.slow,
+    experience_yield: 182
   },
   mrmime: {
     id: 122,
@@ -1097,7 +1340,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Mr. Mime!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.ice, PokemonCombatType.psychic],
-    stats: { hp: 50, attack: 65, defense: 65, sp_attack: 90, sp_defense: 90, speed: 100 }
+    stats: { hp: 50, attack: 65, defense: 65, sp_attack: 90, sp_defense: 90, speed: 100 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 161
   },
   scyther: {
     id: 123,
@@ -1106,7 +1351,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Scyther!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.bug, PokemonCombatType.flying],
-    stats: { hp: 70, attack: 110, defense: 80, sp_attack: 55, sp_defense: 80, speed: 105 }
+    stats: { hp: 70, attack: 110, defense: 80, sp_attack: 55, sp_defense: 80, speed: 105 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 100
   },
   jynx: {
     id: 124,
@@ -1115,7 +1362,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Jynx!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.ice, PokemonCombatType.psychic],
-    stats: { hp: 65, attack: 50, defense: 35, sp_attack: 115, sp_defense: 95, speed: 95 }
+    stats: { hp: 65, attack: 50, defense: 35, sp_attack: 115, sp_defense: 95, speed: 95 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 159
   },
   electabuzz: {
     id: 125,
@@ -1124,7 +1373,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Electabuzz!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.electric],
-    stats: { hp: 65, attack: 83, defense: 57, sp_attack: 95, sp_defense: 85, speed: 105 }
+    stats: { hp: 65, attack: 83, defense: 57, sp_attack: 95, sp_defense: 85, speed: 105 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 172
   },
   magmar: {
     id: 126,
@@ -1133,7 +1384,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Magmar!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.fire],
-    stats: { hp: 65, attack: 95, defense: 57, sp_attack: 100, sp_defense: 85, speed: 93 }
+    stats: { hp: 65, attack: 95, defense: 57, sp_attack: 100, sp_defense: 85, speed: 93 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 173
   },
   pinsir: {
     id: 127,
@@ -1142,7 +1395,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Pinsir!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.bug, PokemonCombatType.flying],
-    stats: { hp: 65, attack: 155, defense: 120, sp_attack: 65, sp_defense: 90, speed: 105 }
+    stats: { hp: 65, attack: 155, defense: 120, sp_attack: 65, sp_defense: 90, speed: 105 },
+    experience_group: ExperienceGroup.slow,
+    experience_yield: 175
   },
   tauros: {
     id: 128,
@@ -1151,7 +1406,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Tauros!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.fighting, PokemonCombatType.water],
-    stats: { hp: 75, attack: 110, defense: 105, sp_attack: 30, sp_defense: 70, speed: 100 }
+    stats: { hp: 75, attack: 110, defense: 105, sp_attack: 30, sp_defense: 70, speed: 100 },
+    experience_group: ExperienceGroup.slow,
+    experience_yield: 172
   },
   magikarp: {
     id: 129,
@@ -1160,7 +1417,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Magikarp!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.water],
-    stats: { hp: 20, attack: 10, defense: 55, sp_attack: 15, sp_defense: 20, speed: 80 }
+    stats: { hp: 20, attack: 10, defense: 55, sp_attack: 15, sp_defense: 20, speed: 80 },
+    experience_group: ExperienceGroup.slow,
+    experience_yield: 40
   },
   gyarados: {
     id: 130,
@@ -1169,7 +1428,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Gyarados!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.water, PokemonCombatType.dark],
-    stats: { hp: 95, attack: 155, defense: 109, sp_attack: 70, sp_defense: 130, speed: 81 }
+    stats: { hp: 95, attack: 155, defense: 109, sp_attack: 70, sp_defense: 130, speed: 81 },
+    experience_group: ExperienceGroup.slow,
+    experience_yield: 189
   },
   lapras: {
     id: 131,
@@ -1178,7 +1439,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Lapras!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.water, PokemonCombatType.ice],
-    stats: { hp: 130, attack: 85, defense: 80, sp_attack: 85, sp_defense: 95, speed: 60 }
+    stats: { hp: 130, attack: 85, defense: 80, sp_attack: 85, sp_defense: 95, speed: 60 },
+    experience_group: ExperienceGroup.slow,
+    experience_yield: 187
   },
   ditto: {
     id: 132,
@@ -1187,7 +1450,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Ditto!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.normal],
-    stats: { hp: 48, attack: 48, defense: 48, sp_attack: 48, sp_defense: 48, speed: 48 }
+    stats: { hp: 48, attack: 48, defense: 48, sp_attack: 48, sp_defense: 48, speed: 48 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 101
   },
   eevee: {
     id: 133,
@@ -1196,7 +1461,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Eevee!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.normal],
-    stats: { hp: 65, attack: 75, defense: 70, sp_attack: 65, sp_defense: 85, speed: 75 }
+    stats: { hp: 65, attack: 75, defense: 70, sp_attack: 65, sp_defense: 85, speed: 75 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 65
   },
   vaporeon: {
     id: 134,
@@ -1205,7 +1472,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Vaporeon!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.water],
-    stats: { hp: 130, attack: 65, defense: 60, sp_attack: 110, sp_defense: 95, speed: 65 }
+    stats: { hp: 130, attack: 65, defense: 60, sp_attack: 110, sp_defense: 95, speed: 65 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 184
   },
   jolteon: {
     id: 135,
@@ -1214,7 +1483,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Jolteon!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.electric],
-    stats: { hp: 65, attack: 65, defense: 60, sp_attack: 110, sp_defense: 95, speed: 130 }
+    stats: { hp: 65, attack: 65, defense: 60, sp_attack: 110, sp_defense: 95, speed: 130 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 184
   },
   flareon: {
     id: 136,
@@ -1223,7 +1494,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Flareon!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.fire],
-    stats: { hp: 65, attack: 130, defense: 60, sp_attack: 95, sp_defense: 110, speed: 65 }
+    stats: { hp: 65, attack: 130, defense: 60, sp_attack: 95, sp_defense: 110, speed: 65 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 184
   },
   porygon: {
     id: 137,
@@ -1232,7 +1505,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Porygon!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.normal],
-    stats: { hp: 65, attack: 60, defense: 70, sp_attack: 85, sp_defense: 75, speed: 40 }
+    stats: { hp: 65, attack: 60, defense: 70, sp_attack: 85, sp_defense: 75, speed: 40 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 79
   },
   omanyte: {
     id: 138,
@@ -1241,7 +1516,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Omanyte!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.rock, PokemonCombatType.water],
-    stats: { hp: 35, attack: 40, defense: 100, sp_attack: 90, sp_defense: 55, speed: 35 }
+    stats: { hp: 35, attack: 40, defense: 100, sp_attack: 90, sp_defense: 55, speed: 35 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 71
   },
   omastar: {
     id: 139,
@@ -1250,7 +1527,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Omastar!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.rock, PokemonCombatType.water],
-    stats: { hp: 70, attack: 60, defense: 125, sp_attack: 115, sp_defense: 70, speed: 55 }
+    stats: { hp: 70, attack: 60, defense: 125, sp_attack: 115, sp_defense: 70, speed: 55 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 173
   },
   kabuto: {
     id: 140,
@@ -1259,7 +1538,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Kabuto!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.rock, PokemonCombatType.water],
-    stats: { hp: 30, attack: 80, defense: 90, sp_attack: 55, sp_defense: 45, speed: 55 }
+    stats: { hp: 30, attack: 80, defense: 90, sp_attack: 55, sp_defense: 45, speed: 55 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 71
   },
   kabutops: {
     id: 141,
@@ -1268,7 +1549,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Kabutops!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.rock, PokemonCombatType.water],
-    stats: { hp: 60, attack: 115, defense: 105, sp_attack: 65, sp_defense: 70, speed: 80 }
+    stats: { hp: 60, attack: 115, defense: 105, sp_attack: 65, sp_defense: 70, speed: 80 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 173
   },
   aerodactyl: {
     id: 142,
@@ -1277,7 +1560,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Aerodactyl!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.rock, PokemonCombatType.flying],
-    stats: { hp: 80, attack: 135, defense: 85, sp_attack: 70, sp_defense: 95, speed: 150 }
+    stats: { hp: 80, attack: 135, defense: 85, sp_attack: 70, sp_defense: 95, speed: 150 },
+    experience_group: ExperienceGroup.slow,
+    experience_yield: 180
   },
   snorlax: {
     id: 143,
@@ -1286,7 +1571,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Snorlax!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.normal],
-    stats: { hp: 160, attack: 110, defense: 65, sp_attack: 65, sp_defense: 110, speed: 30 }
+    stats: { hp: 160, attack: 110, defense: 65, sp_attack: 65, sp_defense: 110, speed: 30 },
+    experience_group: ExperienceGroup.slow,
+    experience_yield: 189
   },
   articuno: {
     id: 144,
@@ -1295,7 +1582,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Articuno!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.psychic, PokemonCombatType.flying],
-    stats: { hp: 90, attack: 85, defense: 85, sp_attack: 125, sp_defense: 100, speed: 95 }
+    stats: { hp: 90, attack: 85, defense: 85, sp_attack: 125, sp_defense: 100, speed: 95 },
+    experience_group: ExperienceGroup.slow,
+    experience_yield: 290
   },
   zapdos: {
     id: 145,
@@ -1304,7 +1593,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Zapdos!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.fighting, PokemonCombatType.flying],
-    stats: { hp: 90, attack: 125, defense: 90, sp_attack: 85, sp_defense: 90, speed: 100 }
+    stats: { hp: 90, attack: 125, defense: 90, sp_attack: 85, sp_defense: 90, speed: 100 },
+    experience_group: ExperienceGroup.slow,
+    experience_yield: 290
   },
   moltres: {
     id: 146,
@@ -1313,7 +1604,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Moltres!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.dark, PokemonCombatType.flying],
-    stats: { hp: 90, attack: 85, defense: 90, sp_attack: 100, sp_defense: 125, speed: 90 }
+    stats: { hp: 90, attack: 85, defense: 90, sp_attack: 100, sp_defense: 125, speed: 90 },
+    experience_group: ExperienceGroup.slow,
+    experience_yield: 290
   },
   dratini: {
     id: 147,
@@ -1322,7 +1615,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Dratini!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.dragon],
-    stats: { hp: 41, attack: 64, defense: 45, sp_attack: 50, sp_defense: 50, speed: 50 }
+    stats: { hp: 41, attack: 64, defense: 45, sp_attack: 50, sp_defense: 50, speed: 50 },
+    experience_group: ExperienceGroup.slow,
+    experience_yield: 60
   },
   dragonair: {
     id: 148,
@@ -1331,7 +1626,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'dragonair!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.dragon],
-    stats: { hp: 61, attack: 84, defense: 65, sp_attack: 70, sp_defense: 70, speed: 70 }
+    stats: { hp: 61, attack: 84, defense: 65, sp_attack: 70, sp_defense: 70, speed: 70 },
+    experience_group: ExperienceGroup.slow,
+    experience_yield: 147
   },
   dragonite: {
     id: 149,
@@ -1340,7 +1637,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'dragonite!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.dragon, PokemonCombatType.flying],
-    stats: { hp: 91, attack: 124, defense: 115, sp_attack: 145, sp_defense: 125, speed: 100 }
+    stats: { hp: 91, attack: 124, defense: 115, sp_attack: 145, sp_defense: 125, speed: 100 },
+    experience_group: ExperienceGroup.slow,
+    experience_yield: 300
   },
   mewtwo: {
     id: 150,
@@ -1349,7 +1648,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Mewtwo!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.psychic],
-    stats: { hp: 106, attack: 150, defense: 70, sp_attack: 194, sp_defense: 120, speed: 140 }
+    stats: { hp: 106, attack: 150, defense: 70, sp_attack: 194, sp_defense: 120, speed: 140 },
+    experience_group: ExperienceGroup.slow,
+    experience_yield: 340
   },
   mew: {
     id: 151,
@@ -1358,7 +1659,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Mew!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.psychic],
-    stats: { hp: 100, attack: 100, defense: 100, sp_attack: 100, sp_defense: 100, speed: 100 }
+    stats: { hp: 100, attack: 100, defense: 100, sp_attack: 100, sp_defense: 100, speed: 100 },
+    experience_group: ExperienceGroup.medium_slow,
+    experience_yield: 300
   },
   // Generation 2
   chikorita: {
@@ -1368,7 +1671,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Chikorita!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.grass],
-    stats: { hp: 45, attack: 49, defense: 65, sp_attack: 49, sp_defense: 65, speed: 45 }
+    stats: { hp: 45, attack: 49, defense: 65, sp_attack: 49, sp_defense: 65, speed: 45 },
+    experience_group: ExperienceGroup.medium_slow,
+    experience_yield: 64
   },
   bayleef: {
     id: 153,
@@ -1377,7 +1682,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Bayleef!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.grass],
-    stats: { hp: 60, attack: 62, defense: 80, sp_attack: 63, sp_defense: 80, speed: 60 }
+    stats: { hp: 60, attack: 62, defense: 80, sp_attack: 63, sp_defense: 80, speed: 60 },
+    experience_group: ExperienceGroup.medium_slow,
+    experience_yield: 142
   },
   meganium: {
     id: 154,
@@ -1386,7 +1693,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Meganium!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.grass],
-    stats: { hp: 80, attack: 82, defense: 100, sp_attack: 83, sp_defense: 100, speed: 80 }
+    stats: { hp: 80, attack: 82, defense: 100, sp_attack: 83, sp_defense: 100, speed: 80 },
+    experience_group: ExperienceGroup.medium_slow,
+    experience_yield: 236
   },
   cyndaquil: {
     id: 155,
@@ -1395,7 +1704,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Cyndaquil!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.fire],
-    stats: { hp: 39, attack: 52, defense: 43, sp_attack: 60, sp_defense: 50, speed: 65 }
+    stats: { hp: 39, attack: 52, defense: 43, sp_attack: 60, sp_defense: 50, speed: 65 },
+    experience_group: ExperienceGroup.medium_slow,
+    experience_yield: 62
   },
   quilava: {
     id: 156,
@@ -1404,7 +1715,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Quilava!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.fire],
-    stats: { hp: 58, attack: 64, defense: 58, sp_attack: 80, sp_defense: 65, speed: 80 }
+    stats: { hp: 58, attack: 64, defense: 58, sp_attack: 80, sp_defense: 65, speed: 80 },
+    experience_group: ExperienceGroup.medium_slow,
+    experience_yield: 142
   },
   typhlosion: {
     id: 157,
@@ -1413,7 +1726,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Typhlosion!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.fire, PokemonCombatType.ghost],
-    stats: { hp: 73, attack: 84, defense: 78, sp_attack: 119, sp_defense: 85, speed: 95 }
+    stats: { hp: 73, attack: 84, defense: 78, sp_attack: 119, sp_defense: 85, speed: 95 },
+    experience_group: ExperienceGroup.medium_slow,
+    experience_yield: 267
   },
   totodile: {
     id: 158,
@@ -1422,7 +1737,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Totodile!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.water],
-    stats: { hp: 50, attack: 65, defense: 64, sp_attack: 44, sp_defense: 48, speed: 43 }
+    stats: { hp: 50, attack: 65, defense: 64, sp_attack: 44, sp_defense: 48, speed: 43 },
+    experience_group: ExperienceGroup.medium_slow,
+    experience_yield: 63
   },
   croconaw: {
     id: 159,
@@ -1431,7 +1748,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Croconaw!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.water],
-    stats: { hp: 65, attack: 80, defense: 80, sp_attack: 59, sp_defense: 63, speed: 58 }
+    stats: { hp: 65, attack: 80, defense: 80, sp_attack: 59, sp_defense: 63, speed: 58 },
+    experience_group: ExperienceGroup.medium_slow,
+    experience_yield: 142
   },
   feraligatr: {
     id: 160,
@@ -1440,7 +1759,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Feraligatr!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.water],
-    stats: { hp: 85, attack: 105, defense: 100, sp_attack: 79, sp_defense: 83, speed: 78 }
+    stats: { hp: 85, attack: 105, defense: 100, sp_attack: 79, sp_defense: 83, speed: 78 },
+    experience_group: ExperienceGroup.medium_slow,
+    experience_yield: 239
   },
   sentret: {
     id: 161,
@@ -1449,7 +1770,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Sentret!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.normal],
-    stats: { hp: 35, attack: 46, defense: 34, sp_attack: 35, sp_defense: 45, speed: 20 }
+    stats: { hp: 35, attack: 46, defense: 34, sp_attack: 35, sp_defense: 45, speed: 20 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 43
   },
   furret: {
     id: 162,
@@ -1458,7 +1781,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Furret!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.normal],
-    stats: { hp: 85, attack: 76, defense: 64, sp_attack: 45, sp_defense: 55, speed: 90 }
+    stats: { hp: 85, attack: 76, defense: 64, sp_attack: 45, sp_defense: 55, speed: 90 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 145
   },
   hoothoot: {
     id: 163,
@@ -1467,7 +1792,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Hoothoot!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.normal, PokemonCombatType.flying],
-    stats: { hp: 60, attack: 30, defense: 30, sp_attack: 36, sp_defense: 56, speed: 50 }
+    stats: { hp: 60, attack: 30, defense: 30, sp_attack: 36, sp_defense: 56, speed: 50 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 52
   },
   noctowl: {
     id: 164,
@@ -1476,7 +1803,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Noctowl!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.normal, PokemonCombatType.flying],
-    stats: { hp: 100, attack: 50, defense: 50, sp_attack: 86, sp_defense: 96, speed: 70 }
+    stats: { hp: 100, attack: 50, defense: 50, sp_attack: 86, sp_defense: 96, speed: 70 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 158
   },
   ledyba: {
     id: 165,
@@ -1485,7 +1814,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Ledyba!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.bug, PokemonCombatType.flying],
-    stats: { hp: 40, attack: 20, defense: 30, sp_attack: 40, sp_defense: 80, speed: 55 }
+    stats: { hp: 40, attack: 20, defense: 30, sp_attack: 40, sp_defense: 80, speed: 55 },
+    experience_group: ExperienceGroup.fast,
+    experience_yield: 53
   },
   ledian: {
     id: 166,
@@ -1494,7 +1825,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Ledian!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.bug, PokemonCombatType.flying],
-    stats: { hp: 55, attack: 35, defense: 50, sp_attack: 55, sp_defense: 110, speed: 85 }
+    stats: { hp: 55, attack: 35, defense: 50, sp_attack: 55, sp_defense: 110, speed: 85 },
+    experience_group: ExperienceGroup.fast,
+    experience_yield: 137
   },
   spinarak: {
     id: 167,
@@ -1503,7 +1836,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Spinarak!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.bug, PokemonCombatType.poison],
-    stats: { hp: 40, attack: 60, defense: 40, sp_attack: 40, sp_defense: 40, speed: 30 }
+    stats: { hp: 40, attack: 60, defense: 40, sp_attack: 40, sp_defense: 40, speed: 30 },
+    experience_group: ExperienceGroup.fast,
+    experience_yield: 50
   },
   ariados: {
     id: 168,
@@ -1512,7 +1847,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Ariados!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.bug, PokemonCombatType.poison],
-    stats: { hp: 70, attack: 90, defense: 70, sp_attack: 60, sp_defense: 70, speed: 40 }
+    stats: { hp: 70, attack: 90, defense: 70, sp_attack: 60, sp_defense: 70, speed: 40 },
+    experience_group: ExperienceGroup.fast,
+    experience_yield: 140
   },
   crobat: {
     id: 169,
@@ -1521,7 +1858,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Crobat!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.poison, PokemonCombatType.flying],
-    stats: { hp: 85, attack: 90, defense: 80, sp_attack: 70, sp_defense: 80, speed: 130 }
+    stats: { hp: 85, attack: 90, defense: 80, sp_attack: 70, sp_defense: 80, speed: 130 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 241
   },
   chinchou: {
     id: 170,
@@ -1530,7 +1869,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Chinchou!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.water, PokemonCombatType.electric],
-    stats: { hp: 75, attack: 38, defense: 38, sp_attack: 56, sp_defense: 56, speed: 67 }
+    stats: { hp: 75, attack: 38, defense: 38, sp_attack: 56, sp_defense: 56, speed: 67 },
+    experience_group: ExperienceGroup.slow,
+    experience_yield: 66
   },
   lanturn: {
     id: 171,
@@ -1539,7 +1880,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Lanturn!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.water, PokemonCombatType.electric],
-    stats: { hp: 125, attack: 58, defense: 58, sp_attack: 76, sp_defense: 76, speed: 67 }
+    stats: { hp: 125, attack: 58, defense: 58, sp_attack: 76, sp_defense: 76, speed: 67 },
+    experience_group: ExperienceGroup.slow,
+    experience_yield: 161
   },
   pichu: {
     id: 172,
@@ -1548,7 +1891,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Pichu!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.electric],
-    stats: { hp: 20, attack: 40, defense: 15, sp_attack: 35, sp_defense: 35, speed: 60 }
+    stats: { hp: 20, attack: 40, defense: 15, sp_attack: 35, sp_defense: 35, speed: 60 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 41
   },
   cleffa: {
     id: 173,
@@ -1557,7 +1902,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Cleffa!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.fairy],
-    stats: { hp: 50, attack: 25, defense: 28, sp_attack: 45, sp_defense: 55, speed: 15 }
+    stats: { hp: 50, attack: 25, defense: 28, sp_attack: 45, sp_defense: 55, speed: 15 },
+    experience_group: ExperienceGroup.fast,
+    experience_yield: 44
   },
   igglybuff: {
     id: 174,
@@ -1566,7 +1913,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Igglybuff!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.normal, PokemonCombatType.fairy],
-    stats: { hp: 90, attack: 30, defense: 15, sp_attack: 40, sp_defense: 20, speed: 15 }
+    stats: { hp: 90, attack: 30, defense: 15, sp_attack: 40, sp_defense: 20, speed: 15 },
+    experience_group: ExperienceGroup.fast,
+    experience_yield: 42
   },
   togepi: {
     id: 175,
@@ -1575,7 +1924,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Togepi!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.fairy],
-    stats: { hp: 35, attack: 20, defense: 65, sp_attack: 40, sp_defense: 65, speed: 20 }
+    stats: { hp: 35, attack: 20, defense: 65, sp_attack: 40, sp_defense: 65, speed: 20 },
+    experience_group: ExperienceGroup.fast,
+    experience_yield: 49
   },
   togetic: {
     id: 176,
@@ -1584,7 +1935,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Togetic!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.fairy, PokemonCombatType.flying],
-    stats: { hp: 55, attack: 40, defense: 85, sp_attack: 80, sp_defense: 105, speed: 40 }
+    stats: { hp: 55, attack: 40, defense: 85, sp_attack: 80, sp_defense: 105, speed: 40 },
+    experience_group: ExperienceGroup.fast,
+    experience_yield: 142
   },
   natu: {
     id: 177,
@@ -1593,7 +1946,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Natu!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.psychic, PokemonCombatType.flying],
-    stats: { hp: 40, attack: 50, defense: 45, sp_attack: 70, sp_defense: 45, speed: 70 }
+    stats: { hp: 40, attack: 50, defense: 45, sp_attack: 70, sp_defense: 45, speed: 70 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 64
   },
   xatu: {
     id: 178,
@@ -1602,7 +1957,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Xatu!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.psychic, PokemonCombatType.flying],
-    stats: { hp: 65, attack: 75, defense: 70, sp_attack: 95, sp_defense: 70, speed: 95 }
+    stats: { hp: 65, attack: 75, defense: 70, sp_attack: 95, sp_defense: 70, speed: 95 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 165
   },
   mareep: {
     id: 179,
@@ -1611,7 +1968,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Mareep!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.electric],
-    stats: { hp: 55, attack: 40, defense: 40, sp_attack: 65, sp_defense: 45, speed: 35 }
+    stats: { hp: 55, attack: 40, defense: 40, sp_attack: 65, sp_defense: 45, speed: 35 },
+    experience_group: ExperienceGroup.medium_slow,
+    experience_yield: 56
   },
   flaaffy: {
     id: 180,
@@ -1620,7 +1979,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Flaaffy!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.electric],
-    stats: { hp: 70, attack: 55, defense: 55, sp_attack: 80, sp_defense: 60, speed: 45 }
+    stats: { hp: 70, attack: 55, defense: 55, sp_attack: 80, sp_defense: 60, speed: 45 },
+    experience_group: ExperienceGroup.medium_slow,
+    experience_yield: 128
   },
   ampharos: {
     id: 181,
@@ -1629,7 +1990,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Ampharos!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.electric, PokemonCombatType.dragon],
-    stats: { hp: 90, attack: 95, defense: 105, sp_attack: 165, sp_defense: 110, speed: 45 }
+    stats: { hp: 90, attack: 95, defense: 105, sp_attack: 165, sp_defense: 110, speed: 45 },
+    experience_group: ExperienceGroup.medium_slow,
+    experience_yield: 255
   },
   bellossom: {
     id: 182,
@@ -1638,7 +2001,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Bellossom!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.grass],
-    stats: { hp: 75, attack: 80, defense: 95, sp_attack: 90, sp_defense: 100, speed: 50 }
+    stats: { hp: 75, attack: 80, defense: 95, sp_attack: 90, sp_defense: 100, speed: 50 },
+    experience_group: ExperienceGroup.medium_slow,
+    experience_yield: 221
   },
   marill: {
     id: 183,
@@ -1647,7 +2012,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Marill!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.water, PokemonCombatType.fairy],
-    stats: { hp: 70, attack: 20, defense: 50, sp_attack: 20, sp_defense: 50, speed: 40 }
+    stats: { hp: 70, attack: 20, defense: 50, sp_attack: 20, sp_defense: 50, speed: 40 },
+    experience_group: ExperienceGroup.fast,
+    experience_yield: 88
   },
   azumarill: {
     id: 184,
@@ -1656,7 +2023,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Azumarill!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.water, PokemonCombatType.fairy],
-    stats: { hp: 100, attack: 50, defense: 80, sp_attack: 60, sp_defense: 80, speed: 50 }
+    stats: { hp: 100, attack: 50, defense: 80, sp_attack: 60, sp_defense: 80, speed: 50 },
+    experience_group: ExperienceGroup.fast,
+    experience_yield: 210
   },
   sudowoodo: {
     id: 185,
@@ -1665,7 +2034,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Sudowoodo!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.rock],
-    stats: { hp: 70, attack: 100, defense: 115, sp_attack: 30, sp_defense: 65, speed: 30 }
+    stats: { hp: 70, attack: 100, defense: 115, sp_attack: 30, sp_defense: 65, speed: 30 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 144
   },
   politoed: {
     id: 186,
@@ -1674,7 +2045,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Politoed!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.water],
-    stats: { hp: 90, attack: 75, defense: 75, sp_attack: 90, sp_defense: 100, speed: 70 }
+    stats: { hp: 90, attack: 75, defense: 75, sp_attack: 90, sp_defense: 100, speed: 70 },
+    experience_group: ExperienceGroup.medium_slow,
+    experience_yield: 225
   },
   hoppip: {
     id: 187,
@@ -1683,7 +2056,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Hoppip!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.grass, PokemonCombatType.flying],
-    stats: { hp: 35, attack: 35, defense: 40, sp_attack: 35, sp_defense: 55, speed: 50 }
+    stats: { hp: 35, attack: 35, defense: 40, sp_attack: 35, sp_defense: 55, speed: 50 },
+    experience_group: ExperienceGroup.medium_slow,
+    experience_yield: 50
   },
   skiploom: {
     id: 188,
@@ -1692,7 +2067,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Skiploom!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.grass, PokemonCombatType.flying],
-    stats: { hp: 55, attack: 45, defense: 50, sp_attack: 45, sp_defense: 65, speed: 80 }
+    stats: { hp: 55, attack: 45, defense: 50, sp_attack: 45, sp_defense: 65, speed: 80 },
+    experience_group: ExperienceGroup.medium_slow,
+    experience_yield: 119
   },
   jumpluff: {
     id: 189,
@@ -1701,7 +2078,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Jumpluff!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.grass, PokemonCombatType.flying],
-    stats: { hp: 75, attack: 55, defense: 70, sp_attack: 55, sp_defense: 95, speed: 110 }
+    stats: { hp: 75, attack: 55, defense: 70, sp_attack: 55, sp_defense: 95, speed: 110 },
+    experience_group: ExperienceGroup.medium_slow,
+    experience_yield: 230
   },
   aipom: {
     id: 190,
@@ -1710,7 +2089,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Aipom!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.normal],
-    stats: { hp: 55, attack: 70, defense: 55, sp_attack: 40, sp_defense: 55, speed: 85 }
+    stats: { hp: 55, attack: 70, defense: 55, sp_attack: 40, sp_defense: 55, speed: 85 },
+    experience_group: ExperienceGroup.fast,
+    experience_yield: 72
   },
   sunkern: {
     id: 191,
@@ -1719,7 +2100,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Sunkern!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.grass],
-    stats: { hp: 30, attack: 30, defense: 30, sp_attack: 30, sp_defense: 30, speed: 30 }
+    stats: { hp: 30, attack: 30, defense: 30, sp_attack: 30, sp_defense: 30, speed: 30 },
+    experience_group: ExperienceGroup.medium_slow,
+    experience_yield: 36
   },
   sunflora: {
     id: 192,
@@ -1728,7 +2111,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Sunflora!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.grass],
-    stats: { hp: 75, attack: 75, defense: 55, sp_attack: 105, sp_defense: 85, speed: 30 }
+    stats: { hp: 75, attack: 75, defense: 55, sp_attack: 105, sp_defense: 85, speed: 30 },
+    experience_group: ExperienceGroup.medium_slow,
+    experience_yield: 149
   },
   yanma: {
     id: 193,
@@ -1737,7 +2122,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Yanma!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.bug, PokemonCombatType.flying],
-    stats: { hp: 65, attack: 65, defense: 45, sp_attack: 75, sp_defense: 45, speed: 95 }
+    stats: { hp: 65, attack: 65, defense: 45, sp_attack: 75, sp_defense: 45, speed: 95 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 78
   },
   wooper: {
     id: 194,
@@ -1746,7 +2133,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Wooper!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.poison, PokemonCombatType.ground],
-    stats: { hp: 55, attack: 45, defense: 45, sp_attack: 25, sp_defense: 25, speed: 15 }
+    stats: { hp: 55, attack: 45, defense: 45, sp_attack: 25, sp_defense: 25, speed: 15 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 42
   },
   quagsire: {
     id: 195,
@@ -1755,7 +2144,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Quagsire!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.water, PokemonCombatType.ground],
-    stats: { hp: 95, attack: 85, defense: 85, sp_attack: 65, sp_defense: 65, speed: 35 }
+    stats: { hp: 95, attack: 85, defense: 85, sp_attack: 65, sp_defense: 65, speed: 35 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 151
   },
   espeon: {
     id: 196,
@@ -1764,7 +2155,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Espeon!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.psychic],
-    stats: { hp: 65, attack: 65, defense: 60, sp_attack: 130, sp_defense: 95, speed: 110 }
+    stats: { hp: 65, attack: 65, defense: 60, sp_attack: 130, sp_defense: 95, speed: 110 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 184
   },
   umbreon: {
     id: 197,
@@ -1773,7 +2166,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Umbreon!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.dark],
-    stats: { hp: 95, attack: 65, defense: 110, sp_attack: 60, sp_defense: 130, speed: 65 }
+    stats: { hp: 95, attack: 65, defense: 110, sp_attack: 60, sp_defense: 130, speed: 65 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 184
   },
   murkrow: {
     id: 198,
@@ -1782,7 +2177,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Murkrow!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.dark, PokemonCombatType.flying],
-    stats: { hp: 60, attack: 85, defense: 42, sp_attack: 85, sp_defense: 42, speed: 91 }
+    stats: { hp: 60, attack: 85, defense: 42, sp_attack: 85, sp_defense: 42, speed: 91 },
+    experience_group: ExperienceGroup.medium_slow,
+    experience_yield: 81
   },
   slowking: {
     id: 199,
@@ -1791,7 +2188,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Slowking!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.poison, PokemonCombatType.psychic],
-    stats: { hp: 95, attack: 65, defense: 80, sp_attack: 110, sp_defense: 110, speed: 30 }
+    stats: { hp: 95, attack: 65, defense: 80, sp_attack: 110, sp_defense: 110, speed: 30 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 172
   },
   misdreavus: {
     id: 200,
@@ -1800,7 +2199,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Misdreavus!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.ghost],
-    stats: { hp: 60, attack: 60, defense: 60, sp_attack: 85, sp_defense: 85, speed: 85 }
+    stats: { hp: 60, attack: 60, defense: 60, sp_attack: 85, sp_defense: 85, speed: 85 },
+    experience_group: ExperienceGroup.fast,
+    experience_yield: 87
   },
   wobbuffet: {
     id: 202,
@@ -1809,7 +2210,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Wobbuffet!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.psychic],
-    stats: { hp: 190, attack: 33, defense: 58, sp_attack: 33, sp_defense: 58, speed: 33 }
+    stats: { hp: 190, attack: 33, defense: 58, sp_attack: 33, sp_defense: 58, speed: 33 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 142
   },
   girafarig: {
     id: 203,
@@ -1818,7 +2221,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Girafarig!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.normal, PokemonCombatType.psychic],
-    stats: { hp: 70, attack: 80, defense: 65, sp_attack: 90, sp_defense: 65, speed: 85 }
+    stats: { hp: 70, attack: 80, defense: 65, sp_attack: 90, sp_defense: 65, speed: 85 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 159
   },
   pineco: {
     id: 204,
@@ -1827,7 +2232,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Pineco!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.bug],
-    stats: { hp: 50, attack: 65, defense: 90, sp_attack: 35, sp_defense: 35, speed: 15 }
+    stats: { hp: 50, attack: 65, defense: 90, sp_attack: 35, sp_defense: 35, speed: 15 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 58
   },
   forretress: {
     id: 205,
@@ -1836,7 +2243,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Forretress!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.bug, PokemonCombatType.steel],
-    stats: { hp: 75, attack: 90, defense: 140, sp_attack: 60, sp_defense: 60, speed: 40 }
+    stats: { hp: 75, attack: 90, defense: 140, sp_attack: 60, sp_defense: 60, speed: 40 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 163
   },
   dunsparce: {
     id: 206,
@@ -1845,7 +2254,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Dunsparce!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.normal],
-    stats: { hp: 100, attack: 70, defense: 70, sp_attack: 65, sp_defense: 65, speed: 45 }
+    stats: { hp: 100, attack: 70, defense: 70, sp_attack: 65, sp_defense: 65, speed: 45 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 145
   },
   gligar: {
     id: 207,
@@ -1854,7 +2265,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Gligar!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.ground, PokemonCombatType.flying],
-    stats: { hp: 65, attack: 75, defense: 105, sp_attack: 35, sp_defense: 65, speed: 85 }
+    stats: { hp: 65, attack: 75, defense: 105, sp_attack: 35, sp_defense: 65, speed: 85 },
+    experience_group: ExperienceGroup.medium_slow,
+    experience_yield: 86
   },
   steelix: {
     id: 208,
@@ -1864,7 +2277,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     possibleColors: [PokemonColor.default],
     originalSpriteSize: 64,
     types: [PokemonCombatType.steel, PokemonCombatType.ground],
-    stats: { hp: 75, attack: 125, defense: 230, sp_attack: 55, sp_defense: 95, speed: 30 }
+    stats: { hp: 75, attack: 125, defense: 230, sp_attack: 55, sp_defense: 95, speed: 30 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 179
   },
   snubbull: {
     id: 209,
@@ -1873,7 +2288,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Snubbull!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.fairy],
-    stats: { hp: 60, attack: 80, defense: 50, sp_attack: 40, sp_defense: 40, speed: 30 }
+    stats: { hp: 60, attack: 80, defense: 50, sp_attack: 40, sp_defense: 40, speed: 30 },
+    experience_group: ExperienceGroup.fast,
+    experience_yield: 60
   },
   granbull: {
     id: 210,
@@ -1882,7 +2299,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Granbull!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.fairy],
-    stats: { hp: 90, attack: 120, defense: 75, sp_attack: 60, sp_defense: 60, speed: 45 }
+    stats: { hp: 90, attack: 120, defense: 75, sp_attack: 60, sp_defense: 60, speed: 45 },
+    experience_group: ExperienceGroup.fast,
+    experience_yield: 158
   },
   qwilfish: {
     id: 211,
@@ -1891,7 +2310,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Qwilfish!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.dark, PokemonCombatType.poison],
-    stats: { hp: 65, attack: 95, defense: 85, sp_attack: 55, sp_defense: 55, speed: 85 }
+    stats: { hp: 65, attack: 95, defense: 85, sp_attack: 55, sp_defense: 55, speed: 85 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 88
   },
   scizor: {
     id: 212,
@@ -1900,7 +2321,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Scizor!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.bug, PokemonCombatType.steel],
-    stats: { hp: 70, attack: 150, defense: 140, sp_attack: 65, sp_defense: 100, speed: 75 }
+    stats: { hp: 70, attack: 150, defense: 140, sp_attack: 65, sp_defense: 100, speed: 75 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 175
   },
   shuckle: {
     id: 213,
@@ -1909,7 +2332,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Shuckle!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.bug, PokemonCombatType.rock],
-    stats: { hp: 20, attack: 10, defense: 230, sp_attack: 10, sp_defense: 230, speed: 5 }
+    stats: { hp: 20, attack: 10, defense: 230, sp_attack: 10, sp_defense: 230, speed: 5 },
+    experience_group: ExperienceGroup.medium_slow,
+    experience_yield: 177
   },
   heracross: {
     id: 214,
@@ -1918,7 +2343,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Heracross!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.bug, PokemonCombatType.fighting],
-    stats: { hp: 80, attack: 185, defense: 115, sp_attack: 40, sp_defense: 105, speed: 75 }
+    stats: { hp: 80, attack: 185, defense: 115, sp_attack: 40, sp_defense: 105, speed: 75 },
+    experience_group: ExperienceGroup.slow,
+    experience_yield: 175
   },
   sneasel: {
     id: 215,
@@ -1927,7 +2354,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Sneasel!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.fighting, PokemonCombatType.poison],
-    stats: { hp: 55, attack: 95, defense: 55, sp_attack: 35, sp_defense: 75, speed: 115 }
+    stats: { hp: 55, attack: 95, defense: 55, sp_attack: 35, sp_defense: 75, speed: 115 },
+    experience_group: ExperienceGroup.medium_slow,
+    experience_yield: 86
   },
   teddiursa: {
     id: 216,
@@ -1936,7 +2365,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Teddiursa!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.normal],
-    stats: { hp: 60, attack: 80, defense: 50, sp_attack: 50, sp_defense: 50, speed: 40 }
+    stats: { hp: 60, attack: 80, defense: 50, sp_attack: 50, sp_defense: 50, speed: 40 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 66
   },
   ursaring: {
     id: 217,
@@ -1945,7 +2376,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Ursaring!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.normal],
-    stats: { hp: 90, attack: 130, defense: 75, sp_attack: 75, sp_defense: 75, speed: 55 }
+    stats: { hp: 90, attack: 130, defense: 75, sp_attack: 75, sp_defense: 75, speed: 55 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 175
   },
   slugma: {
     id: 218,
@@ -1954,7 +2387,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Slugma!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.fire],
-    stats: { hp: 40, attack: 40, defense: 40, sp_attack: 70, sp_defense: 40, speed: 20 }
+    stats: { hp: 40, attack: 40, defense: 40, sp_attack: 70, sp_defense: 40, speed: 20 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 50
   },
   magcargo: {
     id: 219,
@@ -1963,7 +2398,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Magcargo!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.fire, PokemonCombatType.rock],
-    stats: { hp: 60, attack: 50, defense: 120, sp_attack: 90, sp_defense: 80, speed: 30 }
+    stats: { hp: 60, attack: 50, defense: 120, sp_attack: 90, sp_defense: 80, speed: 30 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 151
   },
   swinub: {
     id: 220,
@@ -1972,7 +2409,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Swinub!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.ice, PokemonCombatType.ground],
-    stats: { hp: 50, attack: 50, defense: 40, sp_attack: 30, sp_defense: 30, speed: 50 }
+    stats: { hp: 50, attack: 50, defense: 40, sp_attack: 30, sp_defense: 30, speed: 50 },
+    experience_group: ExperienceGroup.slow,
+    experience_yield: 50
   },
   piloswine: {
     id: 221,
@@ -1981,7 +2420,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Piloswine!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.ice, PokemonCombatType.ground],
-    stats: { hp: 100, attack: 100, defense: 80, sp_attack: 60, sp_defense: 60, speed: 50 }
+    stats: { hp: 100, attack: 100, defense: 80, sp_attack: 60, sp_defense: 60, speed: 50 },
+    experience_group: ExperienceGroup.slow,
+    experience_yield: 158
   },
   corsola: {
     id: 222,
@@ -1990,7 +2431,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Corsola!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.ghost],
-    stats: { hp: 60, attack: 55, defense: 100, sp_attack: 65, sp_defense: 100, speed: 30 }
+    stats: { hp: 60, attack: 55, defense: 100, sp_attack: 65, sp_defense: 100, speed: 30 },
+    experience_group: ExperienceGroup.fast,
+    experience_yield: 144
   },
   remoraid: {
     id: 223,
@@ -1999,7 +2442,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Remoraid!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.water],
-    stats: { hp: 35, attack: 65, defense: 35, sp_attack: 65, sp_defense: 35, speed: 65 }
+    stats: { hp: 35, attack: 65, defense: 35, sp_attack: 65, sp_defense: 35, speed: 65 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 60
   },
   octillery: {
     id: 224,
@@ -2008,7 +2453,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Octillery!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.water],
-    stats: { hp: 75, attack: 105, defense: 75, sp_attack: 105, sp_defense: 75, speed: 45 }
+    stats: { hp: 75, attack: 105, defense: 75, sp_attack: 105, sp_defense: 75, speed: 45 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 168
   },
   delibird: {
     id: 225,
@@ -2017,7 +2464,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Delibird!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.ice, PokemonCombatType.flying],
-    stats: { hp: 45, attack: 55, defense: 45, sp_attack: 65, sp_defense: 45, speed: 75 }
+    stats: { hp: 45, attack: 55, defense: 45, sp_attack: 65, sp_defense: 45, speed: 75 },
+    experience_group: ExperienceGroup.fast,
+    experience_yield: 116
   },
   mantine: {
     id: 226,
@@ -2026,7 +2475,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Mantine!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.water, PokemonCombatType.flying],
-    stats: { hp: 85, attack: 40, defense: 70, sp_attack: 80, sp_defense: 140, speed: 70 }
+    stats: { hp: 85, attack: 40, defense: 70, sp_attack: 80, sp_defense: 140, speed: 70 },
+    experience_group: ExperienceGroup.slow,
+    experience_yield: 170
   },
   skarmory: {
     id: 227,
@@ -2035,7 +2486,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Skarmory!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.steel, PokemonCombatType.flying],
-    stats: { hp: 65, attack: 80, defense: 140, sp_attack: 40, sp_defense: 70, speed: 70 }
+    stats: { hp: 65, attack: 80, defense: 140, sp_attack: 40, sp_defense: 70, speed: 70 },
+    experience_group: ExperienceGroup.slow,
+    experience_yield: 163
   },
   houndour: {
     id: 228,
@@ -2044,7 +2497,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Houndour!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.dark, PokemonCombatType.fire],
-    stats: { hp: 45, attack: 60, defense: 30, sp_attack: 80, sp_defense: 50, speed: 65 }
+    stats: { hp: 45, attack: 60, defense: 30, sp_attack: 80, sp_defense: 50, speed: 65 },
+    experience_group: ExperienceGroup.slow,
+    experience_yield: 66
   },
   houndoom: {
     id: 229,
@@ -2053,7 +2508,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Houndoom!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.dark, PokemonCombatType.fire],
-    stats: { hp: 75, attack: 90, defense: 90, sp_attack: 140, sp_defense: 90, speed: 115 }
+    stats: { hp: 75, attack: 90, defense: 90, sp_attack: 140, sp_defense: 90, speed: 115 },
+    experience_group: ExperienceGroup.slow,
+    experience_yield: 175
   },
   kingdra: {
     id: 230,
@@ -2062,7 +2519,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Kingdra!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.water, PokemonCombatType.dragon],
-    stats: { hp: 75, attack: 95, defense: 95, sp_attack: 95, sp_defense: 95, speed: 85 }
+    stats: { hp: 75, attack: 95, defense: 95, sp_attack: 95, sp_defense: 95, speed: 85 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 243
   },
   phanpy: {
     id: 231,
@@ -2071,7 +2530,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Phanpy!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.ground],
-    stats: { hp: 90, attack: 60, defense: 60, sp_attack: 40, sp_defense: 40, speed: 40 }
+    stats: { hp: 90, attack: 60, defense: 60, sp_attack: 40, sp_defense: 40, speed: 40 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 66
   },
   donphan: {
     id: 232,
@@ -2080,7 +2541,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Donphan!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.ground],
-    stats: { hp: 90, attack: 120, defense: 120, sp_attack: 60, sp_defense: 60, speed: 50 }
+    stats: { hp: 90, attack: 120, defense: 120, sp_attack: 60, sp_defense: 60, speed: 50 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 175
   },
   porygon2: {
     id: 233,
@@ -2089,7 +2552,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Porygon2!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.normal],
-    stats: { hp: 85, attack: 80, defense: 90, sp_attack: 105, sp_defense: 95, speed: 60 }
+    stats: { hp: 85, attack: 80, defense: 90, sp_attack: 105, sp_defense: 95, speed: 60 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 180
   },
   stantler: {
     id: 234,
@@ -2098,7 +2563,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Stantler!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.normal],
-    stats: { hp: 73, attack: 95, defense: 62, sp_attack: 85, sp_defense: 65, speed: 85 }
+    stats: { hp: 73, attack: 95, defense: 62, sp_attack: 85, sp_defense: 65, speed: 85 },
+    experience_group: ExperienceGroup.slow,
+    experience_yield: 163
   },
   smeargle: {
     id: 235,
@@ -2107,7 +2574,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Smeargle!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.normal],
-    stats: { hp: 55, attack: 20, defense: 35, sp_attack: 20, sp_defense: 45, speed: 75 }
+    stats: { hp: 55, attack: 20, defense: 35, sp_attack: 20, sp_defense: 45, speed: 75 },
+    experience_group: ExperienceGroup.fast,
+    experience_yield: 88
   },
   tyrogue: {
     id: 236,
@@ -2116,7 +2585,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Tyrogue!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.fighting],
-    stats: { hp: 35, attack: 35, defense: 35, sp_attack: 35, sp_defense: 35, speed: 35 }
+    stats: { hp: 35, attack: 35, defense: 35, sp_attack: 35, sp_defense: 35, speed: 35 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 42
   },
   hitmontop: {
     id: 237,
@@ -2125,7 +2596,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Hitmontop!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.fighting],
-    stats: { hp: 50, attack: 95, defense: 95, sp_attack: 35, sp_defense: 110, speed: 70 }
+    stats: { hp: 50, attack: 95, defense: 95, sp_attack: 35, sp_defense: 110, speed: 70 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 159
   },
   smoochum: {
     id: 238,
@@ -2134,7 +2607,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Smoochum!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.ice, PokemonCombatType.psychic],
-    stats: { hp: 45, attack: 30, defense: 15, sp_attack: 85, sp_defense: 65, speed: 65 }
+    stats: { hp: 45, attack: 30, defense: 15, sp_attack: 85, sp_defense: 65, speed: 65 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 61
   },
   elekid: {
     id: 239,
@@ -2143,7 +2618,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Elekid!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.electric],
-    stats: { hp: 45, attack: 63, defense: 37, sp_attack: 65, sp_defense: 55, speed: 95 }
+    stats: { hp: 45, attack: 63, defense: 37, sp_attack: 65, sp_defense: 55, speed: 95 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 72
   },
   magby: {
     id: 240,
@@ -2152,7 +2629,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Magby!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.fire],
-    stats: { hp: 45, attack: 75, defense: 37, sp_attack: 70, sp_defense: 55, speed: 83 }
+    stats: { hp: 45, attack: 75, defense: 37, sp_attack: 70, sp_defense: 55, speed: 83 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 73
   },
   miltank: {
     id: 241,
@@ -2161,7 +2640,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Miltank!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.normal],
-    stats: { hp: 95, attack: 80, defense: 105, sp_attack: 40, sp_defense: 70, speed: 100 }
+    stats: { hp: 95, attack: 80, defense: 105, sp_attack: 40, sp_defense: 70, speed: 100 },
+    experience_group: ExperienceGroup.slow,
+    experience_yield: 172
   },
   blissey: {
     id: 242,
@@ -2170,7 +2651,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Blissey!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.normal],
-    stats: { hp: 255, attack: 10, defense: 10, sp_attack: 75, sp_defense: 135, speed: 55 }
+    stats: { hp: 255, attack: 10, defense: 10, sp_attack: 75, sp_defense: 135, speed: 55 },
+    experience_group: ExperienceGroup.fast,
+    experience_yield: 635
   },
   raikou: {
     id: 243,
@@ -2179,7 +2662,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Raikou!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.electric],
-    stats: { hp: 90, attack: 85, defense: 75, sp_attack: 115, sp_defense: 100, speed: 115 }
+    stats: { hp: 90, attack: 85, defense: 75, sp_attack: 115, sp_defense: 100, speed: 115 },
+    experience_group: ExperienceGroup.slow,
+    experience_yield: 261
   },
   entei: {
     id: 244,
@@ -2188,7 +2673,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Entei!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.fire],
-    stats: { hp: 115, attack: 115, defense: 85, sp_attack: 90, sp_defense: 75, speed: 100 }
+    stats: { hp: 115, attack: 115, defense: 85, sp_attack: 90, sp_defense: 75, speed: 100 },
+    experience_group: ExperienceGroup.slow,
+    experience_yield: 261
   },
   suicune: {
     id: 245,
@@ -2197,7 +2684,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Suicune!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.water],
-    stats: { hp: 100, attack: 75, defense: 115, sp_attack: 90, sp_defense: 115, speed: 85 }
+    stats: { hp: 100, attack: 75, defense: 115, sp_attack: 90, sp_defense: 115, speed: 85 },
+    experience_group: ExperienceGroup.slow,
+    experience_yield: 261
   },
   larvitar: {
     id: 246,
@@ -2206,7 +2695,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Larvitar!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.rock, PokemonCombatType.ground],
-    stats: { hp: 50, attack: 64, defense: 50, sp_attack: 45, sp_defense: 50, speed: 41 }
+    stats: { hp: 50, attack: 64, defense: 50, sp_attack: 45, sp_defense: 50, speed: 41 },
+    experience_group: ExperienceGroup.slow,
+    experience_yield: 60
   },
   pupitar: {
     id: 247,
@@ -2215,7 +2706,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Pupitar!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.rock, PokemonCombatType.ground],
-    stats: { hp: 70, attack: 84, defense: 70, sp_attack: 65, sp_defense: 70, speed: 51 }
+    stats: { hp: 70, attack: 84, defense: 70, sp_attack: 65, sp_defense: 70, speed: 51 },
+    experience_group: ExperienceGroup.slow,
+    experience_yield: 144
   },
   tyranitar: {
     id: 248,
@@ -2224,7 +2717,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Tyranitar!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.rock, PokemonCombatType.dark],
-    stats: { hp: 100, attack: 164, defense: 150, sp_attack: 95, sp_defense: 120, speed: 71 }
+    stats: { hp: 100, attack: 164, defense: 150, sp_attack: 95, sp_defense: 120, speed: 71 },
+    experience_group: ExperienceGroup.slow,
+    experience_yield: 300
   },
   lugia: {
     id: 249,
@@ -2234,7 +2729,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     possibleColors: [PokemonColor.default],
     originalSpriteSize: 64,
     types: [PokemonCombatType.psychic, PokemonCombatType.flying],
-    stats: { hp: 106, attack: 90, defense: 130, sp_attack: 90, sp_defense: 154, speed: 110 }
+    stats: { hp: 106, attack: 90, defense: 130, sp_attack: 90, sp_defense: 154, speed: 110 },
+    experience_group: ExperienceGroup.slow,
+    experience_yield: 306
   },
   hooh: {
     id: 250,
@@ -2244,7 +2741,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     possibleColors: [PokemonColor.default],
     originalSpriteSize: 64,
     types: [PokemonCombatType.fire, PokemonCombatType.flying],
-    stats: { hp: 106, attack: 130, defense: 90, sp_attack: 110, sp_defense: 154, speed: 90 }
+    stats: { hp: 106, attack: 130, defense: 90, sp_attack: 110, sp_defense: 154, speed: 90 },
+    experience_group: ExperienceGroup.slow,
+    experience_yield: 306
   },
   celebi: {
     id: 251,
@@ -2253,7 +2752,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Celebi!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.psychic, PokemonCombatType.grass],
-    stats: { hp: 100, attack: 100, defense: 100, sp_attack: 100, sp_defense: 100, speed: 100 }
+    stats: { hp: 100, attack: 100, defense: 100, sp_attack: 100, sp_defense: 100, speed: 100 },
+    experience_group: ExperienceGroup.medium_slow,
+    experience_yield: 270
   },
   // Generation 3
   treecko: {
@@ -2263,7 +2764,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Treecko!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.grass],
-    stats: { hp: 40, attack: 45, defense: 35, sp_attack: 65, sp_defense: 55, speed: 70 }
+    stats: { hp: 40, attack: 45, defense: 35, sp_attack: 65, sp_defense: 55, speed: 70 },
+    experience_group: ExperienceGroup.medium_slow,
+    experience_yield: 62
   },
   grovyle: {
     id: 253,
@@ -2272,7 +2775,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Grovyle!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.grass],
-    stats: { hp: 50, attack: 65, defense: 45, sp_attack: 85, sp_defense: 65, speed: 95 }
+    stats: { hp: 50, attack: 65, defense: 45, sp_attack: 85, sp_defense: 65, speed: 95 },
+    experience_group: ExperienceGroup.medium_slow,
+    experience_yield: 142
   },
   sceptile: {
     id: 254,
@@ -2281,7 +2786,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Sceptile!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.grass, PokemonCombatType.dragon],
-    stats: { hp: 70, attack: 110, defense: 75, sp_attack: 145, sp_defense: 85, speed: 145 }
+    stats: { hp: 70, attack: 110, defense: 75, sp_attack: 145, sp_defense: 85, speed: 145 },
+    experience_group: ExperienceGroup.medium_slow,
+    experience_yield: 239
   },
   torchic: {
     id: 255,
@@ -2290,7 +2797,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Torchic!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.fire],
-    stats: { hp: 45, attack: 60, defense: 40, sp_attack: 70, sp_defense: 50, speed: 45 }
+    stats: { hp: 45, attack: 60, defense: 40, sp_attack: 70, sp_defense: 50, speed: 45 },
+    experience_group: ExperienceGroup.medium_slow,
+    experience_yield: 62
   },
   combusken: {
     id: 256,
@@ -2299,7 +2808,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Combusken!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.fire, PokemonCombatType.fighting],
-    stats: { hp: 60, attack: 85, defense: 60, sp_attack: 85, sp_defense: 60, speed: 55 }
+    stats: { hp: 60, attack: 85, defense: 60, sp_attack: 85, sp_defense: 60, speed: 55 },
+    experience_group: ExperienceGroup.medium_slow,
+    experience_yield: 142
   },
   blaziken: {
     id: 257,
@@ -2308,7 +2819,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Blaziken!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.fire, PokemonCombatType.fighting],
-    stats: { hp: 80, attack: 160, defense: 80, sp_attack: 130, sp_defense: 80, speed: 100 }
+    stats: { hp: 80, attack: 160, defense: 80, sp_attack: 130, sp_defense: 80, speed: 100 },
+    experience_group: ExperienceGroup.medium_slow,
+    experience_yield: 239
   },
   mudkip: {
     id: 258,
@@ -2317,7 +2830,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Mudkip!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.water],
-    stats: { hp: 50, attack: 70, defense: 50, sp_attack: 50, sp_defense: 50, speed: 40 }
+    stats: { hp: 50, attack: 70, defense: 50, sp_attack: 50, sp_defense: 50, speed: 40 },
+    experience_group: ExperienceGroup.medium_slow,
+    experience_yield: 62
   },
   marshtomp: {
     id: 259,
@@ -2326,7 +2841,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Marshtomp!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.water, PokemonCombatType.ground],
-    stats: { hp: 70, attack: 85, defense: 70, sp_attack: 60, sp_defense: 70, speed: 50 }
+    stats: { hp: 70, attack: 85, defense: 70, sp_attack: 60, sp_defense: 70, speed: 50 },
+    experience_group: ExperienceGroup.medium_slow,
+    experience_yield: 142
   },
   swampert: {
     id: 260,
@@ -2335,7 +2852,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Swampert!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.water, PokemonCombatType.ground],
-    stats: { hp: 100, attack: 150, defense: 110, sp_attack: 95, sp_defense: 110, speed: 70 }
+    stats: { hp: 100, attack: 150, defense: 110, sp_attack: 95, sp_defense: 110, speed: 70 },
+    experience_group: ExperienceGroup.medium_slow,
+    experience_yield: 241
   },
   poochyena: {
     id: 261,
@@ -2344,7 +2863,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Poochyena!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.dark],
-    stats: { hp: 35, attack: 55, defense: 35, sp_attack: 30, sp_defense: 30, speed: 35 }
+    stats: { hp: 35, attack: 55, defense: 35, sp_attack: 30, sp_defense: 30, speed: 35 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 56
   },
   mightyena: {
     id: 262,
@@ -2353,7 +2874,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Mightyena!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.dark],
-    stats: { hp: 70, attack: 90, defense: 70, sp_attack: 60, sp_defense: 60, speed: 70 }
+    stats: { hp: 70, attack: 90, defense: 70, sp_attack: 60, sp_defense: 60, speed: 70 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 147
   },
   zigzagoon: {
     id: 263,
@@ -2362,7 +2885,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Zigzagoon!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.dark, PokemonCombatType.normal],
-    stats: { hp: 38, attack: 30, defense: 41, sp_attack: 30, sp_defense: 41, speed: 60 }
+    stats: { hp: 38, attack: 30, defense: 41, sp_attack: 30, sp_defense: 41, speed: 60 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 56
   },
   linoone: {
     id: 264,
@@ -2371,7 +2896,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Linoone!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.dark, PokemonCombatType.normal],
-    stats: { hp: 78, attack: 70, defense: 61, sp_attack: 50, sp_defense: 61, speed: 100 }
+    stats: { hp: 78, attack: 70, defense: 61, sp_attack: 50, sp_defense: 61, speed: 100 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 147
   },
   wurmple: {
     id: 265,
@@ -2380,7 +2907,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Wurmple!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.bug],
-    stats: { hp: 45, attack: 45, defense: 35, sp_attack: 20, sp_defense: 30, speed: 20 }
+    stats: { hp: 45, attack: 45, defense: 35, sp_attack: 20, sp_defense: 30, speed: 20 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 56
   },
   silcoon: {
     id: 266,
@@ -2389,7 +2918,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Silcoon!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.bug],
-    stats: { hp: 50, attack: 35, defense: 55, sp_attack: 25, sp_defense: 25, speed: 15 }
+    stats: { hp: 50, attack: 35, defense: 55, sp_attack: 25, sp_defense: 25, speed: 15 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 72
   },
   beautifly: {
     id: 267,
@@ -2398,7 +2929,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Beautifly!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.bug, PokemonCombatType.flying],
-    stats: { hp: 60, attack: 70, defense: 50, sp_attack: 100, sp_defense: 50, speed: 65 }
+    stats: { hp: 60, attack: 70, defense: 50, sp_attack: 100, sp_defense: 50, speed: 65 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 178
   },
   cascoon: {
     id: 268,
@@ -2407,7 +2940,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Cascoon!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.bug],
-    stats: { hp: 50, attack: 35, defense: 55, sp_attack: 25, sp_defense: 25, speed: 15 }
+    stats: { hp: 50, attack: 35, defense: 55, sp_attack: 25, sp_defense: 25, speed: 15 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 72
   },
   dustox: {
     id: 269,
@@ -2416,7 +2951,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Dustox!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.bug, PokemonCombatType.poison],
-    stats: { hp: 60, attack: 50, defense: 70, sp_attack: 50, sp_defense: 90, speed: 65 }
+    stats: { hp: 60, attack: 50, defense: 70, sp_attack: 50, sp_defense: 90, speed: 65 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 173
   },
   lotad: {
     id: 270,
@@ -2425,7 +2962,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Lotad!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.water, PokemonCombatType.grass],
-    stats: { hp: 40, attack: 30, defense: 30, sp_attack: 40, sp_defense: 50, speed: 30 }
+    stats: { hp: 40, attack: 30, defense: 30, sp_attack: 40, sp_defense: 50, speed: 30 },
+    experience_group: ExperienceGroup.medium_slow,
+    experience_yield: 44
   },
   lombre: {
     id: 271,
@@ -2434,7 +2973,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Lombre!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.water, PokemonCombatType.grass],
-    stats: { hp: 60, attack: 50, defense: 50, sp_attack: 60, sp_defense: 70, speed: 50 }
+    stats: { hp: 60, attack: 50, defense: 50, sp_attack: 60, sp_defense: 70, speed: 50 },
+    experience_group: ExperienceGroup.medium_slow,
+    experience_yield: 119
   },
   ludicolo: {
     id: 272,
@@ -2443,7 +2984,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Ludicolo!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.water, PokemonCombatType.grass],
-    stats: { hp: 80, attack: 70, defense: 70, sp_attack: 90, sp_defense: 100, speed: 70 }
+    stats: { hp: 80, attack: 70, defense: 70, sp_attack: 90, sp_defense: 100, speed: 70 },
+    experience_group: ExperienceGroup.medium_slow,
+    experience_yield: 216
   },
   seedot: {
     id: 273,
@@ -2452,7 +2995,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Seedot!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.grass],
-    stats: { hp: 40, attack: 40, defense: 50, sp_attack: 30, sp_defense: 30, speed: 30 }
+    stats: { hp: 40, attack: 40, defense: 50, sp_attack: 30, sp_defense: 30, speed: 30 },
+    experience_group: ExperienceGroup.medium_slow,
+    experience_yield: 44
   },
   nuzleaf: {
     id: 274,
@@ -2461,7 +3006,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Nuzleaf!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.grass, PokemonCombatType.dark],
-    stats: { hp: 70, attack: 70, defense: 40, sp_attack: 60, sp_defense: 40, speed: 60 }
+    stats: { hp: 70, attack: 70, defense: 40, sp_attack: 60, sp_defense: 40, speed: 60 },
+    experience_group: ExperienceGroup.medium_slow,
+    experience_yield: 119
   },
   shiftry: {
     id: 275,
@@ -2470,7 +3017,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Shiftry!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.grass, PokemonCombatType.dark],
-    stats: { hp: 90, attack: 100, defense: 60, sp_attack: 90, sp_defense: 60, speed: 80 }
+    stats: { hp: 90, attack: 100, defense: 60, sp_attack: 90, sp_defense: 60, speed: 80 },
+    experience_group: ExperienceGroup.medium_slow,
+    experience_yield: 216
   },
   taillow: {
     id: 276,
@@ -2479,7 +3028,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Taillow!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.normal, PokemonCombatType.flying],
-    stats: { hp: 40, attack: 55, defense: 30, sp_attack: 30, sp_defense: 30, speed: 85 }
+    stats: { hp: 40, attack: 55, defense: 30, sp_attack: 30, sp_defense: 30, speed: 85 },
+    experience_group: ExperienceGroup.medium_slow,
+    experience_yield: 54
   },
   swellow: {
     id: 277,
@@ -2488,7 +3039,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Swellow!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.normal, PokemonCombatType.flying],
-    stats: { hp: 60, attack: 85, defense: 60, sp_attack: 75, sp_defense: 50, speed: 125 }
+    stats: { hp: 60, attack: 85, defense: 60, sp_attack: 75, sp_defense: 50, speed: 125 },
+    experience_group: ExperienceGroup.medium_slow,
+    experience_yield: 159
   },
   wingull: {
     id: 278,
@@ -2497,7 +3050,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Wingull!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.water, PokemonCombatType.flying],
-    stats: { hp: 40, attack: 30, defense: 30, sp_attack: 55, sp_defense: 30, speed: 85 }
+    stats: { hp: 40, attack: 30, defense: 30, sp_attack: 55, sp_defense: 30, speed: 85 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 54
   },
   pelipper: {
     id: 279,
@@ -2506,7 +3061,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Pelipper!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.water, PokemonCombatType.flying],
-    stats: { hp: 60, attack: 50, defense: 100, sp_attack: 95, sp_defense: 70, speed: 65 }
+    stats: { hp: 60, attack: 50, defense: 100, sp_attack: 95, sp_defense: 70, speed: 65 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 154
   },
   ralts: {
     id: 280,
@@ -2515,7 +3072,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Ralts!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.psychic, PokemonCombatType.fairy],
-    stats: { hp: 28, attack: 25, defense: 25, sp_attack: 45, sp_defense: 35, speed: 40 }
+    stats: { hp: 28, attack: 25, defense: 25, sp_attack: 45, sp_defense: 35, speed: 40 },
+    experience_group: ExperienceGroup.slow,
+    experience_yield: 40
   },
   kirlia: {
     id: 281,
@@ -2524,7 +3083,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Kirlia!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.psychic, PokemonCombatType.fairy],
-    stats: { hp: 38, attack: 35, defense: 35, sp_attack: 65, sp_defense: 55, speed: 50 }
+    stats: { hp: 38, attack: 35, defense: 35, sp_attack: 65, sp_defense: 55, speed: 50 },
+    experience_group: ExperienceGroup.slow,
+    experience_yield: 97
   },
   gardevoir: {
     id: 282,
@@ -2533,7 +3094,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Gardevoir!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.psychic, PokemonCombatType.fairy],
-    stats: { hp: 68, attack: 85, defense: 65, sp_attack: 165, sp_defense: 135, speed: 100 }
+    stats: { hp: 68, attack: 85, defense: 65, sp_attack: 165, sp_defense: 135, speed: 100 },
+    experience_group: ExperienceGroup.slow,
+    experience_yield: 259
   },
   surskit: {
     id: 283,
@@ -2542,7 +3105,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Surskit!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.bug, PokemonCombatType.water],
-    stats: { hp: 40, attack: 30, defense: 32, sp_attack: 50, sp_defense: 52, speed: 65 }
+    stats: { hp: 40, attack: 30, defense: 32, sp_attack: 50, sp_defense: 52, speed: 65 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 54
   },
   masquerain: {
     id: 284,
@@ -2551,7 +3116,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Masquerain!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.bug, PokemonCombatType.flying],
-    stats: { hp: 70, attack: 60, defense: 62, sp_attack: 100, sp_defense: 82, speed: 80 }
+    stats: { hp: 70, attack: 60, defense: 62, sp_attack: 100, sp_defense: 82, speed: 80 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 159
   },
   shroomish: {
     id: 285,
@@ -2560,7 +3127,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Shroomish!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.grass],
-    stats: { hp: 60, attack: 40, defense: 60, sp_attack: 40, sp_defense: 60, speed: 35 }
+    stats: { hp: 60, attack: 40, defense: 60, sp_attack: 40, sp_defense: 60, speed: 35 },
+    experience_group: ExperienceGroup.fluctuating,
+    experience_yield: 59
   },
   breloom: {
     id: 286,
@@ -2569,7 +3138,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Breloom!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.grass, PokemonCombatType.fighting],
-    stats: { hp: 60, attack: 130, defense: 80, sp_attack: 60, sp_defense: 60, speed: 70 }
+    stats: { hp: 60, attack: 130, defense: 80, sp_attack: 60, sp_defense: 60, speed: 70 },
+    experience_group: ExperienceGroup.fluctuating,
+    experience_yield: 161
   },
   slakoth: {
     id: 287,
@@ -2578,7 +3149,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Slakoth!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.normal],
-    stats: { hp: 60, attack: 60, defense: 60, sp_attack: 35, sp_defense: 35, speed: 30 }
+    stats: { hp: 60, attack: 60, defense: 60, sp_attack: 35, sp_defense: 35, speed: 30 },
+    experience_group: ExperienceGroup.slow,
+    experience_yield: 56
   },
   vigoroth: {
     id: 288,
@@ -2587,7 +3160,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Vigoroth!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.normal],
-    stats: { hp: 80, attack: 80, defense: 80, sp_attack: 55, sp_defense: 55, speed: 90 }
+    stats: { hp: 80, attack: 80, defense: 80, sp_attack: 55, sp_defense: 55, speed: 90 },
+    experience_group: ExperienceGroup.slow,
+    experience_yield: 154
   },
   slaking: {
     id: 289,
@@ -2596,7 +3171,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Slaking!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.normal],
-    stats: { hp: 150, attack: 160, defense: 100, sp_attack: 95, sp_defense: 65, speed: 100 }
+    stats: { hp: 150, attack: 160, defense: 100, sp_attack: 95, sp_defense: 65, speed: 100 },
+    experience_group: ExperienceGroup.slow,
+    experience_yield: 285
   },
   nincada: {
     id: 290,
@@ -2605,7 +3182,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Nincada!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.bug, PokemonCombatType.ground],
-    stats: { hp: 31, attack: 45, defense: 90, sp_attack: 30, sp_defense: 30, speed: 40 }
+    stats: { hp: 31, attack: 45, defense: 90, sp_attack: 30, sp_defense: 30, speed: 40 },
+    experience_group: ExperienceGroup.erratic,
+    experience_yield: 53
   },
   ninjask: {
     id: 291,
@@ -2614,7 +3193,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Ninjask!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.bug, PokemonCombatType.flying],
-    stats: { hp: 61, attack: 90, defense: 45, sp_attack: 50, sp_defense: 50, speed: 160 }
+    stats: { hp: 61, attack: 90, defense: 45, sp_attack: 50, sp_defense: 50, speed: 160 },
+    experience_group: ExperienceGroup.erratic,
+    experience_yield: 160
   },
   shedinja: {
     id: 292,
@@ -2623,7 +3204,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Shedinja!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.bug, PokemonCombatType.ghost],
-    stats: { hp: 1, attack: 90, defense: 45, sp_attack: 30, sp_defense: 30, speed: 40 }
+    stats: { hp: 1, attack: 90, defense: 45, sp_attack: 30, sp_defense: 30, speed: 40 },
+    experience_group: ExperienceGroup.erratic,
+    experience_yield: 83
   },
   whismur: {
     id: 293,
@@ -2632,7 +3215,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Whismur!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.normal],
-    stats: { hp: 64, attack: 51, defense: 23, sp_attack: 51, sp_defense: 23, speed: 28 }
+    stats: { hp: 64, attack: 51, defense: 23, sp_attack: 51, sp_defense: 23, speed: 28 },
+    experience_group: ExperienceGroup.medium_slow,
+    experience_yield: 48
   },
   loudred: {
     id: 294,
@@ -2641,7 +3226,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Loudred!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.normal],
-    stats: { hp: 84, attack: 71, defense: 43, sp_attack: 71, sp_defense: 43, speed: 48 }
+    stats: { hp: 84, attack: 71, defense: 43, sp_attack: 71, sp_defense: 43, speed: 48 },
+    experience_group: ExperienceGroup.medium_slow,
+    experience_yield: 126
   },
   exploud: {
     id: 295,
@@ -2650,7 +3237,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Exploud!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.normal],
-    stats: { hp: 104, attack: 91, defense: 63, sp_attack: 91, sp_defense: 73, speed: 68 }
+    stats: { hp: 104, attack: 91, defense: 63, sp_attack: 91, sp_defense: 73, speed: 68 },
+    experience_group: ExperienceGroup.medium_slow,
+    experience_yield: 221
   },
   makuhita: {
     id: 296,
@@ -2659,7 +3248,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Makuhita!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.fighting],
-    stats: { hp: 72, attack: 60, defense: 30, sp_attack: 20, sp_defense: 30, speed: 25 }
+    stats: { hp: 72, attack: 60, defense: 30, sp_attack: 20, sp_defense: 30, speed: 25 },
+    experience_group: ExperienceGroup.fluctuating,
+    experience_yield: 47
   },
   hariyama: {
     id: 297,
@@ -2668,7 +3259,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Hariyama!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.fighting],
-    stats: { hp: 144, attack: 120, defense: 60, sp_attack: 40, sp_defense: 60, speed: 50 }
+    stats: { hp: 144, attack: 120, defense: 60, sp_attack: 40, sp_defense: 60, speed: 50 },
+    experience_group: ExperienceGroup.fluctuating,
+    experience_yield: 166
   },
   azurill: {
     id: 298,
@@ -2677,7 +3270,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Azurill!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.normal, PokemonCombatType.fairy],
-    stats: { hp: 50, attack: 20, defense: 40, sp_attack: 20, sp_defense: 40, speed: 20 }
+    stats: { hp: 50, attack: 20, defense: 40, sp_attack: 20, sp_defense: 40, speed: 20 },
+    experience_group: ExperienceGroup.fast,
+    experience_yield: 38
   },
   nosepass: {
     id: 299,
@@ -2686,7 +3281,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Nosepass!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.rock],
-    stats: { hp: 30, attack: 45, defense: 135, sp_attack: 45, sp_defense: 90, speed: 30 }
+    stats: { hp: 30, attack: 45, defense: 135, sp_attack: 45, sp_defense: 90, speed: 30 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 75
   },
   skitty: {
     id: 300,
@@ -2695,7 +3292,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Skitty!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.normal],
-    stats: { hp: 50, attack: 45, defense: 45, sp_attack: 35, sp_defense: 35, speed: 50 }
+    stats: { hp: 50, attack: 45, defense: 45, sp_attack: 35, sp_defense: 35, speed: 50 },
+    experience_group: ExperienceGroup.fast,
+    experience_yield: 52
   },
   delcatty: {
     id: 301,
@@ -2704,7 +3303,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Delcatty!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.normal],
-    stats: { hp: 70, attack: 65, defense: 65, sp_attack: 55, sp_defense: 55, speed: 90 }
+    stats: { hp: 70, attack: 65, defense: 65, sp_attack: 55, sp_defense: 55, speed: 90 },
+    experience_group: ExperienceGroup.fast,
+    experience_yield: 140
   },
   sableye: {
     id: 302,
@@ -2713,7 +3314,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Sableye!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.dark, PokemonCombatType.ghost],
-    stats: { hp: 50, attack: 85, defense: 125, sp_attack: 85, sp_defense: 115, speed: 20 }
+    stats: { hp: 50, attack: 85, defense: 125, sp_attack: 85, sp_defense: 115, speed: 20 },
+    experience_group: ExperienceGroup.medium_slow,
+    experience_yield: 133
   },
   mawile: {
     id: 303,
@@ -2722,7 +3325,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Mawile!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.steel, PokemonCombatType.fairy],
-    stats: { hp: 50, attack: 105, defense: 125, sp_attack: 55, sp_defense: 95, speed: 50 }
+    stats: { hp: 50, attack: 105, defense: 125, sp_attack: 55, sp_defense: 95, speed: 50 },
+    experience_group: ExperienceGroup.fast,
+    experience_yield: 133
   },
   aron: {
     id: 304,
@@ -2731,7 +3336,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Aron!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.steel, PokemonCombatType.rock],
-    stats: { hp: 50, attack: 70, defense: 100, sp_attack: 40, sp_defense: 40, speed: 30 }
+    stats: { hp: 50, attack: 70, defense: 100, sp_attack: 40, sp_defense: 40, speed: 30 },
+    experience_group: ExperienceGroup.slow,
+    experience_yield: 66
   },
   lairon: {
     id: 305,
@@ -2740,7 +3347,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Lairon!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.steel, PokemonCombatType.rock],
-    stats: { hp: 60, attack: 90, defense: 140, sp_attack: 50, sp_defense: 50, speed: 40 }
+    stats: { hp: 60, attack: 90, defense: 140, sp_attack: 50, sp_defense: 50, speed: 40 },
+    experience_group: ExperienceGroup.slow,
+    experience_yield: 151
   },
   aggron: {
     id: 306,
@@ -2749,7 +3358,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Aggron!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.steel],
-    stats: { hp: 70, attack: 140, defense: 230, sp_attack: 60, sp_defense: 80, speed: 50 }
+    stats: { hp: 70, attack: 140, defense: 230, sp_attack: 60, sp_defense: 80, speed: 50 },
+    experience_group: ExperienceGroup.slow,
+    experience_yield: 239
   },
   meditite: {
     id: 307,
@@ -2758,7 +3369,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Meditite!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.fighting, PokemonCombatType.psychic],
-    stats: { hp: 30, attack: 40, defense: 55, sp_attack: 40, sp_defense: 55, speed: 60 }
+    stats: { hp: 30, attack: 40, defense: 55, sp_attack: 40, sp_defense: 55, speed: 60 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 56
   },
   medicham: {
     id: 308,
@@ -2767,7 +3380,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Medicham!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.fighting, PokemonCombatType.psychic],
-    stats: { hp: 60, attack: 100, defense: 85, sp_attack: 80, sp_defense: 85, speed: 100 }
+    stats: { hp: 60, attack: 100, defense: 85, sp_attack: 80, sp_defense: 85, speed: 100 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 144
   },
   electrike: {
     id: 309,
@@ -2776,7 +3391,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Electrike!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.electric],
-    stats: { hp: 40, attack: 45, defense: 40, sp_attack: 65, sp_defense: 40, speed: 65 }
+    stats: { hp: 40, attack: 45, defense: 40, sp_attack: 65, sp_defense: 40, speed: 65 },
+    experience_group: ExperienceGroup.slow,
+    experience_yield: 59
   },
   manectric: {
     id: 310,
@@ -2785,7 +3402,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Manectric!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.electric],
-    stats: { hp: 70, attack: 75, defense: 80, sp_attack: 135, sp_defense: 80, speed: 135 }
+    stats: { hp: 70, attack: 75, defense: 80, sp_attack: 135, sp_defense: 80, speed: 135 },
+    experience_group: ExperienceGroup.slow,
+    experience_yield: 166
   },
   plusle: {
     id: 311,
@@ -2794,7 +3413,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Plusle!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.electric],
-    stats: { hp: 60, attack: 50, defense: 40, sp_attack: 85, sp_defense: 75, speed: 95 }
+    stats: { hp: 60, attack: 50, defense: 40, sp_attack: 85, sp_defense: 75, speed: 95 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 142
   },
   minun: {
     id: 312,
@@ -2803,7 +3424,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Minun!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.electric],
-    stats: { hp: 60, attack: 40, defense: 50, sp_attack: 75, sp_defense: 85, speed: 95 }
+    stats: { hp: 60, attack: 40, defense: 50, sp_attack: 75, sp_defense: 85, speed: 95 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 142
   },
   volbeat: {
     id: 313,
@@ -2812,7 +3435,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Volbeat!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.bug],
-    stats: { hp: 65, attack: 73, defense: 75, sp_attack: 47, sp_defense: 85, speed: 85 }
+    stats: { hp: 65, attack: 73, defense: 75, sp_attack: 47, sp_defense: 85, speed: 85 },
+    experience_group: ExperienceGroup.erratic,
+    experience_yield: 151
   },
   illumise: {
     id: 314,
@@ -2821,7 +3446,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Illumise!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.bug],
-    stats: { hp: 65, attack: 47, defense: 75, sp_attack: 73, sp_defense: 85, speed: 85 }
+    stats: { hp: 65, attack: 47, defense: 75, sp_attack: 73, sp_defense: 85, speed: 85 },
+    experience_group: ExperienceGroup.fluctuating,
+    experience_yield: 151
   },
   roselia: {
     id: 315,
@@ -2830,7 +3457,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Roselia!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.grass, PokemonCombatType.poison],
-    stats: { hp: 50, attack: 60, defense: 45, sp_attack: 100, sp_defense: 80, speed: 65 }
+    stats: { hp: 50, attack: 60, defense: 45, sp_attack: 100, sp_defense: 80, speed: 65 },
+    experience_group: ExperienceGroup.medium_slow,
+    experience_yield: 140
   },
   gulpin: {
     id: 316,
@@ -2839,7 +3468,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Gulpin!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.poison],
-    stats: { hp: 70, attack: 43, defense: 53, sp_attack: 43, sp_defense: 53, speed: 40 }
+    stats: { hp: 70, attack: 43, defense: 53, sp_attack: 43, sp_defense: 53, speed: 40 },
+    experience_group: ExperienceGroup.fluctuating,
+    experience_yield: 60
   },
   swalot: {
     id: 317,
@@ -2848,7 +3479,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Swalot!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.poison],
-    stats: { hp: 100, attack: 73, defense: 83, sp_attack: 73, sp_defense: 83, speed: 55 }
+    stats: { hp: 100, attack: 73, defense: 83, sp_attack: 73, sp_defense: 83, speed: 55 },
+    experience_group: ExperienceGroup.fluctuating,
+    experience_yield: 163
   },
   carvanha: {
     id: 318,
@@ -2857,7 +3490,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Carvanha!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.water, PokemonCombatType.dark],
-    stats: { hp: 45, attack: 90, defense: 20, sp_attack: 65, sp_defense: 20, speed: 65 }
+    stats: { hp: 45, attack: 90, defense: 20, sp_attack: 65, sp_defense: 20, speed: 65 },
+    experience_group: ExperienceGroup.slow,
+    experience_yield: 61
   },
   sharpedo: {
     id: 319,
@@ -2866,7 +3501,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Sharpedo!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.water, PokemonCombatType.dark],
-    stats: { hp: 70, attack: 140, defense: 70, sp_attack: 110, sp_defense: 65, speed: 105 }
+    stats: { hp: 70, attack: 140, defense: 70, sp_attack: 110, sp_defense: 65, speed: 105 },
+    experience_group: ExperienceGroup.slow,
+    experience_yield: 161
   },
   wailmer: {
     id: 320,
@@ -2875,7 +3512,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Wailmer!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.water],
-    stats: { hp: 130, attack: 70, defense: 35, sp_attack: 70, sp_defense: 35, speed: 60 }
+    stats: { hp: 130, attack: 70, defense: 35, sp_attack: 70, sp_defense: 35, speed: 60 },
+    experience_group: ExperienceGroup.fluctuating,
+    experience_yield: 80
   },
   wailord: {
     id: 321,
@@ -2885,7 +3524,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     possibleColors: [PokemonColor.default],
     originalSpriteSize: 64,
     types: [PokemonCombatType.water],
-    stats: { hp: 170, attack: 90, defense: 45, sp_attack: 90, sp_defense: 45, speed: 60 }
+    stats: { hp: 170, attack: 90, defense: 45, sp_attack: 90, sp_defense: 45, speed: 60 },
+    experience_group: ExperienceGroup.fluctuating,
+    experience_yield: 175
   },
   numel: {
     id: 322,
@@ -2894,7 +3535,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Numel!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.fire, PokemonCombatType.ground],
-    stats: { hp: 60, attack: 60, defense: 40, sp_attack: 65, sp_defense: 45, speed: 35 }
+    stats: { hp: 60, attack: 60, defense: 40, sp_attack: 65, sp_defense: 45, speed: 35 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 61
   },
   camerupt: {
     id: 323,
@@ -2903,7 +3546,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Camerupt!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.fire, PokemonCombatType.ground],
-    stats: { hp: 70, attack: 120, defense: 100, sp_attack: 145, sp_defense: 105, speed: 20 }
+    stats: { hp: 70, attack: 120, defense: 100, sp_attack: 145, sp_defense: 105, speed: 20 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 161
   },
   torkoal: {
     id: 324,
@@ -2912,7 +3557,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Torkoal!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.fire],
-    stats: { hp: 70, attack: 85, defense: 140, sp_attack: 85, sp_defense: 70, speed: 20 }
+    stats: { hp: 70, attack: 85, defense: 140, sp_attack: 85, sp_defense: 70, speed: 20 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 165
   },
   spoink: {
     id: 325,
@@ -2921,7 +3568,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Spoink!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.psychic],
-    stats: { hp: 60, attack: 25, defense: 35, sp_attack: 70, sp_defense: 80, speed: 60 }
+    stats: { hp: 60, attack: 25, defense: 35, sp_attack: 70, sp_defense: 80, speed: 60 },
+    experience_group: ExperienceGroup.fast,
+    experience_yield: 66
   },
   grumpig: {
     id: 326,
@@ -2930,7 +3579,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Grumpig!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.psychic],
-    stats: { hp: 80, attack: 45, defense: 65, sp_attack: 90, sp_defense: 110, speed: 80 }
+    stats: { hp: 80, attack: 45, defense: 65, sp_attack: 90, sp_defense: 110, speed: 80 },
+    experience_group: ExperienceGroup.fast,
+    experience_yield: 165
   },
   spinda: {
     id: 327,
@@ -2939,7 +3590,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Spinda!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.normal],
-    stats: { hp: 60, attack: 60, defense: 60, sp_attack: 60, sp_defense: 60, speed: 60 }
+    stats: { hp: 60, attack: 60, defense: 60, sp_attack: 60, sp_defense: 60, speed: 60 },
+    experience_group: ExperienceGroup.fast,
+    experience_yield: 126
   },
   trapinch: {
     id: 328,
@@ -2948,7 +3601,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Trapinch!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.ground],
-    stats: { hp: 45, attack: 100, defense: 45, sp_attack: 45, sp_defense: 45, speed: 10 }
+    stats: { hp: 45, attack: 100, defense: 45, sp_attack: 45, sp_defense: 45, speed: 10 },
+    experience_group: ExperienceGroup.medium_slow,
+    experience_yield: 58
   },
   vibrava: {
     id: 329,
@@ -2957,7 +3612,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Vibrava!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.ground, PokemonCombatType.dragon],
-    stats: { hp: 50, attack: 70, defense: 50, sp_attack: 50, sp_defense: 50, speed: 70 }
+    stats: { hp: 50, attack: 70, defense: 50, sp_attack: 50, sp_defense: 50, speed: 70 },
+    experience_group: ExperienceGroup.medium_slow,
+    experience_yield: 119
   },
   flygon: {
     id: 330,
@@ -2966,7 +3623,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Flygon!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.ground, PokemonCombatType.dragon],
-    stats: { hp: 80, attack: 100, defense: 80, sp_attack: 80, sp_defense: 80, speed: 100 }
+    stats: { hp: 80, attack: 100, defense: 80, sp_attack: 80, sp_defense: 80, speed: 100 },
+    experience_group: ExperienceGroup.medium_slow,
+    experience_yield: 234
   },
   cacnea: {
     id: 331,
@@ -2975,7 +3634,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Cacnea!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.grass],
-    stats: { hp: 50, attack: 85, defense: 40, sp_attack: 85, sp_defense: 40, speed: 35 }
+    stats: { hp: 50, attack: 85, defense: 40, sp_attack: 85, sp_defense: 40, speed: 35 },
+    experience_group: ExperienceGroup.medium_slow,
+    experience_yield: 67
   },
   cacturne: {
     id: 332,
@@ -2984,7 +3645,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Cacturne!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.grass, PokemonCombatType.dark],
-    stats: { hp: 70, attack: 115, defense: 60, sp_attack: 115, sp_defense: 60, speed: 55 }
+    stats: { hp: 70, attack: 115, defense: 60, sp_attack: 115, sp_defense: 60, speed: 55 },
+    experience_group: ExperienceGroup.medium_slow,
+    experience_yield: 166
   },
   swablu: {
     id: 333,
@@ -2993,7 +3656,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Swablu!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.normal, PokemonCombatType.flying],
-    stats: { hp: 45, attack: 40, defense: 60, sp_attack: 40, sp_defense: 75, speed: 50 }
+    stats: { hp: 45, attack: 40, defense: 60, sp_attack: 40, sp_defense: 75, speed: 50 },
+    experience_group: ExperienceGroup.erratic,
+    experience_yield: 62
   },
   altaria: {
     id: 334,
@@ -3002,7 +3667,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Altaria!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.dragon, PokemonCombatType.fairy],
-    stats: { hp: 75, attack: 110, defense: 110, sp_attack: 110, sp_defense: 105, speed: 80 }
+    stats: { hp: 75, attack: 110, defense: 110, sp_attack: 110, sp_defense: 105, speed: 80 },
+    experience_group: ExperienceGroup.erratic,
+    experience_yield: 172
   },
   zangoose: {
     id: 335,
@@ -3011,7 +3678,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Zangoose!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.normal],
-    stats: { hp: 73, attack: 115, defense: 60, sp_attack: 60, sp_defense: 60, speed: 90 }
+    stats: { hp: 73, attack: 115, defense: 60, sp_attack: 60, sp_defense: 60, speed: 90 },
+    experience_group: ExperienceGroup.erratic,
+    experience_yield: 160
   },
   seviper: {
     id: 336,
@@ -3020,7 +3689,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Seviper!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.poison],
-    stats: { hp: 73, attack: 100, defense: 60, sp_attack: 100, sp_defense: 60, speed: 65 }
+    stats: { hp: 73, attack: 100, defense: 60, sp_attack: 100, sp_defense: 60, speed: 65 },
+    experience_group: ExperienceGroup.fluctuating,
+    experience_yield: 160
   },
   lunatone: {
     id: 337,
@@ -3029,7 +3700,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Lunatone!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.rock, PokemonCombatType.psychic],
-    stats: { hp: 90, attack: 55, defense: 65, sp_attack: 95, sp_defense: 85, speed: 70 }
+    stats: { hp: 90, attack: 55, defense: 65, sp_attack: 95, sp_defense: 85, speed: 70 },
+    experience_group: ExperienceGroup.fast,
+    experience_yield: 161
   },
   solrock: {
     id: 338,
@@ -3038,7 +3711,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Solrock!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.rock, PokemonCombatType.psychic],
-    stats: { hp: 90, attack: 95, defense: 85, sp_attack: 55, sp_defense: 65, speed: 70 }
+    stats: { hp: 90, attack: 95, defense: 85, sp_attack: 55, sp_defense: 65, speed: 70 },
+    experience_group: ExperienceGroup.fast,
+    experience_yield: 161
   },
   barboach: {
     id: 339,
@@ -3047,7 +3722,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Barboach!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.water, PokemonCombatType.ground],
-    stats: { hp: 50, attack: 48, defense: 43, sp_attack: 46, sp_defense: 41, speed: 60 }
+    stats: { hp: 50, attack: 48, defense: 43, sp_attack: 46, sp_defense: 41, speed: 60 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 58
   },
   whiscash: {
     id: 340,
@@ -3056,7 +3733,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Whiscash!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.water, PokemonCombatType.ground],
-    stats: { hp: 110, attack: 78, defense: 73, sp_attack: 76, sp_defense: 71, speed: 60 }
+    stats: { hp: 110, attack: 78, defense: 73, sp_attack: 76, sp_defense: 71, speed: 60 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 164
   },
   corpish: {
     id: 341,
@@ -3065,7 +3744,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Corpish!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.water],
-    stats: { hp: 43, attack: 80, defense: 65, sp_attack: 50, sp_defense: 35, speed: 35 }
+    stats: { hp: 43, attack: 80, defense: 65, sp_attack: 50, sp_defense: 35, speed: 35 },
+    experience_group: ExperienceGroup.fluctuating,
+    experience_yield: 62
   },
   crawdaunt: {
     id: 342,
@@ -3074,7 +3755,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Crawdaunt!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.water, PokemonCombatType.dark],
-    stats: { hp: 63, attack: 120, defense: 85, sp_attack: 90, sp_defense: 55, speed: 55 }
+    stats: { hp: 63, attack: 120, defense: 85, sp_attack: 90, sp_defense: 55, speed: 55 },
+    experience_group: ExperienceGroup.fluctuating,
+    experience_yield: 164
   },
   baltoy: {
     id: 343,
@@ -3083,7 +3766,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Baltoy!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.ground, PokemonCombatType.psychic],
-    stats: { hp: 40, attack: 40, defense: 55, sp_attack: 40, sp_defense: 70, speed: 55 }
+    stats: { hp: 40, attack: 40, defense: 55, sp_attack: 40, sp_defense: 70, speed: 55 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 60
   },
   claydol: {
     id: 344,
@@ -3092,7 +3777,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Claydol!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.ground, PokemonCombatType.psychic],
-    stats: { hp: 60, attack: 70, defense: 105, sp_attack: 70, sp_defense: 120, speed: 75 }
+    stats: { hp: 60, attack: 70, defense: 105, sp_attack: 70, sp_defense: 120, speed: 75 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 175
   },
   lileep: {
     id: 345,
@@ -3101,7 +3788,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Lileep!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.rock, PokemonCombatType.grass],
-    stats: { hp: 66, attack: 41, defense: 77, sp_attack: 61, sp_defense: 87, speed: 23 }
+    stats: { hp: 66, attack: 41, defense: 77, sp_attack: 61, sp_defense: 87, speed: 23 },
+    experience_group: ExperienceGroup.erratic,
+    experience_yield: 71
   },
   cradily: {
     id: 346,
@@ -3110,7 +3799,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Cradily!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.rock, PokemonCombatType.grass],
-    stats: { hp: 86, attack: 81, defense: 97, sp_attack: 81, sp_defense: 107, speed: 43 }
+    stats: { hp: 86, attack: 81, defense: 97, sp_attack: 81, sp_defense: 107, speed: 43 },
+    experience_group: ExperienceGroup.erratic,
+    experience_yield: 173
   },
   anorith: {
     id: 347,
@@ -3119,7 +3810,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Anorith!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.rock, PokemonCombatType.bug],
-    stats: { hp: 45, attack: 95, defense: 50, sp_attack: 40, sp_defense: 50, speed: 75 }
+    stats: { hp: 45, attack: 95, defense: 50, sp_attack: 40, sp_defense: 50, speed: 75 },
+    experience_group: ExperienceGroup.erratic,
+    experience_yield: 71
   },
   armaldo: {
     id: 348,
@@ -3128,7 +3821,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Armaldo!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.rock, PokemonCombatType.bug],
-    stats: { hp: 75, attack: 125, defense: 100, sp_attack: 70, sp_defense: 80, speed: 45 }
+    stats: { hp: 75, attack: 125, defense: 100, sp_attack: 70, sp_defense: 80, speed: 45 },
+    experience_group: ExperienceGroup.erratic,
+    experience_yield: 173
   },
   feebas: {
     id: 349,
@@ -3137,7 +3832,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Feebas!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.water],
-    stats: { hp: 20, attack: 15, defense: 20, sp_attack: 10, sp_defense: 55, speed: 80 }
+    stats: { hp: 20, attack: 15, defense: 20, sp_attack: 10, sp_defense: 55, speed: 80 },
+    experience_group: ExperienceGroup.erratic,
+    experience_yield: 40
   },
   milotic: {
     id: 350,
@@ -3146,7 +3843,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Milotic!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.water],
-    stats: { hp: 95, attack: 60, defense: 79, sp_attack: 100, sp_defense: 125, speed: 81 }
+    stats: { hp: 95, attack: 60, defense: 79, sp_attack: 100, sp_defense: 125, speed: 81 },
+    experience_group: ExperienceGroup.erratic,
+    experience_yield: 189
   },
   castform: {
     id: 351,
@@ -3155,7 +3854,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Castform!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.ice],
-    stats: { hp: 70, attack: 70, defense: 70, sp_attack: 70, sp_defense: 70, speed: 70 }
+    stats: { hp: 70, attack: 70, defense: 70, sp_attack: 70, sp_defense: 70, speed: 70 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 147
   },
   kecleon: {
     id: 352,
@@ -3164,7 +3865,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Kecleon!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.normal],
-    stats: { hp: 60, attack: 90, defense: 70, sp_attack: 60, sp_defense: 120, speed: 40 }
+    stats: { hp: 60, attack: 90, defense: 70, sp_attack: 60, sp_defense: 120, speed: 40 },
+    experience_group: ExperienceGroup.medium_slow,
+    experience_yield: 154
   },
   shuppet: {
     id: 353,
@@ -3173,7 +3876,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Shuppet!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.ghost],
-    stats: { hp: 44, attack: 75, defense: 35, sp_attack: 63, sp_defense: 33, speed: 45 }
+    stats: { hp: 44, attack: 75, defense: 35, sp_attack: 63, sp_defense: 33, speed: 45 },
+    experience_group: ExperienceGroup.fast,
+    experience_yield: 59
   },
   banette: {
     id: 354,
@@ -3182,7 +3887,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Banette!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.ghost],
-    stats: { hp: 64, attack: 165, defense: 75, sp_attack: 93, sp_defense: 83, speed: 75 }
+    stats: { hp: 64, attack: 165, defense: 75, sp_attack: 93, sp_defense: 83, speed: 75 },
+    experience_group: ExperienceGroup.fast,
+    experience_yield: 159
   },
   duskull: {
     id: 355,
@@ -3191,7 +3898,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Duskull!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.ghost],
-    stats: { hp: 20, attack: 40, defense: 90, sp_attack: 30, sp_defense: 90, speed: 25 }
+    stats: { hp: 20, attack: 40, defense: 90, sp_attack: 30, sp_defense: 90, speed: 25 },
+    experience_group: ExperienceGroup.fast,
+    experience_yield: 59
   },
   dusclops: {
     id: 356,
@@ -3200,7 +3909,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Dusclops!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.ghost],
-    stats: { hp: 40, attack: 70, defense: 130, sp_attack: 60, sp_defense: 130, speed: 25 }
+    stats: { hp: 40, attack: 70, defense: 130, sp_attack: 60, sp_defense: 130, speed: 25 },
+    experience_group: ExperienceGroup.fast,
+    experience_yield: 159
   },
   tropius: {
     id: 357,
@@ -3209,7 +3920,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Tropius!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.grass, PokemonCombatType.flying],
-    stats: { hp: 99, attack: 68, defense: 83, sp_attack: 72, sp_defense: 87, speed: 51 }
+    stats: { hp: 99, attack: 68, defense: 83, sp_attack: 72, sp_defense: 87, speed: 51 },
+    experience_group: ExperienceGroup.slow,
+    experience_yield: 161
   },
   chimecho: {
     id: 358,
@@ -3218,7 +3931,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Chimecho!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.psychic],
-    stats: { hp: 75, attack: 50, defense: 80, sp_attack: 95, sp_defense: 90, speed: 65 }
+    stats: { hp: 75, attack: 50, defense: 80, sp_attack: 95, sp_defense: 90, speed: 65 },
+    experience_group: ExperienceGroup.fast,
+    experience_yield: 159
   },
   absol: {
     id: 359,
@@ -3227,7 +3942,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Absol!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.dark],
-    stats: { hp: 65, attack: 150, defense: 60, sp_attack: 115, sp_defense: 60, speed: 115 }
+    stats: { hp: 65, attack: 150, defense: 60, sp_attack: 115, sp_defense: 60, speed: 115 },
+    experience_group: ExperienceGroup.medium_slow,
+    experience_yield: 163
   },
   wynaut: {
     id: 360,
@@ -3236,7 +3953,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Wynaut!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.psychic],
-    stats: { hp: 95, attack: 23, defense: 48, sp_attack: 23, sp_defense: 48, speed: 23 }
+    stats: { hp: 95, attack: 23, defense: 48, sp_attack: 23, sp_defense: 48, speed: 23 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 52
   },
   snorunt: {
     id: 361,
@@ -3245,7 +3964,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Snorunt!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.ice],
-    stats: { hp: 50, attack: 50, defense: 50, sp_attack: 50, sp_defense: 50, speed: 50 }
+    stats: { hp: 50, attack: 50, defense: 50, sp_attack: 50, sp_defense: 50, speed: 50 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 60
   },
   glalie: {
     id: 362,
@@ -3254,7 +3975,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Glalie!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.ice],
-    stats: { hp: 80, attack: 120, defense: 80, sp_attack: 120, sp_defense: 80, speed: 100 }
+    stats: { hp: 80, attack: 120, defense: 80, sp_attack: 120, sp_defense: 80, speed: 100 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 168
   },
   spheal: {
     id: 363,
@@ -3263,7 +3986,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Spheal!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.ice, PokemonCombatType.water],
-    stats: { hp: 70, attack: 40, defense: 50, sp_attack: 55, sp_defense: 50, speed: 25 }
+    stats: { hp: 70, attack: 40, defense: 50, sp_attack: 55, sp_defense: 50, speed: 25 },
+    experience_group: ExperienceGroup.medium_slow,
+    experience_yield: 58
   },
   sealeo: {
     id: 364,
@@ -3272,7 +3997,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Sealeo!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.ice, PokemonCombatType.water],
-    stats: { hp: 90, attack: 60, defense: 70, sp_attack: 75, sp_defense: 70, speed: 45 }
+    stats: { hp: 90, attack: 60, defense: 70, sp_attack: 75, sp_defense: 70, speed: 45 },
+    experience_group: ExperienceGroup.medium_slow,
+    experience_yield: 144
   },
   walrein: {
     id: 365,
@@ -3281,7 +4008,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Walrein!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.ice, PokemonCombatType.water],
-    stats: { hp: 110, attack: 80, defense: 90, sp_attack: 95, sp_defense: 90, speed: 65 }
+    stats: { hp: 110, attack: 80, defense: 90, sp_attack: 95, sp_defense: 90, speed: 65 },
+    experience_group: ExperienceGroup.medium_slow,
+    experience_yield: 239
   },
   clamperl: {
     id: 366,
@@ -3290,7 +4019,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Clamperl!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.water],
-    stats: { hp: 35, attack: 64, defense: 85, sp_attack: 74, sp_defense: 55, speed: 32 }
+    stats: { hp: 35, attack: 64, defense: 85, sp_attack: 74, sp_defense: 55, speed: 32 },
+    experience_group: ExperienceGroup.erratic,
+    experience_yield: 69
   },
   huntail: {
     id: 367,
@@ -3299,7 +4030,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Huntail!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.water],
-    stats: { hp: 55, attack: 104, defense: 105, sp_attack: 94, sp_defense: 75, speed: 52 }
+    stats: { hp: 55, attack: 104, defense: 105, sp_attack: 94, sp_defense: 75, speed: 52 },
+    experience_group: ExperienceGroup.erratic,
+    experience_yield: 170
   },
   gorebyss: {
     id: 368,
@@ -3308,7 +4041,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Gorebyss!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.water],
-    stats: { hp: 55, attack: 84, defense: 105, sp_attack: 114, sp_defense: 75, speed: 52 }
+    stats: { hp: 55, attack: 84, defense: 105, sp_attack: 114, sp_defense: 75, speed: 52 },
+    experience_group: ExperienceGroup.erratic,
+    experience_yield: 170
   },
   relicanth: {
     id: 369,
@@ -3317,7 +4052,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Relicanth!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.water, PokemonCombatType.rock],
-    stats: { hp: 100, attack: 90, defense: 130, sp_attack: 45, sp_defense: 65, speed: 55 }
+    stats: { hp: 100, attack: 90, defense: 130, sp_attack: 45, sp_defense: 65, speed: 55 },
+    experience_group: ExperienceGroup.slow,
+    experience_yield: 170
   },
   luvdisc: {
     id: 370,
@@ -3326,7 +4063,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Luvdisc!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.water],
-    stats: { hp: 43, attack: 30, defense: 55, sp_attack: 40, sp_defense: 65, speed: 97 }
+    stats: { hp: 43, attack: 30, defense: 55, sp_attack: 40, sp_defense: 65, speed: 97 },
+    experience_group: ExperienceGroup.fast,
+    experience_yield: 116
   },
   bagon: {
     id: 371,
@@ -3335,7 +4074,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Bagon!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.dragon],
-    stats: { hp: 45, attack: 75, defense: 60, sp_attack: 40, sp_defense: 30, speed: 50 }
+    stats: { hp: 45, attack: 75, defense: 60, sp_attack: 40, sp_defense: 30, speed: 50 },
+    experience_group: ExperienceGroup.slow,
+    experience_yield: 60
   },
   shelgon: {
     id: 372,
@@ -3344,7 +4085,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Shelgon!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.dragon],
-    stats: { hp: 65, attack: 95, defense: 100, sp_attack: 60, sp_defense: 50, speed: 50 }
+    stats: { hp: 65, attack: 95, defense: 100, sp_attack: 60, sp_defense: 50, speed: 50 },
+    experience_group: ExperienceGroup.slow,
+    experience_yield: 147
   },
   salamence: {
     id: 373,
@@ -3353,7 +4096,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Salamence!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.dragon, PokemonCombatType.flying],
-    stats: { hp: 95, attack: 145, defense: 130, sp_attack: 120, sp_defense: 90, speed: 120 }
+    stats: { hp: 95, attack: 145, defense: 130, sp_attack: 120, sp_defense: 90, speed: 120 },
+    experience_group: ExperienceGroup.slow,
+    experience_yield: 300
   },
   beldum: {
     id: 374,
@@ -3362,7 +4107,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Beldum!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.steel, PokemonCombatType.psychic],
-    stats: { hp: 40, attack: 55, defense: 80, sp_attack: 35, sp_defense: 60, speed: 30 }
+    stats: { hp: 40, attack: 55, defense: 80, sp_attack: 35, sp_defense: 60, speed: 30 },
+    experience_group: ExperienceGroup.slow,
+    experience_yield: 60
   },
   metang: {
     id: 375,
@@ -3371,7 +4118,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Metang!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.steel, PokemonCombatType.psychic],
-    stats: { hp: 60, attack: 75, defense: 100, sp_attack: 55, sp_defense: 80, speed: 50 }
+    stats: { hp: 60, attack: 75, defense: 100, sp_attack: 55, sp_defense: 80, speed: 50 },
+    experience_group: ExperienceGroup.slow,
+    experience_yield: 147
   },
   metagross: {
     id: 376,
@@ -3380,7 +4129,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Metagross!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.steel, PokemonCombatType.psychic],
-    stats: { hp: 80, attack: 145, defense: 150, sp_attack: 105, sp_defense: 110, speed: 110 }
+    stats: { hp: 80, attack: 145, defense: 150, sp_attack: 105, sp_defense: 110, speed: 110 },
+    experience_group: ExperienceGroup.slow,
+    experience_yield: 270
   },
   regirock: {
     id: 377,
@@ -3389,7 +4140,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Regirock!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.rock],
-    stats: { hp: 80, attack: 100, defense: 200, sp_attack: 50, sp_defense: 100, speed: 50 }
+    stats: { hp: 80, attack: 100, defense: 200, sp_attack: 50, sp_defense: 100, speed: 50 },
+    experience_group: ExperienceGroup.slow,
+    experience_yield: 261
   },
   regice: {
     id: 378,
@@ -3398,7 +4151,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Regice!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.ice],
-    stats: { hp: 80, attack: 50, defense: 100, sp_attack: 100, sp_defense: 200, speed: 50 }
+    stats: { hp: 80, attack: 50, defense: 100, sp_attack: 100, sp_defense: 200, speed: 50 },
+    experience_group: ExperienceGroup.slow,
+    experience_yield: 261
   },
   registeel: {
     id: 379,
@@ -3407,7 +4162,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Registeel!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.steel],
-    stats: { hp: 80, attack: 75, defense: 150, sp_attack: 75, sp_defense: 150, speed: 50 }
+    stats: { hp: 80, attack: 75, defense: 150, sp_attack: 75, sp_defense: 150, speed: 50 },
+    experience_group: ExperienceGroup.slow,
+    experience_yield: 261
   },
   latias: {
     id: 380,
@@ -3416,7 +4173,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Latias!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.dragon, PokemonCombatType.psychic],
-    stats: { hp: 80, attack: 100, defense: 120, sp_attack: 140, sp_defense: 150, speed: 110 }
+    stats: { hp: 80, attack: 100, defense: 120, sp_attack: 140, sp_defense: 150, speed: 110 },
+    experience_group: ExperienceGroup.slow,
+    experience_yield: 270
   },
   latios: {
     id: 381,
@@ -3425,7 +4184,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Latios!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.dragon, PokemonCombatType.psychic],
-    stats: { hp: 80, attack: 130, defense: 100, sp_attack: 160, sp_defense: 120, speed: 110 }
+    stats: { hp: 80, attack: 130, defense: 100, sp_attack: 160, sp_defense: 120, speed: 110 },
+    experience_group: ExperienceGroup.slow,
+    experience_yield: 270
   },
   kyogre: {
     id: 382,
@@ -3435,7 +4196,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     possibleColors: [PokemonColor.default],
     originalSpriteSize: 64,
     types: [PokemonCombatType.water],
-    stats: { hp: 100, attack: 150, defense: 90, sp_attack: 180, sp_defense: 160, speed: 90 }
+    stats: { hp: 100, attack: 150, defense: 90, sp_attack: 180, sp_defense: 160, speed: 90 },
+    experience_group: ExperienceGroup.slow,
+    experience_yield: 335
   },
   groudon: {
     id: 383,
@@ -3445,7 +4208,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     possibleColors: [PokemonColor.default],
     originalSpriteSize: 64,
     types: [PokemonCombatType.ground, PokemonCombatType.fire],
-    stats: { hp: 100, attack: 180, defense: 160, sp_attack: 150, sp_defense: 90, speed: 90 }
+    stats: { hp: 100, attack: 180, defense: 160, sp_attack: 150, sp_defense: 90, speed: 90 },
+    experience_group: ExperienceGroup.slow,
+    experience_yield: 335
   },
   rayquaza: {
     id: 384,
@@ -3455,7 +4220,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     possibleColors: [PokemonColor.default],
     originalSpriteSize: 64,
     types: [PokemonCombatType.dragon, PokemonCombatType.flying],
-    stats: { hp: 105, attack: 180, defense: 100, sp_attack: 180, sp_defense: 100, speed: 115 }
+    stats: { hp: 105, attack: 180, defense: 100, sp_attack: 180, sp_defense: 100, speed: 115 },
+    experience_group: ExperienceGroup.slow,
+    experience_yield: 340
   },
   jirachi: {
     id: 385,
@@ -3464,7 +4231,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Jirachi!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.steel, PokemonCombatType.psychic],
-    stats: { hp: 100, attack: 100, defense: 100, sp_attack: 100, sp_defense: 100, speed: 100 }
+    stats: { hp: 100, attack: 100, defense: 100, sp_attack: 100, sp_defense: 100, speed: 100 },
+    experience_group: ExperienceGroup.slow,
+    experience_yield: 270
   },
   deoxys: {
     id: 386,
@@ -3473,7 +4242,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Deoxys!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.psychic],
-    stats: { hp: 50, attack: 95, defense: 90, sp_attack: 95, sp_defense: 90, speed: 180 }
+    stats: { hp: 50, attack: 95, defense: 90, sp_attack: 95, sp_defense: 90, speed: 180 },
+    experience_group: ExperienceGroup.slow,
+    experience_yield: 270
   },
   deoxys_speed: {
     id: 386,
@@ -3482,7 +4253,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Deoxys!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.psychic],
-    stats: { hp: 50, attack: 95, defense: 90, sp_attack: 95, sp_defense: 90, speed: 180 }
+    stats: { hp: 50, attack: 95, defense: 90, sp_attack: 95, sp_defense: 90, speed: 180 },
+    experience_group: ExperienceGroup.slow,
+    experience_yield: 270
   },
   deoxys_attack: {
     id: 386,
@@ -3491,7 +4264,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Deoxys!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.psychic],
-    stats: { hp: 50, attack: 95, defense: 90, sp_attack: 95, sp_defense: 90, speed: 180 }
+    stats: { hp: 50, attack: 95, defense: 90, sp_attack: 95, sp_defense: 90, speed: 180 },
+    experience_group: ExperienceGroup.slow,
+    experience_yield: 270
   },
   deoxys_defense: {
     id: 386,
@@ -3500,7 +4275,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Deoxys!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.psychic],
-    stats: { hp: 50, attack: 95, defense: 90, sp_attack: 95, sp_defense: 90, speed: 180 }
+    stats: { hp: 50, attack: 95, defense: 90, sp_attack: 95, sp_defense: 90, speed: 180 },
+    experience_group: ExperienceGroup.slow,
+    experience_yield: 270
   },
   // Generation 4
   turtwig: {
@@ -3510,7 +4287,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Turtwig!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.grass],
-    stats: { hp: 55, attack: 68, defense: 64, sp_attack: 45, sp_defense: 55, speed: 31 }
+    stats: { hp: 55, attack: 68, defense: 64, sp_attack: 45, sp_defense: 55, speed: 31 },
+    experience_group: ExperienceGroup.medium_slow,
+    experience_yield: 64
   },
   grotle: {
     id: 388,
@@ -3519,7 +4298,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Grotle!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.grass],
-    stats: { hp: 75, attack: 89, defense: 85, sp_attack: 55, sp_defense: 65, speed: 36 }
+    stats: { hp: 75, attack: 89, defense: 85, sp_attack: 55, sp_defense: 65, speed: 36 },
+    experience_group: ExperienceGroup.medium_slow,
+    experience_yield: 142
   },
   torterra: {
     id: 389,
@@ -3528,7 +4309,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Torterra!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.grass, PokemonCombatType.ground],
-    stats: { hp: 95, attack: 109, defense: 105, sp_attack: 75, sp_defense: 85, speed: 56 }
+    stats: { hp: 95, attack: 109, defense: 105, sp_attack: 75, sp_defense: 85, speed: 56 },
+    experience_group: ExperienceGroup.medium_slow,
+    experience_yield: 236
   },
   chimchar: {
     id: 390,
@@ -3537,7 +4320,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Chimchar!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.fire],
-    stats: { hp: 44, attack: 58, defense: 44, sp_attack: 58, sp_defense: 44, speed: 61 }
+    stats: { hp: 44, attack: 58, defense: 44, sp_attack: 58, sp_defense: 44, speed: 61 },
+    experience_group: ExperienceGroup.medium_slow,
+    experience_yield: 62
   },
   monferno: {
     id: 391,
@@ -3546,7 +4331,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Monferno!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.fire, PokemonCombatType.fighting],
-    stats: { hp: 64, attack: 78, defense: 52, sp_attack: 78, sp_defense: 52, speed: 81 }
+    stats: { hp: 64, attack: 78, defense: 52, sp_attack: 78, sp_defense: 52, speed: 81 },
+    experience_group: ExperienceGroup.medium_slow,
+    experience_yield: 142
   },
   infernape: {
     id: 392,
@@ -3555,7 +4342,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Infernape!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.fire, PokemonCombatType.fighting],
-    stats: { hp: 76, attack: 104, defense: 71, sp_attack: 104, sp_defense: 71, speed: 108 }
+    stats: { hp: 76, attack: 104, defense: 71, sp_attack: 104, sp_defense: 71, speed: 108 },
+    experience_group: ExperienceGroup.medium_slow,
+    experience_yield: 240
   },
   piplup: {
     id: 393,
@@ -3564,7 +4353,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Piplup!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.water],
-    stats: { hp: 53, attack: 51, defense: 53, sp_attack: 61, sp_defense: 56, speed: 40 }
+    stats: { hp: 53, attack: 51, defense: 53, sp_attack: 61, sp_defense: 56, speed: 40 },
+    experience_group: ExperienceGroup.medium_slow,
+    experience_yield: 63
   },
   prinplup: {
     id: 394,
@@ -3573,7 +4364,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Prinplup!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.water],
-    stats: { hp: 64, attack: 66, defense: 68, sp_attack: 81, sp_defense: 76, speed: 50 }
+    stats: { hp: 64, attack: 66, defense: 68, sp_attack: 81, sp_defense: 76, speed: 50 },
+    experience_group: ExperienceGroup.medium_slow,
+    experience_yield: 142
   },
   empoleon: {
     id: 395,
@@ -3582,7 +4375,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Empoleon!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.water, PokemonCombatType.steel],
-    stats: { hp: 84, attack: 86, defense: 88, sp_attack: 111, sp_defense: 101, speed: 60 }
+    stats: { hp: 84, attack: 86, defense: 88, sp_attack: 111, sp_defense: 101, speed: 60 },
+    experience_group: ExperienceGroup.medium_slow,
+    experience_yield: 239
   },
   starly: {
     id: 396,
@@ -3591,7 +4386,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Starly!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.normal, PokemonCombatType.flying],
-    stats: { hp: 40, attack: 55, defense: 30, sp_attack: 30, sp_defense: 30, speed: 60 }
+    stats: { hp: 40, attack: 55, defense: 30, sp_attack: 30, sp_defense: 30, speed: 60 },
+    experience_group: ExperienceGroup.medium_slow,
+    experience_yield: 49
   },
   staravia: {
     id: 397,
@@ -3600,7 +4397,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Staravia!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.normal, PokemonCombatType.flying],
-    stats: { hp: 55, attack: 75, defense: 50, sp_attack: 40, sp_defense: 40, speed: 80 }
+    stats: { hp: 55, attack: 75, defense: 50, sp_attack: 40, sp_defense: 40, speed: 80 },
+    experience_group: ExperienceGroup.medium_slow,
+    experience_yield: 119
   },
   staraptor: {
     id: 398,
@@ -3609,7 +4408,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Staraptor!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.normal, PokemonCombatType.flying],
-    stats: { hp: 85, attack: 120, defense: 70, sp_attack: 50, sp_defense: 60, speed: 100 }
+    stats: { hp: 85, attack: 120, defense: 70, sp_attack: 50, sp_defense: 60, speed: 100 },
+    experience_group: ExperienceGroup.medium_slow,
+    experience_yield: 243
   },
   bidoof: {
     id: 399,
@@ -3618,7 +4419,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Bidoof!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.normal],
-    stats: { hp: 59, attack: 45, defense: 40, sp_attack: 35, sp_defense: 40, speed: 31 }
+    stats: { hp: 59, attack: 45, defense: 40, sp_attack: 35, sp_defense: 40, speed: 31 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 50
   },
   bibarel: {
     id: 400,
@@ -3627,7 +4430,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Bibarel!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.normal, PokemonCombatType.water],
-    stats: { hp: 79, attack: 85, defense: 60, sp_attack: 55, sp_defense: 60, speed: 71 }
+    stats: { hp: 79, attack: 85, defense: 60, sp_attack: 55, sp_defense: 60, speed: 71 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 144
   },
   kricketot: {
     id: 401,
@@ -3636,7 +4441,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Kricketot!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.bug],
-    stats: { hp: 37, attack: 25, defense: 41, sp_attack: 25, sp_defense: 41, speed: 25 }
+    stats: { hp: 37, attack: 25, defense: 41, sp_attack: 25, sp_defense: 41, speed: 25 },
+    experience_group: ExperienceGroup.medium_slow,
+    experience_yield: 39
   },
   kricketune: {
     id: 402,
@@ -3645,7 +4452,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Kricketune!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.bug],
-    stats: { hp: 77, attack: 85, defense: 51, sp_attack: 55, sp_defense: 51, speed: 65 }
+    stats: { hp: 77, attack: 85, defense: 51, sp_attack: 55, sp_defense: 51, speed: 65 },
+    experience_group: ExperienceGroup.medium_slow,
+    experience_yield: 134
   },
   shinx: {
     id: 403,
@@ -3654,7 +4463,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Shinx!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.electric],
-    stats: { hp: 45, attack: 65, defense: 34, sp_attack: 40, sp_defense: 34, speed: 45 }
+    stats: { hp: 45, attack: 65, defense: 34, sp_attack: 40, sp_defense: 34, speed: 45 },
+    experience_group: ExperienceGroup.medium_slow,
+    experience_yield: 53
   },
   luxio: {
     id: 404,
@@ -3663,7 +4474,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Luxio!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.electric],
-    stats: { hp: 60, attack: 85, defense: 49, sp_attack: 60, sp_defense: 49, speed: 60 }
+    stats: { hp: 60, attack: 85, defense: 49, sp_attack: 60, sp_defense: 49, speed: 60 },
+    experience_group: ExperienceGroup.medium_slow,
+    experience_yield: 127
   },
   luxray: {
     id: 405,
@@ -3672,7 +4485,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Luxray!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.electric],
-    stats: { hp: 80, attack: 120, defense: 79, sp_attack: 95, sp_defense: 79, speed: 70 }
+    stats: { hp: 80, attack: 120, defense: 79, sp_attack: 95, sp_defense: 79, speed: 70 },
+    experience_group: ExperienceGroup.medium_slow,
+    experience_yield: 262
   },
   budew: {
     id: 406,
@@ -3681,7 +4496,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Budew!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.grass, PokemonCombatType.poison],
-    stats: { hp: 40, attack: 30, defense: 35, sp_attack: 50, sp_defense: 70, speed: 55 }
+    stats: { hp: 40, attack: 30, defense: 35, sp_attack: 50, sp_defense: 70, speed: 55 },
+    experience_group: ExperienceGroup.medium_slow,
+    experience_yield: 56
   },
   roserade: {
     id: 407,
@@ -3690,7 +4507,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Roserade!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.grass, PokemonCombatType.poison],
-    stats: { hp: 60, attack: 70, defense: 65, sp_attack: 125, sp_defense: 105, speed: 90 }
+    stats: { hp: 60, attack: 70, defense: 65, sp_attack: 125, sp_defense: 105, speed: 90 },
+    experience_group: ExperienceGroup.medium_slow,
+    experience_yield: 232
   },
   cranidos: {
     id: 408,
@@ -3699,7 +4518,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Cranidos!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.rock],
-    stats: { hp: 67, attack: 125, defense: 40, sp_attack: 30, sp_defense: 30, speed: 58 }
+    stats: { hp: 67, attack: 125, defense: 40, sp_attack: 30, sp_defense: 30, speed: 58 },
+    experience_group: ExperienceGroup.erratic,
+    experience_yield: 70
   },
   rampardos: {
     id: 409,
@@ -3708,7 +4529,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Rampardos!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.rock],
-    stats: { hp: 97, attack: 165, defense: 60, sp_attack: 65, sp_defense: 50, speed: 58 }
+    stats: { hp: 97, attack: 165, defense: 60, sp_attack: 65, sp_defense: 50, speed: 58 },
+    experience_group: ExperienceGroup.erratic,
+    experience_yield: 173
   },
   shieldon: {
     id: 410,
@@ -3717,7 +4540,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Shieldon!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.rock, PokemonCombatType.steel],
-    stats: { hp: 30, attack: 42, defense: 118, sp_attack: 42, sp_defense: 88, speed: 30 }
+    stats: { hp: 30, attack: 42, defense: 118, sp_attack: 42, sp_defense: 88, speed: 30 },
+    experience_group: ExperienceGroup.erratic,
+    experience_yield: 70
   },
   bastiodon: {
     id: 411,
@@ -3726,7 +4551,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Bastiodon!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.rock, PokemonCombatType.steel],
-    stats: { hp: 60, attack: 52, defense: 168, sp_attack: 47, sp_defense: 138, speed: 30 }
+    stats: { hp: 60, attack: 52, defense: 168, sp_attack: 47, sp_defense: 138, speed: 30 },
+    experience_group: ExperienceGroup.erratic,
+    experience_yield: 173
   },
   burmy: {
     id: 412,
@@ -3735,7 +4562,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Burmy!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.bug],
-    stats: { hp: 40, attack: 29, defense: 45, sp_attack: 29, sp_defense: 45, speed: 36 }
+    stats: { hp: 40, attack: 29, defense: 45, sp_attack: 29, sp_defense: 45, speed: 36 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 45
   },
   wormadam: {
     id: 413,
@@ -3744,7 +4573,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Wormadam!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.bug, PokemonCombatType.steel],
-    stats: { hp: 60, attack: 69, defense: 95, sp_attack: 69, sp_defense: 95, speed: 36 }
+    stats: { hp: 60, attack: 69, defense: 95, sp_attack: 69, sp_defense: 95, speed: 36 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 148
   },
   mothim: {
     id: 414,
@@ -3753,7 +4584,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Mothim!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.bug, PokemonCombatType.flying],
-    stats: { hp: 70, attack: 94, defense: 50, sp_attack: 94, sp_defense: 50, speed: 66 }
+    stats: { hp: 70, attack: 94, defense: 50, sp_attack: 94, sp_defense: 50, speed: 66 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 148
   },
   combee: {
     id: 415,
@@ -3762,7 +4595,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Combee!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.bug, PokemonCombatType.flying],
-    stats: { hp: 30, attack: 30, defense: 42, sp_attack: 30, sp_defense: 42, speed: 70 }
+    stats: { hp: 30, attack: 30, defense: 42, sp_attack: 30, sp_defense: 42, speed: 70 },
+    experience_group: ExperienceGroup.medium_slow,
+    experience_yield: 49
   },
   vespiquen: {
     id: 416,
@@ -3771,7 +4606,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Vespiquen!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.bug, PokemonCombatType.flying],
-    stats: { hp: 70, attack: 80, defense: 102, sp_attack: 80, sp_defense: 102, speed: 40 }
+    stats: { hp: 70, attack: 80, defense: 102, sp_attack: 80, sp_defense: 102, speed: 40 },
+    experience_group: ExperienceGroup.medium_slow,
+    experience_yield: 166
   },
   pachirisu: {
     id: 417,
@@ -3780,7 +4617,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Pachirisu!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.electric],
-    stats: { hp: 60, attack: 45, defense: 70, sp_attack: 45, sp_defense: 90, speed: 95 }
+    stats: { hp: 60, attack: 45, defense: 70, sp_attack: 45, sp_defense: 90, speed: 95 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 142
   },
   buizel: {
     id: 418,
@@ -3789,7 +4628,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Buizel!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.water],
-    stats: { hp: 55, attack: 65, defense: 35, sp_attack: 60, sp_defense: 30, speed: 85 }
+    stats: { hp: 55, attack: 65, defense: 35, sp_attack: 60, sp_defense: 30, speed: 85 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 66
   },
   floatzel: {
     id: 419,
@@ -3798,7 +4639,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Floatzel!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.water],
-    stats: { hp: 85, attack: 105, defense: 55, sp_attack: 85, sp_defense: 50, speed: 115 }
+    stats: { hp: 85, attack: 105, defense: 55, sp_attack: 85, sp_defense: 50, speed: 115 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 173
   },
   cherubi: {
     id: 420,
@@ -3807,7 +4650,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Cherubi!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.grass],
-    stats: { hp: 45, attack: 35, defense: 45, sp_attack: 62, sp_defense: 53, speed: 35 }
+    stats: { hp: 45, attack: 35, defense: 45, sp_attack: 62, sp_defense: 53, speed: 35 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 55
   },
   cherrim: {
     id: 421,
@@ -3816,7 +4661,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Cherrim!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.grass],
-    stats: { hp: 70, attack: 60, defense: 70, sp_attack: 87, sp_defense: 78, speed: 85 }
+    stats: { hp: 70, attack: 60, defense: 70, sp_attack: 87, sp_defense: 78, speed: 85 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 158
   },
   shellos: {
     id: 422,
@@ -3825,7 +4672,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Shellos!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.water],
-    stats: { hp: 76, attack: 48, defense: 48, sp_attack: 57, sp_defense: 62, speed: 34 }
+    stats: { hp: 76, attack: 48, defense: 48, sp_attack: 57, sp_defense: 62, speed: 34 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 65
   },
   gastrodon: {
     id: 423,
@@ -3834,7 +4683,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Gastrodon!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.water, PokemonCombatType.ground],
-    stats: { hp: 111, attack: 83, defense: 68, sp_attack: 92, sp_defense: 82, speed: 39 }
+    stats: { hp: 111, attack: 83, defense: 68, sp_attack: 92, sp_defense: 82, speed: 39 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 166
   },
   ambipom: {
     id: 424,
@@ -3843,7 +4694,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Ambipom!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.normal],
-    stats: { hp: 75, attack: 100, defense: 66, sp_attack: 60, sp_defense: 66, speed: 115 }
+    stats: { hp: 75, attack: 100, defense: 66, sp_attack: 60, sp_defense: 66, speed: 115 },
+    experience_group: ExperienceGroup.fast,
+    experience_yield: 169
   },
   drifloon: {
     id: 425,
@@ -3852,7 +4705,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Drifloon!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.ghost, PokemonCombatType.flying],
-    stats: { hp: 90, attack: 50, defense: 34, sp_attack: 60, sp_defense: 44, speed: 70 }
+    stats: { hp: 90, attack: 50, defense: 34, sp_attack: 60, sp_defense: 44, speed: 70 },
+    experience_group: ExperienceGroup.fluctuating,
+    experience_yield: 70
   },
   drifblim: {
     id: 426,
@@ -3861,7 +4716,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Drifblim!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.ghost, PokemonCombatType.flying],
-    stats: { hp: 150, attack: 80, defense: 44, sp_attack: 90, sp_defense: 54, speed: 80 }
+    stats: { hp: 150, attack: 80, defense: 44, sp_attack: 90, sp_defense: 54, speed: 80 },
+    experience_group: ExperienceGroup.fluctuating,
+    experience_yield: 174
   },
   buneary: {
     id: 427,
@@ -3870,7 +4727,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Buneary!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.normal],
-    stats: { hp: 55, attack: 66, defense: 44, sp_attack: 44, sp_defense: 56, speed: 85 }
+    stats: { hp: 55, attack: 66, defense: 44, sp_attack: 44, sp_defense: 56, speed: 85 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 70
   },
   lopunny: {
     id: 428,
@@ -3879,7 +4738,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Lopunny!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.normal, PokemonCombatType.fighting],
-    stats: { hp: 65, attack: 136, defense: 94, sp_attack: 54, sp_defense: 96, speed: 135 }
+    stats: { hp: 65, attack: 136, defense: 94, sp_attack: 54, sp_defense: 96, speed: 135 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 168
   },
   mismagius: {
     id: 429,
@@ -3888,7 +4749,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Mismagius!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.ghost],
-    stats: { hp: 60, attack: 60, defense: 60, sp_attack: 105, sp_defense: 105, speed: 105 }
+    stats: { hp: 60, attack: 60, defense: 60, sp_attack: 105, sp_defense: 105, speed: 105 },
+    experience_group: ExperienceGroup.fast,
+    experience_yield: 173
   },
   honchkrow: {
     id: 430,
@@ -3897,7 +4760,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Honchkrow!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.dark, PokemonCombatType.flying],
-    stats: { hp: 100, attack: 125, defense: 52, sp_attack: 105, sp_defense: 52, speed: 71 }
+    stats: { hp: 100, attack: 125, defense: 52, sp_attack: 105, sp_defense: 52, speed: 71 },
+    experience_group: ExperienceGroup.medium_slow,
+    experience_yield: 177
   },
   glameow: {
     id: 431,
@@ -3906,7 +4771,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Glameow!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.normal],
-    stats: { hp: 49, attack: 55, defense: 42, sp_attack: 42, sp_defense: 37, speed: 85 }
+    stats: { hp: 49, attack: 55, defense: 42, sp_attack: 42, sp_defense: 37, speed: 85 },
+    experience_group: ExperienceGroup.fast,
+    experience_yield: 62
   },
   purugly: {
     id: 432,
@@ -3915,7 +4782,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Purugly!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.normal],
-    stats: { hp: 71, attack: 82, defense: 64, sp_attack: 64, sp_defense: 59, speed: 112 }
+    stats: { hp: 71, attack: 82, defense: 64, sp_attack: 64, sp_defense: 59, speed: 112 },
+    experience_group: ExperienceGroup.fast,
+    experience_yield: 158
   },
   chingling: {
     id: 433,
@@ -3924,7 +4793,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Chingling!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.psychic],
-    stats: { hp: 45, attack: 30, defense: 50, sp_attack: 65, sp_defense: 50, speed: 45 }
+    stats: { hp: 45, attack: 30, defense: 50, sp_attack: 65, sp_defense: 50, speed: 45 },
+    experience_group: ExperienceGroup.fast,
+    experience_yield: 57
   },
   stunky: {
     id: 434,
@@ -3933,7 +4804,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Stunky!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.poison, PokemonCombatType.dark],
-    stats: { hp: 63, attack: 63, defense: 47, sp_attack: 41, sp_defense: 41, speed: 74 }
+    stats: { hp: 63, attack: 63, defense: 47, sp_attack: 41, sp_defense: 41, speed: 74 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 66
   },
   skuntank: {
     id: 435,
@@ -3942,7 +4815,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Skuntank!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.poison, PokemonCombatType.dark],
-    stats: { hp: 103, attack: 93, defense: 67, sp_attack: 71, sp_defense: 61, speed: 84 }
+    stats: { hp: 103, attack: 93, defense: 67, sp_attack: 71, sp_defense: 61, speed: 84 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 168
   },
   bronzor: {
     id: 436,
@@ -3951,7 +4826,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Bronzor!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.steel, PokemonCombatType.psychic],
-    stats: { hp: 57, attack: 24, defense: 86, sp_attack: 24, sp_defense: 86, speed: 23 }
+    stats: { hp: 57, attack: 24, defense: 86, sp_attack: 24, sp_defense: 86, speed: 23 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 60
   },
   bronzong: {
     id: 437,
@@ -3960,7 +4837,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Bronzong!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.steel, PokemonCombatType.psychic],
-    stats: { hp: 67, attack: 89, defense: 116, sp_attack: 79, sp_defense: 116, speed: 33 }
+    stats: { hp: 67, attack: 89, defense: 116, sp_attack: 79, sp_defense: 116, speed: 33 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 175
   },
   bonsly: {
     id: 438,
@@ -3969,7 +4848,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Bonsly!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.rock],
-    stats: { hp: 50, attack: 80, defense: 95, sp_attack: 10, sp_defense: 45, speed: 10 }
+    stats: { hp: 50, attack: 80, defense: 95, sp_attack: 10, sp_defense: 45, speed: 10 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 58
   },
   mimejr: {
     id: 439,
@@ -3978,7 +4859,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Mime Jr.!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.psychic, PokemonCombatType.fairy],
-    stats: { hp: 20, attack: 25, defense: 45, sp_attack: 70, sp_defense: 90, speed: 60 }
+    stats: { hp: 20, attack: 25, defense: 45, sp_attack: 70, sp_defense: 90, speed: 60 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 62
   },
   happiny: {
     id: 440,
@@ -3987,7 +4870,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Happiny!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.normal],
-    stats: { hp: 100, attack: 5, defense: 5, sp_attack: 15, sp_defense: 65, speed: 30 }
+    stats: { hp: 100, attack: 5, defense: 5, sp_attack: 15, sp_defense: 65, speed: 30 },
+    experience_group: ExperienceGroup.fast,
+    experience_yield: 110
   },
   chatot: {
     id: 441,
@@ -3996,7 +4881,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Chatot!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.normal, PokemonCombatType.flying],
-    stats: { hp: 76, attack: 65, defense: 45, sp_attack: 92, sp_defense: 42, speed: 91 }
+    stats: { hp: 76, attack: 65, defense: 45, sp_attack: 92, sp_defense: 42, speed: 91 },
+    experience_group: ExperienceGroup.medium_slow,
+    experience_yield: 144
   },
   spiritomb: {
     id: 442,
@@ -4005,7 +4892,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Spiritomb!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.ghost, PokemonCombatType.dark],
-    stats: { hp: 50, attack: 92, defense: 108, sp_attack: 92, sp_defense: 108, speed: 35 }
+    stats: { hp: 50, attack: 92, defense: 108, sp_attack: 92, sp_defense: 108, speed: 35 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 170
   },
   gible: {
     id: 443,
@@ -4014,7 +4903,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Gible!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.dragon, PokemonCombatType.ground],
-    stats: { hp: 58, attack: 70, defense: 45, sp_attack: 40, sp_defense: 45, speed: 42 }
+    stats: { hp: 58, attack: 70, defense: 45, sp_attack: 40, sp_defense: 45, speed: 42 },
+    experience_group: ExperienceGroup.slow,
+    experience_yield: 60
   },
   gabite: {
     id: 444,
@@ -4023,7 +4914,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Gabite!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.dragon, PokemonCombatType.ground],
-    stats: { hp: 68, attack: 90, defense: 65, sp_attack: 50, sp_defense: 55, speed: 82 }
+    stats: { hp: 68, attack: 90, defense: 65, sp_attack: 50, sp_defense: 55, speed: 82 },
+    experience_group: ExperienceGroup.slow,
+    experience_yield: 144
   },
   garchomp: {
     id: 445,
@@ -4032,7 +4925,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Garchomp!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.dragon, PokemonCombatType.ground],
-    stats: { hp: 108, attack: 170, defense: 115, sp_attack: 120, sp_defense: 95, speed: 92 }
+    stats: { hp: 108, attack: 170, defense: 115, sp_attack: 120, sp_defense: 95, speed: 92 },
+    experience_group: ExperienceGroup.slow,
+    experience_yield: 300
   },
   munchlax: {
     id: 446,
@@ -4041,7 +4936,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Munchlax!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.normal],
-    stats: { hp: 135, attack: 85, defense: 40, sp_attack: 40, sp_defense: 85, speed: 5 }
+    stats: { hp: 135, attack: 85, defense: 40, sp_attack: 40, sp_defense: 85, speed: 5 },
+    experience_group: ExperienceGroup.slow,
+    experience_yield: 78
   },
   riolu: {
     id: 447,
@@ -4050,7 +4947,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Riolu!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.fighting],
-    stats: { hp: 40, attack: 70, defense: 40, sp_attack: 35, sp_defense: 40, speed: 60 }
+    stats: { hp: 40, attack: 70, defense: 40, sp_attack: 35, sp_defense: 40, speed: 60 },
+    experience_group: ExperienceGroup.medium_slow,
+    experience_yield: 57
   },
   lucario: {
     id: 448,
@@ -4059,7 +4958,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Lucario!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.fighting, PokemonCombatType.steel],
-    stats: { hp: 70, attack: 145, defense: 88, sp_attack: 140, sp_defense: 70, speed: 112 }
+    stats: { hp: 70, attack: 145, defense: 88, sp_attack: 140, sp_defense: 70, speed: 112 },
+    experience_group: ExperienceGroup.medium_slow,
+    experience_yield: 184
   },
   hippopotas: {
     id: 449,
@@ -4068,7 +4969,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Hippopotas!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.ground],
-    stats: { hp: 68, attack: 72, defense: 78, sp_attack: 38, sp_defense: 42, speed: 32 }
+    stats: { hp: 68, attack: 72, defense: 78, sp_attack: 38, sp_defense: 42, speed: 32 },
+    experience_group: ExperienceGroup.slow,
+    experience_yield: 66
   },
   hippowdon: {
     id: 450,
@@ -4077,7 +4980,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Hippowdon!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.ground],
-    stats: { hp: 108, attack: 112, defense: 118, sp_attack: 68, sp_defense: 72, speed: 47 }
+    stats: { hp: 108, attack: 112, defense: 118, sp_attack: 68, sp_defense: 72, speed: 47 },
+    experience_group: ExperienceGroup.slow,
+    experience_yield: 184
   },
   skorupi: {
     id: 451,
@@ -4086,7 +4991,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Skorupi!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.poison, PokemonCombatType.bug],
-    stats: { hp: 40, attack: 50, defense: 90, sp_attack: 30, sp_defense: 55, speed: 65 }
+    stats: { hp: 40, attack: 50, defense: 90, sp_attack: 30, sp_defense: 55, speed: 65 },
+    experience_group: ExperienceGroup.slow,
+    experience_yield: 66
   },
   drapion: {
     id: 452,
@@ -4095,7 +5002,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Drapion!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.poison, PokemonCombatType.dark],
-    stats: { hp: 70, attack: 90, defense: 110, sp_attack: 60, sp_defense: 75, speed: 95 }
+    stats: { hp: 70, attack: 90, defense: 110, sp_attack: 60, sp_defense: 75, speed: 95 },
+    experience_group: ExperienceGroup.slow,
+    experience_yield: 175
   },
   croagunk: {
     id: 453,
@@ -4104,7 +5013,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Croagunk!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.poison, PokemonCombatType.fighting],
-    stats: { hp: 48, attack: 61, defense: 40, sp_attack: 61, sp_defense: 40, speed: 50 }
+    stats: { hp: 48, attack: 61, defense: 40, sp_attack: 61, sp_defense: 40, speed: 50 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 60
   },
   toxicroak: {
     id: 454,
@@ -4113,7 +5024,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Toxicroak!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.poison, PokemonCombatType.fighting],
-    stats: { hp: 83, attack: 106, defense: 65, sp_attack: 86, sp_defense: 65, speed: 85 }
+    stats: { hp: 83, attack: 106, defense: 65, sp_attack: 86, sp_defense: 65, speed: 85 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 172
   },
   carnivine: {
     id: 455,
@@ -4122,7 +5035,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Carnivine!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.grass],
-    stats: { hp: 74, attack: 100, defense: 72, sp_attack: 90, sp_defense: 72, speed: 46 }
+    stats: { hp: 74, attack: 100, defense: 72, sp_attack: 90, sp_defense: 72, speed: 46 },
+    experience_group: ExperienceGroup.slow,
+    experience_yield: 159
   },
   finneon: {
     id: 456,
@@ -4131,7 +5046,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Finneon!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.water],
-    stats: { hp: 49, attack: 49, defense: 56, sp_attack: 49, sp_defense: 61, speed: 66 }
+    stats: { hp: 49, attack: 49, defense: 56, sp_attack: 49, sp_defense: 61, speed: 66 },
+    experience_group: ExperienceGroup.erratic,
+    experience_yield: 66
   },
   lumineon: {
     id: 457,
@@ -4140,7 +5057,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Lumineon!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.water],
-    stats: { hp: 69, attack: 69, defense: 76, sp_attack: 69, sp_defense: 86, speed: 91 }
+    stats: { hp: 69, attack: 69, defense: 76, sp_attack: 69, sp_defense: 86, speed: 91 },
+    experience_group: ExperienceGroup.erratic,
+    experience_yield: 161
   },
   mantyke: {
     id: 458,
@@ -4149,7 +5068,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Mantyke!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.water, PokemonCombatType.flying],
-    stats: { hp: 45, attack: 20, defense: 50, sp_attack: 60, sp_defense: 120, speed: 50 }
+    stats: { hp: 45, attack: 20, defense: 50, sp_attack: 60, sp_defense: 120, speed: 50 },
+    experience_group: ExperienceGroup.slow,
+    experience_yield: 69
   },
   snover: {
     id: 459,
@@ -4158,7 +5079,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Snover!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.grass, PokemonCombatType.ice],
-    stats: { hp: 60, attack: 62, defense: 50, sp_attack: 62, sp_defense: 60, speed: 40 }
+    stats: { hp: 60, attack: 62, defense: 50, sp_attack: 62, sp_defense: 60, speed: 40 },
+    experience_group: ExperienceGroup.slow,
+    experience_yield: 67
   },
   abomasnow: {
     id: 460,
@@ -4167,7 +5090,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Abomasnow!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.grass, PokemonCombatType.ice],
-    stats: { hp: 90, attack: 132, defense: 105, sp_attack: 132, sp_defense: 105, speed: 30 }
+    stats: { hp: 90, attack: 132, defense: 105, sp_attack: 132, sp_defense: 105, speed: 30 },
+    experience_group: ExperienceGroup.slow,
+    experience_yield: 173
   },
   weavile: {
     id: 461,
@@ -4176,7 +5101,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Weavile!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.dark, PokemonCombatType.ice],
-    stats: { hp: 70, attack: 120, defense: 65, sp_attack: 45, sp_defense: 85, speed: 125 }
+    stats: { hp: 70, attack: 120, defense: 65, sp_attack: 45, sp_defense: 85, speed: 125 },
+    experience_group: ExperienceGroup.medium_slow,
+    experience_yield: 179
   },
   magnezone: {
     id: 462,
@@ -4185,7 +5112,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Magnezone!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.electric, PokemonCombatType.steel],
-    stats: { hp: 70, attack: 70, defense: 115, sp_attack: 130, sp_defense: 90, speed: 60 }
+    stats: { hp: 70, attack: 70, defense: 115, sp_attack: 130, sp_defense: 90, speed: 60 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 268
   },
   lickilicky: {
     id: 463,
@@ -4194,7 +5123,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Lickilicky!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.normal],
-    stats: { hp: 110, attack: 85, defense: 95, sp_attack: 80, sp_defense: 95, speed: 50 }
+    stats: { hp: 110, attack: 85, defense: 95, sp_attack: 80, sp_defense: 95, speed: 50 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 180
   },
   rhyperior: {
     id: 464,
@@ -4203,7 +5134,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Rhyperior!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.ground, PokemonCombatType.rock],
-    stats: { hp: 115, attack: 140, defense: 130, sp_attack: 55, sp_defense: 55, speed: 40 }
+    stats: { hp: 115, attack: 140, defense: 130, sp_attack: 55, sp_defense: 55, speed: 40 },
+    experience_group: ExperienceGroup.slow,
+    experience_yield: 241
   },
   tangrowth: {
     id: 465,
@@ -4212,7 +5145,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Tangrowth!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.grass],
-    stats: { hp: 100, attack: 100, defense: 125, sp_attack: 110, sp_defense: 50, speed: 50 }
+    stats: { hp: 100, attack: 100, defense: 125, sp_attack: 110, sp_defense: 50, speed: 50 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 187
   },
   electivire: {
     id: 466,
@@ -4221,7 +5156,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Electivire!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.electric],
-    stats: { hp: 75, attack: 123, defense: 67, sp_attack: 95, sp_defense: 85, speed: 95 }
+    stats: { hp: 75, attack: 123, defense: 67, sp_attack: 95, sp_defense: 85, speed: 95 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 243
   },
   magmortar: {
     id: 467,
@@ -4230,7 +5167,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Magmortar!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.fire],
-    stats: { hp: 75, attack: 95, defense: 67, sp_attack: 125, sp_defense: 95, speed: 83 }
+    stats: { hp: 75, attack: 95, defense: 67, sp_attack: 125, sp_defense: 95, speed: 83 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 243
   },
   togekiss: {
     id: 468,
@@ -4239,7 +5178,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Togekiss!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.fairy, PokemonCombatType.flying],
-    stats: { hp: 85, attack: 50, defense: 95, sp_attack: 120, sp_defense: 115, speed: 80 }
+    stats: { hp: 85, attack: 50, defense: 95, sp_attack: 120, sp_defense: 115, speed: 80 },
+    experience_group: ExperienceGroup.fast,
+    experience_yield: 245
   },
   yanmega: {
     id: 469,
@@ -4248,7 +5189,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Yanmega!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.bug, PokemonCombatType.flying],
-    stats: { hp: 86, attack: 76, defense: 86, sp_attack: 116, sp_defense: 56, speed: 95 }
+    stats: { hp: 86, attack: 76, defense: 86, sp_attack: 116, sp_defense: 56, speed: 95 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 180
   },
   leafeon: {
     id: 470,
@@ -4257,7 +5200,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Leafeon!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.grass],
-    stats: { hp: 65, attack: 110, defense: 130, sp_attack: 60, sp_defense: 65, speed: 95 }
+    stats: { hp: 65, attack: 110, defense: 130, sp_attack: 60, sp_defense: 65, speed: 95 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 184
   },
   glaceon: {
     id: 471,
@@ -4266,7 +5211,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Glaceon!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.ice],
-    stats: { hp: 65, attack: 60, defense: 110, sp_attack: 130, sp_defense: 95, speed: 65 }
+    stats: { hp: 65, attack: 60, defense: 110, sp_attack: 130, sp_defense: 95, speed: 65 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 184
   },
   gliscor: {
     id: 472,
@@ -4275,7 +5222,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Gliscor!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.ground, PokemonCombatType.flying],
-    stats: { hp: 75, attack: 95, defense: 125, sp_attack: 45, sp_defense: 75, speed: 95 }
+    stats: { hp: 75, attack: 95, defense: 125, sp_attack: 45, sp_defense: 75, speed: 95 },
+    experience_group: ExperienceGroup.medium_slow,
+    experience_yield: 179
   },
   mamoswine: {
     id: 473,
@@ -4284,7 +5233,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Mamoswine!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.ice, PokemonCombatType.ground],
-    stats: { hp: 110, attack: 130, defense: 80, sp_attack: 70, sp_defense: 60, speed: 80 }
+    stats: { hp: 110, attack: 130, defense: 80, sp_attack: 70, sp_defense: 60, speed: 80 },
+    experience_group: ExperienceGroup.slow,
+    experience_yield: 239
   },
   porygonz: {
     id: 474,
@@ -4293,7 +5244,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Porygon-Z!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.normal],
-    stats: { hp: 85, attack: 80, defense: 70, sp_attack: 135, sp_defense: 75, speed: 90 }
+    stats: { hp: 85, attack: 80, defense: 70, sp_attack: 135, sp_defense: 75, speed: 90 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 241
   },
   gallade: {
     id: 475,
@@ -4302,7 +5255,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Gallade!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.psychic, PokemonCombatType.fighting],
-    stats: { hp: 68, attack: 165, defense: 95, sp_attack: 65, sp_defense: 115, speed: 110 }
+    stats: { hp: 68, attack: 165, defense: 95, sp_attack: 65, sp_defense: 115, speed: 110 },
+    experience_group: ExperienceGroup.slow,
+    experience_yield: 259
   },
   probopass: {
     id: 476,
@@ -4311,7 +5266,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Probopass!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.rock, PokemonCombatType.steel],
-    stats: { hp: 60, attack: 55, defense: 145, sp_attack: 75, sp_defense: 150, speed: 40 }
+    stats: { hp: 60, attack: 55, defense: 145, sp_attack: 75, sp_defense: 150, speed: 40 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 184
   },
   dusknoir: {
     id: 477,
@@ -4320,7 +5277,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Dusknoir!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.ghost],
-    stats: { hp: 45, attack: 100, defense: 135, sp_attack: 65, sp_defense: 135, speed: 45 }
+    stats: { hp: 45, attack: 100, defense: 135, sp_attack: 65, sp_defense: 135, speed: 45 },
+    experience_group: ExperienceGroup.fast,
+    experience_yield: 236
   },
   froslass: {
     id: 478,
@@ -4329,7 +5288,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Froslass!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.ice, PokemonCombatType.ghost],
-    stats: { hp: 70, attack: 80, defense: 70, sp_attack: 80, sp_defense: 70, speed: 110 }
+    stats: { hp: 70, attack: 80, defense: 70, sp_attack: 80, sp_defense: 70, speed: 110 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 168
   },
   rotom: {
     id: 479,
@@ -4338,7 +5299,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Rotom!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.electric, PokemonCombatType.grass],
-    stats: { hp: 50, attack: 65, defense: 107, sp_attack: 105, sp_defense: 107, speed: 86 }
+    stats: { hp: 50, attack: 65, defense: 107, sp_attack: 105, sp_defense: 107, speed: 86 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 154
   },
   uxie: {
     id: 480,
@@ -4347,7 +5310,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Uxie!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.psychic],
-    stats: { hp: 75, attack: 75, defense: 130, sp_attack: 75, sp_defense: 130, speed: 95 }
+    stats: { hp: 75, attack: 75, defense: 130, sp_attack: 75, sp_defense: 130, speed: 95 },
+    experience_group: ExperienceGroup.slow,
+    experience_yield: 290
   },
   mesprit: {
     id: 481,
@@ -4356,7 +5321,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Mesprit!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.psychic],
-    stats: { hp: 80, attack: 105, defense: 105, sp_attack: 105, sp_defense: 105, speed: 80 }
+    stats: { hp: 80, attack: 105, defense: 105, sp_attack: 105, sp_defense: 105, speed: 80 },
+    experience_group: ExperienceGroup.slow,
+    experience_yield: 290
   },
   azelf: {
     id: 482,
@@ -4365,7 +5332,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Azelf!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.psychic],
-    stats: { hp: 75, attack: 125, defense: 70, sp_attack: 125, sp_defense: 70, speed: 115 }
+    stats: { hp: 75, attack: 125, defense: 70, sp_attack: 125, sp_defense: 70, speed: 115 },
+    experience_group: ExperienceGroup.slow,
+    experience_yield: 290
   },
   dialga: {
     id: 483,
@@ -4374,7 +5343,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Dialga!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.steel, PokemonCombatType.dragon],
-    stats: { hp: 100, attack: 100, defense: 120, sp_attack: 150, sp_defense: 120, speed: 90 }
+    stats: { hp: 100, attack: 100, defense: 120, sp_attack: 150, sp_defense: 120, speed: 90 },
+    experience_group: ExperienceGroup.slow,
+    experience_yield: 340
   },
   palkia: {
     id: 484,
@@ -4383,7 +5354,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Palkia!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.water, PokemonCombatType.dragon],
-    stats: { hp: 90, attack: 100, defense: 100, sp_attack: 150, sp_defense: 120, speed: 120 }
+    stats: { hp: 90, attack: 100, defense: 100, sp_attack: 150, sp_defense: 120, speed: 120 },
+    experience_group: ExperienceGroup.slow,
+    experience_yield: 340
   },
   heatran: {
     id: 485,
@@ -4392,7 +5365,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Heatran!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.fire, PokemonCombatType.steel],
-    stats: { hp: 91, attack: 90, defense: 106, sp_attack: 130, sp_defense: 106, speed: 77 }
+    stats: { hp: 91, attack: 90, defense: 106, sp_attack: 130, sp_defense: 106, speed: 77 },
+    experience_group: ExperienceGroup.slow,
+    experience_yield: 300
   },
   regigigas: {
     id: 486,
@@ -4401,7 +5376,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Regigigas!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.normal],
-    stats: { hp: 110, attack: 160, defense: 110, sp_attack: 80, sp_defense: 110, speed: 100 }
+    stats: { hp: 110, attack: 160, defense: 110, sp_attack: 80, sp_defense: 110, speed: 100 },
+    experience_group: ExperienceGroup.slow,
+    experience_yield: 302
   },
   giratina: {
     id: 487,
@@ -4410,7 +5387,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Giratina!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.ghost, PokemonCombatType.dragon],
-    stats: { hp: 150, attack: 120, defense: 100, sp_attack: 120, sp_defense: 100, speed: 90 }
+    stats: { hp: 150, attack: 120, defense: 100, sp_attack: 120, sp_defense: 100, speed: 90 },
+    experience_group: ExperienceGroup.slow,
+    experience_yield: 340
   },
   cresselia: {
     id: 488,
@@ -4419,7 +5398,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Cresselia!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.psychic],
-    stats: { hp: 120, attack: 70, defense: 110, sp_attack: 75, sp_defense: 120, speed: 85 }
+    stats: { hp: 120, attack: 70, defense: 110, sp_attack: 75, sp_defense: 120, speed: 85 },
+    experience_group: ExperienceGroup.slow,
+    experience_yield: 290
   },
   phione: {
     id: 489,
@@ -4428,7 +5409,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Phione!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.water],
-    stats: { hp: 80, attack: 80, defense: 80, sp_attack: 80, sp_defense: 80, speed: 80 }
+    stats: { hp: 80, attack: 80, defense: 80, sp_attack: 80, sp_defense: 80, speed: 80 },
+    experience_group: ExperienceGroup.slow,
+    experience_yield: 216
   },
   manaphy: {
     id: 490,
@@ -4437,7 +5420,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Manaphy!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.water],
-    stats: { hp: 100, attack: 100, defense: 100, sp_attack: 100, sp_defense: 100, speed: 100 }
+    stats: { hp: 100, attack: 100, defense: 100, sp_attack: 100, sp_defense: 100, speed: 100 },
+    experience_group: ExperienceGroup.slow,
+    experience_yield: 270
   },
   darkrai: {
     id: 491,
@@ -4446,7 +5431,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'darkrai!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.dark],
-    stats: { hp: 70, attack: 90, defense: 90, sp_attack: 135, sp_defense: 90, speed: 125 }
+    stats: { hp: 70, attack: 90, defense: 90, sp_attack: 135, sp_defense: 90, speed: 125 },
+    experience_group: ExperienceGroup.slow,
+    experience_yield: 270
   },
   shaymin: {
     id: 492,
@@ -4455,7 +5442,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Shaymin!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.grass, PokemonCombatType.flying],
-    stats: { hp: 100, attack: 103, defense: 75, sp_attack: 120, sp_defense: 75, speed: 127 }
+    stats: { hp: 100, attack: 103, defense: 75, sp_attack: 120, sp_defense: 75, speed: 127 },
+    experience_group: ExperienceGroup.medium_slow,
+    experience_yield: 270
   },
   arceus: {
     id: 493,
@@ -4464,7 +5453,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Arceus!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.normal],
-    stats: { hp: 120, attack: 120, defense: 120, sp_attack: 120, sp_defense: 120, speed: 120 }
+    stats: { hp: 120, attack: 120, defense: 120, sp_attack: 120, sp_defense: 120, speed: 120 },
+    experience_group: ExperienceGroup.slow,
+    experience_yield: 360
   },
   // Generation 5
   victini: {
@@ -4474,7 +5465,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Victini!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.psychic, PokemonCombatType.fire],
-    stats: { hp: 100, attack: 100, defense: 100, sp_attack: 100, sp_defense: 100, speed: 100 }
+    stats: { hp: 100, attack: 100, defense: 100, sp_attack: 100, sp_defense: 100, speed: 100 },
+    experience_group: ExperienceGroup.slow,
+    experience_yield: 270
   },
   snivy: {
     id: 495,
@@ -4483,7 +5476,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Snivy!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.grass],
-    stats: { hp: 45, attack: 45, defense: 55, sp_attack: 45, sp_defense: 55, speed: 63 }
+    stats: { hp: 45, attack: 45, defense: 55, sp_attack: 45, sp_defense: 55, speed: 63 },
+    experience_group: ExperienceGroup.medium_slow,
+    experience_yield: 62
   },
   servine: {
     id: 496,
@@ -4492,7 +5487,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Servine!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.grass],
-    stats: { hp: 60, attack: 60, defense: 75, sp_attack: 60, sp_defense: 75, speed: 83 }
+    stats: { hp: 60, attack: 60, defense: 75, sp_attack: 60, sp_defense: 75, speed: 83 },
+    experience_group: ExperienceGroup.medium_slow,
+    experience_yield: 145
   },
   serperior: {
     id: 497,
@@ -4501,7 +5498,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Serperior!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.grass],
-    stats: { hp: 75, attack: 75, defense: 95, sp_attack: 75, sp_defense: 95, speed: 113 }
+    stats: { hp: 75, attack: 75, defense: 95, sp_attack: 75, sp_defense: 95, speed: 113 },
+    experience_group: ExperienceGroup.medium_slow,
+    experience_yield: 238
   },
   tepig: {
     id: 498,
@@ -4510,7 +5509,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Tepig!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.fire],
-    stats: { hp: 65, attack: 63, defense: 45, sp_attack: 45, sp_defense: 45, speed: 45 }
+    stats: { hp: 65, attack: 63, defense: 45, sp_attack: 45, sp_defense: 45, speed: 45 },
+    experience_group: ExperienceGroup.medium_slow,
+    experience_yield: 62
   },
   pignite: {
     id: 499,
@@ -4519,7 +5520,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Pignite!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.fire, PokemonCombatType.fighting],
-    stats: { hp: 90, attack: 93, defense: 55, sp_attack: 70, sp_defense: 55, speed: 55 }
+    stats: { hp: 90, attack: 93, defense: 55, sp_attack: 70, sp_defense: 55, speed: 55 },
+    experience_group: ExperienceGroup.medium_slow,
+    experience_yield: 146
   },
   emboar: {
     id: 500,
@@ -4528,7 +5531,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Emboar!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.fire, PokemonCombatType.fighting],
-    stats: { hp: 110, attack: 123, defense: 65, sp_attack: 100, sp_defense: 65, speed: 65 }
+    stats: { hp: 110, attack: 123, defense: 65, sp_attack: 100, sp_defense: 65, speed: 65 },
+    experience_group: ExperienceGroup.medium_slow,
+    experience_yield: 238
   },
   oshawott: {
     id: 501,
@@ -4537,7 +5542,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Oshawott!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.water],
-    stats: { hp: 55, attack: 55, defense: 45, sp_attack: 63, sp_defense: 45, speed: 45 }
+    stats: { hp: 55, attack: 55, defense: 45, sp_attack: 63, sp_defense: 45, speed: 45 },
+    experience_group: ExperienceGroup.medium_slow,
+    experience_yield: 62
   },
   dewott: {
     id: 502,
@@ -4546,7 +5553,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Dewott!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.water],
-    stats: { hp: 75, attack: 75, defense: 60, sp_attack: 83, sp_defense: 60, speed: 60 }
+    stats: { hp: 75, attack: 75, defense: 60, sp_attack: 83, sp_defense: 60, speed: 60 },
+    experience_group: ExperienceGroup.medium_slow,
+    experience_yield: 145
   },
   samurott: {
     id: 503,
@@ -4555,7 +5564,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Samurott!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.water, PokemonCombatType.dark],
-    stats: { hp: 90, attack: 108, defense: 80, sp_attack: 100, sp_defense: 65, speed: 85 }
+    stats: { hp: 90, attack: 108, defense: 80, sp_attack: 100, sp_defense: 65, speed: 85 },
+    experience_group: ExperienceGroup.medium_slow,
+    experience_yield: 264
   },
   patrat: {
     id: 504,
@@ -4564,7 +5575,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Patrat!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.normal],
-    stats: { hp: 45, attack: 55, defense: 39, sp_attack: 35, sp_defense: 39, speed: 42 }
+    stats: { hp: 45, attack: 55, defense: 39, sp_attack: 35, sp_defense: 39, speed: 42 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 51
   },
   watchog: {
     id: 505,
@@ -4573,7 +5586,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Watchog!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.normal],
-    stats: { hp: 60, attack: 85, defense: 69, sp_attack: 60, sp_defense: 69, speed: 77 }
+    stats: { hp: 60, attack: 85, defense: 69, sp_attack: 60, sp_defense: 69, speed: 77 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 147
   },
   lillipup: {
     id: 506,
@@ -4582,7 +5597,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Lillipup!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.normal],
-    stats: { hp: 45, attack: 60, defense: 45, sp_attack: 25, sp_defense: 45, speed: 55 }
+    stats: { hp: 45, attack: 60, defense: 45, sp_attack: 25, sp_defense: 45, speed: 55 },
+    experience_group: ExperienceGroup.medium_slow,
+    experience_yield: 55
   },
   herdier: {
     id: 507,
@@ -4591,7 +5608,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Herdier!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.normal],
-    stats: { hp: 65, attack: 80, defense: 65, sp_attack: 35, sp_defense: 65, speed: 60 }
+    stats: { hp: 65, attack: 80, defense: 65, sp_attack: 35, sp_defense: 65, speed: 60 },
+    experience_group: ExperienceGroup.medium_slow,
+    experience_yield: 130
   },
   stoutland: {
     id: 508,
@@ -4600,7 +5619,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Stoutland!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.normal],
-    stats: { hp: 85, attack: 110, defense: 90, sp_attack: 45, sp_defense: 90, speed: 80 }
+    stats: { hp: 85, attack: 110, defense: 90, sp_attack: 45, sp_defense: 90, speed: 80 },
+    experience_group: ExperienceGroup.medium_slow,
+    experience_yield: 225
   },
   purrloin: {
     id: 509,
@@ -4609,7 +5630,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Purrloin!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.dark],
-    stats: { hp: 41, attack: 50, defense: 37, sp_attack: 50, sp_defense: 37, speed: 66 }
+    stats: { hp: 41, attack: 50, defense: 37, sp_attack: 50, sp_defense: 37, speed: 66 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 56
   },
   liepard: {
     id: 510,
@@ -4618,7 +5641,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Liepard!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.dark],
-    stats: { hp: 64, attack: 88, defense: 50, sp_attack: 88, sp_defense: 50, speed: 106 }
+    stats: { hp: 64, attack: 88, defense: 50, sp_attack: 88, sp_defense: 50, speed: 106 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 156
   },
   pansage: {
     id: 511,
@@ -4627,7 +5652,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Pansage!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.grass],
-    stats: { hp: 50, attack: 53, defense: 48, sp_attack: 53, sp_defense: 48, speed: 64 }
+    stats: { hp: 50, attack: 53, defense: 48, sp_attack: 53, sp_defense: 48, speed: 64 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 63
   },
   simisage: {
     id: 512,
@@ -4636,7 +5663,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Simisage!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.grass],
-    stats: { hp: 75, attack: 98, defense: 63, sp_attack: 98, sp_defense: 63, speed: 101 }
+    stats: { hp: 75, attack: 98, defense: 63, sp_attack: 98, sp_defense: 63, speed: 101 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 174
   },
   pansear: {
     id: 513,
@@ -4645,7 +5674,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Pansear!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.fire],
-    stats: { hp: 50, attack: 53, defense: 48, sp_attack: 53, sp_defense: 48, speed: 64 }
+    stats: { hp: 50, attack: 53, defense: 48, sp_attack: 53, sp_defense: 48, speed: 64 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 63
   },
   simisear: {
     id: 514,
@@ -4654,7 +5685,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Simisear!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.fire],
-    stats: { hp: 75, attack: 98, defense: 63, sp_attack: 98, sp_defense: 63, speed: 101 }
+    stats: { hp: 75, attack: 98, defense: 63, sp_attack: 98, sp_defense: 63, speed: 101 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 174
   },
   panpour: {
     id: 515,
@@ -4663,7 +5696,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Panpour!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.water],
-    stats: { hp: 50, attack: 53, defense: 48, sp_attack: 53, sp_defense: 48, speed: 64 }
+    stats: { hp: 50, attack: 53, defense: 48, sp_attack: 53, sp_defense: 48, speed: 64 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 63
   },
   simipour: {
     id: 516,
@@ -4672,7 +5707,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Simipour!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.water],
-    stats: { hp: 75, attack: 98, defense: 63, sp_attack: 98, sp_defense: 63, speed: 101 }
+    stats: { hp: 75, attack: 98, defense: 63, sp_attack: 98, sp_defense: 63, speed: 101 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 174
   },
   munna: {
     id: 517,
@@ -4681,7 +5718,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Munna!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.psychic],
-    stats: { hp: 76, attack: 25, defense: 45, sp_attack: 67, sp_defense: 55, speed: 24 }
+    stats: { hp: 76, attack: 25, defense: 45, sp_attack: 67, sp_defense: 55, speed: 24 },
+    experience_group: ExperienceGroup.fast,
+    experience_yield: 58
   },
   musharna: {
     id: 518,
@@ -4690,7 +5729,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Musharna!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.psychic],
-    stats: { hp: 116, attack: 55, defense: 85, sp_attack: 107, sp_defense: 95, speed: 29 }
+    stats: { hp: 116, attack: 55, defense: 85, sp_attack: 107, sp_defense: 95, speed: 29 },
+    experience_group: ExperienceGroup.fast,
+    experience_yield: 170
   },
   pidove: {
     id: 519,
@@ -4699,7 +5740,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Pidove!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.normal, PokemonCombatType.flying],
-    stats: { hp: 50, attack: 55, defense: 50, sp_attack: 36, sp_defense: 30, speed: 43 }
+    stats: { hp: 50, attack: 55, defense: 50, sp_attack: 36, sp_defense: 30, speed: 43 },
+    experience_group: ExperienceGroup.medium_slow,
+    experience_yield: 53
   },
   tranquill: {
     id: 520,
@@ -4708,7 +5751,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Tranquill!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.normal, PokemonCombatType.flying],
-    stats: { hp: 62, attack: 77, defense: 62, sp_attack: 50, sp_defense: 42, speed: 65 }
+    stats: { hp: 62, attack: 77, defense: 62, sp_attack: 50, sp_defense: 42, speed: 65 },
+    experience_group: ExperienceGroup.medium_slow,
+    experience_yield: 125
   },
   unfezant: {
     id: 521,
@@ -4717,7 +5762,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Unfezant!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.normal, PokemonCombatType.flying],
-    stats: { hp: 80, attack: 115, defense: 80, sp_attack: 65, sp_defense: 55, speed: 93 }
+    stats: { hp: 80, attack: 115, defense: 80, sp_attack: 65, sp_defense: 55, speed: 93 },
+    experience_group: ExperienceGroup.medium_slow,
+    experience_yield: 220
   },
   blitzle: {
     id: 522,
@@ -4726,7 +5773,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Blitzle!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.electric],
-    stats: { hp: 45, attack: 60, defense: 32, sp_attack: 50, sp_defense: 32, speed: 76 }
+    stats: { hp: 45, attack: 60, defense: 32, sp_attack: 50, sp_defense: 32, speed: 76 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 59
   },
   zebstrika: {
     id: 523,
@@ -4735,7 +5784,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Zebstrika!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.electric],
-    stats: { hp: 75, attack: 100, defense: 63, sp_attack: 80, sp_defense: 63, speed: 116 }
+    stats: { hp: 75, attack: 100, defense: 63, sp_attack: 80, sp_defense: 63, speed: 116 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 174
   },
   roggenrola: {
     id: 524,
@@ -4744,7 +5795,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Roggenrola!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.rock],
-    stats: { hp: 55, attack: 75, defense: 85, sp_attack: 25, sp_defense: 25, speed: 15 }
+    stats: { hp: 55, attack: 75, defense: 85, sp_attack: 25, sp_defense: 25, speed: 15 },
+    experience_group: ExperienceGroup.medium_slow,
+    experience_yield: 56
   },
   boldore: {
     id: 525,
@@ -4753,7 +5806,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Boldore!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.rock],
-    stats: { hp: 70, attack: 105, defense: 105, sp_attack: 50, sp_defense: 40, speed: 20 }
+    stats: { hp: 70, attack: 105, defense: 105, sp_attack: 50, sp_defense: 40, speed: 20 },
+    experience_group: ExperienceGroup.medium_slow,
+    experience_yield: 137
   },
   gigalith: {
     id: 526,
@@ -4762,7 +5817,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Gigalith!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.rock],
-    stats: { hp: 85, attack: 135, defense: 130, sp_attack: 60, sp_defense: 80, speed: 25 }
+    stats: { hp: 85, attack: 135, defense: 130, sp_attack: 60, sp_defense: 80, speed: 25 },
+    experience_group: ExperienceGroup.medium_slow,
+    experience_yield: 232
   },
   woobat: {
     id: 527,
@@ -4771,7 +5828,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Woobat!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.psychic, PokemonCombatType.flying],
-    stats: { hp: 65, attack: 45, defense: 43, sp_attack: 55, sp_defense: 43, speed: 72 }
+    stats: { hp: 65, attack: 45, defense: 43, sp_attack: 55, sp_defense: 43, speed: 72 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 65
   },
   swoobat: {
     id: 528,
@@ -4780,7 +5839,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Swoobat!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.psychic, PokemonCombatType.flying],
-    stats: { hp: 67, attack: 57, defense: 55, sp_attack: 77, sp_defense: 55, speed: 114 }
+    stats: { hp: 67, attack: 57, defense: 55, sp_attack: 77, sp_defense: 55, speed: 114 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 149
   },
   drilbur: {
     id: 529,
@@ -4789,7 +5850,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Drilbur!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.ground],
-    stats: { hp: 60, attack: 85, defense: 40, sp_attack: 30, sp_defense: 45, speed: 68 }
+    stats: { hp: 60, attack: 85, defense: 40, sp_attack: 30, sp_defense: 45, speed: 68 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 66
   },
   excadrill: {
     id: 530,
@@ -4798,7 +5861,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Excadrill!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.ground, PokemonCombatType.steel],
-    stats: { hp: 110, attack: 135, defense: 60, sp_attack: 50, sp_defense: 65, speed: 88 }
+    stats: { hp: 110, attack: 135, defense: 60, sp_attack: 50, sp_defense: 65, speed: 88 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 178
   },
   audino: {
     id: 531,
@@ -4807,7 +5872,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Audino!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.normal, PokemonCombatType.fairy],
-    stats: { hp: 103, attack: 60, defense: 126, sp_attack: 80, sp_defense: 126, speed: 50 }
+    stats: { hp: 103, attack: 60, defense: 126, sp_attack: 80, sp_defense: 126, speed: 50 },
+    experience_group: ExperienceGroup.fast,
+    experience_yield: 390
   },
   timburr: {
     id: 532,
@@ -4816,7 +5883,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Timburr!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.fighting],
-    stats: { hp: 75, attack: 80, defense: 55, sp_attack: 25, sp_defense: 35, speed: 35 }
+    stats: { hp: 75, attack: 80, defense: 55, sp_attack: 25, sp_defense: 35, speed: 35 },
+    experience_group: ExperienceGroup.medium_slow,
+    experience_yield: 61
   },
   gurdurr: {
     id: 533,
@@ -4825,7 +5894,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Gurdurr!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.fighting],
-    stats: { hp: 85, attack: 105, defense: 85, sp_attack: 40, sp_defense: 50, speed: 40 }
+    stats: { hp: 85, attack: 105, defense: 85, sp_attack: 40, sp_defense: 50, speed: 40 },
+    experience_group: ExperienceGroup.medium_slow,
+    experience_yield: 142
   },
   conkeldurr: {
     id: 534,
@@ -4834,7 +5905,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Conkeldurr!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.fighting],
-    stats: { hp: 105, attack: 140, defense: 95, sp_attack: 55, sp_defense: 65, speed: 45 }
+    stats: { hp: 105, attack: 140, defense: 95, sp_attack: 55, sp_defense: 65, speed: 45 },
+    experience_group: ExperienceGroup.medium_slow,
+    experience_yield: 227
   },
   tympole: {
     id: 535,
@@ -4843,7 +5916,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Tympole!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.water],
-    stats: { hp: 50, attack: 50, defense: 40, sp_attack: 50, sp_defense: 40, speed: 64 }
+    stats: { hp: 50, attack: 50, defense: 40, sp_attack: 50, sp_defense: 40, speed: 64 },
+    experience_group: ExperienceGroup.medium_slow,
+    experience_yield: 59
   },
   palpitoad: {
     id: 536,
@@ -4852,7 +5927,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Palpitoad!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.water, PokemonCombatType.ground],
-    stats: { hp: 75, attack: 65, defense: 55, sp_attack: 65, sp_defense: 55, speed: 69 }
+    stats: { hp: 75, attack: 65, defense: 55, sp_attack: 65, sp_defense: 55, speed: 69 },
+    experience_group: ExperienceGroup.medium_slow,
+    experience_yield: 134
   },
   seismitoad: {
     id: 537,
@@ -4861,7 +5938,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Seismitoad!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.water, PokemonCombatType.ground],
-    stats: { hp: 105, attack: 95, defense: 75, sp_attack: 85, sp_defense: 75, speed: 74 }
+    stats: { hp: 105, attack: 95, defense: 75, sp_attack: 85, sp_defense: 75, speed: 74 },
+    experience_group: ExperienceGroup.medium_slow,
+    experience_yield: 229
   },
   throh: {
     id: 538,
@@ -4870,7 +5949,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Throh!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.fighting],
-    stats: { hp: 120, attack: 100, defense: 85, sp_attack: 30, sp_defense: 85, speed: 45 }
+    stats: { hp: 120, attack: 100, defense: 85, sp_attack: 30, sp_defense: 85, speed: 45 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 163
   },
   sawk: {
     id: 539,
@@ -4879,7 +5960,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Sawk!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.fighting],
-    stats: { hp: 75, attack: 125, defense: 75, sp_attack: 30, sp_defense: 75, speed: 85 }
+    stats: { hp: 75, attack: 125, defense: 75, sp_attack: 30, sp_defense: 75, speed: 85 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 163
   },
   sewaddle: {
     id: 540,
@@ -4888,7 +5971,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Sewaddle!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.bug, PokemonCombatType.grass],
-    stats: { hp: 45, attack: 53, defense: 70, sp_attack: 40, sp_defense: 60, speed: 42 }
+    stats: { hp: 45, attack: 53, defense: 70, sp_attack: 40, sp_defense: 60, speed: 42 },
+    experience_group: ExperienceGroup.medium_slow,
+    experience_yield: 62
   },
   swadloon: {
     id: 541,
@@ -4897,7 +5982,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Swadloon!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.bug, PokemonCombatType.grass],
-    stats: { hp: 55, attack: 63, defense: 90, sp_attack: 50, sp_defense: 80, speed: 42 }
+    stats: { hp: 55, attack: 63, defense: 90, sp_attack: 50, sp_defense: 80, speed: 42 },
+    experience_group: ExperienceGroup.medium_slow,
+    experience_yield: 133
   },
   leavanny: {
     id: 542,
@@ -4906,7 +5993,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Leavanny!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.bug, PokemonCombatType.grass],
-    stats: { hp: 75, attack: 103, defense: 80, sp_attack: 70, sp_defense: 80, speed: 92 }
+    stats: { hp: 75, attack: 103, defense: 80, sp_attack: 70, sp_defense: 80, speed: 92 },
+    experience_group: ExperienceGroup.medium_slow,
+    experience_yield: 225
   },
   venipede: {
     id: 543,
@@ -4915,7 +6004,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Venipede!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.bug, PokemonCombatType.poison],
-    stats: { hp: 30, attack: 45, defense: 59, sp_attack: 30, sp_defense: 39, speed: 57 }
+    stats: { hp: 30, attack: 45, defense: 59, sp_attack: 30, sp_defense: 39, speed: 57 },
+    experience_group: ExperienceGroup.medium_slow,
+    experience_yield: 52
   },
   whirlipede: {
     id: 544,
@@ -4924,7 +6015,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Whirlipede!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.bug, PokemonCombatType.poison],
-    stats: { hp: 40, attack: 55, defense: 99, sp_attack: 40, sp_defense: 79, speed: 47 }
+    stats: { hp: 40, attack: 55, defense: 99, sp_attack: 40, sp_defense: 79, speed: 47 },
+    experience_group: ExperienceGroup.medium_slow,
+    experience_yield: 126
   },
   scolipede: {
     id: 545,
@@ -4933,7 +6026,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Scolipede!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.bug, PokemonCombatType.poison],
-    stats: { hp: 60, attack: 100, defense: 89, sp_attack: 55, sp_defense: 69, speed: 112 }
+    stats: { hp: 60, attack: 100, defense: 89, sp_attack: 55, sp_defense: 69, speed: 112 },
+    experience_group: ExperienceGroup.medium_slow,
+    experience_yield: 218
   },
   cottonee: {
     id: 546,
@@ -4942,7 +6037,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Cottonee!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.grass, PokemonCombatType.fairy],
-    stats: { hp: 40, attack: 27, defense: 60, sp_attack: 37, sp_defense: 50, speed: 66 }
+    stats: { hp: 40, attack: 27, defense: 60, sp_attack: 37, sp_defense: 50, speed: 66 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 56
   },
   whimsicott: {
     id: 547,
@@ -4951,7 +6048,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Whimsicott!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.grass, PokemonCombatType.fairy],
-    stats: { hp: 60, attack: 67, defense: 85, sp_attack: 77, sp_defense: 75, speed: 116 }
+    stats: { hp: 60, attack: 67, defense: 85, sp_attack: 77, sp_defense: 75, speed: 116 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 168
   },
   petilil: {
     id: 548,
@@ -4960,7 +6059,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Petilil!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.grass],
-    stats: { hp: 45, attack: 35, defense: 50, sp_attack: 70, sp_defense: 50, speed: 30 }
+    stats: { hp: 45, attack: 35, defense: 50, sp_attack: 70, sp_defense: 50, speed: 30 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 56
   },
   lilligant: {
     id: 549,
@@ -4969,7 +6070,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Lilligant!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.grass, PokemonCombatType.fighting],
-    stats: { hp: 70, attack: 105, defense: 75, sp_attack: 50, sp_defense: 75, speed: 105 }
+    stats: { hp: 70, attack: 105, defense: 75, sp_attack: 50, sp_defense: 75, speed: 105 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 168
   },
   basculin: {
     id: 550,
@@ -4978,7 +6081,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Basculin!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.water],
-    stats: { hp: 70, attack: 92, defense: 65, sp_attack: 80, sp_defense: 55, speed: 98 }
+    stats: { hp: 70, attack: 92, defense: 65, sp_attack: 80, sp_defense: 55, speed: 98 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 161
   },
   sandile: {
     id: 551,
@@ -4987,7 +6092,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Sandile!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.ground, PokemonCombatType.dark],
-    stats: { hp: 50, attack: 72, defense: 35, sp_attack: 35, sp_defense: 35, speed: 65 }
+    stats: { hp: 50, attack: 72, defense: 35, sp_attack: 35, sp_defense: 35, speed: 65 },
+    experience_group: ExperienceGroup.medium_slow,
+    experience_yield: 58
   },
   krokorok: {
     id: 552,
@@ -4996,7 +6103,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Krokorok!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.ground, PokemonCombatType.dark],
-    stats: { hp: 60, attack: 82, defense: 45, sp_attack: 45, sp_defense: 45, speed: 74 }
+    stats: { hp: 60, attack: 82, defense: 45, sp_attack: 45, sp_defense: 45, speed: 74 },
+    experience_group: ExperienceGroup.medium_slow,
+    experience_yield: 123
   },
   krookodile: {
     id: 553,
@@ -5005,7 +6114,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Krookodile!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.ground, PokemonCombatType.dark],
-    stats: { hp: 95, attack: 117, defense: 80, sp_attack: 65, sp_defense: 70, speed: 92 }
+    stats: { hp: 95, attack: 117, defense: 80, sp_attack: 65, sp_defense: 70, speed: 92 },
+    experience_group: ExperienceGroup.medium_slow,
+    experience_yield: 260
   },
   darumaka: {
     id: 554,
@@ -5014,7 +6125,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Darumaka!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.ice],
-    stats: { hp: 70, attack: 90, defense: 45, sp_attack: 15, sp_defense: 45, speed: 50 }
+    stats: { hp: 70, attack: 90, defense: 45, sp_attack: 15, sp_defense: 45, speed: 50 },
+    experience_group: ExperienceGroup.medium_slow,
+    experience_yield: 63
   },
   darmanitan: {
     id: 555,
@@ -5023,7 +6136,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Darmanitan!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.ice, PokemonCombatType.fire],
-    stats: { hp: 105, attack: 160, defense: 55, sp_attack: 30, sp_defense: 55, speed: 135 }
+    stats: { hp: 105, attack: 160, defense: 55, sp_attack: 30, sp_defense: 55, speed: 135 },
+    experience_group: ExperienceGroup.medium_slow,
+    experience_yield: 168
   },
   maractus: {
     id: 556,
@@ -5032,7 +6147,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Maractus!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.grass],
-    stats: { hp: 75, attack: 86, defense: 67, sp_attack: 106, sp_defense: 67, speed: 60 }
+    stats: { hp: 75, attack: 86, defense: 67, sp_attack: 106, sp_defense: 67, speed: 60 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 161
   },
   dwebble: {
     id: 557,
@@ -5041,7 +6158,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Dwebble!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.bug, PokemonCombatType.rock],
-    stats: { hp: 50, attack: 65, defense: 85, sp_attack: 35, sp_defense: 35, speed: 55 }
+    stats: { hp: 50, attack: 65, defense: 85, sp_attack: 35, sp_defense: 35, speed: 55 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 65
   },
   crustle: {
     id: 558,
@@ -5050,7 +6169,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Crustle!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.bug, PokemonCombatType.rock],
-    stats: { hp: 70, attack: 105, defense: 125, sp_attack: 65, sp_defense: 75, speed: 45 }
+    stats: { hp: 70, attack: 105, defense: 125, sp_attack: 65, sp_defense: 75, speed: 45 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 170
   },
   scraggy: {
     id: 559,
@@ -5059,7 +6180,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Scraggy!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.dark, PokemonCombatType.fighting],
-    stats: { hp: 50, attack: 75, defense: 70, sp_attack: 35, sp_defense: 70, speed: 48 }
+    stats: { hp: 50, attack: 75, defense: 70, sp_attack: 35, sp_defense: 70, speed: 48 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 70
   },
   scrafty: {
     id: 560,
@@ -5068,7 +6191,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Scrafty!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.dark, PokemonCombatType.fighting],
-    stats: { hp: 65, attack: 90, defense: 115, sp_attack: 45, sp_defense: 115, speed: 58 }
+    stats: { hp: 65, attack: 90, defense: 115, sp_attack: 45, sp_defense: 115, speed: 58 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 171
   },
   sigilyph: {
     id: 561,
@@ -5077,7 +6202,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Sigilyph!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.psychic, PokemonCombatType.flying],
-    stats: { hp: 72, attack: 58, defense: 80, sp_attack: 103, sp_defense: 80, speed: 97 }
+    stats: { hp: 72, attack: 58, defense: 80, sp_attack: 103, sp_defense: 80, speed: 97 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 172
   },
   yamask: {
     id: 562,
@@ -5086,7 +6213,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Yamask!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.ground, PokemonCombatType.ghost],
-    stats: { hp: 38, attack: 55, defense: 85, sp_attack: 30, sp_defense: 65, speed: 30 }
+    stats: { hp: 38, attack: 55, defense: 85, sp_attack: 30, sp_defense: 65, speed: 30 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 61
   },
   cofagrigus: {
     id: 563,
@@ -5095,7 +6224,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Cofagrigus!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.ghost],
-    stats: { hp: 58, attack: 50, defense: 145, sp_attack: 95, sp_defense: 105, speed: 30 }
+    stats: { hp: 58, attack: 50, defense: 145, sp_attack: 95, sp_defense: 105, speed: 30 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 169
   },
   tirtouga: {
     id: 564,
@@ -5104,7 +6235,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Tirtouga!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.water, PokemonCombatType.rock],
-    stats: { hp: 54, attack: 78, defense: 103, sp_attack: 53, sp_defense: 45, speed: 22 }
+    stats: { hp: 54, attack: 78, defense: 103, sp_attack: 53, sp_defense: 45, speed: 22 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 71
   },
   carracosta: {
     id: 565,
@@ -5113,7 +6246,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Carracosta!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.water, PokemonCombatType.rock],
-    stats: { hp: 74, attack: 108, defense: 133, sp_attack: 83, sp_defense: 65, speed: 32 }
+    stats: { hp: 74, attack: 108, defense: 133, sp_attack: 83, sp_defense: 65, speed: 32 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 173
   },
   archen: {
     id: 566,
@@ -5122,7 +6257,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Archen!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.rock, PokemonCombatType.flying],
-    stats: { hp: 55, attack: 112, defense: 45, sp_attack: 74, sp_defense: 45, speed: 70 }
+    stats: { hp: 55, attack: 112, defense: 45, sp_attack: 74, sp_defense: 45, speed: 70 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 71
   },
   archeops: {
     id: 567,
@@ -5131,7 +6268,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Archeops!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.rock, PokemonCombatType.flying],
-    stats: { hp: 75, attack: 140, defense: 65, sp_attack: 112, sp_defense: 65, speed: 110 }
+    stats: { hp: 75, attack: 140, defense: 65, sp_attack: 112, sp_defense: 65, speed: 110 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 177
   },
   trubbish: {
     id: 568,
@@ -5140,7 +6279,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Trubbish!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.poison],
-    stats: { hp: 50, attack: 50, defense: 62, sp_attack: 40, sp_defense: 62, speed: 65 }
+    stats: { hp: 50, attack: 50, defense: 62, sp_attack: 40, sp_defense: 62, speed: 65 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 66
   },
   garbodor: {
     id: 569,
@@ -5149,7 +6290,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Garbodor!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.poison],
-    stats: { hp: 80, attack: 95, defense: 82, sp_attack: 60, sp_defense: 82, speed: 75 }
+    stats: { hp: 80, attack: 95, defense: 82, sp_attack: 60, sp_defense: 82, speed: 75 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 166
   },
   zorua: {
     id: 570,
@@ -5158,7 +6301,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Zorua!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.normal, PokemonCombatType.ghost],
-    stats: { hp: 35, attack: 60, defense: 40, sp_attack: 85, sp_defense: 40, speed: 70 }
+    stats: { hp: 35, attack: 60, defense: 40, sp_attack: 85, sp_defense: 40, speed: 70 },
+    experience_group: ExperienceGroup.medium_slow,
+    experience_yield: 66
   },
   zoroark: {
     id: 571,
@@ -5167,7 +6312,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Zoroark!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.normal, PokemonCombatType.ghost],
-    stats: { hp: 55, attack: 100, defense: 60, sp_attack: 125, sp_defense: 60, speed: 110 }
+    stats: { hp: 55, attack: 100, defense: 60, sp_attack: 125, sp_defense: 60, speed: 110 },
+    experience_group: ExperienceGroup.medium_slow,
+    experience_yield: 179
   },
   minccino: {
     id: 572,
@@ -5176,7 +6323,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Minccino!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.normal],
-    stats: { hp: 55, attack: 50, defense: 40, sp_attack: 40, sp_defense: 40, speed: 75 }
+    stats: { hp: 55, attack: 50, defense: 40, sp_attack: 40, sp_defense: 40, speed: 75 },
+    experience_group: ExperienceGroup.fast,
+    experience_yield: 60
   },
   cinccino: {
     id: 573,
@@ -5185,7 +6334,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Cinccino!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.normal],
-    stats: { hp: 75, attack: 95, defense: 60, sp_attack: 65, sp_defense: 60, speed: 115 }
+    stats: { hp: 75, attack: 95, defense: 60, sp_attack: 65, sp_defense: 60, speed: 115 },
+    experience_group: ExperienceGroup.fast,
+    experience_yield: 165
   },
   gothita: {
     id: 574,
@@ -5194,7 +6345,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Gothita!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.psychic],
-    stats: { hp: 45, attack: 30, defense: 50, sp_attack: 55, sp_defense: 65, speed: 45 }
+    stats: { hp: 45, attack: 30, defense: 50, sp_attack: 55, sp_defense: 65, speed: 45 },
+    experience_group: ExperienceGroup.medium_slow,
+    experience_yield: 58
   },
   gothorita: {
     id: 575,
@@ -5203,7 +6356,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Gothorita!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.psychic],
-    stats: { hp: 60, attack: 45, defense: 70, sp_attack: 75, sp_defense: 85, speed: 55 }
+    stats: { hp: 60, attack: 45, defense: 70, sp_attack: 75, sp_defense: 85, speed: 55 },
+    experience_group: ExperienceGroup.medium_slow,
+    experience_yield: 137
   },
   gothitelle: {
     id: 576,
@@ -5212,7 +6367,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Gothitelle!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.psychic],
-    stats: { hp: 70, attack: 55, defense: 95, sp_attack: 95, sp_defense: 110, speed: 65 }
+    stats: { hp: 70, attack: 55, defense: 95, sp_attack: 95, sp_defense: 110, speed: 65 },
+    experience_group: ExperienceGroup.medium_slow,
+    experience_yield: 245
   },
   solosis: {
     id: 577,
@@ -5221,7 +6378,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Solosis!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.psychic],
-    stats: { hp: 45, attack: 30, defense: 40, sp_attack: 105, sp_defense: 50, speed: 20 }
+    stats: { hp: 45, attack: 30, defense: 40, sp_attack: 105, sp_defense: 50, speed: 20 },
+    experience_group: ExperienceGroup.medium_slow,
+    experience_yield: 58
   },
   duosion: {
     id: 578,
@@ -5230,7 +6389,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Duosion!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.psychic],
-    stats: { hp: 65, attack: 40, defense: 50, sp_attack: 125, sp_defense: 60, speed: 30 }
+    stats: { hp: 65, attack: 40, defense: 50, sp_attack: 125, sp_defense: 60, speed: 30 },
+    experience_group: ExperienceGroup.medium_slow,
+    experience_yield: 130
   },
   reuniclus: {
     id: 579,
@@ -5239,7 +6400,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Reuniclus!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.psychic],
-    stats: { hp: 110, attack: 65, defense: 75, sp_attack: 125, sp_defense: 85, speed: 30 }
+    stats: { hp: 110, attack: 65, defense: 75, sp_attack: 125, sp_defense: 85, speed: 30 },
+    experience_group: ExperienceGroup.medium_slow,
+    experience_yield: 221
   },
   ducklett: {
     id: 580,
@@ -5248,7 +6411,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Ducklett!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.water, PokemonCombatType.flying],
-    stats: { hp: 62, attack: 44, defense: 50, sp_attack: 44, sp_defense: 50, speed: 55 }
+    stats: { hp: 62, attack: 44, defense: 50, sp_attack: 44, sp_defense: 50, speed: 55 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 61
   },
   swanna: {
     id: 581,
@@ -5257,7 +6422,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Swanna!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.water, PokemonCombatType.flying],
-    stats: { hp: 75, attack: 87, defense: 63, sp_attack: 87, sp_defense: 63, speed: 98 }
+    stats: { hp: 75, attack: 87, defense: 63, sp_attack: 87, sp_defense: 63, speed: 98 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 166
   },
   vanillite: {
     id: 582,
@@ -5266,7 +6433,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Vanillite!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.ice],
-    stats: { hp: 36, attack: 50, defense: 50, sp_attack: 65, sp_defense: 60, speed: 44 }
+    stats: { hp: 36, attack: 50, defense: 50, sp_attack: 65, sp_defense: 60, speed: 44 },
+    experience_group: ExperienceGroup.slow,
+    experience_yield: 61
   },
   vanillish: {
     id: 583,
@@ -5275,7 +6444,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Vanillish!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.ice],
-    stats: { hp: 51, attack: 65, defense: 65, sp_attack: 80, sp_defense: 75, speed: 59 }
+    stats: { hp: 51, attack: 65, defense: 65, sp_attack: 80, sp_defense: 75, speed: 59 },
+    experience_group: ExperienceGroup.slow,
+    experience_yield: 138
   },
   vanilluxe: {
     id: 584,
@@ -5284,7 +6455,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Vanilluxe!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.ice],
-    stats: { hp: 71, attack: 95, defense: 85, sp_attack: 110, sp_defense: 95, speed: 79 }
+    stats: { hp: 71, attack: 95, defense: 85, sp_attack: 110, sp_defense: 95, speed: 79 },
+    experience_group: ExperienceGroup.slow,
+    experience_yield: 241
   },
   deerling: {
     id: 585,
@@ -5293,7 +6466,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Deerling!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.normal, PokemonCombatType.grass],
-    stats: { hp: 60, attack: 60, defense: 50, sp_attack: 40, sp_defense: 50, speed: 75 }
+    stats: { hp: 60, attack: 60, defense: 50, sp_attack: 40, sp_defense: 50, speed: 75 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 67
   },
   sawsbuck: {
     id: 586,
@@ -5302,7 +6477,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Sawsbuck!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.normal, PokemonCombatType.grass],
-    stats: { hp: 80, attack: 100, defense: 70, sp_attack: 60, sp_defense: 70, speed: 95 }
+    stats: { hp: 80, attack: 100, defense: 70, sp_attack: 60, sp_defense: 70, speed: 95 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 166
   },
   emolga: {
     id: 587,
@@ -5311,7 +6488,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Emolga!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.electric, PokemonCombatType.flying],
-    stats: { hp: 55, attack: 75, defense: 60, sp_attack: 75, sp_defense: 60, speed: 103 }
+    stats: { hp: 55, attack: 75, defense: 60, sp_attack: 75, sp_defense: 60, speed: 103 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 150
   },
   karrablast: {
     id: 588,
@@ -5320,7 +6499,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Karrablast!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.bug],
-    stats: { hp: 50, attack: 75, defense: 45, sp_attack: 40, sp_defense: 45, speed: 60 }
+    stats: { hp: 50, attack: 75, defense: 45, sp_attack: 40, sp_defense: 45, speed: 60 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 63
   },
   escavalier: {
     id: 589,
@@ -5329,7 +6510,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Escavalier!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.bug, PokemonCombatType.steel],
-    stats: { hp: 70, attack: 135, defense: 105, sp_attack: 60, sp_defense: 105, speed: 20 }
+    stats: { hp: 70, attack: 135, defense: 105, sp_attack: 60, sp_defense: 105, speed: 20 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 173
   },
   foongus: {
     id: 590,
@@ -5338,7 +6521,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Foongus!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.grass, PokemonCombatType.poison],
-    stats: { hp: 69, attack: 55, defense: 45, sp_attack: 55, sp_defense: 55, speed: 15 }
+    stats: { hp: 69, attack: 55, defense: 45, sp_attack: 55, sp_defense: 55, speed: 15 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 59
   },
   amoonguss: {
     id: 591,
@@ -5347,7 +6532,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Amoonguss!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.grass, PokemonCombatType.poison],
-    stats: { hp: 114, attack: 85, defense: 70, sp_attack: 85, sp_defense: 80, speed: 30 }
+    stats: { hp: 114, attack: 85, defense: 70, sp_attack: 85, sp_defense: 80, speed: 30 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 162
   },
   frillish: {
     id: 592,
@@ -5356,7 +6543,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Frillish!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.water, PokemonCombatType.ghost],
-    stats: { hp: 55, attack: 40, defense: 50, sp_attack: 65, sp_defense: 85, speed: 40 }
+    stats: { hp: 55, attack: 40, defense: 50, sp_attack: 65, sp_defense: 85, speed: 40 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 67
   },
   jellicent: {
     id: 593,
@@ -5365,7 +6554,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Jellicent!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.water, PokemonCombatType.ghost],
-    stats: { hp: 100, attack: 60, defense: 70, sp_attack: 85, sp_defense: 105, speed: 60 }
+    stats: { hp: 100, attack: 60, defense: 70, sp_attack: 85, sp_defense: 105, speed: 60 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 168
   },
   alomomola: {
     id: 594,
@@ -5374,7 +6565,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Alomomola!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.water],
-    stats: { hp: 165, attack: 75, defense: 80, sp_attack: 40, sp_defense: 45, speed: 65 }
+    stats: { hp: 165, attack: 75, defense: 80, sp_attack: 40, sp_defense: 45, speed: 65 },
+    experience_group: ExperienceGroup.fast,
+    experience_yield: 165
   },
   joltik: {
     id: 595,
@@ -5383,7 +6576,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Joltik!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.bug, PokemonCombatType.electric],
-    stats: { hp: 50, attack: 47, defense: 50, sp_attack: 57, sp_defense: 50, speed: 65 }
+    stats: { hp: 50, attack: 47, defense: 50, sp_attack: 57, sp_defense: 50, speed: 65 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 64
   },
   galvantula: {
     id: 596,
@@ -5392,7 +6587,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Galvantula!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.bug, PokemonCombatType.electric],
-    stats: { hp: 70, attack: 77, defense: 60, sp_attack: 97, sp_defense: 60, speed: 108 }
+    stats: { hp: 70, attack: 77, defense: 60, sp_attack: 97, sp_defense: 60, speed: 108 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 165
   },
   ferroseed: {
     id: 597,
@@ -5401,7 +6598,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Ferroseed!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.grass, PokemonCombatType.steel],
-    stats: { hp: 44, attack: 50, defense: 91, sp_attack: 24, sp_defense: 86, speed: 10 }
+    stats: { hp: 44, attack: 50, defense: 91, sp_attack: 24, sp_defense: 86, speed: 10 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 61
   },
   ferrothorn: {
     id: 598,
@@ -5410,7 +6609,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Ferrothorn!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.grass, PokemonCombatType.steel],
-    stats: { hp: 74, attack: 94, defense: 131, sp_attack: 54, sp_defense: 116, speed: 20 }
+    stats: { hp: 74, attack: 94, defense: 131, sp_attack: 54, sp_defense: 116, speed: 20 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 171
   },
   klink: {
     id: 599,
@@ -5419,7 +6620,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Klink!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.steel],
-    stats: { hp: 40, attack: 55, defense: 70, sp_attack: 45, sp_defense: 60, speed: 30 }
+    stats: { hp: 40, attack: 55, defense: 70, sp_attack: 45, sp_defense: 60, speed: 30 },
+    experience_group: ExperienceGroup.medium_slow,
+    experience_yield: 60
   },
   klang: {
     id: 600,
@@ -5428,7 +6631,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Klang!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.steel],
-    stats: { hp: 60, attack: 80, defense: 95, sp_attack: 70, sp_defense: 85, speed: 50 }
+    stats: { hp: 60, attack: 80, defense: 95, sp_attack: 70, sp_defense: 85, speed: 50 },
+    experience_group: ExperienceGroup.medium_slow,
+    experience_yield: 154
   },
   klinklang: {
     id: 601,
@@ -5437,7 +6642,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Klinklang!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.steel],
-    stats: { hp: 60, attack: 100, defense: 115, sp_attack: 70, sp_defense: 85, speed: 90 }
+    stats: { hp: 60, attack: 100, defense: 115, sp_attack: 70, sp_defense: 85, speed: 90 },
+    experience_group: ExperienceGroup.medium_slow,
+    experience_yield: 234
   },
   tynamo: {
     id: 602,
@@ -5446,7 +6653,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Tynamo!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.electric],
-    stats: { hp: 35, attack: 55, defense: 40, sp_attack: 45, sp_defense: 40, speed: 60 }
+    stats: { hp: 35, attack: 55, defense: 40, sp_attack: 45, sp_defense: 40, speed: 60 },
+    experience_group: ExperienceGroup.slow,
+    experience_yield: 55
   },
   eelektrik: {
     id: 603,
@@ -5455,7 +6664,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Eelektrik!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.electric],
-    stats: { hp: 65, attack: 85, defense: 70, sp_attack: 75, sp_defense: 70, speed: 40 }
+    stats: { hp: 65, attack: 85, defense: 70, sp_attack: 75, sp_defense: 70, speed: 40 },
+    experience_group: ExperienceGroup.slow,
+    experience_yield: 142
   },
   eelektross: {
     id: 604,
@@ -5464,7 +6675,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Eelektross!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.electric],
-    stats: { hp: 85, attack: 115, defense: 80, sp_attack: 105, sp_defense: 80, speed: 50 }
+    stats: { hp: 85, attack: 115, defense: 80, sp_attack: 105, sp_defense: 80, speed: 50 },
+    experience_group: ExperienceGroup.slow,
+    experience_yield: 258
   },
   elgyem: {
     id: 605,
@@ -5473,7 +6686,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Elgyem!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.psychic],
-    stats: { hp: 55, attack: 55, defense: 55, sp_attack: 85, sp_defense: 55, speed: 30 }
+    stats: { hp: 55, attack: 55, defense: 55, sp_attack: 85, sp_defense: 55, speed: 30 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 67
   },
   beheeyem: {
     id: 606,
@@ -5482,7 +6697,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Beheeyem!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.psychic],
-    stats: { hp: 75, attack: 75, defense: 75, sp_attack: 125, sp_defense: 95, speed: 40 }
+    stats: { hp: 75, attack: 75, defense: 75, sp_attack: 125, sp_defense: 95, speed: 40 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 170
   },
   litwick: {
     id: 607,
@@ -5491,7 +6708,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Litwick!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.ghost, PokemonCombatType.fire],
-    stats: { hp: 50, attack: 30, defense: 55, sp_attack: 65, sp_defense: 55, speed: 20 }
+    stats: { hp: 50, attack: 30, defense: 55, sp_attack: 65, sp_defense: 55, speed: 20 },
+    experience_group: ExperienceGroup.medium_slow,
+    experience_yield: 55
   },
   lampent: {
     id: 608,
@@ -5500,7 +6719,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Lampent!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.ghost, PokemonCombatType.fire],
-    stats: { hp: 60, attack: 40, defense: 60, sp_attack: 95, sp_defense: 60, speed: 55 }
+    stats: { hp: 60, attack: 40, defense: 60, sp_attack: 95, sp_defense: 60, speed: 55 },
+    experience_group: ExperienceGroup.medium_slow,
+    experience_yield: 130
   },
   chandelure: {
     id: 609,
@@ -5509,7 +6730,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Chandelure!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.ghost, PokemonCombatType.fire],
-    stats: { hp: 60, attack: 55, defense: 90, sp_attack: 145, sp_defense: 90, speed: 80 }
+    stats: { hp: 60, attack: 55, defense: 90, sp_attack: 145, sp_defense: 90, speed: 80 },
+    experience_group: ExperienceGroup.medium_slow,
+    experience_yield: 234
   },
   axew: {
     id: 610,
@@ -5518,7 +6741,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Axew!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.dragon],
-    stats: { hp: 46, attack: 87, defense: 60, sp_attack: 30, sp_defense: 40, speed: 57 }
+    stats: { hp: 46, attack: 87, defense: 60, sp_attack: 30, sp_defense: 40, speed: 57 },
+    experience_group: ExperienceGroup.slow,
+    experience_yield: 64
   },
   fraxure: {
     id: 611,
@@ -5527,7 +6752,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Fraxure!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.dragon],
-    stats: { hp: 66, attack: 117, defense: 70, sp_attack: 40, sp_defense: 50, speed: 67 }
+    stats: { hp: 66, attack: 117, defense: 70, sp_attack: 40, sp_defense: 50, speed: 67 },
+    experience_group: ExperienceGroup.slow,
+    experience_yield: 144
   },
   haxorus: {
     id: 612,
@@ -5536,7 +6763,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Haxorus!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.dragon],
-    stats: { hp: 76, attack: 147, defense: 90, sp_attack: 60, sp_defense: 70, speed: 97 }
+    stats: { hp: 76, attack: 147, defense: 90, sp_attack: 60, sp_defense: 70, speed: 97 },
+    experience_group: ExperienceGroup.slow,
+    experience_yield: 270
   },
   cubchoo: {
     id: 613,
@@ -5545,7 +6774,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Cubchoo!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.ice],
-    stats: { hp: 55, attack: 70, defense: 40, sp_attack: 60, sp_defense: 40, speed: 40 }
+    stats: { hp: 55, attack: 70, defense: 40, sp_attack: 60, sp_defense: 40, speed: 40 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 61
   },
   beartic: {
     id: 614,
@@ -5554,7 +6785,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Beartic!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.ice],
-    stats: { hp: 95, attack: 130, defense: 80, sp_attack: 70, sp_defense: 80, speed: 50 }
+    stats: { hp: 95, attack: 130, defense: 80, sp_attack: 70, sp_defense: 80, speed: 50 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 177
   },
   cryogonal: {
     id: 615,
@@ -5563,7 +6796,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Cryogonal!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.ice],
-    stats: { hp: 80, attack: 50, defense: 50, sp_attack: 95, sp_defense: 135, speed: 105 }
+    stats: { hp: 80, attack: 50, defense: 50, sp_attack: 95, sp_defense: 135, speed: 105 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 180
   },
   shelmet: {
     id: 616,
@@ -5572,7 +6807,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Shelmet!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.bug],
-    stats: { hp: 50, attack: 40, defense: 85, sp_attack: 40, sp_defense: 65, speed: 25 }
+    stats: { hp: 50, attack: 40, defense: 85, sp_attack: 40, sp_defense: 65, speed: 25 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 61
   },
   accelgor: {
     id: 617,
@@ -5581,7 +6818,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Accelgor!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.bug],
-    stats: { hp: 80, attack: 70, defense: 40, sp_attack: 100, sp_defense: 60, speed: 145 }
+    stats: { hp: 80, attack: 70, defense: 40, sp_attack: 100, sp_defense: 60, speed: 145 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 173
   },
   stunfisk: {
     id: 618,
@@ -5590,7 +6829,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Stunfisk!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.ground, PokemonCombatType.steel],
-    stats: { hp: 109, attack: 81, defense: 99, sp_attack: 66, sp_defense: 84, speed: 32 }
+    stats: { hp: 109, attack: 81, defense: 99, sp_attack: 66, sp_defense: 84, speed: 32 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 165
   },
   mienfoo: {
     id: 619,
@@ -5599,7 +6840,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Mienfoo!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.fighting],
-    stats: { hp: 45, attack: 85, defense: 50, sp_attack: 55, sp_defense: 50, speed: 65 }
+    stats: { hp: 45, attack: 85, defense: 50, sp_attack: 55, sp_defense: 50, speed: 65 },
+    experience_group: ExperienceGroup.medium_slow,
+    experience_yield: 70
   },
   mienshao: {
     id: 620,
@@ -5608,7 +6851,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Mienshao!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.fighting],
-    stats: { hp: 65, attack: 125, defense: 60, sp_attack: 95, sp_defense: 60, speed: 105 }
+    stats: { hp: 65, attack: 125, defense: 60, sp_attack: 95, sp_defense: 60, speed: 105 },
+    experience_group: ExperienceGroup.medium_slow,
+    experience_yield: 179
   },
   druddigon: {
     id: 621,
@@ -5617,7 +6862,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Druddigon!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.dragon],
-    stats: { hp: 77, attack: 120, defense: 90, sp_attack: 60, sp_defense: 90, speed: 48 }
+    stats: { hp: 77, attack: 120, defense: 90, sp_attack: 60, sp_defense: 90, speed: 48 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 170
   },
   golett: {
     id: 622,
@@ -5626,7 +6873,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Golett!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.ground, PokemonCombatType.ghost],
-    stats: { hp: 59, attack: 74, defense: 50, sp_attack: 35, sp_defense: 50, speed: 35 }
+    stats: { hp: 59, attack: 74, defense: 50, sp_attack: 35, sp_defense: 50, speed: 35 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 61
   },
   golurk: {
     id: 623,
@@ -5635,7 +6884,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Golurk!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.ground, PokemonCombatType.ghost],
-    stats: { hp: 89, attack: 124, defense: 80, sp_attack: 55, sp_defense: 80, speed: 55 }
+    stats: { hp: 89, attack: 124, defense: 80, sp_attack: 55, sp_defense: 80, speed: 55 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 169
   },
   pawniard: {
     id: 624,
@@ -5644,7 +6895,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Pawniard!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.dark, PokemonCombatType.steel],
-    stats: { hp: 45, attack: 85, defense: 70, sp_attack: 40, sp_defense: 40, speed: 60 }
+    stats: { hp: 45, attack: 85, defense: 70, sp_attack: 40, sp_defense: 40, speed: 60 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 68
   },
   bisharp: {
     id: 625,
@@ -5653,7 +6906,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Bisharp!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.dark, PokemonCombatType.steel],
-    stats: { hp: 65, attack: 125, defense: 100, sp_attack: 60, sp_defense: 70, speed: 70 }
+    stats: { hp: 65, attack: 125, defense: 100, sp_attack: 60, sp_defense: 70, speed: 70 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 172
   },
   bouffalant: {
     id: 626,
@@ -5662,7 +6917,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Bouffalant!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.normal],
-    stats: { hp: 95, attack: 110, defense: 95, sp_attack: 40, sp_defense: 95, speed: 55 }
+    stats: { hp: 95, attack: 110, defense: 95, sp_attack: 40, sp_defense: 95, speed: 55 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 172
   },
   rufflet: {
     id: 627,
@@ -5671,7 +6928,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Rufflet!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.normal, PokemonCombatType.flying],
-    stats: { hp: 70, attack: 83, defense: 50, sp_attack: 37, sp_defense: 50, speed: 60 }
+    stats: { hp: 70, attack: 83, defense: 50, sp_attack: 37, sp_defense: 50, speed: 60 },
+    experience_group: ExperienceGroup.slow,
+    experience_yield: 70
   },
   braviary: {
     id: 628,
@@ -5680,7 +6939,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Braviary!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.psychic, PokemonCombatType.flying],
-    stats: { hp: 110, attack: 83, defense: 70, sp_attack: 112, sp_defense: 70, speed: 65 }
+    stats: { hp: 110, attack: 83, defense: 70, sp_attack: 112, sp_defense: 70, speed: 65 },
+    experience_group: ExperienceGroup.slow,
+    experience_yield: 179
   },
   vullaby: {
     id: 629,
@@ -5689,7 +6950,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Vullaby!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.dark, PokemonCombatType.flying],
-    stats: { hp: 70, attack: 55, defense: 75, sp_attack: 45, sp_defense: 65, speed: 60 }
+    stats: { hp: 70, attack: 55, defense: 75, sp_attack: 45, sp_defense: 65, speed: 60 },
+    experience_group: ExperienceGroup.slow,
+    experience_yield: 74
   },
   mandibuzz: {
     id: 630,
@@ -5698,7 +6961,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Mandibuzz!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.dark, PokemonCombatType.flying],
-    stats: { hp: 110, attack: 65, defense: 105, sp_attack: 55, sp_defense: 95, speed: 80 }
+    stats: { hp: 110, attack: 65, defense: 105, sp_attack: 55, sp_defense: 95, speed: 80 },
+    experience_group: ExperienceGroup.slow,
+    experience_yield: 179
   },
   heatmor: {
     id: 631,
@@ -5707,7 +6972,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Heatmor!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.fire],
-    stats: { hp: 85, attack: 97, defense: 66, sp_attack: 105, sp_defense: 66, speed: 65 }
+    stats: { hp: 85, attack: 97, defense: 66, sp_attack: 105, sp_defense: 66, speed: 65 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 169
   },
   durant: {
     id: 632,
@@ -5716,7 +6983,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Durant!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.bug, PokemonCombatType.steel],
-    stats: { hp: 58, attack: 109, defense: 112, sp_attack: 48, sp_defense: 48, speed: 109 }
+    stats: { hp: 58, attack: 109, defense: 112, sp_attack: 48, sp_defense: 48, speed: 109 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 169
   },
   deino: {
     id: 633,
@@ -5725,7 +6994,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Deino!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.dark, PokemonCombatType.dragon],
-    stats: { hp: 52, attack: 65, defense: 50, sp_attack: 45, sp_defense: 50, speed: 38 }
+    stats: { hp: 52, attack: 65, defense: 50, sp_attack: 45, sp_defense: 50, speed: 38 },
+    experience_group: ExperienceGroup.slow,
+    experience_yield: 60
   },
   zweilous: {
     id: 634,
@@ -5734,7 +7005,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Zweilous!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.dark, PokemonCombatType.dragon],
-    stats: { hp: 72, attack: 85, defense: 70, sp_attack: 65, sp_defense: 70, speed: 58 }
+    stats: { hp: 72, attack: 85, defense: 70, sp_attack: 65, sp_defense: 70, speed: 58 },
+    experience_group: ExperienceGroup.slow,
+    experience_yield: 147
   },
   hydreigon: {
     id: 635,
@@ -5743,7 +7016,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Hydreigon!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.dark, PokemonCombatType.dragon],
-    stats: { hp: 92, attack: 105, defense: 90, sp_attack: 125, sp_defense: 90, speed: 98 }
+    stats: { hp: 92, attack: 105, defense: 90, sp_attack: 125, sp_defense: 90, speed: 98 },
+    experience_group: ExperienceGroup.slow,
+    experience_yield: 300
   },
   larvesta: {
     id: 636,
@@ -5752,7 +7027,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Larvesta!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.bug, PokemonCombatType.fire],
-    stats: { hp: 55, attack: 85, defense: 55, sp_attack: 50, sp_defense: 55, speed: 60 }
+    stats: { hp: 55, attack: 85, defense: 55, sp_attack: 50, sp_defense: 55, speed: 60 },
+    experience_group: ExperienceGroup.slow,
+    experience_yield: 72
   },
   volcarona: {
     id: 637,
@@ -5761,7 +7038,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Volcarona!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.bug, PokemonCombatType.fire],
-    stats: { hp: 85, attack: 60, defense: 65, sp_attack: 135, sp_defense: 105, speed: 100 }
+    stats: { hp: 85, attack: 60, defense: 65, sp_attack: 135, sp_defense: 105, speed: 100 },
+    experience_group: ExperienceGroup.slow,
+    experience_yield: 275
   },
   cobalion: {
     id: 638,
@@ -5770,7 +7049,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Cobalion!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.steel, PokemonCombatType.fighting],
-    stats: { hp: 91, attack: 90, defense: 129, sp_attack: 90, sp_defense: 72, speed: 108 }
+    stats: { hp: 91, attack: 90, defense: 129, sp_attack: 90, sp_defense: 72, speed: 108 },
+    experience_group: ExperienceGroup.slow,
+    experience_yield: 261
   },
   terrakion: {
     id: 639,
@@ -5779,7 +7060,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Terrakion!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.rock, PokemonCombatType.fighting],
-    stats: { hp: 91, attack: 129, defense: 90, sp_attack: 72, sp_defense: 90, speed: 108 }
+    stats: { hp: 91, attack: 129, defense: 90, sp_attack: 72, sp_defense: 90, speed: 108 },
+    experience_group: ExperienceGroup.slow,
+    experience_yield: 261
   },
   virizion: {
     id: 640,
@@ -5788,7 +7071,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Virizion!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.grass, PokemonCombatType.fighting],
-    stats: { hp: 91, attack: 90, defense: 72, sp_attack: 90, sp_defense: 129, speed: 108 }
+    stats: { hp: 91, attack: 90, defense: 72, sp_attack: 90, sp_defense: 129, speed: 108 },
+    experience_group: ExperienceGroup.slow,
+    experience_yield: 261
   },
   tornadus: {
     id: 641,
@@ -5797,7 +7082,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Tornadus!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.flying],
-    stats: { hp: 79, attack: 100, defense: 80, sp_attack: 110, sp_defense: 90, speed: 121 }
+    stats: { hp: 79, attack: 100, defense: 80, sp_attack: 110, sp_defense: 90, speed: 121 },
+    experience_group: ExperienceGroup.slow,
+    experience_yield: 290
   },
   thundurus: {
     id: 642,
@@ -5806,7 +7093,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Thundurus!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.electric, PokemonCombatType.flying],
-    stats: { hp: 79, attack: 105, defense: 70, sp_attack: 145, sp_defense: 80, speed: 101 }
+    stats: { hp: 79, attack: 105, defense: 70, sp_attack: 145, sp_defense: 80, speed: 101 },
+    experience_group: ExperienceGroup.slow,
+    experience_yield: 290
   },
   reshiram: {
     id: 643,
@@ -5815,7 +7104,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Reshiram!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.dragon, PokemonCombatType.fire],
-    stats: { hp: 100, attack: 120, defense: 100, sp_attack: 150, sp_defense: 120, speed: 90 }
+    stats: { hp: 100, attack: 120, defense: 100, sp_attack: 150, sp_defense: 120, speed: 90 },
+    experience_group: ExperienceGroup.slow,
+    experience_yield: 306
   },
   zekrom: {
     id: 644,
@@ -5824,7 +7115,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Zekrom!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.dragon, PokemonCombatType.electric],
-    stats: { hp: 100, attack: 150, defense: 120, sp_attack: 120, sp_defense: 100, speed: 90 }
+    stats: { hp: 100, attack: 150, defense: 120, sp_attack: 120, sp_defense: 100, speed: 90 },
+    experience_group: ExperienceGroup.slow,
+    experience_yield: 306
   },
   landorus: {
     id: 645,
@@ -5833,7 +7126,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Landorus!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.ground, PokemonCombatType.flying],
-    stats: { hp: 89, attack: 145, defense: 90, sp_attack: 105, sp_defense: 80, speed: 91 }
+    stats: { hp: 89, attack: 145, defense: 90, sp_attack: 105, sp_defense: 80, speed: 91 },
+    experience_group: ExperienceGroup.slow,
+    experience_yield: 300
   },
   kyurem: {
     id: 646,
@@ -5842,7 +7137,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Kyurem!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.dragon, PokemonCombatType.ice],
-    stats: { hp: 125, attack: 170, defense: 100, sp_attack: 120, sp_defense: 90, speed: 95 }
+    stats: { hp: 125, attack: 170, defense: 100, sp_attack: 120, sp_defense: 90, speed: 95 },
+    experience_group: ExperienceGroup.slow,
+    experience_yield: 297
   },
   keldeo: {
     id: 647,
@@ -5851,7 +7148,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Keldeo!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.water, PokemonCombatType.fighting],
-    stats: { hp: 91, attack: 72, defense: 90, sp_attack: 129, sp_defense: 90, speed: 108 }
+    stats: { hp: 91, attack: 72, defense: 90, sp_attack: 129, sp_defense: 90, speed: 108 },
+    experience_group: ExperienceGroup.slow,
+    experience_yield: 261
   },
   meloetta: {
     id: 648,
@@ -5860,7 +7159,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Meloetta!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.normal, PokemonCombatType.fighting],
-    stats: { hp: 100, attack: 128, defense: 90, sp_attack: 77, sp_defense: 77, speed: 128 }
+    stats: { hp: 100, attack: 128, defense: 90, sp_attack: 77, sp_defense: 77, speed: 128 },
+    experience_group: ExperienceGroup.slow,
+    experience_yield: 300
   },
   genesect: {
     id: 649,
@@ -5869,7 +7170,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Genesect!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.bug, PokemonCombatType.steel],
-    stats: { hp: 71, attack: 120, defense: 95, sp_attack: 120, sp_defense: 95, speed: 99 }
+    stats: { hp: 71, attack: 120, defense: 95, sp_attack: 120, sp_defense: 95, speed: 99 },
+    experience_group: ExperienceGroup.slow,
+    experience_yield: 270
   },
   chespin: {
     id: 650,
@@ -5878,7 +7181,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Chespin!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.grass],
-    stats: { hp: 56, attack: 61, defense: 65, sp_attack: 48, sp_defense: 45, speed: 38 }
+    stats: { hp: 56, attack: 61, defense: 65, sp_attack: 48, sp_defense: 45, speed: 38 },
+    experience_group: ExperienceGroup.medium_slow,
+    experience_yield: 63
   },
   quilladin: {
     id: 651,
@@ -5887,7 +7192,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Quilladin!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.grass],
-    stats: { hp: 61, attack: 78, defense: 95, sp_attack: 56, sp_defense: 58, speed: 57 }
+    stats: { hp: 61, attack: 78, defense: 95, sp_attack: 56, sp_defense: 58, speed: 57 },
+    experience_group: ExperienceGroup.medium_slow,
+    experience_yield: 142
   },
   chesnaught: {
     id: 652,
@@ -5896,7 +7203,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Chesnaught!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.grass, PokemonCombatType.fighting],
-    stats: { hp: 88, attack: 107, defense: 122, sp_attack: 74, sp_defense: 75, speed: 64 }
+    stats: { hp: 88, attack: 107, defense: 122, sp_attack: 74, sp_defense: 75, speed: 64 },
+    experience_group: ExperienceGroup.medium_slow,
+    experience_yield: 265
   },
   fennekin: {
     id: 653,
@@ -5905,7 +7214,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Fennekin!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.fire],
-    stats: { hp: 40, attack: 45, defense: 40, sp_attack: 62, sp_defense: 60, speed: 60 }
+    stats: { hp: 40, attack: 45, defense: 40, sp_attack: 62, sp_defense: 60, speed: 60 },
+    experience_group: ExperienceGroup.medium_slow,
+    experience_yield: 61
   },
   braixen: {
     id: 654,
@@ -5914,7 +7225,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Braixen!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.fire],
-    stats: { hp: 59, attack: 59, defense: 58, sp_attack: 90, sp_defense: 70, speed: 73 }
+    stats: { hp: 59, attack: 59, defense: 58, sp_attack: 90, sp_defense: 70, speed: 73 },
+    experience_group: ExperienceGroup.medium_slow,
+    experience_yield: 143
   },
   delphox: {
     id: 655,
@@ -5923,7 +7236,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Delphox!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.fire, PokemonCombatType.psychic],
-    stats: { hp: 75, attack: 69, defense: 72, sp_attack: 114, sp_defense: 100, speed: 104 }
+    stats: { hp: 75, attack: 69, defense: 72, sp_attack: 114, sp_defense: 100, speed: 104 },
+    experience_group: ExperienceGroup.medium_slow,
+    experience_yield: 267
   },
   froakie: {
     id: 656,
@@ -5932,7 +7247,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Froakie!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.water],
-    stats: { hp: 41, attack: 56, defense: 40, sp_attack: 62, sp_defense: 44, speed: 71 }
+    stats: { hp: 41, attack: 56, defense: 40, sp_attack: 62, sp_defense: 44, speed: 71 },
+    experience_group: ExperienceGroup.medium_slow,
+    experience_yield: 63
   },
   frogadier: {
     id: 657,
@@ -5941,7 +7258,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Frogadier!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.water],
-    stats: { hp: 54, attack: 63, defense: 52, sp_attack: 83, sp_defense: 56, speed: 97 }
+    stats: { hp: 54, attack: 63, defense: 52, sp_attack: 83, sp_defense: 56, speed: 97 },
+    experience_group: ExperienceGroup.medium_slow,
+    experience_yield: 142
   },
   greninja: {
     id: 658,
@@ -5950,7 +7269,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Greninja!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.water, PokemonCombatType.dark],
-    stats: { hp: 72, attack: 145, defense: 67, sp_attack: 153, sp_defense: 71, speed: 132 }
+    stats: { hp: 72, attack: 145, defense: 67, sp_attack: 153, sp_defense: 71, speed: 132 },
+    experience_group: ExperienceGroup.medium_slow,
+    experience_yield: 265
   },
   bunnelby: {
     id: 659,
@@ -5959,7 +7280,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Bunnelby!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.normal],
-    stats: { hp: 38, attack: 36, defense: 38, sp_attack: 32, sp_defense: 36, speed: 57 }
+    stats: { hp: 38, attack: 36, defense: 38, sp_attack: 32, sp_defense: 36, speed: 57 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 47
   },
   diggersby: {
     id: 660,
@@ -5968,7 +7291,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Diggersby!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.normal, PokemonCombatType.ground],
-    stats: { hp: 85, attack: 56, defense: 77, sp_attack: 50, sp_defense: 77, speed: 78 }
+    stats: { hp: 85, attack: 56, defense: 77, sp_attack: 50, sp_defense: 77, speed: 78 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 148
   },
   fletchling: {
     id: 661,
@@ -5977,7 +7302,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Fletchling!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.normal, PokemonCombatType.flying],
-    stats: { hp: 45, attack: 50, defense: 43, sp_attack: 40, sp_defense: 38, speed: 62 }
+    stats: { hp: 45, attack: 50, defense: 43, sp_attack: 40, sp_defense: 38, speed: 62 },
+    experience_group: ExperienceGroup.medium_slow,
+    experience_yield: 56
   },
   fletchinder: {
     id: 662,
@@ -5986,7 +7313,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Fletchinder!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.fire, PokemonCombatType.flying],
-    stats: { hp: 62, attack: 73, defense: 55, sp_attack: 56, sp_defense: 52, speed: 84 }
+    stats: { hp: 62, attack: 73, defense: 55, sp_attack: 56, sp_defense: 52, speed: 84 },
+    experience_group: ExperienceGroup.medium_slow,
+    experience_yield: 134
   },
   talonflame: {
     id: 663,
@@ -5995,7 +7324,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Talonflame!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.fire, PokemonCombatType.flying],
-    stats: { hp: 78, attack: 81, defense: 71, sp_attack: 74, sp_defense: 69, speed: 126 }
+    stats: { hp: 78, attack: 81, defense: 71, sp_attack: 74, sp_defense: 69, speed: 126 },
+    experience_group: ExperienceGroup.medium_slow,
+    experience_yield: 175
   },
   scatterbug: {
     id: 664,
@@ -6004,7 +7335,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Scatterbug!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.bug],
-    stats: { hp: 38, attack: 35, defense: 40, sp_attack: 27, sp_defense: 25, speed: 35 }
+    stats: { hp: 38, attack: 35, defense: 40, sp_attack: 27, sp_defense: 25, speed: 35 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 40
   },
   spewpa: {
     id: 665,
@@ -6013,7 +7346,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Spewpa!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.bug],
-    stats: { hp: 45, attack: 22, defense: 60, sp_attack: 27, sp_defense: 30, speed: 29 }
+    stats: { hp: 45, attack: 22, defense: 60, sp_attack: 27, sp_defense: 30, speed: 29 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 75
   },
   vivillon: {
     id: 666,
@@ -6022,7 +7357,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Vivillon!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.bug, PokemonCombatType.flying],
-    stats: { hp: 80, attack: 52, defense: 50, sp_attack: 90, sp_defense: 50, speed: 89 }
+    stats: { hp: 80, attack: 52, defense: 50, sp_attack: 90, sp_defense: 50, speed: 89 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 206
   },
   litleo: {
     id: 667,
@@ -6031,7 +7368,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Litleo!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.fire, PokemonCombatType.normal],
-    stats: { hp: 62, attack: 50, defense: 58, sp_attack: 73, sp_defense: 54, speed: 72 }
+    stats: { hp: 62, attack: 50, defense: 58, sp_attack: 73, sp_defense: 54, speed: 72 },
+    experience_group: ExperienceGroup.medium_slow,
+    experience_yield: 74
   },
   pyroar: {
     id: 668,
@@ -6040,7 +7379,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Pyroar!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.fire, PokemonCombatType.normal],
-    stats: { hp: 86, attack: 68, defense: 72, sp_attack: 109, sp_defense: 66, speed: 106 }
+    stats: { hp: 86, attack: 68, defense: 72, sp_attack: 109, sp_defense: 66, speed: 106 },
+    experience_group: ExperienceGroup.medium_slow,
+    experience_yield: 177
   },
   flabebe: {
     id: 669,
@@ -6049,7 +7390,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Flabébé!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.fairy],
-    stats: { hp: 44, attack: 38, defense: 39, sp_attack: 61, sp_defense: 79, speed: 42 }
+    stats: { hp: 44, attack: 38, defense: 39, sp_attack: 61, sp_defense: 79, speed: 42 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 61
   },
   floette: {
     id: 670,
@@ -6058,7 +7401,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Floette!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.fairy],
-    stats: { hp: 54, attack: 45, defense: 47, sp_attack: 75, sp_defense: 98, speed: 52 }
+    stats: { hp: 54, attack: 45, defense: 47, sp_attack: 75, sp_defense: 98, speed: 52 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 130
   },
   florges: {
     id: 671,
@@ -6067,7 +7412,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Florges!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.fairy],
-    stats: { hp: 78, attack: 65, defense: 68, sp_attack: 112, sp_defense: 154, speed: 75 }
+    stats: { hp: 78, attack: 65, defense: 68, sp_attack: 112, sp_defense: 154, speed: 75 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 276
   },
   skiddo: {
     id: 672,
@@ -6076,7 +7423,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Skiddo!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.grass],
-    stats: { hp: 66, attack: 65, defense: 48, sp_attack: 62, sp_defense: 57, speed: 52 }
+    stats: { hp: 66, attack: 65, defense: 48, sp_attack: 62, sp_defense: 57, speed: 52 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 70
   },
   gogoat: {
     id: 673,
@@ -6085,7 +7434,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Gogoat!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.grass],
-    stats: { hp: 123, attack: 100, defense: 62, sp_attack: 97, sp_defense: 81, speed: 68 }
+    stats: { hp: 123, attack: 100, defense: 62, sp_attack: 97, sp_defense: 81, speed: 68 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 186
   },
   pancham: {
     id: 674,
@@ -6094,7 +7445,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Pancham!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.fighting],
-    stats: { hp: 67, attack: 82, defense: 62, sp_attack: 46, sp_defense: 48, speed: 43 }
+    stats: { hp: 67, attack: 82, defense: 62, sp_attack: 46, sp_defense: 48, speed: 43 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 70
   },
   pangoro: {
     id: 675,
@@ -6103,7 +7456,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Pangoro!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.fighting, PokemonCombatType.dark],
-    stats: { hp: 95, attack: 124, defense: 78, sp_attack: 69, sp_defense: 71, speed: 58 }
+    stats: { hp: 95, attack: 124, defense: 78, sp_attack: 69, sp_defense: 71, speed: 58 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 173
   },
   furfrou: {
     id: 676,
@@ -6112,7 +7467,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Furfrou!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.normal],
-    stats: { hp: 75, attack: 80, defense: 60, sp_attack: 65, sp_defense: 90, speed: 102 }
+    stats: { hp: 75, attack: 80, defense: 60, sp_attack: 65, sp_defense: 90, speed: 102 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 165
   },
   espurr: {
     id: 677,
@@ -6121,7 +7478,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Espurr!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.psychic],
-    stats: { hp: 62, attack: 48, defense: 54, sp_attack: 63, sp_defense: 60, speed: 68 }
+    stats: { hp: 62, attack: 48, defense: 54, sp_attack: 63, sp_defense: 60, speed: 68 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 71
   },
   meowstic: {
     id: 678,
@@ -6130,7 +7489,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Meowstic!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.psychic],
-    stats: { hp: 74, attack: 48, defense: 76, sp_attack: 83, sp_defense: 81, speed: 104 }
+    stats: { hp: 74, attack: 48, defense: 76, sp_attack: 83, sp_defense: 81, speed: 104 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 163
   },
   honedge: {
     id: 679,
@@ -6139,7 +7500,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Honedge!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.steel, PokemonCombatType.ghost],
-    stats: { hp: 45, attack: 80, defense: 100, sp_attack: 35, sp_defense: 37, speed: 28 }
+    stats: { hp: 45, attack: 80, defense: 100, sp_attack: 35, sp_defense: 37, speed: 28 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 65
   },
   doublade: {
     id: 680,
@@ -6148,7 +7511,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Doublade!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.steel, PokemonCombatType.ghost],
-    stats: { hp: 59, attack: 110, defense: 150, sp_attack: 45, sp_defense: 49, speed: 35 }
+    stats: { hp: 59, attack: 110, defense: 150, sp_attack: 45, sp_defense: 49, speed: 35 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 157
   },
   aegislash: {
     id: 681,
@@ -6157,7 +7522,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Aegislash!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.steel, PokemonCombatType.ghost],
-    stats: { hp: 60, attack: 140, defense: 50, sp_attack: 140, sp_defense: 50, speed: 60 }
+    stats: { hp: 60, attack: 140, defense: 50, sp_attack: 140, sp_defense: 50, speed: 60 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 234
   },
   spritzee: {
     id: 682,
@@ -6166,7 +7533,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Spritzee!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.fairy],
-    stats: { hp: 78, attack: 52, defense: 60, sp_attack: 63, sp_defense: 65, speed: 23 }
+    stats: { hp: 78, attack: 52, defense: 60, sp_attack: 63, sp_defense: 65, speed: 23 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 68
   },
   aromatisse: {
     id: 683,
@@ -6175,7 +7544,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Aromatisse!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.fairy],
-    stats: { hp: 101, attack: 72, defense: 72, sp_attack: 99, sp_defense: 89, speed: 29 }
+    stats: { hp: 101, attack: 72, defense: 72, sp_attack: 99, sp_defense: 89, speed: 29 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 162
   },
   swirlix: {
     id: 684,
@@ -6184,7 +7555,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Swirlix!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.fairy],
-    stats: { hp: 62, attack: 48, defense: 66, sp_attack: 59, sp_defense: 57, speed: 49 }
+    stats: { hp: 62, attack: 48, defense: 66, sp_attack: 59, sp_defense: 57, speed: 49 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 68
   },
   slurpuff: {
     id: 685,
@@ -6193,7 +7566,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Slurpuff!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.fairy],
-    stats: { hp: 82, attack: 80, defense: 86, sp_attack: 85, sp_defense: 75, speed: 72 }
+    stats: { hp: 82, attack: 80, defense: 86, sp_attack: 85, sp_defense: 75, speed: 72 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 168
   },
   inkay: {
     id: 686,
@@ -6202,7 +7577,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Inkay!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.dark, PokemonCombatType.psychic],
-    stats: { hp: 53, attack: 54, defense: 53, sp_attack: 37, sp_defense: 46, speed: 45 }
+    stats: { hp: 53, attack: 54, defense: 53, sp_attack: 37, sp_defense: 46, speed: 45 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 58
   },
   malamar: {
     id: 687,
@@ -6211,7 +7588,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Malamar!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.dark, PokemonCombatType.psychic],
-    stats: { hp: 86, attack: 102, defense: 88, sp_attack: 98, sp_defense: 120, speed: 88 }
+    stats: { hp: 86, attack: 102, defense: 88, sp_attack: 98, sp_defense: 120, speed: 88 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 169
   },
   binacle: {
     id: 688,
@@ -6220,7 +7599,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Binacle!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.rock, PokemonCombatType.water],
-    stats: { hp: 42, attack: 52, defense: 67, sp_attack: 39, sp_defense: 56, speed: 50 }
+    stats: { hp: 42, attack: 52, defense: 67, sp_attack: 39, sp_defense: 56, speed: 50 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 61
   },
   barbaracle: {
     id: 689,
@@ -6229,7 +7610,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Barbaracle!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.rock, PokemonCombatType.water],
-    stats: { hp: 72, attack: 105, defense: 115, sp_attack: 54, sp_defense: 86, speed: 68 }
+    stats: { hp: 72, attack: 105, defense: 115, sp_attack: 54, sp_defense: 86, speed: 68 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 175
   },
   skrelp: {
     id: 690,
@@ -6238,7 +7621,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Skrelp!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.poison, PokemonCombatType.water],
-    stats: { hp: 50, attack: 60, defense: 60, sp_attack: 60, sp_defense: 60, speed: 30 }
+    stats: { hp: 50, attack: 60, defense: 60, sp_attack: 60, sp_defense: 60, speed: 30 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 64
   },
   dragalge: {
     id: 691,
@@ -6247,7 +7632,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Dragalge!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.poison, PokemonCombatType.dragon],
-    stats: { hp: 65, attack: 75, defense: 90, sp_attack: 97, sp_defense: 123, speed: 44 }
+    stats: { hp: 65, attack: 75, defense: 90, sp_attack: 97, sp_defense: 123, speed: 44 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 173
   },
   clauncher: {
     id: 692,
@@ -6256,7 +7643,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Clauncher!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.water],
-    stats: { hp: 50, attack: 53, defense: 62, sp_attack: 58, sp_defense: 63, speed: 44 }
+    stats: { hp: 50, attack: 53, defense: 62, sp_attack: 58, sp_defense: 63, speed: 44 },
+    experience_group: ExperienceGroup.slow,
+    experience_yield: 66
   },
   clawitzer: {
     id: 693,
@@ -6265,7 +7654,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Clawitzer!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.water],
-    stats: { hp: 71, attack: 73, defense: 88, sp_attack: 120, sp_defense: 89, speed: 59 }
+    stats: { hp: 71, attack: 73, defense: 88, sp_attack: 120, sp_defense: 89, speed: 59 },
+    experience_group: ExperienceGroup.slow,
+    experience_yield: 100
   },
   helioptile: {
     id: 694,
@@ -6274,7 +7665,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Helioptile!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.electric, PokemonCombatType.normal],
-    stats: { hp: 44, attack: 38, defense: 33, sp_attack: 61, sp_defense: 43, speed: 70 }
+    stats: { hp: 44, attack: 38, defense: 33, sp_attack: 61, sp_defense: 43, speed: 70 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 58
   },
   heliolisk: {
     id: 695,
@@ -6283,7 +7676,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Heliolisk!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.electric, PokemonCombatType.normal],
-    stats: { hp: 62, attack: 55, defense: 52, sp_attack: 109, sp_defense: 94, speed: 109 }
+    stats: { hp: 62, attack: 55, defense: 52, sp_attack: 109, sp_defense: 94, speed: 109 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 168
   },
   tyrunt: {
     id: 696,
@@ -6292,7 +7687,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Tyrunt!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.rock, PokemonCombatType.dragon],
-    stats: { hp: 58, attack: 89, defense: 77, sp_attack: 45, sp_defense: 45, speed: 48 }
+    stats: { hp: 58, attack: 89, defense: 77, sp_attack: 45, sp_defense: 45, speed: 48 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 72
   },
   tyrantrum: {
     id: 697,
@@ -6301,7 +7698,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Tyrantrum!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.rock, PokemonCombatType.dragon],
-    stats: { hp: 82, attack: 121, defense: 119, sp_attack: 69, sp_defense: 59, speed: 71 }
+    stats: { hp: 82, attack: 121, defense: 119, sp_attack: 69, sp_defense: 59, speed: 71 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 182
   },
   amaura: {
     id: 698,
@@ -6310,7 +7709,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Amaura!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.rock, PokemonCombatType.ice],
-    stats: { hp: 77, attack: 59, defense: 50, sp_attack: 67, sp_defense: 63, speed: 46 }
+    stats: { hp: 77, attack: 59, defense: 50, sp_attack: 67, sp_defense: 63, speed: 46 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 72
   },
   aurorus: {
     id: 699,
@@ -6319,7 +7720,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Aurorus!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.rock, PokemonCombatType.ice],
-    stats: { hp: 123, attack: 77, defense: 72, sp_attack: 99, sp_defense: 92, speed: 58 }
+    stats: { hp: 123, attack: 77, defense: 72, sp_attack: 99, sp_defense: 92, speed: 58 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 104
   },
   sylveon: {
     id: 700,
@@ -6328,7 +7731,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Sylveon!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.fairy],
-    stats: { hp: 95, attack: 65, defense: 65, sp_attack: 110, sp_defense: 130, speed: 60 }
+    stats: { hp: 95, attack: 65, defense: 65, sp_attack: 110, sp_defense: 130, speed: 60 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 184
   },
   hawlucha: {
     id: 701,
@@ -6337,7 +7742,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Hawlucha!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.fighting, PokemonCombatType.flying],
-    stats: { hp: 78, attack: 137, defense: 100, sp_attack: 74, sp_defense: 93, speed: 118 }
+    stats: { hp: 78, attack: 137, defense: 100, sp_attack: 74, sp_defense: 93, speed: 118 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 175
   },
   dedenne: {
     id: 702,
@@ -6346,7 +7753,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Dedenne!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.electric, PokemonCombatType.fairy],
-    stats: { hp: 67, attack: 58, defense: 57, sp_attack: 81, sp_defense: 67, speed: 101 }
+    stats: { hp: 67, attack: 58, defense: 57, sp_attack: 81, sp_defense: 67, speed: 101 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 151
   },
   carbink: {
     id: 703,
@@ -6355,7 +7764,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Carbink!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.rock, PokemonCombatType.fairy],
-    stats: { hp: 50, attack: 50, defense: 150, sp_attack: 50, sp_defense: 150, speed: 50 }
+    stats: { hp: 50, attack: 50, defense: 150, sp_attack: 50, sp_defense: 150, speed: 50 },
+    experience_group: ExperienceGroup.slow,
+    experience_yield: 100
   },
   goomy: {
     id: 704,
@@ -6364,7 +7775,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Goomy!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.dragon],
-    stats: { hp: 45, attack: 50, defense: 35, sp_attack: 55, sp_defense: 75, speed: 40 }
+    stats: { hp: 45, attack: 50, defense: 35, sp_attack: 55, sp_defense: 75, speed: 40 },
+    experience_group: ExperienceGroup.slow,
+    experience_yield: 60
   },
   sliggoo: {
     id: 705,
@@ -6373,7 +7786,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Sliggoo!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.steel, PokemonCombatType.dragon],
-    stats: { hp: 58, attack: 75, defense: 83, sp_attack: 83, sp_defense: 113, speed: 40 }
+    stats: { hp: 58, attack: 75, defense: 83, sp_attack: 83, sp_defense: 113, speed: 40 },
+    experience_group: ExperienceGroup.slow,
+    experience_yield: 158
   },
   goodra: {
     id: 706,
@@ -6382,7 +7797,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Goodra!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.steel, PokemonCombatType.dragon],
-    stats: { hp: 80, attack: 100, defense: 100, sp_attack: 110, sp_defense: 150, speed: 60 }
+    stats: { hp: 80, attack: 100, defense: 100, sp_attack: 110, sp_defense: 150, speed: 60 },
+    experience_group: ExperienceGroup.slow,
+    experience_yield: 300
   },
   klefki: {
     id: 707,
@@ -6391,7 +7808,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Klefki!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.steel, PokemonCombatType.fairy],
-    stats: { hp: 57, attack: 80, defense: 91, sp_attack: 80, sp_defense: 87, speed: 75 }
+    stats: { hp: 57, attack: 80, defense: 91, sp_attack: 80, sp_defense: 87, speed: 75 },
+    experience_group: ExperienceGroup.fast,
+    experience_yield: 165
   },
   phantump: {
     id: 708,
@@ -6400,7 +7819,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Phantump!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.ghost, PokemonCombatType.grass],
-    stats: { hp: 43, attack: 70, defense: 48, sp_attack: 50, sp_defense: 60, speed: 38 }
+    stats: { hp: 43, attack: 70, defense: 48, sp_attack: 50, sp_defense: 60, speed: 38 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 62
   },
   trevenant: {
     id: 709,
@@ -6409,7 +7830,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Trevenant!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.ghost, PokemonCombatType.grass],
-    stats: { hp: 85, attack: 110, defense: 76, sp_attack: 65, sp_defense: 82, speed: 56 }
+    stats: { hp: 85, attack: 110, defense: 76, sp_attack: 65, sp_defense: 82, speed: 56 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 166
   },
   pumpkaboo: {
     id: 710,
@@ -6418,7 +7841,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Pumpkaboo!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.ghost, PokemonCombatType.grass],
-    stats: { hp: 59, attack: 66, defense: 70, sp_attack: 44, sp_defense: 55, speed: 41 }
+    stats: { hp: 59, attack: 66, defense: 70, sp_attack: 44, sp_defense: 55, speed: 41 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 67
   },
   gourgeist: {
     id: 711,
@@ -6427,7 +7852,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Gourgeist!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.ghost, PokemonCombatType.grass],
-    stats: { hp: 85, attack: 100, defense: 122, sp_attack: 58, sp_defense: 75, speed: 54 }
+    stats: { hp: 85, attack: 100, defense: 122, sp_attack: 58, sp_defense: 75, speed: 54 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 173
   },
   bergmite: {
     id: 712,
@@ -6436,7 +7863,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Bergmite!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.ice],
-    stats: { hp: 55, attack: 69, defense: 85, sp_attack: 32, sp_defense: 35, speed: 28 }
+    stats: { hp: 55, attack: 69, defense: 85, sp_attack: 32, sp_defense: 35, speed: 28 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 61
   },
   avalugg: {
     id: 713,
@@ -6445,7 +7874,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Avalugg!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.ice, PokemonCombatType.rock],
-    stats: { hp: 95, attack: 127, defense: 184, sp_attack: 34, sp_defense: 36, speed: 38 }
+    stats: { hp: 95, attack: 127, defense: 184, sp_attack: 34, sp_defense: 36, speed: 38 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 180
   },
   noibat: {
     id: 714,
@@ -6454,7 +7885,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Noibat!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.flying, PokemonCombatType.dragon],
-    stats: { hp: 40, attack: 30, defense: 35, sp_attack: 45, sp_defense: 40, speed: 55 }
+    stats: { hp: 40, attack: 30, defense: 35, sp_attack: 45, sp_defense: 40, speed: 55 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 49
   },
   noivern: {
     id: 715,
@@ -6463,7 +7896,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Noivern!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.flying, PokemonCombatType.dragon],
-    stats: { hp: 85, attack: 70, defense: 80, sp_attack: 97, sp_defense: 80, speed: 123 }
+    stats: { hp: 85, attack: 70, defense: 80, sp_attack: 97, sp_defense: 80, speed: 123 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 187
   },
   xerneas: {
     id: 716,
@@ -6472,7 +7907,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Xerneas!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.fairy],
-    stats: { hp: 126, attack: 131, defense: 95, sp_attack: 131, sp_defense: 98, speed: 99 }
+    stats: { hp: 126, attack: 131, defense: 95, sp_attack: 131, sp_defense: 98, speed: 99 },
+    experience_group: ExperienceGroup.slow,
+    experience_yield: 306
   },
   yveltal: {
     id: 717,
@@ -6481,7 +7918,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Yveltal!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.dark, PokemonCombatType.flying],
-    stats: { hp: 126, attack: 131, defense: 95, sp_attack: 131, sp_defense: 98, speed: 99 }
+    stats: { hp: 126, attack: 131, defense: 95, sp_attack: 131, sp_defense: 98, speed: 99 },
+    experience_group: ExperienceGroup.slow,
+    experience_yield: 306
   },
   zygarde: {
     id: 718,
@@ -6490,7 +7929,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Zygarde!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.dragon, PokemonCombatType.ground],
-    stats: { hp: 216, attack: 100, defense: 121, sp_attack: 91, sp_defense: 95, speed: 85 }
+    stats: { hp: 216, attack: 100, defense: 121, sp_attack: 91, sp_defense: 95, speed: 85 },
+    experience_group: ExperienceGroup.slow,
+    experience_yield: 270
   },
   diancie: {
     id: 719,
@@ -6499,7 +7940,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Diancie!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.rock, PokemonCombatType.fairy],
-    stats: { hp: 50, attack: 160, defense: 110, sp_attack: 160, sp_defense: 110, speed: 110 }
+    stats: { hp: 50, attack: 160, defense: 110, sp_attack: 160, sp_defense: 110, speed: 110 },
+    experience_group: ExperienceGroup.slow,
+    experience_yield: 300
   },
   hoopa: {
     id: 720,
@@ -6508,7 +7951,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Hoopa!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.psychic, PokemonCombatType.dark],
-    stats: { hp: 80, attack: 160, defense: 60, sp_attack: 170, sp_defense: 130, speed: 80 }
+    stats: { hp: 80, attack: 160, defense: 60, sp_attack: 170, sp_defense: 130, speed: 80 },
+    experience_group: ExperienceGroup.slow,
+    experience_yield: 300
   },
   volcanion: {
     id: 721,
@@ -6517,7 +7962,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Volcanion!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.fire, PokemonCombatType.water],
-    stats: { hp: 80, attack: 110, defense: 120, sp_attack: 130, sp_defense: 90, speed: 70 }
+    stats: { hp: 80, attack: 110, defense: 120, sp_attack: 130, sp_defense: 90, speed: 70 },
+    experience_group: ExperienceGroup.slow,
+    experience_yield: 300
   },
   rowlet: {
     id: 722,
@@ -6526,7 +7973,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Rowlet!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.grass, PokemonCombatType.flying],
-    stats: { hp: 68, attack: 55, defense: 55, sp_attack: 50, sp_defense: 50, speed: 42 }
+    stats: { hp: 68, attack: 55, defense: 55, sp_attack: 50, sp_defense: 50, speed: 42 },
+    experience_group: ExperienceGroup.medium_slow,
+    experience_yield: 64
   },
   dartrix: {
     id: 723,
@@ -6535,7 +7984,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Dartrix!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.grass, PokemonCombatType.flying],
-    stats: { hp: 78, attack: 75, defense: 75, sp_attack: 70, sp_defense: 70, speed: 52 }
+    stats: { hp: 78, attack: 75, defense: 75, sp_attack: 70, sp_defense: 70, speed: 52 },
+    experience_group: ExperienceGroup.medium_slow,
+    experience_yield: 147
   },
   decidueye: {
     id: 724,
@@ -6544,7 +7995,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Decidueye!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.grass, PokemonCombatType.fighting],
-    stats: { hp: 88, attack: 112, defense: 80, sp_attack: 95, sp_defense: 95, speed: 60 }
+    stats: { hp: 88, attack: 112, defense: 80, sp_attack: 95, sp_defense: 95, speed: 60 },
+    experience_group: ExperienceGroup.medium_slow,
+    experience_yield: 265
   },
   litten: {
     id: 725,
@@ -6553,7 +8006,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Litten!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.fire],
-    stats: { hp: 45, attack: 65, defense: 40, sp_attack: 60, sp_defense: 40, speed: 70 }
+    stats: { hp: 45, attack: 65, defense: 40, sp_attack: 60, sp_defense: 40, speed: 70 },
+    experience_group: ExperienceGroup.medium_slow,
+    experience_yield: 64
   },
   torracat: {
     id: 726,
@@ -6562,7 +8017,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Torracat!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.fire],
-    stats: { hp: 65, attack: 85, defense: 50, sp_attack: 80, sp_defense: 50, speed: 90 }
+    stats: { hp: 65, attack: 85, defense: 50, sp_attack: 80, sp_defense: 50, speed: 90 },
+    experience_group: ExperienceGroup.medium_slow,
+    experience_yield: 147
   },
   incineroar: {
     id: 727,
@@ -6571,7 +8028,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Incineroar!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.fire, PokemonCombatType.dark],
-    stats: { hp: 95, attack: 115, defense: 90, sp_attack: 80, sp_defense: 90, speed: 60 }
+    stats: { hp: 95, attack: 115, defense: 90, sp_attack: 80, sp_defense: 90, speed: 60 },
+    experience_group: ExperienceGroup.medium_slow,
+    experience_yield: 239
   },
   popplio: {
     id: 728,
@@ -6580,7 +8039,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Popplio!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.water],
-    stats: { hp: 50, attack: 54, defense: 54, sp_attack: 66, sp_defense: 56, speed: 40 }
+    stats: { hp: 50, attack: 54, defense: 54, sp_attack: 66, sp_defense: 56, speed: 40 },
+    experience_group: ExperienceGroup.medium_slow,
+    experience_yield: 64
   },
   brionne: {
     id: 729,
@@ -6589,7 +8050,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Brionne!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.water],
-    stats: { hp: 60, attack: 69, defense: 69, sp_attack: 91, sp_defense: 81, speed: 50 }
+    stats: { hp: 60, attack: 69, defense: 69, sp_attack: 91, sp_defense: 81, speed: 50 },
+    experience_group: ExperienceGroup.medium_slow,
+    experience_yield: 147
   },
   primarina: {
     id: 730,
@@ -6598,7 +8061,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Primarina!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.water, PokemonCombatType.fairy],
-    stats: { hp: 80, attack: 74, defense: 74, sp_attack: 126, sp_defense: 116, speed: 60 }
+    stats: { hp: 80, attack: 74, defense: 74, sp_attack: 126, sp_defense: 116, speed: 60 },
+    experience_group: ExperienceGroup.medium_slow,
+    experience_yield: 239
   },
   pikipek: {
     id: 731,
@@ -6607,7 +8072,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Pikipek!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.normal, PokemonCombatType.flying],
-    stats: { hp: 35, attack: 75, defense: 30, sp_attack: 30, sp_defense: 30, speed: 65 }
+    stats: { hp: 35, attack: 75, defense: 30, sp_attack: 30, sp_defense: 30, speed: 65 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 53
   },
   trumbeak: {
     id: 732,
@@ -6616,7 +8083,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Trumbeak!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.normal, PokemonCombatType.flying],
-    stats: { hp: 55, attack: 85, defense: 50, sp_attack: 40, sp_defense: 50, speed: 75 }
+    stats: { hp: 55, attack: 85, defense: 50, sp_attack: 40, sp_defense: 50, speed: 75 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 124
   },
   toucannon: {
     id: 733,
@@ -6625,7 +8094,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Toucannon!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.normal, PokemonCombatType.flying],
-    stats: { hp: 80, attack: 120, defense: 75, sp_attack: 75, sp_defense: 75, speed: 60 }
+    stats: { hp: 80, attack: 120, defense: 75, sp_attack: 75, sp_defense: 75, speed: 60 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 218
   },
   yungoos: {
     id: 734,
@@ -6634,7 +8105,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Yungoos!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.normal],
-    stats: { hp: 48, attack: 70, defense: 30, sp_attack: 30, sp_defense: 30, speed: 45 }
+    stats: { hp: 48, attack: 70, defense: 30, sp_attack: 30, sp_defense: 30, speed: 45 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 51
   },
   gumshoos: {
     id: 735,
@@ -6643,7 +8116,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Gumshoos!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.normal],
-    stats: { hp: 88, attack: 110, defense: 60, sp_attack: 55, sp_defense: 60, speed: 45 }
+    stats: { hp: 88, attack: 110, defense: 60, sp_attack: 55, sp_defense: 60, speed: 45 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 146
   },
   grubbin: {
     id: 736,
@@ -6652,7 +8127,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Grubbin!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.bug],
-    stats: { hp: 47, attack: 62, defense: 45, sp_attack: 55, sp_defense: 45, speed: 46 }
+    stats: { hp: 47, attack: 62, defense: 45, sp_attack: 55, sp_defense: 45, speed: 46 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 60
   },
   charjabug: {
     id: 737,
@@ -6661,7 +8138,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Charjabug!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.bug, PokemonCombatType.electric],
-    stats: { hp: 57, attack: 82, defense: 95, sp_attack: 55, sp_defense: 75, speed: 36 }
+    stats: { hp: 57, attack: 82, defense: 95, sp_attack: 55, sp_defense: 75, speed: 36 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 140
   },
   vikavolt: {
     id: 738,
@@ -6670,7 +8149,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Vikavolt!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.bug, PokemonCombatType.electric],
-    stats: { hp: 77, attack: 70, defense: 90, sp_attack: 145, sp_defense: 75, speed: 43 }
+    stats: { hp: 77, attack: 70, defense: 90, sp_attack: 145, sp_defense: 75, speed: 43 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 225
   },
   crabrawler: {
     id: 739,
@@ -6679,7 +8160,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Crabrawler!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.fighting],
-    stats: { hp: 47, attack: 82, defense: 57, sp_attack: 42, sp_defense: 47, speed: 63 }
+    stats: { hp: 47, attack: 82, defense: 57, sp_attack: 42, sp_defense: 47, speed: 63 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 68
   },
   crabominable: {
     id: 740,
@@ -6688,7 +8171,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Crabominable!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.fighting, PokemonCombatType.ice],
-    stats: { hp: 97, attack: 132, defense: 77, sp_attack: 62, sp_defense: 67, speed: 43 }
+    stats: { hp: 97, attack: 132, defense: 77, sp_attack: 62, sp_defense: 67, speed: 43 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 167
   },
   oricorio: {
     id: 741,
@@ -6697,7 +8182,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Oricorio!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.ghost, PokemonCombatType.flying],
-    stats: { hp: 75, attack: 70, defense: 70, sp_attack: 98, sp_defense: 70, speed: 93 }
+    stats: { hp: 75, attack: 70, defense: 70, sp_attack: 98, sp_defense: 70, speed: 93 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 167
   },
   cutiefly: {
     id: 742,
@@ -6706,7 +8193,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Cutiefly!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.bug, PokemonCombatType.fairy],
-    stats: { hp: 40, attack: 45, defense: 40, sp_attack: 55, sp_defense: 40, speed: 84 }
+    stats: { hp: 40, attack: 45, defense: 40, sp_attack: 55, sp_defense: 40, speed: 84 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 61
   },
   ribombee: {
     id: 743,
@@ -6715,7 +8204,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Ribombee!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.bug, PokemonCombatType.fairy],
-    stats: { hp: 60, attack: 55, defense: 60, sp_attack: 95, sp_defense: 70, speed: 124 }
+    stats: { hp: 60, attack: 55, defense: 60, sp_attack: 95, sp_defense: 70, speed: 124 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 162
   },
   rockruff: {
     id: 744,
@@ -6724,7 +8215,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'rockruff!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.rock],
-    stats: { hp: 45, attack: 65, defense: 40, sp_attack: 30, sp_defense: 40, speed: 60 }
+    stats: { hp: 45, attack: 65, defense: 40, sp_attack: 30, sp_defense: 40, speed: 60 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 56
   },
   lycanroc: {
     id: 745,
@@ -6733,7 +8226,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Lycanroc!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.rock],
-    stats: { hp: 75, attack: 117, defense: 65, sp_attack: 55, sp_defense: 65, speed: 110 }
+    stats: { hp: 75, attack: 117, defense: 65, sp_attack: 55, sp_defense: 65, speed: 110 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 170
   },
   wishiwashi: {
     id: 746,
@@ -6742,7 +8237,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Wishiwashi!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.water],
-    stats: { hp: 45, attack: 140, defense: 130, sp_attack: 140, sp_defense: 135, speed: 30 }
+    stats: { hp: 45, attack: 140, defense: 130, sp_attack: 140, sp_defense: 135, speed: 30 },
+    experience_group: ExperienceGroup.fast,
+    experience_yield: 61
   },
   mareanie: {
     id: 747,
@@ -6751,7 +8248,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Mareanie!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.poison, PokemonCombatType.water],
-    stats: { hp: 50, attack: 53, defense: 62, sp_attack: 43, sp_defense: 52, speed: 45 }
+    stats: { hp: 50, attack: 53, defense: 62, sp_attack: 43, sp_defense: 52, speed: 45 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 61
   },
   toxapex: {
     id: 748,
@@ -6760,7 +8259,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Toxapex!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.poison, PokemonCombatType.water],
-    stats: { hp: 50, attack: 63, defense: 152, sp_attack: 53, sp_defense: 142, speed: 35 }
+    stats: { hp: 50, attack: 63, defense: 152, sp_attack: 53, sp_defense: 142, speed: 35 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 173
   },
   mudbray: {
     id: 749,
@@ -6769,7 +8270,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Mudbray!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.ground],
-    stats: { hp: 70, attack: 100, defense: 70, sp_attack: 45, sp_defense: 55, speed: 45 }
+    stats: { hp: 70, attack: 100, defense: 70, sp_attack: 45, sp_defense: 55, speed: 45 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 77
   },
   mudsdale: {
     id: 750,
@@ -6778,7 +8281,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Mudsdale!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.ground],
-    stats: { hp: 100, attack: 125, defense: 100, sp_attack: 55, sp_defense: 85, speed: 35 }
+    stats: { hp: 100, attack: 125, defense: 100, sp_attack: 55, sp_defense: 85, speed: 35 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 175
   },
   dewpider: {
     id: 751,
@@ -6787,7 +8292,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Dewpider!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.water, PokemonCombatType.bug],
-    stats: { hp: 38, attack: 40, defense: 52, sp_attack: 40, sp_defense: 72, speed: 27 }
+    stats: { hp: 38, attack: 40, defense: 52, sp_attack: 40, sp_defense: 72, speed: 27 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 54
   },
   araquanid: {
     id: 752,
@@ -6796,7 +8303,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Araquanid!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.water, PokemonCombatType.bug],
-    stats: { hp: 68, attack: 70, defense: 92, sp_attack: 50, sp_defense: 132, speed: 42 }
+    stats: { hp: 68, attack: 70, defense: 92, sp_attack: 50, sp_defense: 132, speed: 42 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 159
   },
   fomantis: {
     id: 753,
@@ -6805,7 +8314,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Fomantis!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.grass],
-    stats: { hp: 40, attack: 55, defense: 35, sp_attack: 50, sp_defense: 35, speed: 35 }
+    stats: { hp: 40, attack: 55, defense: 35, sp_attack: 50, sp_defense: 35, speed: 35 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 50
   },
   lurantis: {
     id: 754,
@@ -6814,7 +8325,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Lurantis!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.grass],
-    stats: { hp: 70, attack: 105, defense: 90, sp_attack: 80, sp_defense: 90, speed: 45 }
+    stats: { hp: 70, attack: 105, defense: 90, sp_attack: 80, sp_defense: 90, speed: 45 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 168
   },
   morelull: {
     id: 755,
@@ -6823,7 +8336,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Morelull!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.grass, PokemonCombatType.fairy],
-    stats: { hp: 40, attack: 35, defense: 55, sp_attack: 65, sp_defense: 75, speed: 15 }
+    stats: { hp: 40, attack: 35, defense: 55, sp_attack: 65, sp_defense: 75, speed: 15 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 57
   },
   shiinotic: {
     id: 756,
@@ -6832,7 +8347,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Shiinotic!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.grass, PokemonCombatType.fairy],
-    stats: { hp: 60, attack: 45, defense: 80, sp_attack: 90, sp_defense: 100, speed: 30 }
+    stats: { hp: 60, attack: 45, defense: 80, sp_attack: 90, sp_defense: 100, speed: 30 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 142
   },
   salandit: {
     id: 757,
@@ -6841,7 +8358,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Salandit!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.poison, PokemonCombatType.fire],
-    stats: { hp: 48, attack: 44, defense: 40, sp_attack: 71, sp_defense: 40, speed: 77 }
+    stats: { hp: 48, attack: 44, defense: 40, sp_attack: 71, sp_defense: 40, speed: 77 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 64
   },
   salazzle: {
     id: 758,
@@ -6850,7 +8369,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Salazzle!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.poison, PokemonCombatType.fire],
-    stats: { hp: 68, attack: 64, defense: 60, sp_attack: 111, sp_defense: 60, speed: 117 }
+    stats: { hp: 68, attack: 64, defense: 60, sp_attack: 111, sp_defense: 60, speed: 117 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 168
   },
   stufful: {
     id: 759,
@@ -6859,7 +8380,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Stufful!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.normal, PokemonCombatType.fighting],
-    stats: { hp: 70, attack: 75, defense: 50, sp_attack: 45, sp_defense: 50, speed: 50 }
+    stats: { hp: 70, attack: 75, defense: 50, sp_attack: 45, sp_defense: 50, speed: 50 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 68
   },
   bewear: {
     id: 760,
@@ -6868,7 +8391,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Bewear!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.normal, PokemonCombatType.fighting],
-    stats: { hp: 120, attack: 125, defense: 80, sp_attack: 55, sp_defense: 60, speed: 60 }
+    stats: { hp: 120, attack: 125, defense: 80, sp_attack: 55, sp_defense: 60, speed: 60 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 175
   },
   bounsweet: {
     id: 761,
@@ -6877,7 +8402,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Bounsweet!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.grass],
-    stats: { hp: 42, attack: 30, defense: 38, sp_attack: 30, sp_defense: 38, speed: 32 }
+    stats: { hp: 42, attack: 30, defense: 38, sp_attack: 30, sp_defense: 38, speed: 32 },
+    experience_group: ExperienceGroup.medium_slow,
+    experience_yield: 42
   },
   steenee: {
     id: 762,
@@ -6886,7 +8413,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Steenee!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.grass],
-    stats: { hp: 52, attack: 40, defense: 48, sp_attack: 40, sp_defense: 48, speed: 62 }
+    stats: { hp: 52, attack: 40, defense: 48, sp_attack: 40, sp_defense: 48, speed: 62 },
+    experience_group: ExperienceGroup.medium_slow,
+    experience_yield: 102
   },
   tsareena: {
     id: 763,
@@ -6895,7 +8424,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Tsareena!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.grass],
-    stats: { hp: 72, attack: 120, defense: 98, sp_attack: 50, sp_defense: 98, speed: 72 }
+    stats: { hp: 72, attack: 120, defense: 98, sp_attack: 50, sp_defense: 98, speed: 72 },
+    experience_group: ExperienceGroup.medium_slow,
+    experience_yield: 255
   },
   comfey: {
     id: 764,
@@ -6904,7 +8435,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Comfey!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.fairy],
-    stats: { hp: 51, attack: 52, defense: 90, sp_attack: 82, sp_defense: 110, speed: 100 }
+    stats: { hp: 51, attack: 52, defense: 90, sp_attack: 82, sp_defense: 110, speed: 100 },
+    experience_group: ExperienceGroup.fast,
+    experience_yield: 170
   },
   oranguru: {
     id: 765,
@@ -6913,7 +8446,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Oranguru!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.normal, PokemonCombatType.psychic],
-    stats: { hp: 90, attack: 60, defense: 80, sp_attack: 90, sp_defense: 110, speed: 60 }
+    stats: { hp: 90, attack: 60, defense: 80, sp_attack: 90, sp_defense: 110, speed: 60 },
+    experience_group: ExperienceGroup.slow,
+    experience_yield: 172
   },
   passimian: {
     id: 766,
@@ -6922,7 +8457,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Passimian!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.fighting],
-    stats: { hp: 100, attack: 120, defense: 90, sp_attack: 40, sp_defense: 60, speed: 80 }
+    stats: { hp: 100, attack: 120, defense: 90, sp_attack: 40, sp_defense: 60, speed: 80 },
+    experience_group: ExperienceGroup.slow,
+    experience_yield: 172
   },
   wimpod: {
     id: 767,
@@ -6931,7 +8468,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Wimpod!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.bug, PokemonCombatType.water],
-    stats: { hp: 25, attack: 35, defense: 40, sp_attack: 20, sp_defense: 30, speed: 80 }
+    stats: { hp: 25, attack: 35, defense: 40, sp_attack: 20, sp_defense: 30, speed: 80 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 46
   },
   golisopod: {
     id: 768,
@@ -6940,7 +8479,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Golisopod!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.bug, PokemonCombatType.water],
-    stats: { hp: 75, attack: 125, defense: 140, sp_attack: 60, sp_defense: 90, speed: 40 }
+    stats: { hp: 75, attack: 125, defense: 140, sp_attack: 60, sp_defense: 90, speed: 40 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 186
   },
   sandygast: {
     id: 769,
@@ -6949,7 +8490,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Sandygast!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.ghost, PokemonCombatType.ground],
-    stats: { hp: 55, attack: 55, defense: 80, sp_attack: 70, sp_defense: 45, speed: 15 }
+    stats: { hp: 55, attack: 55, defense: 80, sp_attack: 70, sp_defense: 45, speed: 15 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 64
   },
   palossand: {
     id: 770,
@@ -6958,7 +8501,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Palossand!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.ghost, PokemonCombatType.ground],
-    stats: { hp: 85, attack: 75, defense: 110, sp_attack: 100, sp_defense: 75, speed: 35 }
+    stats: { hp: 85, attack: 75, defense: 110, sp_attack: 100, sp_defense: 75, speed: 35 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 168
   },
   pyukumuku: {
     id: 771,
@@ -6967,7 +8512,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Pyukumuku!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.water],
-    stats: { hp: 55, attack: 60, defense: 130, sp_attack: 30, sp_defense: 130, speed: 5 }
+    stats: { hp: 55, attack: 60, defense: 130, sp_attack: 30, sp_defense: 130, speed: 5 },
+    experience_group: ExperienceGroup.fast,
+    experience_yield: 144
   },
   typenull: {
     id: 772,
@@ -6976,7 +8523,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Type: Null!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.normal],
-    stats: { hp: 95, attack: 95, defense: 95, sp_attack: 95, sp_defense: 95, speed: 59 }
+    stats: { hp: 95, attack: 95, defense: 95, sp_attack: 95, sp_defense: 95, speed: 59 },
+    experience_group: ExperienceGroup.slow,
+    experience_yield: 107
   },
   silvally: {
     id: 773,
@@ -6985,7 +8534,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Silvally!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.normal],
-    stats: { hp: 95, attack: 95, defense: 95, sp_attack: 95, sp_defense: 95, speed: 95 }
+    stats: { hp: 95, attack: 95, defense: 95, sp_attack: 95, sp_defense: 95, speed: 95 },
+    experience_group: ExperienceGroup.slow,
+    experience_yield: 257
   },
   minior: {
     id: 774,
@@ -6994,7 +8545,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Minior!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.rock, PokemonCombatType.flying],
-    stats: { hp: 60, attack: 100, defense: 60, sp_attack: 100, sp_defense: 60, speed: 120 }
+    stats: { hp: 60, attack: 100, defense: 60, sp_attack: 100, sp_defense: 60, speed: 120 },
+    experience_group: ExperienceGroup.medium_slow,
+    experience_yield: 154
   },
   komala: {
     id: 775,
@@ -7003,7 +8556,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Komala!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.normal],
-    stats: { hp: 65, attack: 115, defense: 65, sp_attack: 75, sp_defense: 95, speed: 65 }
+    stats: { hp: 65, attack: 115, defense: 65, sp_attack: 75, sp_defense: 95, speed: 65 },
+    experience_group: ExperienceGroup.slow,
+    experience_yield: 168
   },
   turtonator: {
     id: 776,
@@ -7012,7 +8567,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Turtonator!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.fire, PokemonCombatType.dragon],
-    stats: { hp: 60, attack: 78, defense: 135, sp_attack: 91, sp_defense: 85, speed: 36 }
+    stats: { hp: 60, attack: 78, defense: 135, sp_attack: 91, sp_defense: 85, speed: 36 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 170
   },
   togedemaru: {
     id: 777,
@@ -7021,7 +8578,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Togedemaru!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.electric, PokemonCombatType.steel],
-    stats: { hp: 65, attack: 98, defense: 63, sp_attack: 40, sp_defense: 73, speed: 96 }
+    stats: { hp: 65, attack: 98, defense: 63, sp_attack: 40, sp_defense: 73, speed: 96 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 152
   },
   mimikyu: {
     id: 778,
@@ -7030,7 +8589,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Mimikyu!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.ghost, PokemonCombatType.fairy],
-    stats: { hp: 55, attack: 90, defense: 80, sp_attack: 50, sp_defense: 105, speed: 96 }
+    stats: { hp: 55, attack: 90, defense: 80, sp_attack: 50, sp_defense: 105, speed: 96 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 167
   },
   bruxish: {
     id: 779,
@@ -7039,7 +8600,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Bruxish!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.water, PokemonCombatType.psychic],
-    stats: { hp: 68, attack: 105, defense: 70, sp_attack: 70, sp_defense: 70, speed: 92 }
+    stats: { hp: 68, attack: 105, defense: 70, sp_attack: 70, sp_defense: 70, speed: 92 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 166
   },
   drampa: {
     id: 780,
@@ -7048,7 +8611,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Drampa!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.normal, PokemonCombatType.dragon],
-    stats: { hp: 78, attack: 60, defense: 85, sp_attack: 135, sp_defense: 91, speed: 36 }
+    stats: { hp: 78, attack: 60, defense: 85, sp_attack: 135, sp_defense: 91, speed: 36 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 170
   },
   dhelmise: {
     id: 781,
@@ -7057,7 +8622,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Dhelmise!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.ghost, PokemonCombatType.grass],
-    stats: { hp: 70, attack: 131, defense: 100, sp_attack: 86, sp_defense: 90, speed: 40 }
+    stats: { hp: 70, attack: 131, defense: 100, sp_attack: 86, sp_defense: 90, speed: 40 },
+    experience_group: ExperienceGroup.medium_fast,
+    experience_yield: 181
   },
   jangmoo: {
     id: 782,
@@ -7066,7 +8633,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Jangmo-o!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.dragon],
-    stats: { hp: 45, attack: 55, defense: 65, sp_attack: 45, sp_defense: 45, speed: 45 }
+    stats: { hp: 45, attack: 55, defense: 65, sp_attack: 45, sp_defense: 45, speed: 45 },
+    experience_group: ExperienceGroup.slow,
+    experience_yield: 60
   },
   hakamoo: {
     id: 783,
@@ -7075,7 +8644,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Hakamo-o!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.dragon, PokemonCombatType.fighting],
-    stats: { hp: 55, attack: 75, defense: 90, sp_attack: 65, sp_defense: 70, speed: 65 }
+    stats: { hp: 55, attack: 75, defense: 90, sp_attack: 65, sp_defense: 70, speed: 65 },
+    experience_group: ExperienceGroup.slow,
+    experience_yield: 147
   },
   kommoo: {
     id: 784,
@@ -7084,7 +8655,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Kommo-o!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.dragon, PokemonCombatType.fighting],
-    stats: { hp: 75, attack: 110, defense: 125, sp_attack: 100, sp_defense: 105, speed: 85 }
+    stats: { hp: 75, attack: 110, defense: 125, sp_attack: 100, sp_defense: 105, speed: 85 },
+    experience_group: ExperienceGroup.slow,
+    experience_yield: 270
   },
   tapukoko: {
     id: 785,
@@ -7093,7 +8666,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Tapu Koko!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.electric, PokemonCombatType.fairy],
-    stats: { hp: 70, attack: 115, defense: 85, sp_attack: 95, sp_defense: 75, speed: 130 }
+    stats: { hp: 70, attack: 115, defense: 85, sp_attack: 95, sp_defense: 75, speed: 130 },
+    experience_group: ExperienceGroup.slow,
+    experience_yield: 257
   },
   tapulele: {
     id: 786,
@@ -7102,7 +8677,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Tapu Lele!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.psychic, PokemonCombatType.fairy],
-    stats: { hp: 70, attack: 85, defense: 75, sp_attack: 130, sp_defense: 115, speed: 95 }
+    stats: { hp: 70, attack: 85, defense: 75, sp_attack: 130, sp_defense: 115, speed: 95 },
+    experience_group: ExperienceGroup.slow,
+    experience_yield: 257
   },
   tapubulu: {
     id: 787,
@@ -7111,7 +8688,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Tapu Bulu!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.grass, PokemonCombatType.fairy],
-    stats: { hp: 70, attack: 130, defense: 115, sp_attack: 85, sp_defense: 95, speed: 75 }
+    stats: { hp: 70, attack: 130, defense: 115, sp_attack: 85, sp_defense: 95, speed: 75 },
+    experience_group: ExperienceGroup.slow,
+    experience_yield: 257
   },
   tapufini: {
     id: 788,
@@ -7120,7 +8699,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Tapu Fini!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.water, PokemonCombatType.fairy],
-    stats: { hp: 70, attack: 75, defense: 115, sp_attack: 95, sp_defense: 130, speed: 85 }
+    stats: { hp: 70, attack: 75, defense: 115, sp_attack: 95, sp_defense: 130, speed: 85 },
+    experience_group: ExperienceGroup.slow,
+    experience_yield: 257
   },
   cosmog: {
     id: 789,
@@ -7129,7 +8710,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Cosmog!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.psychic],
-    stats: { hp: 43, attack: 29, defense: 31, sp_attack: 29, sp_defense: 31, speed: 37 }
+    stats: { hp: 43, attack: 29, defense: 31, sp_attack: 29, sp_defense: 31, speed: 37 },
+    experience_group: ExperienceGroup.slow,
+    experience_yield: 40
   },
   cosmoem: {
     id: 790,
@@ -7138,7 +8721,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Cosmoem!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.psychic],
-    stats: { hp: 43, attack: 29, defense: 131, sp_attack: 29, sp_defense: 131, speed: 37 }
+    stats: { hp: 43, attack: 29, defense: 131, sp_attack: 29, sp_defense: 131, speed: 37 },
+    experience_group: ExperienceGroup.slow,
+    experience_yield: 140
   },
   solgaleo: {
     id: 791,
@@ -7147,7 +8732,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Solgaleo!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.psychic, PokemonCombatType.steel],
-    stats: { hp: 137, attack: 137, defense: 107, sp_attack: 113, sp_defense: 89, speed: 97 }
+    stats: { hp: 137, attack: 137, defense: 107, sp_attack: 113, sp_defense: 89, speed: 97 },
+    experience_group: ExperienceGroup.slow,
+    experience_yield: 306
   },
   lunala: {
     id: 792,
@@ -7156,7 +8743,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Lunala!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.psychic, PokemonCombatType.ghost],
-    stats: { hp: 137, attack: 113, defense: 89, sp_attack: 137, sp_defense: 107, speed: 97 }
+    stats: { hp: 137, attack: 113, defense: 89, sp_attack: 137, sp_defense: 107, speed: 97 },
+    experience_group: ExperienceGroup.slow,
+    experience_yield: 306
   },
   nihilego: {
     id: 793,
@@ -7165,7 +8754,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Nihilego!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.rock, PokemonCombatType.poison],
-    stats: { hp: 109, attack: 53, defense: 47, sp_attack: 127, sp_defense: 131, speed: 103 }
+    stats: { hp: 109, attack: 53, defense: 47, sp_attack: 127, sp_defense: 131, speed: 103 },
+    experience_group: ExperienceGroup.slow,
+    experience_yield: 257
   },
   buzzwole: {
     id: 794,
@@ -7174,7 +8765,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Buzzwole!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.bug, PokemonCombatType.fighting],
-    stats: { hp: 107, attack: 139, defense: 139, sp_attack: 53, sp_defense: 53, speed: 79 }
+    stats: { hp: 107, attack: 139, defense: 139, sp_attack: 53, sp_defense: 53, speed: 79 },
+    experience_group: ExperienceGroup.slow,
+    experience_yield: 257
   },
   pheromosa: {
     id: 795,
@@ -7183,7 +8776,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Pheromosa!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.bug, PokemonCombatType.fighting],
-    stats: { hp: 71, attack: 137, defense: 37, sp_attack: 137, sp_defense: 37, speed: 151 }
+    stats: { hp: 71, attack: 137, defense: 37, sp_attack: 137, sp_defense: 37, speed: 151 },
+    experience_group: ExperienceGroup.slow,
+    experience_yield: 257
   },
   xurkitree: {
     id: 796,
@@ -7192,7 +8787,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Xurkitree!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.electric],
-    stats: { hp: 83, attack: 89, defense: 71, sp_attack: 173, sp_defense: 71, speed: 83 }
+    stats: { hp: 83, attack: 89, defense: 71, sp_attack: 173, sp_defense: 71, speed: 83 },
+    experience_group: ExperienceGroup.slow,
+    experience_yield: 257
   },
   celesteela: {
     id: 797,
@@ -7201,7 +8798,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Celesteela!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.steel, PokemonCombatType.flying],
-    stats: { hp: 97, attack: 101, defense: 103, sp_attack: 107, sp_defense: 101, speed: 61 }
+    stats: { hp: 97, attack: 101, defense: 103, sp_attack: 107, sp_defense: 101, speed: 61 },
+    experience_group: ExperienceGroup.slow,
+    experience_yield: 257
   },
   kartana: {
     id: 798,
@@ -7210,7 +8809,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Kartana!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.grass, PokemonCombatType.steel],
-    stats: { hp: 59, attack: 181, defense: 131, sp_attack: 59, sp_defense: 31, speed: 109 }
+    stats: { hp: 59, attack: 181, defense: 131, sp_attack: 59, sp_defense: 31, speed: 109 },
+    experience_group: ExperienceGroup.slow,
+    experience_yield: 257
   },
   guzzlord: {
     id: 799,
@@ -7219,7 +8820,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Guzzlord!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.dark, PokemonCombatType.dragon],
-    stats: { hp: 223, attack: 101, defense: 53, sp_attack: 97, sp_defense: 53, speed: 43 }
+    stats: { hp: 223, attack: 101, defense: 53, sp_attack: 97, sp_defense: 53, speed: 43 },
+    experience_group: ExperienceGroup.slow,
+    experience_yield: 257
   },
   necrozma: {
     id: 800,
@@ -7228,7 +8831,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Necrozma!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.psychic, PokemonCombatType.dragon],
-    stats: { hp: 97, attack: 167, defense: 97, sp_attack: 167, sp_defense: 97, speed: 129 }
+    stats: { hp: 97, attack: 167, defense: 97, sp_attack: 167, sp_defense: 97, speed: 129 },
+    experience_group: ExperienceGroup.slow,
+    experience_yield: 270
   },
   magearna: {
     id: 801,
@@ -7237,7 +8842,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Magearna!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.steel, PokemonCombatType.fairy],
-    stats: { hp: 80, attack: 95, defense: 115, sp_attack: 130, sp_defense: 115, speed: 65 }
+    stats: { hp: 80, attack: 95, defense: 115, sp_attack: 130, sp_defense: 115, speed: 65 },
+    experience_group: ExperienceGroup.slow,
+    experience_yield: 300
   },
   marshadow: {
     id: 802,
@@ -7246,7 +8853,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Marshadow!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.fighting, PokemonCombatType.ghost],
-    stats: { hp: 90, attack: 125, defense: 80, sp_attack: 90, sp_defense: 90, speed: 125 }
+    stats: { hp: 90, attack: 125, defense: 80, sp_attack: 90, sp_defense: 90, speed: 125 },
+    experience_group: ExperienceGroup.slow,
+    experience_yield: 270
   },
   poipole: {
     id: 803,
@@ -7255,7 +8864,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Poipole!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.poison],
-    stats: { hp: 67, attack: 73, defense: 67, sp_attack: 73, sp_defense: 67, speed: 73 }
+    stats: { hp: 67, attack: 73, defense: 67, sp_attack: 73, sp_defense: 67, speed: 73 },
+    experience_group: ExperienceGroup.slow,
+    experience_yield: 189
   },
   naganadel: {
     id: 804,
@@ -7264,7 +8875,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Naganadel!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.poison, PokemonCombatType.dragon],
-    stats: { hp: 73, attack: 73, defense: 73, sp_attack: 127, sp_defense: 73, speed: 121 }
+    stats: { hp: 73, attack: 73, defense: 73, sp_attack: 127, sp_defense: 73, speed: 121 },
+    experience_group: ExperienceGroup.slow,
+    experience_yield: 243
   },
   stakataka: {
     id: 805,
@@ -7273,7 +8886,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Stakataka!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.rock, PokemonCombatType.steel],
-    stats: { hp: 61, attack: 131, defense: 211, sp_attack: 53, sp_defense: 101, speed: 13 }
+    stats: { hp: 61, attack: 131, defense: 211, sp_attack: 53, sp_defense: 101, speed: 13 },
+    experience_group: ExperienceGroup.slow,
+    experience_yield: 257
   },
   blacephalon: {
     id: 806,
@@ -7282,7 +8897,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Blacephalon!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.fire, PokemonCombatType.ghost],
-    stats: { hp: 53, attack: 127, defense: 53, sp_attack: 151, sp_defense: 79, speed: 107 }
+    stats: { hp: 53, attack: 127, defense: 53, sp_attack: 151, sp_defense: 79, speed: 107 },
+    experience_group: ExperienceGroup.slow,
+    experience_yield: 257
   },
   zeraora: {
     id: 807,
@@ -7291,7 +8908,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Zeraora!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.electric],
-    stats: { hp: 88, attack: 112, defense: 75, sp_attack: 102, sp_defense: 80, speed: 143 }
+    stats: { hp: 88, attack: 112, defense: 75, sp_attack: 102, sp_defense: 80, speed: 143 },
+    experience_group: ExperienceGroup.slow,
+    experience_yield: 270
   },
   meltan: {
     id: 808,
@@ -7300,7 +8919,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Meltan!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.steel],
-    stats: { hp: 46, attack: 65, defense: 65, sp_attack: 55, sp_defense: 35, speed: 34 }
+    stats: { hp: 46, attack: 65, defense: 65, sp_attack: 55, sp_defense: 35, speed: 34 },
+    experience_group: ExperienceGroup.slow,
+    experience_yield: 150
   },
   melmetal: {
     id: 809,
@@ -7309,7 +8930,9 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     cry: 'Melmetal!',
     possibleColors: [PokemonColor.default],
     types: [PokemonCombatType.steel],
-    stats: { hp: 135, attack: 143, defense: 143, sp_attack: 80, sp_defense: 65, speed: 34 }
+    stats: { hp: 135, attack: 143, defense: 143, sp_attack: 80, sp_defense: 65, speed: 34 },
+    experience_group: ExperienceGroup.slow,
+    experience_yield: 300
   },
  };
 export function getAllPokemon(): PokemonType[] {
