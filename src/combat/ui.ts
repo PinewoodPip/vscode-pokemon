@@ -336,6 +336,16 @@ export class CombatUIManager {
         this.showOverhead(pokemonSection, `+${healAmount}`, ['heal']);
     }
 
+    showMoveBadge(pokemonSection: HTMLElement, moveName: string) {
+        const moveBadgeEl = document.createElement('div');
+        moveBadgeEl.className = 'move-badge';
+        moveBadgeEl.textContent = moveName;
+        pokemonSection.appendChild(moveBadgeEl);
+        setTimeout(() => {
+            moveBadgeEl.remove();
+        }, 2000);
+    }
+
     clearCombatLog() {
         this.combatLog.innerHTML = '';
     }

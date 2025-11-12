@@ -263,10 +263,15 @@ export class UsedMoveHandler extends MessageHandler {
         const match = line.match(this.pattern);
         if (!match) return;
 
+        const userPlayerIndex = parseInt(match[1]);
         const userPokemon = match[2];
         const move = match[3];
         const targetPlayerPokemon = match[5];
         uiManager.addCombatLog(`${userPokemon} used ${move} on ${targetPlayerPokemon}!`, 'info');
+        
+        // Show move badge on the pokemon that used the move
+        const pokemonSectionEl = uiManager.getCombatSectionElement(userPlayerIndex);
+        uiManager.showMoveBadge(pokemonSectionEl, move);
     }
 }
 
