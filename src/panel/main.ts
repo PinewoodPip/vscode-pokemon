@@ -43,6 +43,7 @@ export var allPokemon: IPokemonCollection = new PokemonCollection();
 var pokemonCounter: number;
 var lastMouseX: number | undefined;
 var physicsEntityManager: PhysicsEntityManager;
+var pokedex: Map<string, number> = new Map(); // Track species and count
 
 var combat: Combat | null = null;
 var combatUIManager: CombatUIManager | null = null;
@@ -302,8 +303,15 @@ function addPokemonToPanel(
             originalSpriteSize,
             needs,
         );
-        if (incrementCounter) {
+
+        // Increment amount caught if the pokemon is newly-spawned or if the user had it saved before this feature was added (present in panel but not in pokedex)
+        const wasInPokedex = pokedex.has(sanitizeName(POKEMON_DATA[pokemonType].name));
+        if (incrementCounter || !wasInPokedex) {
             pokemonCounter++;
+            // Track in pokedex
+            const speciesId = sanitizeName(POKEMON_DATA[pokemonType].name);
+            const currentCount = pokedex.get(speciesId) || 0;
+            pokedex.set(speciesId, currentCount + 1);
         }
         startAnimations(collisionElement, newPokemon, stateApi);
     } catch (e: any) {
@@ -349,6 +357,8 @@ export function saveState(stateApi?: VscodeStateApi) {
         });
     });
     state.pokemonCounter = pokemonCounter;
+    // Convert Map to plain object for serialization
+    state.pokedex = Object.fromEntries(pokedex);
     stateApi?.setState(state);
 }
 
@@ -370,6 +380,10 @@ function recoverState(
             pokemonCounter = 1;
         } else {
             pokemonCounter = state.pokemonCounter ?? 1;
+        }
+        // Restore pokedex
+        if (state.pokedex) {
+            pokedex = new Map(Object.entries(state.pokedex));
         }
     }
 
@@ -712,6 +726,28 @@ export function pokemonPanelApp(
                         command: 'info',
                         text: `${pokemon.pokemon.emoji} ${pokemon.pokemon.name} leveled up to level ${pokemon.pokemon.progression.level}!`,
                     });
+                });
+                break;
+
+            case 'show-pokedex':
+                // Send pokedex data back to extension
+                const pokedexEntries: Array<{id: number, name: string, count: number}> = [];
+                pokedex.forEach((count, speciesId) => {
+                    const pokemonConfig = POKEMON_DATA[speciesId];
+                    if (pokemonConfig) {
+                        pokedexEntries.push({
+                            id: pokemonConfig.id,
+                            name: pokemonConfig.name,
+                            count: count
+                        });
+                    }
+                });
+                // Sort by pokedex ID
+                pokedexEntries.sort((a, b) => a.id - b.id);
+                stateApi?.postMessage({
+                    text: '',
+                    command: 'pokedex-data',
+                    data: pokedexEntries,
                 });
                 break;
 

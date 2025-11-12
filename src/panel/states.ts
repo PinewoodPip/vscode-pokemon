@@ -68,6 +68,7 @@ export interface PokemonElementState {
 export class PokemonPanelState {
     pokemonStates: Array<PokemonElementState> | undefined;
     pokemonCounter: number | undefined;
+    pokedex: Record<string, number> | undefined; // Map of species ID to count
 }
 
 export enum HorizontalDirection {

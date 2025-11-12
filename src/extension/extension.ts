@@ -396,6 +396,17 @@ export function activate(context: vscode.ExtensionContext) {
         }),
     );
 
+    context.subscriptions.push(
+        vscode.commands.registerCommand('vscode-pokemon.show-pokedex', async () => {
+            const panel = getPokemonPanel();
+            if (panel !== undefined) {
+                panel.showPokedex();
+            } else {
+                await vscode.window.showInformationMessage('No pokemon panel is open. Start the pokemon extension first.');
+            }
+        }),
+    );
+
     spawnPokemonStatusBar = vscode.window.createStatusBarItem(
         vscode.StatusBarAlignment.Right,
         100,
@@ -985,6 +996,7 @@ interface IPokemonPanel {
     listPokemon(): void;
     rollCall(): void;
     levelUpAll(): void;
+    showPokedex(): void;
     themeKind(): vscode.ColorThemeKind;
     throwBallWithMouse(): boolean;
     updatePokemonColor(newColor: PokemonColor): void;
@@ -1143,6 +1155,10 @@ class PokemonWebviewContainer implements IPokemonPanel {
         void this.getWebview().postMessage({ command: 'level-up-all' });
     }
 
+    public showPokedex(): void {
+        void this.getWebview().postMessage({ command: 'show-pokedex' });
+    }
+
     public deletePokemon(pokemonName: string) {
         void this.getWebview().postMessage({
             command: 'delete-pokemon',
@@ -1254,6 +1270,25 @@ function handleWebviewMessage(message: WebviewMessage) {
             if (combatProcess) {
                 combatProcess.stop();
                 combatProcess = null;
+            }
+            break;
+        case 'pokedex-data':
+            // Display pokedex data in a quick pick
+            if (message.data && Array.isArray(message.data)) {
+                const items = message.data.map((entry: any) => ({
+                    label: `#${entry.id.toString().padStart(3, '0')} ${entry.name}`,
+                    description: `Caught: ${entry.count}`,
+                    // detail: `Pokedex ID: ${entry.id}`,
+                }));
+                
+                if (items.length === 0) {
+                    void vscode.window.showInformationMessage('Your Pokedex is empty. Catch some Pokemon first!');
+                } else {
+                    void vscode.window.showQuickPick(items, {
+                        placeHolder: `Pokedex - ${items.length} species caught`,
+                        title: 'Your Pokemon Collection',
+                    });
+                }
             }
             break;
     }

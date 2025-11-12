@@ -185,6 +185,11 @@
                 "command": "vscode-pokemon.level-up-all",
                 "title": "(Debug) level up all pokemon",
                 "category": "Pokemon Coding"
+            },
+            {
+                "command": "vscode-pokemon.show-pokedex",
+                "title": "Show Pokédex",
+                "category": "Pokemon Coding"
             }
         ],
         "configuration": [

@@ -153,6 +153,7 @@ export const enum ColorThemeKind {
 export class WebviewMessage {
     text: string;
     command: string;
+    data?: any; // Payload
 
     constructor(text: string, command: string) {
         this.text = text;
