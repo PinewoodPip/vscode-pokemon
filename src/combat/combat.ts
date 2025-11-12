@@ -136,6 +136,8 @@ export class CombatPokemon {
 
 /** Manages the state of a combat session. */
 export class Combat {
+    static HAPPINESS_ON_VICTORY = 15;
+
     player: CombatPokemon;
     enemy: CombatPokemon;
     interval: number | null = null;

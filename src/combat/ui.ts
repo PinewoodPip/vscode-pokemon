@@ -193,6 +193,9 @@ export class CombatUIManager {
                     text: `${playerPokemon.name} leveled up to level ${newLevel}!`,
                 });
             }
+
+            // Add happiness
+            playerPokemon.pokemon!.needs.addHappiness(Combat.HAPPINESS_ON_VICTORY);
         }
 
         // Show victory/defeat message
