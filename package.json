@@ -180,6 +180,11 @@
                 "command": "vscode-pokemon.reset-pokemon-position",
                 "title": "Resummon Pokemon to last mouse position",
                 "category": "Pokemon Coding"
+            },
+            {
+                "command": "vscode-pokemon.level-up-all",
+                "title": "(Debug) level up all pokemon",
+                "category": "Pokemon Coding"
             }
         ],
         "configuration": [

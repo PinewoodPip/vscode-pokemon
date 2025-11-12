@@ -385,6 +385,17 @@ export function activate(context: vscode.ExtensionContext) {
         }),
     );
 
+    context.subscriptions.push(
+        vscode.commands.registerCommand('vscode-pokemon.level-up-all', async () => {
+            const panel = getPokemonPanel();
+            if (panel !== undefined) {
+                panel.levelUpAll();
+            } else {
+                await vscode.window.showInformationMessage('No pokemon panel is open. Start the pokemon extension first.');
+            }
+        }),
+    );
+
     spawnPokemonStatusBar = vscode.window.createStatusBarItem(
         vscode.StatusBarAlignment.Right,
         100,
@@ -973,6 +984,7 @@ interface IPokemonPanel {
     deletePokemon(pokemonName: string): void;
     listPokemon(): void;
     rollCall(): void;
+    levelUpAll(): void;
     themeKind(): vscode.ColorThemeKind;
     throwBallWithMouse(): boolean;
     updatePokemonColor(newColor: PokemonColor): void;
@@ -1125,6 +1137,10 @@ class PokemonWebviewContainer implements IPokemonPanel {
 
     public rollCall(): void {
         void this.getWebview().postMessage({ command: 'roll-call' });
+    }
+
+    public levelUpAll(): void {
+        void this.getWebview().postMessage({ command: 'level-up-all' });
     }
 
     public deletePokemon(pokemonName: string) {

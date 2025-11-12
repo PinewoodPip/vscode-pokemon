@@ -702,6 +702,19 @@ export function pokemonPanelApp(
                 });
                 break;
 
+            case 'level-up-all':
+                var allPokemonCollection = allPokemon.pokemonCollection;
+                allPokemonCollection.forEach((pokemon) => {
+                    for (let i = 0; i < 10; i++) {
+                        pokemon.pokemon.progression.levelUp();
+                    }
+                    stateApi?.postMessage({
+                        command: 'info',
+                        text: `${pokemon.pokemon.emoji} ${pokemon.pokemon.name} leveled up to level ${pokemon.pokemon.progression.level}!`,
+                    });
+                });
+                break;
+
             case 'throw-berry':
                 var berryId = message.berry;
                 // Spawn berry at random position near top with random velocity
