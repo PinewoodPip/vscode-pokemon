@@ -1,3 +1,4 @@
+import { PokemonStat } from "../combat/combat";
 import { PokemonColor, PokemonCombatType, PokemonConfig, PokemonGeneration, PokemonType } from "./types";
 import { ExperienceGroup } from "./xp-tables";
 
@@ -11,7 +12,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.grass, PokemonCombatType.poison],
     stats: { hp: 45, attack: 49, defense: 49, sp_attack: 65, sp_defense: 65, speed: 45 },
     experience_group: ExperienceGroup.medium_slow,
-    experience_yield: 64
+    experience_yield: 64,
+    ev_yields: {[PokemonStat.sp_atk]: 1}
   },
   ivysaur: {
     id: 2,
@@ -22,7 +24,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.grass, PokemonCombatType.poison],
     stats: { hp: 60, attack: 62, defense: 63, sp_attack: 80, sp_defense: 80, speed: 60 },
     experience_group: ExperienceGroup.medium_slow,
-    experience_yield: 142
+    experience_yield: 142,
+    ev_yields: {[PokemonStat.sp_atk]: 1}
   },
   venusaur: {
     id: 3,
@@ -33,7 +36,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.grass, PokemonCombatType.poison],
     stats: { hp: 80, attack: 100, defense: 123, sp_attack: 122, sp_defense: 120, speed: 80 },
     experience_group: ExperienceGroup.medium_slow,
-    experience_yield: 236
+    experience_yield: 236,
+    ev_yields: {[PokemonStat.sp_atk]: 2}
   },
   charmander: {
     id: 4,
@@ -44,7 +48,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.fire],
     stats: { hp: 39, attack: 52, defense: 43, sp_attack: 60, sp_defense: 50, speed: 65 },
     experience_group: ExperienceGroup.medium_slow,
-    experience_yield: 62
+    experience_yield: 62,
+    ev_yields: {[PokemonStat.speed]: 1}
   },
   charmeleon: {
     id: 5,
@@ -55,7 +60,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.fire],
     stats: { hp: 58, attack: 64, defense: 58, sp_attack: 80, sp_defense: 65, speed: 80 },
     experience_group: ExperienceGroup.medium_slow,
-    experience_yield: 142
+    experience_yield: 142,
+    ev_yields: {[PokemonStat.sp_atk]: 1}
   },
   charizard: {
     id: 6,
@@ -66,7 +72,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.fire, PokemonCombatType.flying],
     stats: { hp: 78, attack: 104, defense: 78, sp_attack: 159, sp_defense: 115, speed: 100 },
     experience_group: ExperienceGroup.medium_slow,
-    experience_yield: 267
+    experience_yield: 267,
+    ev_yields: {[PokemonStat.sp_atk]: 3}
   },
   squirtle: {
     id: 7,
@@ -77,7 +84,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.water],
     stats: { hp: 44, attack: 48, defense: 65, sp_attack: 50, sp_defense: 64, speed: 43 },
     experience_group: ExperienceGroup.medium_slow,
-    experience_yield: 63
+    experience_yield: 63,
+    ev_yields: {[PokemonStat.defense]: 1}
   },
   wartortle: {
     id: 8,
@@ -88,7 +96,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.water],
     stats: { hp: 59, attack: 63, defense: 80, sp_attack: 65, sp_defense: 80, speed: 58 },
     experience_group: ExperienceGroup.medium_slow,
-    experience_yield: 142
+    experience_yield: 142,
+    ev_yields: {[PokemonStat.defense]: 1}
   },
   blastoise: {
     id: 9,
@@ -99,7 +108,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.water],
     stats: { hp: 79, attack: 103, defense: 120, sp_attack: 135, sp_defense: 115, speed: 78 },
     experience_group: ExperienceGroup.medium_slow,
-    experience_yield: 239
+    experience_yield: 239,
+    ev_yields: {[PokemonStat.sp_def]: 3}
   },
   caterpie: {
     id: 10,
@@ -110,7 +120,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.bug],
     stats: { hp: 45, attack: 30, defense: 35, sp_attack: 20, sp_defense: 20, speed: 45 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 39
+    experience_yield: 39,
+    ev_yields: {[PokemonStat.hp]: 1}
   },
   metapod: {
     id: 11,
@@ -121,7 +132,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.bug],
     stats: { hp: 50, attack: 20, defense: 55, sp_attack: 25, sp_defense: 25, speed: 30 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 72
+    experience_yield: 72,
+    ev_yields: {[PokemonStat.defense]: 2}
   },
   butterfree: {
     id: 12,
@@ -132,7 +144,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.bug, PokemonCombatType.flying],
     stats: { hp: 60, attack: 45, defense: 50, sp_attack: 90, sp_defense: 80, speed: 70 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 178
+    experience_yield: 178,
+    ev_yields: {[PokemonStat.sp_atk]: 2}
   },
   weedle: {
     id: 13,
@@ -143,7 +156,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.bug, PokemonCombatType.poison],
     stats: { hp: 40, attack: 35, defense: 30, sp_attack: 20, sp_defense: 20, speed: 50 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 39
+    experience_yield: 39,
+    ev_yields: {[PokemonStat.speed]: 1}
   },
   kakuna: {
     id: 14,
@@ -154,7 +168,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.bug, PokemonCombatType.poison],
     stats: { hp: 45, attack: 25, defense: 50, sp_attack: 25, sp_defense: 25, speed: 35 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 72
+    experience_yield: 72,
+    ev_yields: {[PokemonStat.defense]: 2}
   },
   beedrill: {
     id: 15,
@@ -165,7 +180,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.bug, PokemonCombatType.poison],
     stats: { hp: 65, attack: 150, defense: 40, sp_attack: 15, sp_defense: 80, speed: 145 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 178
+    experience_yield: 178,
+    ev_yields: {[PokemonStat.attack]: 2}
   },
   pidgey: {
     id: 16,
@@ -176,7 +192,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.normal, PokemonCombatType.flying],
     stats: { hp: 40, attack: 45, defense: 40, sp_attack: 35, sp_defense: 35, speed: 56 },
     experience_group: ExperienceGroup.medium_slow,
-    experience_yield: 50
+    experience_yield: 50,
+    ev_yields: {[PokemonStat.speed]: 1}
   },
   pidgeotto: {
     id: 17,
@@ -187,7 +204,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.normal, PokemonCombatType.flying],
     stats: { hp: 63, attack: 60, defense: 55, sp_attack: 50, sp_defense: 50, speed: 71 },
     experience_group: ExperienceGroup.medium_slow,
-    experience_yield: 122
+    experience_yield: 122,
+    ev_yields: {[PokemonStat.speed]: 2}
   },
   pidgeot: {
     id: 18,
@@ -198,7 +216,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.normal, PokemonCombatType.flying],
     stats: { hp: 83, attack: 80, defense: 80, sp_attack: 135, sp_defense: 80, speed: 121 },
     experience_group: ExperienceGroup.medium_slow,
-    experience_yield: 216
+    experience_yield: 216,
+    ev_yields: {[PokemonStat.speed]: 3}
   },
   rattata: {
     id: 19,
@@ -209,7 +228,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.dark, PokemonCombatType.normal],
     stats: { hp: 30, attack: 56, defense: 35, sp_attack: 25, sp_defense: 35, speed: 72 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 51
+    experience_yield: 51,
+    ev_yields: {[PokemonStat.speed]: 1}
   },
   raticate: {
     id: 20,
@@ -220,7 +240,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.dark, PokemonCombatType.normal],
     stats: { hp: 75, attack: 71, defense: 70, sp_attack: 40, sp_defense: 80, speed: 77 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 145
+    experience_yield: 145,
+    ev_yields: {[PokemonStat.speed]: 2}
   },
   spearow: {
     id: 21,
@@ -231,7 +252,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.normal, PokemonCombatType.flying],
     stats: { hp: 40, attack: 60, defense: 30, sp_attack: 31, sp_defense: 31, speed: 70 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 52
+    experience_yield: 52,
+    ev_yields: {[PokemonStat.speed]: 1}
   },
   fearow: {
     id: 22,
@@ -242,7 +264,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.normal, PokemonCombatType.flying],
     stats: { hp: 65, attack: 90, defense: 65, sp_attack: 61, sp_defense: 61, speed: 100 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 155
+    experience_yield: 155,
+    ev_yields: {[PokemonStat.speed]: 2}
   },
   ekans: {
     id: 23,
@@ -253,7 +276,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.poison],
     stats: { hp: 35, attack: 60, defense: 44, sp_attack: 40, sp_defense: 54, speed: 55 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 58
+    experience_yield: 58,
+    ev_yields: {[PokemonStat.attack]: 1}
   },
   arbok: {
     id: 24,
@@ -264,7 +288,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.poison],
     stats: { hp: 60, attack: 95, defense: 69, sp_attack: 65, sp_defense: 79, speed: 80 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 157
+    experience_yield: 157,
+    ev_yields: {[PokemonStat.attack]: 2}
   },
   pikachu: {
     id: 25,
@@ -275,7 +300,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.electric],
     stats: { hp: 45, attack: 80, defense: 50, sp_attack: 75, sp_defense: 60, speed: 120 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 112
+    experience_yield: 112,
+    ev_yields: {[PokemonStat.speed]: 2}
   },
   raichu: {
     id: 26,
@@ -286,7 +312,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.electric, PokemonCombatType.psychic],
     stats: { hp: 60, attack: 85, defense: 50, sp_attack: 95, sp_defense: 85, speed: 110 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 243
+    experience_yield: 243,
+    ev_yields: {[PokemonStat.speed]: 3}
   },
   sandshrew: {
     id: 27,
@@ -297,7 +324,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.ice, PokemonCombatType.steel],
     stats: { hp: 50, attack: 75, defense: 90, sp_attack: 10, sp_defense: 35, speed: 40 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 60
+    experience_yield: 60,
+    ev_yields: {[PokemonStat.defense]: 1}
   },
   sandslash: {
     id: 28,
@@ -308,7 +336,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.ice, PokemonCombatType.steel],
     stats: { hp: 75, attack: 100, defense: 120, sp_attack: 25, sp_defense: 65, speed: 65 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 158
+    experience_yield: 158,
+    ev_yields: {[PokemonStat.defense]: 2}
   },
   nidoran_female: {
     id: 29,
@@ -319,7 +348,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.poison],
     stats: { hp: 55, attack: 47, defense: 52, sp_attack: 40, sp_defense: 40, speed: 41 },
     experience_group: ExperienceGroup.medium_slow,
-    experience_yield: 55
+    experience_yield: 55,
+    ev_yields: {[PokemonStat.hp]: 1}
   },
   nidorina: {
     id: 30,
@@ -330,7 +360,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.poison],
     stats: { hp: 70, attack: 62, defense: 67, sp_attack: 55, sp_defense: 55, speed: 56 },
     experience_group: ExperienceGroup.medium_slow,
-    experience_yield: 128
+    experience_yield: 128,
+    ev_yields: {[PokemonStat.hp]: 2}
   },
   nidoqueen: {
     id: 31,
@@ -341,7 +372,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.poison, PokemonCombatType.ground],
     stats: { hp: 90, attack: 92, defense: 87, sp_attack: 75, sp_defense: 85, speed: 76 },
     experience_group: ExperienceGroup.medium_slow,
-    experience_yield: 227
+    experience_yield: 227,
+    ev_yields: {[PokemonStat.hp]: 3}
   },
   nidoran_male: {
     id: 32,
@@ -352,7 +384,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.poison],
     stats: { hp: 46, attack: 57, defense: 40, sp_attack: 40, sp_defense: 40, speed: 50 },
     experience_group: ExperienceGroup.medium_slow,
-    experience_yield: 55
+    experience_yield: 55,
+    ev_yields: {[PokemonStat.attack]: 1}
   },
   nidorino: {
     id: 33,
@@ -363,7 +396,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.poison],
     stats: { hp: 61, attack: 72, defense: 57, sp_attack: 55, sp_defense: 55, speed: 65 },
     experience_group: ExperienceGroup.medium_slow,
-    experience_yield: 128
+    experience_yield: 128,
+    ev_yields: {[PokemonStat.attack]: 2}
   },
   nidoking: {
     id: 34,
@@ -374,7 +408,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.poison, PokemonCombatType.ground],
     stats: { hp: 81, attack: 102, defense: 77, sp_attack: 85, sp_defense: 75, speed: 85 },
     experience_group: ExperienceGroup.medium_slow,
-    experience_yield: 227
+    experience_yield: 227,
+    ev_yields: {[PokemonStat.attack]: 3}
   },
   clefairy: {
     id: 35,
@@ -385,7 +420,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.fairy],
     stats: { hp: 70, attack: 45, defense: 48, sp_attack: 60, sp_defense: 65, speed: 35 },
     experience_group: ExperienceGroup.fast,
-    experience_yield: 113
+    experience_yield: 113,
+    ev_yields: {[PokemonStat.hp]: 2}
   },
   clefable: {
     id: 36,
@@ -396,7 +432,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.fairy],
     stats: { hp: 95, attack: 70, defense: 73, sp_attack: 95, sp_defense: 90, speed: 60 },
     experience_group: ExperienceGroup.fast,
-    experience_yield: 217
+    experience_yield: 217,
+    ev_yields: {[PokemonStat.hp]: 3}
   },
   vulpix: {
     id: 37,
@@ -407,7 +444,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.ice],
     stats: { hp: 38, attack: 41, defense: 40, sp_attack: 50, sp_defense: 65, speed: 65 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 60
+    experience_yield: 60,
+    ev_yields: {[PokemonStat.speed]: 1}
   },
   ninetales: {
     id: 38,
@@ -418,7 +456,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.ice, PokemonCombatType.fairy],
     stats: { hp: 73, attack: 67, defense: 75, sp_attack: 81, sp_defense: 100, speed: 109 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 177
+    experience_yield: 177,
+    ev_yields: {[PokemonStat.sp_def]: 1}
   },
   jigglypuff: {
     id: 39,
@@ -429,7 +468,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.normal, PokemonCombatType.fairy],
     stats: { hp: 115, attack: 45, defense: 20, sp_attack: 45, sp_defense: 25, speed: 20 },
     experience_group: ExperienceGroup.fast,
-    experience_yield: 95
+    experience_yield: 95,
+    ev_yields: {[PokemonStat.hp]: 2}
   },
   wigglytuff: {
     id: 40,
@@ -440,7 +480,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.normal, PokemonCombatType.fairy],
     stats: { hp: 140, attack: 70, defense: 45, sp_attack: 85, sp_defense: 50, speed: 45 },
     experience_group: ExperienceGroup.fast,
-    experience_yield: 218
+    experience_yield: 218,
+    ev_yields: {[PokemonStat.hp]: 3}
   },
   zubat: {
     id: 41,
@@ -451,7 +492,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.poison, PokemonCombatType.flying],
     stats: { hp: 40, attack: 45, defense: 35, sp_attack: 30, sp_defense: 40, speed: 55 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 49
+    experience_yield: 49,
+    ev_yields: {[PokemonStat.speed]: 1}
   },
   golbat: {
     id: 42,
@@ -462,7 +504,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.poison, PokemonCombatType.flying],
     stats: { hp: 75, attack: 80, defense: 70, sp_attack: 65, sp_defense: 75, speed: 90 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 159
+    experience_yield: 159,
+    ev_yields: {[PokemonStat.speed]: 2}
   },
   oddish: {
     id: 43,
@@ -473,7 +516,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.grass, PokemonCombatType.poison],
     stats: { hp: 45, attack: 50, defense: 55, sp_attack: 75, sp_defense: 65, speed: 30 },
     experience_group: ExperienceGroup.medium_slow,
-    experience_yield: 64
+    experience_yield: 64,
+    ev_yields: {[PokemonStat.sp_atk]: 1}
   },
   gloom: {
     id: 44,
@@ -484,7 +528,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.grass, PokemonCombatType.poison],
     stats: { hp: 60, attack: 65, defense: 70, sp_attack: 85, sp_defense: 75, speed: 40 },
     experience_group: ExperienceGroup.medium_slow,
-    experience_yield: 138
+    experience_yield: 138,
+    ev_yields: {[PokemonStat.sp_atk]: 2}
   },
   vileplume: {
     id: 45,
@@ -495,7 +540,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.grass, PokemonCombatType.poison],
     stats: { hp: 75, attack: 80, defense: 85, sp_attack: 110, sp_defense: 90, speed: 50 },
     experience_group: ExperienceGroup.medium_slow,
-    experience_yield: 221
+    experience_yield: 221,
+    ev_yields: {[PokemonStat.sp_atk]: 3}
   },
   paras: {
     id: 46,
@@ -506,7 +552,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.bug, PokemonCombatType.grass],
     stats: { hp: 35, attack: 70, defense: 55, sp_attack: 45, sp_defense: 55, speed: 25 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 57
+    experience_yield: 57,
+    ev_yields: {[PokemonStat.attack]: 1}
   },
   parasect: {
     id: 47,
@@ -517,7 +564,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.bug, PokemonCombatType.grass],
     stats: { hp: 60, attack: 95, defense: 80, sp_attack: 60, sp_defense: 80, speed: 30 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 142
+    experience_yield: 142,
+    ev_yields: {[PokemonStat.attack]: 2}
   },
   venonat: {
     id: 48,
@@ -528,7 +576,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.bug, PokemonCombatType.poison],
     stats: { hp: 60, attack: 55, defense: 50, sp_attack: 40, sp_defense: 55, speed: 45 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 61
+    experience_yield: 61,
+    ev_yields: {[PokemonStat.sp_def]: 1}
   },
   venomoth: {
     id: 49,
@@ -539,7 +588,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.bug, PokemonCombatType.poison],
     stats: { hp: 70, attack: 65, defense: 60, sp_attack: 90, sp_defense: 75, speed: 90 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 158
+    experience_yield: 158,
+    ev_yields: {[PokemonStat.sp_atk]: 1}
   },
   diglett: {
     id: 50,
@@ -550,7 +600,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.ground, PokemonCombatType.steel],
     stats: { hp: 10, attack: 55, defense: 30, sp_attack: 35, sp_defense: 45, speed: 90 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 53
+    experience_yield: 53,
+    ev_yields: {[PokemonStat.speed]: 1}
   },
   dugtrio: {
     id: 51,
@@ -561,7 +612,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.ground, PokemonCombatType.steel],
     stats: { hp: 35, attack: 100, defense: 60, sp_attack: 50, sp_defense: 70, speed: 110 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 149
+    experience_yield: 149,
+    ev_yields: {[PokemonStat.speed]: 2}
   },
   meowth: {
     id: 52,
@@ -572,7 +624,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.steel],
     stats: { hp: 50, attack: 65, defense: 55, sp_attack: 40, sp_defense: 40, speed: 40 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 58
+    experience_yield: 58,
+    ev_yields: {[PokemonStat.speed]: 1}
   },
   persian: {
     id: 53,
@@ -583,7 +636,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.dark],
     stats: { hp: 65, attack: 60, defense: 60, sp_attack: 75, sp_defense: 65, speed: 115 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 154
+    experience_yield: 154,
+    ev_yields: {[PokemonStat.speed]: 2}
   },
   psyduck: {
     id: 54,
@@ -594,7 +648,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.water],
     stats: { hp: 50, attack: 52, defense: 48, sp_attack: 65, sp_defense: 50, speed: 55 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 64
+    experience_yield: 64,
+    ev_yields: {[PokemonStat.sp_atk]: 1}
   },
   golduck: {
     id: 55,
@@ -605,7 +660,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.water],
     stats: { hp: 80, attack: 82, defense: 78, sp_attack: 95, sp_defense: 80, speed: 85 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 175
+    experience_yield: 175,
+    ev_yields: {[PokemonStat.sp_atk]: 2}
   },
   mankey: {
     id: 56,
@@ -616,7 +672,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.fighting],
     stats: { hp: 40, attack: 80, defense: 35, sp_attack: 35, sp_defense: 45, speed: 70 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 61
+    experience_yield: 61,
+    ev_yields: {[PokemonStat.attack]: 1}
   },
   primeape: {
     id: 57,
@@ -627,7 +684,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.fighting],
     stats: { hp: 65, attack: 105, defense: 60, sp_attack: 60, sp_defense: 70, speed: 95 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 159
+    experience_yield: 159,
+    ev_yields: {[PokemonStat.attack]: 2}
   },
   growlithe: {
     id: 58,
@@ -638,7 +696,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.fire, PokemonCombatType.rock],
     stats: { hp: 60, attack: 75, defense: 45, sp_attack: 65, sp_defense: 50, speed: 55 },
     experience_group: ExperienceGroup.slow,
-    experience_yield: 70
+    experience_yield: 70,
+    ev_yields: {[PokemonStat.attack]: 1}
   },
   arcanine: {
     id: 59,
@@ -649,7 +708,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.fire, PokemonCombatType.rock],
     stats: { hp: 95, attack: 115, defense: 80, sp_attack: 95, sp_defense: 80, speed: 90 },
     experience_group: ExperienceGroup.slow,
-    experience_yield: 194
+    experience_yield: 194,
+    ev_yields: {[PokemonStat.attack]: 2}
   },
   poliwag: {
     id: 60,
@@ -660,7 +720,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.water],
     stats: { hp: 40, attack: 50, defense: 40, sp_attack: 40, sp_defense: 40, speed: 90 },
     experience_group: ExperienceGroup.medium_slow,
-    experience_yield: 60
+    experience_yield: 60,
+    ev_yields: {[PokemonStat.speed]: 1}
   },
   poliwhirl: {
     id: 61,
@@ -671,7 +732,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.water],
     stats: { hp: 65, attack: 65, defense: 65, sp_attack: 50, sp_defense: 50, speed: 90 },
     experience_group: ExperienceGroup.medium_slow,
-    experience_yield: 135
+    experience_yield: 135,
+    ev_yields: {[PokemonStat.speed]: 2}
   },
   poliwrath: {
     id: 62,
@@ -682,7 +744,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.water, PokemonCombatType.fighting],
     stats: { hp: 90, attack: 95, defense: 95, sp_attack: 70, sp_defense: 90, speed: 70 },
     experience_group: ExperienceGroup.medium_slow,
-    experience_yield: 230
+    experience_yield: 230,
+    ev_yields: {[PokemonStat.defense]: 3}
   },
   abra: {
     id: 63,
@@ -693,7 +756,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.psychic],
     stats: { hp: 25, attack: 20, defense: 15, sp_attack: 105, sp_defense: 55, speed: 90 },
     experience_group: ExperienceGroup.medium_slow,
-    experience_yield: 62
+    experience_yield: 62,
+    ev_yields: {[PokemonStat.sp_atk]: 1}
   },
   kadabra: {
     id: 64,
@@ -704,7 +768,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.psychic],
     stats: { hp: 40, attack: 35, defense: 30, sp_attack: 120, sp_defense: 70, speed: 105 },
     experience_group: ExperienceGroup.medium_slow,
-    experience_yield: 140
+    experience_yield: 140,
+    ev_yields: {[PokemonStat.sp_atk]: 2}
   },
   alakazam: {
     id: 65,
@@ -715,7 +780,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.psychic],
     stats: { hp: 55, attack: 50, defense: 65, sp_attack: 175, sp_defense: 105, speed: 150 },
     experience_group: ExperienceGroup.medium_slow,
-    experience_yield: 225
+    experience_yield: 225,
+    ev_yields: {[PokemonStat.sp_atk]: 3}
   },
   machop: {
     id: 66,
@@ -726,7 +792,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.fighting],
     stats: { hp: 70, attack: 80, defense: 50, sp_attack: 35, sp_defense: 35, speed: 35 },
     experience_group: ExperienceGroup.medium_slow,
-    experience_yield: 61
+    experience_yield: 61,
+    ev_yields: {[PokemonStat.attack]: 1}
   },
   machoke: {
     id: 67,
@@ -737,7 +804,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.fighting],
     stats: { hp: 80, attack: 100, defense: 70, sp_attack: 50, sp_defense: 60, speed: 45 },
     experience_group: ExperienceGroup.medium_slow,
-    experience_yield: 142
+    experience_yield: 142,
+    ev_yields: {[PokemonStat.attack]: 2}
   },
   machamp: {
     id: 68,
@@ -748,7 +816,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.fighting],
     stats: { hp: 90, attack: 130, defense: 80, sp_attack: 65, sp_defense: 85, speed: 55 },
     experience_group: ExperienceGroup.medium_slow,
-    experience_yield: 227
+    experience_yield: 227,
+    ev_yields: {[PokemonStat.attack]: 3}
   },
   bellsprout: {
     id: 69,
@@ -759,7 +828,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.grass, PokemonCombatType.poison],
     stats: { hp: 50, attack: 75, defense: 35, sp_attack: 70, sp_defense: 30, speed: 40 },
     experience_group: ExperienceGroup.medium_slow,
-    experience_yield: 60
+    experience_yield: 60,
+    ev_yields: {[PokemonStat.attack]: 1}
   },
   weepinbell: {
     id: 70,
@@ -770,7 +840,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.grass, PokemonCombatType.poison],
     stats: { hp: 65, attack: 90, defense: 50, sp_attack: 85, sp_defense: 45, speed: 55 },
     experience_group: ExperienceGroup.medium_slow,
-    experience_yield: 137
+    experience_yield: 137,
+    ev_yields: {[PokemonStat.attack]: 2}
   },
   victreebel: {
     id: 71,
@@ -781,7 +852,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.grass, PokemonCombatType.poison],
     stats: { hp: 80, attack: 125, defense: 85, sp_attack: 135, sp_defense: 95, speed: 70 },
     experience_group: ExperienceGroup.medium_slow,
-    experience_yield: 221
+    experience_yield: 221,
+    ev_yields: {[PokemonStat.attack]: 3}
   },
   tentacool: {
     id: 72,
@@ -792,7 +864,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.water, PokemonCombatType.poison],
     stats: { hp: 40, attack: 40, defense: 35, sp_attack: 50, sp_defense: 100, speed: 70 },
     experience_group: ExperienceGroup.slow,
-    experience_yield: 67
+    experience_yield: 67,
+    ev_yields: {[PokemonStat.sp_def]: 1}
   },
   tentacruel: {
     id: 73,
@@ -803,7 +876,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.water, PokemonCombatType.poison],
     stats: { hp: 80, attack: 70, defense: 65, sp_attack: 80, sp_defense: 120, speed: 100 },
     experience_group: ExperienceGroup.slow,
-    experience_yield: 180
+    experience_yield: 180,
+    ev_yields: {[PokemonStat.sp_def]: 2}
   },
   geodude: {
     id: 74,
@@ -814,7 +888,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.rock, PokemonCombatType.electric],
     stats: { hp: 40, attack: 80, defense: 100, sp_attack: 30, sp_defense: 30, speed: 20 },
     experience_group: ExperienceGroup.medium_slow,
-    experience_yield: 60
+    experience_yield: 60,
+    ev_yields: {[PokemonStat.defense]: 1}
   },
   graveler: {
     id: 75,
@@ -825,7 +900,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.rock, PokemonCombatType.electric],
     stats: { hp: 55, attack: 95, defense: 115, sp_attack: 45, sp_defense: 45, speed: 35 },
     experience_group: ExperienceGroup.medium_slow,
-    experience_yield: 137
+    experience_yield: 137,
+    ev_yields: {[PokemonStat.defense]: 2}
   },
   golem: {
     id: 76,
@@ -836,7 +912,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.rock, PokemonCombatType.electric],
     stats: { hp: 80, attack: 120, defense: 130, sp_attack: 55, sp_defense: 65, speed: 45 },
     experience_group: ExperienceGroup.medium_slow,
-    experience_yield: 223
+    experience_yield: 223,
+    ev_yields: {[PokemonStat.defense]: 3}
   },
   ponyta: {
     id: 77,
@@ -847,7 +924,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.psychic],
     stats: { hp: 50, attack: 85, defense: 55, sp_attack: 65, sp_defense: 65, speed: 90 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 82
+    experience_yield: 82,
+    ev_yields: {[PokemonStat.speed]: 1}
   },
   rapidash: {
     id: 78,
@@ -858,7 +936,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.psychic, PokemonCombatType.fairy],
     stats: { hp: 65, attack: 100, defense: 70, sp_attack: 80, sp_defense: 80, speed: 105 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 175
+    experience_yield: 175,
+    ev_yields: {[PokemonStat.speed]: 2}
   },
   slowpoke: {
     id: 79,
@@ -869,7 +948,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.psychic],
     stats: { hp: 90, attack: 65, defense: 65, sp_attack: 40, sp_defense: 40, speed: 15 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 63
+    experience_yield: 63,
+    ev_yields: {[PokemonStat.hp]: 1}
   },
   slowbro: {
     id: 80,
@@ -880,7 +960,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.poison, PokemonCombatType.psychic],
     stats: { hp: 95, attack: 100, defense: 95, sp_attack: 100, sp_defense: 70, speed: 30 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 172
+    experience_yield: 172,
+    ev_yields: {[PokemonStat.defense]: 2}
   },
   magnemite: {
     id: 81,
@@ -891,7 +972,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.electric, PokemonCombatType.steel],
     stats: { hp: 25, attack: 35, defense: 70, sp_attack: 95, sp_defense: 55, speed: 45 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 65
+    experience_yield: 65,
+    ev_yields: {[PokemonStat.sp_atk]: 1}
   },
   magneton: {
     id: 82,
@@ -902,7 +984,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.electric, PokemonCombatType.steel],
     stats: { hp: 50, attack: 60, defense: 95, sp_attack: 120, sp_defense: 70, speed: 70 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 163
+    experience_yield: 163,
+    ev_yields: {[PokemonStat.sp_atk]: 2}
   },
   farfetchd: {
     id: 83,
@@ -913,7 +996,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.fighting],
     stats: { hp: 52, attack: 95, defense: 55, sp_attack: 58, sp_defense: 62, speed: 55 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 132
+    experience_yield: 132,
+    ev_yields: {[PokemonStat.attack]: 1}
   },
   doduo: {
     id: 84,
@@ -924,7 +1008,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.normal, PokemonCombatType.flying],
     stats: { hp: 35, attack: 85, defense: 45, sp_attack: 35, sp_defense: 35, speed: 75 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 62
+    experience_yield: 62,
+    ev_yields: {[PokemonStat.attack]: 1}
   },
   dodrio: {
     id: 85,
@@ -935,7 +1020,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.normal, PokemonCombatType.flying],
     stats: { hp: 60, attack: 110, defense: 70, sp_attack: 60, sp_defense: 60, speed: 110 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 165
+    experience_yield: 165,
+    ev_yields: {[PokemonStat.attack]: 2}
   },
   seel: {
     id: 86,
@@ -946,7 +1032,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.water],
     stats: { hp: 65, attack: 45, defense: 55, sp_attack: 45, sp_defense: 70, speed: 45 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 65
+    experience_yield: 65,
+    ev_yields: {[PokemonStat.sp_def]: 1}
   },
   dewgong: {
     id: 87,
@@ -957,7 +1044,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.water, PokemonCombatType.ice],
     stats: { hp: 90, attack: 70, defense: 80, sp_attack: 70, sp_defense: 95, speed: 70 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 166
+    experience_yield: 166,
+    ev_yields: {[PokemonStat.sp_def]: 2}
   },
   grimer: {
     id: 88,
@@ -968,7 +1056,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.poison, PokemonCombatType.dark],
     stats: { hp: 80, attack: 80, defense: 50, sp_attack: 40, sp_defense: 50, speed: 25 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 65
+    experience_yield: 65,
+    ev_yields: {[PokemonStat.hp]: 1}
   },
   muk: {
     id: 89,
@@ -979,7 +1068,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.poison, PokemonCombatType.dark],
     stats: { hp: 105, attack: 105, defense: 75, sp_attack: 65, sp_defense: 100, speed: 50 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 175
+    experience_yield: 175,
+    ev_yields: {[PokemonStat.hp]: 1}
   },
   shellder: {
     id: 90,
@@ -990,7 +1080,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.water],
     stats: { hp: 30, attack: 65, defense: 100, sp_attack: 45, sp_defense: 25, speed: 40 },
     experience_group: ExperienceGroup.slow,
-    experience_yield: 61
+    experience_yield: 61,
+    ev_yields: {[PokemonStat.defense]: 1}
   },
   cloyster: {
     id: 91,
@@ -1001,7 +1092,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.water, PokemonCombatType.ice],
     stats: { hp: 50, attack: 95, defense: 180, sp_attack: 85, sp_defense: 45, speed: 70 },
     experience_group: ExperienceGroup.slow,
-    experience_yield: 184
+    experience_yield: 184,
+    ev_yields: {[PokemonStat.defense]: 2}
   },
   gastly: {
     id: 92,
@@ -1012,7 +1104,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.ghost, PokemonCombatType.poison],
     stats: { hp: 30, attack: 35, defense: 30, sp_attack: 100, sp_defense: 35, speed: 80 },
     experience_group: ExperienceGroup.medium_slow,
-    experience_yield: 62
+    experience_yield: 62,
+    ev_yields: {[PokemonStat.sp_atk]: 1}
   },
   haunter: {
     id: 93,
@@ -1023,7 +1116,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.ghost, PokemonCombatType.poison],
     stats: { hp: 45, attack: 50, defense: 45, sp_attack: 115, sp_defense: 55, speed: 95 },
     experience_group: ExperienceGroup.medium_slow,
-    experience_yield: 142
+    experience_yield: 142,
+    ev_yields: {[PokemonStat.sp_atk]: 2}
   },
   gengar: {
     id: 94,
@@ -1034,7 +1128,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.ghost, PokemonCombatType.poison],
     stats: { hp: 60, attack: 65, defense: 80, sp_attack: 170, sp_defense: 95, speed: 130 },
     experience_group: ExperienceGroup.medium_slow,
-    experience_yield: 250
+    experience_yield: 250,
+    ev_yields: {[PokemonStat.sp_atk]: 3}
   },
   onix: {
     id: 95,
@@ -1045,7 +1140,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.rock, PokemonCombatType.ground],
     stats: { hp: 35, attack: 45, defense: 160, sp_attack: 30, sp_defense: 45, speed: 70 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 77
+    experience_yield: 77,
+    ev_yields: {[PokemonStat.defense]: 1}
   },
   drowzee: {
     id: 96,
@@ -1056,7 +1152,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.psychic],
     stats: { hp: 60, attack: 48, defense: 45, sp_attack: 43, sp_defense: 90, speed: 42 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 66
+    experience_yield: 66,
+    ev_yields: {[PokemonStat.sp_def]: 1}
   },
   hypno: {
     id: 97,
@@ -1067,7 +1164,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.psychic],
     stats: { hp: 85, attack: 73, defense: 70, sp_attack: 73, sp_defense: 115, speed: 67 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 169
+    experience_yield: 169,
+    ev_yields: {[PokemonStat.sp_def]: 2}
   },
   krabby: {
     id: 98,
@@ -1078,7 +1176,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.water],
     stats: { hp: 30, attack: 105, defense: 90, sp_attack: 25, sp_defense: 25, speed: 50 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 65
+    experience_yield: 65,
+    ev_yields: {[PokemonStat.attack]: 1}
   },
   kingler: {
     id: 99,
@@ -1089,7 +1188,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.water],
     stats: { hp: 55, attack: 130, defense: 115, sp_attack: 50, sp_defense: 50, speed: 75 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 166
+    experience_yield: 166,
+    ev_yields: {[PokemonStat.attack]: 2}
   },
   voltorb: {
     id: 100,
@@ -1100,7 +1200,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.electric, PokemonCombatType.grass],
     stats: { hp: 40, attack: 30, defense: 50, sp_attack: 55, sp_defense: 55, speed: 100 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 66
+    experience_yield: 66,
+    ev_yields: {[PokemonStat.speed]: 1}
   },
   electrode: {
     id: 101,
@@ -1111,7 +1212,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.electric, PokemonCombatType.grass],
     stats: { hp: 60, attack: 50, defense: 70, sp_attack: 80, sp_defense: 80, speed: 150 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 172
+    experience_yield: 172,
+    ev_yields: {[PokemonStat.speed]: 2}
   },
   exeggcute: {
     id: 102,
@@ -1122,7 +1224,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.grass, PokemonCombatType.psychic],
     stats: { hp: 60, attack: 40, defense: 80, sp_attack: 60, sp_defense: 45, speed: 40 },
     experience_group: ExperienceGroup.slow,
-    experience_yield: 65
+    experience_yield: 65,
+    ev_yields: {[PokemonStat.defense]: 1}
   },
   exeggutor: {
     id: 103,
@@ -1133,7 +1236,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.grass, PokemonCombatType.dragon],
     stats: { hp: 95, attack: 105, defense: 85, sp_attack: 125, sp_defense: 75, speed: 45 },
     experience_group: ExperienceGroup.slow,
-    experience_yield: 186
+    experience_yield: 186,
+    ev_yields: {[PokemonStat.sp_atk]: 2}
   },
   cubone: {
     id: 104,
@@ -1144,7 +1248,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.ground],
     stats: { hp: 50, attack: 50, defense: 95, sp_attack: 40, sp_defense: 50, speed: 35 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 64
+    experience_yield: 64,
+    ev_yields: {[PokemonStat.defense]: 1}
   },
   marowak: {
     id: 105,
@@ -1155,7 +1260,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.fire, PokemonCombatType.ghost],
     stats: { hp: 60, attack: 80, defense: 110, sp_attack: 50, sp_defense: 80, speed: 45 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 149
+    experience_yield: 149,
+    ev_yields: {[PokemonStat.defense]: 2}
   },
   hitmonlee: {
     id: 106,
@@ -1166,7 +1272,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.fighting],
     stats: { hp: 50, attack: 120, defense: 53, sp_attack: 35, sp_defense: 110, speed: 87 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 159
+    experience_yield: 159,
+    ev_yields: {[PokemonStat.attack]: 2}
   },
   hitmonchan: {
     id: 107,
@@ -1177,7 +1284,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.fighting],
     stats: { hp: 50, attack: 105, defense: 79, sp_attack: 35, sp_defense: 110, speed: 76 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 159
+    experience_yield: 159,
+    ev_yields: {[PokemonStat.sp_def]: 2}
   },
   lickitung: {
     id: 108,
@@ -1188,7 +1296,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.normal],
     stats: { hp: 90, attack: 55, defense: 75, sp_attack: 60, sp_defense: 75, speed: 30 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 77
+    experience_yield: 77,
+    ev_yields: {[PokemonStat.hp]: 2}
   },
   koffing: {
     id: 109,
@@ -1199,7 +1308,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.poison],
     stats: { hp: 40, attack: 65, defense: 95, sp_attack: 60, sp_defense: 45, speed: 35 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 68
+    experience_yield: 68,
+    ev_yields: {[PokemonStat.defense]: 1}
   },
   weezing: {
     id: 110,
@@ -1210,7 +1320,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.poison, PokemonCombatType.fairy],
     stats: { hp: 65, attack: 90, defense: 120, sp_attack: 85, sp_defense: 70, speed: 60 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 172
+    experience_yield: 172,
+    ev_yields: {[PokemonStat.defense]: 2}
   },
   rhyhorn: {
     id: 111,
@@ -1221,7 +1332,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.ground, PokemonCombatType.rock],
     stats: { hp: 80, attack: 85, defense: 95, sp_attack: 30, sp_defense: 30, speed: 25 },
     experience_group: ExperienceGroup.slow,
-    experience_yield: 69
+    experience_yield: 69,
+    ev_yields: {[PokemonStat.defense]: 1}
   },
   rhydon: {
     id: 112,
@@ -1232,7 +1344,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.ground, PokemonCombatType.rock],
     stats: { hp: 105, attack: 130, defense: 120, sp_attack: 45, sp_defense: 45, speed: 40 },
     experience_group: ExperienceGroup.slow,
-    experience_yield: 170
+    experience_yield: 170,
+    ev_yields: {[PokemonStat.attack]: 2}
   },
   chansey: {
     id: 113,
@@ -1243,7 +1356,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.normal],
     stats: { hp: 250, attack: 5, defense: 5, sp_attack: 35, sp_defense: 105, speed: 50 },
     experience_group: ExperienceGroup.fast,
-    experience_yield: 395
+    experience_yield: 395,
+    ev_yields: {[PokemonStat.hp]: 2}
   },
   tangela: {
     id: 114,
@@ -1254,7 +1368,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.grass],
     stats: { hp: 65, attack: 55, defense: 115, sp_attack: 100, sp_defense: 40, speed: 60 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 87
+    experience_yield: 87,
+    ev_yields: {[PokemonStat.defense]: 1}
   },
   kangaskhan: {
     id: 115,
@@ -1265,7 +1380,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.normal],
     stats: { hp: 105, attack: 125, defense: 100, sp_attack: 60, sp_defense: 100, speed: 100 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 172
+    experience_yield: 172,
+    ev_yields: {[PokemonStat.hp]: 2}
   },
   horsea: {
     id: 116,
@@ -1276,7 +1392,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.water],
     stats: { hp: 30, attack: 40, defense: 70, sp_attack: 70, sp_defense: 25, speed: 60 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 59
+    experience_yield: 59,
+    ev_yields: {[PokemonStat.sp_atk]: 1}
   },
   seadra: {
     id: 117,
@@ -1287,7 +1404,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.water],
     stats: { hp: 55, attack: 65, defense: 95, sp_attack: 95, sp_defense: 45, speed: 85 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 154
+    experience_yield: 154,
+    ev_yields: {[PokemonStat.defense]: 1}
   },
   goldeen: {
     id: 118,
@@ -1298,7 +1416,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.water],
     stats: { hp: 45, attack: 67, defense: 60, sp_attack: 35, sp_defense: 50, speed: 63 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 64
+    experience_yield: 64,
+    ev_yields: {[PokemonStat.attack]: 1}
   },
   seaking: {
     id: 119,
@@ -1309,7 +1428,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.water],
     stats: { hp: 80, attack: 92, defense: 65, sp_attack: 65, sp_defense: 80, speed: 68 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 158
+    experience_yield: 158,
+    ev_yields: {[PokemonStat.attack]: 2}
   },
   staryu: {
     id: 120,
@@ -1320,7 +1440,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.water],
     stats: { hp: 30, attack: 45, defense: 55, sp_attack: 70, sp_defense: 55, speed: 85 },
     experience_group: ExperienceGroup.slow,
-    experience_yield: 68
+    experience_yield: 68,
+    ev_yields: {[PokemonStat.speed]: 1}
   },
   starmie: {
     id: 121,
@@ -1331,7 +1452,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.water, PokemonCombatType.psychic],
     stats: { hp: 60, attack: 75, defense: 85, sp_attack: 100, sp_defense: 85, speed: 115 },
     experience_group: ExperienceGroup.slow,
-    experience_yield: 182
+    experience_yield: 182,
+    ev_yields: {[PokemonStat.speed]: 2}
   },
   mrmime: {
     id: 122,
@@ -1342,7 +1464,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.ice, PokemonCombatType.psychic],
     stats: { hp: 50, attack: 65, defense: 65, sp_attack: 90, sp_defense: 90, speed: 100 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 161
+    experience_yield: 161,
+    ev_yields: {[PokemonStat.sp_def]: 2}
   },
   scyther: {
     id: 123,
@@ -1353,7 +1476,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.bug, PokemonCombatType.flying],
     stats: { hp: 70, attack: 110, defense: 80, sp_attack: 55, sp_defense: 80, speed: 105 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 100
+    experience_yield: 100,
+    ev_yields: {[PokemonStat.attack]: 1}
   },
   jynx: {
     id: 124,
@@ -1364,7 +1488,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.ice, PokemonCombatType.psychic],
     stats: { hp: 65, attack: 50, defense: 35, sp_attack: 115, sp_defense: 95, speed: 95 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 159
+    experience_yield: 159,
+    ev_yields: {[PokemonStat.sp_atk]: 2}
   },
   electabuzz: {
     id: 125,
@@ -1375,7 +1500,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.electric],
     stats: { hp: 65, attack: 83, defense: 57, sp_attack: 95, sp_defense: 85, speed: 105 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 172
+    experience_yield: 172,
+    ev_yields: {[PokemonStat.speed]: 2}
   },
   magmar: {
     id: 126,
@@ -1386,7 +1512,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.fire],
     stats: { hp: 65, attack: 95, defense: 57, sp_attack: 100, sp_defense: 85, speed: 93 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 173
+    experience_yield: 173,
+    ev_yields: {[PokemonStat.sp_atk]: 2}
   },
   pinsir: {
     id: 127,
@@ -1397,7 +1524,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.bug, PokemonCombatType.flying],
     stats: { hp: 65, attack: 155, defense: 120, sp_attack: 65, sp_defense: 90, speed: 105 },
     experience_group: ExperienceGroup.slow,
-    experience_yield: 175
+    experience_yield: 175,
+    ev_yields: {[PokemonStat.attack]: 2}
   },
   tauros: {
     id: 128,
@@ -1408,7 +1536,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.fighting, PokemonCombatType.water],
     stats: { hp: 75, attack: 110, defense: 105, sp_attack: 30, sp_defense: 70, speed: 100 },
     experience_group: ExperienceGroup.slow,
-    experience_yield: 172
+    experience_yield: 172,
+    ev_yields: {[PokemonStat.attack]: 1}
   },
   magikarp: {
     id: 129,
@@ -1419,7 +1548,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.water],
     stats: { hp: 20, attack: 10, defense: 55, sp_attack: 15, sp_defense: 20, speed: 80 },
     experience_group: ExperienceGroup.slow,
-    experience_yield: 40
+    experience_yield: 40,
+    ev_yields: {[PokemonStat.speed]: 1}
   },
   gyarados: {
     id: 130,
@@ -1430,7 +1560,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.water, PokemonCombatType.dark],
     stats: { hp: 95, attack: 155, defense: 109, sp_attack: 70, sp_defense: 130, speed: 81 },
     experience_group: ExperienceGroup.slow,
-    experience_yield: 189
+    experience_yield: 189,
+    ev_yields: {[PokemonStat.attack]: 2}
   },
   lapras: {
     id: 131,
@@ -1441,7 +1572,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.water, PokemonCombatType.ice],
     stats: { hp: 130, attack: 85, defense: 80, sp_attack: 85, sp_defense: 95, speed: 60 },
     experience_group: ExperienceGroup.slow,
-    experience_yield: 187
+    experience_yield: 187,
+    ev_yields: {[PokemonStat.hp]: 2}
   },
   ditto: {
     id: 132,
@@ -1452,7 +1584,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.normal],
     stats: { hp: 48, attack: 48, defense: 48, sp_attack: 48, sp_defense: 48, speed: 48 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 101
+    experience_yield: 101,
+    ev_yields: {[PokemonStat.hp]: 1}
   },
   eevee: {
     id: 133,
@@ -1463,7 +1596,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.normal],
     stats: { hp: 65, attack: 75, defense: 70, sp_attack: 65, sp_defense: 85, speed: 75 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 65
+    experience_yield: 65,
+    ev_yields: {[PokemonStat.sp_def]: 1}
   },
   vaporeon: {
     id: 134,
@@ -1474,7 +1608,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.water],
     stats: { hp: 130, attack: 65, defense: 60, sp_attack: 110, sp_defense: 95, speed: 65 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 184
+    experience_yield: 184,
+    ev_yields: {[PokemonStat.hp]: 2}
   },
   jolteon: {
     id: 135,
@@ -1485,7 +1620,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.electric],
     stats: { hp: 65, attack: 65, defense: 60, sp_attack: 110, sp_defense: 95, speed: 130 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 184
+    experience_yield: 184,
+    ev_yields: {[PokemonStat.speed]: 2}
   },
   flareon: {
     id: 136,
@@ -1496,7 +1632,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.fire],
     stats: { hp: 65, attack: 130, defense: 60, sp_attack: 95, sp_defense: 110, speed: 65 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 184
+    experience_yield: 184,
+    ev_yields: {[PokemonStat.attack]: 2}
   },
   porygon: {
     id: 137,
@@ -1507,7 +1644,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.normal],
     stats: { hp: 65, attack: 60, defense: 70, sp_attack: 85, sp_defense: 75, speed: 40 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 79
+    experience_yield: 79,
+    ev_yields: {[PokemonStat.sp_atk]: 1}
   },
   omanyte: {
     id: 138,
@@ -1518,7 +1656,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.rock, PokemonCombatType.water],
     stats: { hp: 35, attack: 40, defense: 100, sp_attack: 90, sp_defense: 55, speed: 35 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 71
+    experience_yield: 71,
+    ev_yields: {[PokemonStat.defense]: 1}
   },
   omastar: {
     id: 139,
@@ -1529,7 +1668,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.rock, PokemonCombatType.water],
     stats: { hp: 70, attack: 60, defense: 125, sp_attack: 115, sp_defense: 70, speed: 55 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 173
+    experience_yield: 173,
+    ev_yields: {[PokemonStat.defense]: 2}
   },
   kabuto: {
     id: 140,
@@ -1540,7 +1680,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.rock, PokemonCombatType.water],
     stats: { hp: 30, attack: 80, defense: 90, sp_attack: 55, sp_defense: 45, speed: 55 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 71
+    experience_yield: 71,
+    ev_yields: {[PokemonStat.defense]: 1}
   },
   kabutops: {
     id: 141,
@@ -1551,7 +1692,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.rock, PokemonCombatType.water],
     stats: { hp: 60, attack: 115, defense: 105, sp_attack: 65, sp_defense: 70, speed: 80 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 173
+    experience_yield: 173,
+    ev_yields: {[PokemonStat.attack]: 2}
   },
   aerodactyl: {
     id: 142,
@@ -1562,7 +1704,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.rock, PokemonCombatType.flying],
     stats: { hp: 80, attack: 135, defense: 85, sp_attack: 70, sp_defense: 95, speed: 150 },
     experience_group: ExperienceGroup.slow,
-    experience_yield: 180
+    experience_yield: 180,
+    ev_yields: {[PokemonStat.speed]: 2}
   },
   snorlax: {
     id: 143,
@@ -1573,7 +1716,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.normal],
     stats: { hp: 160, attack: 110, defense: 65, sp_attack: 65, sp_defense: 110, speed: 30 },
     experience_group: ExperienceGroup.slow,
-    experience_yield: 189
+    experience_yield: 189,
+    ev_yields: {[PokemonStat.hp]: 2}
   },
   articuno: {
     id: 144,
@@ -1584,7 +1728,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.psychic, PokemonCombatType.flying],
     stats: { hp: 90, attack: 85, defense: 85, sp_attack: 125, sp_defense: 100, speed: 95 },
     experience_group: ExperienceGroup.slow,
-    experience_yield: 290
+    experience_yield: 290,
+    ev_yields: {[PokemonStat.sp_def]: 3}
   },
   zapdos: {
     id: 145,
@@ -1595,7 +1740,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.fighting, PokemonCombatType.flying],
     stats: { hp: 90, attack: 125, defense: 90, sp_attack: 85, sp_defense: 90, speed: 100 },
     experience_group: ExperienceGroup.slow,
-    experience_yield: 290
+    experience_yield: 290,
+    ev_yields: {[PokemonStat.sp_atk]: 3}
   },
   moltres: {
     id: 146,
@@ -1606,7 +1752,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.dark, PokemonCombatType.flying],
     stats: { hp: 90, attack: 85, defense: 90, sp_attack: 100, sp_defense: 125, speed: 90 },
     experience_group: ExperienceGroup.slow,
-    experience_yield: 290
+    experience_yield: 290,
+    ev_yields: {[PokemonStat.sp_atk]: 3}
   },
   dratini: {
     id: 147,
@@ -1617,7 +1764,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.dragon],
     stats: { hp: 41, attack: 64, defense: 45, sp_attack: 50, sp_defense: 50, speed: 50 },
     experience_group: ExperienceGroup.slow,
-    experience_yield: 60
+    experience_yield: 60,
+    ev_yields: {[PokemonStat.attack]: 1}
   },
   dragonair: {
     id: 148,
@@ -1628,7 +1776,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.dragon],
     stats: { hp: 61, attack: 84, defense: 65, sp_attack: 70, sp_defense: 70, speed: 70 },
     experience_group: ExperienceGroup.slow,
-    experience_yield: 147
+    experience_yield: 147,
+    ev_yields: {[PokemonStat.attack]: 2}
   },
   dragonite: {
     id: 149,
@@ -1639,7 +1788,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.dragon, PokemonCombatType.flying],
     stats: { hp: 91, attack: 124, defense: 115, sp_attack: 145, sp_defense: 125, speed: 100 },
     experience_group: ExperienceGroup.slow,
-    experience_yield: 300
+    experience_yield: 300,
+    ev_yields: {[PokemonStat.attack]: 3}
   },
   mewtwo: {
     id: 150,
@@ -1650,7 +1800,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.psychic],
     stats: { hp: 106, attack: 150, defense: 70, sp_attack: 194, sp_defense: 120, speed: 140 },
     experience_group: ExperienceGroup.slow,
-    experience_yield: 340
+    experience_yield: 340,
+    ev_yields: {[PokemonStat.sp_atk]: 3}
   },
   mew: {
     id: 151,
@@ -1661,7 +1812,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.psychic],
     stats: { hp: 100, attack: 100, defense: 100, sp_attack: 100, sp_defense: 100, speed: 100 },
     experience_group: ExperienceGroup.medium_slow,
-    experience_yield: 300
+    experience_yield: 300,
+    ev_yields: {[PokemonStat.hp]: 3}
   },
   // Generation 2
   chikorita: {
@@ -1673,7 +1825,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.grass],
     stats: { hp: 45, attack: 49, defense: 65, sp_attack: 49, sp_defense: 65, speed: 45 },
     experience_group: ExperienceGroup.medium_slow,
-    experience_yield: 64
+    experience_yield: 64,
+    ev_yields: {[PokemonStat.sp_def]: 1}
   },
   bayleef: {
     id: 153,
@@ -1684,7 +1837,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.grass],
     stats: { hp: 60, attack: 62, defense: 80, sp_attack: 63, sp_defense: 80, speed: 60 },
     experience_group: ExperienceGroup.medium_slow,
-    experience_yield: 142
+    experience_yield: 142,
+    ev_yields: {[PokemonStat.defense]: 1}
   },
   meganium: {
     id: 154,
@@ -1695,7 +1849,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.grass],
     stats: { hp: 80, attack: 82, defense: 100, sp_attack: 83, sp_defense: 100, speed: 80 },
     experience_group: ExperienceGroup.medium_slow,
-    experience_yield: 236
+    experience_yield: 236,
+    ev_yields: {[PokemonStat.defense]: 1}
   },
   cyndaquil: {
     id: 155,
@@ -1706,7 +1861,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.fire],
     stats: { hp: 39, attack: 52, defense: 43, sp_attack: 60, sp_defense: 50, speed: 65 },
     experience_group: ExperienceGroup.medium_slow,
-    experience_yield: 62
+    experience_yield: 62,
+    ev_yields: {[PokemonStat.speed]: 1}
   },
   quilava: {
     id: 156,
@@ -1717,7 +1873,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.fire],
     stats: { hp: 58, attack: 64, defense: 58, sp_attack: 80, sp_defense: 65, speed: 80 },
     experience_group: ExperienceGroup.medium_slow,
-    experience_yield: 142
+    experience_yield: 142,
+    ev_yields: {[PokemonStat.sp_atk]: 1}
   },
   typhlosion: {
     id: 157,
@@ -1728,7 +1885,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.fire, PokemonCombatType.ghost],
     stats: { hp: 73, attack: 84, defense: 78, sp_attack: 119, sp_defense: 85, speed: 95 },
     experience_group: ExperienceGroup.medium_slow,
-    experience_yield: 267
+    experience_yield: 267,
+    ev_yields: {[PokemonStat.sp_atk]: 3}
   },
   totodile: {
     id: 158,
@@ -1739,7 +1897,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.water],
     stats: { hp: 50, attack: 65, defense: 64, sp_attack: 44, sp_defense: 48, speed: 43 },
     experience_group: ExperienceGroup.medium_slow,
-    experience_yield: 63
+    experience_yield: 63,
+    ev_yields: {[PokemonStat.attack]: 1}
   },
   croconaw: {
     id: 159,
@@ -1750,7 +1909,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.water],
     stats: { hp: 65, attack: 80, defense: 80, sp_attack: 59, sp_defense: 63, speed: 58 },
     experience_group: ExperienceGroup.medium_slow,
-    experience_yield: 142
+    experience_yield: 142,
+    ev_yields: {[PokemonStat.attack]: 1}
   },
   feraligatr: {
     id: 160,
@@ -1761,7 +1921,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.water],
     stats: { hp: 85, attack: 105, defense: 100, sp_attack: 79, sp_defense: 83, speed: 78 },
     experience_group: ExperienceGroup.medium_slow,
-    experience_yield: 239
+    experience_yield: 239,
+    ev_yields: {[PokemonStat.attack]: 2}
   },
   sentret: {
     id: 161,
@@ -1772,7 +1933,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.normal],
     stats: { hp: 35, attack: 46, defense: 34, sp_attack: 35, sp_defense: 45, speed: 20 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 43
+    experience_yield: 43,
+    ev_yields: {[PokemonStat.attack]: 1}
   },
   furret: {
     id: 162,
@@ -1783,7 +1945,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.normal],
     stats: { hp: 85, attack: 76, defense: 64, sp_attack: 45, sp_defense: 55, speed: 90 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 145
+    experience_yield: 145,
+    ev_yields: {[PokemonStat.speed]: 2}
   },
   hoothoot: {
     id: 163,
@@ -1794,7 +1957,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.normal, PokemonCombatType.flying],
     stats: { hp: 60, attack: 30, defense: 30, sp_attack: 36, sp_defense: 56, speed: 50 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 52
+    experience_yield: 52,
+    ev_yields: {[PokemonStat.hp]: 1}
   },
   noctowl: {
     id: 164,
@@ -1805,7 +1969,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.normal, PokemonCombatType.flying],
     stats: { hp: 100, attack: 50, defense: 50, sp_attack: 86, sp_defense: 96, speed: 70 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 158
+    experience_yield: 158,
+    ev_yields: {[PokemonStat.hp]: 2}
   },
   ledyba: {
     id: 165,
@@ -1816,7 +1981,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.bug, PokemonCombatType.flying],
     stats: { hp: 40, attack: 20, defense: 30, sp_attack: 40, sp_defense: 80, speed: 55 },
     experience_group: ExperienceGroup.fast,
-    experience_yield: 53
+    experience_yield: 53,
+    ev_yields: {[PokemonStat.sp_def]: 1}
   },
   ledian: {
     id: 166,
@@ -1827,7 +1993,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.bug, PokemonCombatType.flying],
     stats: { hp: 55, attack: 35, defense: 50, sp_attack: 55, sp_defense: 110, speed: 85 },
     experience_group: ExperienceGroup.fast,
-    experience_yield: 137
+    experience_yield: 137,
+    ev_yields: {[PokemonStat.sp_def]: 2}
   },
   spinarak: {
     id: 167,
@@ -1838,7 +2005,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.bug, PokemonCombatType.poison],
     stats: { hp: 40, attack: 60, defense: 40, sp_attack: 40, sp_defense: 40, speed: 30 },
     experience_group: ExperienceGroup.fast,
-    experience_yield: 50
+    experience_yield: 50,
+    ev_yields: {[PokemonStat.attack]: 1}
   },
   ariados: {
     id: 168,
@@ -1849,7 +2017,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.bug, PokemonCombatType.poison],
     stats: { hp: 70, attack: 90, defense: 70, sp_attack: 60, sp_defense: 70, speed: 40 },
     experience_group: ExperienceGroup.fast,
-    experience_yield: 140
+    experience_yield: 140,
+    ev_yields: {[PokemonStat.attack]: 2}
   },
   crobat: {
     id: 169,
@@ -1860,7 +2029,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.poison, PokemonCombatType.flying],
     stats: { hp: 85, attack: 90, defense: 80, sp_attack: 70, sp_defense: 80, speed: 130 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 241
+    experience_yield: 241,
+    ev_yields: {[PokemonStat.speed]: 3}
   },
   chinchou: {
     id: 170,
@@ -1871,7 +2041,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.water, PokemonCombatType.electric],
     stats: { hp: 75, attack: 38, defense: 38, sp_attack: 56, sp_defense: 56, speed: 67 },
     experience_group: ExperienceGroup.slow,
-    experience_yield: 66
+    experience_yield: 66,
+    ev_yields: {[PokemonStat.hp]: 1}
   },
   lanturn: {
     id: 171,
@@ -1882,7 +2053,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.water, PokemonCombatType.electric],
     stats: { hp: 125, attack: 58, defense: 58, sp_attack: 76, sp_defense: 76, speed: 67 },
     experience_group: ExperienceGroup.slow,
-    experience_yield: 161
+    experience_yield: 161,
+    ev_yields: {[PokemonStat.hp]: 2}
   },
   pichu: {
     id: 172,
@@ -1893,7 +2065,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.electric],
     stats: { hp: 20, attack: 40, defense: 15, sp_attack: 35, sp_defense: 35, speed: 60 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 41
+    experience_yield: 41,
+    ev_yields: {[PokemonStat.speed]: 1}
   },
   cleffa: {
     id: 173,
@@ -1904,7 +2077,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.fairy],
     stats: { hp: 50, attack: 25, defense: 28, sp_attack: 45, sp_defense: 55, speed: 15 },
     experience_group: ExperienceGroup.fast,
-    experience_yield: 44
+    experience_yield: 44,
+    ev_yields: {[PokemonStat.sp_def]: 1}
   },
   igglybuff: {
     id: 174,
@@ -1915,7 +2089,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.normal, PokemonCombatType.fairy],
     stats: { hp: 90, attack: 30, defense: 15, sp_attack: 40, sp_defense: 20, speed: 15 },
     experience_group: ExperienceGroup.fast,
-    experience_yield: 42
+    experience_yield: 42,
+    ev_yields: {[PokemonStat.hp]: 1}
   },
   togepi: {
     id: 175,
@@ -1926,7 +2101,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.fairy],
     stats: { hp: 35, attack: 20, defense: 65, sp_attack: 40, sp_defense: 65, speed: 20 },
     experience_group: ExperienceGroup.fast,
-    experience_yield: 49
+    experience_yield: 49,
+    ev_yields: {[PokemonStat.sp_def]: 1}
   },
   togetic: {
     id: 176,
@@ -1937,7 +2113,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.fairy, PokemonCombatType.flying],
     stats: { hp: 55, attack: 40, defense: 85, sp_attack: 80, sp_defense: 105, speed: 40 },
     experience_group: ExperienceGroup.fast,
-    experience_yield: 142
+    experience_yield: 142,
+    ev_yields: {[PokemonStat.sp_def]: 2}
   },
   natu: {
     id: 177,
@@ -1948,7 +2125,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.psychic, PokemonCombatType.flying],
     stats: { hp: 40, attack: 50, defense: 45, sp_attack: 70, sp_defense: 45, speed: 70 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 64
+    experience_yield: 64,
+    ev_yields: {[PokemonStat.sp_atk]: 1}
   },
   xatu: {
     id: 178,
@@ -1959,7 +2137,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.psychic, PokemonCombatType.flying],
     stats: { hp: 65, attack: 75, defense: 70, sp_attack: 95, sp_defense: 70, speed: 95 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 165
+    experience_yield: 165,
+    ev_yields: {[PokemonStat.sp_atk]: 1}
   },
   mareep: {
     id: 179,
@@ -1970,7 +2149,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.electric],
     stats: { hp: 55, attack: 40, defense: 40, sp_attack: 65, sp_defense: 45, speed: 35 },
     experience_group: ExperienceGroup.medium_slow,
-    experience_yield: 56
+    experience_yield: 56,
+    ev_yields: {[PokemonStat.sp_atk]: 1}
   },
   flaaffy: {
     id: 180,
@@ -1981,7 +2161,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.electric],
     stats: { hp: 70, attack: 55, defense: 55, sp_attack: 80, sp_defense: 60, speed: 45 },
     experience_group: ExperienceGroup.medium_slow,
-    experience_yield: 128
+    experience_yield: 128,
+    ev_yields: {[PokemonStat.sp_atk]: 2}
   },
   ampharos: {
     id: 181,
@@ -1992,7 +2173,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.electric, PokemonCombatType.dragon],
     stats: { hp: 90, attack: 95, defense: 105, sp_attack: 165, sp_defense: 110, speed: 45 },
     experience_group: ExperienceGroup.medium_slow,
-    experience_yield: 255
+    experience_yield: 255,
+    ev_yields: {[PokemonStat.sp_atk]: 3}
   },
   bellossom: {
     id: 182,
@@ -2003,7 +2185,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.grass],
     stats: { hp: 75, attack: 80, defense: 95, sp_attack: 90, sp_defense: 100, speed: 50 },
     experience_group: ExperienceGroup.medium_slow,
-    experience_yield: 221
+    experience_yield: 221,
+    ev_yields: {[PokemonStat.sp_def]: 3}
   },
   marill: {
     id: 183,
@@ -2014,7 +2197,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.water, PokemonCombatType.fairy],
     stats: { hp: 70, attack: 20, defense: 50, sp_attack: 20, sp_defense: 50, speed: 40 },
     experience_group: ExperienceGroup.fast,
-    experience_yield: 88
+    experience_yield: 88,
+    ev_yields: {[PokemonStat.hp]: 2}
   },
   azumarill: {
     id: 184,
@@ -2025,7 +2209,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.water, PokemonCombatType.fairy],
     stats: { hp: 100, attack: 50, defense: 80, sp_attack: 60, sp_defense: 80, speed: 50 },
     experience_group: ExperienceGroup.fast,
-    experience_yield: 210
+    experience_yield: 210,
+    ev_yields: {[PokemonStat.hp]: 3}
   },
   sudowoodo: {
     id: 185,
@@ -2036,7 +2221,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.rock],
     stats: { hp: 70, attack: 100, defense: 115, sp_attack: 30, sp_defense: 65, speed: 30 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 144
+    experience_yield: 144,
+    ev_yields: {[PokemonStat.defense]: 2}
   },
   politoed: {
     id: 186,
@@ -2047,7 +2233,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.water],
     stats: { hp: 90, attack: 75, defense: 75, sp_attack: 90, sp_defense: 100, speed: 70 },
     experience_group: ExperienceGroup.medium_slow,
-    experience_yield: 225
+    experience_yield: 225,
+    ev_yields: {[PokemonStat.sp_def]: 3}
   },
   hoppip: {
     id: 187,
@@ -2058,7 +2245,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.grass, PokemonCombatType.flying],
     stats: { hp: 35, attack: 35, defense: 40, sp_attack: 35, sp_defense: 55, speed: 50 },
     experience_group: ExperienceGroup.medium_slow,
-    experience_yield: 50
+    experience_yield: 50,
+    ev_yields: {[PokemonStat.sp_def]: 1}
   },
   skiploom: {
     id: 188,
@@ -2069,7 +2257,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.grass, PokemonCombatType.flying],
     stats: { hp: 55, attack: 45, defense: 50, sp_attack: 45, sp_defense: 65, speed: 80 },
     experience_group: ExperienceGroup.medium_slow,
-    experience_yield: 119
+    experience_yield: 119,
+    ev_yields: {[PokemonStat.speed]: 2}
   },
   jumpluff: {
     id: 189,
@@ -2080,7 +2269,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.grass, PokemonCombatType.flying],
     stats: { hp: 75, attack: 55, defense: 70, sp_attack: 55, sp_defense: 95, speed: 110 },
     experience_group: ExperienceGroup.medium_slow,
-    experience_yield: 230
+    experience_yield: 230,
+    ev_yields: {[PokemonStat.speed]: 3}
   },
   aipom: {
     id: 190,
@@ -2091,7 +2281,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.normal],
     stats: { hp: 55, attack: 70, defense: 55, sp_attack: 40, sp_defense: 55, speed: 85 },
     experience_group: ExperienceGroup.fast,
-    experience_yield: 72
+    experience_yield: 72,
+    ev_yields: {[PokemonStat.speed]: 1}
   },
   sunkern: {
     id: 191,
@@ -2102,7 +2293,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.grass],
     stats: { hp: 30, attack: 30, defense: 30, sp_attack: 30, sp_defense: 30, speed: 30 },
     experience_group: ExperienceGroup.medium_slow,
-    experience_yield: 36
+    experience_yield: 36,
+    ev_yields: {[PokemonStat.sp_atk]: 1}
   },
   sunflora: {
     id: 192,
@@ -2113,7 +2305,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.grass],
     stats: { hp: 75, attack: 75, defense: 55, sp_attack: 105, sp_defense: 85, speed: 30 },
     experience_group: ExperienceGroup.medium_slow,
-    experience_yield: 149
+    experience_yield: 149,
+    ev_yields: {[PokemonStat.sp_atk]: 2}
   },
   yanma: {
     id: 193,
@@ -2124,7 +2317,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.bug, PokemonCombatType.flying],
     stats: { hp: 65, attack: 65, defense: 45, sp_attack: 75, sp_defense: 45, speed: 95 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 78
+    experience_yield: 78,
+    ev_yields: {[PokemonStat.speed]: 1}
   },
   wooper: {
     id: 194,
@@ -2135,7 +2329,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.poison, PokemonCombatType.ground],
     stats: { hp: 55, attack: 45, defense: 45, sp_attack: 25, sp_defense: 25, speed: 15 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 42
+    experience_yield: 42,
+    ev_yields: {[PokemonStat.hp]: 1}
   },
   quagsire: {
     id: 195,
@@ -2146,7 +2341,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.water, PokemonCombatType.ground],
     stats: { hp: 95, attack: 85, defense: 85, sp_attack: 65, sp_defense: 65, speed: 35 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 151
+    experience_yield: 151,
+    ev_yields: {[PokemonStat.hp]: 2}
   },
   espeon: {
     id: 196,
@@ -2157,7 +2353,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.psychic],
     stats: { hp: 65, attack: 65, defense: 60, sp_attack: 130, sp_defense: 95, speed: 110 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 184
+    experience_yield: 184,
+    ev_yields: {[PokemonStat.sp_atk]: 2}
   },
   umbreon: {
     id: 197,
@@ -2168,7 +2365,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.dark],
     stats: { hp: 95, attack: 65, defense: 110, sp_attack: 60, sp_defense: 130, speed: 65 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 184
+    experience_yield: 184,
+    ev_yields: {[PokemonStat.sp_def]: 2}
   },
   murkrow: {
     id: 198,
@@ -2179,7 +2377,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.dark, PokemonCombatType.flying],
     stats: { hp: 60, attack: 85, defense: 42, sp_attack: 85, sp_defense: 42, speed: 91 },
     experience_group: ExperienceGroup.medium_slow,
-    experience_yield: 81
+    experience_yield: 81,
+    ev_yields: {[PokemonStat.speed]: 1}
   },
   slowking: {
     id: 199,
@@ -2190,7 +2389,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.poison, PokemonCombatType.psychic],
     stats: { hp: 95, attack: 65, defense: 80, sp_attack: 110, sp_defense: 110, speed: 30 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 172
+    experience_yield: 172,
+    ev_yields: {[PokemonStat.sp_def]: 2}
   },
   misdreavus: {
     id: 200,
@@ -2201,7 +2401,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.ghost],
     stats: { hp: 60, attack: 60, defense: 60, sp_attack: 85, sp_defense: 85, speed: 85 },
     experience_group: ExperienceGroup.fast,
-    experience_yield: 87
+    experience_yield: 87,
+    ev_yields: {[PokemonStat.sp_def]: 1}
   },
   wobbuffet: {
     id: 202,
@@ -2212,7 +2413,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.psychic],
     stats: { hp: 190, attack: 33, defense: 58, sp_attack: 33, sp_defense: 58, speed: 33 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 142
+    experience_yield: 142,
+    ev_yields: {[PokemonStat.hp]: 2}
   },
   girafarig: {
     id: 203,
@@ -2223,7 +2425,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.normal, PokemonCombatType.psychic],
     stats: { hp: 70, attack: 80, defense: 65, sp_attack: 90, sp_defense: 65, speed: 85 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 159
+    experience_yield: 159,
+    ev_yields: {[PokemonStat.sp_atk]: 2}
   },
   pineco: {
     id: 204,
@@ -2234,7 +2437,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.bug],
     stats: { hp: 50, attack: 65, defense: 90, sp_attack: 35, sp_defense: 35, speed: 15 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 58
+    experience_yield: 58,
+    ev_yields: {[PokemonStat.defense]: 1}
   },
   forretress: {
     id: 205,
@@ -2245,7 +2449,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.bug, PokemonCombatType.steel],
     stats: { hp: 75, attack: 90, defense: 140, sp_attack: 60, sp_defense: 60, speed: 40 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 163
+    experience_yield: 163,
+    ev_yields: {[PokemonStat.defense]: 2}
   },
   dunsparce: {
     id: 206,
@@ -2256,7 +2461,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.normal],
     stats: { hp: 100, attack: 70, defense: 70, sp_attack: 65, sp_defense: 65, speed: 45 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 145
+    experience_yield: 145,
+    ev_yields: {[PokemonStat.hp]: 1}
   },
   gligar: {
     id: 207,
@@ -2267,7 +2473,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.ground, PokemonCombatType.flying],
     stats: { hp: 65, attack: 75, defense: 105, sp_attack: 35, sp_defense: 65, speed: 85 },
     experience_group: ExperienceGroup.medium_slow,
-    experience_yield: 86
+    experience_yield: 86,
+    ev_yields: {[PokemonStat.defense]: 1}
   },
   steelix: {
     id: 208,
@@ -2279,7 +2486,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.steel, PokemonCombatType.ground],
     stats: { hp: 75, attack: 125, defense: 230, sp_attack: 55, sp_defense: 95, speed: 30 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 179
+    experience_yield: 179,
+    ev_yields: {[PokemonStat.defense]: 2}
   },
   snubbull: {
     id: 209,
@@ -2290,7 +2498,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.fairy],
     stats: { hp: 60, attack: 80, defense: 50, sp_attack: 40, sp_defense: 40, speed: 30 },
     experience_group: ExperienceGroup.fast,
-    experience_yield: 60
+    experience_yield: 60,
+    ev_yields: {[PokemonStat.attack]: 1}
   },
   granbull: {
     id: 210,
@@ -2301,7 +2510,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.fairy],
     stats: { hp: 90, attack: 120, defense: 75, sp_attack: 60, sp_defense: 60, speed: 45 },
     experience_group: ExperienceGroup.fast,
-    experience_yield: 158
+    experience_yield: 158,
+    ev_yields: {[PokemonStat.attack]: 2}
   },
   qwilfish: {
     id: 211,
@@ -2312,7 +2522,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.dark, PokemonCombatType.poison],
     stats: { hp: 65, attack: 95, defense: 85, sp_attack: 55, sp_defense: 55, speed: 85 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 88
+    experience_yield: 88,
+    ev_yields: {[PokemonStat.attack]: 1}
   },
   scizor: {
     id: 212,
@@ -2323,7 +2534,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.bug, PokemonCombatType.steel],
     stats: { hp: 70, attack: 150, defense: 140, sp_attack: 65, sp_defense: 100, speed: 75 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 175
+    experience_yield: 175,
+    ev_yields: {[PokemonStat.attack]: 2}
   },
   shuckle: {
     id: 213,
@@ -2334,7 +2546,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.bug, PokemonCombatType.rock],
     stats: { hp: 20, attack: 10, defense: 230, sp_attack: 10, sp_defense: 230, speed: 5 },
     experience_group: ExperienceGroup.medium_slow,
-    experience_yield: 177
+    experience_yield: 177,
+    ev_yields: {[PokemonStat.defense]: 1}
   },
   heracross: {
     id: 214,
@@ -2345,7 +2558,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.bug, PokemonCombatType.fighting],
     stats: { hp: 80, attack: 185, defense: 115, sp_attack: 40, sp_defense: 105, speed: 75 },
     experience_group: ExperienceGroup.slow,
-    experience_yield: 175
+    experience_yield: 175,
+    ev_yields: {[PokemonStat.attack]: 2}
   },
   sneasel: {
     id: 215,
@@ -2356,7 +2570,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.fighting, PokemonCombatType.poison],
     stats: { hp: 55, attack: 95, defense: 55, sp_attack: 35, sp_defense: 75, speed: 115 },
     experience_group: ExperienceGroup.medium_slow,
-    experience_yield: 86
+    experience_yield: 86,
+    ev_yields: {[PokemonStat.speed]: 1}
   },
   teddiursa: {
     id: 216,
@@ -2367,7 +2582,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.normal],
     stats: { hp: 60, attack: 80, defense: 50, sp_attack: 50, sp_defense: 50, speed: 40 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 66
+    experience_yield: 66,
+    ev_yields: {[PokemonStat.attack]: 1}
   },
   ursaring: {
     id: 217,
@@ -2378,7 +2594,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.normal],
     stats: { hp: 90, attack: 130, defense: 75, sp_attack: 75, sp_defense: 75, speed: 55 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 175
+    experience_yield: 175,
+    ev_yields: {[PokemonStat.attack]: 2}
   },
   slugma: {
     id: 218,
@@ -2389,7 +2606,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.fire],
     stats: { hp: 40, attack: 40, defense: 40, sp_attack: 70, sp_defense: 40, speed: 20 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 50
+    experience_yield: 50,
+    ev_yields: {[PokemonStat.sp_atk]: 1}
   },
   magcargo: {
     id: 219,
@@ -2400,7 +2618,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.fire, PokemonCombatType.rock],
     stats: { hp: 60, attack: 50, defense: 120, sp_attack: 90, sp_defense: 80, speed: 30 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 151
+    experience_yield: 151,
+    ev_yields: {[PokemonStat.defense]: 2}
   },
   swinub: {
     id: 220,
@@ -2411,7 +2630,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.ice, PokemonCombatType.ground],
     stats: { hp: 50, attack: 50, defense: 40, sp_attack: 30, sp_defense: 30, speed: 50 },
     experience_group: ExperienceGroup.slow,
-    experience_yield: 50
+    experience_yield: 50,
+    ev_yields: {[PokemonStat.attack]: 1}
   },
   piloswine: {
     id: 221,
@@ -2422,7 +2642,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.ice, PokemonCombatType.ground],
     stats: { hp: 100, attack: 100, defense: 80, sp_attack: 60, sp_defense: 60, speed: 50 },
     experience_group: ExperienceGroup.slow,
-    experience_yield: 158
+    experience_yield: 158,
+    ev_yields: {[PokemonStat.hp]: 1}
   },
   corsola: {
     id: 222,
@@ -2433,7 +2654,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.ghost],
     stats: { hp: 60, attack: 55, defense: 100, sp_attack: 65, sp_defense: 100, speed: 30 },
     experience_group: ExperienceGroup.fast,
-    experience_yield: 144
+    experience_yield: 144,
+    ev_yields: {[PokemonStat.defense]: 1}
   },
   remoraid: {
     id: 223,
@@ -2444,7 +2666,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.water],
     stats: { hp: 35, attack: 65, defense: 35, sp_attack: 65, sp_defense: 35, speed: 65 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 60
+    experience_yield: 60,
+    ev_yields: {[PokemonStat.sp_atk]: 1}
   },
   octillery: {
     id: 224,
@@ -2455,7 +2678,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.water],
     stats: { hp: 75, attack: 105, defense: 75, sp_attack: 105, sp_defense: 75, speed: 45 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 168
+    experience_yield: 168,
+    ev_yields: {[PokemonStat.attack]: 1}
   },
   delibird: {
     id: 225,
@@ -2466,7 +2690,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.ice, PokemonCombatType.flying],
     stats: { hp: 45, attack: 55, defense: 45, sp_attack: 65, sp_defense: 45, speed: 75 },
     experience_group: ExperienceGroup.fast,
-    experience_yield: 116
+    experience_yield: 116,
+    ev_yields: {[PokemonStat.speed]: 1}
   },
   mantine: {
     id: 226,
@@ -2477,7 +2702,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.water, PokemonCombatType.flying],
     stats: { hp: 85, attack: 40, defense: 70, sp_attack: 80, sp_defense: 140, speed: 70 },
     experience_group: ExperienceGroup.slow,
-    experience_yield: 170
+    experience_yield: 170,
+    ev_yields: {[PokemonStat.sp_def]: 2}
   },
   skarmory: {
     id: 227,
@@ -2488,7 +2714,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.steel, PokemonCombatType.flying],
     stats: { hp: 65, attack: 80, defense: 140, sp_attack: 40, sp_defense: 70, speed: 70 },
     experience_group: ExperienceGroup.slow,
-    experience_yield: 163
+    experience_yield: 163,
+    ev_yields: {[PokemonStat.defense]: 2}
   },
   houndour: {
     id: 228,
@@ -2499,7 +2726,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.dark, PokemonCombatType.fire],
     stats: { hp: 45, attack: 60, defense: 30, sp_attack: 80, sp_defense: 50, speed: 65 },
     experience_group: ExperienceGroup.slow,
-    experience_yield: 66
+    experience_yield: 66,
+    ev_yields: {[PokemonStat.sp_atk]: 1}
   },
   houndoom: {
     id: 229,
@@ -2510,7 +2738,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.dark, PokemonCombatType.fire],
     stats: { hp: 75, attack: 90, defense: 90, sp_attack: 140, sp_defense: 90, speed: 115 },
     experience_group: ExperienceGroup.slow,
-    experience_yield: 175
+    experience_yield: 175,
+    ev_yields: {[PokemonStat.sp_atk]: 2}
   },
   kingdra: {
     id: 230,
@@ -2521,7 +2750,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.water, PokemonCombatType.dragon],
     stats: { hp: 75, attack: 95, defense: 95, sp_attack: 95, sp_defense: 95, speed: 85 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 243
+    experience_yield: 243,
+    ev_yields: {[PokemonStat.attack]: 1}
   },
   phanpy: {
     id: 231,
@@ -2532,7 +2762,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.ground],
     stats: { hp: 90, attack: 60, defense: 60, sp_attack: 40, sp_defense: 40, speed: 40 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 66
+    experience_yield: 66,
+    ev_yields: {[PokemonStat.hp]: 1}
   },
   donphan: {
     id: 232,
@@ -2543,7 +2774,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.ground],
     stats: { hp: 90, attack: 120, defense: 120, sp_attack: 60, sp_defense: 60, speed: 50 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 175
+    experience_yield: 175,
+    ev_yields: {[PokemonStat.attack]: 1}
   },
   porygon2: {
     id: 233,
@@ -2554,7 +2786,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.normal],
     stats: { hp: 85, attack: 80, defense: 90, sp_attack: 105, sp_defense: 95, speed: 60 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 180
+    experience_yield: 180,
+    ev_yields: {[PokemonStat.sp_atk]: 2}
   },
   stantler: {
     id: 234,
@@ -2565,7 +2798,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.normal],
     stats: { hp: 73, attack: 95, defense: 62, sp_attack: 85, sp_defense: 65, speed: 85 },
     experience_group: ExperienceGroup.slow,
-    experience_yield: 163
+    experience_yield: 163,
+    ev_yields: {[PokemonStat.attack]: 1}
   },
   smeargle: {
     id: 235,
@@ -2576,7 +2810,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.normal],
     stats: { hp: 55, attack: 20, defense: 35, sp_attack: 20, sp_defense: 45, speed: 75 },
     experience_group: ExperienceGroup.fast,
-    experience_yield: 88
+    experience_yield: 88,
+    ev_yields: {[PokemonStat.speed]: 1}
   },
   tyrogue: {
     id: 236,
@@ -2587,7 +2822,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.fighting],
     stats: { hp: 35, attack: 35, defense: 35, sp_attack: 35, sp_defense: 35, speed: 35 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 42
+    experience_yield: 42,
+    ev_yields: {[PokemonStat.attack]: 1}
   },
   hitmontop: {
     id: 237,
@@ -2598,7 +2834,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.fighting],
     stats: { hp: 50, attack: 95, defense: 95, sp_attack: 35, sp_defense: 110, speed: 70 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 159
+    experience_yield: 159,
+    ev_yields: {[PokemonStat.sp_def]: 2}
   },
   smoochum: {
     id: 238,
@@ -2609,7 +2846,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.ice, PokemonCombatType.psychic],
     stats: { hp: 45, attack: 30, defense: 15, sp_attack: 85, sp_defense: 65, speed: 65 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 61
+    experience_yield: 61,
+    ev_yields: {[PokemonStat.sp_atk]: 1}
   },
   elekid: {
     id: 239,
@@ -2620,7 +2858,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.electric],
     stats: { hp: 45, attack: 63, defense: 37, sp_attack: 65, sp_defense: 55, speed: 95 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 72
+    experience_yield: 72,
+    ev_yields: {[PokemonStat.speed]: 1}
   },
   magby: {
     id: 240,
@@ -2631,7 +2870,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.fire],
     stats: { hp: 45, attack: 75, defense: 37, sp_attack: 70, sp_defense: 55, speed: 83 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 73
+    experience_yield: 73,
+    ev_yields: {[PokemonStat.speed]: 1}
   },
   miltank: {
     id: 241,
@@ -2642,7 +2882,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.normal],
     stats: { hp: 95, attack: 80, defense: 105, sp_attack: 40, sp_defense: 70, speed: 100 },
     experience_group: ExperienceGroup.slow,
-    experience_yield: 172
+    experience_yield: 172,
+    ev_yields: {[PokemonStat.defense]: 2}
   },
   blissey: {
     id: 242,
@@ -2653,7 +2894,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.normal],
     stats: { hp: 255, attack: 10, defense: 10, sp_attack: 75, sp_defense: 135, speed: 55 },
     experience_group: ExperienceGroup.fast,
-    experience_yield: 635
+    experience_yield: 635,
+    ev_yields: {[PokemonStat.hp]: 3}
   },
   raikou: {
     id: 243,
@@ -2664,7 +2906,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.electric],
     stats: { hp: 90, attack: 85, defense: 75, sp_attack: 115, sp_defense: 100, speed: 115 },
     experience_group: ExperienceGroup.slow,
-    experience_yield: 261
+    experience_yield: 261,
+    ev_yields: {[PokemonStat.sp_atk]: 1}
   },
   entei: {
     id: 244,
@@ -2675,7 +2918,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.fire],
     stats: { hp: 115, attack: 115, defense: 85, sp_attack: 90, sp_defense: 75, speed: 100 },
     experience_group: ExperienceGroup.slow,
-    experience_yield: 261
+    experience_yield: 261,
+    ev_yields: {[PokemonStat.hp]: 1}
   },
   suicune: {
     id: 245,
@@ -2686,7 +2930,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.water],
     stats: { hp: 100, attack: 75, defense: 115, sp_attack: 90, sp_defense: 115, speed: 85 },
     experience_group: ExperienceGroup.slow,
-    experience_yield: 261
+    experience_yield: 261,
+    ev_yields: {[PokemonStat.defense]: 1}
   },
   larvitar: {
     id: 246,
@@ -2697,7 +2942,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.rock, PokemonCombatType.ground],
     stats: { hp: 50, attack: 64, defense: 50, sp_attack: 45, sp_defense: 50, speed: 41 },
     experience_group: ExperienceGroup.slow,
-    experience_yield: 60
+    experience_yield: 60,
+    ev_yields: {[PokemonStat.attack]: 1}
   },
   pupitar: {
     id: 247,
@@ -2708,7 +2954,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.rock, PokemonCombatType.ground],
     stats: { hp: 70, attack: 84, defense: 70, sp_attack: 65, sp_defense: 70, speed: 51 },
     experience_group: ExperienceGroup.slow,
-    experience_yield: 144
+    experience_yield: 144,
+    ev_yields: {[PokemonStat.attack]: 2}
   },
   tyranitar: {
     id: 248,
@@ -2719,7 +2966,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.rock, PokemonCombatType.dark],
     stats: { hp: 100, attack: 164, defense: 150, sp_attack: 95, sp_defense: 120, speed: 71 },
     experience_group: ExperienceGroup.slow,
-    experience_yield: 300
+    experience_yield: 300,
+    ev_yields: {[PokemonStat.attack]: 3}
   },
   lugia: {
     id: 249,
@@ -2731,7 +2979,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.psychic, PokemonCombatType.flying],
     stats: { hp: 106, attack: 90, defense: 130, sp_attack: 90, sp_defense: 154, speed: 110 },
     experience_group: ExperienceGroup.slow,
-    experience_yield: 306
+    experience_yield: 306,
+    ev_yields: {[PokemonStat.sp_def]: 3}
   },
   hooh: {
     id: 250,
@@ -2743,7 +2992,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.fire, PokemonCombatType.flying],
     stats: { hp: 106, attack: 130, defense: 90, sp_attack: 110, sp_defense: 154, speed: 90 },
     experience_group: ExperienceGroup.slow,
-    experience_yield: 306
+    experience_yield: 306,
+    ev_yields: {[PokemonStat.sp_def]: 3}
   },
   celebi: {
     id: 251,
@@ -2754,7 +3004,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.psychic, PokemonCombatType.grass],
     stats: { hp: 100, attack: 100, defense: 100, sp_attack: 100, sp_defense: 100, speed: 100 },
     experience_group: ExperienceGroup.medium_slow,
-    experience_yield: 270
+    experience_yield: 270,
+    ev_yields: {[PokemonStat.hp]: 3}
   },
   // Generation 3
   treecko: {
@@ -2766,7 +3017,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.grass],
     stats: { hp: 40, attack: 45, defense: 35, sp_attack: 65, sp_defense: 55, speed: 70 },
     experience_group: ExperienceGroup.medium_slow,
-    experience_yield: 62
+    experience_yield: 62,
+    ev_yields: {[PokemonStat.speed]: 1}
   },
   grovyle: {
     id: 253,
@@ -2777,7 +3029,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.grass],
     stats: { hp: 50, attack: 65, defense: 45, sp_attack: 85, sp_defense: 65, speed: 95 },
     experience_group: ExperienceGroup.medium_slow,
-    experience_yield: 142
+    experience_yield: 142,
+    ev_yields: {[PokemonStat.speed]: 2}
   },
   sceptile: {
     id: 254,
@@ -2788,7 +3041,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.grass, PokemonCombatType.dragon],
     stats: { hp: 70, attack: 110, defense: 75, sp_attack: 145, sp_defense: 85, speed: 145 },
     experience_group: ExperienceGroup.medium_slow,
-    experience_yield: 239
+    experience_yield: 239,
+    ev_yields: {[PokemonStat.speed]: 3}
   },
   torchic: {
     id: 255,
@@ -2799,7 +3053,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.fire],
     stats: { hp: 45, attack: 60, defense: 40, sp_attack: 70, sp_defense: 50, speed: 45 },
     experience_group: ExperienceGroup.medium_slow,
-    experience_yield: 62
+    experience_yield: 62,
+    ev_yields: {[PokemonStat.sp_atk]: 1}
   },
   combusken: {
     id: 256,
@@ -2810,7 +3065,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.fire, PokemonCombatType.fighting],
     stats: { hp: 60, attack: 85, defense: 60, sp_attack: 85, sp_defense: 60, speed: 55 },
     experience_group: ExperienceGroup.medium_slow,
-    experience_yield: 142
+    experience_yield: 142,
+    ev_yields: {[PokemonStat.attack]: 1}
   },
   blaziken: {
     id: 257,
@@ -2821,7 +3077,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.fire, PokemonCombatType.fighting],
     stats: { hp: 80, attack: 160, defense: 80, sp_attack: 130, sp_defense: 80, speed: 100 },
     experience_group: ExperienceGroup.medium_slow,
-    experience_yield: 239
+    experience_yield: 239,
+    ev_yields: {[PokemonStat.attack]: 3}
   },
   mudkip: {
     id: 258,
@@ -2832,7 +3089,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.water],
     stats: { hp: 50, attack: 70, defense: 50, sp_attack: 50, sp_defense: 50, speed: 40 },
     experience_group: ExperienceGroup.medium_slow,
-    experience_yield: 62
+    experience_yield: 62,
+    ev_yields: {[PokemonStat.attack]: 1}
   },
   marshtomp: {
     id: 259,
@@ -2843,7 +3101,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.water, PokemonCombatType.ground],
     stats: { hp: 70, attack: 85, defense: 70, sp_attack: 60, sp_defense: 70, speed: 50 },
     experience_group: ExperienceGroup.medium_slow,
-    experience_yield: 142
+    experience_yield: 142,
+    ev_yields: {[PokemonStat.attack]: 2}
   },
   swampert: {
     id: 260,
@@ -2854,7 +3113,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.water, PokemonCombatType.ground],
     stats: { hp: 100, attack: 150, defense: 110, sp_attack: 95, sp_defense: 110, speed: 70 },
     experience_group: ExperienceGroup.medium_slow,
-    experience_yield: 241
+    experience_yield: 241,
+    ev_yields: {[PokemonStat.attack]: 3}
   },
   poochyena: {
     id: 261,
@@ -2865,7 +3125,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.dark],
     stats: { hp: 35, attack: 55, defense: 35, sp_attack: 30, sp_defense: 30, speed: 35 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 56
+    experience_yield: 56,
+    ev_yields: {[PokemonStat.attack]: 1}
   },
   mightyena: {
     id: 262,
@@ -2876,7 +3137,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.dark],
     stats: { hp: 70, attack: 90, defense: 70, sp_attack: 60, sp_defense: 60, speed: 70 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 147
+    experience_yield: 147,
+    ev_yields: {[PokemonStat.attack]: 2}
   },
   zigzagoon: {
     id: 263,
@@ -2887,7 +3149,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.dark, PokemonCombatType.normal],
     stats: { hp: 38, attack: 30, defense: 41, sp_attack: 30, sp_defense: 41, speed: 60 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 56
+    experience_yield: 56,
+    ev_yields: {[PokemonStat.speed]: 1}
   },
   linoone: {
     id: 264,
@@ -2898,7 +3161,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.dark, PokemonCombatType.normal],
     stats: { hp: 78, attack: 70, defense: 61, sp_attack: 50, sp_defense: 61, speed: 100 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 147
+    experience_yield: 147,
+    ev_yields: {[PokemonStat.speed]: 2}
   },
   wurmple: {
     id: 265,
@@ -2909,7 +3173,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.bug],
     stats: { hp: 45, attack: 45, defense: 35, sp_attack: 20, sp_defense: 30, speed: 20 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 56
+    experience_yield: 56,
+    ev_yields: {[PokemonStat.hp]: 1}
   },
   silcoon: {
     id: 266,
@@ -2920,7 +3185,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.bug],
     stats: { hp: 50, attack: 35, defense: 55, sp_attack: 25, sp_defense: 25, speed: 15 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 72
+    experience_yield: 72,
+    ev_yields: {[PokemonStat.defense]: 2}
   },
   beautifly: {
     id: 267,
@@ -2931,7 +3197,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.bug, PokemonCombatType.flying],
     stats: { hp: 60, attack: 70, defense: 50, sp_attack: 100, sp_defense: 50, speed: 65 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 178
+    experience_yield: 178,
+    ev_yields: {[PokemonStat.sp_atk]: 3}
   },
   cascoon: {
     id: 268,
@@ -2942,7 +3209,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.bug],
     stats: { hp: 50, attack: 35, defense: 55, sp_attack: 25, sp_defense: 25, speed: 15 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 72
+    experience_yield: 72,
+    ev_yields: {[PokemonStat.defense]: 2}
   },
   dustox: {
     id: 269,
@@ -2953,7 +3221,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.bug, PokemonCombatType.poison],
     stats: { hp: 60, attack: 50, defense: 70, sp_attack: 50, sp_defense: 90, speed: 65 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 173
+    experience_yield: 173,
+    ev_yields: {[PokemonStat.sp_def]: 3}
   },
   lotad: {
     id: 270,
@@ -2964,7 +3233,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.water, PokemonCombatType.grass],
     stats: { hp: 40, attack: 30, defense: 30, sp_attack: 40, sp_defense: 50, speed: 30 },
     experience_group: ExperienceGroup.medium_slow,
-    experience_yield: 44
+    experience_yield: 44,
+    ev_yields: {[PokemonStat.sp_def]: 1}
   },
   lombre: {
     id: 271,
@@ -2975,7 +3245,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.water, PokemonCombatType.grass],
     stats: { hp: 60, attack: 50, defense: 50, sp_attack: 60, sp_defense: 70, speed: 50 },
     experience_group: ExperienceGroup.medium_slow,
-    experience_yield: 119
+    experience_yield: 119,
+    ev_yields: {[PokemonStat.sp_def]: 2}
   },
   ludicolo: {
     id: 272,
@@ -2986,7 +3257,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.water, PokemonCombatType.grass],
     stats: { hp: 80, attack: 70, defense: 70, sp_attack: 90, sp_defense: 100, speed: 70 },
     experience_group: ExperienceGroup.medium_slow,
-    experience_yield: 216
+    experience_yield: 216,
+    ev_yields: {[PokemonStat.sp_def]: 3}
   },
   seedot: {
     id: 273,
@@ -2997,7 +3269,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.grass],
     stats: { hp: 40, attack: 40, defense: 50, sp_attack: 30, sp_defense: 30, speed: 30 },
     experience_group: ExperienceGroup.medium_slow,
-    experience_yield: 44
+    experience_yield: 44,
+    ev_yields: {[PokemonStat.defense]: 1}
   },
   nuzleaf: {
     id: 274,
@@ -3008,7 +3281,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.grass, PokemonCombatType.dark],
     stats: { hp: 70, attack: 70, defense: 40, sp_attack: 60, sp_defense: 40, speed: 60 },
     experience_group: ExperienceGroup.medium_slow,
-    experience_yield: 119
+    experience_yield: 119,
+    ev_yields: {[PokemonStat.attack]: 2}
   },
   shiftry: {
     id: 275,
@@ -3019,7 +3293,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.grass, PokemonCombatType.dark],
     stats: { hp: 90, attack: 100, defense: 60, sp_attack: 90, sp_defense: 60, speed: 80 },
     experience_group: ExperienceGroup.medium_slow,
-    experience_yield: 216
+    experience_yield: 216,
+    ev_yields: {[PokemonStat.attack]: 3}
   },
   taillow: {
     id: 276,
@@ -3030,7 +3305,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.normal, PokemonCombatType.flying],
     stats: { hp: 40, attack: 55, defense: 30, sp_attack: 30, sp_defense: 30, speed: 85 },
     experience_group: ExperienceGroup.medium_slow,
-    experience_yield: 54
+    experience_yield: 54,
+    ev_yields: {[PokemonStat.speed]: 1}
   },
   swellow: {
     id: 277,
@@ -3041,7 +3317,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.normal, PokemonCombatType.flying],
     stats: { hp: 60, attack: 85, defense: 60, sp_attack: 75, sp_defense: 50, speed: 125 },
     experience_group: ExperienceGroup.medium_slow,
-    experience_yield: 159
+    experience_yield: 159,
+    ev_yields: {[PokemonStat.speed]: 2}
   },
   wingull: {
     id: 278,
@@ -3052,7 +3329,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.water, PokemonCombatType.flying],
     stats: { hp: 40, attack: 30, defense: 30, sp_attack: 55, sp_defense: 30, speed: 85 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 54
+    experience_yield: 54,
+    ev_yields: {[PokemonStat.speed]: 1}
   },
   pelipper: {
     id: 279,
@@ -3063,7 +3341,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.water, PokemonCombatType.flying],
     stats: { hp: 60, attack: 50, defense: 100, sp_attack: 95, sp_defense: 70, speed: 65 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 154
+    experience_yield: 154,
+    ev_yields: {[PokemonStat.defense]: 2}
   },
   ralts: {
     id: 280,
@@ -3074,7 +3353,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.psychic, PokemonCombatType.fairy],
     stats: { hp: 28, attack: 25, defense: 25, sp_attack: 45, sp_defense: 35, speed: 40 },
     experience_group: ExperienceGroup.slow,
-    experience_yield: 40
+    experience_yield: 40,
+    ev_yields: {[PokemonStat.sp_atk]: 1}
   },
   kirlia: {
     id: 281,
@@ -3085,7 +3365,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.psychic, PokemonCombatType.fairy],
     stats: { hp: 38, attack: 35, defense: 35, sp_attack: 65, sp_defense: 55, speed: 50 },
     experience_group: ExperienceGroup.slow,
-    experience_yield: 97
+    experience_yield: 97,
+    ev_yields: {[PokemonStat.sp_atk]: 2}
   },
   gardevoir: {
     id: 282,
@@ -3096,7 +3377,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.psychic, PokemonCombatType.fairy],
     stats: { hp: 68, attack: 85, defense: 65, sp_attack: 165, sp_defense: 135, speed: 100 },
     experience_group: ExperienceGroup.slow,
-    experience_yield: 259
+    experience_yield: 259,
+    ev_yields: {[PokemonStat.sp_atk]: 3}
   },
   surskit: {
     id: 283,
@@ -3107,7 +3389,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.bug, PokemonCombatType.water],
     stats: { hp: 40, attack: 30, defense: 32, sp_attack: 50, sp_defense: 52, speed: 65 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 54
+    experience_yield: 54,
+    ev_yields: {[PokemonStat.speed]: 1}
   },
   masquerain: {
     id: 284,
@@ -3118,7 +3401,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.bug, PokemonCombatType.flying],
     stats: { hp: 70, attack: 60, defense: 62, sp_attack: 100, sp_defense: 82, speed: 80 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 159
+    experience_yield: 159,
+    ev_yields: {[PokemonStat.sp_atk]: 1}
   },
   shroomish: {
     id: 285,
@@ -3129,7 +3413,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.grass],
     stats: { hp: 60, attack: 40, defense: 60, sp_attack: 40, sp_defense: 60, speed: 35 },
     experience_group: ExperienceGroup.fluctuating,
-    experience_yield: 59
+    experience_yield: 59,
+    ev_yields: {[PokemonStat.hp]: 1}
   },
   breloom: {
     id: 286,
@@ -3140,7 +3425,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.grass, PokemonCombatType.fighting],
     stats: { hp: 60, attack: 130, defense: 80, sp_attack: 60, sp_defense: 60, speed: 70 },
     experience_group: ExperienceGroup.fluctuating,
-    experience_yield: 161
+    experience_yield: 161,
+    ev_yields: {[PokemonStat.attack]: 2}
   },
   slakoth: {
     id: 287,
@@ -3151,7 +3437,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.normal],
     stats: { hp: 60, attack: 60, defense: 60, sp_attack: 35, sp_defense: 35, speed: 30 },
     experience_group: ExperienceGroup.slow,
-    experience_yield: 56
+    experience_yield: 56,
+    ev_yields: {[PokemonStat.hp]: 1}
   },
   vigoroth: {
     id: 288,
@@ -3162,7 +3449,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.normal],
     stats: { hp: 80, attack: 80, defense: 80, sp_attack: 55, sp_defense: 55, speed: 90 },
     experience_group: ExperienceGroup.slow,
-    experience_yield: 154
+    experience_yield: 154,
+    ev_yields: {[PokemonStat.speed]: 2}
   },
   slaking: {
     id: 289,
@@ -3173,7 +3461,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.normal],
     stats: { hp: 150, attack: 160, defense: 100, sp_attack: 95, sp_defense: 65, speed: 100 },
     experience_group: ExperienceGroup.slow,
-    experience_yield: 285
+    experience_yield: 285,
+    ev_yields: {[PokemonStat.hp]: 3}
   },
   nincada: {
     id: 290,
@@ -3184,7 +3473,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.bug, PokemonCombatType.ground],
     stats: { hp: 31, attack: 45, defense: 90, sp_attack: 30, sp_defense: 30, speed: 40 },
     experience_group: ExperienceGroup.erratic,
-    experience_yield: 53
+    experience_yield: 53,
+    ev_yields: {[PokemonStat.defense]: 1}
   },
   ninjask: {
     id: 291,
@@ -3195,7 +3485,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.bug, PokemonCombatType.flying],
     stats: { hp: 61, attack: 90, defense: 45, sp_attack: 50, sp_defense: 50, speed: 160 },
     experience_group: ExperienceGroup.erratic,
-    experience_yield: 160
+    experience_yield: 160,
+    ev_yields: {[PokemonStat.speed]: 2}
   },
   shedinja: {
     id: 292,
@@ -3206,7 +3497,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.bug, PokemonCombatType.ghost],
     stats: { hp: 1, attack: 90, defense: 45, sp_attack: 30, sp_defense: 30, speed: 40 },
     experience_group: ExperienceGroup.erratic,
-    experience_yield: 83
+    experience_yield: 83,
+    ev_yields: {[PokemonStat.hp]: 2}
   },
   whismur: {
     id: 293,
@@ -3217,7 +3509,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.normal],
     stats: { hp: 64, attack: 51, defense: 23, sp_attack: 51, sp_defense: 23, speed: 28 },
     experience_group: ExperienceGroup.medium_slow,
-    experience_yield: 48
+    experience_yield: 48,
+    ev_yields: {[PokemonStat.hp]: 1}
   },
   loudred: {
     id: 294,
@@ -3228,7 +3521,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.normal],
     stats: { hp: 84, attack: 71, defense: 43, sp_attack: 71, sp_defense: 43, speed: 48 },
     experience_group: ExperienceGroup.medium_slow,
-    experience_yield: 126
+    experience_yield: 126,
+    ev_yields: {[PokemonStat.hp]: 2}
   },
   exploud: {
     id: 295,
@@ -3239,7 +3533,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.normal],
     stats: { hp: 104, attack: 91, defense: 63, sp_attack: 91, sp_defense: 73, speed: 68 },
     experience_group: ExperienceGroup.medium_slow,
-    experience_yield: 221
+    experience_yield: 221,
+    ev_yields: {[PokemonStat.hp]: 3}
   },
   makuhita: {
     id: 296,
@@ -3250,7 +3545,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.fighting],
     stats: { hp: 72, attack: 60, defense: 30, sp_attack: 20, sp_defense: 30, speed: 25 },
     experience_group: ExperienceGroup.fluctuating,
-    experience_yield: 47
+    experience_yield: 47,
+    ev_yields: {[PokemonStat.hp]: 1}
   },
   hariyama: {
     id: 297,
@@ -3261,7 +3557,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.fighting],
     stats: { hp: 144, attack: 120, defense: 60, sp_attack: 40, sp_defense: 60, speed: 50 },
     experience_group: ExperienceGroup.fluctuating,
-    experience_yield: 166
+    experience_yield: 166,
+    ev_yields: {[PokemonStat.hp]: 2}
   },
   azurill: {
     id: 298,
@@ -3272,7 +3569,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.normal, PokemonCombatType.fairy],
     stats: { hp: 50, attack: 20, defense: 40, sp_attack: 20, sp_defense: 40, speed: 20 },
     experience_group: ExperienceGroup.fast,
-    experience_yield: 38
+    experience_yield: 38,
+    ev_yields: {[PokemonStat.hp]: 1}
   },
   nosepass: {
     id: 299,
@@ -3283,7 +3581,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.rock],
     stats: { hp: 30, attack: 45, defense: 135, sp_attack: 45, sp_defense: 90, speed: 30 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 75
+    experience_yield: 75,
+    ev_yields: {[PokemonStat.defense]: 1}
   },
   skitty: {
     id: 300,
@@ -3294,7 +3593,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.normal],
     stats: { hp: 50, attack: 45, defense: 45, sp_attack: 35, sp_defense: 35, speed: 50 },
     experience_group: ExperienceGroup.fast,
-    experience_yield: 52
+    experience_yield: 52,
+    ev_yields: {[PokemonStat.speed]: 1}
   },
   delcatty: {
     id: 301,
@@ -3305,7 +3605,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.normal],
     stats: { hp: 70, attack: 65, defense: 65, sp_attack: 55, sp_defense: 55, speed: 90 },
     experience_group: ExperienceGroup.fast,
-    experience_yield: 140
+    experience_yield: 140,
+    ev_yields: {[PokemonStat.hp]: 1}
   },
   sableye: {
     id: 302,
@@ -3316,7 +3617,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.dark, PokemonCombatType.ghost],
     stats: { hp: 50, attack: 85, defense: 125, sp_attack: 85, sp_defense: 115, speed: 20 },
     experience_group: ExperienceGroup.medium_slow,
-    experience_yield: 133
+    experience_yield: 133,
+    ev_yields: {[PokemonStat.attack]: 1}
   },
   mawile: {
     id: 303,
@@ -3327,7 +3629,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.steel, PokemonCombatType.fairy],
     stats: { hp: 50, attack: 105, defense: 125, sp_attack: 55, sp_defense: 95, speed: 50 },
     experience_group: ExperienceGroup.fast,
-    experience_yield: 133
+    experience_yield: 133,
+    ev_yields: {[PokemonStat.attack]: 1}
   },
   aron: {
     id: 304,
@@ -3338,7 +3641,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.steel, PokemonCombatType.rock],
     stats: { hp: 50, attack: 70, defense: 100, sp_attack: 40, sp_defense: 40, speed: 30 },
     experience_group: ExperienceGroup.slow,
-    experience_yield: 66
+    experience_yield: 66,
+    ev_yields: {[PokemonStat.defense]: 1}
   },
   lairon: {
     id: 305,
@@ -3349,7 +3653,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.steel, PokemonCombatType.rock],
     stats: { hp: 60, attack: 90, defense: 140, sp_attack: 50, sp_defense: 50, speed: 40 },
     experience_group: ExperienceGroup.slow,
-    experience_yield: 151
+    experience_yield: 151,
+    ev_yields: {[PokemonStat.defense]: 2}
   },
   aggron: {
     id: 306,
@@ -3360,7 +3665,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.steel],
     stats: { hp: 70, attack: 140, defense: 230, sp_attack: 60, sp_defense: 80, speed: 50 },
     experience_group: ExperienceGroup.slow,
-    experience_yield: 239
+    experience_yield: 239,
+    ev_yields: {[PokemonStat.defense]: 3}
   },
   meditite: {
     id: 307,
@@ -3371,7 +3677,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.fighting, PokemonCombatType.psychic],
     stats: { hp: 30, attack: 40, defense: 55, sp_attack: 40, sp_defense: 55, speed: 60 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 56
+    experience_yield: 56,
+    ev_yields: {[PokemonStat.speed]: 1}
   },
   medicham: {
     id: 308,
@@ -3382,7 +3689,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.fighting, PokemonCombatType.psychic],
     stats: { hp: 60, attack: 100, defense: 85, sp_attack: 80, sp_defense: 85, speed: 100 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 144
+    experience_yield: 144,
+    ev_yields: {[PokemonStat.speed]: 2}
   },
   electrike: {
     id: 309,
@@ -3393,7 +3701,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.electric],
     stats: { hp: 40, attack: 45, defense: 40, sp_attack: 65, sp_defense: 40, speed: 65 },
     experience_group: ExperienceGroup.slow,
-    experience_yield: 59
+    experience_yield: 59,
+    ev_yields: {[PokemonStat.speed]: 1}
   },
   manectric: {
     id: 310,
@@ -3404,7 +3713,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.electric],
     stats: { hp: 70, attack: 75, defense: 80, sp_attack: 135, sp_defense: 80, speed: 135 },
     experience_group: ExperienceGroup.slow,
-    experience_yield: 166
+    experience_yield: 166,
+    ev_yields: {[PokemonStat.speed]: 2}
   },
   plusle: {
     id: 311,
@@ -3415,7 +3725,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.electric],
     stats: { hp: 60, attack: 50, defense: 40, sp_attack: 85, sp_defense: 75, speed: 95 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 142
+    experience_yield: 142,
+    ev_yields: {[PokemonStat.speed]: 1}
   },
   minun: {
     id: 312,
@@ -3426,7 +3737,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.electric],
     stats: { hp: 60, attack: 40, defense: 50, sp_attack: 75, sp_defense: 85, speed: 95 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 142
+    experience_yield: 142,
+    ev_yields: {[PokemonStat.speed]: 1}
   },
   volbeat: {
     id: 313,
@@ -3437,7 +3749,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.bug],
     stats: { hp: 65, attack: 73, defense: 75, sp_attack: 47, sp_defense: 85, speed: 85 },
     experience_group: ExperienceGroup.erratic,
-    experience_yield: 151
+    experience_yield: 151,
+    ev_yields: {[PokemonStat.speed]: 1}
   },
   illumise: {
     id: 314,
@@ -3448,7 +3761,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.bug],
     stats: { hp: 65, attack: 47, defense: 75, sp_attack: 73, sp_defense: 85, speed: 85 },
     experience_group: ExperienceGroup.fluctuating,
-    experience_yield: 151
+    experience_yield: 151,
+    ev_yields: {[PokemonStat.speed]: 1}
   },
   roselia: {
     id: 315,
@@ -3459,7 +3773,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.grass, PokemonCombatType.poison],
     stats: { hp: 50, attack: 60, defense: 45, sp_attack: 100, sp_defense: 80, speed: 65 },
     experience_group: ExperienceGroup.medium_slow,
-    experience_yield: 140
+    experience_yield: 140,
+    ev_yields: {[PokemonStat.sp_atk]: 2}
   },
   gulpin: {
     id: 316,
@@ -3470,7 +3785,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.poison],
     stats: { hp: 70, attack: 43, defense: 53, sp_attack: 43, sp_defense: 53, speed: 40 },
     experience_group: ExperienceGroup.fluctuating,
-    experience_yield: 60
+    experience_yield: 60,
+    ev_yields: {[PokemonStat.hp]: 1}
   },
   swalot: {
     id: 317,
@@ -3481,7 +3797,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.poison],
     stats: { hp: 100, attack: 73, defense: 83, sp_attack: 73, sp_defense: 83, speed: 55 },
     experience_group: ExperienceGroup.fluctuating,
-    experience_yield: 163
+    experience_yield: 163,
+    ev_yields: {[PokemonStat.hp]: 2}
   },
   carvanha: {
     id: 318,
@@ -3492,7 +3809,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.water, PokemonCombatType.dark],
     stats: { hp: 45, attack: 90, defense: 20, sp_attack: 65, sp_defense: 20, speed: 65 },
     experience_group: ExperienceGroup.slow,
-    experience_yield: 61
+    experience_yield: 61,
+    ev_yields: {[PokemonStat.attack]: 1}
   },
   sharpedo: {
     id: 319,
@@ -3503,7 +3821,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.water, PokemonCombatType.dark],
     stats: { hp: 70, attack: 140, defense: 70, sp_attack: 110, sp_defense: 65, speed: 105 },
     experience_group: ExperienceGroup.slow,
-    experience_yield: 161
+    experience_yield: 161,
+    ev_yields: {[PokemonStat.attack]: 2}
   },
   wailmer: {
     id: 320,
@@ -3514,7 +3833,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.water],
     stats: { hp: 130, attack: 70, defense: 35, sp_attack: 70, sp_defense: 35, speed: 60 },
     experience_group: ExperienceGroup.fluctuating,
-    experience_yield: 80
+    experience_yield: 80,
+    ev_yields: {[PokemonStat.hp]: 1}
   },
   wailord: {
     id: 321,
@@ -3526,7 +3846,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.water],
     stats: { hp: 170, attack: 90, defense: 45, sp_attack: 90, sp_defense: 45, speed: 60 },
     experience_group: ExperienceGroup.fluctuating,
-    experience_yield: 175
+    experience_yield: 175,
+    ev_yields: {[PokemonStat.hp]: 2}
   },
   numel: {
     id: 322,
@@ -3537,7 +3858,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.fire, PokemonCombatType.ground],
     stats: { hp: 60, attack: 60, defense: 40, sp_attack: 65, sp_defense: 45, speed: 35 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 61
+    experience_yield: 61,
+    ev_yields: {[PokemonStat.sp_atk]: 1}
   },
   camerupt: {
     id: 323,
@@ -3548,7 +3870,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.fire, PokemonCombatType.ground],
     stats: { hp: 70, attack: 120, defense: 100, sp_attack: 145, sp_defense: 105, speed: 20 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 161
+    experience_yield: 161,
+    ev_yields: {[PokemonStat.attack]: 1}
   },
   torkoal: {
     id: 324,
@@ -3559,7 +3882,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.fire],
     stats: { hp: 70, attack: 85, defense: 140, sp_attack: 85, sp_defense: 70, speed: 20 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 165
+    experience_yield: 165,
+    ev_yields: {[PokemonStat.defense]: 2}
   },
   spoink: {
     id: 325,
@@ -3570,7 +3894,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.psychic],
     stats: { hp: 60, attack: 25, defense: 35, sp_attack: 70, sp_defense: 80, speed: 60 },
     experience_group: ExperienceGroup.fast,
-    experience_yield: 66
+    experience_yield: 66,
+    ev_yields: {[PokemonStat.sp_def]: 1}
   },
   grumpig: {
     id: 326,
@@ -3581,7 +3906,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.psychic],
     stats: { hp: 80, attack: 45, defense: 65, sp_attack: 90, sp_defense: 110, speed: 80 },
     experience_group: ExperienceGroup.fast,
-    experience_yield: 165
+    experience_yield: 165,
+    ev_yields: {[PokemonStat.sp_def]: 2}
   },
   spinda: {
     id: 327,
@@ -3592,7 +3918,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.normal],
     stats: { hp: 60, attack: 60, defense: 60, sp_attack: 60, sp_defense: 60, speed: 60 },
     experience_group: ExperienceGroup.fast,
-    experience_yield: 126
+    experience_yield: 126,
+    ev_yields: {[PokemonStat.sp_atk]: 1}
   },
   trapinch: {
     id: 328,
@@ -3603,7 +3930,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.ground],
     stats: { hp: 45, attack: 100, defense: 45, sp_attack: 45, sp_defense: 45, speed: 10 },
     experience_group: ExperienceGroup.medium_slow,
-    experience_yield: 58
+    experience_yield: 58,
+    ev_yields: {[PokemonStat.attack]: 1}
   },
   vibrava: {
     id: 329,
@@ -3614,7 +3942,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.ground, PokemonCombatType.dragon],
     stats: { hp: 50, attack: 70, defense: 50, sp_attack: 50, sp_defense: 50, speed: 70 },
     experience_group: ExperienceGroup.medium_slow,
-    experience_yield: 119
+    experience_yield: 119,
+    ev_yields: {[PokemonStat.attack]: 1}
   },
   flygon: {
     id: 330,
@@ -3625,7 +3954,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.ground, PokemonCombatType.dragon],
     stats: { hp: 80, attack: 100, defense: 80, sp_attack: 80, sp_defense: 80, speed: 100 },
     experience_group: ExperienceGroup.medium_slow,
-    experience_yield: 234
+    experience_yield: 234,
+    ev_yields: {[PokemonStat.attack]: 1}
   },
   cacnea: {
     id: 331,
@@ -3636,7 +3966,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.grass],
     stats: { hp: 50, attack: 85, defense: 40, sp_attack: 85, sp_defense: 40, speed: 35 },
     experience_group: ExperienceGroup.medium_slow,
-    experience_yield: 67
+    experience_yield: 67,
+    ev_yields: {[PokemonStat.sp_atk]: 1}
   },
   cacturne: {
     id: 332,
@@ -3647,7 +3978,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.grass, PokemonCombatType.dark],
     stats: { hp: 70, attack: 115, defense: 60, sp_attack: 115, sp_defense: 60, speed: 55 },
     experience_group: ExperienceGroup.medium_slow,
-    experience_yield: 166
+    experience_yield: 166,
+    ev_yields: {[PokemonStat.attack]: 1}
   },
   swablu: {
     id: 333,
@@ -3658,7 +3990,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.normal, PokemonCombatType.flying],
     stats: { hp: 45, attack: 40, defense: 60, sp_attack: 40, sp_defense: 75, speed: 50 },
     experience_group: ExperienceGroup.erratic,
-    experience_yield: 62
+    experience_yield: 62,
+    ev_yields: {[PokemonStat.sp_def]: 1}
   },
   altaria: {
     id: 334,
@@ -3669,7 +4002,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.dragon, PokemonCombatType.fairy],
     stats: { hp: 75, attack: 110, defense: 110, sp_attack: 110, sp_defense: 105, speed: 80 },
     experience_group: ExperienceGroup.erratic,
-    experience_yield: 172
+    experience_yield: 172,
+    ev_yields: {[PokemonStat.sp_def]: 2}
   },
   zangoose: {
     id: 335,
@@ -3680,7 +4014,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.normal],
     stats: { hp: 73, attack: 115, defense: 60, sp_attack: 60, sp_defense: 60, speed: 90 },
     experience_group: ExperienceGroup.erratic,
-    experience_yield: 160
+    experience_yield: 160,
+    ev_yields: {[PokemonStat.attack]: 2}
   },
   seviper: {
     id: 336,
@@ -3691,7 +4026,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.poison],
     stats: { hp: 73, attack: 100, defense: 60, sp_attack: 100, sp_defense: 60, speed: 65 },
     experience_group: ExperienceGroup.fluctuating,
-    experience_yield: 160
+    experience_yield: 160,
+    ev_yields: {[PokemonStat.attack]: 1}
   },
   lunatone: {
     id: 337,
@@ -3702,7 +4038,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.rock, PokemonCombatType.psychic],
     stats: { hp: 90, attack: 55, defense: 65, sp_attack: 95, sp_defense: 85, speed: 70 },
     experience_group: ExperienceGroup.fast,
-    experience_yield: 161
+    experience_yield: 161,
+    ev_yields: {[PokemonStat.sp_atk]: 2}
   },
   solrock: {
     id: 338,
@@ -3713,7 +4050,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.rock, PokemonCombatType.psychic],
     stats: { hp: 90, attack: 95, defense: 85, sp_attack: 55, sp_defense: 65, speed: 70 },
     experience_group: ExperienceGroup.fast,
-    experience_yield: 161
+    experience_yield: 161,
+    ev_yields: {[PokemonStat.attack]: 2}
   },
   barboach: {
     id: 339,
@@ -3724,7 +4062,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.water, PokemonCombatType.ground],
     stats: { hp: 50, attack: 48, defense: 43, sp_attack: 46, sp_defense: 41, speed: 60 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 58
+    experience_yield: 58,
+    ev_yields: {[PokemonStat.hp]: 1}
   },
   whiscash: {
     id: 340,
@@ -3735,7 +4074,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.water, PokemonCombatType.ground],
     stats: { hp: 110, attack: 78, defense: 73, sp_attack: 76, sp_defense: 71, speed: 60 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 164
+    experience_yield: 164,
+    ev_yields: {[PokemonStat.hp]: 2}
   },
   corpish: {
     id: 341,
@@ -3746,7 +4086,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.water],
     stats: { hp: 43, attack: 80, defense: 65, sp_attack: 50, sp_defense: 35, speed: 35 },
     experience_group: ExperienceGroup.fluctuating,
-    experience_yield: 62
+    experience_yield: 62,
+    ev_yields: {[PokemonStat.attack]: 1}
   },
   crawdaunt: {
     id: 342,
@@ -3757,7 +4098,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.water, PokemonCombatType.dark],
     stats: { hp: 63, attack: 120, defense: 85, sp_attack: 90, sp_defense: 55, speed: 55 },
     experience_group: ExperienceGroup.fluctuating,
-    experience_yield: 164
+    experience_yield: 164,
+    ev_yields: {[PokemonStat.attack]: 2}
   },
   baltoy: {
     id: 343,
@@ -3768,7 +4110,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.ground, PokemonCombatType.psychic],
     stats: { hp: 40, attack: 40, defense: 55, sp_attack: 40, sp_defense: 70, speed: 55 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 60
+    experience_yield: 60,
+    ev_yields: {[PokemonStat.sp_def]: 1}
   },
   claydol: {
     id: 344,
@@ -3779,7 +4122,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.ground, PokemonCombatType.psychic],
     stats: { hp: 60, attack: 70, defense: 105, sp_attack: 70, sp_defense: 120, speed: 75 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 175
+    experience_yield: 175,
+    ev_yields: {[PokemonStat.sp_def]: 2}
   },
   lileep: {
     id: 345,
@@ -3790,7 +4134,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.rock, PokemonCombatType.grass],
     stats: { hp: 66, attack: 41, defense: 77, sp_attack: 61, sp_defense: 87, speed: 23 },
     experience_group: ExperienceGroup.erratic,
-    experience_yield: 71
+    experience_yield: 71,
+    ev_yields: {[PokemonStat.sp_def]: 1}
   },
   cradily: {
     id: 346,
@@ -3801,7 +4146,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.rock, PokemonCombatType.grass],
     stats: { hp: 86, attack: 81, defense: 97, sp_attack: 81, sp_defense: 107, speed: 43 },
     experience_group: ExperienceGroup.erratic,
-    experience_yield: 173
+    experience_yield: 173,
+    ev_yields: {[PokemonStat.sp_def]: 2}
   },
   anorith: {
     id: 347,
@@ -3812,7 +4158,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.rock, PokemonCombatType.bug],
     stats: { hp: 45, attack: 95, defense: 50, sp_attack: 40, sp_defense: 50, speed: 75 },
     experience_group: ExperienceGroup.erratic,
-    experience_yield: 71
+    experience_yield: 71,
+    ev_yields: {[PokemonStat.attack]: 1}
   },
   armaldo: {
     id: 348,
@@ -3823,7 +4170,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.rock, PokemonCombatType.bug],
     stats: { hp: 75, attack: 125, defense: 100, sp_attack: 70, sp_defense: 80, speed: 45 },
     experience_group: ExperienceGroup.erratic,
-    experience_yield: 173
+    experience_yield: 173,
+    ev_yields: {[PokemonStat.attack]: 2}
   },
   feebas: {
     id: 349,
@@ -3834,7 +4182,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.water],
     stats: { hp: 20, attack: 15, defense: 20, sp_attack: 10, sp_defense: 55, speed: 80 },
     experience_group: ExperienceGroup.erratic,
-    experience_yield: 40
+    experience_yield: 40,
+    ev_yields: {[PokemonStat.speed]: 1}
   },
   milotic: {
     id: 350,
@@ -3845,7 +4194,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.water],
     stats: { hp: 95, attack: 60, defense: 79, sp_attack: 100, sp_defense: 125, speed: 81 },
     experience_group: ExperienceGroup.erratic,
-    experience_yield: 189
+    experience_yield: 189,
+    ev_yields: {[PokemonStat.sp_def]: 2}
   },
   castform: {
     id: 351,
@@ -3856,7 +4206,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.ice],
     stats: { hp: 70, attack: 70, defense: 70, sp_attack: 70, sp_defense: 70, speed: 70 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 147
+    experience_yield: 147,
+    ev_yields: {[PokemonStat.hp]: 1}
   },
   kecleon: {
     id: 352,
@@ -3867,7 +4218,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.normal],
     stats: { hp: 60, attack: 90, defense: 70, sp_attack: 60, sp_defense: 120, speed: 40 },
     experience_group: ExperienceGroup.medium_slow,
-    experience_yield: 154
+    experience_yield: 154,
+    ev_yields: {[PokemonStat.sp_def]: 1}
   },
   shuppet: {
     id: 353,
@@ -3878,7 +4230,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.ghost],
     stats: { hp: 44, attack: 75, defense: 35, sp_attack: 63, sp_defense: 33, speed: 45 },
     experience_group: ExperienceGroup.fast,
-    experience_yield: 59
+    experience_yield: 59,
+    ev_yields: {[PokemonStat.attack]: 1}
   },
   banette: {
     id: 354,
@@ -3889,7 +4242,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.ghost],
     stats: { hp: 64, attack: 165, defense: 75, sp_attack: 93, sp_defense: 83, speed: 75 },
     experience_group: ExperienceGroup.fast,
-    experience_yield: 159
+    experience_yield: 159,
+    ev_yields: {[PokemonStat.attack]: 2}
   },
   duskull: {
     id: 355,
@@ -3900,7 +4254,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.ghost],
     stats: { hp: 20, attack: 40, defense: 90, sp_attack: 30, sp_defense: 90, speed: 25 },
     experience_group: ExperienceGroup.fast,
-    experience_yield: 59
+    experience_yield: 59,
+    ev_yields: {[PokemonStat.sp_def]: 1}
   },
   dusclops: {
     id: 356,
@@ -3911,7 +4266,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.ghost],
     stats: { hp: 40, attack: 70, defense: 130, sp_attack: 60, sp_defense: 130, speed: 25 },
     experience_group: ExperienceGroup.fast,
-    experience_yield: 159
+    experience_yield: 159,
+    ev_yields: {[PokemonStat.defense]: 1}
   },
   tropius: {
     id: 357,
@@ -3922,7 +4278,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.grass, PokemonCombatType.flying],
     stats: { hp: 99, attack: 68, defense: 83, sp_attack: 72, sp_defense: 87, speed: 51 },
     experience_group: ExperienceGroup.slow,
-    experience_yield: 161
+    experience_yield: 161,
+    ev_yields: {[PokemonStat.hp]: 2}
   },
   chimecho: {
     id: 358,
@@ -3933,7 +4290,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.psychic],
     stats: { hp: 75, attack: 50, defense: 80, sp_attack: 95, sp_defense: 90, speed: 65 },
     experience_group: ExperienceGroup.fast,
-    experience_yield: 159
+    experience_yield: 159,
+    ev_yields: {[PokemonStat.sp_atk]: 1}
   },
   absol: {
     id: 359,
@@ -3944,7 +4302,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.dark],
     stats: { hp: 65, attack: 150, defense: 60, sp_attack: 115, sp_defense: 60, speed: 115 },
     experience_group: ExperienceGroup.medium_slow,
-    experience_yield: 163
+    experience_yield: 163,
+    ev_yields: {[PokemonStat.attack]: 2}
   },
   wynaut: {
     id: 360,
@@ -3955,7 +4314,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.psychic],
     stats: { hp: 95, attack: 23, defense: 48, sp_attack: 23, sp_defense: 48, speed: 23 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 52
+    experience_yield: 52,
+    ev_yields: {[PokemonStat.hp]: 1}
   },
   snorunt: {
     id: 361,
@@ -3966,7 +4326,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.ice],
     stats: { hp: 50, attack: 50, defense: 50, sp_attack: 50, sp_defense: 50, speed: 50 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 60
+    experience_yield: 60,
+    ev_yields: {[PokemonStat.hp]: 1}
   },
   glalie: {
     id: 362,
@@ -3977,7 +4338,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.ice],
     stats: { hp: 80, attack: 120, defense: 80, sp_attack: 120, sp_defense: 80, speed: 100 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 168
+    experience_yield: 168,
+    ev_yields: {[PokemonStat.hp]: 2}
   },
   spheal: {
     id: 363,
@@ -3988,7 +4350,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.ice, PokemonCombatType.water],
     stats: { hp: 70, attack: 40, defense: 50, sp_attack: 55, sp_defense: 50, speed: 25 },
     experience_group: ExperienceGroup.medium_slow,
-    experience_yield: 58
+    experience_yield: 58,
+    ev_yields: {[PokemonStat.hp]: 1}
   },
   sealeo: {
     id: 364,
@@ -3999,7 +4362,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.ice, PokemonCombatType.water],
     stats: { hp: 90, attack: 60, defense: 70, sp_attack: 75, sp_defense: 70, speed: 45 },
     experience_group: ExperienceGroup.medium_slow,
-    experience_yield: 144
+    experience_yield: 144,
+    ev_yields: {[PokemonStat.hp]: 2}
   },
   walrein: {
     id: 365,
@@ -4010,7 +4374,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.ice, PokemonCombatType.water],
     stats: { hp: 110, attack: 80, defense: 90, sp_attack: 95, sp_defense: 90, speed: 65 },
     experience_group: ExperienceGroup.medium_slow,
-    experience_yield: 239
+    experience_yield: 239,
+    ev_yields: {[PokemonStat.hp]: 3}
   },
   clamperl: {
     id: 366,
@@ -4021,7 +4386,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.water],
     stats: { hp: 35, attack: 64, defense: 85, sp_attack: 74, sp_defense: 55, speed: 32 },
     experience_group: ExperienceGroup.erratic,
-    experience_yield: 69
+    experience_yield: 69,
+    ev_yields: {[PokemonStat.defense]: 1}
   },
   huntail: {
     id: 367,
@@ -4032,7 +4398,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.water],
     stats: { hp: 55, attack: 104, defense: 105, sp_attack: 94, sp_defense: 75, speed: 52 },
     experience_group: ExperienceGroup.erratic,
-    experience_yield: 170
+    experience_yield: 170,
+    ev_yields: {[PokemonStat.attack]: 1}
   },
   gorebyss: {
     id: 368,
@@ -4043,7 +4410,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.water],
     stats: { hp: 55, attack: 84, defense: 105, sp_attack: 114, sp_defense: 75, speed: 52 },
     experience_group: ExperienceGroup.erratic,
-    experience_yield: 170
+    experience_yield: 170,
+    ev_yields: {[PokemonStat.sp_atk]: 2}
   },
   relicanth: {
     id: 369,
@@ -4054,7 +4422,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.water, PokemonCombatType.rock],
     stats: { hp: 100, attack: 90, defense: 130, sp_attack: 45, sp_defense: 65, speed: 55 },
     experience_group: ExperienceGroup.slow,
-    experience_yield: 170
+    experience_yield: 170,
+    ev_yields: {[PokemonStat.hp]: 1}
   },
   luvdisc: {
     id: 370,
@@ -4065,7 +4434,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.water],
     stats: { hp: 43, attack: 30, defense: 55, sp_attack: 40, sp_defense: 65, speed: 97 },
     experience_group: ExperienceGroup.fast,
-    experience_yield: 116
+    experience_yield: 116,
+    ev_yields: {[PokemonStat.speed]: 1}
   },
   bagon: {
     id: 371,
@@ -4076,7 +4446,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.dragon],
     stats: { hp: 45, attack: 75, defense: 60, sp_attack: 40, sp_defense: 30, speed: 50 },
     experience_group: ExperienceGroup.slow,
-    experience_yield: 60
+    experience_yield: 60,
+    ev_yields: {[PokemonStat.attack]: 1}
   },
   shelgon: {
     id: 372,
@@ -4087,7 +4458,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.dragon],
     stats: { hp: 65, attack: 95, defense: 100, sp_attack: 60, sp_defense: 50, speed: 50 },
     experience_group: ExperienceGroup.slow,
-    experience_yield: 147
+    experience_yield: 147,
+    ev_yields: {[PokemonStat.defense]: 2}
   },
   salamence: {
     id: 373,
@@ -4098,7 +4470,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.dragon, PokemonCombatType.flying],
     stats: { hp: 95, attack: 145, defense: 130, sp_attack: 120, sp_defense: 90, speed: 120 },
     experience_group: ExperienceGroup.slow,
-    experience_yield: 300
+    experience_yield: 300,
+    ev_yields: {[PokemonStat.attack]: 3}
   },
   beldum: {
     id: 374,
@@ -4109,7 +4482,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.steel, PokemonCombatType.psychic],
     stats: { hp: 40, attack: 55, defense: 80, sp_attack: 35, sp_defense: 60, speed: 30 },
     experience_group: ExperienceGroup.slow,
-    experience_yield: 60
+    experience_yield: 60,
+    ev_yields: {[PokemonStat.defense]: 1}
   },
   metang: {
     id: 375,
@@ -4120,7 +4494,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.steel, PokemonCombatType.psychic],
     stats: { hp: 60, attack: 75, defense: 100, sp_attack: 55, sp_defense: 80, speed: 50 },
     experience_group: ExperienceGroup.slow,
-    experience_yield: 147
+    experience_yield: 147,
+    ev_yields: {[PokemonStat.defense]: 2}
   },
   metagross: {
     id: 376,
@@ -4131,7 +4506,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.steel, PokemonCombatType.psychic],
     stats: { hp: 80, attack: 145, defense: 150, sp_attack: 105, sp_defense: 110, speed: 110 },
     experience_group: ExperienceGroup.slow,
-    experience_yield: 270
+    experience_yield: 270,
+    ev_yields: {[PokemonStat.defense]: 3}
   },
   regirock: {
     id: 377,
@@ -4142,7 +4518,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.rock],
     stats: { hp: 80, attack: 100, defense: 200, sp_attack: 50, sp_defense: 100, speed: 50 },
     experience_group: ExperienceGroup.slow,
-    experience_yield: 261
+    experience_yield: 261,
+    ev_yields: {[PokemonStat.defense]: 3}
   },
   regice: {
     id: 378,
@@ -4153,7 +4530,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.ice],
     stats: { hp: 80, attack: 50, defense: 100, sp_attack: 100, sp_defense: 200, speed: 50 },
     experience_group: ExperienceGroup.slow,
-    experience_yield: 261
+    experience_yield: 261,
+    ev_yields: {[PokemonStat.sp_def]: 3}
   },
   registeel: {
     id: 379,
@@ -4164,7 +4542,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.steel],
     stats: { hp: 80, attack: 75, defense: 150, sp_attack: 75, sp_defense: 150, speed: 50 },
     experience_group: ExperienceGroup.slow,
-    experience_yield: 261
+    experience_yield: 261,
+    ev_yields: {[PokemonStat.defense]: 2}
   },
   latias: {
     id: 380,
@@ -4175,7 +4554,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.dragon, PokemonCombatType.psychic],
     stats: { hp: 80, attack: 100, defense: 120, sp_attack: 140, sp_defense: 150, speed: 110 },
     experience_group: ExperienceGroup.slow,
-    experience_yield: 270
+    experience_yield: 270,
+    ev_yields: {[PokemonStat.sp_def]: 3}
   },
   latios: {
     id: 381,
@@ -4186,7 +4566,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.dragon, PokemonCombatType.psychic],
     stats: { hp: 80, attack: 130, defense: 100, sp_attack: 160, sp_defense: 120, speed: 110 },
     experience_group: ExperienceGroup.slow,
-    experience_yield: 270
+    experience_yield: 270,
+    ev_yields: {[PokemonStat.sp_atk]: 3}
   },
   kyogre: {
     id: 382,
@@ -4198,7 +4579,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.water],
     stats: { hp: 100, attack: 150, defense: 90, sp_attack: 180, sp_defense: 160, speed: 90 },
     experience_group: ExperienceGroup.slow,
-    experience_yield: 335
+    experience_yield: 335,
+    ev_yields: {[PokemonStat.sp_atk]: 3}
   },
   groudon: {
     id: 383,
@@ -4210,7 +4592,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.ground, PokemonCombatType.fire],
     stats: { hp: 100, attack: 180, defense: 160, sp_attack: 150, sp_defense: 90, speed: 90 },
     experience_group: ExperienceGroup.slow,
-    experience_yield: 335
+    experience_yield: 335,
+    ev_yields: {[PokemonStat.attack]: 3}
   },
   rayquaza: {
     id: 384,
@@ -4222,7 +4605,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.dragon, PokemonCombatType.flying],
     stats: { hp: 105, attack: 180, defense: 100, sp_attack: 180, sp_defense: 100, speed: 115 },
     experience_group: ExperienceGroup.slow,
-    experience_yield: 340
+    experience_yield: 340,
+    ev_yields: {[PokemonStat.attack]: 2}
   },
   jirachi: {
     id: 385,
@@ -4233,7 +4617,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.steel, PokemonCombatType.psychic],
     stats: { hp: 100, attack: 100, defense: 100, sp_attack: 100, sp_defense: 100, speed: 100 },
     experience_group: ExperienceGroup.slow,
-    experience_yield: 270
+    experience_yield: 270,
+    ev_yields: {[PokemonStat.hp]: 3}
   },
   deoxys: {
     id: 386,
@@ -4244,7 +4629,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.psychic],
     stats: { hp: 50, attack: 95, defense: 90, sp_attack: 95, sp_defense: 90, speed: 180 },
     experience_group: ExperienceGroup.slow,
-    experience_yield: 270
+    experience_yield: 270,
+    ev_yields: {[PokemonStat.attack]: 1}
   },
   deoxys_speed: {
     id: 386,
@@ -4255,7 +4641,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.psychic],
     stats: { hp: 50, attack: 95, defense: 90, sp_attack: 95, sp_defense: 90, speed: 180 },
     experience_group: ExperienceGroup.slow,
-    experience_yield: 270
+    experience_yield: 270,
+    ev_yields: {[PokemonStat.attack]: 1}
   },
   deoxys_attack: {
     id: 386,
@@ -4266,7 +4653,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.psychic],
     stats: { hp: 50, attack: 95, defense: 90, sp_attack: 95, sp_defense: 90, speed: 180 },
     experience_group: ExperienceGroup.slow,
-    experience_yield: 270
+    experience_yield: 270,
+    ev_yields: {[PokemonStat.attack]: 1}
   },
   deoxys_defense: {
     id: 386,
@@ -4277,7 +4665,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.psychic],
     stats: { hp: 50, attack: 95, defense: 90, sp_attack: 95, sp_defense: 90, speed: 180 },
     experience_group: ExperienceGroup.slow,
-    experience_yield: 270
+    experience_yield: 270,
+    ev_yields: {[PokemonStat.attack]: 1}
   },
   // Generation 4
   turtwig: {
@@ -4289,7 +4678,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.grass],
     stats: { hp: 55, attack: 68, defense: 64, sp_attack: 45, sp_defense: 55, speed: 31 },
     experience_group: ExperienceGroup.medium_slow,
-    experience_yield: 64
+    experience_yield: 64,
+    ev_yields: {[PokemonStat.attack]: 1}
   },
   grotle: {
     id: 388,
@@ -4300,7 +4690,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.grass],
     stats: { hp: 75, attack: 89, defense: 85, sp_attack: 55, sp_defense: 65, speed: 36 },
     experience_group: ExperienceGroup.medium_slow,
-    experience_yield: 142
+    experience_yield: 142,
+    ev_yields: {[PokemonStat.attack]: 1}
   },
   torterra: {
     id: 389,
@@ -4311,7 +4702,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.grass, PokemonCombatType.ground],
     stats: { hp: 95, attack: 109, defense: 105, sp_attack: 75, sp_defense: 85, speed: 56 },
     experience_group: ExperienceGroup.medium_slow,
-    experience_yield: 236
+    experience_yield: 236,
+    ev_yields: {[PokemonStat.attack]: 2}
   },
   chimchar: {
     id: 390,
@@ -4322,7 +4714,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.fire],
     stats: { hp: 44, attack: 58, defense: 44, sp_attack: 58, sp_defense: 44, speed: 61 },
     experience_group: ExperienceGroup.medium_slow,
-    experience_yield: 62
+    experience_yield: 62,
+    ev_yields: {[PokemonStat.speed]: 1}
   },
   monferno: {
     id: 391,
@@ -4333,7 +4726,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.fire, PokemonCombatType.fighting],
     stats: { hp: 64, attack: 78, defense: 52, sp_attack: 78, sp_defense: 52, speed: 81 },
     experience_group: ExperienceGroup.medium_slow,
-    experience_yield: 142
+    experience_yield: 142,
+    ev_yields: {[PokemonStat.sp_atk]: 1}
   },
   infernape: {
     id: 392,
@@ -4344,7 +4738,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.fire, PokemonCombatType.fighting],
     stats: { hp: 76, attack: 104, defense: 71, sp_attack: 104, sp_defense: 71, speed: 108 },
     experience_group: ExperienceGroup.medium_slow,
-    experience_yield: 240
+    experience_yield: 240,
+    ev_yields: {[PokemonStat.attack]: 1}
   },
   piplup: {
     id: 393,
@@ -4355,7 +4750,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.water],
     stats: { hp: 53, attack: 51, defense: 53, sp_attack: 61, sp_defense: 56, speed: 40 },
     experience_group: ExperienceGroup.medium_slow,
-    experience_yield: 63
+    experience_yield: 63,
+    ev_yields: {[PokemonStat.sp_atk]: 1}
   },
   prinplup: {
     id: 394,
@@ -4366,7 +4762,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.water],
     stats: { hp: 64, attack: 66, defense: 68, sp_attack: 81, sp_defense: 76, speed: 50 },
     experience_group: ExperienceGroup.medium_slow,
-    experience_yield: 142
+    experience_yield: 142,
+    ev_yields: {[PokemonStat.sp_atk]: 2}
   },
   empoleon: {
     id: 395,
@@ -4377,7 +4774,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.water, PokemonCombatType.steel],
     stats: { hp: 84, attack: 86, defense: 88, sp_attack: 111, sp_defense: 101, speed: 60 },
     experience_group: ExperienceGroup.medium_slow,
-    experience_yield: 239
+    experience_yield: 239,
+    ev_yields: {[PokemonStat.sp_atk]: 3}
   },
   starly: {
     id: 396,
@@ -4388,7 +4786,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.normal, PokemonCombatType.flying],
     stats: { hp: 40, attack: 55, defense: 30, sp_attack: 30, sp_defense: 30, speed: 60 },
     experience_group: ExperienceGroup.medium_slow,
-    experience_yield: 49
+    experience_yield: 49,
+    ev_yields: {[PokemonStat.speed]: 1}
   },
   staravia: {
     id: 397,
@@ -4399,7 +4798,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.normal, PokemonCombatType.flying],
     stats: { hp: 55, attack: 75, defense: 50, sp_attack: 40, sp_defense: 40, speed: 80 },
     experience_group: ExperienceGroup.medium_slow,
-    experience_yield: 119
+    experience_yield: 119,
+    ev_yields: {[PokemonStat.speed]: 2}
   },
   staraptor: {
     id: 398,
@@ -4410,7 +4810,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.normal, PokemonCombatType.flying],
     stats: { hp: 85, attack: 120, defense: 70, sp_attack: 50, sp_defense: 60, speed: 100 },
     experience_group: ExperienceGroup.medium_slow,
-    experience_yield: 243
+    experience_yield: 243,
+    ev_yields: {[PokemonStat.attack]: 3}
   },
   bidoof: {
     id: 399,
@@ -4421,7 +4822,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.normal],
     stats: { hp: 59, attack: 45, defense: 40, sp_attack: 35, sp_defense: 40, speed: 31 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 50
+    experience_yield: 50,
+    ev_yields: {[PokemonStat.hp]: 1}
   },
   bibarel: {
     id: 400,
@@ -4432,7 +4834,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.normal, PokemonCombatType.water],
     stats: { hp: 79, attack: 85, defense: 60, sp_attack: 55, sp_defense: 60, speed: 71 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 144
+    experience_yield: 144,
+    ev_yields: {[PokemonStat.attack]: 2}
   },
   kricketot: {
     id: 401,
@@ -4443,7 +4846,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.bug],
     stats: { hp: 37, attack: 25, defense: 41, sp_attack: 25, sp_defense: 41, speed: 25 },
     experience_group: ExperienceGroup.medium_slow,
-    experience_yield: 39
+    experience_yield: 39,
+    ev_yields: {[PokemonStat.defense]: 1}
   },
   kricketune: {
     id: 402,
@@ -4454,7 +4858,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.bug],
     stats: { hp: 77, attack: 85, defense: 51, sp_attack: 55, sp_defense: 51, speed: 65 },
     experience_group: ExperienceGroup.medium_slow,
-    experience_yield: 134
+    experience_yield: 134,
+    ev_yields: {[PokemonStat.attack]: 2}
   },
   shinx: {
     id: 403,
@@ -4465,7 +4870,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.electric],
     stats: { hp: 45, attack: 65, defense: 34, sp_attack: 40, sp_defense: 34, speed: 45 },
     experience_group: ExperienceGroup.medium_slow,
-    experience_yield: 53
+    experience_yield: 53,
+    ev_yields: {[PokemonStat.attack]: 1}
   },
   luxio: {
     id: 404,
@@ -4476,7 +4882,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.electric],
     stats: { hp: 60, attack: 85, defense: 49, sp_attack: 60, sp_defense: 49, speed: 60 },
     experience_group: ExperienceGroup.medium_slow,
-    experience_yield: 127
+    experience_yield: 127,
+    ev_yields: {[PokemonStat.attack]: 2}
   },
   luxray: {
     id: 405,
@@ -4487,7 +4894,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.electric],
     stats: { hp: 80, attack: 120, defense: 79, sp_attack: 95, sp_defense: 79, speed: 70 },
     experience_group: ExperienceGroup.medium_slow,
-    experience_yield: 262
+    experience_yield: 262,
+    ev_yields: {[PokemonStat.attack]: 3}
   },
   budew: {
     id: 406,
@@ -4498,7 +4906,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.grass, PokemonCombatType.poison],
     stats: { hp: 40, attack: 30, defense: 35, sp_attack: 50, sp_defense: 70, speed: 55 },
     experience_group: ExperienceGroup.medium_slow,
-    experience_yield: 56
+    experience_yield: 56,
+    ev_yields: {[PokemonStat.sp_atk]: 1}
   },
   roserade: {
     id: 407,
@@ -4509,7 +4918,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.grass, PokemonCombatType.poison],
     stats: { hp: 60, attack: 70, defense: 65, sp_attack: 125, sp_defense: 105, speed: 90 },
     experience_group: ExperienceGroup.medium_slow,
-    experience_yield: 232
+    experience_yield: 232,
+    ev_yields: {[PokemonStat.sp_atk]: 3}
   },
   cranidos: {
     id: 408,
@@ -4520,7 +4930,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.rock],
     stats: { hp: 67, attack: 125, defense: 40, sp_attack: 30, sp_defense: 30, speed: 58 },
     experience_group: ExperienceGroup.erratic,
-    experience_yield: 70
+    experience_yield: 70,
+    ev_yields: {[PokemonStat.attack]: 1}
   },
   rampardos: {
     id: 409,
@@ -4531,7 +4942,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.rock],
     stats: { hp: 97, attack: 165, defense: 60, sp_attack: 65, sp_defense: 50, speed: 58 },
     experience_group: ExperienceGroup.erratic,
-    experience_yield: 173
+    experience_yield: 173,
+    ev_yields: {[PokemonStat.attack]: 2}
   },
   shieldon: {
     id: 410,
@@ -4542,7 +4954,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.rock, PokemonCombatType.steel],
     stats: { hp: 30, attack: 42, defense: 118, sp_attack: 42, sp_defense: 88, speed: 30 },
     experience_group: ExperienceGroup.erratic,
-    experience_yield: 70
+    experience_yield: 70,
+    ev_yields: {[PokemonStat.defense]: 1}
   },
   bastiodon: {
     id: 411,
@@ -4553,7 +4966,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.rock, PokemonCombatType.steel],
     stats: { hp: 60, attack: 52, defense: 168, sp_attack: 47, sp_defense: 138, speed: 30 },
     experience_group: ExperienceGroup.erratic,
-    experience_yield: 173
+    experience_yield: 173,
+    ev_yields: {[PokemonStat.defense]: 2}
   },
   burmy: {
     id: 412,
@@ -4564,7 +4978,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.bug],
     stats: { hp: 40, attack: 29, defense: 45, sp_attack: 29, sp_defense: 45, speed: 36 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 45
+    experience_yield: 45,
+    ev_yields: {[PokemonStat.sp_def]: 1}
   },
   wormadam: {
     id: 413,
@@ -4575,7 +4990,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.bug, PokemonCombatType.steel],
     stats: { hp: 60, attack: 69, defense: 95, sp_attack: 69, sp_defense: 95, speed: 36 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 148
+    experience_yield: 148,
+    ev_yields: {[PokemonStat.sp_def]: 2}
   },
   mothim: {
     id: 414,
@@ -4586,7 +5002,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.bug, PokemonCombatType.flying],
     stats: { hp: 70, attack: 94, defense: 50, sp_attack: 94, sp_defense: 50, speed: 66 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 148
+    experience_yield: 148,
+    ev_yields: {[PokemonStat.attack]: 1}
   },
   combee: {
     id: 415,
@@ -4597,7 +5014,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.bug, PokemonCombatType.flying],
     stats: { hp: 30, attack: 30, defense: 42, sp_attack: 30, sp_defense: 42, speed: 70 },
     experience_group: ExperienceGroup.medium_slow,
-    experience_yield: 49
+    experience_yield: 49,
+    ev_yields: {[PokemonStat.speed]: 1}
   },
   vespiquen: {
     id: 416,
@@ -4608,7 +5026,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.bug, PokemonCombatType.flying],
     stats: { hp: 70, attack: 80, defense: 102, sp_attack: 80, sp_defense: 102, speed: 40 },
     experience_group: ExperienceGroup.medium_slow,
-    experience_yield: 166
+    experience_yield: 166,
+    ev_yields: {[PokemonStat.defense]: 1}
   },
   pachirisu: {
     id: 417,
@@ -4619,7 +5038,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.electric],
     stats: { hp: 60, attack: 45, defense: 70, sp_attack: 45, sp_defense: 90, speed: 95 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 142
+    experience_yield: 142,
+    ev_yields: {[PokemonStat.speed]: 1}
   },
   buizel: {
     id: 418,
@@ -4630,7 +5050,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.water],
     stats: { hp: 55, attack: 65, defense: 35, sp_attack: 60, sp_defense: 30, speed: 85 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 66
+    experience_yield: 66,
+    ev_yields: {[PokemonStat.speed]: 1}
   },
   floatzel: {
     id: 419,
@@ -4641,7 +5062,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.water],
     stats: { hp: 85, attack: 105, defense: 55, sp_attack: 85, sp_defense: 50, speed: 115 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 173
+    experience_yield: 173,
+    ev_yields: {[PokemonStat.speed]: 2}
   },
   cherubi: {
     id: 420,
@@ -4652,7 +5074,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.grass],
     stats: { hp: 45, attack: 35, defense: 45, sp_attack: 62, sp_defense: 53, speed: 35 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 55
+    experience_yield: 55,
+    ev_yields: {[PokemonStat.sp_atk]: 1}
   },
   cherrim: {
     id: 421,
@@ -4663,7 +5086,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.grass],
     stats: { hp: 70, attack: 60, defense: 70, sp_attack: 87, sp_defense: 78, speed: 85 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 158
+    experience_yield: 158,
+    ev_yields: {[PokemonStat.sp_atk]: 2}
   },
   shellos: {
     id: 422,
@@ -4674,7 +5098,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.water],
     stats: { hp: 76, attack: 48, defense: 48, sp_attack: 57, sp_defense: 62, speed: 34 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 65
+    experience_yield: 65,
+    ev_yields: {[PokemonStat.hp]: 1}
   },
   gastrodon: {
     id: 423,
@@ -4685,7 +5110,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.water, PokemonCombatType.ground],
     stats: { hp: 111, attack: 83, defense: 68, sp_attack: 92, sp_defense: 82, speed: 39 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 166
+    experience_yield: 166,
+    ev_yields: {[PokemonStat.hp]: 2}
   },
   ambipom: {
     id: 424,
@@ -4696,7 +5122,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.normal],
     stats: { hp: 75, attack: 100, defense: 66, sp_attack: 60, sp_defense: 66, speed: 115 },
     experience_group: ExperienceGroup.fast,
-    experience_yield: 169
+    experience_yield: 169,
+    ev_yields: {[PokemonStat.speed]: 2}
   },
   drifloon: {
     id: 425,
@@ -4707,7 +5134,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.ghost, PokemonCombatType.flying],
     stats: { hp: 90, attack: 50, defense: 34, sp_attack: 60, sp_defense: 44, speed: 70 },
     experience_group: ExperienceGroup.fluctuating,
-    experience_yield: 70
+    experience_yield: 70,
+    ev_yields: {[PokemonStat.hp]: 1}
   },
   drifblim: {
     id: 426,
@@ -4718,7 +5146,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.ghost, PokemonCombatType.flying],
     stats: { hp: 150, attack: 80, defense: 44, sp_attack: 90, sp_defense: 54, speed: 80 },
     experience_group: ExperienceGroup.fluctuating,
-    experience_yield: 174
+    experience_yield: 174,
+    ev_yields: {[PokemonStat.hp]: 2}
   },
   buneary: {
     id: 427,
@@ -4729,7 +5158,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.normal],
     stats: { hp: 55, attack: 66, defense: 44, sp_attack: 44, sp_defense: 56, speed: 85 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 70
+    experience_yield: 70,
+    ev_yields: {[PokemonStat.speed]: 1}
   },
   lopunny: {
     id: 428,
@@ -4740,7 +5170,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.normal, PokemonCombatType.fighting],
     stats: { hp: 65, attack: 136, defense: 94, sp_attack: 54, sp_defense: 96, speed: 135 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 168
+    experience_yield: 168,
+    ev_yields: {[PokemonStat.speed]: 2}
   },
   mismagius: {
     id: 429,
@@ -4751,7 +5182,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.ghost],
     stats: { hp: 60, attack: 60, defense: 60, sp_attack: 105, sp_defense: 105, speed: 105 },
     experience_group: ExperienceGroup.fast,
-    experience_yield: 173
+    experience_yield: 173,
+    ev_yields: {[PokemonStat.sp_atk]: 1}
   },
   honchkrow: {
     id: 430,
@@ -4762,7 +5194,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.dark, PokemonCombatType.flying],
     stats: { hp: 100, attack: 125, defense: 52, sp_attack: 105, sp_defense: 52, speed: 71 },
     experience_group: ExperienceGroup.medium_slow,
-    experience_yield: 177
+    experience_yield: 177,
+    ev_yields: {[PokemonStat.attack]: 2}
   },
   glameow: {
     id: 431,
@@ -4773,7 +5206,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.normal],
     stats: { hp: 49, attack: 55, defense: 42, sp_attack: 42, sp_defense: 37, speed: 85 },
     experience_group: ExperienceGroup.fast,
-    experience_yield: 62
+    experience_yield: 62,
+    ev_yields: {[PokemonStat.speed]: 1}
   },
   purugly: {
     id: 432,
@@ -4784,7 +5218,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.normal],
     stats: { hp: 71, attack: 82, defense: 64, sp_attack: 64, sp_defense: 59, speed: 112 },
     experience_group: ExperienceGroup.fast,
-    experience_yield: 158
+    experience_yield: 158,
+    ev_yields: {[PokemonStat.speed]: 2}
   },
   chingling: {
     id: 433,
@@ -4795,7 +5230,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.psychic],
     stats: { hp: 45, attack: 30, defense: 50, sp_attack: 65, sp_defense: 50, speed: 45 },
     experience_group: ExperienceGroup.fast,
-    experience_yield: 57
+    experience_yield: 57,
+    ev_yields: {[PokemonStat.sp_atk]: 1}
   },
   stunky: {
     id: 434,
@@ -4806,7 +5242,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.poison, PokemonCombatType.dark],
     stats: { hp: 63, attack: 63, defense: 47, sp_attack: 41, sp_defense: 41, speed: 74 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 66
+    experience_yield: 66,
+    ev_yields: {[PokemonStat.speed]: 1}
   },
   skuntank: {
     id: 435,
@@ -4817,7 +5254,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.poison, PokemonCombatType.dark],
     stats: { hp: 103, attack: 93, defense: 67, sp_attack: 71, sp_defense: 61, speed: 84 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 168
+    experience_yield: 168,
+    ev_yields: {[PokemonStat.hp]: 2}
   },
   bronzor: {
     id: 436,
@@ -4828,7 +5266,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.steel, PokemonCombatType.psychic],
     stats: { hp: 57, attack: 24, defense: 86, sp_attack: 24, sp_defense: 86, speed: 23 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 60
+    experience_yield: 60,
+    ev_yields: {[PokemonStat.defense]: 1}
   },
   bronzong: {
     id: 437,
@@ -4839,7 +5278,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.steel, PokemonCombatType.psychic],
     stats: { hp: 67, attack: 89, defense: 116, sp_attack: 79, sp_defense: 116, speed: 33 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 175
+    experience_yield: 175,
+    ev_yields: {[PokemonStat.defense]: 1}
   },
   bonsly: {
     id: 438,
@@ -4850,7 +5290,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.rock],
     stats: { hp: 50, attack: 80, defense: 95, sp_attack: 10, sp_defense: 45, speed: 10 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 58
+    experience_yield: 58,
+    ev_yields: {[PokemonStat.defense]: 1}
   },
   mimejr: {
     id: 439,
@@ -4861,7 +5302,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.psychic, PokemonCombatType.fairy],
     stats: { hp: 20, attack: 25, defense: 45, sp_attack: 70, sp_defense: 90, speed: 60 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 62
+    experience_yield: 62,
+    ev_yields: {[PokemonStat.sp_def]: 1}
   },
   happiny: {
     id: 440,
@@ -4872,7 +5314,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.normal],
     stats: { hp: 100, attack: 5, defense: 5, sp_attack: 15, sp_defense: 65, speed: 30 },
     experience_group: ExperienceGroup.fast,
-    experience_yield: 110
+    experience_yield: 110,
+    ev_yields: {[PokemonStat.hp]: 1}
   },
   chatot: {
     id: 441,
@@ -4883,7 +5326,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.normal, PokemonCombatType.flying],
     stats: { hp: 76, attack: 65, defense: 45, sp_attack: 92, sp_defense: 42, speed: 91 },
     experience_group: ExperienceGroup.medium_slow,
-    experience_yield: 144
+    experience_yield: 144,
+    ev_yields: {[PokemonStat.attack]: 1}
   },
   spiritomb: {
     id: 442,
@@ -4894,7 +5338,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.ghost, PokemonCombatType.dark],
     stats: { hp: 50, attack: 92, defense: 108, sp_attack: 92, sp_defense: 108, speed: 35 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 170
+    experience_yield: 170,
+    ev_yields: {[PokemonStat.defense]: 1}
   },
   gible: {
     id: 443,
@@ -4905,7 +5350,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.dragon, PokemonCombatType.ground],
     stats: { hp: 58, attack: 70, defense: 45, sp_attack: 40, sp_defense: 45, speed: 42 },
     experience_group: ExperienceGroup.slow,
-    experience_yield: 60
+    experience_yield: 60,
+    ev_yields: {[PokemonStat.attack]: 1}
   },
   gabite: {
     id: 444,
@@ -4916,7 +5362,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.dragon, PokemonCombatType.ground],
     stats: { hp: 68, attack: 90, defense: 65, sp_attack: 50, sp_defense: 55, speed: 82 },
     experience_group: ExperienceGroup.slow,
-    experience_yield: 144
+    experience_yield: 144,
+    ev_yields: {[PokemonStat.attack]: 2}
   },
   garchomp: {
     id: 445,
@@ -4927,7 +5374,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.dragon, PokemonCombatType.ground],
     stats: { hp: 108, attack: 170, defense: 115, sp_attack: 120, sp_defense: 95, speed: 92 },
     experience_group: ExperienceGroup.slow,
-    experience_yield: 300
+    experience_yield: 300,
+    ev_yields: {[PokemonStat.attack]: 3}
   },
   munchlax: {
     id: 446,
@@ -4938,7 +5386,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.normal],
     stats: { hp: 135, attack: 85, defense: 40, sp_attack: 40, sp_defense: 85, speed: 5 },
     experience_group: ExperienceGroup.slow,
-    experience_yield: 78
+    experience_yield: 78,
+    ev_yields: {[PokemonStat.hp]: 1}
   },
   riolu: {
     id: 447,
@@ -4949,7 +5398,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.fighting],
     stats: { hp: 40, attack: 70, defense: 40, sp_attack: 35, sp_defense: 40, speed: 60 },
     experience_group: ExperienceGroup.medium_slow,
-    experience_yield: 57
+    experience_yield: 57,
+    ev_yields: {[PokemonStat.attack]: 1}
   },
   lucario: {
     id: 448,
@@ -4960,7 +5410,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.fighting, PokemonCombatType.steel],
     stats: { hp: 70, attack: 145, defense: 88, sp_attack: 140, sp_defense: 70, speed: 112 },
     experience_group: ExperienceGroup.medium_slow,
-    experience_yield: 184
+    experience_yield: 184,
+    ev_yields: {[PokemonStat.attack]: 1}
   },
   hippopotas: {
     id: 449,
@@ -4971,7 +5422,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.ground],
     stats: { hp: 68, attack: 72, defense: 78, sp_attack: 38, sp_defense: 42, speed: 32 },
     experience_group: ExperienceGroup.slow,
-    experience_yield: 66
+    experience_yield: 66,
+    ev_yields: {[PokemonStat.defense]: 1}
   },
   hippowdon: {
     id: 450,
@@ -4982,7 +5434,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.ground],
     stats: { hp: 108, attack: 112, defense: 118, sp_attack: 68, sp_defense: 72, speed: 47 },
     experience_group: ExperienceGroup.slow,
-    experience_yield: 184
+    experience_yield: 184,
+    ev_yields: {[PokemonStat.defense]: 2}
   },
   skorupi: {
     id: 451,
@@ -4993,7 +5446,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.poison, PokemonCombatType.bug],
     stats: { hp: 40, attack: 50, defense: 90, sp_attack: 30, sp_defense: 55, speed: 65 },
     experience_group: ExperienceGroup.slow,
-    experience_yield: 66
+    experience_yield: 66,
+    ev_yields: {[PokemonStat.defense]: 1}
   },
   drapion: {
     id: 452,
@@ -5004,7 +5458,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.poison, PokemonCombatType.dark],
     stats: { hp: 70, attack: 90, defense: 110, sp_attack: 60, sp_defense: 75, speed: 95 },
     experience_group: ExperienceGroup.slow,
-    experience_yield: 175
+    experience_yield: 175,
+    ev_yields: {[PokemonStat.defense]: 2}
   },
   croagunk: {
     id: 453,
@@ -5015,7 +5470,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.poison, PokemonCombatType.fighting],
     stats: { hp: 48, attack: 61, defense: 40, sp_attack: 61, sp_defense: 40, speed: 50 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 60
+    experience_yield: 60,
+    ev_yields: {[PokemonStat.attack]: 1}
   },
   toxicroak: {
     id: 454,
@@ -5026,7 +5482,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.poison, PokemonCombatType.fighting],
     stats: { hp: 83, attack: 106, defense: 65, sp_attack: 86, sp_defense: 65, speed: 85 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 172
+    experience_yield: 172,
+    ev_yields: {[PokemonStat.attack]: 2}
   },
   carnivine: {
     id: 455,
@@ -5037,7 +5494,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.grass],
     stats: { hp: 74, attack: 100, defense: 72, sp_attack: 90, sp_defense: 72, speed: 46 },
     experience_group: ExperienceGroup.slow,
-    experience_yield: 159
+    experience_yield: 159,
+    ev_yields: {[PokemonStat.attack]: 2}
   },
   finneon: {
     id: 456,
@@ -5048,7 +5506,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.water],
     stats: { hp: 49, attack: 49, defense: 56, sp_attack: 49, sp_defense: 61, speed: 66 },
     experience_group: ExperienceGroup.erratic,
-    experience_yield: 66
+    experience_yield: 66,
+    ev_yields: {[PokemonStat.speed]: 1}
   },
   lumineon: {
     id: 457,
@@ -5059,7 +5518,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.water],
     stats: { hp: 69, attack: 69, defense: 76, sp_attack: 69, sp_defense: 86, speed: 91 },
     experience_group: ExperienceGroup.erratic,
-    experience_yield: 161
+    experience_yield: 161,
+    ev_yields: {[PokemonStat.speed]: 2}
   },
   mantyke: {
     id: 458,
@@ -5070,7 +5530,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.water, PokemonCombatType.flying],
     stats: { hp: 45, attack: 20, defense: 50, sp_attack: 60, sp_defense: 120, speed: 50 },
     experience_group: ExperienceGroup.slow,
-    experience_yield: 69
+    experience_yield: 69,
+    ev_yields: {[PokemonStat.sp_def]: 1}
   },
   snover: {
     id: 459,
@@ -5081,7 +5542,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.grass, PokemonCombatType.ice],
     stats: { hp: 60, attack: 62, defense: 50, sp_attack: 62, sp_defense: 60, speed: 40 },
     experience_group: ExperienceGroup.slow,
-    experience_yield: 67
+    experience_yield: 67,
+    ev_yields: {[PokemonStat.attack]: 1}
   },
   abomasnow: {
     id: 460,
@@ -5092,7 +5554,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.grass, PokemonCombatType.ice],
     stats: { hp: 90, attack: 132, defense: 105, sp_attack: 132, sp_defense: 105, speed: 30 },
     experience_group: ExperienceGroup.slow,
-    experience_yield: 173
+    experience_yield: 173,
+    ev_yields: {[PokemonStat.attack]: 1}
   },
   weavile: {
     id: 461,
@@ -5103,7 +5566,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.dark, PokemonCombatType.ice],
     stats: { hp: 70, attack: 120, defense: 65, sp_attack: 45, sp_defense: 85, speed: 125 },
     experience_group: ExperienceGroup.medium_slow,
-    experience_yield: 179
+    experience_yield: 179,
+    ev_yields: {[PokemonStat.attack]: 1}
   },
   magnezone: {
     id: 462,
@@ -5114,7 +5578,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.electric, PokemonCombatType.steel],
     stats: { hp: 70, attack: 70, defense: 115, sp_attack: 130, sp_defense: 90, speed: 60 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 268
+    experience_yield: 268,
+    ev_yields: {[PokemonStat.sp_atk]: 3}
   },
   lickilicky: {
     id: 463,
@@ -5125,7 +5590,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.normal],
     stats: { hp: 110, attack: 85, defense: 95, sp_attack: 80, sp_defense: 95, speed: 50 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 180
+    experience_yield: 180,
+    ev_yields: {[PokemonStat.hp]: 3}
   },
   rhyperior: {
     id: 464,
@@ -5136,7 +5602,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.ground, PokemonCombatType.rock],
     stats: { hp: 115, attack: 140, defense: 130, sp_attack: 55, sp_defense: 55, speed: 40 },
     experience_group: ExperienceGroup.slow,
-    experience_yield: 241
+    experience_yield: 241,
+    ev_yields: {[PokemonStat.attack]: 3}
   },
   tangrowth: {
     id: 465,
@@ -5147,7 +5614,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.grass],
     stats: { hp: 100, attack: 100, defense: 125, sp_attack: 110, sp_defense: 50, speed: 50 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 187
+    experience_yield: 187,
+    ev_yields: {[PokemonStat.defense]: 2}
   },
   electivire: {
     id: 466,
@@ -5158,7 +5626,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.electric],
     stats: { hp: 75, attack: 123, defense: 67, sp_attack: 95, sp_defense: 85, speed: 95 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 243
+    experience_yield: 243,
+    ev_yields: {[PokemonStat.attack]: 3}
   },
   magmortar: {
     id: 467,
@@ -5169,7 +5638,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.fire],
     stats: { hp: 75, attack: 95, defense: 67, sp_attack: 125, sp_defense: 95, speed: 83 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 243
+    experience_yield: 243,
+    ev_yields: {[PokemonStat.sp_atk]: 3}
   },
   togekiss: {
     id: 468,
@@ -5180,7 +5650,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.fairy, PokemonCombatType.flying],
     stats: { hp: 85, attack: 50, defense: 95, sp_attack: 120, sp_defense: 115, speed: 80 },
     experience_group: ExperienceGroup.fast,
-    experience_yield: 245
+    experience_yield: 245,
+    ev_yields: {[PokemonStat.sp_atk]: 2}
   },
   yanmega: {
     id: 469,
@@ -5191,7 +5662,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.bug, PokemonCombatType.flying],
     stats: { hp: 86, attack: 76, defense: 86, sp_attack: 116, sp_defense: 56, speed: 95 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 180
+    experience_yield: 180,
+    ev_yields: {[PokemonStat.attack]: 2}
   },
   leafeon: {
     id: 470,
@@ -5202,7 +5674,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.grass],
     stats: { hp: 65, attack: 110, defense: 130, sp_attack: 60, sp_defense: 65, speed: 95 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 184
+    experience_yield: 184,
+    ev_yields: {[PokemonStat.defense]: 2}
   },
   glaceon: {
     id: 471,
@@ -5213,7 +5686,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.ice],
     stats: { hp: 65, attack: 60, defense: 110, sp_attack: 130, sp_defense: 95, speed: 65 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 184
+    experience_yield: 184,
+    ev_yields: {[PokemonStat.sp_atk]: 2}
   },
   gliscor: {
     id: 472,
@@ -5224,7 +5698,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.ground, PokemonCombatType.flying],
     stats: { hp: 75, attack: 95, defense: 125, sp_attack: 45, sp_defense: 75, speed: 95 },
     experience_group: ExperienceGroup.medium_slow,
-    experience_yield: 179
+    experience_yield: 179,
+    ev_yields: {[PokemonStat.defense]: 2}
   },
   mamoswine: {
     id: 473,
@@ -5235,7 +5710,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.ice, PokemonCombatType.ground],
     stats: { hp: 110, attack: 130, defense: 80, sp_attack: 70, sp_defense: 60, speed: 80 },
     experience_group: ExperienceGroup.slow,
-    experience_yield: 239
+    experience_yield: 239,
+    ev_yields: {[PokemonStat.attack]: 3}
   },
   porygonz: {
     id: 474,
@@ -5246,7 +5722,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.normal],
     stats: { hp: 85, attack: 80, defense: 70, sp_attack: 135, sp_defense: 75, speed: 90 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 241
+    experience_yield: 241,
+    ev_yields: {[PokemonStat.sp_atk]: 3}
   },
   gallade: {
     id: 475,
@@ -5257,7 +5734,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.psychic, PokemonCombatType.fighting],
     stats: { hp: 68, attack: 165, defense: 95, sp_attack: 65, sp_defense: 115, speed: 110 },
     experience_group: ExperienceGroup.slow,
-    experience_yield: 259
+    experience_yield: 259,
+    ev_yields: {[PokemonStat.attack]: 3}
   },
   probopass: {
     id: 476,
@@ -5268,7 +5746,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.rock, PokemonCombatType.steel],
     stats: { hp: 60, attack: 55, defense: 145, sp_attack: 75, sp_defense: 150, speed: 40 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 184
+    experience_yield: 184,
+    ev_yields: {[PokemonStat.defense]: 1}
   },
   dusknoir: {
     id: 477,
@@ -5279,7 +5758,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.ghost],
     stats: { hp: 45, attack: 100, defense: 135, sp_attack: 65, sp_defense: 135, speed: 45 },
     experience_group: ExperienceGroup.fast,
-    experience_yield: 236
+    experience_yield: 236,
+    ev_yields: {[PokemonStat.defense]: 1}
   },
   froslass: {
     id: 478,
@@ -5290,7 +5770,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.ice, PokemonCombatType.ghost],
     stats: { hp: 70, attack: 80, defense: 70, sp_attack: 80, sp_defense: 70, speed: 110 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 168
+    experience_yield: 168,
+    ev_yields: {[PokemonStat.speed]: 2}
   },
   rotom: {
     id: 479,
@@ -5301,7 +5782,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.electric, PokemonCombatType.grass],
     stats: { hp: 50, attack: 65, defense: 107, sp_attack: 105, sp_defense: 107, speed: 86 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 154
+    experience_yield: 154,
+    ev_yields: {[PokemonStat.sp_atk]: 1}
   },
   uxie: {
     id: 480,
@@ -5312,7 +5794,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.psychic],
     stats: { hp: 75, attack: 75, defense: 130, sp_attack: 75, sp_defense: 130, speed: 95 },
     experience_group: ExperienceGroup.slow,
-    experience_yield: 290
+    experience_yield: 290,
+    ev_yields: {[PokemonStat.defense]: 2}
   },
   mesprit: {
     id: 481,
@@ -5323,7 +5806,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.psychic],
     stats: { hp: 80, attack: 105, defense: 105, sp_attack: 105, sp_defense: 105, speed: 80 },
     experience_group: ExperienceGroup.slow,
-    experience_yield: 290
+    experience_yield: 290,
+    ev_yields: {[PokemonStat.attack]: 1}
   },
   azelf: {
     id: 482,
@@ -5334,7 +5818,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.psychic],
     stats: { hp: 75, attack: 125, defense: 70, sp_attack: 125, sp_defense: 70, speed: 115 },
     experience_group: ExperienceGroup.slow,
-    experience_yield: 290
+    experience_yield: 290,
+    ev_yields: {[PokemonStat.attack]: 2}
   },
   dialga: {
     id: 483,
@@ -5345,7 +5830,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.steel, PokemonCombatType.dragon],
     stats: { hp: 100, attack: 100, defense: 120, sp_attack: 150, sp_defense: 120, speed: 90 },
     experience_group: ExperienceGroup.slow,
-    experience_yield: 340
+    experience_yield: 340,
+    ev_yields: {[PokemonStat.sp_atk]: 3}
   },
   palkia: {
     id: 484,
@@ -5356,7 +5842,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.water, PokemonCombatType.dragon],
     stats: { hp: 90, attack: 100, defense: 100, sp_attack: 150, sp_defense: 120, speed: 120 },
     experience_group: ExperienceGroup.slow,
-    experience_yield: 340
+    experience_yield: 340,
+    ev_yields: {[PokemonStat.sp_atk]: 3}
   },
   heatran: {
     id: 485,
@@ -5367,7 +5854,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.fire, PokemonCombatType.steel],
     stats: { hp: 91, attack: 90, defense: 106, sp_attack: 130, sp_defense: 106, speed: 77 },
     experience_group: ExperienceGroup.slow,
-    experience_yield: 300
+    experience_yield: 300,
+    ev_yields: {[PokemonStat.sp_atk]: 3}
   },
   regigigas: {
     id: 486,
@@ -5378,7 +5866,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.normal],
     stats: { hp: 110, attack: 160, defense: 110, sp_attack: 80, sp_defense: 110, speed: 100 },
     experience_group: ExperienceGroup.slow,
-    experience_yield: 302
+    experience_yield: 302,
+    ev_yields: {[PokemonStat.attack]: 3}
   },
   giratina: {
     id: 487,
@@ -5389,7 +5878,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.ghost, PokemonCombatType.dragon],
     stats: { hp: 150, attack: 120, defense: 100, sp_attack: 120, sp_defense: 100, speed: 90 },
     experience_group: ExperienceGroup.slow,
-    experience_yield: 340
+    experience_yield: 340,
+    ev_yields: {[PokemonStat.hp]: 3}
   },
   cresselia: {
     id: 488,
@@ -5400,7 +5890,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.psychic],
     stats: { hp: 120, attack: 70, defense: 110, sp_attack: 75, sp_defense: 120, speed: 85 },
     experience_group: ExperienceGroup.slow,
-    experience_yield: 290
+    experience_yield: 290,
+    ev_yields: {[PokemonStat.sp_def]: 3}
   },
   phione: {
     id: 489,
@@ -5411,7 +5902,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.water],
     stats: { hp: 80, attack: 80, defense: 80, sp_attack: 80, sp_defense: 80, speed: 80 },
     experience_group: ExperienceGroup.slow,
-    experience_yield: 216
+    experience_yield: 216,
+    ev_yields: {[PokemonStat.hp]: 1}
   },
   manaphy: {
     id: 490,
@@ -5422,7 +5914,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.water],
     stats: { hp: 100, attack: 100, defense: 100, sp_attack: 100, sp_defense: 100, speed: 100 },
     experience_group: ExperienceGroup.slow,
-    experience_yield: 270
+    experience_yield: 270,
+    ev_yields: {[PokemonStat.hp]: 3}
   },
   darkrai: {
     id: 491,
@@ -5433,7 +5926,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.dark],
     stats: { hp: 70, attack: 90, defense: 90, sp_attack: 135, sp_defense: 90, speed: 125 },
     experience_group: ExperienceGroup.slow,
-    experience_yield: 270
+    experience_yield: 270,
+    ev_yields: {[PokemonStat.sp_atk]: 2}
   },
   shaymin: {
     id: 492,
@@ -5444,7 +5938,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.grass, PokemonCombatType.flying],
     stats: { hp: 100, attack: 103, defense: 75, sp_attack: 120, sp_defense: 75, speed: 127 },
     experience_group: ExperienceGroup.medium_slow,
-    experience_yield: 270
+    experience_yield: 270,
+    ev_yields: {[PokemonStat.hp]: 3}
   },
   arceus: {
     id: 493,
@@ -5455,7 +5950,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.normal],
     stats: { hp: 120, attack: 120, defense: 120, sp_attack: 120, sp_defense: 120, speed: 120 },
     experience_group: ExperienceGroup.slow,
-    experience_yield: 360
+    experience_yield: 360,
+    ev_yields: {[PokemonStat.hp]: 3}
   },
   // Generation 5
   victini: {
@@ -5467,7 +5963,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.psychic, PokemonCombatType.fire],
     stats: { hp: 100, attack: 100, defense: 100, sp_attack: 100, sp_defense: 100, speed: 100 },
     experience_group: ExperienceGroup.slow,
-    experience_yield: 270
+    experience_yield: 270,
+    ev_yields: {[PokemonStat.hp]: 3}
   },
   snivy: {
     id: 495,
@@ -5478,7 +5975,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.grass],
     stats: { hp: 45, attack: 45, defense: 55, sp_attack: 45, sp_defense: 55, speed: 63 },
     experience_group: ExperienceGroup.medium_slow,
-    experience_yield: 62
+    experience_yield: 62,
+    ev_yields: {[PokemonStat.speed]: 1}
   },
   servine: {
     id: 496,
@@ -5489,7 +5987,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.grass],
     stats: { hp: 60, attack: 60, defense: 75, sp_attack: 60, sp_defense: 75, speed: 83 },
     experience_group: ExperienceGroup.medium_slow,
-    experience_yield: 145
+    experience_yield: 145,
+    ev_yields: {[PokemonStat.speed]: 2}
   },
   serperior: {
     id: 497,
@@ -5500,7 +5999,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.grass],
     stats: { hp: 75, attack: 75, defense: 95, sp_attack: 75, sp_defense: 95, speed: 113 },
     experience_group: ExperienceGroup.medium_slow,
-    experience_yield: 238
+    experience_yield: 238,
+    ev_yields: {[PokemonStat.speed]: 3}
   },
   tepig: {
     id: 498,
@@ -5511,7 +6011,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.fire],
     stats: { hp: 65, attack: 63, defense: 45, sp_attack: 45, sp_defense: 45, speed: 45 },
     experience_group: ExperienceGroup.medium_slow,
-    experience_yield: 62
+    experience_yield: 62,
+    ev_yields: {[PokemonStat.hp]: 1}
   },
   pignite: {
     id: 499,
@@ -5522,7 +6023,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.fire, PokemonCombatType.fighting],
     stats: { hp: 90, attack: 93, defense: 55, sp_attack: 70, sp_defense: 55, speed: 55 },
     experience_group: ExperienceGroup.medium_slow,
-    experience_yield: 146
+    experience_yield: 146,
+    ev_yields: {[PokemonStat.attack]: 2}
   },
   emboar: {
     id: 500,
@@ -5533,7 +6035,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.fire, PokemonCombatType.fighting],
     stats: { hp: 110, attack: 123, defense: 65, sp_attack: 100, sp_defense: 65, speed: 65 },
     experience_group: ExperienceGroup.medium_slow,
-    experience_yield: 238
+    experience_yield: 238,
+    ev_yields: {[PokemonStat.attack]: 3}
   },
   oshawott: {
     id: 501,
@@ -5544,7 +6047,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.water],
     stats: { hp: 55, attack: 55, defense: 45, sp_attack: 63, sp_defense: 45, speed: 45 },
     experience_group: ExperienceGroup.medium_slow,
-    experience_yield: 62
+    experience_yield: 62,
+    ev_yields: {[PokemonStat.sp_atk]: 1}
   },
   dewott: {
     id: 502,
@@ -5555,7 +6059,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.water],
     stats: { hp: 75, attack: 75, defense: 60, sp_attack: 83, sp_defense: 60, speed: 60 },
     experience_group: ExperienceGroup.medium_slow,
-    experience_yield: 145
+    experience_yield: 145,
+    ev_yields: {[PokemonStat.sp_atk]: 2}
   },
   samurott: {
     id: 503,
@@ -5566,7 +6071,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.water, PokemonCombatType.dark],
     stats: { hp: 90, attack: 108, defense: 80, sp_attack: 100, sp_defense: 65, speed: 85 },
     experience_group: ExperienceGroup.medium_slow,
-    experience_yield: 264
+    experience_yield: 264,
+    ev_yields: {[PokemonStat.sp_atk]: 3}
   },
   patrat: {
     id: 504,
@@ -5577,7 +6083,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.normal],
     stats: { hp: 45, attack: 55, defense: 39, sp_attack: 35, sp_defense: 39, speed: 42 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 51
+    experience_yield: 51,
+    ev_yields: {[PokemonStat.attack]: 1}
   },
   watchog: {
     id: 505,
@@ -5588,7 +6095,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.normal],
     stats: { hp: 60, attack: 85, defense: 69, sp_attack: 60, sp_defense: 69, speed: 77 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 147
+    experience_yield: 147,
+    ev_yields: {[PokemonStat.attack]: 2}
   },
   lillipup: {
     id: 506,
@@ -5599,7 +6107,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.normal],
     stats: { hp: 45, attack: 60, defense: 45, sp_attack: 25, sp_defense: 45, speed: 55 },
     experience_group: ExperienceGroup.medium_slow,
-    experience_yield: 55
+    experience_yield: 55,
+    ev_yields: {[PokemonStat.attack]: 1}
   },
   herdier: {
     id: 507,
@@ -5610,7 +6119,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.normal],
     stats: { hp: 65, attack: 80, defense: 65, sp_attack: 35, sp_defense: 65, speed: 60 },
     experience_group: ExperienceGroup.medium_slow,
-    experience_yield: 130
+    experience_yield: 130,
+    ev_yields: {[PokemonStat.attack]: 2}
   },
   stoutland: {
     id: 508,
@@ -5621,7 +6131,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.normal],
     stats: { hp: 85, attack: 110, defense: 90, sp_attack: 45, sp_defense: 90, speed: 80 },
     experience_group: ExperienceGroup.medium_slow,
-    experience_yield: 225
+    experience_yield: 225,
+    ev_yields: {[PokemonStat.attack]: 3}
   },
   purrloin: {
     id: 509,
@@ -5632,7 +6143,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.dark],
     stats: { hp: 41, attack: 50, defense: 37, sp_attack: 50, sp_defense: 37, speed: 66 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 56
+    experience_yield: 56,
+    ev_yields: {[PokemonStat.speed]: 1}
   },
   liepard: {
     id: 510,
@@ -5643,7 +6155,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.dark],
     stats: { hp: 64, attack: 88, defense: 50, sp_attack: 88, sp_defense: 50, speed: 106 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 156
+    experience_yield: 156,
+    ev_yields: {[PokemonStat.speed]: 2}
   },
   pansage: {
     id: 511,
@@ -5654,7 +6167,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.grass],
     stats: { hp: 50, attack: 53, defense: 48, sp_attack: 53, sp_defense: 48, speed: 64 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 63
+    experience_yield: 63,
+    ev_yields: {[PokemonStat.speed]: 1}
   },
   simisage: {
     id: 512,
@@ -5665,7 +6179,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.grass],
     stats: { hp: 75, attack: 98, defense: 63, sp_attack: 98, sp_defense: 63, speed: 101 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 174
+    experience_yield: 174,
+    ev_yields: {[PokemonStat.speed]: 2}
   },
   pansear: {
     id: 513,
@@ -5676,7 +6191,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.fire],
     stats: { hp: 50, attack: 53, defense: 48, sp_attack: 53, sp_defense: 48, speed: 64 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 63
+    experience_yield: 63,
+    ev_yields: {[PokemonStat.speed]: 1}
   },
   simisear: {
     id: 514,
@@ -5687,7 +6203,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.fire],
     stats: { hp: 75, attack: 98, defense: 63, sp_attack: 98, sp_defense: 63, speed: 101 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 174
+    experience_yield: 174,
+    ev_yields: {[PokemonStat.speed]: 2}
   },
   panpour: {
     id: 515,
@@ -5698,7 +6215,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.water],
     stats: { hp: 50, attack: 53, defense: 48, sp_attack: 53, sp_defense: 48, speed: 64 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 63
+    experience_yield: 63,
+    ev_yields: {[PokemonStat.speed]: 1}
   },
   simipour: {
     id: 516,
@@ -5709,7 +6227,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.water],
     stats: { hp: 75, attack: 98, defense: 63, sp_attack: 98, sp_defense: 63, speed: 101 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 174
+    experience_yield: 174,
+    ev_yields: {[PokemonStat.speed]: 2}
   },
   munna: {
     id: 517,
@@ -5720,7 +6239,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.psychic],
     stats: { hp: 76, attack: 25, defense: 45, sp_attack: 67, sp_defense: 55, speed: 24 },
     experience_group: ExperienceGroup.fast,
-    experience_yield: 58
+    experience_yield: 58,
+    ev_yields: {[PokemonStat.hp]: 1}
   },
   musharna: {
     id: 518,
@@ -5731,7 +6251,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.psychic],
     stats: { hp: 116, attack: 55, defense: 85, sp_attack: 107, sp_defense: 95, speed: 29 },
     experience_group: ExperienceGroup.fast,
-    experience_yield: 170
+    experience_yield: 170,
+    ev_yields: {[PokemonStat.hp]: 2}
   },
   pidove: {
     id: 519,
@@ -5742,7 +6263,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.normal, PokemonCombatType.flying],
     stats: { hp: 50, attack: 55, defense: 50, sp_attack: 36, sp_defense: 30, speed: 43 },
     experience_group: ExperienceGroup.medium_slow,
-    experience_yield: 53
+    experience_yield: 53,
+    ev_yields: {[PokemonStat.attack]: 1}
   },
   tranquill: {
     id: 520,
@@ -5753,7 +6275,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.normal, PokemonCombatType.flying],
     stats: { hp: 62, attack: 77, defense: 62, sp_attack: 50, sp_defense: 42, speed: 65 },
     experience_group: ExperienceGroup.medium_slow,
-    experience_yield: 125
+    experience_yield: 125,
+    ev_yields: {[PokemonStat.attack]: 2}
   },
   unfezant: {
     id: 521,
@@ -5764,7 +6287,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.normal, PokemonCombatType.flying],
     stats: { hp: 80, attack: 115, defense: 80, sp_attack: 65, sp_defense: 55, speed: 93 },
     experience_group: ExperienceGroup.medium_slow,
-    experience_yield: 220
+    experience_yield: 220,
+    ev_yields: {[PokemonStat.attack]: 3}
   },
   blitzle: {
     id: 522,
@@ -5775,7 +6299,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.electric],
     stats: { hp: 45, attack: 60, defense: 32, sp_attack: 50, sp_defense: 32, speed: 76 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 59
+    experience_yield: 59,
+    ev_yields: {[PokemonStat.speed]: 1}
   },
   zebstrika: {
     id: 523,
@@ -5786,7 +6311,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.electric],
     stats: { hp: 75, attack: 100, defense: 63, sp_attack: 80, sp_defense: 63, speed: 116 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 174
+    experience_yield: 174,
+    ev_yields: {[PokemonStat.speed]: 2}
   },
   roggenrola: {
     id: 524,
@@ -5797,7 +6323,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.rock],
     stats: { hp: 55, attack: 75, defense: 85, sp_attack: 25, sp_defense: 25, speed: 15 },
     experience_group: ExperienceGroup.medium_slow,
-    experience_yield: 56
+    experience_yield: 56,
+    ev_yields: {[PokemonStat.defense]: 1}
   },
   boldore: {
     id: 525,
@@ -5808,7 +6335,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.rock],
     stats: { hp: 70, attack: 105, defense: 105, sp_attack: 50, sp_defense: 40, speed: 20 },
     experience_group: ExperienceGroup.medium_slow,
-    experience_yield: 137
+    experience_yield: 137,
+    ev_yields: {[PokemonStat.attack]: 1}
   },
   gigalith: {
     id: 526,
@@ -5819,7 +6347,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.rock],
     stats: { hp: 85, attack: 135, defense: 130, sp_attack: 60, sp_defense: 80, speed: 25 },
     experience_group: ExperienceGroup.medium_slow,
-    experience_yield: 232
+    experience_yield: 232,
+    ev_yields: {[PokemonStat.attack]: 3}
   },
   woobat: {
     id: 527,
@@ -5830,7 +6359,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.psychic, PokemonCombatType.flying],
     stats: { hp: 65, attack: 45, defense: 43, sp_attack: 55, sp_defense: 43, speed: 72 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 65
+    experience_yield: 65,
+    ev_yields: {[PokemonStat.speed]: 1}
   },
   swoobat: {
     id: 528,
@@ -5841,7 +6371,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.psychic, PokemonCombatType.flying],
     stats: { hp: 67, attack: 57, defense: 55, sp_attack: 77, sp_defense: 55, speed: 114 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 149
+    experience_yield: 149,
+    ev_yields: {[PokemonStat.speed]: 2}
   },
   drilbur: {
     id: 529,
@@ -5852,7 +6383,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.ground],
     stats: { hp: 60, attack: 85, defense: 40, sp_attack: 30, sp_defense: 45, speed: 68 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 66
+    experience_yield: 66,
+    ev_yields: {[PokemonStat.attack]: 1}
   },
   excadrill: {
     id: 530,
@@ -5863,7 +6395,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.ground, PokemonCombatType.steel],
     stats: { hp: 110, attack: 135, defense: 60, sp_attack: 50, sp_defense: 65, speed: 88 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 178
+    experience_yield: 178,
+    ev_yields: {[PokemonStat.attack]: 2}
   },
   audino: {
     id: 531,
@@ -5874,7 +6407,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.normal, PokemonCombatType.fairy],
     stats: { hp: 103, attack: 60, defense: 126, sp_attack: 80, sp_defense: 126, speed: 50 },
     experience_group: ExperienceGroup.fast,
-    experience_yield: 390
+    experience_yield: 390,
+    ev_yields: {[PokemonStat.hp]: 2}
   },
   timburr: {
     id: 532,
@@ -5885,7 +6419,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.fighting],
     stats: { hp: 75, attack: 80, defense: 55, sp_attack: 25, sp_defense: 35, speed: 35 },
     experience_group: ExperienceGroup.medium_slow,
-    experience_yield: 61
+    experience_yield: 61,
+    ev_yields: {[PokemonStat.attack]: 1}
   },
   gurdurr: {
     id: 533,
@@ -5896,7 +6431,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.fighting],
     stats: { hp: 85, attack: 105, defense: 85, sp_attack: 40, sp_defense: 50, speed: 40 },
     experience_group: ExperienceGroup.medium_slow,
-    experience_yield: 142
+    experience_yield: 142,
+    ev_yields: {[PokemonStat.attack]: 2}
   },
   conkeldurr: {
     id: 534,
@@ -5907,7 +6443,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.fighting],
     stats: { hp: 105, attack: 140, defense: 95, sp_attack: 55, sp_defense: 65, speed: 45 },
     experience_group: ExperienceGroup.medium_slow,
-    experience_yield: 227
+    experience_yield: 227,
+    ev_yields: {[PokemonStat.attack]: 3}
   },
   tympole: {
     id: 535,
@@ -5918,7 +6455,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.water],
     stats: { hp: 50, attack: 50, defense: 40, sp_attack: 50, sp_defense: 40, speed: 64 },
     experience_group: ExperienceGroup.medium_slow,
-    experience_yield: 59
+    experience_yield: 59,
+    ev_yields: {[PokemonStat.speed]: 1}
   },
   palpitoad: {
     id: 536,
@@ -5929,7 +6467,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.water, PokemonCombatType.ground],
     stats: { hp: 75, attack: 65, defense: 55, sp_attack: 65, sp_defense: 55, speed: 69 },
     experience_group: ExperienceGroup.medium_slow,
-    experience_yield: 134
+    experience_yield: 134,
+    ev_yields: {[PokemonStat.hp]: 2}
   },
   seismitoad: {
     id: 537,
@@ -5940,7 +6479,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.water, PokemonCombatType.ground],
     stats: { hp: 105, attack: 95, defense: 75, sp_attack: 85, sp_defense: 75, speed: 74 },
     experience_group: ExperienceGroup.medium_slow,
-    experience_yield: 229
+    experience_yield: 229,
+    ev_yields: {[PokemonStat.hp]: 3}
   },
   throh: {
     id: 538,
@@ -5951,7 +6491,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.fighting],
     stats: { hp: 120, attack: 100, defense: 85, sp_attack: 30, sp_defense: 85, speed: 45 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 163
+    experience_yield: 163,
+    ev_yields: {[PokemonStat.hp]: 2}
   },
   sawk: {
     id: 539,
@@ -5962,7 +6503,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.fighting],
     stats: { hp: 75, attack: 125, defense: 75, sp_attack: 30, sp_defense: 75, speed: 85 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 163
+    experience_yield: 163,
+    ev_yields: {[PokemonStat.attack]: 2}
   },
   sewaddle: {
     id: 540,
@@ -5973,7 +6515,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.bug, PokemonCombatType.grass],
     stats: { hp: 45, attack: 53, defense: 70, sp_attack: 40, sp_defense: 60, speed: 42 },
     experience_group: ExperienceGroup.medium_slow,
-    experience_yield: 62
+    experience_yield: 62,
+    ev_yields: {[PokemonStat.defense]: 1}
   },
   swadloon: {
     id: 541,
@@ -5984,7 +6527,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.bug, PokemonCombatType.grass],
     stats: { hp: 55, attack: 63, defense: 90, sp_attack: 50, sp_defense: 80, speed: 42 },
     experience_group: ExperienceGroup.medium_slow,
-    experience_yield: 133
+    experience_yield: 133,
+    ev_yields: {[PokemonStat.defense]: 2}
   },
   leavanny: {
     id: 542,
@@ -5995,7 +6539,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.bug, PokemonCombatType.grass],
     stats: { hp: 75, attack: 103, defense: 80, sp_attack: 70, sp_defense: 80, speed: 92 },
     experience_group: ExperienceGroup.medium_slow,
-    experience_yield: 225
+    experience_yield: 225,
+    ev_yields: {[PokemonStat.attack]: 3}
   },
   venipede: {
     id: 543,
@@ -6006,7 +6551,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.bug, PokemonCombatType.poison],
     stats: { hp: 30, attack: 45, defense: 59, sp_attack: 30, sp_defense: 39, speed: 57 },
     experience_group: ExperienceGroup.medium_slow,
-    experience_yield: 52
+    experience_yield: 52,
+    ev_yields: {[PokemonStat.defense]: 1}
   },
   whirlipede: {
     id: 544,
@@ -6017,7 +6563,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.bug, PokemonCombatType.poison],
     stats: { hp: 40, attack: 55, defense: 99, sp_attack: 40, sp_defense: 79, speed: 47 },
     experience_group: ExperienceGroup.medium_slow,
-    experience_yield: 126
+    experience_yield: 126,
+    ev_yields: {[PokemonStat.defense]: 2}
   },
   scolipede: {
     id: 545,
@@ -6028,7 +6575,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.bug, PokemonCombatType.poison],
     stats: { hp: 60, attack: 100, defense: 89, sp_attack: 55, sp_defense: 69, speed: 112 },
     experience_group: ExperienceGroup.medium_slow,
-    experience_yield: 218
+    experience_yield: 218,
+    ev_yields: {[PokemonStat.speed]: 3}
   },
   cottonee: {
     id: 546,
@@ -6039,7 +6587,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.grass, PokemonCombatType.fairy],
     stats: { hp: 40, attack: 27, defense: 60, sp_attack: 37, sp_defense: 50, speed: 66 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 56
+    experience_yield: 56,
+    ev_yields: {[PokemonStat.speed]: 1}
   },
   whimsicott: {
     id: 547,
@@ -6050,7 +6599,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.grass, PokemonCombatType.fairy],
     stats: { hp: 60, attack: 67, defense: 85, sp_attack: 77, sp_defense: 75, speed: 116 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 168
+    experience_yield: 168,
+    ev_yields: {[PokemonStat.speed]: 2}
   },
   petilil: {
     id: 548,
@@ -6061,7 +6611,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.grass],
     stats: { hp: 45, attack: 35, defense: 50, sp_attack: 70, sp_defense: 50, speed: 30 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 56
+    experience_yield: 56,
+    ev_yields: {[PokemonStat.sp_atk]: 1}
   },
   lilligant: {
     id: 549,
@@ -6072,7 +6623,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.grass, PokemonCombatType.fighting],
     stats: { hp: 70, attack: 105, defense: 75, sp_attack: 50, sp_defense: 75, speed: 105 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 168
+    experience_yield: 168,
+    ev_yields: {[PokemonStat.sp_atk]: 2}
   },
   basculin: {
     id: 550,
@@ -6083,7 +6635,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.water],
     stats: { hp: 70, attack: 92, defense: 65, sp_attack: 80, sp_defense: 55, speed: 98 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 161
+    experience_yield: 161,
+    ev_yields: {[PokemonStat.speed]: 2}
   },
   sandile: {
     id: 551,
@@ -6094,7 +6647,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.ground, PokemonCombatType.dark],
     stats: { hp: 50, attack: 72, defense: 35, sp_attack: 35, sp_defense: 35, speed: 65 },
     experience_group: ExperienceGroup.medium_slow,
-    experience_yield: 58
+    experience_yield: 58,
+    ev_yields: {[PokemonStat.attack]: 1}
   },
   krokorok: {
     id: 552,
@@ -6105,7 +6659,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.ground, PokemonCombatType.dark],
     stats: { hp: 60, attack: 82, defense: 45, sp_attack: 45, sp_defense: 45, speed: 74 },
     experience_group: ExperienceGroup.medium_slow,
-    experience_yield: 123
+    experience_yield: 123,
+    ev_yields: {[PokemonStat.attack]: 2}
   },
   krookodile: {
     id: 553,
@@ -6116,7 +6671,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.ground, PokemonCombatType.dark],
     stats: { hp: 95, attack: 117, defense: 80, sp_attack: 65, sp_defense: 70, speed: 92 },
     experience_group: ExperienceGroup.medium_slow,
-    experience_yield: 260
+    experience_yield: 260,
+    ev_yields: {[PokemonStat.attack]: 3}
   },
   darumaka: {
     id: 554,
@@ -6127,7 +6683,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.ice],
     stats: { hp: 70, attack: 90, defense: 45, sp_attack: 15, sp_defense: 45, speed: 50 },
     experience_group: ExperienceGroup.medium_slow,
-    experience_yield: 63
+    experience_yield: 63,
+    ev_yields: {[PokemonStat.attack]: 1}
   },
   darmanitan: {
     id: 555,
@@ -6138,7 +6695,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.ice, PokemonCombatType.fire],
     stats: { hp: 105, attack: 160, defense: 55, sp_attack: 30, sp_defense: 55, speed: 135 },
     experience_group: ExperienceGroup.medium_slow,
-    experience_yield: 168
+    experience_yield: 168,
+    ev_yields: {[PokemonStat.attack]: 2}
   },
   maractus: {
     id: 556,
@@ -6149,7 +6707,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.grass],
     stats: { hp: 75, attack: 86, defense: 67, sp_attack: 106, sp_defense: 67, speed: 60 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 161
+    experience_yield: 161,
+    ev_yields: {[PokemonStat.sp_atk]: 2}
   },
   dwebble: {
     id: 557,
@@ -6160,7 +6719,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.bug, PokemonCombatType.rock],
     stats: { hp: 50, attack: 65, defense: 85, sp_attack: 35, sp_defense: 35, speed: 55 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 65
+    experience_yield: 65,
+    ev_yields: {[PokemonStat.defense]: 1}
   },
   crustle: {
     id: 558,
@@ -6171,7 +6731,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.bug, PokemonCombatType.rock],
     stats: { hp: 70, attack: 105, defense: 125, sp_attack: 65, sp_defense: 75, speed: 45 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 170
+    experience_yield: 170,
+    ev_yields: {[PokemonStat.defense]: 2}
   },
   scraggy: {
     id: 559,
@@ -6182,7 +6743,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.dark, PokemonCombatType.fighting],
     stats: { hp: 50, attack: 75, defense: 70, sp_attack: 35, sp_defense: 70, speed: 48 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 70
+    experience_yield: 70,
+    ev_yields: {[PokemonStat.attack]: 1}
   },
   scrafty: {
     id: 560,
@@ -6193,7 +6755,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.dark, PokemonCombatType.fighting],
     stats: { hp: 65, attack: 90, defense: 115, sp_attack: 45, sp_defense: 115, speed: 58 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 171
+    experience_yield: 171,
+    ev_yields: {[PokemonStat.defense]: 1}
   },
   sigilyph: {
     id: 561,
@@ -6204,7 +6767,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.psychic, PokemonCombatType.flying],
     stats: { hp: 72, attack: 58, defense: 80, sp_attack: 103, sp_defense: 80, speed: 97 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 172
+    experience_yield: 172,
+    ev_yields: {[PokemonStat.sp_atk]: 2}
   },
   yamask: {
     id: 562,
@@ -6215,7 +6779,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.ground, PokemonCombatType.ghost],
     stats: { hp: 38, attack: 55, defense: 85, sp_attack: 30, sp_defense: 65, speed: 30 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 61
+    experience_yield: 61,
+    ev_yields: {[PokemonStat.defense]: 1}
   },
   cofagrigus: {
     id: 563,
@@ -6226,7 +6791,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.ghost],
     stats: { hp: 58, attack: 50, defense: 145, sp_attack: 95, sp_defense: 105, speed: 30 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 169
+    experience_yield: 169,
+    ev_yields: {[PokemonStat.defense]: 2}
   },
   tirtouga: {
     id: 564,
@@ -6237,7 +6803,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.water, PokemonCombatType.rock],
     stats: { hp: 54, attack: 78, defense: 103, sp_attack: 53, sp_defense: 45, speed: 22 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 71
+    experience_yield: 71,
+    ev_yields: {[PokemonStat.defense]: 1}
   },
   carracosta: {
     id: 565,
@@ -6248,7 +6815,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.water, PokemonCombatType.rock],
     stats: { hp: 74, attack: 108, defense: 133, sp_attack: 83, sp_defense: 65, speed: 32 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 173
+    experience_yield: 173,
+    ev_yields: {[PokemonStat.defense]: 2}
   },
   archen: {
     id: 566,
@@ -6259,7 +6827,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.rock, PokemonCombatType.flying],
     stats: { hp: 55, attack: 112, defense: 45, sp_attack: 74, sp_defense: 45, speed: 70 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 71
+    experience_yield: 71,
+    ev_yields: {[PokemonStat.attack]: 1}
   },
   archeops: {
     id: 567,
@@ -6270,7 +6839,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.rock, PokemonCombatType.flying],
     stats: { hp: 75, attack: 140, defense: 65, sp_attack: 112, sp_defense: 65, speed: 110 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 177
+    experience_yield: 177,
+    ev_yields: {[PokemonStat.attack]: 2}
   },
   trubbish: {
     id: 568,
@@ -6281,7 +6851,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.poison],
     stats: { hp: 50, attack: 50, defense: 62, sp_attack: 40, sp_defense: 62, speed: 65 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 66
+    experience_yield: 66,
+    ev_yields: {[PokemonStat.speed]: 1}
   },
   garbodor: {
     id: 569,
@@ -6292,7 +6863,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.poison],
     stats: { hp: 80, attack: 95, defense: 82, sp_attack: 60, sp_defense: 82, speed: 75 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 166
+    experience_yield: 166,
+    ev_yields: {[PokemonStat.attack]: 2}
   },
   zorua: {
     id: 570,
@@ -6303,7 +6875,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.normal, PokemonCombatType.ghost],
     stats: { hp: 35, attack: 60, defense: 40, sp_attack: 85, sp_defense: 40, speed: 70 },
     experience_group: ExperienceGroup.medium_slow,
-    experience_yield: 66
+    experience_yield: 66,
+    ev_yields: {[PokemonStat.sp_atk]: 1}
   },
   zoroark: {
     id: 571,
@@ -6314,7 +6887,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.normal, PokemonCombatType.ghost],
     stats: { hp: 55, attack: 100, defense: 60, sp_attack: 125, sp_defense: 60, speed: 110 },
     experience_group: ExperienceGroup.medium_slow,
-    experience_yield: 179
+    experience_yield: 179,
+    ev_yields: {[PokemonStat.sp_atk]: 2}
   },
   minccino: {
     id: 572,
@@ -6325,7 +6899,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.normal],
     stats: { hp: 55, attack: 50, defense: 40, sp_attack: 40, sp_defense: 40, speed: 75 },
     experience_group: ExperienceGroup.fast,
-    experience_yield: 60
+    experience_yield: 60,
+    ev_yields: {[PokemonStat.speed]: 1}
   },
   cinccino: {
     id: 573,
@@ -6336,7 +6911,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.normal],
     stats: { hp: 75, attack: 95, defense: 60, sp_attack: 65, sp_defense: 60, speed: 115 },
     experience_group: ExperienceGroup.fast,
-    experience_yield: 165
+    experience_yield: 165,
+    ev_yields: {[PokemonStat.speed]: 2}
   },
   gothita: {
     id: 574,
@@ -6347,7 +6923,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.psychic],
     stats: { hp: 45, attack: 30, defense: 50, sp_attack: 55, sp_defense: 65, speed: 45 },
     experience_group: ExperienceGroup.medium_slow,
-    experience_yield: 58
+    experience_yield: 58,
+    ev_yields: {[PokemonStat.sp_def]: 1}
   },
   gothorita: {
     id: 575,
@@ -6358,7 +6935,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.psychic],
     stats: { hp: 60, attack: 45, defense: 70, sp_attack: 75, sp_defense: 85, speed: 55 },
     experience_group: ExperienceGroup.medium_slow,
-    experience_yield: 137
+    experience_yield: 137,
+    ev_yields: {[PokemonStat.sp_def]: 2}
   },
   gothitelle: {
     id: 576,
@@ -6369,7 +6947,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.psychic],
     stats: { hp: 70, attack: 55, defense: 95, sp_attack: 95, sp_defense: 110, speed: 65 },
     experience_group: ExperienceGroup.medium_slow,
-    experience_yield: 245
+    experience_yield: 245,
+    ev_yields: {[PokemonStat.sp_def]: 3}
   },
   solosis: {
     id: 577,
@@ -6380,7 +6959,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.psychic],
     stats: { hp: 45, attack: 30, defense: 40, sp_attack: 105, sp_defense: 50, speed: 20 },
     experience_group: ExperienceGroup.medium_slow,
-    experience_yield: 58
+    experience_yield: 58,
+    ev_yields: {[PokemonStat.sp_atk]: 1}
   },
   duosion: {
     id: 578,
@@ -6391,7 +6971,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.psychic],
     stats: { hp: 65, attack: 40, defense: 50, sp_attack: 125, sp_defense: 60, speed: 30 },
     experience_group: ExperienceGroup.medium_slow,
-    experience_yield: 130
+    experience_yield: 130,
+    ev_yields: {[PokemonStat.sp_atk]: 2}
   },
   reuniclus: {
     id: 579,
@@ -6402,7 +6983,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.psychic],
     stats: { hp: 110, attack: 65, defense: 75, sp_attack: 125, sp_defense: 85, speed: 30 },
     experience_group: ExperienceGroup.medium_slow,
-    experience_yield: 221
+    experience_yield: 221,
+    ev_yields: {[PokemonStat.sp_atk]: 3}
   },
   ducklett: {
     id: 580,
@@ -6413,7 +6995,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.water, PokemonCombatType.flying],
     stats: { hp: 62, attack: 44, defense: 50, sp_attack: 44, sp_defense: 50, speed: 55 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 61
+    experience_yield: 61,
+    ev_yields: {[PokemonStat.hp]: 1}
   },
   swanna: {
     id: 581,
@@ -6424,7 +7007,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.water, PokemonCombatType.flying],
     stats: { hp: 75, attack: 87, defense: 63, sp_attack: 87, sp_defense: 63, speed: 98 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 166
+    experience_yield: 166,
+    ev_yields: {[PokemonStat.speed]: 2}
   },
   vanillite: {
     id: 582,
@@ -6435,7 +7019,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.ice],
     stats: { hp: 36, attack: 50, defense: 50, sp_attack: 65, sp_defense: 60, speed: 44 },
     experience_group: ExperienceGroup.slow,
-    experience_yield: 61
+    experience_yield: 61,
+    ev_yields: {[PokemonStat.sp_atk]: 1}
   },
   vanillish: {
     id: 583,
@@ -6446,7 +7031,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.ice],
     stats: { hp: 51, attack: 65, defense: 65, sp_attack: 80, sp_defense: 75, speed: 59 },
     experience_group: ExperienceGroup.slow,
-    experience_yield: 138
+    experience_yield: 138,
+    ev_yields: {[PokemonStat.sp_atk]: 2}
   },
   vanilluxe: {
     id: 584,
@@ -6457,7 +7043,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.ice],
     stats: { hp: 71, attack: 95, defense: 85, sp_attack: 110, sp_defense: 95, speed: 79 },
     experience_group: ExperienceGroup.slow,
-    experience_yield: 241
+    experience_yield: 241,
+    ev_yields: {[PokemonStat.sp_atk]: 3}
   },
   deerling: {
     id: 585,
@@ -6468,7 +7055,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.normal, PokemonCombatType.grass],
     stats: { hp: 60, attack: 60, defense: 50, sp_attack: 40, sp_defense: 50, speed: 75 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 67
+    experience_yield: 67,
+    ev_yields: {[PokemonStat.speed]: 1}
   },
   sawsbuck: {
     id: 586,
@@ -6479,7 +7067,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.normal, PokemonCombatType.grass],
     stats: { hp: 80, attack: 100, defense: 70, sp_attack: 60, sp_defense: 70, speed: 95 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 166
+    experience_yield: 166,
+    ev_yields: {[PokemonStat.attack]: 2}
   },
   emolga: {
     id: 587,
@@ -6490,7 +7079,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.electric, PokemonCombatType.flying],
     stats: { hp: 55, attack: 75, defense: 60, sp_attack: 75, sp_defense: 60, speed: 103 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 150
+    experience_yield: 150,
+    ev_yields: {[PokemonStat.speed]: 2}
   },
   karrablast: {
     id: 588,
@@ -6501,7 +7091,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.bug],
     stats: { hp: 50, attack: 75, defense: 45, sp_attack: 40, sp_defense: 45, speed: 60 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 63
+    experience_yield: 63,
+    ev_yields: {[PokemonStat.attack]: 1}
   },
   escavalier: {
     id: 589,
@@ -6512,7 +7103,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.bug, PokemonCombatType.steel],
     stats: { hp: 70, attack: 135, defense: 105, sp_attack: 60, sp_defense: 105, speed: 20 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 173
+    experience_yield: 173,
+    ev_yields: {[PokemonStat.attack]: 2}
   },
   foongus: {
     id: 590,
@@ -6523,7 +7115,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.grass, PokemonCombatType.poison],
     stats: { hp: 69, attack: 55, defense: 45, sp_attack: 55, sp_defense: 55, speed: 15 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 59
+    experience_yield: 59,
+    ev_yields: {[PokemonStat.hp]: 1}
   },
   amoonguss: {
     id: 591,
@@ -6534,7 +7127,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.grass, PokemonCombatType.poison],
     stats: { hp: 114, attack: 85, defense: 70, sp_attack: 85, sp_defense: 80, speed: 30 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 162
+    experience_yield: 162,
+    ev_yields: {[PokemonStat.hp]: 2}
   },
   frillish: {
     id: 592,
@@ -6545,7 +7139,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.water, PokemonCombatType.ghost],
     stats: { hp: 55, attack: 40, defense: 50, sp_attack: 65, sp_defense: 85, speed: 40 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 67
+    experience_yield: 67,
+    ev_yields: {[PokemonStat.sp_def]: 1}
   },
   jellicent: {
     id: 593,
@@ -6556,7 +7151,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.water, PokemonCombatType.ghost],
     stats: { hp: 100, attack: 60, defense: 70, sp_attack: 85, sp_defense: 105, speed: 60 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 168
+    experience_yield: 168,
+    ev_yields: {[PokemonStat.sp_def]: 2}
   },
   alomomola: {
     id: 594,
@@ -6567,7 +7163,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.water],
     stats: { hp: 165, attack: 75, defense: 80, sp_attack: 40, sp_defense: 45, speed: 65 },
     experience_group: ExperienceGroup.fast,
-    experience_yield: 165
+    experience_yield: 165,
+    ev_yields: {[PokemonStat.hp]: 2}
   },
   joltik: {
     id: 595,
@@ -6578,7 +7175,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.bug, PokemonCombatType.electric],
     stats: { hp: 50, attack: 47, defense: 50, sp_attack: 57, sp_defense: 50, speed: 65 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 64
+    experience_yield: 64,
+    ev_yields: {[PokemonStat.speed]: 1}
   },
   galvantula: {
     id: 596,
@@ -6589,7 +7187,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.bug, PokemonCombatType.electric],
     stats: { hp: 70, attack: 77, defense: 60, sp_attack: 97, sp_defense: 60, speed: 108 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 165
+    experience_yield: 165,
+    ev_yields: {[PokemonStat.speed]: 2}
   },
   ferroseed: {
     id: 597,
@@ -6600,7 +7199,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.grass, PokemonCombatType.steel],
     stats: { hp: 44, attack: 50, defense: 91, sp_attack: 24, sp_defense: 86, speed: 10 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 61
+    experience_yield: 61,
+    ev_yields: {[PokemonStat.defense]: 1}
   },
   ferrothorn: {
     id: 598,
@@ -6611,7 +7211,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.grass, PokemonCombatType.steel],
     stats: { hp: 74, attack: 94, defense: 131, sp_attack: 54, sp_defense: 116, speed: 20 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 171
+    experience_yield: 171,
+    ev_yields: {[PokemonStat.defense]: 2}
   },
   klink: {
     id: 599,
@@ -6622,7 +7223,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.steel],
     stats: { hp: 40, attack: 55, defense: 70, sp_attack: 45, sp_defense: 60, speed: 30 },
     experience_group: ExperienceGroup.medium_slow,
-    experience_yield: 60
+    experience_yield: 60,
+    ev_yields: {[PokemonStat.defense]: 1}
   },
   klang: {
     id: 600,
@@ -6633,7 +7235,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.steel],
     stats: { hp: 60, attack: 80, defense: 95, sp_attack: 70, sp_defense: 85, speed: 50 },
     experience_group: ExperienceGroup.medium_slow,
-    experience_yield: 154
+    experience_yield: 154,
+    ev_yields: {[PokemonStat.defense]: 2}
   },
   klinklang: {
     id: 601,
@@ -6644,7 +7247,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.steel],
     stats: { hp: 60, attack: 100, defense: 115, sp_attack: 70, sp_defense: 85, speed: 90 },
     experience_group: ExperienceGroup.medium_slow,
-    experience_yield: 234
+    experience_yield: 234,
+    ev_yields: {[PokemonStat.defense]: 3}
   },
   tynamo: {
     id: 602,
@@ -6655,7 +7259,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.electric],
     stats: { hp: 35, attack: 55, defense: 40, sp_attack: 45, sp_defense: 40, speed: 60 },
     experience_group: ExperienceGroup.slow,
-    experience_yield: 55
+    experience_yield: 55,
+    ev_yields: {[PokemonStat.speed]: 1}
   },
   eelektrik: {
     id: 603,
@@ -6666,7 +7271,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.electric],
     stats: { hp: 65, attack: 85, defense: 70, sp_attack: 75, sp_defense: 70, speed: 40 },
     experience_group: ExperienceGroup.slow,
-    experience_yield: 142
+    experience_yield: 142,
+    ev_yields: {[PokemonStat.attack]: 2}
   },
   eelektross: {
     id: 604,
@@ -6677,7 +7283,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.electric],
     stats: { hp: 85, attack: 115, defense: 80, sp_attack: 105, sp_defense: 80, speed: 50 },
     experience_group: ExperienceGroup.slow,
-    experience_yield: 258
+    experience_yield: 258,
+    ev_yields: {[PokemonStat.attack]: 3}
   },
   elgyem: {
     id: 605,
@@ -6688,7 +7295,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.psychic],
     stats: { hp: 55, attack: 55, defense: 55, sp_attack: 85, sp_defense: 55, speed: 30 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 67
+    experience_yield: 67,
+    ev_yields: {[PokemonStat.sp_atk]: 1}
   },
   beheeyem: {
     id: 606,
@@ -6699,7 +7307,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.psychic],
     stats: { hp: 75, attack: 75, defense: 75, sp_attack: 125, sp_defense: 95, speed: 40 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 170
+    experience_yield: 170,
+    ev_yields: {[PokemonStat.sp_atk]: 2}
   },
   litwick: {
     id: 607,
@@ -6710,7 +7319,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.ghost, PokemonCombatType.fire],
     stats: { hp: 50, attack: 30, defense: 55, sp_attack: 65, sp_defense: 55, speed: 20 },
     experience_group: ExperienceGroup.medium_slow,
-    experience_yield: 55
+    experience_yield: 55,
+    ev_yields: {[PokemonStat.sp_atk]: 1}
   },
   lampent: {
     id: 608,
@@ -6721,7 +7331,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.ghost, PokemonCombatType.fire],
     stats: { hp: 60, attack: 40, defense: 60, sp_attack: 95, sp_defense: 60, speed: 55 },
     experience_group: ExperienceGroup.medium_slow,
-    experience_yield: 130
+    experience_yield: 130,
+    ev_yields: {[PokemonStat.sp_atk]: 2}
   },
   chandelure: {
     id: 609,
@@ -6732,7 +7343,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.ghost, PokemonCombatType.fire],
     stats: { hp: 60, attack: 55, defense: 90, sp_attack: 145, sp_defense: 90, speed: 80 },
     experience_group: ExperienceGroup.medium_slow,
-    experience_yield: 234
+    experience_yield: 234,
+    ev_yields: {[PokemonStat.sp_atk]: 3}
   },
   axew: {
     id: 610,
@@ -6743,7 +7355,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.dragon],
     stats: { hp: 46, attack: 87, defense: 60, sp_attack: 30, sp_defense: 40, speed: 57 },
     experience_group: ExperienceGroup.slow,
-    experience_yield: 64
+    experience_yield: 64,
+    ev_yields: {[PokemonStat.attack]: 1}
   },
   fraxure: {
     id: 611,
@@ -6754,7 +7367,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.dragon],
     stats: { hp: 66, attack: 117, defense: 70, sp_attack: 40, sp_defense: 50, speed: 67 },
     experience_group: ExperienceGroup.slow,
-    experience_yield: 144
+    experience_yield: 144,
+    ev_yields: {[PokemonStat.attack]: 2}
   },
   haxorus: {
     id: 612,
@@ -6765,7 +7379,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.dragon],
     stats: { hp: 76, attack: 147, defense: 90, sp_attack: 60, sp_defense: 70, speed: 97 },
     experience_group: ExperienceGroup.slow,
-    experience_yield: 270
+    experience_yield: 270,
+    ev_yields: {[PokemonStat.attack]: 3}
   },
   cubchoo: {
     id: 613,
@@ -6776,7 +7391,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.ice],
     stats: { hp: 55, attack: 70, defense: 40, sp_attack: 60, sp_defense: 40, speed: 40 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 61
+    experience_yield: 61,
+    ev_yields: {[PokemonStat.attack]: 1}
   },
   beartic: {
     id: 614,
@@ -6787,7 +7403,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.ice],
     stats: { hp: 95, attack: 130, defense: 80, sp_attack: 70, sp_defense: 80, speed: 50 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 177
+    experience_yield: 177,
+    ev_yields: {[PokemonStat.attack]: 2}
   },
   cryogonal: {
     id: 615,
@@ -6798,7 +7415,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.ice],
     stats: { hp: 80, attack: 50, defense: 50, sp_attack: 95, sp_defense: 135, speed: 105 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 180
+    experience_yield: 180,
+    ev_yields: {[PokemonStat.sp_def]: 2}
   },
   shelmet: {
     id: 616,
@@ -6809,7 +7427,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.bug],
     stats: { hp: 50, attack: 40, defense: 85, sp_attack: 40, sp_defense: 65, speed: 25 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 61
+    experience_yield: 61,
+    ev_yields: {[PokemonStat.defense]: 1}
   },
   accelgor: {
     id: 617,
@@ -6820,7 +7439,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.bug],
     stats: { hp: 80, attack: 70, defense: 40, sp_attack: 100, sp_defense: 60, speed: 145 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 173
+    experience_yield: 173,
+    ev_yields: {[PokemonStat.speed]: 2}
   },
   stunfisk: {
     id: 618,
@@ -6831,7 +7451,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.ground, PokemonCombatType.steel],
     stats: { hp: 109, attack: 81, defense: 99, sp_attack: 66, sp_defense: 84, speed: 32 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 165
+    experience_yield: 165,
+    ev_yields: {[PokemonStat.hp]: 2}
   },
   mienfoo: {
     id: 619,
@@ -6842,7 +7463,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.fighting],
     stats: { hp: 45, attack: 85, defense: 50, sp_attack: 55, sp_defense: 50, speed: 65 },
     experience_group: ExperienceGroup.medium_slow,
-    experience_yield: 70
+    experience_yield: 70,
+    ev_yields: {[PokemonStat.attack]: 1}
   },
   mienshao: {
     id: 620,
@@ -6853,7 +7475,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.fighting],
     stats: { hp: 65, attack: 125, defense: 60, sp_attack: 95, sp_defense: 60, speed: 105 },
     experience_group: ExperienceGroup.medium_slow,
-    experience_yield: 179
+    experience_yield: 179,
+    ev_yields: {[PokemonStat.attack]: 2}
   },
   druddigon: {
     id: 621,
@@ -6864,7 +7487,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.dragon],
     stats: { hp: 77, attack: 120, defense: 90, sp_attack: 60, sp_defense: 90, speed: 48 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 170
+    experience_yield: 170,
+    ev_yields: {[PokemonStat.attack]: 2}
   },
   golett: {
     id: 622,
@@ -6875,7 +7499,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.ground, PokemonCombatType.ghost],
     stats: { hp: 59, attack: 74, defense: 50, sp_attack: 35, sp_defense: 50, speed: 35 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 61
+    experience_yield: 61,
+    ev_yields: {[PokemonStat.attack]: 1}
   },
   golurk: {
     id: 623,
@@ -6886,7 +7511,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.ground, PokemonCombatType.ghost],
     stats: { hp: 89, attack: 124, defense: 80, sp_attack: 55, sp_defense: 80, speed: 55 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 169
+    experience_yield: 169,
+    ev_yields: {[PokemonStat.attack]: 2}
   },
   pawniard: {
     id: 624,
@@ -6897,7 +7523,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.dark, PokemonCombatType.steel],
     stats: { hp: 45, attack: 85, defense: 70, sp_attack: 40, sp_defense: 40, speed: 60 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 68
+    experience_yield: 68,
+    ev_yields: {[PokemonStat.attack]: 1}
   },
   bisharp: {
     id: 625,
@@ -6908,7 +7535,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.dark, PokemonCombatType.steel],
     stats: { hp: 65, attack: 125, defense: 100, sp_attack: 60, sp_defense: 70, speed: 70 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 172
+    experience_yield: 172,
+    ev_yields: {[PokemonStat.attack]: 2}
   },
   bouffalant: {
     id: 626,
@@ -6919,7 +7547,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.normal],
     stats: { hp: 95, attack: 110, defense: 95, sp_attack: 40, sp_defense: 95, speed: 55 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 172
+    experience_yield: 172,
+    ev_yields: {[PokemonStat.attack]: 2}
   },
   rufflet: {
     id: 627,
@@ -6930,7 +7559,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.normal, PokemonCombatType.flying],
     stats: { hp: 70, attack: 83, defense: 50, sp_attack: 37, sp_defense: 50, speed: 60 },
     experience_group: ExperienceGroup.slow,
-    experience_yield: 70
+    experience_yield: 70,
+    ev_yields: {[PokemonStat.attack]: 1}
   },
   braviary: {
     id: 628,
@@ -6941,7 +7571,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.psychic, PokemonCombatType.flying],
     stats: { hp: 110, attack: 83, defense: 70, sp_attack: 112, sp_defense: 70, speed: 65 },
     experience_group: ExperienceGroup.slow,
-    experience_yield: 179
+    experience_yield: 179,
+    ev_yields: {[PokemonStat.attack]: 2}
   },
   vullaby: {
     id: 629,
@@ -6952,7 +7583,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.dark, PokemonCombatType.flying],
     stats: { hp: 70, attack: 55, defense: 75, sp_attack: 45, sp_defense: 65, speed: 60 },
     experience_group: ExperienceGroup.slow,
-    experience_yield: 74
+    experience_yield: 74,
+    ev_yields: {[PokemonStat.defense]: 1}
   },
   mandibuzz: {
     id: 630,
@@ -6963,7 +7595,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.dark, PokemonCombatType.flying],
     stats: { hp: 110, attack: 65, defense: 105, sp_attack: 55, sp_defense: 95, speed: 80 },
     experience_group: ExperienceGroup.slow,
-    experience_yield: 179
+    experience_yield: 179,
+    ev_yields: {[PokemonStat.sp_atk]: 2}
   },
   heatmor: {
     id: 631,
@@ -6974,7 +7607,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.fire],
     stats: { hp: 85, attack: 97, defense: 66, sp_attack: 105, sp_defense: 66, speed: 65 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 169
+    experience_yield: 169,
+    ev_yields: {[PokemonStat.sp_atk]: 2}
   },
   durant: {
     id: 632,
@@ -6985,7 +7619,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.bug, PokemonCombatType.steel],
     stats: { hp: 58, attack: 109, defense: 112, sp_attack: 48, sp_defense: 48, speed: 109 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 169
+    experience_yield: 169,
+    ev_yields: {[PokemonStat.defense]: 2}
   },
   deino: {
     id: 633,
@@ -6996,7 +7631,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.dark, PokemonCombatType.dragon],
     stats: { hp: 52, attack: 65, defense: 50, sp_attack: 45, sp_defense: 50, speed: 38 },
     experience_group: ExperienceGroup.slow,
-    experience_yield: 60
+    experience_yield: 60,
+    ev_yields: {[PokemonStat.attack]: 1}
   },
   zweilous: {
     id: 634,
@@ -7007,7 +7643,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.dark, PokemonCombatType.dragon],
     stats: { hp: 72, attack: 85, defense: 70, sp_attack: 65, sp_defense: 70, speed: 58 },
     experience_group: ExperienceGroup.slow,
-    experience_yield: 147
+    experience_yield: 147,
+    ev_yields: {[PokemonStat.attack]: 2}
   },
   hydreigon: {
     id: 635,
@@ -7018,7 +7655,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.dark, PokemonCombatType.dragon],
     stats: { hp: 92, attack: 105, defense: 90, sp_attack: 125, sp_defense: 90, speed: 98 },
     experience_group: ExperienceGroup.slow,
-    experience_yield: 300
+    experience_yield: 300,
+    ev_yields: {[PokemonStat.sp_atk]: 3}
   },
   larvesta: {
     id: 636,
@@ -7029,7 +7667,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.bug, PokemonCombatType.fire],
     stats: { hp: 55, attack: 85, defense: 55, sp_attack: 50, sp_defense: 55, speed: 60 },
     experience_group: ExperienceGroup.slow,
-    experience_yield: 72
+    experience_yield: 72,
+    ev_yields: {[PokemonStat.attack]: 1}
   },
   volcarona: {
     id: 637,
@@ -7040,7 +7679,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.bug, PokemonCombatType.fire],
     stats: { hp: 85, attack: 60, defense: 65, sp_attack: 135, sp_defense: 105, speed: 100 },
     experience_group: ExperienceGroup.slow,
-    experience_yield: 275
+    experience_yield: 275,
+    ev_yields: {[PokemonStat.sp_atk]: 3}
   },
   cobalion: {
     id: 638,
@@ -7051,7 +7691,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.steel, PokemonCombatType.fighting],
     stats: { hp: 91, attack: 90, defense: 129, sp_attack: 90, sp_defense: 72, speed: 108 },
     experience_group: ExperienceGroup.slow,
-    experience_yield: 261
+    experience_yield: 261,
+    ev_yields: {[PokemonStat.defense]: 3}
   },
   terrakion: {
     id: 639,
@@ -7062,7 +7703,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.rock, PokemonCombatType.fighting],
     stats: { hp: 91, attack: 129, defense: 90, sp_attack: 72, sp_defense: 90, speed: 108 },
     experience_group: ExperienceGroup.slow,
-    experience_yield: 261
+    experience_yield: 261,
+    ev_yields: {[PokemonStat.attack]: 3}
   },
   virizion: {
     id: 640,
@@ -7073,7 +7715,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.grass, PokemonCombatType.fighting],
     stats: { hp: 91, attack: 90, defense: 72, sp_attack: 90, sp_defense: 129, speed: 108 },
     experience_group: ExperienceGroup.slow,
-    experience_yield: 261
+    experience_yield: 261,
+    ev_yields: {[PokemonStat.sp_def]: 3}
   },
   tornadus: {
     id: 641,
@@ -7084,7 +7727,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.flying],
     stats: { hp: 79, attack: 100, defense: 80, sp_attack: 110, sp_defense: 90, speed: 121 },
     experience_group: ExperienceGroup.slow,
-    experience_yield: 290
+    experience_yield: 290,
+    ev_yields: {[PokemonStat.attack]: 3}
   },
   thundurus: {
     id: 642,
@@ -7095,7 +7739,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.electric, PokemonCombatType.flying],
     stats: { hp: 79, attack: 105, defense: 70, sp_attack: 145, sp_defense: 80, speed: 101 },
     experience_group: ExperienceGroup.slow,
-    experience_yield: 290
+    experience_yield: 290,
+    ev_yields: {[PokemonStat.attack]: 3}
   },
   reshiram: {
     id: 643,
@@ -7106,7 +7751,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.dragon, PokemonCombatType.fire],
     stats: { hp: 100, attack: 120, defense: 100, sp_attack: 150, sp_defense: 120, speed: 90 },
     experience_group: ExperienceGroup.slow,
-    experience_yield: 306
+    experience_yield: 306,
+    ev_yields: {[PokemonStat.sp_atk]: 3}
   },
   zekrom: {
     id: 644,
@@ -7117,7 +7763,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.dragon, PokemonCombatType.electric],
     stats: { hp: 100, attack: 150, defense: 120, sp_attack: 120, sp_defense: 100, speed: 90 },
     experience_group: ExperienceGroup.slow,
-    experience_yield: 306
+    experience_yield: 306,
+    ev_yields: {[PokemonStat.attack]: 3}
   },
   landorus: {
     id: 645,
@@ -7128,7 +7775,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.ground, PokemonCombatType.flying],
     stats: { hp: 89, attack: 145, defense: 90, sp_attack: 105, sp_defense: 80, speed: 91 },
     experience_group: ExperienceGroup.slow,
-    experience_yield: 300
+    experience_yield: 300,
+    ev_yields: {[PokemonStat.sp_atk]: 3}
   },
   kyurem: {
     id: 646,
@@ -7139,7 +7787,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.dragon, PokemonCombatType.ice],
     stats: { hp: 125, attack: 170, defense: 100, sp_attack: 120, sp_defense: 90, speed: 95 },
     experience_group: ExperienceGroup.slow,
-    experience_yield: 297
+    experience_yield: 297,
+    ev_yields: {[PokemonStat.hp]: 1}
   },
   keldeo: {
     id: 647,
@@ -7150,7 +7799,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.water, PokemonCombatType.fighting],
     stats: { hp: 91, attack: 72, defense: 90, sp_attack: 129, sp_defense: 90, speed: 108 },
     experience_group: ExperienceGroup.slow,
-    experience_yield: 261
+    experience_yield: 261,
+    ev_yields: {[PokemonStat.sp_atk]: 3}
   },
   meloetta: {
     id: 648,
@@ -7161,7 +7811,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.normal, PokemonCombatType.fighting],
     stats: { hp: 100, attack: 128, defense: 90, sp_attack: 77, sp_defense: 77, speed: 128 },
     experience_group: ExperienceGroup.slow,
-    experience_yield: 300
+    experience_yield: 300,
+    ev_yields: {[PokemonStat.sp_atk]: 1}
   },
   genesect: {
     id: 649,
@@ -7172,7 +7823,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.bug, PokemonCombatType.steel],
     stats: { hp: 71, attack: 120, defense: 95, sp_attack: 120, sp_defense: 95, speed: 99 },
     experience_group: ExperienceGroup.slow,
-    experience_yield: 270
+    experience_yield: 270,
+    ev_yields: {[PokemonStat.attack]: 1}
   },
   chespin: {
     id: 650,
@@ -7183,7 +7835,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.grass],
     stats: { hp: 56, attack: 61, defense: 65, sp_attack: 48, sp_defense: 45, speed: 38 },
     experience_group: ExperienceGroup.medium_slow,
-    experience_yield: 63
+    experience_yield: 63,
+    ev_yields: {[PokemonStat.defense]: 1}
   },
   quilladin: {
     id: 651,
@@ -7194,7 +7847,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.grass],
     stats: { hp: 61, attack: 78, defense: 95, sp_attack: 56, sp_defense: 58, speed: 57 },
     experience_group: ExperienceGroup.medium_slow,
-    experience_yield: 142
+    experience_yield: 142,
+    ev_yields: {[PokemonStat.defense]: 2}
   },
   chesnaught: {
     id: 652,
@@ -7205,7 +7859,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.grass, PokemonCombatType.fighting],
     stats: { hp: 88, attack: 107, defense: 122, sp_attack: 74, sp_defense: 75, speed: 64 },
     experience_group: ExperienceGroup.medium_slow,
-    experience_yield: 265
+    experience_yield: 265,
+    ev_yields: {[PokemonStat.defense]: 3}
   },
   fennekin: {
     id: 653,
@@ -7216,7 +7871,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.fire],
     stats: { hp: 40, attack: 45, defense: 40, sp_attack: 62, sp_defense: 60, speed: 60 },
     experience_group: ExperienceGroup.medium_slow,
-    experience_yield: 61
+    experience_yield: 61,
+    ev_yields: {[PokemonStat.sp_atk]: 1}
   },
   braixen: {
     id: 654,
@@ -7227,7 +7883,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.fire],
     stats: { hp: 59, attack: 59, defense: 58, sp_attack: 90, sp_defense: 70, speed: 73 },
     experience_group: ExperienceGroup.medium_slow,
-    experience_yield: 143
+    experience_yield: 143,
+    ev_yields: {[PokemonStat.sp_atk]: 2}
   },
   delphox: {
     id: 655,
@@ -7238,7 +7895,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.fire, PokemonCombatType.psychic],
     stats: { hp: 75, attack: 69, defense: 72, sp_attack: 114, sp_defense: 100, speed: 104 },
     experience_group: ExperienceGroup.medium_slow,
-    experience_yield: 267
+    experience_yield: 267,
+    ev_yields: {[PokemonStat.sp_atk]: 3}
   },
   froakie: {
     id: 656,
@@ -7249,7 +7907,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.water],
     stats: { hp: 41, attack: 56, defense: 40, sp_attack: 62, sp_defense: 44, speed: 71 },
     experience_group: ExperienceGroup.medium_slow,
-    experience_yield: 63
+    experience_yield: 63,
+    ev_yields: {[PokemonStat.speed]: 1}
   },
   frogadier: {
     id: 657,
@@ -7260,7 +7919,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.water],
     stats: { hp: 54, attack: 63, defense: 52, sp_attack: 83, sp_defense: 56, speed: 97 },
     experience_group: ExperienceGroup.medium_slow,
-    experience_yield: 142
+    experience_yield: 142,
+    ev_yields: {[PokemonStat.speed]: 2}
   },
   greninja: {
     id: 658,
@@ -7271,7 +7931,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.water, PokemonCombatType.dark],
     stats: { hp: 72, attack: 145, defense: 67, sp_attack: 153, sp_defense: 71, speed: 132 },
     experience_group: ExperienceGroup.medium_slow,
-    experience_yield: 265
+    experience_yield: 265,
+    ev_yields: {[PokemonStat.speed]: 3}
   },
   bunnelby: {
     id: 659,
@@ -7282,7 +7943,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.normal],
     stats: { hp: 38, attack: 36, defense: 38, sp_attack: 32, sp_defense: 36, speed: 57 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 47
+    experience_yield: 47,
+    ev_yields: {[PokemonStat.speed]: 1}
   },
   diggersby: {
     id: 660,
@@ -7293,7 +7955,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.normal, PokemonCombatType.ground],
     stats: { hp: 85, attack: 56, defense: 77, sp_attack: 50, sp_defense: 77, speed: 78 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 148
+    experience_yield: 148,
+    ev_yields: {[PokemonStat.hp]: 2}
   },
   fletchling: {
     id: 661,
@@ -7304,7 +7967,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.normal, PokemonCombatType.flying],
     stats: { hp: 45, attack: 50, defense: 43, sp_attack: 40, sp_defense: 38, speed: 62 },
     experience_group: ExperienceGroup.medium_slow,
-    experience_yield: 56
+    experience_yield: 56,
+    ev_yields: {[PokemonStat.speed]: 1}
   },
   fletchinder: {
     id: 662,
@@ -7315,7 +7979,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.fire, PokemonCombatType.flying],
     stats: { hp: 62, attack: 73, defense: 55, sp_attack: 56, sp_defense: 52, speed: 84 },
     experience_group: ExperienceGroup.medium_slow,
-    experience_yield: 134
+    experience_yield: 134,
+    ev_yields: {[PokemonStat.speed]: 2}
   },
   talonflame: {
     id: 663,
@@ -7326,7 +7991,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.fire, PokemonCombatType.flying],
     stats: { hp: 78, attack: 81, defense: 71, sp_attack: 74, sp_defense: 69, speed: 126 },
     experience_group: ExperienceGroup.medium_slow,
-    experience_yield: 175
+    experience_yield: 175,
+    ev_yields: {[PokemonStat.speed]: 3}
   },
   scatterbug: {
     id: 664,
@@ -7337,7 +8003,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.bug],
     stats: { hp: 38, attack: 35, defense: 40, sp_attack: 27, sp_defense: 25, speed: 35 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 40
+    experience_yield: 40,
+    ev_yields: {[PokemonStat.defense]: 1}
   },
   spewpa: {
     id: 665,
@@ -7348,7 +8015,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.bug],
     stats: { hp: 45, attack: 22, defense: 60, sp_attack: 27, sp_defense: 30, speed: 29 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 75
+    experience_yield: 75,
+    ev_yields: {[PokemonStat.defense]: 2}
   },
   vivillon: {
     id: 666,
@@ -7359,7 +8027,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.bug, PokemonCombatType.flying],
     stats: { hp: 80, attack: 52, defense: 50, sp_attack: 90, sp_defense: 50, speed: 89 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 206
+    experience_yield: 206,
+    ev_yields: {[PokemonStat.hp]: 1}
   },
   litleo: {
     id: 667,
@@ -7370,7 +8039,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.fire, PokemonCombatType.normal],
     stats: { hp: 62, attack: 50, defense: 58, sp_attack: 73, sp_defense: 54, speed: 72 },
     experience_group: ExperienceGroup.medium_slow,
-    experience_yield: 74
+    experience_yield: 74,
+    ev_yields: {[PokemonStat.sp_atk]: 1}
   },
   pyroar: {
     id: 668,
@@ -7381,7 +8051,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.fire, PokemonCombatType.normal],
     stats: { hp: 86, attack: 68, defense: 72, sp_attack: 109, sp_defense: 66, speed: 106 },
     experience_group: ExperienceGroup.medium_slow,
-    experience_yield: 177
+    experience_yield: 177,
+    ev_yields: {[PokemonStat.sp_atk]: 2}
   },
   flabebe: {
     id: 669,
@@ -7392,7 +8063,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.fairy],
     stats: { hp: 44, attack: 38, defense: 39, sp_attack: 61, sp_defense: 79, speed: 42 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 61
+    experience_yield: 61,
+    ev_yields: {[PokemonStat.sp_def]: 1}
   },
   floette: {
     id: 670,
@@ -7403,7 +8075,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.fairy],
     stats: { hp: 54, attack: 45, defense: 47, sp_attack: 75, sp_defense: 98, speed: 52 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 130
+    experience_yield: 130,
+    ev_yields: {[PokemonStat.sp_def]: 2}
   },
   florges: {
     id: 671,
@@ -7414,7 +8087,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.fairy],
     stats: { hp: 78, attack: 65, defense: 68, sp_attack: 112, sp_defense: 154, speed: 75 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 276
+    experience_yield: 276,
+    ev_yields: {[PokemonStat.sp_def]: 3}
   },
   skiddo: {
     id: 672,
@@ -7425,7 +8099,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.grass],
     stats: { hp: 66, attack: 65, defense: 48, sp_attack: 62, sp_defense: 57, speed: 52 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 70
+    experience_yield: 70,
+    ev_yields: {[PokemonStat.hp]: 1}
   },
   gogoat: {
     id: 673,
@@ -7436,7 +8111,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.grass],
     stats: { hp: 123, attack: 100, defense: 62, sp_attack: 97, sp_defense: 81, speed: 68 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 186
+    experience_yield: 186,
+    ev_yields: {[PokemonStat.hp]: 2}
   },
   pancham: {
     id: 674,
@@ -7447,7 +8123,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.fighting],
     stats: { hp: 67, attack: 82, defense: 62, sp_attack: 46, sp_defense: 48, speed: 43 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 70
+    experience_yield: 70,
+    ev_yields: {[PokemonStat.attack]: 1}
   },
   pangoro: {
     id: 675,
@@ -7458,7 +8135,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.fighting, PokemonCombatType.dark],
     stats: { hp: 95, attack: 124, defense: 78, sp_attack: 69, sp_defense: 71, speed: 58 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 173
+    experience_yield: 173,
+    ev_yields: {[PokemonStat.attack]: 2}
   },
   furfrou: {
     id: 676,
@@ -7469,7 +8147,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.normal],
     stats: { hp: 75, attack: 80, defense: 60, sp_attack: 65, sp_defense: 90, speed: 102 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 165
+    experience_yield: 165,
+    ev_yields: {[PokemonStat.speed]: 1}
   },
   espurr: {
     id: 677,
@@ -7480,7 +8159,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.psychic],
     stats: { hp: 62, attack: 48, defense: 54, sp_attack: 63, sp_defense: 60, speed: 68 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 71
+    experience_yield: 71,
+    ev_yields: {[PokemonStat.speed]: 1}
   },
   meowstic: {
     id: 678,
@@ -7491,7 +8171,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.psychic],
     stats: { hp: 74, attack: 48, defense: 76, sp_attack: 83, sp_defense: 81, speed: 104 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 163
+    experience_yield: 163,
+    ev_yields: {[PokemonStat.speed]: 2}
   },
   honedge: {
     id: 679,
@@ -7502,7 +8183,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.steel, PokemonCombatType.ghost],
     stats: { hp: 45, attack: 80, defense: 100, sp_attack: 35, sp_defense: 37, speed: 28 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 65
+    experience_yield: 65,
+    ev_yields: {[PokemonStat.defense]: 1}
   },
   doublade: {
     id: 680,
@@ -7513,7 +8195,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.steel, PokemonCombatType.ghost],
     stats: { hp: 59, attack: 110, defense: 150, sp_attack: 45, sp_defense: 49, speed: 35 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 157
+    experience_yield: 157,
+    ev_yields: {[PokemonStat.defense]: 2}
   },
   aegislash: {
     id: 681,
@@ -7524,7 +8207,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.steel, PokemonCombatType.ghost],
     stats: { hp: 60, attack: 140, defense: 50, sp_attack: 140, sp_defense: 50, speed: 60 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 234
+    experience_yield: 234,
+    ev_yields: {[PokemonStat.defense]: 2}
   },
   spritzee: {
     id: 682,
@@ -7535,7 +8219,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.fairy],
     stats: { hp: 78, attack: 52, defense: 60, sp_attack: 63, sp_defense: 65, speed: 23 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 68
+    experience_yield: 68,
+    ev_yields: {[PokemonStat.hp]: 1}
   },
   aromatisse: {
     id: 683,
@@ -7546,7 +8231,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.fairy],
     stats: { hp: 101, attack: 72, defense: 72, sp_attack: 99, sp_defense: 89, speed: 29 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 162
+    experience_yield: 162,
+    ev_yields: {[PokemonStat.hp]: 2}
   },
   swirlix: {
     id: 684,
@@ -7557,7 +8243,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.fairy],
     stats: { hp: 62, attack: 48, defense: 66, sp_attack: 59, sp_defense: 57, speed: 49 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 68
+    experience_yield: 68,
+    ev_yields: {[PokemonStat.defense]: 1}
   },
   slurpuff: {
     id: 685,
@@ -7568,7 +8255,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.fairy],
     stats: { hp: 82, attack: 80, defense: 86, sp_attack: 85, sp_defense: 75, speed: 72 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 168
+    experience_yield: 168,
+    ev_yields: {[PokemonStat.defense]: 2}
   },
   inkay: {
     id: 686,
@@ -7579,7 +8267,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.dark, PokemonCombatType.psychic],
     stats: { hp: 53, attack: 54, defense: 53, sp_attack: 37, sp_defense: 46, speed: 45 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 58
+    experience_yield: 58,
+    ev_yields: {[PokemonStat.attack]: 1}
   },
   malamar: {
     id: 687,
@@ -7590,7 +8279,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.dark, PokemonCombatType.psychic],
     stats: { hp: 86, attack: 102, defense: 88, sp_attack: 98, sp_defense: 120, speed: 88 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 169
+    experience_yield: 169,
+    ev_yields: {[PokemonStat.attack]: 2}
   },
   binacle: {
     id: 688,
@@ -7601,7 +8291,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.rock, PokemonCombatType.water],
     stats: { hp: 42, attack: 52, defense: 67, sp_attack: 39, sp_defense: 56, speed: 50 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 61
+    experience_yield: 61,
+    ev_yields: {[PokemonStat.attack]: 1}
   },
   barbaracle: {
     id: 689,
@@ -7612,7 +8303,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.rock, PokemonCombatType.water],
     stats: { hp: 72, attack: 105, defense: 115, sp_attack: 54, sp_defense: 86, speed: 68 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 175
+    experience_yield: 175,
+    ev_yields: {[PokemonStat.attack]: 2}
   },
   skrelp: {
     id: 690,
@@ -7623,7 +8315,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.poison, PokemonCombatType.water],
     stats: { hp: 50, attack: 60, defense: 60, sp_attack: 60, sp_defense: 60, speed: 30 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 64
+    experience_yield: 64,
+    ev_yields: {[PokemonStat.sp_def]: 1}
   },
   dragalge: {
     id: 691,
@@ -7634,7 +8327,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.poison, PokemonCombatType.dragon],
     stats: { hp: 65, attack: 75, defense: 90, sp_attack: 97, sp_defense: 123, speed: 44 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 173
+    experience_yield: 173,
+    ev_yields: {[PokemonStat.sp_def]: 2}
   },
   clauncher: {
     id: 692,
@@ -7645,7 +8339,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.water],
     stats: { hp: 50, attack: 53, defense: 62, sp_attack: 58, sp_defense: 63, speed: 44 },
     experience_group: ExperienceGroup.slow,
-    experience_yield: 66
+    experience_yield: 66,
+    ev_yields: {[PokemonStat.sp_atk]: 1}
   },
   clawitzer: {
     id: 693,
@@ -7656,7 +8351,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.water],
     stats: { hp: 71, attack: 73, defense: 88, sp_attack: 120, sp_defense: 89, speed: 59 },
     experience_group: ExperienceGroup.slow,
-    experience_yield: 100
+    experience_yield: 100,
+    ev_yields: {[PokemonStat.sp_atk]: 2}
   },
   helioptile: {
     id: 694,
@@ -7667,7 +8363,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.electric, PokemonCombatType.normal],
     stats: { hp: 44, attack: 38, defense: 33, sp_attack: 61, sp_defense: 43, speed: 70 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 58
+    experience_yield: 58,
+    ev_yields: {[PokemonStat.speed]: 1}
   },
   heliolisk: {
     id: 695,
@@ -7678,7 +8375,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.electric, PokemonCombatType.normal],
     stats: { hp: 62, attack: 55, defense: 52, sp_attack: 109, sp_defense: 94, speed: 109 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 168
+    experience_yield: 168,
+    ev_yields: {[PokemonStat.sp_atk]: 1}
   },
   tyrunt: {
     id: 696,
@@ -7689,7 +8387,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.rock, PokemonCombatType.dragon],
     stats: { hp: 58, attack: 89, defense: 77, sp_attack: 45, sp_defense: 45, speed: 48 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 72
+    experience_yield: 72,
+    ev_yields: {[PokemonStat.attack]: 1}
   },
   tyrantrum: {
     id: 697,
@@ -7700,7 +8399,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.rock, PokemonCombatType.dragon],
     stats: { hp: 82, attack: 121, defense: 119, sp_attack: 69, sp_defense: 59, speed: 71 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 182
+    experience_yield: 182,
+    ev_yields: {[PokemonStat.attack]: 2}
   },
   amaura: {
     id: 698,
@@ -7711,7 +8411,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.rock, PokemonCombatType.ice],
     stats: { hp: 77, attack: 59, defense: 50, sp_attack: 67, sp_defense: 63, speed: 46 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 72
+    experience_yield: 72,
+    ev_yields: {[PokemonStat.hp]: 1}
   },
   aurorus: {
     id: 699,
@@ -7722,7 +8423,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.rock, PokemonCombatType.ice],
     stats: { hp: 123, attack: 77, defense: 72, sp_attack: 99, sp_defense: 92, speed: 58 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 104
+    experience_yield: 104,
+    ev_yields: {[PokemonStat.hp]: 2}
   },
   sylveon: {
     id: 700,
@@ -7733,7 +8435,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.fairy],
     stats: { hp: 95, attack: 65, defense: 65, sp_attack: 110, sp_defense: 130, speed: 60 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 184
+    experience_yield: 184,
+    ev_yields: {[PokemonStat.sp_def]: 2}
   },
   hawlucha: {
     id: 701,
@@ -7744,7 +8447,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.fighting, PokemonCombatType.flying],
     stats: { hp: 78, attack: 137, defense: 100, sp_attack: 74, sp_defense: 93, speed: 118 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 175
+    experience_yield: 175,
+    ev_yields: {[PokemonStat.attack]: 2}
   },
   dedenne: {
     id: 702,
@@ -7755,7 +8459,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.electric, PokemonCombatType.fairy],
     stats: { hp: 67, attack: 58, defense: 57, sp_attack: 81, sp_defense: 67, speed: 101 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 151
+    experience_yield: 151,
+    ev_yields: {[PokemonStat.speed]: 2}
   },
   carbink: {
     id: 703,
@@ -7766,7 +8471,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.rock, PokemonCombatType.fairy],
     stats: { hp: 50, attack: 50, defense: 150, sp_attack: 50, sp_defense: 150, speed: 50 },
     experience_group: ExperienceGroup.slow,
-    experience_yield: 100
+    experience_yield: 100,
+    ev_yields: {[PokemonStat.defense]: 1}
   },
   goomy: {
     id: 704,
@@ -7777,7 +8483,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.dragon],
     stats: { hp: 45, attack: 50, defense: 35, sp_attack: 55, sp_defense: 75, speed: 40 },
     experience_group: ExperienceGroup.slow,
-    experience_yield: 60
+    experience_yield: 60,
+    ev_yields: {[PokemonStat.sp_def]: 1}
   },
   sliggoo: {
     id: 705,
@@ -7788,7 +8495,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.steel, PokemonCombatType.dragon],
     stats: { hp: 58, attack: 75, defense: 83, sp_attack: 83, sp_defense: 113, speed: 40 },
     experience_group: ExperienceGroup.slow,
-    experience_yield: 158
+    experience_yield: 158,
+    ev_yields: {[PokemonStat.sp_def]: 2}
   },
   goodra: {
     id: 706,
@@ -7799,7 +8507,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.steel, PokemonCombatType.dragon],
     stats: { hp: 80, attack: 100, defense: 100, sp_attack: 110, sp_defense: 150, speed: 60 },
     experience_group: ExperienceGroup.slow,
-    experience_yield: 300
+    experience_yield: 300,
+    ev_yields: {[PokemonStat.sp_def]: 3}
   },
   klefki: {
     id: 707,
@@ -7810,7 +8519,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.steel, PokemonCombatType.fairy],
     stats: { hp: 57, attack: 80, defense: 91, sp_attack: 80, sp_defense: 87, speed: 75 },
     experience_group: ExperienceGroup.fast,
-    experience_yield: 165
+    experience_yield: 165,
+    ev_yields: {[PokemonStat.defense]: 1}
   },
   phantump: {
     id: 708,
@@ -7821,7 +8531,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.ghost, PokemonCombatType.grass],
     stats: { hp: 43, attack: 70, defense: 48, sp_attack: 50, sp_defense: 60, speed: 38 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 62
+    experience_yield: 62,
+    ev_yields: {[PokemonStat.attack]: 1}
   },
   trevenant: {
     id: 709,
@@ -7832,7 +8543,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.ghost, PokemonCombatType.grass],
     stats: { hp: 85, attack: 110, defense: 76, sp_attack: 65, sp_defense: 82, speed: 56 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 166
+    experience_yield: 166,
+    ev_yields: {[PokemonStat.attack]: 2}
   },
   pumpkaboo: {
     id: 710,
@@ -7843,7 +8555,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.ghost, PokemonCombatType.grass],
     stats: { hp: 59, attack: 66, defense: 70, sp_attack: 44, sp_defense: 55, speed: 41 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 67
+    experience_yield: 67,
+    ev_yields: {[PokemonStat.defense]: 1}
   },
   gourgeist: {
     id: 711,
@@ -7854,7 +8567,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.ghost, PokemonCombatType.grass],
     stats: { hp: 85, attack: 100, defense: 122, sp_attack: 58, sp_defense: 75, speed: 54 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 173
+    experience_yield: 173,
+    ev_yields: {[PokemonStat.defense]: 2}
   },
   bergmite: {
     id: 712,
@@ -7865,7 +8579,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.ice],
     stats: { hp: 55, attack: 69, defense: 85, sp_attack: 32, sp_defense: 35, speed: 28 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 61
+    experience_yield: 61,
+    ev_yields: {[PokemonStat.defense]: 1}
   },
   avalugg: {
     id: 713,
@@ -7876,7 +8591,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.ice, PokemonCombatType.rock],
     stats: { hp: 95, attack: 127, defense: 184, sp_attack: 34, sp_defense: 36, speed: 38 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 180
+    experience_yield: 180,
+    ev_yields: {[PokemonStat.defense]: 2}
   },
   noibat: {
     id: 714,
@@ -7887,7 +8603,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.flying, PokemonCombatType.dragon],
     stats: { hp: 40, attack: 30, defense: 35, sp_attack: 45, sp_defense: 40, speed: 55 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 49
+    experience_yield: 49,
+    ev_yields: {[PokemonStat.speed]: 1}
   },
   noivern: {
     id: 715,
@@ -7898,7 +8615,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.flying, PokemonCombatType.dragon],
     stats: { hp: 85, attack: 70, defense: 80, sp_attack: 97, sp_defense: 80, speed: 123 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 187
+    experience_yield: 187,
+    ev_yields: {[PokemonStat.speed]: 2}
   },
   xerneas: {
     id: 716,
@@ -7909,7 +8627,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.fairy],
     stats: { hp: 126, attack: 131, defense: 95, sp_attack: 131, sp_defense: 98, speed: 99 },
     experience_group: ExperienceGroup.slow,
-    experience_yield: 306
+    experience_yield: 306,
+    ev_yields: {[PokemonStat.hp]: 3}
   },
   yveltal: {
     id: 717,
@@ -7920,7 +8639,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.dark, PokemonCombatType.flying],
     stats: { hp: 126, attack: 131, defense: 95, sp_attack: 131, sp_defense: 98, speed: 99 },
     experience_group: ExperienceGroup.slow,
-    experience_yield: 306
+    experience_yield: 306,
+    ev_yields: {[PokemonStat.hp]: 3}
   },
   zygarde: {
     id: 718,
@@ -7931,7 +8651,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.dragon, PokemonCombatType.ground],
     stats: { hp: 216, attack: 100, defense: 121, sp_attack: 91, sp_defense: 95, speed: 85 },
     experience_group: ExperienceGroup.slow,
-    experience_yield: 270
+    experience_yield: 270,
+    ev_yields: {[PokemonStat.hp]: 3}
   },
   diancie: {
     id: 719,
@@ -7942,7 +8663,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.rock, PokemonCombatType.fairy],
     stats: { hp: 50, attack: 160, defense: 110, sp_attack: 160, sp_defense: 110, speed: 110 },
     experience_group: ExperienceGroup.slow,
-    experience_yield: 300
+    experience_yield: 300,
+    ev_yields: {[PokemonStat.defense]: 1}
   },
   hoopa: {
     id: 720,
@@ -7953,7 +8675,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.psychic, PokemonCombatType.dark],
     stats: { hp: 80, attack: 160, defense: 60, sp_attack: 170, sp_defense: 130, speed: 80 },
     experience_group: ExperienceGroup.slow,
-    experience_yield: 300
+    experience_yield: 300,
+    ev_yields: {[PokemonStat.sp_atk]: 3}
   },
   volcanion: {
     id: 721,
@@ -7964,7 +8687,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.fire, PokemonCombatType.water],
     stats: { hp: 80, attack: 110, defense: 120, sp_attack: 130, sp_defense: 90, speed: 70 },
     experience_group: ExperienceGroup.slow,
-    experience_yield: 300
+    experience_yield: 300,
+    ev_yields: {[PokemonStat.sp_atk]: 3}
   },
   rowlet: {
     id: 722,
@@ -7975,7 +8699,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.grass, PokemonCombatType.flying],
     stats: { hp: 68, attack: 55, defense: 55, sp_attack: 50, sp_defense: 50, speed: 42 },
     experience_group: ExperienceGroup.medium_slow,
-    experience_yield: 64
+    experience_yield: 64,
+    ev_yields: {[PokemonStat.hp]: 1}
   },
   dartrix: {
     id: 723,
@@ -7986,7 +8711,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.grass, PokemonCombatType.flying],
     stats: { hp: 78, attack: 75, defense: 75, sp_attack: 70, sp_defense: 70, speed: 52 },
     experience_group: ExperienceGroup.medium_slow,
-    experience_yield: 147
+    experience_yield: 147,
+    ev_yields: {[PokemonStat.hp]: 2}
   },
   decidueye: {
     id: 724,
@@ -7997,7 +8723,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.grass, PokemonCombatType.fighting],
     stats: { hp: 88, attack: 112, defense: 80, sp_attack: 95, sp_defense: 95, speed: 60 },
     experience_group: ExperienceGroup.medium_slow,
-    experience_yield: 265
+    experience_yield: 265,
+    ev_yields: {[PokemonStat.attack]: 3}
   },
   litten: {
     id: 725,
@@ -8008,7 +8735,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.fire],
     stats: { hp: 45, attack: 65, defense: 40, sp_attack: 60, sp_defense: 40, speed: 70 },
     experience_group: ExperienceGroup.medium_slow,
-    experience_yield: 64
+    experience_yield: 64,
+    ev_yields: {[PokemonStat.speed]: 1}
   },
   torracat: {
     id: 726,
@@ -8019,7 +8747,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.fire],
     stats: { hp: 65, attack: 85, defense: 50, sp_attack: 80, sp_defense: 50, speed: 90 },
     experience_group: ExperienceGroup.medium_slow,
-    experience_yield: 147
+    experience_yield: 147,
+    ev_yields: {[PokemonStat.speed]: 2}
   },
   incineroar: {
     id: 727,
@@ -8030,7 +8759,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.fire, PokemonCombatType.dark],
     stats: { hp: 95, attack: 115, defense: 90, sp_attack: 80, sp_defense: 90, speed: 60 },
     experience_group: ExperienceGroup.medium_slow,
-    experience_yield: 239
+    experience_yield: 239,
+    ev_yields: {[PokemonStat.attack]: 3}
   },
   popplio: {
     id: 728,
@@ -8041,7 +8771,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.water],
     stats: { hp: 50, attack: 54, defense: 54, sp_attack: 66, sp_defense: 56, speed: 40 },
     experience_group: ExperienceGroup.medium_slow,
-    experience_yield: 64
+    experience_yield: 64,
+    ev_yields: {[PokemonStat.sp_atk]: 1}
   },
   brionne: {
     id: 729,
@@ -8052,7 +8783,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.water],
     stats: { hp: 60, attack: 69, defense: 69, sp_attack: 91, sp_defense: 81, speed: 50 },
     experience_group: ExperienceGroup.medium_slow,
-    experience_yield: 147
+    experience_yield: 147,
+    ev_yields: {[PokemonStat.sp_atk]: 2}
   },
   primarina: {
     id: 730,
@@ -8063,7 +8795,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.water, PokemonCombatType.fairy],
     stats: { hp: 80, attack: 74, defense: 74, sp_attack: 126, sp_defense: 116, speed: 60 },
     experience_group: ExperienceGroup.medium_slow,
-    experience_yield: 239
+    experience_yield: 239,
+    ev_yields: {[PokemonStat.sp_atk]: 3}
   },
   pikipek: {
     id: 731,
@@ -8074,7 +8807,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.normal, PokemonCombatType.flying],
     stats: { hp: 35, attack: 75, defense: 30, sp_attack: 30, sp_defense: 30, speed: 65 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 53
+    experience_yield: 53,
+    ev_yields: {[PokemonStat.attack]: 1}
   },
   trumbeak: {
     id: 732,
@@ -8085,7 +8819,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.normal, PokemonCombatType.flying],
     stats: { hp: 55, attack: 85, defense: 50, sp_attack: 40, sp_defense: 50, speed: 75 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 124
+    experience_yield: 124,
+    ev_yields: {[PokemonStat.attack]: 2}
   },
   toucannon: {
     id: 733,
@@ -8096,7 +8831,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.normal, PokemonCombatType.flying],
     stats: { hp: 80, attack: 120, defense: 75, sp_attack: 75, sp_defense: 75, speed: 60 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 218
+    experience_yield: 218,
+    ev_yields: {[PokemonStat.attack]: 3}
   },
   yungoos: {
     id: 734,
@@ -8107,7 +8843,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.normal],
     stats: { hp: 48, attack: 70, defense: 30, sp_attack: 30, sp_defense: 30, speed: 45 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 51
+    experience_yield: 51,
+    ev_yields: {[PokemonStat.attack]: 1}
   },
   gumshoos: {
     id: 735,
@@ -8118,7 +8855,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.normal],
     stats: { hp: 88, attack: 110, defense: 60, sp_attack: 55, sp_defense: 60, speed: 45 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 146
+    experience_yield: 146,
+    ev_yields: {[PokemonStat.attack]: 2}
   },
   grubbin: {
     id: 736,
@@ -8129,7 +8867,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.bug],
     stats: { hp: 47, attack: 62, defense: 45, sp_attack: 55, sp_defense: 45, speed: 46 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 60
+    experience_yield: 60,
+    ev_yields: {[PokemonStat.attack]: 1}
   },
   charjabug: {
     id: 737,
@@ -8140,7 +8879,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.bug, PokemonCombatType.electric],
     stats: { hp: 57, attack: 82, defense: 95, sp_attack: 55, sp_defense: 75, speed: 36 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 140
+    experience_yield: 140,
+    ev_yields: {[PokemonStat.defense]: 2}
   },
   vikavolt: {
     id: 738,
@@ -8151,7 +8891,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.bug, PokemonCombatType.electric],
     stats: { hp: 77, attack: 70, defense: 90, sp_attack: 145, sp_defense: 75, speed: 43 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 225
+    experience_yield: 225,
+    ev_yields: {[PokemonStat.sp_atk]: 3}
   },
   crabrawler: {
     id: 739,
@@ -8162,7 +8903,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.fighting],
     stats: { hp: 47, attack: 82, defense: 57, sp_attack: 42, sp_defense: 47, speed: 63 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 68
+    experience_yield: 68,
+    ev_yields: {[PokemonStat.attack]: 1}
   },
   crabominable: {
     id: 740,
@@ -8173,7 +8915,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.fighting, PokemonCombatType.ice],
     stats: { hp: 97, attack: 132, defense: 77, sp_attack: 62, sp_defense: 67, speed: 43 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 167
+    experience_yield: 167,
+    ev_yields: {[PokemonStat.attack]: 2}
   },
   oricorio: {
     id: 741,
@@ -8184,7 +8927,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.ghost, PokemonCombatType.flying],
     stats: { hp: 75, attack: 70, defense: 70, sp_attack: 98, sp_defense: 70, speed: 93 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 167
+    experience_yield: 167,
+    ev_yields: {[PokemonStat.sp_atk]: 2}
   },
   cutiefly: {
     id: 742,
@@ -8195,7 +8939,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.bug, PokemonCombatType.fairy],
     stats: { hp: 40, attack: 45, defense: 40, sp_attack: 55, sp_defense: 40, speed: 84 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 61
+    experience_yield: 61,
+    ev_yields: {[PokemonStat.speed]: 1}
   },
   ribombee: {
     id: 743,
@@ -8206,7 +8951,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.bug, PokemonCombatType.fairy],
     stats: { hp: 60, attack: 55, defense: 60, sp_attack: 95, sp_defense: 70, speed: 124 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 162
+    experience_yield: 162,
+    ev_yields: {[PokemonStat.speed]: 2}
   },
   rockruff: {
     id: 744,
@@ -8217,7 +8963,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.rock],
     stats: { hp: 45, attack: 65, defense: 40, sp_attack: 30, sp_defense: 40, speed: 60 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 56
+    experience_yield: 56,
+    ev_yields: {[PokemonStat.attack]: 1}
   },
   lycanroc: {
     id: 745,
@@ -8228,7 +8975,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.rock],
     stats: { hp: 75, attack: 117, defense: 65, sp_attack: 55, sp_defense: 65, speed: 110 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 170
+    experience_yield: 170,
+    ev_yields: {[PokemonStat.attack]: 2}
   },
   wishiwashi: {
     id: 746,
@@ -8239,7 +8987,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.water],
     stats: { hp: 45, attack: 140, defense: 130, sp_attack: 140, sp_defense: 135, speed: 30 },
     experience_group: ExperienceGroup.fast,
-    experience_yield: 61
+    experience_yield: 61,
+    ev_yields: {[PokemonStat.hp]: 1}
   },
   mareanie: {
     id: 747,
@@ -8250,7 +8999,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.poison, PokemonCombatType.water],
     stats: { hp: 50, attack: 53, defense: 62, sp_attack: 43, sp_defense: 52, speed: 45 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 61
+    experience_yield: 61,
+    ev_yields: {[PokemonStat.defense]: 1}
   },
   toxapex: {
     id: 748,
@@ -8261,7 +9011,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.poison, PokemonCombatType.water],
     stats: { hp: 50, attack: 63, defense: 152, sp_attack: 53, sp_defense: 142, speed: 35 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 173
+    experience_yield: 173,
+    ev_yields: {[PokemonStat.defense]: 2}
   },
   mudbray: {
     id: 749,
@@ -8272,7 +9023,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.ground],
     stats: { hp: 70, attack: 100, defense: 70, sp_attack: 45, sp_defense: 55, speed: 45 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 77
+    experience_yield: 77,
+    ev_yields: {[PokemonStat.attack]: 1}
   },
   mudsdale: {
     id: 750,
@@ -8283,7 +9035,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.ground],
     stats: { hp: 100, attack: 125, defense: 100, sp_attack: 55, sp_defense: 85, speed: 35 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 175
+    experience_yield: 175,
+    ev_yields: {[PokemonStat.attack]: 2}
   },
   dewpider: {
     id: 751,
@@ -8294,7 +9047,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.water, PokemonCombatType.bug],
     stats: { hp: 38, attack: 40, defense: 52, sp_attack: 40, sp_defense: 72, speed: 27 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 54
+    experience_yield: 54,
+    ev_yields: {[PokemonStat.sp_def]: 1}
   },
   araquanid: {
     id: 752,
@@ -8305,7 +9059,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.water, PokemonCombatType.bug],
     stats: { hp: 68, attack: 70, defense: 92, sp_attack: 50, sp_defense: 132, speed: 42 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 159
+    experience_yield: 159,
+    ev_yields: {[PokemonStat.sp_def]: 2}
   },
   fomantis: {
     id: 753,
@@ -8316,7 +9071,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.grass],
     stats: { hp: 40, attack: 55, defense: 35, sp_attack: 50, sp_defense: 35, speed: 35 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 50
+    experience_yield: 50,
+    ev_yields: {[PokemonStat.attack]: 1}
   },
   lurantis: {
     id: 754,
@@ -8327,7 +9083,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.grass],
     stats: { hp: 70, attack: 105, defense: 90, sp_attack: 80, sp_defense: 90, speed: 45 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 168
+    experience_yield: 168,
+    ev_yields: {[PokemonStat.attack]: 2}
   },
   morelull: {
     id: 755,
@@ -8338,7 +9095,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.grass, PokemonCombatType.fairy],
     stats: { hp: 40, attack: 35, defense: 55, sp_attack: 65, sp_defense: 75, speed: 15 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 57
+    experience_yield: 57,
+    ev_yields: {[PokemonStat.sp_def]: 1}
   },
   shiinotic: {
     id: 756,
@@ -8349,7 +9107,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.grass, PokemonCombatType.fairy],
     stats: { hp: 60, attack: 45, defense: 80, sp_attack: 90, sp_defense: 100, speed: 30 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 142
+    experience_yield: 142,
+    ev_yields: {[PokemonStat.sp_def]: 2}
   },
   salandit: {
     id: 757,
@@ -8360,7 +9119,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.poison, PokemonCombatType.fire],
     stats: { hp: 48, attack: 44, defense: 40, sp_attack: 71, sp_defense: 40, speed: 77 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 64
+    experience_yield: 64,
+    ev_yields: {[PokemonStat.speed]: 1}
   },
   salazzle: {
     id: 758,
@@ -8371,7 +9131,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.poison, PokemonCombatType.fire],
     stats: { hp: 68, attack: 64, defense: 60, sp_attack: 111, sp_defense: 60, speed: 117 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 168
+    experience_yield: 168,
+    ev_yields: {[PokemonStat.speed]: 2}
   },
   stufful: {
     id: 759,
@@ -8382,7 +9143,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.normal, PokemonCombatType.fighting],
     stats: { hp: 70, attack: 75, defense: 50, sp_attack: 45, sp_defense: 50, speed: 50 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 68
+    experience_yield: 68,
+    ev_yields: {[PokemonStat.attack]: 1}
   },
   bewear: {
     id: 760,
@@ -8393,7 +9155,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.normal, PokemonCombatType.fighting],
     stats: { hp: 120, attack: 125, defense: 80, sp_attack: 55, sp_defense: 60, speed: 60 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 175
+    experience_yield: 175,
+    ev_yields: {[PokemonStat.attack]: 2}
   },
   bounsweet: {
     id: 761,
@@ -8404,7 +9167,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.grass],
     stats: { hp: 42, attack: 30, defense: 38, sp_attack: 30, sp_defense: 38, speed: 32 },
     experience_group: ExperienceGroup.medium_slow,
-    experience_yield: 42
+    experience_yield: 42,
+    ev_yields: {[PokemonStat.hp]: 1}
   },
   steenee: {
     id: 762,
@@ -8415,7 +9179,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.grass],
     stats: { hp: 52, attack: 40, defense: 48, sp_attack: 40, sp_defense: 48, speed: 62 },
     experience_group: ExperienceGroup.medium_slow,
-    experience_yield: 102
+    experience_yield: 102,
+    ev_yields: {[PokemonStat.speed]: 2}
   },
   tsareena: {
     id: 763,
@@ -8426,7 +9191,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.grass],
     stats: { hp: 72, attack: 120, defense: 98, sp_attack: 50, sp_defense: 98, speed: 72 },
     experience_group: ExperienceGroup.medium_slow,
-    experience_yield: 255
+    experience_yield: 255,
+    ev_yields: {[PokemonStat.attack]: 3}
   },
   comfey: {
     id: 764,
@@ -8437,7 +9203,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.fairy],
     stats: { hp: 51, attack: 52, defense: 90, sp_attack: 82, sp_defense: 110, speed: 100 },
     experience_group: ExperienceGroup.fast,
-    experience_yield: 170
+    experience_yield: 170,
+    ev_yields: {[PokemonStat.sp_def]: 2}
   },
   oranguru: {
     id: 765,
@@ -8448,7 +9215,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.normal, PokemonCombatType.psychic],
     stats: { hp: 90, attack: 60, defense: 80, sp_attack: 90, sp_defense: 110, speed: 60 },
     experience_group: ExperienceGroup.slow,
-    experience_yield: 172
+    experience_yield: 172,
+    ev_yields: {[PokemonStat.sp_def]: 2}
   },
   passimian: {
     id: 766,
@@ -8459,7 +9227,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.fighting],
     stats: { hp: 100, attack: 120, defense: 90, sp_attack: 40, sp_defense: 60, speed: 80 },
     experience_group: ExperienceGroup.slow,
-    experience_yield: 172
+    experience_yield: 172,
+    ev_yields: {[PokemonStat.attack]: 2}
   },
   wimpod: {
     id: 767,
@@ -8470,7 +9239,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.bug, PokemonCombatType.water],
     stats: { hp: 25, attack: 35, defense: 40, sp_attack: 20, sp_defense: 30, speed: 80 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 46
+    experience_yield: 46,
+    ev_yields: {[PokemonStat.speed]: 1}
   },
   golisopod: {
     id: 768,
@@ -8481,7 +9251,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.bug, PokemonCombatType.water],
     stats: { hp: 75, attack: 125, defense: 140, sp_attack: 60, sp_defense: 90, speed: 40 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 186
+    experience_yield: 186,
+    ev_yields: {[PokemonStat.defense]: 2}
   },
   sandygast: {
     id: 769,
@@ -8492,7 +9263,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.ghost, PokemonCombatType.ground],
     stats: { hp: 55, attack: 55, defense: 80, sp_attack: 70, sp_defense: 45, speed: 15 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 64
+    experience_yield: 64,
+    ev_yields: {[PokemonStat.defense]: 1}
   },
   palossand: {
     id: 770,
@@ -8503,7 +9275,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.ghost, PokemonCombatType.ground],
     stats: { hp: 85, attack: 75, defense: 110, sp_attack: 100, sp_defense: 75, speed: 35 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 168
+    experience_yield: 168,
+    ev_yields: {[PokemonStat.defense]: 2}
   },
   pyukumuku: {
     id: 771,
@@ -8514,7 +9287,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.water],
     stats: { hp: 55, attack: 60, defense: 130, sp_attack: 30, sp_defense: 130, speed: 5 },
     experience_group: ExperienceGroup.fast,
-    experience_yield: 144
+    experience_yield: 144,
+    ev_yields: {[PokemonStat.sp_def]: 2}
   },
   typenull: {
     id: 772,
@@ -8525,7 +9299,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.normal],
     stats: { hp: 95, attack: 95, defense: 95, sp_attack: 95, sp_defense: 95, speed: 59 },
     experience_group: ExperienceGroup.slow,
-    experience_yield: 107
+    experience_yield: 107,
+    ev_yields: {[PokemonStat.hp]: 2}
   },
   silvally: {
     id: 773,
@@ -8536,7 +9311,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.normal],
     stats: { hp: 95, attack: 95, defense: 95, sp_attack: 95, sp_defense: 95, speed: 95 },
     experience_group: ExperienceGroup.slow,
-    experience_yield: 257
+    experience_yield: 257,
+    ev_yields: {[PokemonStat.hp]: 3}
   },
   minior: {
     id: 774,
@@ -8547,7 +9323,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.rock, PokemonCombatType.flying],
     stats: { hp: 60, attack: 100, defense: 60, sp_attack: 100, sp_defense: 60, speed: 120 },
     experience_group: ExperienceGroup.medium_slow,
-    experience_yield: 154
+    experience_yield: 154,
+    ev_yields: {[PokemonStat.defense]: 1}
   },
   komala: {
     id: 775,
@@ -8558,7 +9335,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.normal],
     stats: { hp: 65, attack: 115, defense: 65, sp_attack: 75, sp_defense: 95, speed: 65 },
     experience_group: ExperienceGroup.slow,
-    experience_yield: 168
+    experience_yield: 168,
+    ev_yields: {[PokemonStat.attack]: 2}
   },
   turtonator: {
     id: 776,
@@ -8569,7 +9347,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.fire, PokemonCombatType.dragon],
     stats: { hp: 60, attack: 78, defense: 135, sp_attack: 91, sp_defense: 85, speed: 36 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 170
+    experience_yield: 170,
+    ev_yields: {[PokemonStat.defense]: 2}
   },
   togedemaru: {
     id: 777,
@@ -8580,7 +9359,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.electric, PokemonCombatType.steel],
     stats: { hp: 65, attack: 98, defense: 63, sp_attack: 40, sp_defense: 73, speed: 96 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 152
+    experience_yield: 152,
+    ev_yields: {[PokemonStat.attack]: 2}
   },
   mimikyu: {
     id: 778,
@@ -8591,7 +9371,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.ghost, PokemonCombatType.fairy],
     stats: { hp: 55, attack: 90, defense: 80, sp_attack: 50, sp_defense: 105, speed: 96 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 167
+    experience_yield: 167,
+    ev_yields: {[PokemonStat.sp_def]: 2}
   },
   bruxish: {
     id: 779,
@@ -8602,7 +9383,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.water, PokemonCombatType.psychic],
     stats: { hp: 68, attack: 105, defense: 70, sp_attack: 70, sp_defense: 70, speed: 92 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 166
+    experience_yield: 166,
+    ev_yields: {[PokemonStat.attack]: 2}
   },
   drampa: {
     id: 780,
@@ -8613,7 +9395,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.normal, PokemonCombatType.dragon],
     stats: { hp: 78, attack: 60, defense: 85, sp_attack: 135, sp_defense: 91, speed: 36 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 170
+    experience_yield: 170,
+    ev_yields: {[PokemonStat.sp_atk]: 2}
   },
   dhelmise: {
     id: 781,
@@ -8624,7 +9407,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.ghost, PokemonCombatType.grass],
     stats: { hp: 70, attack: 131, defense: 100, sp_attack: 86, sp_defense: 90, speed: 40 },
     experience_group: ExperienceGroup.medium_fast,
-    experience_yield: 181
+    experience_yield: 181,
+    ev_yields: {[PokemonStat.attack]: 2}
   },
   jangmoo: {
     id: 782,
@@ -8635,7 +9419,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.dragon],
     stats: { hp: 45, attack: 55, defense: 65, sp_attack: 45, sp_defense: 45, speed: 45 },
     experience_group: ExperienceGroup.slow,
-    experience_yield: 60
+    experience_yield: 60,
+    ev_yields: {[PokemonStat.defense]: 1}
   },
   hakamoo: {
     id: 783,
@@ -8646,7 +9431,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.dragon, PokemonCombatType.fighting],
     stats: { hp: 55, attack: 75, defense: 90, sp_attack: 65, sp_defense: 70, speed: 65 },
     experience_group: ExperienceGroup.slow,
-    experience_yield: 147
+    experience_yield: 147,
+    ev_yields: {[PokemonStat.defense]: 2}
   },
   kommoo: {
     id: 784,
@@ -8657,7 +9443,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.dragon, PokemonCombatType.fighting],
     stats: { hp: 75, attack: 110, defense: 125, sp_attack: 100, sp_defense: 105, speed: 85 },
     experience_group: ExperienceGroup.slow,
-    experience_yield: 270
+    experience_yield: 270,
+    ev_yields: {[PokemonStat.defense]: 3}
   },
   tapukoko: {
     id: 785,
@@ -8668,7 +9455,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.electric, PokemonCombatType.fairy],
     stats: { hp: 70, attack: 115, defense: 85, sp_attack: 95, sp_defense: 75, speed: 130 },
     experience_group: ExperienceGroup.slow,
-    experience_yield: 257
+    experience_yield: 257,
+    ev_yields: {[PokemonStat.speed]: 3}
   },
   tapulele: {
     id: 786,
@@ -8679,7 +9467,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.psychic, PokemonCombatType.fairy],
     stats: { hp: 70, attack: 85, defense: 75, sp_attack: 130, sp_defense: 115, speed: 95 },
     experience_group: ExperienceGroup.slow,
-    experience_yield: 257
+    experience_yield: 257,
+    ev_yields: {[PokemonStat.sp_atk]: 3}
   },
   tapubulu: {
     id: 787,
@@ -8690,7 +9479,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.grass, PokemonCombatType.fairy],
     stats: { hp: 70, attack: 130, defense: 115, sp_attack: 85, sp_defense: 95, speed: 75 },
     experience_group: ExperienceGroup.slow,
-    experience_yield: 257
+    experience_yield: 257,
+    ev_yields: {[PokemonStat.attack]: 3}
   },
   tapufini: {
     id: 788,
@@ -8701,7 +9491,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.water, PokemonCombatType.fairy],
     stats: { hp: 70, attack: 75, defense: 115, sp_attack: 95, sp_defense: 130, speed: 85 },
     experience_group: ExperienceGroup.slow,
-    experience_yield: 257
+    experience_yield: 257,
+    ev_yields: {[PokemonStat.sp_def]: 3}
   },
   cosmog: {
     id: 789,
@@ -8712,7 +9503,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.psychic],
     stats: { hp: 43, attack: 29, defense: 31, sp_attack: 29, sp_defense: 31, speed: 37 },
     experience_group: ExperienceGroup.slow,
-    experience_yield: 40
+    experience_yield: 40,
+    ev_yields: {[PokemonStat.hp]: 1}
   },
   cosmoem: {
     id: 790,
@@ -8723,7 +9515,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.psychic],
     stats: { hp: 43, attack: 29, defense: 131, sp_attack: 29, sp_defense: 131, speed: 37 },
     experience_group: ExperienceGroup.slow,
-    experience_yield: 140
+    experience_yield: 140,
+    ev_yields: {[PokemonStat.defense]: 1}
   },
   solgaleo: {
     id: 791,
@@ -8734,7 +9527,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.psychic, PokemonCombatType.steel],
     stats: { hp: 137, attack: 137, defense: 107, sp_attack: 113, sp_defense: 89, speed: 97 },
     experience_group: ExperienceGroup.slow,
-    experience_yield: 306
+    experience_yield: 306,
+    ev_yields: {[PokemonStat.attack]: 3}
   },
   lunala: {
     id: 792,
@@ -8745,7 +9539,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.psychic, PokemonCombatType.ghost],
     stats: { hp: 137, attack: 113, defense: 89, sp_attack: 137, sp_defense: 107, speed: 97 },
     experience_group: ExperienceGroup.slow,
-    experience_yield: 306
+    experience_yield: 306,
+    ev_yields: {[PokemonStat.sp_atk]: 3}
   },
   nihilego: {
     id: 793,
@@ -8756,7 +9551,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.rock, PokemonCombatType.poison],
     stats: { hp: 109, attack: 53, defense: 47, sp_attack: 127, sp_defense: 131, speed: 103 },
     experience_group: ExperienceGroup.slow,
-    experience_yield: 257
+    experience_yield: 257,
+    ev_yields: {[PokemonStat.sp_def]: 3}
   },
   buzzwole: {
     id: 794,
@@ -8767,7 +9563,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.bug, PokemonCombatType.fighting],
     stats: { hp: 107, attack: 139, defense: 139, sp_attack: 53, sp_defense: 53, speed: 79 },
     experience_group: ExperienceGroup.slow,
-    experience_yield: 257
+    experience_yield: 257,
+    ev_yields: {[PokemonStat.attack]: 1}
   },
   pheromosa: {
     id: 795,
@@ -8778,7 +9575,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.bug, PokemonCombatType.fighting],
     stats: { hp: 71, attack: 137, defense: 37, sp_attack: 137, sp_defense: 37, speed: 151 },
     experience_group: ExperienceGroup.slow,
-    experience_yield: 257
+    experience_yield: 257,
+    ev_yields: {[PokemonStat.speed]: 3}
   },
   xurkitree: {
     id: 796,
@@ -8789,7 +9587,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.electric],
     stats: { hp: 83, attack: 89, defense: 71, sp_attack: 173, sp_defense: 71, speed: 83 },
     experience_group: ExperienceGroup.slow,
-    experience_yield: 257
+    experience_yield: 257,
+    ev_yields: {[PokemonStat.sp_atk]: 3}
   },
   celesteela: {
     id: 797,
@@ -8800,7 +9599,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.steel, PokemonCombatType.flying],
     stats: { hp: 97, attack: 101, defense: 103, sp_attack: 107, sp_defense: 101, speed: 61 },
     experience_group: ExperienceGroup.slow,
-    experience_yield: 257
+    experience_yield: 257,
+    ev_yields: {[PokemonStat.attack]: 1}
   },
   kartana: {
     id: 798,
@@ -8811,7 +9611,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.grass, PokemonCombatType.steel],
     stats: { hp: 59, attack: 181, defense: 131, sp_attack: 59, sp_defense: 31, speed: 109 },
     experience_group: ExperienceGroup.slow,
-    experience_yield: 257
+    experience_yield: 257,
+    ev_yields: {[PokemonStat.attack]: 3}
   },
   guzzlord: {
     id: 799,
@@ -8822,7 +9623,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.dark, PokemonCombatType.dragon],
     stats: { hp: 223, attack: 101, defense: 53, sp_attack: 97, sp_defense: 53, speed: 43 },
     experience_group: ExperienceGroup.slow,
-    experience_yield: 257
+    experience_yield: 257,
+    ev_yields: {[PokemonStat.hp]: 3}
   },
   necrozma: {
     id: 800,
@@ -8833,7 +9635,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.psychic, PokemonCombatType.dragon],
     stats: { hp: 97, attack: 167, defense: 97, sp_attack: 167, sp_defense: 97, speed: 129 },
     experience_group: ExperienceGroup.slow,
-    experience_yield: 270
+    experience_yield: 270,
+    ev_yields: {[PokemonStat.attack]: 1}
   },
   magearna: {
     id: 801,
@@ -8844,7 +9647,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.steel, PokemonCombatType.fairy],
     stats: { hp: 80, attack: 95, defense: 115, sp_attack: 130, sp_defense: 115, speed: 65 },
     experience_group: ExperienceGroup.slow,
-    experience_yield: 300
+    experience_yield: 300,
+    ev_yields: {[PokemonStat.sp_atk]: 3}
   },
   marshadow: {
     id: 802,
@@ -8855,7 +9659,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.fighting, PokemonCombatType.ghost],
     stats: { hp: 90, attack: 125, defense: 80, sp_attack: 90, sp_defense: 90, speed: 125 },
     experience_group: ExperienceGroup.slow,
-    experience_yield: 270
+    experience_yield: 270,
+    ev_yields: {[PokemonStat.attack]: 2}
   },
   poipole: {
     id: 803,
@@ -8866,7 +9671,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.poison],
     stats: { hp: 67, attack: 73, defense: 67, sp_attack: 73, sp_defense: 67, speed: 73 },
     experience_group: ExperienceGroup.slow,
-    experience_yield: 189
+    experience_yield: 189,
+    ev_yields: {[PokemonStat.speed]: 1}
   },
   naganadel: {
     id: 804,
@@ -8877,7 +9683,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.poison, PokemonCombatType.dragon],
     stats: { hp: 73, attack: 73, defense: 73, sp_attack: 127, sp_defense: 73, speed: 121 },
     experience_group: ExperienceGroup.slow,
-    experience_yield: 243
+    experience_yield: 243,
+    ev_yields: {[PokemonStat.sp_atk]: 3}
   },
   stakataka: {
     id: 805,
@@ -8888,7 +9695,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.rock, PokemonCombatType.steel],
     stats: { hp: 61, attack: 131, defense: 211, sp_attack: 53, sp_defense: 101, speed: 13 },
     experience_group: ExperienceGroup.slow,
-    experience_yield: 257
+    experience_yield: 257,
+    ev_yields: {[PokemonStat.defense]: 3}
   },
   blacephalon: {
     id: 806,
@@ -8899,7 +9707,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.fire, PokemonCombatType.ghost],
     stats: { hp: 53, attack: 127, defense: 53, sp_attack: 151, sp_defense: 79, speed: 107 },
     experience_group: ExperienceGroup.slow,
-    experience_yield: 257
+    experience_yield: 257,
+    ev_yields: {[PokemonStat.sp_atk]: 3}
   },
   zeraora: {
     id: 807,
@@ -8910,7 +9719,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.electric],
     stats: { hp: 88, attack: 112, defense: 75, sp_attack: 102, sp_defense: 80, speed: 143 },
     experience_group: ExperienceGroup.slow,
-    experience_yield: 270
+    experience_yield: 270,
+    ev_yields: {[PokemonStat.speed]: 3}
   },
   meltan: {
     id: 808,
@@ -8921,7 +9731,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.steel],
     stats: { hp: 46, attack: 65, defense: 65, sp_attack: 55, sp_defense: 35, speed: 34 },
     experience_group: ExperienceGroup.slow,
-    experience_yield: 150
+    experience_yield: 150,
+    ev_yields: {[PokemonStat.attack]: 1}
   },
   melmetal: {
     id: 809,
@@ -8932,7 +9743,8 @@ export const POKEMON_DATA: { [key: string]: PokemonConfig } = {
     types: [PokemonCombatType.steel],
     stats: { hp: 135, attack: 143, defense: 143, sp_attack: 80, sp_defense: 65, speed: 34 },
     experience_group: ExperienceGroup.slow,
-    experience_yield: 300
+    experience_yield: 300,
+    ev_yields: {[PokemonStat.attack]: 3}
   },
  };
 export function getAllPokemon(): PokemonType[] {

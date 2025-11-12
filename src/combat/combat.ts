@@ -2,6 +2,17 @@ import { PokemonType, PokemonColor, PokemonConfig } from "../common/types";
 import { log } from "../common/util";
 import { Pokemon } from "../panel/pokemon";
 
+export enum PokemonStat {
+    hp = 'hp',
+    attack = 'attack',
+    defense = 'defense',
+    sp_atk = 'sp_atk',
+    sp_def = 'sp_def',
+    speed = 'speed',
+}
+
+export const POKEMON_STAT_ORDER = [PokemonStat.hp, PokemonStat.attack, PokemonStat.defense, PokemonStat.sp_atk, PokemonStat.sp_def, PokemonStat.speed];
+
 export enum CombatPokemonStat {
     hp = 'hp',
     attack = 'attack',

@@ -8,7 +8,7 @@ import {
     WebviewMessage,
     PokemonProgression,
 } from '../common/types';
-import { Combat, CombatPokemon } from "../combat/combat";
+import { Combat, CombatPokemon, PokemonStat, POKEMON_STAT_ORDER } from "../combat/combat";
 import { ALL_THEMES, Theme } from './themes';
 import { IPokemonType } from './states';
 import {
@@ -202,15 +202,24 @@ function handleMouseOver(e: MouseEvent) {
                 { text: `Happiness: ${pokemon.needs.happiness}/100`, className: 'tooltip-stat' },
             ];
 
-            // Show moves if Shift is pressed
-            if (isShiftPressed && moves.length > 0) {
-                tooltipContent.push({ text: 'Moves:', className: 'tooltip-stat' });
-                moves.forEach(move => {
-                    tooltipContent.push({
-                        text: move.name,
-                        className: getMoveTypeClass(move.type),
+            // Show extra info if shift is pressed
+            if (isShiftPressed) {
+                // Show IVs & EVs
+                const ivLabels = POKEMON_STAT_ORDER.map(stat => pokemon.progression.ivs[stat]);
+                const evLabels = POKEMON_STAT_ORDER.map(stat => pokemon.progression.evs[stat]);
+                tooltipContent.push({ text: `IVs: ${ivLabels.join(", ")}`, className: 'tooltip-stat' });
+                tooltipContent.push({ text: `EVs: ${evLabels.join(", ")}`, className: 'tooltip-stat' });
+
+                // Show moves
+                if (moves.length > 0) {
+                    tooltipContent.push({ text: 'Moves:', className: 'tooltip-stat' });
+                    moves.forEach(move => {
+                        tooltipContent.push({
+                            text: move.name,
+                            className: getMoveTypeClass(move.type),
+                        });
                     });
-                });
+                }
             }
 
             pokemonTooltip.show(tooltipContent);

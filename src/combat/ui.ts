@@ -1,5 +1,5 @@
 import { log } from "../common/util";
-import { ABREVIATION_TO_STAT, Combat, CombatPokemon, CombatPokemonStat } from "./combat";
+import { ABREVIATION_TO_STAT, Combat, CombatPokemon, CombatPokemonStat, POKEMON_STAT_ORDER, PokemonStat } from "./combat";
 import { getMoves } from "../common/learnsets-data";
 import { capitalizeString, randomIntegerInRange } from "../common/util";
 import { VscodeStateApi } from "../common/vscode-api";
@@ -100,10 +100,16 @@ export class CombatUIManager {
         const enemyLevel = 5; // TODO roll based on average party level?
         const playerMoveIDs = getMoves(playerPokemon.type, playerLevel).map(m => m.id);
         const enemyMoveIDs = getMoves(enemyPokemon.type, enemyLevel).map(m => m.id);
+        const playerIVs = POKEMON_STAT_ORDER.map(stat => playerPokemon.pokemon!.progression.ivs[stat]);
+        const playerEVs = POKEMON_STAT_ORDER.map(stat => playerPokemon.pokemon!.progression.evs[stat]);
+        // Roll random EVs for the enemy
+        const enemyIVs = POKEMON_STAT_ORDER.map(stat => randomIntegerInRange(0, 31));
+        const enemyEVs = POKEMON_STAT_ORDER.map(stat => randomIntegerInRange(0, 100)); // Limit to 100 per stat as a cheap way to avoid them from overshooting the limit
+
         log('[combat] Sending combat start command');
         this.sendShowdownCommand(`>start {"formatid":"gen7ou"}
->player p1 {"name":"Player","team":"${capitalizeString(playerPokemon.config.name)}|||noability|${playerMoveIDs.join(',')}|Modest|252,,,252,4,||,,,30,30,||${playerLevel}|"}
->player p2 {"name":"Enemy","team":"${capitalizeString(enemyPokemon.config.name)}|||noability|${enemyMoveIDs.join(',')}|Modest|252,,,4,,252||||${enemyLevel}|"}
+>player p1 {"name":"Player","team":"${capitalizeString(playerPokemon.config.name)}|||noability|${playerMoveIDs.join(',')}|Modest|${playerIVs.join(',')}||${playerEVs.join(',')}||${playerLevel}|"}
+>player p2 {"name":"Enemy","team":"${capitalizeString(enemyPokemon.config.name)}|||noability|${enemyMoveIDs.join(',')}|Modest|${enemyIVs.join(',')}||${enemyEVs.join(',')}||${enemyLevel}|"}
 >p1 team 1
 >p2 team 1`);
 
@@ -178,6 +184,13 @@ export class CombatUIManager {
             const previousLevel = playerPokemon.pokemon!.progression.level;
             const xpGained = playerPokemon.getXPGain(enemyPokemon);
             playerPokemon.pokemon!.progression.addXP(xpGained);
+
+            // Add EVs
+            const evYields = enemyPokemon.config.ev_yields;
+            for (const stat in evYields) {
+                const evGain = evYields[stat as keyof typeof evYields] || 0;
+                playerPokemon.pokemon!.progression.addEVs(stat as PokemonStat, evGain);
+            }
 
             // Show notification
             this.stateApi.postMessage({
