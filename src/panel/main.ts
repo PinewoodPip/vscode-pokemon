@@ -563,8 +563,8 @@ export function pokemonPanelApp(
         dynamicThrowOff();
     }
 
-    function startCombat() {
-        // Pick random pokemon from user's collection
+    function startCombat(playerPokemonIndex?: number) {
+        // Pick pokemon from user's collection
         if (allPokemon.pokemonCollection.length === 0) {
             stateApi?.postMessage({
                 command: 'info',
@@ -573,7 +573,15 @@ export function pokemonPanelApp(
             return;
         }
 
-        const playerPokemonEl = allPokemon.pokemonCollection[Math.floor(Math.random() * allPokemon.pokemonCollection.length)];
+        console.log(playerPokemonIndex);
+
+        // Use specified pokemon or pick random one
+        let playerPokemonEl: PokemonElement;
+        if (playerPokemonIndex !== undefined && playerPokemonIndex >= 0 && playerPokemonIndex < allPokemon.pokemonCollection.length) {
+            playerPokemonEl = allPokemon.pokemonCollection[playerPokemonIndex];
+        } else {
+            playerPokemonEl = allPokemon.pokemonCollection[Math.floor(Math.random() * allPokemon.pokemonCollection.length)];
+        }
         
         // Pick random enemy pokemon from current theme
         const currentTheme = getConfiguredTheme();
@@ -655,7 +663,7 @@ export function pokemonPanelApp(
                 break;
 
             case 'start-combat':
-                startCombat();
+                startCombat(message.playerPokemonIndex);
                 break;
 
             case 'spawn-pokemon':
@@ -722,6 +730,21 @@ export function pokemonPanelApp(
                         command: 'info',
                         text: `${pokemon.pokemon.emoji} ${pokemon.pokemon.name} (${pokemon.color} ${pokemon.type}): ${pokemon.pokemon.hello}`,
                     });
+                });
+                break;
+
+            case 'request-pokemon-for-combat':
+                // Send pokemon list for combat selection
+                const pokemonForCombat = allPokemon.pokemonCollection.map((pokemon, index) => ({
+                    index: index,
+                    name: pokemon.pokemon.name,
+                    type: pokemon.type,
+                    level: pokemon.pokemon.progression.level,
+                }));
+                stateApi?.postMessage({
+                    text: '',
+                    command: 'pokemon-combat-list',
+                    data: pokemonForCombat,
                 });
                 break;
 

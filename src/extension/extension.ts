@@ -124,6 +124,36 @@ class PokemonQuickPickItem implements vscode.QuickPickItem {
 
 let webviewViewProvider: PokemonWebviewViewProvider;
 
+async function retrievePokemon() {
+    const webview = getWebview()!;
+    const pokemonListPromise = new Promise<any[]>((resolve, reject) => {
+        const timeout = setTimeout(() => {
+            disposable.dispose();
+            reject(new Error('Timeout waiting for pokemon list'));
+        }, 5000);
+
+        const messageHandler = (message: any) => {
+            if (message.command === 'pokemon-combat-list') {
+                clearTimeout(timeout);
+                disposable.dispose();
+                resolve(message.data || []);
+            }
+        };
+        
+        const disposable = webview.onDidReceiveMessage(messageHandler);
+    });
+    webview.postMessage({ command: 'request-pokemon-for-combat' });
+
+    let pokemonList: any[];
+    try {
+        pokemonList = await pokemonListPromise;
+    } catch (error) {
+        await vscode.window.showErrorMessage('Failed to get pokemon list from webview.');
+        return;
+    }
+    return pokemonList;
+}
+
 function updatePanelThrowWithMouse(): void {
     const panel = getPokemonPanel();
     if (panel !== undefined) {
@@ -281,6 +311,9 @@ export function activate(context: vscode.ExtensionContext) {
     context.subscriptions.push(
         vscode.commands.registerCommand('vscode-pokemon.start-combat', async () => {
             const panel = getPokemonPanel();
+            if (!panel) { // Do not allow starting a combat with no webview
+                await vscode.window.showErrorMessage('Please start the Pokemon panel first using the "Start Pokemon" command.')
+            }
             if (getConfigurationPosition() === ExtPosition.explorer && webviewViewProvider) {
                 await vscode.commands.executeCommand('pokemonView.focus');
             }
@@ -288,31 +321,54 @@ export function activate(context: vscode.ExtensionContext) {
                 await vscode.window.showInformationMessage("You're already in combat!");
                 return;
             }
-            if (panel) {
-                panel.startCombat();
-                
-                // Get webview and start Showdown process
-                const webview = getWebview();
-                if (webview) {
-                    combatProcess = new ShowdownBattleProcess(webview);
-                    console.log('Starting Showdown battle process...');
-                    const showdownPathSetting = vscode.workspace.getConfiguration('vscode-pokemon').get<string>('showdownPath', '').trim();
+            // Request pokemon list and wait for response
+            const webview = getWebview();
+            if (!webview) {
+                await vscode.window.showErrorMessage('Could not access webview.');
+                return;
+            }
 
-                    try {
-                        if (!showdownPathSetting) {
-                            throw new Error('Could not resolve pokemon-showdown from node_modules');
-                        }
-                        await combatProcess.start(context.extensionPath, showdownPathSetting);
+            // Retrieve pokemon list from webview
+            const pokemonList = await retrievePokemon();
+            if (!pokemonList || pokemonList.length === 0) {
+                await vscode.window.showInformationMessage('You need at least one Pokemon to start combat!');
+                return;
+            }
 
-                    } catch (e) {
-                        // Show error notification
-                        await vscode.window.showErrorMessage('Failed to start Pokemon Showdown battle process. Double-check that the pokemon-showdown node module is installed and that your showdownPath setting is correct.');
-                    }
-                }
-            } else {
-                await vscode.window.showInformationMessage(
-                    vscode.l10n.t('Please start the Pokemon panel first using the "Start Pokemon" command.'),
-                );
+            // Create pokemon quick picker
+            const quickPickItems = [
+                {
+                    label: '$(symbol-misc) Random Pokemon',
+                    index: -1,
+                },
+                ...pokemonList.map((pokemon: any) => ({
+                    label: `$(circle-filled) ${pokemon.name}`,
+                    description: `${pokemon.type} • Level ${pokemon.level}`,
+                    index: pokemon.index,
+                })),
+            ];
+            const selected = await vscode.window.showQuickPick(quickPickItems, {
+                placeHolder: 'Choose your Pokemon for battle',
+                title: 'Start Pokemon Battle',
+            });
+            if (!selected) {
+                return; // Cancel combat
+            }
+
+            // Start combat with selected pokemon
+            panel!.startCombat(selected.index >= 0 ? selected.index : undefined);
+            
+            // Start Showdown process
+            combatProcess = new ShowdownBattleProcess(webview);
+            log('Starting Showdown battle process...');
+            const showdownPathSetting = vscode.workspace.getConfiguration('vscode-pokemon').get<string>('showdownPath', '').trim();
+
+            try {
+                await combatProcess.start(context.extensionPath, showdownPathSetting);
+
+            } catch (e) {
+                // Show error notification
+                await vscode.window.showErrorMessage('Failed to start Pokemon Showdown battle process. Double-check that the pokemon-showdown node module is installed and that your showdownPath setting is correct.');
             }
         }),
     );
@@ -1005,7 +1061,7 @@ interface IPokemonPanel {
     updateTheme(newTheme: Theme, themeKind: vscode.ColorThemeKind): void;
     update(): void;
     setThrowWithMouse(newThrowWithMouse: boolean): void;
-    startCombat(): void;
+    startCombat(playerPokemonIndex?: number): void;
 }
 
 class PokemonWebviewContainer implements IPokemonPanel {
@@ -1109,9 +1165,10 @@ class PokemonWebviewContainer implements IPokemonPanel {
         });
     }
 
-    public startCombat() {
+    public startCombat(playerPokemonIndex?: number) {
         void this.getWebview().postMessage({
             command: 'start-combat',
+            playerPokemonIndex: playerPokemonIndex,
         });
     }
 
