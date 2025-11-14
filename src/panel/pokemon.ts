@@ -156,6 +156,10 @@ export class Pokemon extends BasePokemonType {
   };
 
   update() {
+    // Do not update pokemon in the PC
+    if (this.isHidden) {
+      return;
+    }
     const wasHungry = this.needs.isHungry();
 
     // Update needs

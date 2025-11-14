@@ -11,6 +11,21 @@ export class PokemonElement {
     type: PokemonType;
     generation: string;
     originalSpriteSize: number;
+    
+    hide() {
+        this.pokemon.isHidden = true;
+        this.el.style.display = 'none';
+        this.collision.style.display = 'none';
+        this.speech.style.display = 'none';
+    }
+    
+    show() {
+        this.pokemon.isHidden = false;
+        this.el.style.display = 'block';
+        this.collision.style.display = 'block';
+        this.speech.style.display = 'block';
+    }
+    
     remove() {
         this.el.remove();
         this.collision.remove();

@@ -190,6 +190,16 @@
                 "command": "vscode-pokemon.show-pokedex",
                 "title": "Show Pokédex",
                 "category": "Pokemon Coding"
+            },
+            {
+                "command": "vscode-pokemon.store-pokemon",
+                "title": "Store Pokemon in PC",
+                "category": "Pokemon Coding"
+            },
+            {
+                "command": "vscode-pokemon.withdraw-pokemon",
+                "title": "Withdraw Pokemon from PC",
+                "category": "Pokemon Coding"
             }
         ],
         "configuration": [

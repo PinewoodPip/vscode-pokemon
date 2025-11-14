@@ -45,6 +45,8 @@ export interface IPokemonType {
     showSpeechBubble(duration: number, friend: boolean): void;
     showBubble(img: string, duration: number): void;
     hideSpeechBubble(): unknown;
+
+    isHidden: boolean;
 }
 
 export class PokemonInstanceState {
@@ -64,6 +66,8 @@ export interface PokemonElementState {
     pokemonFriend: string | undefined;
     needs: PokemonNeedsState;
     progression: PokemonProgressionState;
+    /**Whether the pokemon is stored in the PC. */
+    isHidden: boolean | undefined;
 }
 
 export class PokemonPanelState {

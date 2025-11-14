@@ -56,6 +56,7 @@ export abstract class BasePokemonType implements IPokemonType {
     private _originalSpriteSize: number;
     needs: PokemonNeeds;
     progression: PokemonProgression = new PokemonProgression();
+    isHidden: boolean = false;
 
     private readonly HAPPINESS_PER_SWIPE = 10;
 

@@ -124,16 +124,31 @@ class PokemonQuickPickItem implements vscode.QuickPickItem {
 
 let webviewViewProvider: PokemonWebviewViewProvider;
 
-async function retrievePokemon() {
-    const webview = getWebview()!;
+/**
+ * Generic helper to request a list of pokemon from webview.
+ * @param requestCommand Command to send to webview.
+ * @param responseCommand Command to listen for in response.
+ * @param timeoutMs In milliseconds.
+ */
+async function requestPokemonList(
+    requestCommand: string,
+    responseCommand: string,
+    timeoutMs: number = 5000
+): Promise<any[] | undefined> {
+    const webview = getWebview();
+    if (!webview) {
+        return undefined;
+    }
+
     const pokemonListPromise = new Promise<any[]>((resolve, reject) => {
         const timeout = setTimeout(() => {
             disposable.dispose();
+            vscode.window.showErrorMessage('Failed to get Pokemon list.');
             reject(new Error('Timeout waiting for pokemon list'));
-        }, 5000);
+        }, timeoutMs);
 
         const messageHandler = (message: any) => {
-            if (message.command === 'pokemon-combat-list') {
+            if (message.command === responseCommand) {
                 clearTimeout(timeout);
                 disposable.dispose();
                 resolve(message.data || []);
@@ -142,16 +157,14 @@ async function retrievePokemon() {
         
         const disposable = webview.onDidReceiveMessage(messageHandler);
     });
-    webview.postMessage({ command: 'request-pokemon-for-combat' });
 
-    let pokemonList: any[];
+    webview.postMessage({ command: requestCommand });
+
     try {
-        pokemonList = await pokemonListPromise;
+        return await pokemonListPromise;
     } catch (error) {
-        await vscode.window.showErrorMessage('Failed to get pokemon list from webview.');
-        return;
+        return undefined;
     }
-    return pokemonList;
 }
 
 function updatePanelThrowWithMouse(): void {
@@ -321,15 +334,12 @@ export function activate(context: vscode.ExtensionContext) {
                 await vscode.window.showInformationMessage("You're already in combat!");
                 return;
             }
-            // Request pokemon list and wait for response
-            const webview = getWebview();
-            if (!webview) {
-                await vscode.window.showErrorMessage('Could not access webview.');
+            // Retrieve pokemon list from webview
+            const pokemonList = await requestPokemonList('request-pokemon-for-combat', 'pokemon-combat-list');
+            if (!pokemonList) {
+                await vscode.window.showErrorMessage('Failed to get pokemon list from webview.');
                 return;
             }
-
-            // Retrieve pokemon list from webview
-            const pokemonList = await retrievePokemon();
             if (!pokemonList || pokemonList.length === 0) {
                 await vscode.window.showInformationMessage('You need at least one Pokemon to start combat!');
                 return;
@@ -359,6 +369,11 @@ export function activate(context: vscode.ExtensionContext) {
             panel!.startCombat(selected.index >= 0 ? selected.index : undefined);
             
             // Start Showdown process
+            const webview = getWebview();
+            if (!webview) {
+                await vscode.window.showErrorMessage('Could not access webview.');
+                return;
+            }
             combatProcess = new ShowdownBattleProcess(webview);
             log('Starting Showdown battle process...');
             const showdownPathSetting = vscode.workspace.getConfiguration('vscode-pokemon').get<string>('showdownPath', '').trim();
@@ -544,6 +559,68 @@ export function activate(context: vscode.ExtensionContext) {
                 panel.rollCall();
             } else {
                 await createPokemonPlayground(context);
+            }
+        }),
+    );
+
+    context.subscriptions.push(
+        vscode.commands.registerCommand('vscode-pokemon.store-pokemon', async () => {
+            const panel = getPokemonPanel();
+            if (!panel) {
+                await vscode.window.showInformationMessage('Please start the Pokemon panel first.');
+                return;
+            }
+
+            const pokemonList = await requestPokemonList('list-active-pokemon', 'active-pokemon-list');
+            if (pokemonList) {
+                if (!pokemonList || pokemonList.length === 0) {
+                    await vscode.window.showInformationMessage('No active Pokemon to store!');
+                    return;
+                }
+
+                const selected = await vscode.window.showQuickPick(
+                    pokemonList.map((p: any) => ({
+                        label: `$(circle-filled) ${p.name}`,
+                        description: `${p.type} • Level ${p.level}`,
+                        pokemonName: p.name,
+                    })),
+                    { placeHolder: 'Select Pokemon to store in PC', title: 'Store Pokemon' }
+                );
+
+                if (selected) {
+                    panel.storePokemon(selected.pokemonName);
+                }
+            }
+        }),
+    );
+
+    context.subscriptions.push(
+        vscode.commands.registerCommand('vscode-pokemon.withdraw-pokemon', async () => {
+            const panel = getPokemonPanel();
+            if (!panel) {
+                await vscode.window.showInformationMessage('Please start the Pokemon panel first.');
+                return;
+            }
+
+            const pokemonList = await requestPokemonList('list-stored-pokemon', 'stored-pokemon-list');
+            if (pokemonList) {
+                if (!pokemonList || pokemonList.length === 0) {
+                    await vscode.window.showInformationMessage('No stored Pokemon in PC!');
+                    return;
+                }
+
+                const selected = await vscode.window.showQuickPick(
+                    pokemonList.map((p: any) => ({
+                        label: `$(database) ${p.name}`,
+                        description: `${p.type} • Level ${p.level}`,
+                        pokemonName: p.name,
+                    })),
+                    { placeHolder: 'Select Pokemon to withdraw from PC', title: 'Withdraw Pokemon' }
+                );
+
+                if (selected) {
+                    panel.withdrawPokemon(selected.pokemonName);
+                }
             }
         }),
     );
@@ -1053,6 +1130,8 @@ interface IPokemonPanel {
     rollCall(): void;
     levelUpAll(): void;
     showPokedex(): void;
+    storePokemon(pokemonName: string): void;
+    withdrawPokemon(pokemonName: string): void;
     themeKind(): vscode.ColorThemeKind;
     throwBallWithMouse(): boolean;
     updatePokemonColor(newColor: PokemonColor): void;
@@ -1214,6 +1293,20 @@ class PokemonWebviewContainer implements IPokemonPanel {
 
     public showPokedex(): void {
         void this.getWebview().postMessage({ command: 'show-pokedex' });
+    }
+
+    public storePokemon(pokemonName: string): void {
+        void this.getWebview().postMessage({
+            command: 'store-pokemon',
+            pokemonName: pokemonName,
+        });
+    }
+
+    public withdrawPokemon(pokemonName: string): void {
+        void this.getWebview().postMessage({
+            command: 'withdraw-pokemon',
+            pokemonName: pokemonName,
+        });
     }
 
     public deletePokemon(pokemonName: string) {

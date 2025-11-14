@@ -363,6 +363,7 @@ export function saveState(stateApi?: VscodeStateApi) {
             elBottom: pokemonItem.el.style.bottom,
             needs: pokemonItem.pokemon.needs.serialize(),
             progression: pokemonItem.pokemon.progression.serialize(),
+            isHidden: pokemonItem.pokemon.isHidden,
         });
     });
     state.pokemonCounter = pokemonCounter;
@@ -415,6 +416,9 @@ function recoverState(
                 p.needs,
             );
             newPokemon.pokemon.progression = PokemonProgression.deserialize(p.progression);
+            if (p.isHidden) {
+                newPokemon.hide();
+            }
             allPokemon.push(newPokemon);
             recoveryMap.set(newPokemon.pokemon, p);
         } catch (InvalidPokemonException) {
@@ -735,7 +739,8 @@ export function pokemonPanelApp(
 
             case 'request-pokemon-for-combat':
                 // Send pokemon list for combat selection
-                const pokemonForCombat = allPokemon.pokemonCollection.map((pokemon, index) => ({
+                const validPokemon = allPokemon.pokemonCollection.filter(p => !p.pokemon.isHidden); // Only pokemon outside the PC can participate
+                const pokemonForCombat = validPokemon.map((pokemon, index) => ({
                     index: index,
                     name: pokemon.pokemon.name,
                     type: pokemon.type,
@@ -780,6 +785,56 @@ export function pokemonPanelApp(
                     text: '',
                     command: 'pokedex-data',
                     data: pokedexEntries,
+                });
+                break;
+
+            case 'store-pokemon':
+                const pokemonToStore = allPokemon.locate(message.pokemonName);
+                if (pokemonToStore) {
+                    pokemonToStore.hide();
+                    saveState(stateApi);
+                    stateApi?.postMessage({
+                        command: 'info',
+                        text: `${pokemonToStore.pokemon.name} was stored in the PC!`,
+                    });
+                }
+                break;
+
+            case 'withdraw-pokemon':
+                const pokemonToWithdraw = allPokemon.locate(message.pokemonName);
+                if (pokemonToWithdraw) {
+                    pokemonToWithdraw.show();
+                    saveState(stateApi);
+                    stateApi?.postMessage({
+                        command: 'info',
+                        text: `${pokemonToWithdraw.pokemon.name} was withdrawn from the PC!`,
+                    });
+                }
+                break;
+
+            case 'list-stored-pokemon':
+                const storedPokemon = allPokemon.pokemonCollection.filter(p => p.pokemon.isHidden);
+                stateApi?.postMessage({
+                    text: '',
+                    command: 'stored-pokemon-list',
+                    data: storedPokemon.map(p => ({
+                        name: p.pokemon.name,
+                        type: p.type,
+                        level: p.pokemon.progression.level,
+                    })),
+                });
+                break;
+
+            case 'list-active-pokemon':
+                const activePokemon = allPokemon.pokemonCollection.filter(p => !p.pokemon.isHidden);
+                stateApi?.postMessage({
+                    text: '',
+                    command: 'active-pokemon-list',
+                    data: activePokemon.map(p => ({
+                        name: p.pokemon.name,
+                        type: p.type,
+                        level: p.pokemon.progression.level,
+                    })),
                 });
                 break;
 
