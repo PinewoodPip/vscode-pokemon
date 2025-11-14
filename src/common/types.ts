@@ -45,11 +45,27 @@ export enum PokemonCombatType {
     fairy = 'fairy',
 }
 
-export class PokemonProgressionState {
-    level: number;
-    experience: number;
-    ivs: Record<PokemonStat, number>; // Individual Values
-    evs: Record<PokemonStat, number>; // Effort Values
+export abstract class PokemonProgressionState {
+    level: number = 0;
+    experience: number = 0;
+    /** Individual Values */
+    ivs: Record<PokemonStat, number> = {
+        hp: 0,
+        attack: 0,
+        defense: 0,
+        sp_atk: 0,
+        sp_def: 0,
+        speed: 0,
+    }
+    /** Effort Values */
+    evs: Record<PokemonStat, number> = {
+        hp: 0,
+        attack: 0,
+        defense: 0,
+        sp_atk: 0,
+        sp_def: 0,
+        speed: 0,
+    };
 }
 
 export class PokemonProgression extends PokemonProgressionState {
