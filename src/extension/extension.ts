@@ -255,7 +255,7 @@ async function handleRemovePokemonMessage(
                                 item.name,
                             );
                         });
-                    await storeCollectionAsMemento(this, collection);
+                    await saveExtensionState(this, collection);
                 }
             }
         });

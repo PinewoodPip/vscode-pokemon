@@ -1,3 +1,22 @@
+.type-normal   { --type-color: #A8A77A; }
+.type-fire     { --type-color: #EE8130; }
+.type-water    { --type-color: #6390F0; }
+.type-electric { --type-color: #F7D02C; }
+.type-grass    { --type-color: #7AC74C; }
+.type-ice      { --type-color: #96D9D6; }
+.type-fighting { --type-color: #C22E28; }
+.type-poison   { --type-color: #A33EA1; }
+.type-ground   { --type-color: #E2BF65; }
+.type-flying   { --type-color: #A98FF3; }
+.type-psychic  { --type-color: #F95587; }
+.type-bug      { --type-color: #A6B91A; }
+.type-rock     { --type-color: #B6A136; }
+.type-ghost    { --type-color: #735797; }
+.type-dragon   { --type-color: #6F35FC; }
+.type-dark     { --type-color: #705746; }
+.type-steel    { --type-color: #B7B7CE; }
+.type-fairy    { --type-color: #D685AD; }
+
 .tooltip-move {
   font-size: 11px;
   font-family: inherit;

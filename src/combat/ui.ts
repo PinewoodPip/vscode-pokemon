@@ -1,6 +1,7 @@
 import { log } from "../common/util";
 import { ABREVIATION_TO_STAT, Combat, CombatPokemon, CombatPokemonStat, POKEMON_STAT_ORDER, PokemonStat } from "./combat";
 import { getMoves } from "../common/learnsets-data";
+import { PokemonMove } from "../common/move-data";
 import { capitalizeString, randomIntegerInRange } from "../common/util";
 import { VscodeStateApi } from "../common/vscode-api";
 import { MESSAGE_HANDLERS } from "./message-handlers";
@@ -31,6 +32,11 @@ export class CombatUIManager {
 
     playerWidgets: ParticipantWidgets;
     enemyWidgets: ParticipantWidgets;
+
+    private moveGrid: HTMLElement;
+    private moveButtons: HTMLButtonElement[] = [];
+    private playerMoves: PokemonMove[] = [];
+    private playerMovePP: number[] = [];
 
     constructor(statApi: VscodeStateApi, baseMediaUri: string, combat: Combat) {
         this.stateApi = statApi;
@@ -69,7 +75,12 @@ export class CombatUIManager {
             }
         }
         
-        if (!this.combatContainer || !this.pokemonContainer || !this.foreground || !this.combatLog || !this.turnCounter) {
+        this.moveGrid = document.getElementById('moveGrid')!;
+        this.moveButtons = [0, 1, 2, 3].map(i =>
+            document.getElementById(`moveBtn${i}`) as HTMLButtonElement
+        );
+
+        if (!this.combatContainer || !this.pokemonContainer || !this.foreground || !this.combatLog || !this.turnCounter || !this.moveGrid || this.moveButtons.some(b => !b)) {
             throw new Error('CombatUIManager: Missing required DOM elements');
         }
             
@@ -98,7 +109,8 @@ export class CombatUIManager {
         // TODO move to combat class
         const playerLevel = playerPokemon.pokemon!.progression.level;
         const enemyLevel = 5; // TODO roll based on average party level?
-        const playerMoveIDs = getMoves(playerPokemon.type, playerLevel).map(m => m.id);
+        const playerMoves = getMoves(playerPokemon.type, playerLevel);
+        const playerMoveIDs = playerMoves.map(m => m.id);
         const enemyMoveIDs = getMoves(enemyPokemon.type, enemyLevel).map(m => m.id);
         const playerIVs = POKEMON_STAT_ORDER.map(stat => playerPokemon.pokemon!.progression.ivs[stat]);
         const playerEVs = POKEMON_STAT_ORDER.map(stat => playerPokemon.pokemon!.progression.evs[stat]);
@@ -113,21 +125,59 @@ export class CombatUIManager {
 >p1 team 1
 >p2 team 1`);
 
-        // Execute combat turns periodically
-        // TODO move to Combat class
-        this.combatInterval = window.setInterval(() => {
-            this.executeCombatTurn();
-        }, this.TURN_INTERVAL);
+        this.initializeMoveGrid(playerMoves);
     }
-    
-    executeCombatTurn() {
-        // Pick moves randomly
-        const player1Move = randomIntegerInRange(1, 4);
-        const player2Move = randomIntegerInRange(1, 4);
-        this.sendShowdownCommand(`>p1 move ${player1Move}`);
-        this.sendShowdownCommand(`>p2 move ${player2Move}`);
+
+    private initializeMoveGrid(moves: PokemonMove[]) {
+        this.playerMoves = moves;
+        this.playerMovePP = moves.map(m => m.pp);
+
+        this.moveButtons.forEach((btn, i) => {
+            if (i >= moves.length) {
+                btn.style.display = 'none';
+                return;
+            }
+            const move = moves[i];
+            btn.className = `move-btn type-${move.type}`;
+            btn.innerHTML = `
+                <span class="move-btn-name">${move.name}</span>
+                <div class="move-btn-footer">
+                    <span class="tooltip-move tooltip-move-${move.type}">${move.type.toUpperCase()}</span>
+                    <span class="move-btn-pp" id="movePP${i}">PP ${move.pp}/${move.pp}</span>
+                </div>`;
+            btn.disabled = false;
+            btn.onclick = () => this.onMoveSelected(i);
+        });
+
+        this.moveGrid.style.display = 'grid';
+    }
+
+    private onMoveSelected(moveIndex: number) {
+        this.setMovesEnabled(false);
+
+        this.playerMovePP[moveIndex]--;
+        const ppEl = document.getElementById(`movePP${moveIndex}`);
+        if (ppEl) {
+            ppEl.textContent = `PP ${this.playerMovePP[moveIndex]}/${this.playerMoves[moveIndex].pp}`;
+        }
+
+        const playerMove = moveIndex + 1;
+        const enemyMove = randomIntegerInRange(1, 4);
+        this.sendShowdownCommand(`>p1 move ${playerMove}`);
+        this.sendShowdownCommand(`>p2 move ${enemyMove}`);
 
         this.updateUI();
+
+        setTimeout(() => this.setMovesEnabled(true), this.TURN_INTERVAL);
+    }
+
+    private setMovesEnabled(enabled: boolean) {
+        this.moveButtons.forEach((btn, i) => {
+            if (btn.style.display === 'none') {
+                return;
+            }
+            btn.disabled = !enabled || this.playerMovePP[i] <= 0;
+        });
     }
 
     updateWidgets(widgets: ParticipantWidgets, pokemon: CombatPokemon) {
@@ -176,6 +226,8 @@ export class CombatUIManager {
             clearInterval(this.combatInterval);
             this.combatInterval = null;
         }
+        this.moveGrid.style.display = 'none';
+        this.setMovesEnabled(false);
         const playerPokemon = this.combat.player;
         const enemyPokemon = this.combat.enemy;
 
