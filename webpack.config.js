@@ -67,6 +67,8 @@ const webExtensionConfig = {
 			"assert": require.resolve('assert'),
 			"path": require.resolve("path-browserify"),
 			"fs": false,
+			"net": false,   // PvP networking is not available in the web extension
+			"os": false,
 		},
 	},
 	module: {

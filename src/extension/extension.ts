@@ -23,13 +23,17 @@ const DEFAULT_COLOR = PokemonColor.default;
 const AFK_THRESHOLD = 5 * 60; // Threshold for deeming the user AFK, in seconds.
 
 import * as cp from 'child_process';
+import * as os from 'os';
 import { log, logError } from '../common/util';
 import { PokemonSpecification, storeCollectionAsMemento as saveExtensionState } from '../common/persistence';
 import { getThrowWithMouseConfiguration, getConfigurationPosition, getConfiguredTheme, getConfiguredThemeKind, getConfiguredSize } from '../common/settings';
+import { NetworkCombatHost, NetworkCombatClient, DEFAULT_PVP_PORT } from './network-combat';
 
 export class ShowdownBattleProcess {
     private process: cp.ChildProcess | null = null;
     private webview: vscode.Webview | undefined;
+    /** Optional callback for relaying Showdown stdout (used by NetworkCombatHost). */
+    public onData: ((text: string) => void) | null = null;
 
     constructor(webview?: vscode.Webview) {
         this.webview = webview;
@@ -37,9 +41,14 @@ export class ShowdownBattleProcess {
 
     start(extensionPath: string, showdownPath: string): Promise<void> {
         return new Promise((resolve, reject) => {
+            if (!showdownPath) {
+                reject(new Error('showdownPath is not configured'));
+                return;
+            }
+
             const spawnCmd = 'node';
             const spawnArgs = [showdownPath, 'simulate-battle'];
-            
+
             log('Starting Showdown process');
 
             this.process = cp.spawn(spawnCmd, spawnArgs, {
@@ -47,20 +56,24 @@ export class ShowdownBattleProcess {
                 stdio: ['pipe', 'pipe', 'pipe'] // IPC messages are not used by showdown.
             });
 
-            // Read stdout and forward to webview
+            this.process.on('spawn', resolve);
+            this.process.on('error', reject);
+
+            // Read stdout and forward to webview (and optional relay callback)
             this.process.stdout?.on('data', (data: Buffer) => {
                 const output = data.toString();
                 void this.webview?.postMessage({
                     command: 'showdown-output',
                     text: output
                 });
+                this.onData?.(output);
             });
 
             // Read stderr and forward to webview
             this.process.stderr?.on('data', (data: Buffer) => {
                 const error = data.toString();
                 logError(`Showdown stderr: ${error}`);
-                
+
                 // Forward to webview
                 void this.webview?.postMessage({
                     command: 'showdown-error',
@@ -68,7 +81,6 @@ export class ShowdownBattleProcess {
                 });
             });
 
-            this.process.on('error', reject);
             this.process.on('exit', (code) => {
                 log(`Process exited with code: ${code}`);
                 void this.webview?.postMessage({
@@ -77,8 +89,6 @@ export class ShowdownBattleProcess {
                 });
                 this.process = null;
             });
-
-            resolve();
         });
     }
 
@@ -100,6 +110,8 @@ export class ShowdownBattleProcess {
 }
 
 var combatProcess: ShowdownBattleProcess | null = null;
+var pvpHost: NetworkCombatHost | null = null;
+var pvpClient: NetworkCombatClient | null = null;
 
 class PokemonQuickPickItem implements vscode.QuickPickItem {
     constructor(
@@ -165,6 +177,37 @@ async function requestPokemonList(
     } catch (error) {
         return undefined;
     }
+}
+
+async function requestPokemonDataForPvp(index: number): Promise<any | undefined> {
+    const webview = getWebview();
+    if (!webview) { return undefined; }
+
+    const promise = new Promise<any>((resolve, reject) => {
+        const timeout = setTimeout(() => { disposable.dispose(); reject(new Error('Timeout')); }, 5000);
+        const disposable = webview.onDidReceiveMessage((msg: any) => {
+            if (msg.command === 'pvp-pokemon-data') {
+                clearTimeout(timeout);
+                disposable.dispose();
+                resolve(msg.data);
+            }
+        });
+    });
+    webview.postMessage({ command: 'get-pokemon-for-pvp', index });
+    try { return await promise; } catch { return undefined; }
+}
+
+function getLocalIPs(): string[] {
+    const nets = os.networkInterfaces();
+    const results: string[] = [];
+    for (const ifaces of Object.values(nets)) {
+        for (const iface of ifaces ?? []) {
+            if (iface.family === 'IPv4' && !iface.internal) {
+                results.push(iface.address);
+            }
+        }
+    }
+    return results.length > 0 ? results : ['127.0.0.1'];
 }
 
 function updatePanelThrowWithMouse(): void {
@@ -330,10 +373,26 @@ export function activate(context: vscode.ExtensionContext) {
             if (getConfigurationPosition() === ExtPosition.explorer && webviewViewProvider) {
                 await vscode.commands.executeCommand('pokemonView.focus');
             }
-            if (combatProcess) {
+            if (combatProcess || pvpHost || pvpClient) {
                 await vscode.window.showInformationMessage("You're already in combat!");
                 return;
             }
+
+            // Pick battle mode
+            const battleMode = await vscode.window.showQuickPick([
+                { label: '$(robot) Random AI Battle', mode: 'ai' },
+                { label: '$(broadcast) Host PvP Battle', mode: 'host' },
+                { label: '$(plug) Join PvP Battle', mode: 'join' },
+            ], { placeHolder: 'Choose battle mode', title: 'Start Pokemon Battle' });
+            if (!battleMode) { return; }
+
+            if (battleMode.mode === 'host') {
+                return vscode.commands.executeCommand('vscode-pokemon.host-pvp-battle');
+            }
+            if (battleMode.mode === 'join') {
+                return vscode.commands.executeCommand('vscode-pokemon.join-pvp-battle');
+            }
+
             // Retrieve pokemon list from webview
             const pokemonList = await requestPokemonList('request-pokemon-for-combat', 'pokemon-combat-list');
             if (!pokemonList) {
@@ -359,7 +418,7 @@ export function activate(context: vscode.ExtensionContext) {
             ];
             const selected = await vscode.window.showQuickPick(quickPickItems, {
                 placeHolder: 'Choose your Pokemon for battle',
-                title: 'Start Pokemon Battle',
+                title: 'AI Battle — Choose your Pokemon',
             });
             if (!selected) {
                 return; // Cancel combat
@@ -380,13 +439,207 @@ export function activate(context: vscode.ExtensionContext) {
 
             try {
                 await combatProcess.start(context.extensionPath, showdownPathSetting);
-
             } catch (e) {
-                // Show error notification
-                await vscode.window.showErrorMessage('Failed to start Pokemon Showdown battle process. Double-check that the pokemon-showdown node module is installed and that your showdownPath setting is correct.');
+                combatProcess = null;
+                const isUnconfigured = e instanceof Error && e.message === 'showdownPath is not configured';
+                const msg = isUnconfigured
+                    ? 'Set the vscode-pokemon.showdownPath setting to the pokemon-showdown entry point before starting a battle.'
+                    : 'Failed to start Pokemon Showdown. Check that the pokemon-showdown node module is installed and that your showdownPath setting is correct.';
+                const action = await vscode.window.showErrorMessage(msg, 'Open Settings');
+                if (action === 'Open Settings') {
+                    await vscode.commands.executeCommand('workbench.action.openSettings', 'vscode-pokemon.showdownPath');
+                }
             }
         }),
     );
+    context.subscriptions.push(
+        vscode.commands.registerCommand('vscode-pokemon.host-pvp-battle', async () => {
+            const panel = getPokemonPanel();
+            if (!panel) {
+                await vscode.window.showErrorMessage('Please start the Pokemon panel first.');
+                return;
+            }
+            if (combatProcess || pvpHost || pvpClient) {
+                await vscode.window.showInformationMessage("You're already in combat!");
+                return;
+            }
+
+            const pokemonList = await requestPokemonList('request-pokemon-for-combat', 'pokemon-combat-list');
+            if (!pokemonList || pokemonList.length === 0) {
+                await vscode.window.showInformationMessage('You need at least one Pokemon to start combat!');
+                return;
+            }
+
+            const quickPickItems = [
+                { label: '$(symbol-misc) Random Pokemon', index: -1 },
+                ...pokemonList.map((p: any) => ({
+                    label: `$(circle-filled) ${p.name}`,
+                    description: `${p.type} • Level ${p.level}`,
+                    index: p.index,
+                })),
+            ];
+            const selected = await vscode.window.showQuickPick(quickPickItems, {
+                placeHolder: 'Choose your Pokemon for PvP battle',
+                title: 'Host PvP Battle',
+            });
+            if (!selected) { return; }
+
+            const selectedIndex = selected.index >= 0
+                ? selected.index
+                : Math.floor(Math.random() * pokemonList.length);
+
+            const pokemonData = await requestPokemonDataForPvp(selectedIndex);
+            if (!pokemonData) {
+                await vscode.window.showErrorMessage('Failed to retrieve Pokemon data.');
+                return;
+            }
+
+            const webview = getWebview();
+            if (!webview) {
+                await vscode.window.showErrorMessage('Could not access webview.');
+                return;
+            }
+
+            const showdownPathSetting = vscode.workspace.getConfiguration('vscode-pokemon').get<string>('showdownPath', '').trim();
+            combatProcess = new ShowdownBattleProcess(webview);
+            try {
+                await combatProcess.start(context.extensionPath, showdownPathSetting);
+            } catch {
+                await vscode.window.showErrorMessage('Failed to start Pokemon Showdown. Check your showdownPath setting.');
+                combatProcess = null;
+                return;
+            }
+
+            pvpHost = new NetworkCombatHost(webview, combatProcess);
+            pvpHost.setMyPokemon(pokemonData, selectedIndex);
+
+            let port: number;
+            try {
+                port = await pvpHost.listen(DEFAULT_PVP_PORT);
+            } catch {
+                await vscode.window.showErrorMessage(`Failed to start PvP server on port ${DEFAULT_PVP_PORT}. The port may already be in use.`);
+                pvpHost.dispose();
+                pvpHost = null;
+                combatProcess.stop();
+                combatProcess = null;
+                return;
+            }
+
+            const localIPs = getLocalIPs();
+            void webview.postMessage({ command: 'pvp-lobby-info', status: 'Waiting for opponent...', ip: localIPs[0] ?? '?', port });
+            log(`PvP host listening on port ${port}. Local IPs: ${localIPs.join(', ')}`);
+        }),
+    );
+    context.subscriptions.push(
+        vscode.commands.registerCommand('vscode-pokemon.join-pvp-battle', async () => {
+            const panel = getPokemonPanel();
+            if (!panel) {
+                await vscode.window.showErrorMessage('Please start the Pokemon panel first.');
+                return;
+            }
+            if (combatProcess || pvpHost || pvpClient) {
+                await vscode.window.showInformationMessage("You're already in combat!");
+                return;
+            }
+
+            const defaultIpPort = `127.0.0.1:${DEFAULT_PVP_PORT}`;
+            const ipPort = await vscode.window.showInputBox({
+                prompt: 'Enter the host IP:port (leave empty for localhost)',
+                placeHolder: defaultIpPort,
+                validateInput: (v) => (!v || v.includes(':')) ? undefined : 'Enter as IP:port',
+            });
+            if (ipPort === undefined) { return; } // cancelled
+            const resolved = ipPort.trim() || defaultIpPort;
+            const colonIdx = resolved.lastIndexOf(':');
+            const hostIp = resolved.slice(0, colonIdx);
+            const hostPort = parseInt(resolved.slice(colonIdx + 1), 10) || DEFAULT_PVP_PORT;
+
+            const pokemonList = await requestPokemonList('request-pokemon-for-combat', 'pokemon-combat-list');
+            if (!pokemonList || pokemonList.length === 0) {
+                await vscode.window.showInformationMessage('You need at least one Pokemon to start combat!');
+                return;
+            }
+
+            const quickPickItems = [
+                { label: '$(symbol-misc) Random Pokemon', index: -1 },
+                ...pokemonList.map((p: any) => ({
+                    label: `$(circle-filled) ${p.name}`,
+                    description: `${p.type} • Level ${p.level}`,
+                    index: p.index,
+                })),
+            ];
+            const selected = await vscode.window.showQuickPick(quickPickItems, {
+                placeHolder: 'Choose your Pokemon for PvP battle',
+                title: 'Join PvP Battle',
+            });
+            if (!selected) { return; }
+
+            const selectedIndex = selected.index >= 0
+                ? selected.index
+                : Math.floor(Math.random() * pokemonList.length);
+
+            const pokemonData = await requestPokemonDataForPvp(selectedIndex);
+            if (!pokemonData) {
+                await vscode.window.showErrorMessage('Failed to retrieve Pokemon data.');
+                return;
+            }
+
+            const webview = getWebview();
+            if (!webview) { return; }
+
+            void webview.postMessage({ command: 'pvp-lobby-info', status: `Connecting to ${hostIp}:${hostPort}...` });
+
+            pvpClient = new NetworkCombatClient(webview);
+            pvpClient.setMyPokemon(pokemonData, selectedIndex);
+
+            try {
+                await pvpClient.connect(hostIp, hostPort);
+                log(`PvP client connected to ${hostIp}:${hostPort}`);
+            } catch (e) {
+                void webview.postMessage({ command: 'pvp-disconnected' });
+                await vscode.window.showErrorMessage(`Could not connect to ${hostIp}:${hostPort}. Make sure the host is waiting.`);
+                pvpClient.dispose();
+                pvpClient = null;
+            }
+        }),
+    );
+    context.subscriptions.push(
+        vscode.commands.registerCommand('vscode-pokemon.forfeit-battle', async () => {
+            const webview = getWebview();
+            if (!combatProcess && !pvpHost && !pvpClient) {
+                await vscode.window.showInformationMessage('You are not currently in a battle.');
+                return;
+            }
+            const confirm = await vscode.window.showWarningMessage(
+                'Forfeit the battle? This counts as a loss.',
+                { modal: true },
+                'Forfeit',
+            );
+            if (confirm !== 'Forfeit') { return; }
+
+            if (pvpHost) {
+                pvpHost.forfeit();
+                pvpHost = null;
+            } else if (pvpClient) {
+                pvpClient.forfeit();
+                pvpClient = null;
+            }
+            combatProcess?.stop();
+            combatProcess = null;
+
+            webview?.postMessage({ command: 'forfeit-battle' });
+        }),
+    );
+
+    // Dispose network resources when the extension is deactivated or the window closes
+    context.subscriptions.push({
+        dispose: () => {
+            pvpHost?.dispose(); pvpHost = null;
+            pvpClient?.dispose(); pvpClient = null;
+            combatProcess?.stop(); combatProcess = null;
+        },
+    });
+
     context.subscriptions.push(
         vscode.commands.registerCommand('vscode-pokemon.throw-ball', () => {
             const panel = getPokemonPanel();
@@ -1461,6 +1714,20 @@ function handleWebviewMessage(message: WebviewMessage) {
                 combatProcess.stop();
                 combatProcess = null;
             }
+            pvpHost?.dispose(); pvpHost = null;
+            pvpClient?.dispose(); pvpClient = null;
+            break;
+        case 'pvp-my-move':
+            if (pvpHost) {
+                pvpHost.onLocalMove(message.data?.moveIndex);
+            } else if (pvpClient) {
+                pvpClient.sendMove(message.data?.moveIndex);
+            }
+            break;
+        case 'pvp-cancel':
+            pvpHost?.dispose(); pvpHost = null;
+            pvpClient?.dispose(); pvpClient = null;
+            combatProcess?.stop(); combatProcess = null;
             break;
         case 'pokedex-data':
             // Display pokedex data in a quick pick

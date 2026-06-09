@@ -32,6 +32,9 @@
     "activationEvents": [
         "onCommand:vscode-pokemon.start",
         "onCommand:vscode-pokemon.start-combat",
+        "onCommand:vscode-pokemon.host-pvp-battle",
+        "onCommand:vscode-pokemon.join-pvp-battle",
+        "onCommand:vscode-pokemon.forfeit-battle",
         "onCommand:vscode-pokemon.spawn-pokemon",
         "onCommand:vscode-pokemon.spawn-random-pokemon",
         "onCommand:vscode-pokemon.delete-pokemon",
@@ -104,6 +107,21 @@
                     "dark": "media/icon/dark-swords.svg",
                     "light": "media/icon/light-swords.svg"
                 }
+            },
+            {
+                "command": "vscode-pokemon.host-pvp-battle",
+                "title": "Host PvP Battle",
+                "category": "Pokemon Coding"
+            },
+            {
+                "command": "vscode-pokemon.join-pvp-battle",
+                "title": "Join PvP Battle",
+                "category": "Pokemon Coding"
+            },
+            {
+                "command": "vscode-pokemon.forfeit-battle",
+                "title": "Forfeit Battle",
+                "category": "Pokemon Coding"
             },
             {
                 "command": "vscode-pokemon.export-pokemon-list",

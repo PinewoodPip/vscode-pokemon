@@ -305,7 +305,8 @@ export class SwitchHandler extends MessageHandler {
         const pokemonName = match[2];
         const hp = parseInt(match[3]);
         const maxHp = parseInt(match[4]);
-        uiManager.addCombatLog(`${playerIndex === 1 ? 'Your' : 'Enemy'} ${pokemonName} switched in with ${hp}/${maxHp} HP!`, 'info');
+        const isLocalPlayer = uiManager.playerSide === 'p1' ? playerIndex === 1 : playerIndex === 2;
+        uiManager.addCombatLog(`${isLocalPlayer ? 'Your' : 'Enemy'} ${pokemonName} switched in with ${hp}/${maxHp} HP!`, 'info');
 
         const pokemonEl = uiManager.getCombatPokemonElement(playerIndex);
         pokemonEl.currentHp = hp;
@@ -318,8 +319,11 @@ export class VictoryHandler extends MessageHandler {
 
     handle(match: RegExpMatchArray, uiManager: CombatUIManager): void {
         const winner = match[1];
-        const playerWon = winner === 'Player';
-        uiManager.endCombat(playerWon);
+        // p1 is always named 'Player', p2 is always named 'Enemy' (set in start())
+        const localPlayerWon = uiManager.playerSide === 'p1'
+            ? winner === 'Player'
+            : winner === 'Enemy';
+        uiManager.endCombat(localPlayerWon);
     }
 }
 

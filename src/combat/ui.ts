@@ -5,6 +5,8 @@ import { PokemonMove } from "../common/move-data";
 import { capitalizeString, randomIntegerInRange } from "../common/util";
 import { VscodeStateApi } from "../common/vscode-api";
 import { MESSAGE_HANDLERS } from "./message-handlers";
+import { EnemyController } from "./enemy-controller";
+import { NetworkPokemonData } from "../common/network-types";
 
 interface ParticipantWidgets {
     nameEl: HTMLElement;
@@ -16,7 +18,7 @@ interface ParticipantWidgets {
 }
 
 export class CombatUIManager {
-    private readonly TURN_INTERVAL = 3000;
+    private readonly TURN_INTERVAL = 1750;
     private readonly CRITICAL_HP_THRESHOLD = 25; // As percentage.
     private readonly LOW_HP_THRESHOLD = 50; // As percentage.
 
@@ -39,8 +41,24 @@ export class CombatUIManager {
     private playerMovePP: number[] = [];
     private enemyMoves: PokemonMove[] = [];
     private enemyMovePP: number[] = [];
+    private enemyController: EnemyController;
+    private waitingOverlay: HTMLElement | null = null;
+    /** PvP only: called with the local player's move index before awaiting the opponent. */
+    private onLocalMoveSelected: ((moveIndex: number) => void) | undefined;
+    /** False for the PvP client, which does not run or send commands to Showdown. */
+    private startsShowdown: boolean;
+    /** Which Showdown player index (p1/p2) the local player is. Used to map Showdown output to the correct UI side. */
+    public playerSide: 'p1' | 'p2';
 
-    constructor(statApi: VscodeStateApi, baseMediaUri: string, combat: Combat) {
+    constructor(
+        statApi: VscodeStateApi,
+        baseMediaUri: string,
+        combat: Combat,
+        enemyController: EnemyController,
+        onLocalMoveSelected?: (moveIndex: number) => void,
+        startsShowdown: boolean = true,
+        playerSide: 'p1' | 'p2' = 'p1',
+    ) {
         this.stateApi = statApi;
         this.basePokemonUri = baseMediaUri;
         this.combat = combat;
@@ -89,9 +107,13 @@ export class CombatUIManager {
         this.combatContainer.style.display = 'none';
         this.pokemonContainer.style.display = 'block';
         this.foreground.style.display = 'block';
+        this.enemyController = enemyController;
+        this.onLocalMoveSelected = onLocalMoveSelected;
+        this.startsShowdown = startsShowdown;
+        this.playerSide = playerSide;
     }
 
-    start() {
+    start(pvpOpponentData?: NetworkPokemonData) {
         const combat = this.combat;
         const playerPokemon = combat.player;
         const enemyPokemon = combat.enemy;
@@ -108,27 +130,28 @@ export class CombatUIManager {
         this.addCombatLog(`A wild ${this.combat.enemy.name} appeared!`, 'info');
         this.addCombatLog(`Go! ${this.combat.player.name}!`, 'info');
 
-        // TODO move to combat class
         const playerLevel = playerPokemon.pokemon!.progression.level;
-        const enemyLevel = 5; // TODO roll based on average party level?
+        const enemyLevel = enemyPokemon.level;
         const playerMoves = getMoves(playerPokemon.type, playerLevel);
-        const playerMoveIDs = playerMoves.map(m => m.id);
         const enemyMoves = getMoves(enemyPokemon.type, enemyLevel);
-        const enemyMoveIDs = enemyMoves.map(m => m.id);
         this.enemyMoves = enemyMoves;
         this.enemyMovePP = enemyMoves.map(m => m.pp);
-        const playerIVs = POKEMON_STAT_ORDER.map(stat => playerPokemon.pokemon!.progression.ivs[stat]);
-        const playerEVs = POKEMON_STAT_ORDER.map(stat => playerPokemon.pokemon!.progression.evs[stat]);
-        // Roll random EVs for the enemy
-        const enemyIVs = POKEMON_STAT_ORDER.map(stat => randomIntegerInRange(0, 31));
-        const enemyEVs = POKEMON_STAT_ORDER.map(stat => randomIntegerInRange(0, 100)); // Limit to 100 per stat as a cheap way to avoid them from overshooting the limit
 
-        log('[combat] Sending combat start command');
-        this.sendShowdownCommand(`>start {"formatid":"gen7ou"}
+        if (this.startsShowdown) {
+            const playerMoveIDs = playerMoves.map(m => m.id);
+            const enemyMoveIDs = pvpOpponentData ? pvpOpponentData.moveIds : enemyMoves.map(m => m.id);
+            const playerIVs = POKEMON_STAT_ORDER.map(stat => playerPokemon.pokemon!.progression.ivs[stat]);
+            const playerEVs = POKEMON_STAT_ORDER.map(stat => playerPokemon.pokemon!.progression.evs[stat]);
+            const enemyIVs = pvpOpponentData ? pvpOpponentData.ivs : POKEMON_STAT_ORDER.map(() => randomIntegerInRange(0, 31));
+            const enemyEVs = pvpOpponentData ? pvpOpponentData.evs : POKEMON_STAT_ORDER.map(() => randomIntegerInRange(0, 100));
+
+            log('[combat] Sending combat start command');
+            this.sendShowdownCommand(`>start {"formatid":"gen7ou"}
 >player p1 {"name":"Player","team":"${capitalizeString(playerPokemon.config.name)}|||noability|${playerMoveIDs.join(',')}|Modest|${playerIVs.join(',')}||${playerEVs.join(',')}||${playerLevel}|"}
 >player p2 {"name":"Enemy","team":"${capitalizeString(enemyPokemon.config.name)}|||noability|${enemyMoveIDs.join(',')}|Modest|${enemyIVs.join(',')}||${enemyEVs.join(',')}||${enemyLevel}|"}
 >p1 team 1
 >p2 team 1`);
+        }
 
         this.initializeMoveGrid(playerMoves);
     }
@@ -157,16 +180,7 @@ export class CombatUIManager {
         this.moveGrid.style.display = 'grid';
     }
 
-    private selectEnemyMove(): number | null {
-        const valid = this.enemyMovePP
-            .map((pp, i) => ({ pp, i }))
-            .filter(({ pp, i }) => i < this.enemyMoves.length && pp > 0)
-            .map(({ i }) => i);
-        if (valid.length === 0) { return null; }
-        return valid[randomIntegerInRange(0, valid.length - 1)];
-    }
-
-    private onMoveSelected(moveIndex: number) {
+    private async onMoveSelected(moveIndex: number) {
         this.setMovesEnabled(false);
 
         this.playerMovePP[moveIndex]--;
@@ -175,15 +189,40 @@ export class CombatUIManager {
             ppEl.textContent = `PP ${this.playerMovePP[moveIndex]}/${this.playerMoves[moveIndex].pp}`;
         }
 
-        const playerMove = moveIndex + 1;
-        const enemyMove = this.selectEnemyMove();
+        // PvP: report local move to extension before waiting for opponent
+        this.onLocalMoveSelected?.(moveIndex);
+
+        this.showWaitingForOpponent(true);
+        const enemyMove = await this.enemyController.selectMove(this.enemyMoves, this.enemyMovePP);
+        this.showWaitingForOpponent(false);
+
         if (enemyMove !== null) { this.enemyMovePP[enemyMove]--; }
-        this.sendShowdownCommand(`>p1 move ${playerMove}`);
-        this.sendShowdownCommand(`>p2 move ${enemyMove !== null ? enemyMove + 1 : 1}`);
+
+        // In AI mode: send moves to Showdown directly
+        // In PvP mode moves are submitted to Showdown by the host's NetworkCombatHost.trySubmitMoves() instead
+        if (!this.onLocalMoveSelected) {
+            const playerMove = moveIndex + 1;
+            this.sendShowdownCommand(`>p1 move ${playerMove}`);
+            this.sendShowdownCommand(`>p2 move ${enemyMove !== null ? enemyMove + 1 : 1}`);
+        }
 
         this.updateUI();
 
         setTimeout(() => this.setMovesEnabled(true), this.TURN_INTERVAL);
+    }
+
+    private showWaitingForOpponent(show: boolean) {
+        if (show) {
+            if (this.waitingOverlay) { return; }
+            const overlay = document.createElement('div');
+            overlay.className = 'waiting-overlay';
+            overlay.textContent = 'Waiting for opponent...';
+            this.moveGrid.appendChild(overlay);
+            this.waitingOverlay = overlay;
+        } else {
+            this.waitingOverlay?.remove();
+            this.waitingOverlay = null;
+        }
     }
 
     private setMovesEnabled(enabled: boolean) {
@@ -292,7 +331,9 @@ export class CombatUIManager {
             command: 'showdown-stop',
             text: 'End of combat: terminate Showdown process'
         });
-        
+
+        this.enemyController.dispose();
+
         // Hide combat UI after a delay
         setTimeout(() => {
             const combatContainer = this.combatContainer;
@@ -301,10 +342,35 @@ export class CombatUIManager {
             combatContainer.style.display = 'none';
             pokemonContainer.style.display = 'block';
             foreground.style.display = 'block';
-            
+
             // Clear combat log
             this.clearCombatLog();
         }, 3000);
+    }
+
+    /** Local player forfeited. Counts as a loss with no XP. */
+    forfeitCombat() {
+        this.addCombatLog('You forfeited.', 'damage');
+        this.endCombat(false);
+    }
+
+    /** Exit combat immediately due to an external abort (disconnect, cancel). No XP awarded. */
+    abortCombat(reason: string) {
+        if (this.combatInterval) {
+            clearInterval(this.combatInterval);
+            this.combatInterval = null;
+        }
+        this.moveGrid.style.display = 'none';
+        this.setMovesEnabled(false);
+        this.enemyController.dispose();
+        this.addCombatLog(reason, 'damage');
+        this.stateApi.postMessage({ command: 'showdown-stop', text: 'End of combat: terminate Showdown process' });
+        setTimeout(() => {
+            this.combatContainer.style.display = 'none';
+            this.pokemonContainer.style.display = 'block';
+            this.foreground.style.display = 'block';
+            this.clearCombatLog();
+        }, 2000);
     }
 
     parseShowdownOutput(output: string) {
@@ -463,7 +529,8 @@ export class CombatUIManager {
     }
 
     getCombatPokemonElement(index: number): CombatPokemon {
-        const pokemon = index === 1 ? this.combat.player : this.combat.enemy;
+        const isLocalPlayer = this.playerSide === 'p1' ? index === 1 : index === 2;
+        const pokemon = isLocalPlayer ? this.combat.player : this.combat.enemy;
         if (!pokemon) {
             throw new Error(`No combat pokemon for player index ${index}`);
         }
@@ -471,7 +538,9 @@ export class CombatUIManager {
     }
 
     getCombatSectionElement(index: number): HTMLElement {
-        const sectionId = index === 1 ? 'playerPokemonSection' : 'enemyPokemonSection';
+        // Local player is always on the left
+        const isLocalPlayer = this.playerSide === 'p1' ? index === 1 : index === 2;
+        const sectionId = isLocalPlayer ? 'playerPokemonSection' : 'enemyPokemonSection';
         const element = document.getElementById(sectionId);
         if (!element) {
             throw new Error(`No combat section element for player index ${index}`);

@@ -32,6 +32,9 @@ import { PhysicsEntityManager, Berry } from './entity';
 import { Pokemon, PokemonNeedsState } from './pokemon';
 import { getMoves } from '../common/learnsets-data';
 import { CombatUIManager } from '../combat/ui';
+import { AiEnemyController } from '../combat/ai-enemy-controller';
+import { NetworkEnemyController } from '../combat/network-enemy-controller';
+import { NetworkPokemonData } from '../common/network-types';
 import { VscodeStateApi } from '../common/vscode-api';
 
 /* This is how the VS Code API can be invoked from the panel */
@@ -47,6 +50,7 @@ var pokedex: Map<string, number> = new Map(); // Track species and count
 
 var combat: Combat | null = null;
 var combatUIManager: CombatUIManager | null = null;
+var networkEnemyController: NetworkEnemyController | null = null;
 
 // Tooltip management
 export interface TooltipLine {
@@ -551,9 +555,9 @@ export function pokemonPanelApp(
 
     initCanvas();
 
-    // Hide combat UI
-    const combatContainer = document.getElementById('combatContainer') as HTMLDivElement;
-    combatContainer.style.display = 'none';
+    // Ensure overlay UIs start hidden
+    (document.getElementById('combatContainer') as HTMLElement).style.display = 'none';
+    (document.getElementById('lobbyContainer') as HTMLElement).style.display = 'none';
     
     // Initialize physics entity manager
     const canvas = document.getElementById('pokemonCanvas') as HTMLCanvasElement;
@@ -634,9 +638,104 @@ export function pokemonPanelApp(
         );
 
         combat = new Combat(playerPokemon, enemyPokemon);
-        combatUIManager = new CombatUIManager(stateApi!, basePokemonUri, combat); // StateAPI should always be set by this point
+        combatUIManager = new CombatUIManager(stateApi!, basePokemonUri, combat, new AiEnemyController());
         combatUIManager.start();
     }
+
+    function startPvpCombat(
+        role: 'host' | 'client',
+        opponentPokemon: NetworkPokemonData,
+        localPlayerSide: 'p1' | 'p2',
+        playerPokemonIndex: number,
+    ) {
+        if (allPokemon.pokemonCollection.length === 0) { return; }
+
+        const playerPokemonEl = allPokemon.pokemonCollection[playerPokemonIndex]
+            ?? allPokemon.pokemonCollection[0];
+        const playerLevel = (playerPokemonEl.pokemon as Pokemon).progression.level;
+        const playerCombatPokemon = new CombatPokemon(
+            playerPokemonEl.pokemon as Pokemon,
+            playerPokemonEl.pokemon.name,
+            playerPokemonEl.type,
+            playerPokemonEl.color,
+            playerPokemonEl.generation,
+            playerPokemonEl.originalSpriteSize,
+            POKEMON_DATA[playerPokemonEl.type],
+            POKEMON_DATA[playerPokemonEl.type].stats.hp,
+            POKEMON_DATA[playerPokemonEl.type].stats.hp,
+            playerLevel,
+        );
+
+        const opponentConfig = POKEMON_DATA[opponentPokemon.type];
+        const opponentCombatPokemon = new CombatPokemon(
+            null,
+            opponentPokemon.name,
+            opponentPokemon.type,
+            opponentPokemon.color as any,
+            opponentPokemon.generation,
+            opponentPokemon.originalSpriteSize,
+            opponentConfig,
+            opponentPokemon.maxHp,
+            opponentPokemon.maxHp,
+            opponentPokemon.level,
+        );
+
+        // Local player is always combat.player (left side); playerSide tells handlers which Showdown index that maps to
+        combat = new Combat(playerCombatPokemon, opponentCombatPokemon);
+        networkEnemyController = new NetworkEnemyController();
+        combatUIManager = new CombatUIManager(
+            stateApi!,
+            basePokemonUri,
+            combat,
+            networkEnemyController,
+            (moveIndex) => stateApi!.postMessage({ command: 'pvp-my-move', text: '', data: { moveIndex } }),
+            role === 'host',
+            localPlayerSide,
+        );
+        combatUIManager.start(opponentPokemon);
+    }
+
+    function showLobby(status: string, ip?: string, port?: number) {
+        const lobbyContainer = document.getElementById('lobbyContainer') as HTMLElement;
+        const lobbyStatus = document.getElementById('lobbyStatus') as HTMLElement;
+        const lobbyDetails = document.getElementById('lobbyDetails') as HTMLElement;
+        const lobbyCopyBtn = document.getElementById('lobbyCopyBtn') as HTMLButtonElement;
+        lobbyStatus.textContent = status;
+        if (ip && port) {
+            lobbyDetails.textContent = `Your IP: ${ip}\nPort: ${port}\nShare this with your opponent.`;
+            lobbyCopyBtn.dataset.address = `${ip}:${port}`;
+            lobbyCopyBtn.style.display = '';
+        } else {
+            lobbyDetails.textContent = '';
+            lobbyCopyBtn.style.display = 'none';
+        }
+        lobbyContainer.style.display = 'flex';
+        (document.getElementById('pokemonContainer') as HTMLElement).style.visibility = 'hidden';
+        (document.getElementById('foreground') as HTMLElement).style.visibility = 'hidden';
+    }
+
+    function hideLobby() {
+        const lobbyContainer = document.getElementById('lobbyContainer') as HTMLElement;
+        if (lobbyContainer.style.display === 'none') { return; }
+        lobbyContainer.style.display = 'none';
+        (document.getElementById('pokemonContainer') as HTMLElement).style.visibility = '';
+        (document.getElementById('foreground') as HTMLElement).style.visibility = '';
+    }
+
+    (document.getElementById('lobbyCancelBtn') as HTMLButtonElement).addEventListener('click', () => {
+        hideLobby();
+        stateApi?.postMessage({ command: 'pvp-cancel', text: '' });
+    });
+
+    (document.getElementById('lobbyCopyBtn') as HTMLButtonElement).addEventListener('click', (e) => {
+        const btn = e.currentTarget as HTMLButtonElement;
+        const address = btn.dataset.address ?? '';
+        navigator.clipboard.writeText(address).then(() => {
+            const original = btn.textContent;
+            btn.textContent = 'Copied!';
+            setTimeout(() => { btn.textContent = original; }, 1500);
+        });
+    });
 
     function getConfiguredTheme(): Theme {
         // Extract from initial params - we'll use the theme passed to the function
@@ -669,6 +768,59 @@ export function pokemonPanelApp(
             case 'start-combat':
                 startCombat(message.playerPokemonIndex);
                 break;
+
+            case 'start-pvp-combat':
+                hideLobby();
+                startPvpCombat(message.role, message.opponentPokemon, message.localPlayerSide, message.playerPokemonIndex ?? 0);
+                break;
+
+            case 'pvp-opponent-move':
+                networkEnemyController?.onOpponentMoveReceived(message.moveIndex);
+                break;
+
+            case 'pvp-lobby-info':
+                showLobby(message.status, message.ip, message.port);
+                break;
+
+            case 'pvp-disconnected':
+                hideLobby();
+                combatUI?.abortCombat('Opponent disconnected.');
+                networkEnemyController = null;
+                break;
+
+            case 'forfeit-battle':
+                combatUI?.forfeitCombat();
+                networkEnemyController = null;
+                break;
+
+            case 'pvp-opponent-forfeited':
+                combatUI?.addCombatLog('Opponent forfeited. You win!', 'info');
+                combatUI?.endCombat(true);
+                networkEnemyController = null;
+                break;
+
+            case 'get-pokemon-for-pvp': {
+                const idx: number = message.index;
+                const pokemonEl = allPokemon.pokemonCollection[idx];
+                if (!pokemonEl) { break; }
+                const poke = pokemonEl.pokemon as Pokemon;
+                const level = poke.progression.level;
+                const moves = getMoves(pokemonEl.type, level);
+                const pvpData: NetworkPokemonData = {
+                    type: pokemonEl.type,
+                    color: pokemonEl.color,
+                    generation: pokemonEl.generation,
+                    originalSpriteSize: pokemonEl.originalSpriteSize,
+                    name: poke.name,
+                    level,
+                    moveIds: moves.map(m => m.id),
+                    ivs: POKEMON_STAT_ORDER.map(stat => poke.progression.ivs[stat]),
+                    evs: POKEMON_STAT_ORDER.map(stat => poke.progression.evs[stat]),
+                    maxHp: POKEMON_DATA[pokemonEl.type].stats.hp,
+                };
+                stateApi?.postMessage({ command: 'pvp-pokemon-data', text: '', data: pvpData });
+                break;
+            }
 
             case 'spawn-pokemon':
                 allPokemon.push(
