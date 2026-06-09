@@ -26,21 +26,18 @@ const STATUS_ACRONYM_TO_STRING: Record<string, string> = {
 
 export abstract class MessageHandler {
     abstract readonly pattern: RegExp;
-    
-    canHandle(line: string): boolean {
-        return this.pattern.test(line);
+
+    canHandleMessage(line: string): RegExpMatchArray | null {
+        return line.match(this.pattern);
     }
-    
-    abstract handle(line: string, uiManager: CombatUIManager): void;
+
+    abstract handle(match: RegExpMatchArray, uiManager: CombatUIManager): void;
 }
 
 export class FaintingHandler extends MessageHandler {
     readonly pattern = /^\|-damage\|p(\d)a: ([^|]+)\|0 fnt\|?(\[from\] \w+)?$/;
 
-    handle(line: string, uiManager: CombatUIManager): void {
-        const match = line.match(this.pattern);
-        if (!match) return;
-
+    handle(match: RegExpMatchArray, uiManager: CombatUIManager): void {
         const playerIndex = parseInt(match[1]);
         const pokemonName = match[2];
         const cause = match[3];
@@ -56,10 +53,7 @@ export class FaintingHandler extends MessageHandler {
 export class GenericFaintHandler extends MessageHandler {
     readonly pattern = /^\|faint\|p(\d)a: ([^|]+)$/;
 
-    handle(line: string, uiManager: CombatUIManager): void {
-        const match = line.match(this.pattern);
-        if (!match) return;
-
+    handle(match: RegExpMatchArray, uiManager: CombatUIManager): void {
         const pokemonName = match[2];
         uiManager.addCombatLog(`${pokemonName} fainted!`, 'info');
     }
@@ -68,10 +62,7 @@ export class GenericFaintHandler extends MessageHandler {
 export class SkillFailureHandler extends MessageHandler {
     readonly pattern = /^\|-fail\|p(\d)a: ([^|]+)$/;
 
-    handle(line: string, uiManager: CombatUIManager): void {
-        const match = line.match(this.pattern);
-        if (!match) return;
-
+    handle(match: RegExpMatchArray, uiManager: CombatUIManager): void {
         const pokemonName = match[2];
         uiManager.addCombatLog(`${pokemonName} failed to use their move!`, 'info');
     }
@@ -80,10 +71,7 @@ export class SkillFailureHandler extends MessageHandler {
 export class CriticalHitHandler extends MessageHandler {
     readonly pattern = /^\|-crit\|p(\d)a: ([^|]+)$/;
 
-    handle(line: string, uiManager: CombatUIManager): void {
-        const match = line.match(this.pattern);
-        if (!match) return;
-
+    handle(match: RegExpMatchArray, uiManager: CombatUIManager): void {
         const pokemonName = match[2];
         uiManager.addCombatLog(`${pokemonName} landed a critical hit!`, 'info');
     }
@@ -92,10 +80,7 @@ export class CriticalHitHandler extends MessageHandler {
 export class DamageHandler extends MessageHandler {
     readonly pattern = /^\|-damage\|p(\d)a: ([^|]+)\|(\d+)\/(\d+)( \w+)?\|?(\[[\w]+\] \w+)?/;
 
-    handle(line: string, uiManager: CombatUIManager): void {
-        const match = line.match(this.pattern);
-        if (!match) return;
-
+    handle(match: RegExpMatchArray, uiManager: CombatUIManager): void {
         const playerIndex = parseInt(match[1]);
         const pokemonName = match[2];
         const remainingHP = parseInt(match[3]);
@@ -121,10 +106,7 @@ export class DamageHandler extends MessageHandler {
 export class HealingHandler extends MessageHandler {
     readonly pattern = /^\|-heal\|p(\d)a: ([^|]+)\|(\d+)\/(\d+)\|([^|]+)\|([^|]+)$/;
 
-    handle(line: string, uiManager: CombatUIManager): void {
-        const match = line.match(this.pattern);
-        if (!match) return;
-
+    handle(match: RegExpMatchArray, uiManager: CombatUIManager): void {
         const playerIndex = parseInt(match[1]);
         const pokemonName = match[2];
         const remainingHP = parseInt(match[3]);
@@ -147,10 +129,7 @@ export class HealingHandler extends MessageHandler {
 export class ResistanceHandler extends MessageHandler {
     readonly pattern = /^\|-resisted\|p(\d)a: ([^|]+)$/;
 
-    handle(line: string, uiManager: CombatUIManager): void {
-        const match = line.match(this.pattern);
-        if (!match) return;
-
+    handle(match: RegExpMatchArray, uiManager: CombatUIManager): void {
         const pokemonName = match[2];
         uiManager.addCombatLog(`It's not very effective on ${pokemonName}... `, 'info');
     }
@@ -159,10 +138,7 @@ export class ResistanceHandler extends MessageHandler {
 export class TurnCounterHandler extends MessageHandler {
     readonly pattern = /^\|turn\|(\d+)$/;
 
-    handle(line: string, uiManager: CombatUIManager): void {
-        const match = line.match(this.pattern);
-        if (!match) return;
-
+    handle(match: RegExpMatchArray, uiManager: CombatUIManager): void {
         // Add divider between each round
         const turn = parseInt(match[1]);
         if (turn > 1) {
@@ -177,10 +153,7 @@ export class TurnCounterHandler extends MessageHandler {
 export class StartChargedMoveHandler extends MessageHandler {
     readonly pattern = /^\|-start\|p(\d)a: ([^|]+)\|([^|]+)\|([^|+]+)$/;
 
-    handle(line: string, uiManager: CombatUIManager): void {
-        const match = line.match(this.pattern);
-        if (!match) return;
-
+    handle(match: RegExpMatchArray, uiManager: CombatUIManager): void {
         const pokemon = match[2];
         const move = match[3];
         const details = match[4];
@@ -191,10 +164,7 @@ export class StartChargedMoveHandler extends MessageHandler {
 export class StatusApplicationHandler extends MessageHandler {
     readonly pattern = /^\|-status\|p(\d)a: ([^|]+)\|([^|]+)$/;
 
-    handle(line: string, uiManager: CombatUIManager): void {
-        const match = line.match(this.pattern);
-        if (!match) return;
-
+    handle(match: RegExpMatchArray, uiManager: CombatUIManager): void {
         const playerIndex = parseInt(match[1]);
         const pokemon = match[2];
         const status = match[3];
@@ -207,10 +177,7 @@ export class StatusApplicationHandler extends MessageHandler {
 export class StatusRemovalHandler extends MessageHandler {
     readonly pattern = /^\|-curestatus\|p(\d)a: ([^|]+)\|([^|]+)$/;
 
-    handle(line: string, uiManager: CombatUIManager): void {
-        const match = line.match(this.pattern);
-        if (!match) return;
-
+    handle(match: RegExpMatchArray, uiManager: CombatUIManager): void {
         const playerIndex = parseInt(match[1]);
         const pokemon = match[2];
         const status = match[3];
@@ -223,10 +190,7 @@ export class StatusRemovalHandler extends MessageHandler {
 export class StatusImmunityHandler extends MessageHandler {
     readonly pattern = /^\|cant\|p(\d)a: ([^|]+)\|(\w+)$/;
 
-    handle(line: string, uiManager: CombatUIManager): void {
-        const match = line.match(this.pattern);
-        if (!match) return;
-
+    handle(match: RegExpMatchArray, uiManager: CombatUIManager): void {
         const pokemon = match[2];
         const status = match[3];
         const statusName = STATUS_ACRONYM_TO_STRING[status] ?? status;
@@ -237,10 +201,7 @@ export class StatusImmunityHandler extends MessageHandler {
 export class EndChargedMoveHandler extends MessageHandler {
     readonly pattern = /^\|-end\|p(\d)a: ([^|]+)\|([^|]+)\|([^|+]+)$/;
 
-    handle(line: string, uiManager: CombatUIManager): void {
-        const match = line.match(this.pattern);
-        if (!match) return;
-
+    handle(match: RegExpMatchArray, uiManager: CombatUIManager): void {
         const pokemon = match[2];
         const move = match[3];
         const details = match[4];
@@ -251,10 +212,7 @@ export class EndChargedMoveHandler extends MessageHandler {
 export class ChargeMovesHandler extends MessageHandler {
     readonly pattern = /^\|move\|p(\d)a: ([^|]+)\|(\w+)\|\|(\[\w+\])/;
 
-    handle(line: string, uiManager: CombatUIManager): void {
-        const match = line.match(this.pattern);
-        if (!match) return;
-
+    handle(match: RegExpMatchArray, uiManager: CombatUIManager): void {
         const pokemon = match[2];
         const move = match[3];
         const chargeInfo = match[4];
@@ -265,10 +223,7 @@ export class ChargeMovesHandler extends MessageHandler {
 export class UsedMoveHandler extends MessageHandler {
     readonly pattern = /^\|move\|p(\d)a: ([^|]+)\|([^|]+)\|p(\d)a: ([^|]+)$/;
 
-    handle(line: string, uiManager: CombatUIManager): void {
-        const match = line.match(this.pattern);
-        if (!match) return;
-
+    handle(match: RegExpMatchArray, uiManager: CombatUIManager): void {
         const userPlayerIndex = parseInt(match[1]);
         const userPokemon = match[2];
         const move = match[3];
@@ -284,10 +239,7 @@ export class UsedMoveHandler extends MessageHandler {
 export class StatDecreaseHandler extends MessageHandler {
     readonly pattern = /^\|-unboost\|p(\d)a: ([^|]+)\|([^|]+)\|([1-9]+)$/;
 
-    handle(line: string, uiManager: CombatUIManager): void {
-        const match = line.match(this.pattern);
-        if (!match) return;
-
+    handle(match: RegExpMatchArray, uiManager: CombatUIManager): void {
         const playerIndex = parseInt(match[1]);
         const pokemon = match[2];
         const stat = match[3];
@@ -304,10 +256,7 @@ export class StatDecreaseHandler extends MessageHandler {
 export class StatIncreaseHandler extends MessageHandler {
     readonly pattern = /^\|-boost\|p(\d)a: ([^|]+)\|([^|]+)\|([1-9]+)$/;
 
-    handle(line: string, uiManager: CombatUIManager): void {
-        const match = line.match(this.pattern);
-        if (!match) return;
-
+    handle(match: RegExpMatchArray, uiManager: CombatUIManager): void {
         const playerIndex = parseInt(match[1]);
         const pokemon = match[2];
         const stat = match[3];
@@ -324,10 +273,7 @@ export class StatIncreaseHandler extends MessageHandler {
 export class SetBoostHandler extends MessageHandler {
     readonly pattern = /^\|-setboost\|p(\d)a: ([^|]+)\|([^|]+)\|([1-9]+)$/;
 
-    handle(line: string, uiManager: CombatUIManager): void {
-        const match = line.match(this.pattern);
-        if (!match) return;
-
+    handle(match: RegExpMatchArray, uiManager: CombatUIManager): void {
         const playerIndex = parseInt(match[1]);
         const pokemon = match[2];
         const stat = match[3];
@@ -344,10 +290,7 @@ export class SetBoostHandler extends MessageHandler {
 export class MiscEffectHandler extends MessageHandler {
     readonly pattern = /^\|-activate\|p(\d)a: ([^|]+)\|(.+)$/;
 
-    handle(line: string, uiManager: CombatUIManager): void {
-        const match = line.match(this.pattern);
-        if (!match) return;
-
+    handle(match: RegExpMatchArray, uiManager: CombatUIManager): void {
         const pokemon = match[2];
         const effect = match[3];
         uiManager.addCombatLog(`${pokemon} activated ${effect}!`, 'info');
@@ -357,10 +300,7 @@ export class MiscEffectHandler extends MessageHandler {
 export class SwitchHandler extends MessageHandler {
     readonly pattern = /^\|switch\|p(\d)a: ([^|]+)\|[^|]+\|(\d+)\/(\d+)$/;
 
-    handle(line: string, uiManager: CombatUIManager): void {
-        const match = line.match(this.pattern);
-        if (!match) return;
-
+    handle(match: RegExpMatchArray, uiManager: CombatUIManager): void {
         const playerIndex = parseInt(match[1]);
         const pokemonName = match[2];
         const hp = parseInt(match[3]);
@@ -376,10 +316,7 @@ export class SwitchHandler extends MessageHandler {
 export class VictoryHandler extends MessageHandler {
     readonly pattern = /^\|win\|(.+)$/;
 
-    handle(line: string, uiManager: CombatUIManager): void {
-        const match = line.match(this.pattern);
-        if (!match) return;
-
+    handle(match: RegExpMatchArray, uiManager: CombatUIManager): void {
         const winner = match[1];
         const playerWon = winner === 'Player';
         uiManager.endCombat(playerWon);

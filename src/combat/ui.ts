@@ -332,8 +332,9 @@ export class CombatUIManager {
             // Try each message handler
             let handled = false;
             for (const handler of MESSAGE_HANDLERS) {
-                if (handler.canHandle(line)) {
-                    handler.handle(line, this);
+                const match = handler.canHandleMessage(line);
+                if (match) {
+                    handler.handle(match, this);
                     handled = true;
                     break;
                 }
