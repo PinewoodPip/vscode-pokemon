@@ -163,7 +163,13 @@ export class TurnCounterHandler extends MessageHandler {
         const match = line.match(this.pattern);
         if (!match) return;
 
-        uiManager.combat.turn = parseInt(match[1]);
+        // Add divider between each round
+        const turn = parseInt(match[1]);
+        if (turn > 1) {
+            uiManager.addCombatLogDivider(`Turn ${turn}`);
+        }
+
+        uiManager.combat.turn = turn;
         uiManager.updateTurnCounter();
     }
 }

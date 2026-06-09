@@ -349,6 +349,16 @@ export class CombatUIManager {
         });
     }
 
+    addCombatLogDivider(label: string) {
+        const divider = document.createElement('div');
+        divider.className = 'combat-log-turn-divider';
+        const span = document.createElement('span');
+        span.textContent = label;
+        divider.appendChild(span);
+        this.combatLog.appendChild(divider);
+        this.combatLog.scrollTop = this.combatLog.scrollHeight;
+    }
+
     addCombatLog(message: string, className: string = '') {
         const logEl = this.combatLog;
         const entry = document.createElement('div');

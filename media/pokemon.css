@@ -484,6 +484,31 @@ img.pokemon {
 	color: var(--vscode-descriptionForeground);
 }
 
+/**
+ * Combat log divider
+ */
+
+.combat-log-turn-divider {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	margin: 8px 0;
+	opacity: 0.4;
+}
+
+.combat-log-turn-divider::before,
+.combat-log-turn-divider::after {
+	content: '';
+	flex: 1;
+	border-top: 1px solid var(--vscode-foreground);
+}
+
+.combat-log-turn-divider span {
+	font-size: inherit;
+	white-space: nowrap;
+	color: var(--vscode-foreground);
+}
+
 #combatActions {
 	display: flex;
 	gap: 10px;
