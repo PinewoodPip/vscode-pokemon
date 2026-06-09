@@ -250,16 +250,16 @@ img.pokemon {
 	z-index: 2000;
 	background-color: rgba(0, 0, 0, 0.95);
 	display: flex;
-	align-items: center;
-	justify-content: center;
+	flex-direction: column;
 }
 
 #combatUI {
+	display: flex;
+	flex-direction: column;
+	flex: 1;
+	min-height: 0;
 	width: 100%;
-	max-width: 800px;
 	background-color: var(--vscode-editor-background);
-	border: 3px solid var(--vscode-panel-border);
-	border-radius: 8px;
 	padding: 5px;
 	font-family: 'silkscreen', var(--vscode-font-family);
 	position: relative;
@@ -450,8 +450,8 @@ img.pokemon {
  */
 
 #combatLog {
-	height: 120px;
-	/* max-height: 150px; */
+	flex: 1;
+	min-height: 0;
 	overflow-y: auto;
 	background-color: var(--vscode-input-background);
 	border: 1px solid var(--vscode-input-border);
