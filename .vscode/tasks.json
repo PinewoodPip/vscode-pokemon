@@ -4,16 +4,53 @@
 	"version": "2.0.0",
 	"tasks": [
 		{
+			"label": "watch:panel",
 			"type": "npm",
-			"script": "watch",
-			"problemMatcher": "$tsc-watch",
+			"script": "watch:web",
 			"isBackground": true,
+			"problemMatcher": {
+				"owner": "webpack",
+				"fileLocation": ["relative", "${workspaceFolder}"],
+				"pattern": {
+					"regexp": "^ERROR in (.+)$",
+					"file": 1,
+					"message": 1
+				},
+				"background": {
+					"activeOnStart": true,
+					"beginsPattern": "^webpack",
+					"endsPattern": "compiled (successfully|with \\d+ error)"
+				}
+			},
 			"presentation": {
 				"reveal": "never"
-			},
+			}
+		},
+		{
+			"label": "watch:extension",
+			"type": "shell",
+			"command": "npx tsc --watch -p ./tsconfig.extension.json",
+			"isBackground": true,
+			"problemMatcher": "$tsc-watch",
+			"presentation": {
+				"reveal": "never"
+			}
+		},
+		{
+			"label": "watch",
+			"dependsOn": ["watch:panel", "watch:extension"],
+			"dependsOrder": "parallel",
+			"isBackground": true,
+			"problemMatcher": [],
 			"group": {
 				"kind": "build",
 				"isDefault": true
+			},
+			"presentation": {
+				"reveal": "never"
+			},
+			"runOptions": {
+				"runOn": "folderOpen"
 			}
 		}
 	]

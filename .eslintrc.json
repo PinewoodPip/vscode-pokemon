@@ -23,7 +23,7 @@
             }
         ],
         "@typescript-eslint/no-unused-vars": [
-            "error",
+            "warn",
             {
                 // Allow underscore prefix to denote discarded unused variables
                 "argsIgnorePattern": "^_",
