@@ -37,6 +37,8 @@ export class CombatUIManager {
     private moveButtons: HTMLButtonElement[] = [];
     private playerMoves: PokemonMove[] = [];
     private playerMovePP: number[] = [];
+    private enemyMoves: PokemonMove[] = [];
+    private enemyMovePP: number[] = [];
 
     constructor(statApi: VscodeStateApi, baseMediaUri: string, combat: Combat) {
         this.stateApi = statApi;
@@ -111,7 +113,10 @@ export class CombatUIManager {
         const enemyLevel = 5; // TODO roll based on average party level?
         const playerMoves = getMoves(playerPokemon.type, playerLevel);
         const playerMoveIDs = playerMoves.map(m => m.id);
-        const enemyMoveIDs = getMoves(enemyPokemon.type, enemyLevel).map(m => m.id);
+        const enemyMoves = getMoves(enemyPokemon.type, enemyLevel);
+        const enemyMoveIDs = enemyMoves.map(m => m.id);
+        this.enemyMoves = enemyMoves;
+        this.enemyMovePP = enemyMoves.map(m => m.pp);
         const playerIVs = POKEMON_STAT_ORDER.map(stat => playerPokemon.pokemon!.progression.ivs[stat]);
         const playerEVs = POKEMON_STAT_ORDER.map(stat => playerPokemon.pokemon!.progression.evs[stat]);
         // Roll random EVs for the enemy
@@ -152,6 +157,15 @@ export class CombatUIManager {
         this.moveGrid.style.display = 'grid';
     }
 
+    private selectEnemyMove(): number | null {
+        const valid = this.enemyMovePP
+            .map((pp, i) => ({ pp, i }))
+            .filter(({ pp, i }) => i < this.enemyMoves.length && pp > 0)
+            .map(({ i }) => i);
+        if (valid.length === 0) { return null; }
+        return valid[randomIntegerInRange(0, valid.length - 1)];
+    }
+
     private onMoveSelected(moveIndex: number) {
         this.setMovesEnabled(false);
 
@@ -162,9 +176,10 @@ export class CombatUIManager {
         }
 
         const playerMove = moveIndex + 1;
-        const enemyMove = randomIntegerInRange(1, 4);
+        const enemyMove = this.selectEnemyMove();
+        if (enemyMove !== null) { this.enemyMovePP[enemyMove]--; }
         this.sendShowdownCommand(`>p1 move ${playerMove}`);
-        this.sendShowdownCommand(`>p2 move ${enemyMove}`);
+        this.sendShowdownCommand(`>p2 move ${enemyMove !== null ? enemyMove + 1 : 1}`);
 
         this.updateUI();
 
