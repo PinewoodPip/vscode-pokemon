@@ -38,6 +38,7 @@ import { NetworkPokemonData } from '../common/network-types';
 import { VscodeStateApi } from '../common/vscode-api';
 import { initVscodeApi } from './vscode';
 import { useLobbyStore } from './stores/lobbyStore';
+import { usePokemonStore, TooltipLine } from './stores/pokemonStore';
 import { mountReactScreens } from './app';
 
 /* This is how the VS Code API can be invoked from the panel */
@@ -55,66 +56,6 @@ var combat: Combat | null = null;
 var combatUIManager: CombatUIManager | null = null;
 var networkEnemyController: NetworkEnemyController | null = null;
 
-// Tooltip management
-export interface TooltipLine {
-    text: string;
-    className?: string;
-}
-
-class PokemonTooltip {
-    private tooltipElement: HTMLElement | null = null;
-    private hideTimeout: number | null = null;
-
-    constructor() {
-    }
-
-    show(content: string | TooltipLine[]) {
-        this.tooltipElement = document.getElementById('pokemonTooltip');
-        if (!this.tooltipElement) {
-            return;
-        }
-        
-        // Clear existing content
-        this.tooltipElement.innerHTML = '';
-        
-        if (typeof content === 'string') {
-            // Simple text content
-            this.tooltipElement.textContent = content;
-        } else {
-            // Structured content with classes
-            content.forEach((line) => {
-                const lineElement = document.createElement('div');
-                lineElement.textContent = line.text;
-                if (line.className) {
-                    lineElement.className = line.className;
-                }
-                this.tooltipElement?.appendChild(lineElement);
-            });
-        }
-        
-        // Clear any existing hide timeout
-        if (this.hideTimeout !== null) {
-            clearTimeout(this.hideTimeout);
-            this.hideTimeout = null;
-        }
-        
-        // Show the tooltip
-        this.tooltipElement.classList.add('visible');
-    }
-
-    hide() {
-        if (!this.tooltipElement) {
-            return;
-        }
-        
-        // Add a small delay before hiding to prevent flicker
-        this.hideTimeout = window.setTimeout(() => {
-            this.tooltipElement?.classList.remove('visible');
-        }, 100);
-    }
-}
-
-const pokemonTooltip = new PokemonTooltip();
 
 function calculateFloor(size: PokemonSize, theme: Theme): number {
     switch (theme) {
@@ -229,13 +170,13 @@ function handleMouseOver(e: MouseEvent) {
                 }
             }
 
-            pokemonTooltip.show(tooltipContent);
+            usePokemonStore.getState().showTooltip(tooltipContent);
         }
     });
 }
 
 function handleMouseOut() {
-    pokemonTooltip.hide();
+    usePokemonStore.getState().hideTooltip();
 }
 
 function startAnimations(

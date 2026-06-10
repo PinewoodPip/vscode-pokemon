@@ -2,6 +2,7 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom/client';
 import { LobbyScreen } from './screens/LobbyScreen';
 import { CombatScreen } from './screens/CombatScreen';
+import { PokemonTooltip } from './screens/PokemonTooltip';
 
 export function mountReactScreens(): void {
     const lobbyContainer = document.getElementById('lobbyContainer');
@@ -12,5 +13,10 @@ export function mountReactScreens(): void {
     const combatContainer = document.getElementById('combatContainer');
     if (combatContainer) {
         ReactDOM.createRoot(combatContainer).render(<CombatScreen />);
+    }
+
+    const tooltipContainer = document.getElementById('pokemonTooltip');
+    if (tooltipContainer) {
+        ReactDOM.createRoot(tooltipContainer).render(<PokemonTooltip />);
     }
 }
