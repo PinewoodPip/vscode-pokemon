@@ -26,6 +26,7 @@ export class CombatUIManager {
     private onLocalMoveSelected: ((moveIndex: number) => void) | undefined;
     private startsShowdown: boolean;
     public playerSide: 'p1' | 'p2';
+    public opponentName: string;
 
     constructor(
         statApi: VscodeStateApi,
@@ -35,6 +36,7 @@ export class CombatUIManager {
         onLocalMoveSelected?: (moveIndex: number) => void,
         startsShowdown: boolean = true,
         playerSide: 'p1' | 'p2' = 'p1',
+        opponentName: string = 'Enemy',
     ) {
         this.stateApi = statApi;
         this.basePokemonUri = baseMediaUri;
@@ -43,6 +45,13 @@ export class CombatUIManager {
         this.onLocalMoveSelected = onLocalMoveSelected;
         this.startsShowdown = startsShowdown;
         this.playerSide = playerSide;
+        this.opponentName = opponentName;
+    }
+
+    /** Returns a display label for the opponent suitable as a noun/possessive prefix.
+     *  e.g. "Enemy" or "Alice's" when a GitHub username is known. */
+    getOpponentLabel(): string {
+        return this.opponentName !== 'Enemy' ? `${this.opponentName}'s` : 'Enemy';
     }
 
     private snapshotCombatant(p: CombatPokemon): CombatantState {

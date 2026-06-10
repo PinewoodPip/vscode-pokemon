@@ -197,6 +197,15 @@ async function requestPokemonDataForPvp(index: number): Promise<any | undefined>
     try { return await promise; } catch { return undefined; }
 }
 
+async function getGithubUsername(): Promise<string | undefined> {
+    try {
+        const session = await vscode.authentication.getSession('github', ['read:user'], { silent: true });
+        return session?.account.label;
+    } catch {
+        return undefined;
+    }
+}
+
 function getLocalIPs(): string[] {
     const nets = os.networkInterfaces();
     const results: string[] = [];
@@ -511,6 +520,7 @@ export function activate(context: vscode.ExtensionContext) {
             }
 
             pvpHost = new NetworkCombatHost(webview, combatProcess);
+            pokemonData.username = await getGithubUsername();
             pvpHost.setMyPokemon(pokemonData, selectedIndex);
 
             let port: number;
@@ -590,6 +600,7 @@ export function activate(context: vscode.ExtensionContext) {
             void webview.postMessage({ command: 'pvp-lobby-info', status: `Connecting to ${hostIp}:${hostPort}...` });
 
             pvpClient = new NetworkCombatClient(webview);
+            pokemonData.username = await getGithubUsername();
             pvpClient.setMyPokemon(pokemonData, selectedIndex);
 
             try {

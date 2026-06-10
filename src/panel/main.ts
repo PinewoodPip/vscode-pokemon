@@ -633,6 +633,7 @@ export function pokemonPanelApp(
             (moveIndex) => stateApi!.postMessage({ command: 'pvp-my-move', text: '', data: { moveIndex } }),
             role === 'host',
             localPlayerSide,
+            opponentPokemon.username ?? 'Enemy',
         );
         combatUIManager.start(opponentPokemon);
     }

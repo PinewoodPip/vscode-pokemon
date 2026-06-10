@@ -306,7 +306,7 @@ export class SwitchHandler extends MessageHandler {
         const hp = parseInt(match[3]);
         const maxHp = parseInt(match[4]);
         const isLocalPlayer = uiManager.playerSide === 'p1' ? playerIndex === 1 : playerIndex === 2;
-        uiManager.addCombatLog(`${isLocalPlayer ? 'Your' : 'Enemy'} ${pokemonName} switched in with ${hp}/${maxHp} HP!`, 'info');
+        uiManager.addCombatLog(`${isLocalPlayer ? 'Your' : uiManager.getOpponentLabel()} ${pokemonName} switched in with ${hp}/${maxHp} HP!`, 'info');
 
         const pokemonEl = uiManager.getCombatPokemonElement(playerIndex);
         pokemonEl.currentHp = hp;

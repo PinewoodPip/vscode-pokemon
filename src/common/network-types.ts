@@ -13,6 +13,8 @@ export interface NetworkPokemonData {
     /** EVs in POKEMON_STAT_ORDER */
     evs: number[];
     maxHp: number;
+    /** GitHub username of the player, if authenticated. */
+    username?: string;
 }
 
 /** Newline-delimited JSON messages sent over the TCP connection. */
