@@ -318,39 +318,56 @@ export class RunLeftState extends WalkLeftState {
     holdTime = 130;
 }
 
+export type ChaseEntityOnCaughtCallback = (entity: PhysicsEntity) => void;
+
+export interface ChaseStateOptions {
+    label: States;
+    catchChance: number;
+    /** FrameResult to return when the target is already inactive on entry. */
+    onInactive: FrameResult;
+    onCaughtCallback?: ChaseEntityOnCaughtCallback;
+}
+
 export class ChaseState implements IState {
-    private readonly BALL_CATCH_CHANCE = 0.2;
-    private readonly BALL_COOLDOWN_FRAMES = 20;
+    private readonly COOLDOWN_FRAMES = 20;
     private readonly KICK_BASE_VELOCITY_Y = 3;
     private readonly KICK_RANDOM_VELOCITY_Y = 7;
     private readonly KICK_BASE_VELOCITY_X = 5;
     private readonly KICK_RANDOM_VELOCITY_X = 10;
 
-    label = States.chase;
+    label: States;
     // spriteLabel = 'run'; // TODO
     spriteLabel = 'walk';
     horizontalDirection = HorizontalDirection.left;
-    ball: PhysicsEntity;
+    target: PhysicsEntity;
     canvas: HTMLCanvasElement;
     pokemon: IPokemonType;
-    ballCooldown: number = 0; // Cooldown between ball interactions, in frames.
+    cooldown: number = 0;
+    private catchChance: number;
+    private onInactive: FrameResult;
+    private onCaughtCallback: ChaseEntityOnCaughtCallback | undefined;
 
     constructor(
         pokemon: IPokemonType,
-        ball: PhysicsEntity,
+        target: PhysicsEntity,
         canvas: HTMLCanvasElement,
+        options: ChaseStateOptions,
     ) {
         this.pokemon = pokemon;
-        this.ball = ball;
+        this.target = target;
         this.canvas = canvas;
+        this.label = options.label;
+        this.catchChance = options.catchChance;
+        this.onInactive = options.onInactive;
+        this.onCaughtCallback = options.onCaughtCallback;
     }
 
     nextFrame(): FrameResult {
-        if (!this.ball.isActive()) {
-            return FrameResult.stateCancel; // Ball is already caught
+        if (!this.target.isActive()) {
+            return this.onInactive;
         }
-        const ballState = this.ball.state;
-        if (this.pokemon.left > ballState.cx) {
+        const targetState = this.target.state;
+        if (this.pokemon.left > targetState.cx) {
             this.horizontalDirection = HorizontalDirection.left;
             this.pokemon.positionLeft(this.pokemon.left - this.pokemon.speed);
         } else {
@@ -358,135 +375,38 @@ export class ChaseState implements IState {
             this.pokemon.positionLeft(this.pokemon.left + this.pokemon.speed);
         }
 
-        this.ballCooldown -= 1;
+        this.cooldown -= 1;
 
-        // Check if the ball was caught
+        // Check if we reached the target
         let stateResult = FrameResult.stateContinue;
         if (
-            this.canvas.height - ballState.cy <
+            this.canvas.height - targetState.cy <
             this.pokemon.width + this.pokemon.floor &&
-            ballState.cx < this.pokemon.left &&
-            this.pokemon.left < ballState.cx + 15 &&
-            this.ballCooldown <= 0
+            targetState.cx < this.pokemon.left &&
+            this.pokemon.left < targetState.cx + 15 &&
+            this.cooldown <= 0
         ) {
-            // Random chance to catch the ball and celebrate
-            if (Math.random() < this.BALL_CATCH_CHANCE) {
-                // Hide ball
-                this.ball.deactivate();
-
-                // Celebrate
+            // The chase state can "catch" entities, removing them (ex. for thrown pokeballs)
+            if (Math.random() < this.catchChance) {
+                this.target.deactivate();
                 this.pokemon.showSpeechBubble(2000, false);
-                stateResult = FrameResult.stateComplete; // End the state
+                if (this.onCaughtCallback) {
+                    this.onCaughtCallback(this.target);
+                }
+                stateResult = FrameResult.stateComplete;
             } else {
-                // Otherwise kick the ball
-                this.kickBall();
+                this.kickTarget();
             }
         }
         return stateResult;
     }
 
-    kickBall() {
+    private kickTarget() {
         const kickDirection = this.horizontalDirection === HorizontalDirection.left ? -1 : 1; // Assumes kicking can only be done when facing left/right
-        const ball = this.ball.state;
-
-        // Add velocity to the ball
-        ball.vy += this.KICK_BASE_VELOCITY_Y + Math.random() * this.KICK_RANDOM_VELOCITY_Y;
-        ball.vx += kickDirection * (this.KICK_BASE_VELOCITY_X + Math.random() * this.KICK_RANDOM_VELOCITY_X);
-
-        // Reset kick cooldown
-        this.ballCooldown = this.BALL_COOLDOWN_FRAMES;
-    }
-}
-
-export type ChaseEntityOnCaughtCallback = (entity: PhysicsEntity) => void;
-
-export class ChaseEntityState implements IState {
-    private readonly ENTITY_CATCH_CHANCE = 1;
-    private readonly INTERACTION_COOLDOWN_FRAMES = 20;
-    private readonly KICK_BASE_VELOCITY_Y = 3;
-    private readonly KICK_RANDOM_VELOCITY_Y = 7;
-    private readonly KICK_BASE_VELOCITY_X = 5;
-    private readonly KICK_RANDOM_VELOCITY_X = 10;
-
-    label = States.chaseEntity;
-    spriteLabel = 'walk';
-    horizontalDirection = HorizontalDirection.left;
-    targetEntity: PhysicsEntity;
-    canvas: HTMLCanvasElement;
-    pokemon: IPokemonType;
-    interactionCooldown: number = 0; // Cooldown between entity interactions, in frames.
-    onCaughtCallback: ChaseEntityOnCaughtCallback | undefined;
-
-    constructor(
-        pokemon: IPokemonType,
-        targetEntity: PhysicsEntity,
-        canvas: HTMLCanvasElement,
-        onCaughtCallback?: ChaseEntityOnCaughtCallback,
-    ) {
-        this.pokemon = pokemon;
-        this.targetEntity = targetEntity;
-        this.canvas = canvas;
-        this.onCaughtCallback = onCaughtCallback;
-    }
-
-    nextFrame(): FrameResult {
-        if (!this.targetEntity.isActive()) {
-            return FrameResult.stateComplete; // Entity was already caught (could also have been caught by another pokemon)
-        }
-        const state = this.targetEntity.state;
-        if (this.pokemon.left > state.cx) {
-            this.horizontalDirection = HorizontalDirection.left;
-            this.pokemon.positionLeft(this.pokemon.left - this.pokemon.speed);
-        } else {
-            this.horizontalDirection = HorizontalDirection.right;
-            this.pokemon.positionLeft(this.pokemon.left + this.pokemon.speed);
-        }
-
-        this.interactionCooldown -= 1;
-
-        // Check if the ball was caught
-        let stateResult = FrameResult.stateContinue;
-        if (
-            this.canvas.height - state.cy <
-            this.pokemon.width + this.pokemon.floor &&
-            state.cx < this.pokemon.left &&
-            this.pokemon.left < state.cx + 15 &&
-            this.interactionCooldown <= 0
-        ) {
-            // Random chance to catch the ball and celebrate
-            if (Math.random() < this.ENTITY_CATCH_CHANCE) {
-                this.catchEntity();
-                stateResult = FrameResult.stateComplete; // End the state
-            } else {
-                // Otherwise kick the ball
-                this.kickEntity();
-            }
-        }
-        return stateResult;
-    }
-
-    catchEntity() {
-        this.targetEntity.deactivate();
-
-        // Celebrate
-        this.pokemon.showSpeechBubble(2000, false);
-
-        // Run callback
-        if (this.onCaughtCallback) {
-            this.onCaughtCallback(this.targetEntity);
-        }
-    }
-
-    kickEntity() {
-        const kickDirection = this.horizontalDirection === HorizontalDirection.left ? -1 : 1; // Assumes kicking can only be done when facing left/right
-        const state = this.targetEntity.state;
-
-        // Add velocity to the ball
+        const state = this.target.state;
         state.vy += this.KICK_BASE_VELOCITY_Y + Math.random() * this.KICK_RANDOM_VELOCITY_Y;
         state.vx += kickDirection * (this.KICK_BASE_VELOCITY_X + Math.random() * this.KICK_RANDOM_VELOCITY_X);
-
-        // Reset kick cooldown
-        this.interactionCooldown = this.INTERACTION_COOLDOWN_FRAMES;
+        this.cooldown = this.COOLDOWN_FRAMES;
     }
 }
 

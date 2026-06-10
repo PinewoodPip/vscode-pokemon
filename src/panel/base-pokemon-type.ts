@@ -10,10 +10,10 @@ import {
     PokemonInstanceState,
     isStateAboveGround,
     ChaseState,
+    ChaseStateOptions,
     HorizontalDirection,
     FrameResult,
     IPokemonType,
-    ChaseEntityState,
     ChaseEntityOnCaughtCallback,
 } from './states';
 
@@ -265,12 +265,21 @@ export abstract class BasePokemonType implements IPokemonType {
 
     chase(ball: PhysicsEntity, canvas: HTMLCanvasElement) {
         this.currentStateEnum = States.chase;
-        this.currentState = new ChaseState(this, ball, canvas);
+        this.currentState = new ChaseState(this, ball, canvas, {
+            label: States.chase,
+            catchChance: 0.2,
+            onInactive: FrameResult.stateCancel,
+        });
     }
 
     chaseEntity(entity: PhysicsEntity, canvas: HTMLCanvasElement, onCaughtCallback: ChaseEntityOnCaughtCallback | undefined) {
         this.currentStateEnum = States.chaseEntity;
-        this.currentState = new ChaseEntityState(this, entity, canvas, onCaughtCallback);
+        this.currentState = new ChaseState(this, entity, canvas, {
+            label: States.chaseEntity,
+            catchChance: 1,
+            onInactive: FrameResult.stateComplete,
+            onCaughtCallback,
+        });
     }
 
     faceLeft() {
@@ -344,7 +353,12 @@ export abstract class BasePokemonType implements IPokemonType {
                 return;
             }
 
-            var nextState = this.chooseNextState(this.currentStateEnum);
+            // chase/chaseEntity are transient states not in sequenceStates; use idleWithBall as the transition source
+            const lookupState =
+                this.currentStateEnum === States.chase || this.currentStateEnum === States.chaseEntity
+                    ? States.idleWithBall
+                    : this.currentStateEnum;
+            var nextState = this.chooseNextState(lookupState);
             this.currentState = resolveState(nextState, this);
             this.currentStateEnum = nextState;
         } else if (frameResult === FrameResult.stateCancel) {
