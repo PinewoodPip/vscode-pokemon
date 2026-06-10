@@ -746,7 +746,7 @@ export function activate(context: vscode.ExtensionContext) {
         vscode.StatusBarAlignment.Right,
         100,
     );
-    spawnPokemonStatusBar.command = 'vscode-pokemon.spawn-pokemon';
+    spawnPokemonStatusBar.command = 'vscode-pokemon.start';
     context.subscriptions.push(spawnPokemonStatusBar);
 
     // Helper function to update AFK status and resume spawn timer if paused
@@ -1408,7 +1408,7 @@ function setupAutoSpawn(context: vscode.ExtensionContext): void {
 
 function updateStatusBar(): void {
     spawnPokemonStatusBar.text = `$(squirrel)`;
-    spawnPokemonStatusBar.tooltip = vscode.l10n.t('Spawn Pokemon');
+    spawnPokemonStatusBar.tooltip = vscode.l10n.t('Show Pokemon');
     spawnPokemonStatusBar.show();
 }
 
