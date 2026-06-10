@@ -25,51 +25,7 @@
     <div id="foreground"></div>
     <div id="pokemonTooltip" class="pokemon-tooltip"></div>
     <div id="lobbyContainer"></div>
-    <div id="combatContainer">
-        <div id="combatUI">
-            <div id="combatArena">
-                <div id="playerPokemonSection" class="combat-pokemon-section">
-                    <div class="pokemon-info">
-                        <div class="pokemon-name" id="playerName">???</div>
-                        <div class="hp-bar-container">
-                            <div class="hp-bar" id="playerHpBar">
-                                <div class="hp-fill" id="playerHpFill"></div>
-                            </div>
-                            <div class="hp-text" id="playerHpText">HP: 0/0</div>
-                            <div class="status-badges" id="playerStatusBadges"></div>
-                            <div class="stat-modifier-badges" id="playerStatModifiers"></div>
-                        </div>
-                    </div>
-                    <img id="playerSprite" class="combat-sprite" />
-                </div>
-                <div id="enemyPokemonSection" class="combat-pokemon-section">
-                    <div class="pokemon-info">
-                        <div class="pokemon-name" id="enemyName">???</div>
-                        <div class="hp-bar-container">
-                            <div class="hp-bar" id="enemyHpBar">
-                                <div class="hp-fill" id="enemyHpFill"></div>
-                            </div>
-                            <div class="hp-text" id="enemyHpText">HP: 0/0</div>
-                            <div class="status-badges" id="enemyStatusBadges"></div>
-                            <div class="stat-modifier-badges" id="enemyStatModifiers"></div>
-                        </div>
-                    </div>
-                    <img id="enemySprite" class="combat-sprite flip-x" />
-                </div>
-                <div id="turnCounter" class="turn-counter">Turn 1</div>
-            </div>
-            <div id="combatLog"></div>
-            <div id="moveGrid" class="move-grid">
-                <button class="move-btn" id="moveBtn0" disabled></button>
-                <button class="move-btn" id="moveBtn1" disabled></button>
-                <button class="move-btn" id="moveBtn2" disabled></button>
-                <button class="move-btn" id="moveBtn3" disabled></button>
-            </div>
-            <!-- <div id="combatActions">
-                <button id="exitCombatBtn">Exit Combat</button>
-            </div> -->
-        </div>
-    </div>
+    <div id="combatContainer"></div>
     <script nonce="{nonce}" src="{scriptUri}"></script>
     <script nonce="{nonce}">
         pokemonApp.pokemonPanelApp(

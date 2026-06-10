@@ -491,9 +491,6 @@ export function pokemonPanelApp(
     }
     initVscodeApi(stateApi);
     mountReactScreens();
-
-    // combatContainer is not yet React-managed; hide it imperatively (HTML style= is blocked by webview CSP)
-    (document.getElementById('combatContainer') as HTMLElement).style.display = 'none';
     // Apply Theme backgrounds
     const foregroundEl = document.getElementById('foreground');
     if (theme !== Theme.none) {
