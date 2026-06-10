@@ -46,6 +46,7 @@
         "onCommand:vscode-pokemon.throw-berry",
         "onCommand:vscode-pokemon.change-theme",
         "onCommand:vscode-pokemon.reset-pokemon-position",
+        "onCommand:vscode-pokemon.open-pokemon-box",
         "onWebviewPanel:pokemonCoding",
         "onView:explorer",
         "onView:pokemonView",
@@ -72,11 +73,6 @@
                     "group": "navigation@1"
                 },
                 {
-                    "command": "vscode-pokemon.spawn-random-pokemon",
-                    "when": "view == pokemonView",
-                    "group": "navigation@2"
-                },
-                {
                     "command": "vscode-pokemon.change-theme",
                     "when": "view == pokemonView",
                     "group": "navigation@3"
@@ -90,6 +86,11 @@
                     "command": "vscode-pokemon.start-combat",
                     "when": "view == pokemonView",
                     "group": "navigation@5"
+                },
+                {
+                    "command": "vscode-pokemon.open-pokemon-box",
+                    "when": "view == pokemonView",
+                    "group": "navigation@6"
                 }
             ]
         },
@@ -218,6 +219,12 @@
                 "command": "vscode-pokemon.withdraw-pokemon",
                 "title": "Withdraw Pokemon from PC",
                 "category": "Pokemon Coding"
+            },
+            {
+                "command": "vscode-pokemon.open-pokemon-box",
+                "title": "Open Pokémon Box",
+                "category": "Pokemon Coding",
+                "icon": "$(default-view-icon)"
             }
         ],
         "configuration": [

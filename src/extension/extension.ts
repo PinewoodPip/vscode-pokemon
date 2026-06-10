@@ -890,6 +890,17 @@ export function activate(context: vscode.ExtensionContext) {
     );
 
     context.subscriptions.push(
+        vscode.commands.registerCommand('vscode-pokemon.open-pokemon-box', async () => {
+            const panel = getPokemonPanel();
+            if (!panel) {
+                await vscode.window.showInformationMessage('Please start the Pokemon panel first.');
+                return;
+            }
+            panel.openPokemonBox();
+        }),
+    );
+
+    context.subscriptions.push(
         vscode.commands.registerCommand(
             'vscode-pokemon.export-pokemon-list',
             async () => {
@@ -1436,6 +1447,7 @@ interface IPokemonPanel {
     showPokedex(): void;
     storePokemon(pokemonName: string): void;
     withdrawPokemon(pokemonName: string): void;
+    openPokemonBox(): void;
     themeKind(): vscode.ColorThemeKind;
     throwBallWithMouse(): boolean;
     updatePokemonColor(newColor: PokemonColor): void;
@@ -1611,6 +1623,10 @@ class PokemonWebviewContainer implements IPokemonPanel {
             command: 'withdraw-pokemon',
             pokemonName: pokemonName,
         });
+    }
+
+    public openPokemonBox(): void {
+        void this.getWebview().postMessage({ command: 'open-pokemon-box' });
     }
 
     public deletePokemon(pokemonName: string) {

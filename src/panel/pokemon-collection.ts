@@ -61,6 +61,7 @@ export interface IPokemonCollection {
     seekNewFriends(): string[];
     locate(name: string): PokemonElement | undefined;
     remove(name: string): void;
+    swapElements(name1: string, name2: string): void;
 }
 
 export class PokemonCollection implements IPokemonCollection {
@@ -100,6 +101,15 @@ export class PokemonCollection implements IPokemonCollection {
         this._pokemonCollection = this._pokemonCollection.filter((pokemon) => {
             return pokemon.pokemon.name !== name;
         });
+    }
+
+    swapElements(name1: string, name2: string): void {
+        const idx1 = this._pokemonCollection.findIndex(p => p.pokemon.name === name1);
+        const idx2 = this._pokemonCollection.findIndex(p => p.pokemon.name === name2);
+        if (idx1 >= 0 && idx2 >= 0) {
+            [this._pokemonCollection[idx1], this._pokemonCollection[idx2]] =
+                [this._pokemonCollection[idx2], this._pokemonCollection[idx1]];
+        }
     }
 
     seekNewFriends(): string[] {

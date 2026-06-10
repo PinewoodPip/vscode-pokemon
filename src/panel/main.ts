@@ -39,6 +39,7 @@ import { VscodeStateApi } from '../common/vscode-api';
 import { initVscodeApi } from './vscode';
 import { useLobbyStore } from './stores/lobbyStore';
 import { usePokemonStore, TooltipLine } from './stores/pokemonStore';
+import { useBoxStore, BoxPokemonEntry, PARTY_SIZE } from './stores/boxStore';
 import { mountReactScreens } from './app';
 
 /* This is how the VS Code API can be invoked from the panel */
@@ -47,6 +48,7 @@ declare global {
 }
 
 export var allPokemon: IPokemonCollection = new PokemonCollection();
+const getPartyPokemon = () => allPokemon.pokemonCollection.filter(p => !p.pokemon.isHidden);
 var pokemonCounter: number;
 var lastMouseX: number | undefined;
 var physicsEntityManager: PhysicsEntityManager;
@@ -731,48 +733,52 @@ export function pokemonPanelApp(
                 break;
             }
 
-            case 'spawn-pokemon':
-                allPokemon.push(
-                    addPokemonToPanel(
-                        message.type,
-                        basePokemonUri,
-                        message.generation,
-                        message.originalSpriteSize,
-                        message.color,
-                        pokemonSize,
-                        randomStartPosition(),
-                        floor,
-                        floor,
-                        message.name ?? randomName(message.type),
-                        stateApi,
-                    ),
+            case 'spawn-pokemon': {
+                const partyFullAtSpawn = getPartyPokemon().length >= PARTY_SIZE;
+                const spawnedPokemon = addPokemonToPanel(
+                    message.type,
+                    basePokemonUri,
+                    message.generation,
+                    message.originalSpriteSize,
+                    message.color,
+                    pokemonSize,
+                    randomStartPosition(),
+                    floor,
+                    floor,
+                    message.name ?? randomName(message.type),
+                    stateApi,
                 );
+                if (partyFullAtSpawn) { spawnedPokemon.hide(); }
+                allPokemon.push(spawnedPokemon);
                 saveState(stateApi);
                 break;
+            }
 
             case 'throw-ball':
                 throwAndChase(allPokemon);
                 break;
 
-            case 'spawn-random-pokemon':
+            case 'spawn-random-pokemon': {
                 var [randomPokemonType, randomPokemonConfig] = getRandomPokemonConfig();
-                allPokemon.push(
-                    addPokemonToPanel(
-                        randomPokemonType,
-                        basePokemonUri,
-                        randomPokemonConfig.generation.toString(),
-                        randomPokemonConfig.originalSpriteSize ?? 32,
-                        PokemonColor.default,
-                        pokemonSize,
-                        randomStartPosition(),
-                        floor,
-                        floor,
-                        randomName(randomPokemonConfig.name),
-                        stateApi,
-                    ),
+                const partyFullAtRandomSpawn = getPartyPokemon().length >= PARTY_SIZE;
+                const randomSpawnedPokemon = addPokemonToPanel(
+                    randomPokemonType,
+                    basePokemonUri,
+                    randomPokemonConfig.generation.toString(),
+                    randomPokemonConfig.originalSpriteSize ?? 32,
+                    PokemonColor.default,
+                    pokemonSize,
+                    randomStartPosition(),
+                    floor,
+                    floor,
+                    randomName(randomPokemonConfig.name),
+                    stateApi,
                 );
+                if (partyFullAtRandomSpawn) { randomSpawnedPokemon.hide(); }
+                allPokemon.push(randomSpawnedPokemon);
                 saveState(stateApi);
                 break;
+            }
 
             case 'list-pokemon':
                 var pokemonCollection = allPokemon.pokemonCollection;
@@ -800,7 +806,7 @@ export function pokemonPanelApp(
 
             case 'request-pokemon-for-combat':
                 // Send pokemon list for combat selection
-                const validPokemon = allPokemon.pokemonCollection.filter(p => !p.pokemon.isHidden); // Only pokemon outside the PC can participate
+                const validPokemon = getPartyPokemon(); // Only pokemon outside the PC can participate
                 const pokemonForCombat = validPokemon.map((pokemon, index) => ({
                     index: index,
                     name: pokemon.pokemon.name,
@@ -887,7 +893,7 @@ export function pokemonPanelApp(
                 break;
 
             case 'list-active-pokemon':
-                const activePokemon = allPokemon.pokemonCollection.filter(p => !p.pokemon.isHidden);
+                const activePokemon = getPartyPokemon();
                 stateApi?.postMessage({
                     text: '',
                     command: 'active-pokemon-list',
@@ -966,6 +972,61 @@ export function pokemonPanelApp(
                 pokemonCounter = 1;
                 saveState(stateApi);
                 break;
+
+            case 'open-pokemon-box': {
+                const buildBoxEntry = (el: PokemonElement): BoxPokemonEntry => ({
+                    name: el.pokemon.name,
+                    type: el.type,
+                    generation: el.generation,
+                    color: el.color,
+                    speciesName: (el.pokemon as Pokemon).config.name,
+                    level: el.pokemon.progression.level,
+                });
+                const refreshBoxState = () => {
+                    const updatedParty = getPartyPokemon().map(buildBoxEntry);
+                    const updatedStored = allPokemon.pokemonCollection.filter(p => p.pokemon.isHidden).map(buildBoxEntry);
+                    useBoxStore.getState().refresh(updatedParty, updatedStored);
+                };
+                const partyEntries = getPartyPokemon().map(buildBoxEntry);
+                const storedEntries = allPokemon.pokemonCollection.filter(p => p.pokemon.isHidden).map(buildBoxEntry);
+                useBoxStore.getState().show(partyEntries, storedEntries, basePokemonUri, {
+                    onSwapPokemon: (name1, name2) => {
+                        const el1 = allPokemon.locate(name1);
+                        const el2 = allPokemon.locate(name2);
+                        if (!el1 || !el2) { return; }
+                        if (el1.pokemon.isHidden === el2.pokemon.isHidden) {
+                            // Same section: swap positions in the collection for reordering
+                            allPokemon.swapElements(name1, name2);
+                        } else {
+                            // Cross-section: swap hidden status
+                            if (el1.pokemon.isHidden) { el1.show(); el2.hide(); }
+                            else { el1.hide(); el2.show(); }
+                        }
+                        saveState(stateApi);
+                        refreshBoxState();
+                    },
+                    onStorePartyMember: (name) => {
+                        const el = allPokemon.locate(name);
+                        if (el && !el.pokemon.isHidden) {
+                            el.hide();
+                            saveState(stateApi);
+                            refreshBoxState();
+                        }
+                    },
+                    onAddToParty: (name) => {
+                        const partyCount = getPartyPokemon().length;
+                        if (partyCount >= 6) { return; }
+                        const el = allPokemon.locate(name);
+                        if (el && el.pokemon.isHidden) {
+                            el.show();
+                            saveState(stateApi);
+                            refreshBoxState();
+                        }
+                    },
+                    onClose: () => {},
+                });
+                break;
+            }
         }
     });
 }

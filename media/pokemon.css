@@ -761,3 +761,248 @@ img.pokemon {
 		transform: translate(-50%, -50%) scale(0.9);
 	}
 }
+
+/**
+ * Pokémon Box screen styles
+ */
+
+#boxContainer {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 2000;
+	pointer-events: none;
+}
+
+.box-overlay {
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.97);
+	display: flex;
+	flex-direction: column;
+	pointer-events: all;
+	font-family: 'silkscreen', monospace;
+}
+
+.box-menubar {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	position: relative;
+	padding: 10px 12px;
+	border-bottom: 1px solid var(--vscode-editorWidget-border, #444);
+	flex-shrink: 0;
+}
+
+.box-title {
+	font-size: 13px;
+	color: var(--vscode-foreground);
+	text-align: center;
+}
+
+.box-exit-btn {
+	position: absolute;
+	right: 12px;
+	top: 50%;
+	transform: translateY(-50%);
+	font-family: 'silkscreen', monospace;
+	font-size: 11px;
+	padding: 4px 10px;
+	width: auto;
+	background: var(--vscode-button-secondaryBackground);
+	color: var(--vscode-button-secondaryForeground);
+	border: 1px solid var(--vscode-button-border, transparent);
+	cursor: pointer;
+}
+
+.box-exit-btn:hover {
+	background: var(--vscode-button-secondaryHoverBackground);
+}
+
+.box-content {
+	display: flex;
+	flex: 1;
+	overflow: hidden;
+	gap: 0;
+}
+
+/* ── Left sidebar ── */
+
+.box-sidebar {
+	width: 180px;
+	flex-shrink: 0;
+	display: flex;
+	flex-direction: column;
+	border-right: 1px solid var(--vscode-editorWidget-border, #444);
+	overflow: hidden;
+}
+
+.box-info-panel {
+	padding: 10px;
+	min-height: 100px;
+	border-bottom: 1px solid var(--vscode-editorWidget-border, #444);
+	flex-shrink: 0;
+}
+
+.box-info-empty {
+	font-size: 9px;
+	color: var(--vscode-descriptionForeground);
+	text-align: center;
+	padding-top: 8px;
+}
+
+.box-info-content .tooltip-name {
+	font-size: 11px;
+	font-weight: bold;
+	margin-bottom: 4px;
+	word-break: break-all;
+}
+
+.box-info-content .tooltip-stat {
+	font-size: 9px;
+	margin-top: 2px;
+}
+
+.box-info-content .tooltip-type {
+	font-size: 9px;
+	color: var(--vscode-descriptionForeground);
+	margin-top: 2px;
+}
+
+.box-party-label {
+	font-size: 9px;
+	color: var(--vscode-descriptionForeground);
+	padding: 6px 10px 4px;
+	flex-shrink: 0;
+}
+
+.box-party-list {
+	flex: 1;
+	overflow-y: auto;
+	padding: 4px 6px;
+	display: flex;
+	flex-direction: column;
+	gap: 4px;
+}
+
+.box-party-empty {
+	font-size: 9px;
+	color: var(--vscode-descriptionForeground);
+	text-align: center;
+	padding: 8px 0;
+}
+
+.box-party-btn {
+	display: flex;
+	align-items: center;
+	gap: 4px;
+	padding: 4px 6px;
+	width: 100%;
+	text-align: left;
+	font-family: 'silkscreen', monospace;
+	font-size: 9px;
+	background: var(--vscode-button-secondaryBackground);
+	color: var(--vscode-button-secondaryForeground);
+	border: 1px solid transparent;
+	cursor: pointer;
+}
+
+.box-party-btn:hover {
+	background: var(--vscode-button-secondaryHoverBackground);
+}
+
+.box-party-btn.box-selected {
+	border-color: var(--vscode-focusBorder, #007fd4);
+	background: var(--vscode-list-activeSelectionBackground, #094771);
+	color: var(--vscode-list-activeSelectionForeground, #fff);
+}
+
+.box-party-sprite {
+	width: 24px;
+	height: 24px;
+	image-rendering: pixelated;
+	flex-shrink: 0;
+}
+
+.box-party-name {
+	flex: 1;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+.box-party-level {
+	flex-shrink: 0;
+	color: var(--vscode-descriptionForeground);
+	font-size: 8px;
+}
+
+/* ── Box grid ── */
+
+.box-grid-area {
+	flex: 1;
+	overflow-y: auto;
+	padding: 10px;
+}
+
+.box-grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(72px, 1fr));
+	gap: 8px;
+	align-content: start;
+}
+
+.box-grid-empty {
+	font-size: 9px;
+	color: var(--vscode-descriptionForeground);
+	text-align: center;
+	padding: 16px 0;
+	grid-column: 1 / -1;
+}
+
+.box-grid-btn {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 2px;
+	padding: 6px 4px 4px;
+	width: 100%;
+	font-family: 'silkscreen', monospace;
+	font-size: 8px;
+	background: var(--vscode-button-secondaryBackground);
+	color: var(--vscode-button-secondaryForeground);
+	border: 1px solid transparent;
+	cursor: pointer;
+}
+
+.box-grid-btn:hover {
+	background: var(--vscode-button-secondaryHoverBackground);
+}
+
+.box-grid-btn.box-selected {
+	border-color: var(--vscode-focusBorder, #007fd4);
+	background: var(--vscode-list-activeSelectionBackground, #094771);
+	color: var(--vscode-list-activeSelectionForeground, #fff);
+}
+
+.box-grid-sprite {
+	width: 40px;
+	height: 40px;
+	image-rendering: pixelated;
+}
+
+.box-grid-name {
+	width: 100%;
+	text-align: center;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	font-size: 8px;
+}
+
+.box-grid-level {
+	font-size: 7px;
+	color: var(--vscode-descriptionForeground);
+}
