@@ -187,7 +187,8 @@
             {
                 "command": "vscode-pokemon.throw-berry",
                 "title": "Throw Berry",
-                "category": "Pokemon Coding"
+                "category": "Pokemon Coding",
+                "icon": "$(activate-breakpoints)"
             },
             {
                 "command": "vscode-pokemon.change-theme",
