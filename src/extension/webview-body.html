@@ -24,15 +24,8 @@
     <div id="pokemonContainer"></div>
     <div id="foreground"></div>
     <div id="pokemonTooltip" class="pokemon-tooltip"></div>
-    <div id="lobbyContainer" style="display: none;">
-        <div id="lobbyUI">
-            <div id="lobbyStatus" class="lobby-header">Waiting for opponent...</div>
-            <div id="lobbyDetails" class="lobby-details"></div>
-            <button id="lobbyCopyBtn" class="lobby-copy-btn" style="display: none;">Copy IP:Port</button>
-            <button id="lobbyCancelBtn" class="lobby-cancel-btn">Cancel</button>
-        </div>
-    </div>
-    <div id="combatContainer" style="display: none;">
+    <div id="lobbyContainer"></div>
+    <div id="combatContainer">
         <div id="combatUI">
             <div id="combatArena">
                 <div id="playerPokemonSection" class="combat-pokemon-section">
@@ -66,7 +59,7 @@
                 <div id="turnCounter" class="turn-counter">Turn 1</div>
             </div>
             <div id="combatLog"></div>
-            <div id="moveGrid" class="move-grid" style="display: none;">
+            <div id="moveGrid" class="move-grid">
                 <button class="move-btn" id="moveBtn0" disabled></button>
                 <button class="move-btn" id="moveBtn1" disabled></button>
                 <button class="move-btn" id="moveBtn2" disabled></button>

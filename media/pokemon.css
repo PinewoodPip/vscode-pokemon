@@ -248,10 +248,18 @@ img.pokemon {
 	width: 100%;
 	height: 100%;
 	z-index: 2000;
+	pointer-events: none;
+}
+
+/* .lobby-overlay is rendered by React and only present when the lobby is open */
+.lobby-overlay {
+	width: 100%;
+	height: 100%;
 	background-color: rgba(0, 0, 0, 0.95);
 	display: flex;
 	align-items: center;
 	justify-content: center;
+	pointer-events: all;
 }
 
 #lobbyUI {

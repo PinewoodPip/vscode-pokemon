@@ -28,7 +28,7 @@ const desktopConfig = {
 	},
 	module: {
 		rules: [{
-			test: /\.ts$/,
+			test: /\.tsx?$/,
 			exclude: /node_modules/,
 			use: [
 				{

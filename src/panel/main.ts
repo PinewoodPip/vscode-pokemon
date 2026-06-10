@@ -36,6 +36,9 @@ import { AiEnemyController } from '../combat/ai-enemy-controller';
 import { NetworkEnemyController } from '../combat/network-enemy-controller';
 import { NetworkPokemonData } from '../common/network-types';
 import { VscodeStateApi } from '../common/vscode-api';
+import { initVscodeApi } from './vscode';
+import { useLobbyStore } from './stores/lobbyStore';
+import { mountReactScreens } from './app';
 
 /* This is how the VS Code API can be invoked from the panel */
 declare global {
@@ -486,6 +489,11 @@ export function pokemonPanelApp(
     if (!stateApi) {
         stateApi = acquireVsCodeApi();
     }
+    initVscodeApi(stateApi);
+    mountReactScreens();
+
+    // combatContainer is not yet React-managed; hide it imperatively (HTML style= is blocked by webview CSP)
+    (document.getElementById('combatContainer') as HTMLElement).style.display = 'none';
     // Apply Theme backgrounds
     const foregroundEl = document.getElementById('foreground');
     if (theme !== Theme.none) {
@@ -555,10 +563,6 @@ export function pokemonPanelApp(
 
     initCanvas();
 
-    // Ensure overlay UIs start hidden
-    (document.getElementById('combatContainer') as HTMLElement).style.display = 'none';
-    (document.getElementById('lobbyContainer') as HTMLElement).style.display = 'none';
-    
     // Initialize physics entity manager
     const canvas = document.getElementById('pokemonCanvas') as HTMLCanvasElement;
     physicsEntityManager = new PhysicsEntityManager(canvas);
@@ -696,46 +700,12 @@ export function pokemonPanelApp(
     }
 
     function showLobby(status: string, ip?: string, port?: number) {
-        const lobbyContainer = document.getElementById('lobbyContainer') as HTMLElement;
-        const lobbyStatus = document.getElementById('lobbyStatus') as HTMLElement;
-        const lobbyDetails = document.getElementById('lobbyDetails') as HTMLElement;
-        const lobbyCopyBtn = document.getElementById('lobbyCopyBtn') as HTMLButtonElement;
-        lobbyStatus.textContent = status;
-        if (ip && port) {
-            lobbyDetails.textContent = `Your IP: ${ip}\nPort: ${port}\nShare this with your opponent.`;
-            lobbyCopyBtn.dataset.address = `${ip}:${port}`;
-            lobbyCopyBtn.style.display = '';
-        } else {
-            lobbyDetails.textContent = '';
-            lobbyCopyBtn.style.display = 'none';
-        }
-        lobbyContainer.style.display = 'flex';
-        (document.getElementById('pokemonContainer') as HTMLElement).style.visibility = 'hidden';
-        (document.getElementById('foreground') as HTMLElement).style.visibility = 'hidden';
+        useLobbyStore.getState().show(status, ip, port);
     }
 
     function hideLobby() {
-        const lobbyContainer = document.getElementById('lobbyContainer') as HTMLElement;
-        if (lobbyContainer.style.display === 'none') { return; }
-        lobbyContainer.style.display = 'none';
-        (document.getElementById('pokemonContainer') as HTMLElement).style.visibility = '';
-        (document.getElementById('foreground') as HTMLElement).style.visibility = '';
+        useLobbyStore.getState().hide();
     }
-
-    (document.getElementById('lobbyCancelBtn') as HTMLButtonElement).addEventListener('click', () => {
-        hideLobby();
-        stateApi?.postMessage({ command: 'pvp-cancel', text: '' });
-    });
-
-    (document.getElementById('lobbyCopyBtn') as HTMLButtonElement).addEventListener('click', (e) => {
-        const btn = e.currentTarget as HTMLButtonElement;
-        const address = btn.dataset.address ?? '';
-        navigator.clipboard.writeText(address).then(() => {
-            const original = btn.textContent;
-            btn.textContent = 'Copied!';
-            setTimeout(() => { btn.textContent = original; }, 1500);
-        });
-    });
 
     function getConfiguredTheme(): Theme {
         // Extract from initial params - we'll use the theme passed to the function
