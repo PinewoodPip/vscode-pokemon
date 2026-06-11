@@ -113,6 +113,18 @@ var combatProcess: ShowdownBattleProcess | null = null;
 var pvpHost: NetworkCombatHost | null = null;
 var pvpClient: NetworkCombatClient | null = null;
 
+function isInCombat(): boolean {
+    return !!(combatProcess || pvpHost || pvpClient);
+}
+
+async function rejectIfInCombat(): Promise<boolean> {
+    if (isInCombat()) {
+        await vscode.window.showInformationMessage("You can't do that during a battle! Use 'Forfeit Battle' to exit first.");
+        return true;
+    }
+    return false;
+}
+
 class PokemonQuickPickItem implements vscode.QuickPickItem {
     constructor(
         public readonly name_: string,
@@ -657,7 +669,8 @@ export function activate(context: vscode.ExtensionContext) {
     });
 
     context.subscriptions.push(
-        vscode.commands.registerCommand('vscode-pokemon.throw-ball', () => {
+        vscode.commands.registerCommand('vscode-pokemon.throw-ball', async () => {
+            if (await rejectIfInCombat()) { return; }
             const panel = getPokemonPanel();
             if (panel !== undefined) {
                 panel.throwBall();
@@ -666,6 +679,7 @@ export function activate(context: vscode.ExtensionContext) {
     );
     context.subscriptions.push(
         vscode.commands.registerCommand('vscode-pokemon.throw-berry', async () => {
+            if (await rejectIfInCombat()) { return; }
             const panel = getPokemonPanel();
             if (panel !== undefined) {
                 const berryOptions = ALL_FOOD.map(food => ({
@@ -716,7 +730,8 @@ export function activate(context: vscode.ExtensionContext) {
         }),
     );
     context.subscriptions.push(
-        vscode.commands.registerCommand('vscode-pokemon.reset-pokemon-position', () => {
+        vscode.commands.registerCommand('vscode-pokemon.reset-pokemon-position', async () => {
+            if (await rejectIfInCombat()) { return; }
             // The webview will use the mouse position directly
             console.log('Sending reset-pokemon-position command');
             void getWebview()?.postMessage({
@@ -727,6 +742,7 @@ export function activate(context: vscode.ExtensionContext) {
 
     context.subscriptions.push(
         vscode.commands.registerCommand('vscode-pokemon.level-up-all', async () => {
+            if (await rejectIfInCombat()) { return; }
             const panel = getPokemonPanel();
             if (panel !== undefined) {
                 panel.levelUpAll();
@@ -738,6 +754,7 @@ export function activate(context: vscode.ExtensionContext) {
 
     context.subscriptions.push(
         vscode.commands.registerCommand('vscode-pokemon.show-pokedex', async () => {
+            if (await rejectIfInCombat()) { return; }
             const panel = getPokemonPanel();
             if (panel !== undefined) {
                 panel.showPokedex();
@@ -808,6 +825,7 @@ export function activate(context: vscode.ExtensionContext) {
 
     context.subscriptions.push(
         vscode.commands.registerCommand('vscode-pokemon.delete-pokemon', async () => {
+            if (await rejectIfInCombat()) { return; }
             const panel = getPokemonPanel();
             if (panel !== undefined) {
                 panel.listPokemon();
@@ -823,6 +841,7 @@ export function activate(context: vscode.ExtensionContext) {
 
     context.subscriptions.push(
         vscode.commands.registerCommand('vscode-pokemon.roll-call', async () => {
+            if (await rejectIfInCombat()) { return; }
             const panel = getPokemonPanel();
             if (panel !== undefined) {
                 panel.rollCall();
@@ -834,6 +853,7 @@ export function activate(context: vscode.ExtensionContext) {
 
     context.subscriptions.push(
         vscode.commands.registerCommand('vscode-pokemon.store-pokemon', async () => {
+            if (await rejectIfInCombat()) { return; }
             const panel = getPokemonPanel();
             if (!panel) {
                 await vscode.window.showInformationMessage('Please start the Pokemon panel first.');
@@ -865,6 +885,7 @@ export function activate(context: vscode.ExtensionContext) {
 
     context.subscriptions.push(
         vscode.commands.registerCommand('vscode-pokemon.withdraw-pokemon', async () => {
+            if (await rejectIfInCombat()) { return; }
             const panel = getPokemonPanel();
             if (!panel) {
                 await vscode.window.showInformationMessage('Please start the Pokemon panel first.');
@@ -896,6 +917,7 @@ export function activate(context: vscode.ExtensionContext) {
 
     context.subscriptions.push(
         vscode.commands.registerCommand('vscode-pokemon.open-pokemon-box', async () => {
+            if (await rejectIfInCombat()) { return; }
             const panel = getPokemonPanel();
             if (!panel) {
                 await vscode.window.showInformationMessage('Please start the Pokemon panel first.');
@@ -953,6 +975,7 @@ export function activate(context: vscode.ExtensionContext) {
         vscode.commands.registerCommand(
             'vscode-pokemon.import-pokemon-list',
             async () => {
+                if (await rejectIfInCombat()) { return; }
                 const options: vscode.OpenDialogOptions = {
                     canSelectMany: false,
                     openLabel: 'Open pokemonCollection.json',
@@ -1011,6 +1034,7 @@ export function activate(context: vscode.ExtensionContext) {
 
     context.subscriptions.push(
         vscode.commands.registerCommand('vscode-pokemon.spawn-pokemon', async () => {
+            if (await rejectIfInCombat()) { return; }
             const panel = getPokemonPanel();
             if (getConfigurationPosition() === ExtPosition.explorer && webviewViewProvider) {
                 await vscode.commands.executeCommand('pokemonView.focus');
@@ -1152,6 +1176,7 @@ export function activate(context: vscode.ExtensionContext) {
 
     context.subscriptions.push(
         vscode.commands.registerCommand('vscode-pokemon.spawn-random-pokemon', async () => {
+            if (await rejectIfInCombat()) { return; }
             const panel = getPokemonPanel();
             if (getConfigurationPosition() === ExtPosition.explorer && webviewViewProvider) {
                 await vscode.commands.executeCommand('pokemonView.focus');
@@ -1187,6 +1212,7 @@ export function activate(context: vscode.ExtensionContext) {
         vscode.commands.registerCommand(
             'vscode-pokemon.remove-all-pokemon',
             async () => {
+                if (await rejectIfInCombat()) { return; }
                 const panel = getPokemonPanel();
                 if (panel !== undefined) {
                     panel.resetPokemon();
