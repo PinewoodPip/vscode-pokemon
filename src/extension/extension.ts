@@ -197,13 +197,18 @@ async function requestPokemonDataForPvp(index: number): Promise<any | undefined>
     try { return await promise; } catch { return undefined; }
 }
 
-async function getGithubUsername(): Promise<string | undefined> {
+async function getDisplayName(): Promise<string | undefined> {
+    // Try fetching git username
     try {
-        const session = await vscode.authentication.getSession('github', ['read:user'], { silent: true });
-        return session?.account.label;
-    } catch {
-        return undefined;
-    }
+        const name = cp.execSync('git config --global user.name', { timeout: 500 }).toString().trim();
+        if (name) { return name; }
+    } catch { }
+    // Fallback to OS username
+    try {
+        const login = os.userInfo().username;
+        if (login) { return login; }
+    } catch { }
+    return undefined;
 }
 
 function getLocalIPs(): string[] {
@@ -520,7 +525,7 @@ export function activate(context: vscode.ExtensionContext) {
             }
 
             pvpHost = new NetworkCombatHost(webview, combatProcess);
-            pokemonData.username = await getGithubUsername();
+            pokemonData.username = await getDisplayName();
             pvpHost.setMyPokemon(pokemonData, selectedIndex);
 
             let port: number;
@@ -600,7 +605,7 @@ export function activate(context: vscode.ExtensionContext) {
             void webview.postMessage({ command: 'pvp-lobby-info', status: `Connecting to ${hostIp}:${hostPort}...` });
 
             pvpClient = new NetworkCombatClient(webview);
-            pokemonData.username = await getGithubUsername();
+            pokemonData.username = await getDisplayName();
             pvpClient.setMyPokemon(pokemonData, selectedIndex);
 
             try {
