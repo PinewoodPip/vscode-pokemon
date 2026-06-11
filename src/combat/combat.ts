@@ -149,14 +149,21 @@ export class CombatPokemon {
 export class Combat {
     static HAPPINESS_ON_VICTORY = 15;
 
-    player: CombatPokemon;
-    enemy: CombatPokemon;
+    playerParty: CombatPokemon[];
+    enemyParty: CombatPokemon[];
+    activePlayerIndex: number = 0;
+    activeEnemyIndex: number = 0;
     interval: number | null = null;
     turn: number = 0;
 
-    constructor(player: CombatPokemon, enemy: CombatPokemon) {
-        this.player = player;
-        this.enemy = enemy;
+    /** The currently active player pokemon. */
+    get player(): CombatPokemon { return this.playerParty[this.activePlayerIndex]; }
+    /** The currently active enemy pokemon. */
+    get enemy(): CombatPokemon { return this.enemyParty[this.activeEnemyIndex]; }
+
+    constructor(playerParty: CombatPokemon[], enemyParty: CombatPokemon[]) {
+        this.playerParty = playerParty;
+        this.enemyParty = enemyParty;
         this.interval = null;
         this.turn = 0;
     }

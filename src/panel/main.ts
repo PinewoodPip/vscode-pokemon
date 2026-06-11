@@ -34,7 +34,7 @@ import { getMoves } from '../common/learnsets-data';
 import { CombatUIManager } from '../combat/ui';
 import { AiEnemyController } from '../combat/ai-enemy-controller';
 import { NetworkEnemyController } from '../combat/network-enemy-controller';
-import { NetworkPokemonData } from '../common/network-types';
+import { NetworkPokemonData, NetworkPartyMemberData } from '../common/network-types';
 import { VscodeStateApi } from '../common/vscode-api';
 import { initVscodeApi } from './vscode';
 import { useLobbyStore } from './stores/lobbyStore';
@@ -515,9 +515,26 @@ export function pokemonPanelApp(
         dynamicThrowOff();
     }
 
+    function makeCombatPokemon(el: PokemonElement): CombatPokemon {
+        const poke = el.pokemon as Pokemon;
+        const level = poke.progression.level;
+        return new CombatPokemon(
+            poke,
+            poke.name,
+            el.type,
+            el.color,
+            el.generation,
+            el.originalSpriteSize,
+            POKEMON_DATA[el.type],
+            POKEMON_DATA[el.type].stats.hp,
+            POKEMON_DATA[el.type].stats.hp,
+            level,
+        );
+    }
+
     function startCombat(playerPokemonIndex?: number) {
-        // Pick pokemon from user's collection
-        if (allPokemon.pokemonCollection.length === 0) {
+        const partyElements = getPartyPokemon();
+        if (partyElements.length === 0) {
             stateApi?.postMessage({
                 command: 'info',
                 text: 'You need at least one Pokemon to start combat!',
@@ -525,23 +542,31 @@ export function pokemonPanelApp(
             return;
         }
 
-        console.log(playerPokemonIndex);
-
-        // Use specified pokemon or pick random one
-        let playerPokemonEl: PokemonElement;
+        // Determine which pokemon leads (put it first in the party)
+        let leadIndex = 0;
         if (playerPokemonIndex !== undefined && playerPokemonIndex >= 0 && playerPokemonIndex < allPokemon.pokemonCollection.length) {
-            playerPokemonEl = allPokemon.pokemonCollection[playerPokemonIndex];
-        } else {
-            playerPokemonEl = allPokemon.pokemonCollection[Math.floor(Math.random() * allPokemon.pokemonCollection.length)];
+            // Resolve the chosen index into its position among non-hidden pokemon
+            const chosen = allPokemon.pokemonCollection[playerPokemonIndex];
+            const idx = partyElements.findIndex(el => el === chosen);
+            if (idx !== -1) { leadIndex = idx; }
         }
-        
+
+        // Build player party: lead pokemon first, then the rest (up to 6 total)
+        const MAX_PARTY = 6;
+        const ordered = [
+            partyElements[leadIndex],
+            ...partyElements.filter((_, i) => i !== leadIndex),
+        ].slice(0, MAX_PARTY);
+        const playerParty = ordered.map(el => makeCombatPokemon(el));
+        const leadLevel = playerParty[0].level;
+
         // Pick random enemy pokemon from current theme
         const currentTheme = getConfiguredTheme();
         const themeConfig = ALL_THEMES.find(t => t.id === currentTheme);
-        
+
         let enemyPokemonType: PokemonType;
         let enemyPokemonConfig;
-        
+
         if (themeConfig && themeConfig.autoSpawnTypes.length > 0) {
             const result = getRandomPokemonByTypes(themeConfig.autoSpawnTypes);
             if (result) {
@@ -553,21 +578,7 @@ export function pokemonPanelApp(
             [enemyPokemonType, enemyPokemonConfig] = getRandomPokemonConfig();
         }
 
-        // Initialize combat pokemon
-        const playerLevel = (playerPokemonEl.pokemon as Pokemon).progression.level
-        const playerPokemon = new CombatPokemon(
-            playerPokemonEl.pokemon as Pokemon,
-            playerPokemonEl.pokemon.name,
-            playerPokemonEl.type,
-            playerPokemonEl.color,
-            playerPokemonEl.generation,
-            playerPokemonEl.originalSpriteSize,
-            POKEMON_DATA[playerPokemonEl.type],
-            POKEMON_DATA[playerPokemonEl.type].stats.hp,
-            POKEMON_DATA[playerPokemonEl.type].stats.hp,
-            playerLevel,
-        );
-
+        const enemyLevel = Math.max(leadLevel - 15, 1); // TODO!
         const enemyPokemon = new CombatPokemon(
             null,
             enemyPokemonConfig.name,
@@ -578,10 +589,10 @@ export function pokemonPanelApp(
             enemyPokemonConfig,
             enemyPokemonConfig.stats.hp,
             enemyPokemonConfig.stats.hp,
-            Math.max(playerLevel - 15, 1), // TODO!
+            enemyLevel,
         );
 
-        combat = new Combat(playerPokemon, enemyPokemon);
+        combat = new Combat(playerParty, [enemyPokemon]);
         combatUIManager = new CombatUIManager(stateApi!, basePokemonUri, combat, new AiEnemyController());
         combatUIManager.start();
     }
@@ -592,40 +603,42 @@ export function pokemonPanelApp(
         localPlayerSide: 'p1' | 'p2',
         playerPokemonIndex: number,
     ) {
-        if (allPokemon.pokemonCollection.length === 0) { return; }
+        const partyElements = getPartyPokemon();
+        if (partyElements.length === 0) { return; }
 
-        const playerPokemonEl = allPokemon.pokemonCollection[playerPokemonIndex]
-            ?? allPokemon.pokemonCollection[0];
-        const playerLevel = (playerPokemonEl.pokemon as Pokemon).progression.level;
-        const playerCombatPokemon = new CombatPokemon(
-            playerPokemonEl.pokemon as Pokemon,
-            playerPokemonEl.pokemon.name,
-            playerPokemonEl.type,
-            playerPokemonEl.color,
-            playerPokemonEl.generation,
-            playerPokemonEl.originalSpriteSize,
-            POKEMON_DATA[playerPokemonEl.type],
-            POKEMON_DATA[playerPokemonEl.type].stats.hp,
-            POKEMON_DATA[playerPokemonEl.type].stats.hp,
-            playerLevel,
-        );
+        // Find lead: the pokemon selected by the player at battle start
+        let leadIndex = 0;
+        if (playerPokemonIndex >= 0 && playerPokemonIndex < allPokemon.pokemonCollection.length) {
+            const chosen = allPokemon.pokemonCollection[playerPokemonIndex];
+            const idx = partyElements.findIndex(el => el === chosen);
+            if (idx !== -1) { leadIndex = idx; }
+        }
 
-        const opponentConfig = POKEMON_DATA[opponentPokemon.type];
-        const opponentCombatPokemon = new CombatPokemon(
-            null,
-            opponentPokemon.name,
-            opponentPokemon.type,
-            opponentPokemon.color as any,
-            opponentPokemon.generation,
-            opponentPokemon.originalSpriteSize,
-            opponentConfig,
-            opponentPokemon.maxHp,
-            opponentPokemon.maxHp,
-            opponentPokemon.level,
-        );
+        const MAX_PARTY = 6;
+        const ordered = [
+            partyElements[leadIndex],
+            ...partyElements.filter((_, i) => i !== leadIndex),
+        ].slice(0, MAX_PARTY);
+        const playerParty = ordered.map(el => makeCombatPokemon(el));
 
-        // Local player is always combat.player (left side); playerSide tells handlers which Showdown index that maps to
-        combat = new Combat(playerCombatPokemon, opponentCombatPokemon);
+        // Build opponent party from received network data (already ordered, lead at index 0)
+        const opponentParty = opponentPokemon.party.map((p: NetworkPartyMemberData) => {
+            const config = POKEMON_DATA[p.type as PokemonType];
+            return new CombatPokemon(
+                null,
+                p.name,
+                p.type as PokemonType,
+                p.color as PokemonColor,
+                p.generation,
+                p.originalSpriteSize,
+                config,
+                p.maxHp,
+                p.maxHp,
+                p.level,
+            );
+        });
+
+        combat = new Combat(playerParty, opponentParty);
         networkEnemyController = new NetworkEnemyController();
         combatUIManager = new CombatUIManager(
             stateApi!,
@@ -633,6 +646,7 @@ export function pokemonPanelApp(
             combat,
             networkEnemyController,
             (moveIndex) => stateApi!.postMessage({ command: 'pvp-my-move', text: '', data: { moveIndex } }),
+            (partyIndex, forced) => stateApi!.postMessage({ command: 'pvp-my-switch', text: '', data: { partyIndex, forced } }),
             role === 'host',
             localPlayerSide,
             opponentPokemon.username ?? 'Enemy',
@@ -689,6 +703,10 @@ export function pokemonPanelApp(
                 networkEnemyController?.onOpponentMoveReceived(message.moveIndex);
                 break;
 
+            case 'pvp-opponent-switch':
+                networkEnemyController?.onOpponentSwitchReceived(message.partyIndex);
+                break;
+
             case 'pvp-lobby-info':
                 showLobby(message.status, message.ip, message.port);
                 break;
@@ -712,23 +730,43 @@ export function pokemonPanelApp(
 
             case 'get-pokemon-for-pvp': {
                 const idx: number = message.index;
-                const pokemonEl = allPokemon.pokemonCollection[idx];
-                if (!pokemonEl) { break; }
-                const poke = pokemonEl.pokemon as Pokemon;
-                const level = poke.progression.level;
-                const moves = getMoves(pokemonEl.type, level);
-                const pvpData: NetworkPokemonData = {
-                    type: pokemonEl.type,
-                    color: pokemonEl.color,
-                    generation: pokemonEl.generation,
-                    originalSpriteSize: pokemonEl.originalSpriteSize,
-                    name: poke.name,
-                    level,
-                    moveIds: moves.map(m => m.id),
-                    ivs: POKEMON_STAT_ORDER.map(stat => poke.progression.ivs[stat]),
-                    evs: POKEMON_STAT_ORDER.map(stat => poke.progression.evs[stat]),
-                    maxHp: POKEMON_DATA[pokemonEl.type].stats.hp,
-                };
+                const partyEls = getPartyPokemon();
+                if (partyEls.length === 0) { break; }
+
+                // Find lead index within the party
+                let pvpLeadIndex = 0;
+                if (idx >= 0 && idx < allPokemon.pokemonCollection.length) {
+                    const chosen = allPokemon.pokemonCollection[idx];
+                    const foundIdx = partyEls.findIndex(el => el === chosen);
+                    if (foundIdx !== -1) { pvpLeadIndex = foundIdx; }
+                }
+
+                // Send party ordered with the lead first
+                const MAX_PVP_PARTY = 6;
+                const pvpOrdered = [
+                    partyEls[pvpLeadIndex],
+                    ...partyEls.filter((_, i) => i !== pvpLeadIndex),
+                ].slice(0, MAX_PVP_PARTY);
+
+                const partyData: NetworkPartyMemberData[] = pvpOrdered.map(el => {
+                    const poke = el.pokemon as Pokemon;
+                    const level = poke.progression.level;
+                    const moves = getMoves(el.type, level);
+                    return {
+                        type: el.type,
+                        color: el.color,
+                        generation: el.generation,
+                        originalSpriteSize: el.originalSpriteSize,
+                        name: poke.name,
+                        level,
+                        moveIds: moves.map(m => m.id),
+                        ivs: POKEMON_STAT_ORDER.map(stat => poke.progression.ivs[stat]),
+                        evs: POKEMON_STAT_ORDER.map(stat => poke.progression.evs[stat]),
+                        maxHp: POKEMON_DATA[el.type].stats.hp,
+                    };
+                });
+
+                const pvpData: NetworkPokemonData = { party: partyData };
                 stateApi?.postMessage({ command: 'pvp-pokemon-data', text: '', data: pvpData });
                 break;
             }

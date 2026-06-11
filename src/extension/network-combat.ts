@@ -31,14 +31,21 @@ function sendMsg(socket: net.Socket, msg: NetworkMessage) {
     socket.write(JSON.stringify(msg) + '\n');
 }
 
+type PlayerAction = { type: 'move'; index: number } | { type: 'switch'; index: number };
+
+function actionToShowdownCmd(side: 'p1' | 'p2', action: PlayerAction): string {
+    return action.type === 'move'
+        ? `>${side} move ${action.index + 1}`
+        : `>${side} switch ${action.index + 1}`;
+}
+
 export class NetworkCombatHost {
     private server: net.Server | null = null;
     private clientSocket: net.Socket | null = null;
     private myPokemon: NetworkPokemonData | null = null;
     private playerPokemonIndex: number = 0;
-    private myMoveIndex: number | null = null;
-    private opponentMoveIndex: number | null = null;
-    private opponentMoveResolver: ((index: number | null) => void) | null = null;
+    private myAction: PlayerAction | null = null;
+    private opponentAction: PlayerAction | null = null;
     private forfeitHandled = false;
 
     constructor(
@@ -92,8 +99,14 @@ export class NetworkCombatHost {
                 playerPokemonIndex: this.playerPokemonIndex,
             });
         } else if (msg.type === 'move') {
-            this.opponentMoveIndex = msg.moveIndex;
-            this.trySubmitMoves();
+            this.opponentAction = { type: 'move', index: msg.moveIndex };
+            this.trySubmitActions();
+        } else if (msg.type === 'switch') {
+            this.opponentAction = { type: 'switch', index: msg.partyIndex };
+            this.trySubmitActions();
+        } else if (msg.type === 'forced-switch') {
+            // Client's pokemon fainted; submit p2 switch immediately, no pairing needed
+            this.showdown.writeCommand(`>p2 switch ${msg.partyIndex + 1}`);
         } else if (msg.type === 'forfeit') {
             this.forfeitHandled = true;
             void this.webview.postMessage({ command: 'pvp-opponent-forfeited' });
@@ -101,31 +114,49 @@ export class NetworkCombatHost {
         }
     }
 
-    /** Called from the extension when the local (host) player picks a move. */
+    /** Called from the extension when the local (host) player uses a move. */
     onLocalMove(moveIndex: number) {
-        this.myMoveIndex = moveIndex;
-        this.trySubmitMoves();
+        this.myAction = { type: 'move', index: moveIndex };
+        this.trySubmitActions();
     }
 
-    private trySubmitMoves() {
-        if (this.myMoveIndex === null || this.opponentMoveIndex === null) { return; }
+    /** Called from the extension when the local (host) player voluntarily switches. */
+    onLocalSwitch(partyIndex: number) {
+        this.myAction = { type: 'switch', index: partyIndex };
+        this.trySubmitActions();
+    }
 
-        const p1Move = this.myMoveIndex + 1;
-        const p2Move = this.opponentMoveIndex + 1;
-        this.showdown.writeCommand(`>p1 move ${p1Move}`);
-        this.showdown.writeCommand(`>p2 move ${p2Move}`);
+    /** Called from the extension when the host player's pokemon fainted and they pick a replacement.
+     *  No opponent action is needed — submit directly to Showdown. */
+    onLocalForcedSwitch(partyIndex: number) {
+        this.showdown.writeCommand(`>p1 switch ${partyIndex + 1}`);
+    }
 
-        // Tell the client what move the host made so its NetworkEnemyController can resolve
+    private trySubmitActions() {
+        if (!this.myAction || !this.opponentAction) { return; }
+
+        const p1 = this.myAction;
+        const p2 = this.opponentAction;
+        this.myAction = null;
+        this.opponentAction = null;
+
+        this.showdown.writeCommand(actionToShowdownCmd('p1', p1));
+        this.showdown.writeCommand(actionToShowdownCmd('p2', p2));
+
+        // Tell client what the host (p1) did so their NetworkEnemyController resolves
         if (this.clientSocket && !this.clientSocket.destroyed) {
-            sendMsg(this.clientSocket, { type: 'move', moveIndex: this.myMoveIndex });
+            const clientMsg: NetworkMessage = p1.type === 'move'
+                ? { type: 'move', moveIndex: p1.index }
+                : { type: 'switch', partyIndex: p1.index };
+            sendMsg(this.clientSocket, clientMsg);
         }
 
-        // Resolve the host's pending enemy-move promise (client's move index is the enemy)
-        const resolvedOpponentMove = this.opponentMoveIndex;
-        this.myMoveIndex = null;
-        this.opponentMoveIndex = null;
-
-        void this.webview.postMessage({ command: 'pvp-opponent-move', moveIndex: resolvedOpponentMove });
+        // Tell host's webview what the client (p2) did so their NetworkEnemyController resolves
+        if (p2.type === 'move') {
+            void this.webview.postMessage({ command: 'pvp-opponent-move', moveIndex: p2.index });
+        } else {
+            void this.webview.postMessage({ command: 'pvp-opponent-switch', partyIndex: p2.index });
+        }
     }
 
     forfeit() {
@@ -197,8 +228,11 @@ export class NetworkCombatClient {
             // Relay host's Showdown output to the webview as if it were local
             void this.webview.postMessage({ command: 'showdown-output', text: msg.text });
         } else if (msg.type === 'move') {
-            // Host's move choice — resolves client's NetworkEnemyController
+            // Host's move — resolves client's NetworkEnemyController
             void this.webview.postMessage({ command: 'pvp-opponent-move', moveIndex: msg.moveIndex });
+        } else if (msg.type === 'switch') {
+            // Host voluntarily switched — resolves client's NetworkEnemyController
+            void this.webview.postMessage({ command: 'pvp-opponent-switch', partyIndex: msg.partyIndex });
         } else if (msg.type === 'forfeit') {
             this.forfeitHandled = true;
             void this.webview.postMessage({ command: 'pvp-opponent-forfeited' });
@@ -209,6 +243,18 @@ export class NetworkCombatClient {
     sendMove(moveIndex: number) {
         if (this.socket && !this.socket.destroyed) {
             sendMsg(this.socket, { type: 'move', moveIndex });
+        }
+    }
+
+    sendSwitch(partyIndex: number) {
+        if (this.socket && !this.socket.destroyed) {
+            sendMsg(this.socket, { type: 'switch', partyIndex });
+        }
+    }
+
+    sendForcedSwitch(partyIndex: number) {
+        if (this.socket && !this.socket.destroyed) {
+            sendMsg(this.socket, { type: 'forced-switch', partyIndex });
         }
     }
 

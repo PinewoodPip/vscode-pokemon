@@ -16,6 +16,13 @@ export class NetworkEnemyController implements EnemyController {
         this.pendingResolver = null;
     }
 
+    /** Called by main.ts when a 'pvp-opponent-switch' message arrives.
+     *  Resolves with null so the caller skips PP decrement; Showdown's |switch| output handles the visual update. */
+    onOpponentSwitchReceived(_partyIndex: number): void {
+        this.pendingResolver?.(null);
+        this.pendingResolver = null;
+    }
+
     dispose(): void {
         // Unblock any in-flight selectMove() on battle end or disconnect
         this.pendingResolver?.(null);

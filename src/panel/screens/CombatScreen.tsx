@@ -3,12 +3,14 @@ import { useCombatStore } from '../stores/combatStore';
 import { PokemonSection } from './combat/PokemonSection';
 import { CombatLog } from './combat/CombatLog';
 import { MoveGrid } from './combat/MoveGrid';
+import { SwitchPanel } from './combat/SwitchPanel';
 
 export function CombatScreen(): React.ReactElement | null {
     const {
         visible, player, enemy, turn, moves, playerMovePP,
         logEntries, moveGridVisible, movesEnabled, waiting,
         playerMoveBadge, enemyMoveBadge, onMoveSelected,
+        playerParty, showSwitchPanel, setSwitchPanel,
     } = useCombatStore();
 
     // Keep pokemon layer hidden while combat is active
@@ -20,6 +22,8 @@ export function CombatScreen(): React.ReactElement | null {
     }, [visible]);
 
     if (!visible || !player || !enemy) { return null; }
+
+    const canSwitch = moveGridVisible && movesEnabled && playerParty.length > 1 && !showSwitchPanel;
 
     return (
         <div className="combat-overlay">
@@ -49,6 +53,18 @@ export function CombatScreen(): React.ReactElement | null {
                     waiting={waiting}
                     onMoveSelected={(i) => onMoveSelected?.(i)}
                 />
+                {moveGridVisible && playerParty.length > 1 && (
+                    <div className="combat-action-bar">
+                        <button
+                            className="party-btn"
+                            disabled={!canSwitch}
+                            onClick={() => setSwitchPanel(true, false)}
+                        >
+                            Party ({playerParty.filter(p => p.currentHp > 0).length}/{playerParty.length})
+                        </button>
+                    </div>
+                )}
+                <SwitchPanel />
             </div>
         </div>
     );

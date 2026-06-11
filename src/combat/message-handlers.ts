@@ -54,8 +54,14 @@ export class GenericFaintHandler extends MessageHandler {
     readonly pattern = /^\|faint\|p(\d)a: ([^|]+)$/;
 
     handle(match: RegExpMatchArray, uiManager: CombatUIManager): void {
+        const playerIndex = parseInt(match[1]);
         const pokemonName = match[2];
         uiManager.addCombatLog(`${pokemonName} fainted!`, 'info');
+
+        const isLocalPlayer = uiManager.playerSide === 'p1' ? playerIndex === 1 : playerIndex === 2;
+        if (isLocalPlayer) {
+            uiManager.onLocalPokemonFainted();
+        }
     }
 }
 
@@ -297,8 +303,16 @@ export class MiscEffectHandler extends MessageHandler {
     }
 }
 
+export class TeamPreviewHandler extends MessageHandler {
+    readonly pattern = /^\|teampreview$/;
+
+    handle(_match: RegExpMatchArray, uiManager: CombatUIManager): void {
+        uiManager.sendTeamPreviewResponse();
+    }
+}
+
 export class SwitchHandler extends MessageHandler {
-    readonly pattern = /^\|switch\|p(\d)a: ([^|]+)\|[^|]+\|(\d+)\/(\d+)$/;
+    readonly pattern = /^\|switch\|p(\d)a: ([^|]+)\|[^|]+\|(\d+)\/(\d+)/;
 
     handle(match: RegExpMatchArray, uiManager: CombatUIManager): void {
         const playerIndex = parseInt(match[1]);
@@ -307,10 +321,7 @@ export class SwitchHandler extends MessageHandler {
         const maxHp = parseInt(match[4]);
         const isLocalPlayer = uiManager.playerSide === 'p1' ? playerIndex === 1 : playerIndex === 2;
         uiManager.addCombatLog(`${isLocalPlayer ? 'Your' : uiManager.getOpponentLabel()} ${pokemonName} switched in with ${hp}/${maxHp} HP!`, 'info');
-
-        const pokemonEl = uiManager.getCombatPokemonElement(playerIndex);
-        pokemonEl.currentHp = hp;
-        pokemonEl.maxHp = maxHp;
+        uiManager.onPokemonSwitchedIn(playerIndex, pokemonName, hp, maxHp);
     }
 }
 
@@ -347,6 +358,7 @@ export const MESSAGE_HANDLERS: MessageHandler[] = [
     new StatIncreaseHandler(),
     new SetBoostHandler(),
     new MiscEffectHandler(),
+    new TeamPreviewHandler(),
     new SwitchHandler(),
     new VictoryHandler(),
 ];

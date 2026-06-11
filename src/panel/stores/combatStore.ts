@@ -8,6 +8,7 @@ export interface CombatantState {
     type: PokemonType;
     color: PokemonColor;
     generation: string;
+    level: number;
     currentHp: number;
     maxHp: number;
     statuses: string[];
@@ -26,6 +27,10 @@ interface CombatState {
     visible: boolean;
     player: CombatantState | null;
     enemy: CombatantState | null;
+    /** Full player party snapshots (for switch panel). */
+    playerParty: CombatantState[];
+    /** Index into playerParty of the currently active pokemon. */
+    activePlayerIndex: number;
     turn: number;
     moves: PokemonMove[];
     playerMovePP: number[];
@@ -35,10 +40,19 @@ interface CombatState {
     waiting: boolean;
     playerMoveBadge: string | null;
     enemyMoveBadge: string | null;
+    /** Whether the party switch panel is open. */
+    showSwitchPanel: boolean;
+    /** If true the switch panel cannot be dismissed — player must pick a replacement. */
+    switchIsForced: boolean;
+    /** Base URI for pokemon sprites, used by the switch panel. */
+    basePokemonUri: string;
 
     show: () => void;
     hide: () => void;
     setCombatants: (player: CombatantState, enemy: CombatantState) => void;
+    setParty: (party: CombatantState[], activeIndex: number) => void;
+    updatePartyMember: (index: number, state: CombatantState) => void;
+    setActivePlayerIndex: (index: number) => void;
     setTurn: (turn: number) => void;
     setMoves: (moves: PokemonMove[], pp: number[]) => void;
     setPlayerPP: (pp: number[]) => void;
@@ -50,9 +64,14 @@ interface CombatState {
     clearLog: () => void;
     setMoveBadge: (side: 'player' | 'enemy', name: string) => void;
     clearMoveBadge: (side: 'player' | 'enemy') => void;
+    setSwitchPanel: (visible: boolean, forced: boolean) => void;
+    setBasePokemonUri: (uri: string) => void;
     /** Registered by CombatUIManager; called by the React move buttons. */
     onMoveSelected: ((index: number) => void) | null;
     setOnMoveSelected: (fn: (index: number) => void) => void;
+    /** Registered by CombatUIManager; called by the React switch panel. */
+    onSwitchSelected: ((partyIndex: number) => void) | null;
+    setOnSwitchSelected: (fn: (partyIndex: number) => void) => void;
 }
 
 let logIdCounter = 0;
@@ -61,6 +80,8 @@ export const useCombatStore = create<CombatState>((set) => ({
     visible: false,
     player: null,
     enemy: null,
+    playerParty: [],
+    activePlayerIndex: 0,
     turn: 1,
     moves: [],
     playerMovePP: [],
@@ -70,11 +91,30 @@ export const useCombatStore = create<CombatState>((set) => ({
     waiting: false,
     playerMoveBadge: null,
     enemyMoveBadge: null,
+    showSwitchPanel: false,
+    switchIsForced: false,
+    basePokemonUri: '',
     onMoveSelected: null,
+    onSwitchSelected: null,
 
     show: () => set({ visible: true }),
-    hide: () => set({ visible: false, logEntries: [], moveGridVisible: false }),
+    hide: () => set({
+        visible: false,
+        logEntries: [],
+        moveGridVisible: false,
+        playerParty: [],
+        showSwitchPanel: false,
+        switchIsForced: false,
+    }),
     setCombatants: (player, enemy) => set({ player, enemy }),
+    setParty: (party, activeIndex) => set({ playerParty: party, activePlayerIndex: activeIndex }),
+    updatePartyMember: (index, state) =>
+        set((s) => {
+            const updated = [...s.playerParty];
+            updated[index] = state;
+            return { playerParty: updated };
+        }),
+    setActivePlayerIndex: (index) => set({ activePlayerIndex: index }),
     setTurn: (turn) => set({ turn }),
     setMoves: (moves, pp) => set({ moves, playerMovePP: pp, moveGridVisible: true, movesEnabled: true }),
     setPlayerPP: (pp) => set({ playerMovePP: pp }),
@@ -90,5 +130,8 @@ export const useCombatStore = create<CombatState>((set) => ({
         side === 'player' ? set({ playerMoveBadge: name }) : set({ enemyMoveBadge: name }),
     clearMoveBadge: (side) =>
         side === 'player' ? set({ playerMoveBadge: null }) : set({ enemyMoveBadge: null }),
+    setSwitchPanel: (visible, forced) => set({ showSwitchPanel: visible, switchIsForced: forced }),
+    setBasePokemonUri: (uri) => set({ basePokemonUri: uri }),
     setOnMoveSelected: (fn) => set({ onMoveSelected: fn }),
+    setOnSwitchSelected: (fn) => set({ onSwitchSelected: fn }),
 }));

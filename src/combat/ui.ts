@@ -18,15 +18,29 @@ export class CombatUIManager {
     combatInterval: number | null = null;
     stateApi: VscodeStateApi;
 
+    /** Moves and PP per party member (index-aligned with combat.playerParty). */
+    private playerPartyMoves: PokemonMove[][] = [];
+    private playerPartyPP: number[][] = [];
+
+    /** Moves/PP for the currently active player pokemon (views into the above arrays). */
     private playerMoves: PokemonMove[] = [];
     private playerMovePP: number[] = [];
+
     private enemyMoves: PokemonMove[] = [];
     private enemyMovePP: number[] = [];
     private enemyController: EnemyController;
     private onLocalMoveSelected: ((moveIndex: number) => void) | undefined;
+    private onLocalSwitchSelected: ((partyIndex: number, forced: boolean) => void) | undefined;
     private startsShowdown: boolean;
     public playerSide: 'p1' | 'p2';
     public opponentName: string;
+
+    /** Set to true when the switch panel was opened because the active pokemon fainted. */
+    private afterForcedSwitch: boolean = false;
+
+    /** Team order strings stored during start(), sent in response to |teampreview|. */
+    private playerTeamOrder: string = '';
+    private enemyTeamOrder: string = '';
 
     constructor(
         statApi: VscodeStateApi,
@@ -34,6 +48,7 @@ export class CombatUIManager {
         combat: Combat,
         enemyController: EnemyController,
         onLocalMoveSelected?: (moveIndex: number) => void,
+        onLocalSwitchSelected?: (partyIndex: number, forced: boolean) => void,
         startsShowdown: boolean = true,
         playerSide: 'p1' | 'p2' = 'p1',
         opponentName: string = 'Enemy',
@@ -43,6 +58,7 @@ export class CombatUIManager {
         this.combat = combat;
         this.enemyController = enemyController;
         this.onLocalMoveSelected = onLocalMoveSelected;
+        this.onLocalSwitchSelected = onLocalSwitchSelected;
         this.startsShowdown = startsShowdown;
         this.playerSide = playerSide;
         this.opponentName = opponentName;
@@ -60,6 +76,7 @@ export class CombatUIManager {
             type: p.type,
             color: p.color,
             generation: p.generation,
+            level: p.level,
             currentHp: p.currentHp,
             maxHp: p.maxHp,
             statuses: [...p.statuses],
@@ -68,50 +85,84 @@ export class CombatUIManager {
         };
     }
 
+    private snapshotParty(party: CombatPokemon[]): CombatantState[] {
+        return party.map(p => this.snapshotCombatant(p));
+    }
+
     start(pvpOpponentData?: NetworkPokemonData) {
         const combat = this.combat;
         const playerPokemon = combat.player;
         const enemyPokemon = combat.enemy;
 
         const store = useCombatStore.getState();
+        store.setBasePokemonUri(this.basePokemonUri);
         store.show();
         store.setCombatants(this.snapshotCombatant(playerPokemon), this.snapshotCombatant(enemyPokemon));
+        store.setParty(this.snapshotParty(combat.playerParty), combat.activePlayerIndex);
         store.setTurn(combat.turn);
 
         this.addCombatLog(`A wild ${this.combat.enemy.name} appeared!`, 'info');
         this.addCombatLog(`Go! ${this.combat.player.name}!`, 'info');
 
-        const playerLevel = playerPokemon.pokemon!.progression.level;
+        // Build per-party-member move data
+        this.playerPartyMoves = [];
+        this.playerPartyPP = [];
+        for (const partyMember of combat.playerParty) {
+            const moves = getMoves(partyMember.type, partyMember.level);
+            this.playerPartyMoves.push(moves);
+            this.playerPartyPP.push(moves.map(m => m.pp));
+        }
+        this.playerMoves = this.playerPartyMoves[combat.activePlayerIndex];
+        this.playerMovePP = [...this.playerPartyPP[combat.activePlayerIndex]];
+
         const enemyLevel = enemyPokemon.level;
-        const playerMoves = getMoves(playerPokemon.type, playerLevel);
         const enemyMoves = getMoves(enemyPokemon.type, enemyLevel);
         this.enemyMoves = enemyMoves;
         this.enemyMovePP = enemyMoves.map(m => m.pp);
 
         if (this.startsShowdown) {
-            const playerMoveIDs = playerMoves.map(m => m.id);
-            const enemyMoveIDs = pvpOpponentData ? pvpOpponentData.moveIds : enemyMoves.map(m => m.id);
-            const playerIVs = POKEMON_STAT_ORDER.map(stat => playerPokemon.pokemon!.progression.ivs[stat]);
-            const playerEVs = POKEMON_STAT_ORDER.map(stat => playerPokemon.pokemon!.progression.evs[stat]);
-            const enemyIVs = pvpOpponentData ? pvpOpponentData.ivs : POKEMON_STAT_ORDER.map(() => randomIntegerInRange(0, 31));
-            const enemyEVs = pvpOpponentData ? pvpOpponentData.evs : POKEMON_STAT_ORDER.map(() => randomIntegerInRange(0, 100));
+            // Build packed team string for the full player party (pokemon separated by ']')
+            const playerTeamParts = combat.playerParty.map((p, i) => {
+                const moveIDs = this.playerPartyMoves[i].map(m => m.id);
+                const ivs = p.pokemon
+                    ? POKEMON_STAT_ORDER.map(stat => p.pokemon!.progression.ivs[stat])
+                    : POKEMON_STAT_ORDER.map(() => 31);
+                const evs = p.pokemon
+                    ? POKEMON_STAT_ORDER.map(stat => p.pokemon!.progression.evs[stat])
+                    : POKEMON_STAT_ORDER.map(() => 0);
+                return `${capitalizeString(p.config.name)}|||noability|${moveIDs.join(',')}|Modest|${ivs.join(',')}||${evs.join(',')}||${p.level}|`;
+            });
+            const playerTeamString = playerTeamParts.join(']');
+            // Showdown parses team order as individual characters (split('')), so no spaces
+            this.playerTeamOrder = combat.playerParty.map((_, i) => i + 1).join('');
+
+            // Build enemy team: use per-member PvP data when available, otherwise random stats
+            const enemyTeamParts = combat.enemyParty.map((p, i) => {
+                const pvpMember = pvpOpponentData?.party[i];
+                const mIds = pvpMember ? pvpMember.moveIds : (i === 0 ? enemyMoves.map(m => m.id) : getMoves(p.type, p.level).map(m => m.id));
+                const ivs = pvpMember ? pvpMember.ivs : POKEMON_STAT_ORDER.map(() => randomIntegerInRange(0, 31));
+                const evs = pvpMember ? pvpMember.evs : POKEMON_STAT_ORDER.map(() => randomIntegerInRange(0, 100));
+                return `${capitalizeString(p.config.name)}|||noability|${mIds.join(',')}|Modest|${ivs.join(',')}||${evs.join(',')}||${p.level}|`;
+            });
+            const enemyTeamString = enemyTeamParts.join(']');
+            this.enemyTeamOrder = combat.enemyParty.map((_, i) => i + 1).join('');
 
             log('[combat] Sending combat start command');
+            // Team order is NOT sent here — it is sent in response to |teampreview| via TeamPreviewHandler
             this.sendShowdownCommand(`>start {"formatid":"gen7ou"}
->player p1 {"name":"Player","team":"${capitalizeString(playerPokemon.config.name)}|||noability|${playerMoveIDs.join(',')}|Modest|${playerIVs.join(',')}||${playerEVs.join(',')}||${playerLevel}|"}
->player p2 {"name":"Enemy","team":"${capitalizeString(enemyPokemon.config.name)}|||noability|${enemyMoveIDs.join(',')}|Modest|${enemyIVs.join(',')}||${enemyEVs.join(',')}||${enemyLevel}|"}
->p1 team 1
->p2 team 1`);
+>player p1 {"name":"Player","team":"${playerTeamString}"}
+>player p2 {"name":"Enemy","team":"${enemyTeamString}"}`);
         }
 
-        this.initializeMoveGrid(playerMoves);
+        this.initializeMoveGrid();
+        // Disable moves until Showdown confirms |turn|1 (after teampreview completes)
+        store.setMovesEnabled(false);
+        store.setOnSwitchSelected((i) => this.onSwitchSelected(i));
     }
 
-    private initializeMoveGrid(moves: PokemonMove[]) {
-        this.playerMoves = moves;
-        this.playerMovePP = moves.map(m => m.pp);
+    private initializeMoveGrid() {
         const store = useCombatStore.getState();
-        store.setMoves(moves, [...this.playerMovePP]);
+        store.setMoves(this.playerMoves, [...this.playerMovePP]);
         store.setOnMoveSelected((i) => this.onMoveSelected(i));
     }
 
@@ -120,6 +171,7 @@ export class CombatUIManager {
         store.setMovesEnabled(false);
 
         this.playerMovePP[moveIndex]--;
+        this.playerPartyPP[this.combat.activePlayerIndex][moveIndex]--;
         store.setPlayerPP([...this.playerMovePP]);
 
         // PvP: report local move to extension before waiting for opponent
@@ -144,6 +196,115 @@ export class CombatUIManager {
         setTimeout(() => useCombatStore.getState().setMovesEnabled(true), this.TURN_INTERVAL);
     }
 
+    /** Called when the player selects a pokemon from the switch panel. */
+    async onSwitchSelected(partyIndex: number) {
+        const store = useCombatStore.getState();
+        store.setSwitchPanel(false, false);
+        store.setMovesEnabled(false);
+
+        if (this.afterForcedSwitch) {
+            // After a faint: just send the switch, no enemy action needed this sub-turn
+            this.afterForcedSwitch = false;
+            // Save fainted pokemon's remaining PP before switching
+            this.playerPartyPP[this.combat.activePlayerIndex] = [...this.playerMovePP];
+            if (this.onLocalSwitchSelected) {
+                // PvP mode: tell host/network about the forced switch
+                this.onLocalSwitchSelected(partyIndex, true);
+            } else {
+                this.sendShowdownCommand(`>p1 switch ${partyIndex + 1}`);
+            }
+            // The SwitchHandler message will fire and call onPokemonSwitchedIn,
+            // which re-enables moves and updates the UI.
+        } else {
+            // Voluntary switch: counts as the player's action for this turn
+            // In PvP mode, report the switch before waiting so the host can pair it with the opponent's action
+            this.onLocalSwitchSelected?.(partyIndex, false);
+
+            store.setWaiting(true);
+            const enemyMove = await this.enemyController.selectMove(this.enemyMoves, this.enemyMovePP);
+            store.setWaiting(false);
+
+            if (enemyMove !== null) { this.enemyMovePP[enemyMove]--; }
+
+            this.playerPartyPP[this.combat.activePlayerIndex] = [...this.playerMovePP];
+
+            if (!this.onLocalSwitchSelected) {
+                this.sendShowdownCommand(`>p1 switch ${partyIndex + 1}`);
+                this.sendShowdownCommand(`>p2 move ${enemyMove !== null ? enemyMove + 1 : 1}`);
+            }
+
+            this.updateUI();
+            // SwitchHandler fires during TURN_INTERVAL and calls onPokemonSwitchedIn.
+            // Move re-enable happens there after a forced, but for voluntary we set a timer.
+            setTimeout(() => useCombatStore.getState().setMovesEnabled(true), this.TURN_INTERVAL);
+        }
+    }
+
+    /**
+     * Called by SwitchHandler when Showdown confirms a pokemon has switched in.
+     * Finds the pokemon in the party by name, activates it, and reloads moves.
+     */
+    onPokemonSwitchedIn(playerSideIndex: number, pokemonName: string, hp: number, maxHp: number) {
+        const combat = this.combat;
+        const isLocalPlayer = this.playerSide === 'p1' ? playerSideIndex === 1 : playerSideIndex === 2;
+        const party = isLocalPlayer ? combat.playerParty : combat.enemyParty;
+
+        // Match by species name (what we put in the Showdown team string)
+        const idx = party.findIndex(p =>
+            capitalizeString(p.config.name) === pokemonName ||
+            p.name === pokemonName
+        );
+
+        const targetIdx = idx !== -1 ? idx : (isLocalPlayer ? combat.activePlayerIndex : combat.activeEnemyIndex);
+        const pokemon = party[targetIdx];
+        pokemon.currentHp = hp;
+        pokemon.maxHp = maxHp;
+        // Reset stat boosts on switch-in (standard Pokemon mechanic)
+        for (const stat of Object.keys(pokemon.statModifierStages) as CombatPokemonStat[]) {
+            pokemon.statModifierStages[stat] = 0;
+        }
+
+        if (isLocalPlayer) {
+            combat.activePlayerIndex = targetIdx;
+            this.playerMoves = this.playerPartyMoves[targetIdx];
+            this.playerMovePP = [...this.playerPartyPP[targetIdx]];
+
+            const store = useCombatStore.getState();
+            store.setMoves(this.playerMoves, [...this.playerMovePP]);
+            store.setActivePlayerIndex(targetIdx);
+            store.updatePartyMember(targetIdx, this.snapshotCombatant(pokemon));
+
+            if (this.afterForcedSwitch) {
+                // Already cleared in onSwitchSelected but guard here too
+                this.afterForcedSwitch = false;
+                store.setMovesEnabled(true);
+            }
+        } else {
+            combat.activeEnemyIndex = targetIdx;
+            // Refresh enemy move pool for the new active pokemon
+            this.enemyMoves = getMoves(party[targetIdx].type, party[targetIdx].level);
+            this.enemyMovePP = this.enemyMoves.map(m => m.pp);
+        }
+
+        this.updateUI();
+    }
+
+    /**
+     * Called by GenericFaintHandler when the local player's active pokemon faints.
+     * Shows the forced switch panel if there are surviving party members.
+     */
+    onLocalPokemonFainted() {
+        const survivors = this.combat.playerParty.filter(p => p.currentHp > 0);
+        if (survivors.length === 0) {
+            // No survivors — Showdown will send |win|Enemy shortly
+            return;
+        }
+        this.afterForcedSwitch = true;
+        const store = useCombatStore.getState();
+        store.setMovesEnabled(false);
+        store.setSwitchPanel(true, true);
+    }
+
     updateWidgets(_widgets: unknown, pokemon: CombatPokemon) {
         // Kept for compatibility — updateUI() handles both combatants at once
         void _widgets;
@@ -157,10 +318,20 @@ export class CombatUIManager {
             this.snapshotCombatant(this.combat.player),
             this.snapshotCombatant(this.combat.enemy),
         );
+        // Keep party snapshots in sync (HP may have changed)
+        store.setParty(
+            this.snapshotParty(this.combat.playerParty),
+            this.combat.activePlayerIndex,
+        );
     }
 
     updateTurnCounter() {
-        useCombatStore.getState().setTurn(this.combat.turn);
+        const store = useCombatStore.getState();
+        store.setTurn(this.combat.turn);
+        // Enable moves on the first turn (teampreview has completed by this point)
+        if (this.combat.turn === 1) {
+            store.setMovesEnabled(true);
+        }
     }
 
     endCombat(playerWon: boolean) {
@@ -171,29 +342,35 @@ export class CombatUIManager {
         const store = useCombatStore.getState();
         store.setMoveGridVisible(false);
         store.setMovesEnabled(false);
+        store.setSwitchPanel(false, false);
 
         const playerPokemon = this.combat.player;
         const enemyPokemon = this.combat.enemy;
 
         if (playerWon) {
-            const previousLevel = playerPokemon.pokemon!.progression.level;
-            const xpGained = playerPokemon.getXPGain(enemyPokemon);
-            playerPokemon.pokemon!.progression.addXP(xpGained);
+            // Award XP/EVs to all non-fainted party members
+            for (const partyMember of this.combat.playerParty) {
+                if (partyMember.currentHp <= 0 || !partyMember.pokemon) { continue; }
 
-            const evYields = enemyPokemon.config.ev_yields;
-            for (const stat in evYields) {
-                const evGain = evYields[stat as keyof typeof evYields] || 0;
-                playerPokemon.pokemon!.progression.addEVs(stat as PokemonStat, evGain);
+                const previousLevel = partyMember.pokemon.progression.level;
+                const xpGained = partyMember.getXPGain(enemyPokemon);
+                partyMember.pokemon.progression.addXP(xpGained);
+
+                const evYields = enemyPokemon.config.ev_yields;
+                for (const stat in evYields) {
+                    const evGain = evYields[stat as keyof typeof evYields] || 0;
+                    partyMember.pokemon.progression.addEVs(stat as PokemonStat, evGain);
+                }
+
+                this.stateApi.postMessage({ command: 'info', text: `${partyMember.name} gained ${Math.floor(xpGained)} XP!` });
+
+                const newLevel = partyMember.pokemon.progression.level;
+                if (newLevel > previousLevel) {
+                    this.stateApi.postMessage({ command: 'info', text: `${partyMember.name} leveled up to level ${newLevel}!` });
+                }
+
+                partyMember.pokemon.needs.addHappiness(Combat.HAPPINESS_ON_VICTORY);
             }
-
-            this.stateApi.postMessage({ command: 'info', text: `${playerPokemon.name} gained ${Math.floor(xpGained)} XP!` });
-
-            const newLevel = playerPokemon.pokemon!.progression.level;
-            if (newLevel > previousLevel) {
-                this.stateApi.postMessage({ command: 'info', text: `${playerPokemon.name} leveled up to level ${newLevel}!` });
-            }
-
-            playerPokemon.pokemon!.needs.addHappiness(Combat.HAPPINESS_ON_VICTORY);
         }
 
         const message = playerWon
@@ -223,6 +400,7 @@ export class CombatUIManager {
         const store = useCombatStore.getState();
         store.setMoveGridVisible(false);
         store.setMovesEnabled(false);
+        store.setSwitchPanel(false, false);
         this.enemyController.dispose();
         this.addCombatLog(reason, 'damage');
         this.stateApi.postMessage({ command: 'showdown-stop', text: 'End of combat: terminate Showdown process' });
@@ -232,6 +410,7 @@ export class CombatUIManager {
     parseShowdownOutput(output: string) {
         const IGNORED_LINES = [
             /^update$/,
+            /^sideupdate$/,
             /^gametype/,
             /^player/,
             /^\|t:/,
@@ -239,9 +418,8 @@ export class CombatUIManager {
             /^\|request/,
             /^tier/,
             /^rule/,
-            /^clearpoke/,
-            /^teampreview/,
-            /^poke/,
+            /^\|clearpoke/,
+            /^\|poke\|/,
             /^\|$/,
             /^p1$/,
             /^p2$/,
@@ -330,6 +508,14 @@ export class CombatUIManager {
 
     renderStatModifierBadges(_container: HTMLElement, _statModifiers: Record<CombatPokemonStat, number>) {
         // No-op: React re-renders PokemonSection when store updates
+    }
+
+    /** Called by TeamPreviewHandler when Showdown sends |teampreview|. */
+    sendTeamPreviewResponse() {
+        if (this.startsShowdown) {
+            this.sendShowdownCommand(`>p1 team ${this.playerTeamOrder}`);
+            this.sendShowdownCommand(`>p2 team ${this.enemyTeamOrder}`);
+        }
     }
 
     sendShowdownCommand(command: string) {

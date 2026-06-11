@@ -1751,6 +1751,17 @@ function handleWebviewMessage(message: WebviewMessage) {
                 pvpClient.sendMove(message.data?.moveIndex);
             }
             break;
+        case 'pvp-my-switch': {
+            const { partyIndex, forced } = message.data ?? {};
+            if (pvpHost) {
+                if (forced) { pvpHost.onLocalForcedSwitch(partyIndex); }
+                else { pvpHost.onLocalSwitch(partyIndex); }
+            } else if (pvpClient) {
+                if (forced) { pvpClient.sendForcedSwitch(partyIndex); }
+                else { pvpClient.sendSwitch(partyIndex); }
+            }
+            break;
+        }
         case 'pvp-cancel':
             pvpHost?.dispose(); pvpHost = null;
             pvpClient?.dispose(); pvpClient = null;
