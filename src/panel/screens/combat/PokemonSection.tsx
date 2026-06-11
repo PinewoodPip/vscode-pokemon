@@ -29,15 +29,15 @@ export function PokemonSection({ id, side, combatant, moveBadge, flipSprite }: P
     }, [side]);
 
     return (
-        <div id={id} className="combat-pokemon-section" ref={sectionRef}>
-            <div className="pokemon-info">
-                <div className="pokemon-name">{combatant.name}</div>
+        <div id={id} className="flex-1 flex flex-col items-center gap-[5px] relative" ref={sectionRef}>
+            <div className="w-full max-w-[250px]">
+                <div className="pokemon-name text-sm font-bold mb-[3px] text-center">{combatant.name}</div>
                 <HPBar currentHp={combatant.currentHp} maxHp={combatant.maxHp} />
                 <StatusBadges statuses={combatant.statuses} />
                 <StatModifierBadges statModifierStages={combatant.statModifierStages} />
             </div>
             <img
-                className={`combat-sprite${flipSprite ? ' flip-x' : ''}`}
+                className={`combat-sprite w-12 h-12 object-contain${flipSprite ? ' flip-x' : ''}`}
                 src={combatant.spriteUri}
                 alt={combatant.name}
             />

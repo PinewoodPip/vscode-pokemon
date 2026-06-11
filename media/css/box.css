@@ -1,0 +1,129 @@
+/**
+ * Pokémon Box screen styles
+ */
+
+#boxContainer {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 2000;
+	pointer-events: none;
+}
+
+.box-overlay {
+	background-color: rgba(0, 0, 0, 0.97);
+	pointer-events: all;
+	font-family: 'silkscreen', monospace;
+}
+
+.box-menubar {
+	border-bottom: 1px solid var(--vscode-editorWidget-border, #444);
+}
+
+.box-title {
+	color: var(--vscode-foreground);
+}
+
+.box-exit-btn {
+	font-family: 'silkscreen', monospace;
+	font-size: 11px;
+	background: var(--vscode-button-secondaryBackground);
+	color: var(--vscode-button-secondaryForeground);
+	border: 1px solid var(--vscode-button-border, transparent);
+	cursor: pointer;
+}
+
+.box-exit-btn:hover {
+	background: var(--vscode-button-secondaryHoverBackground);
+}
+
+/* ── Left sidebar ── */
+
+.box-sidebar {
+	border-right: 1px solid var(--vscode-editorWidget-border, #444);
+}
+
+.box-info-panel {
+	border-bottom: 1px solid var(--vscode-editorWidget-border, #444);
+}
+
+.box-info-empty {
+	color: var(--vscode-descriptionForeground);
+}
+
+.box-info-content .tooltip-name {
+	font-weight: bold;
+	word-break: break-all;
+}
+
+.box-info-content .tooltip-type {
+	color: var(--vscode-descriptionForeground);
+}
+
+.box-party-label {
+	color: var(--vscode-descriptionForeground);
+}
+
+.box-party-empty {
+	color: var(--vscode-descriptionForeground);
+}
+
+.box-party-btn {
+	font-family: 'silkscreen', monospace;
+	background: var(--vscode-button-secondaryBackground);
+	color: var(--vscode-button-secondaryForeground);
+	border: 1px solid transparent;
+	cursor: pointer;
+}
+
+.box-party-btn:hover {
+	background: var(--vscode-button-secondaryHoverBackground);
+}
+
+.box-party-btn.box-selected {
+	border-color: var(--vscode-focusBorder, #007fd4);
+	background: var(--vscode-list-activeSelectionBackground, #094771);
+	color: var(--vscode-list-activeSelectionForeground, #fff);
+}
+
+.box-party-sprite {
+	image-rendering: pixelated;
+}
+
+.box-party-level {
+	color: var(--vscode-descriptionForeground);
+}
+
+/* ── Box grid ── */
+
+.box-grid-empty {
+	color: var(--vscode-descriptionForeground);
+}
+
+.box-grid-btn {
+	font-family: 'silkscreen', monospace;
+	background: var(--vscode-button-secondaryBackground);
+	color: var(--vscode-button-secondaryForeground);
+	border: 1px solid transparent;
+	cursor: pointer;
+}
+
+.box-grid-btn:hover {
+	background: var(--vscode-button-secondaryHoverBackground);
+}
+
+.box-grid-btn.box-selected {
+	border-color: var(--vscode-focusBorder, #007fd4);
+	background: var(--vscode-list-activeSelectionBackground, #094771);
+	color: var(--vscode-list-activeSelectionForeground, #fff);
+}
+
+.box-grid-sprite {
+	image-rendering: pixelated;
+}
+
+.box-grid-level {
+	color: var(--vscode-descriptionForeground);
+}

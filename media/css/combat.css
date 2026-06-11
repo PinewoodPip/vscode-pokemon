@@ -1,0 +1,403 @@
+/**
+ * Combat UI styles
+ */
+
+#combatContainer {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 2000;
+	pointer-events: none;
+}
+
+/* .combat-overlay is rendered by React and only present when combat is active */
+.combat-overlay {
+	background-color: rgba(0, 0, 0, 0.95);
+}
+
+#combatUI {
+	background-color: var(--vscode-editor-background);
+	font-family: 'silkscreen', var(--vscode-font-family);
+}
+
+.turn-counter {
+	position: absolute;
+	bottom: 10px;
+	/* Center horizontally */
+	left: 50%;
+	transform: translateX(-50%);
+
+	font-size: 14px;
+	font-weight: bold;
+	font-family: 'silkscreen', var(--vscode-font-family);
+	color: var(--vscode-foreground);
+	opacity: 0.4;
+	z-index: 10;
+	pointer-events: none;
+}
+
+#combatArena {
+	background-color: var(--vscode-editorWidget-background);
+	border-radius: 4px;
+}
+
+.pokemon-name {
+	color: var(--vscode-foreground);
+}
+
+.combat-sprite {
+	image-rendering: pixelated;
+}
+
+/**
+ * HP bar
+ */
+
+.hp-bar {
+	background-color: var(--vscode-input-background);
+	border: 2px solid var(--vscode-input-border);
+}
+
+.hp-fill {
+	background: linear-gradient(90deg, #4caf50 0%, #8bc34a 100%);
+	transition: width 0.5s ease, background 0.3s ease;
+}
+
+.hp-fill.low {
+	background: linear-gradient(90deg, #ff9800 0%, #ffb74d 100%);
+}
+
+.hp-fill.critical {
+	background: linear-gradient(90deg, #f44336 0%, #e57373 100%);
+}
+
+.hp-text {
+	color: var(--vscode-descriptionForeground);
+}
+
+/**
+ * Status condition badges
+ */
+
+.status-badge {
+	font-family: 'silkscreen', var(--vscode-font-family);
+	text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.status-badge.brn {
+	background: linear-gradient(135deg, #ff6b6b 0%, #ff8787 100%);
+}
+
+.status-badge.par {
+	background: linear-gradient(135deg, #ffd43b 0%, #ffe066 100%);
+	color: #333;
+}
+
+.status-badge.slp {
+	background: linear-gradient(135deg, #748ffc 0%, #a78bfa 100%);
+}
+
+.status-badge.frz {
+	background: linear-gradient(135deg, #74c0fc 0%, #a5d8ff 100%);
+	color: #333;
+}
+
+.status-badge.psn {
+	background: linear-gradient(135deg, #a78bfa 0%, #d6bcfa 100%);
+}
+
+.status-badge.tox {
+	background: linear-gradient(135deg, #9333ea 0%, #c084fc 100%);
+}
+/* TODO add badges for more statuses? */
+
+/**
+ * Stat modifier badges
+ */
+
+.stat-modifier-badge {
+	font-family: 'silkscreen', var(--vscode-font-family);
+	text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.5);
+	white-space: nowrap;
+}
+
+.stat-modifier-badge.positive {
+	background: linear-gradient(135deg, #51cf66 0%, #69db7c 100%);
+}
+
+.stat-modifier-badge.negative {
+	background: linear-gradient(135deg, #ff6b6b 0%, #ff8787 100%);
+}
+
+/**
+ * Combat log styles
+ */
+
+#combatLog {
+	background-color: var(--vscode-input-background);
+	border: 1px solid var(--vscode-input-border);
+	border-radius: 4px;
+	color: var(--vscode-foreground);
+}
+
+.combat-log-entry.damage {
+	color: #f44336;
+}
+
+.combat-log-entry.super-effective {
+	color: #ff9800;
+	font-weight: bold;
+}
+
+.combat-log-entry.not-very-effective {
+	color: #9e9e9e;
+}
+
+.combat-log-entry.info {
+	color: var(--vscode-descriptionForeground);
+}
+
+/**
+ * Combat log turn divider
+ */
+
+.combat-log-turn-divider::before,
+.combat-log-turn-divider::after {
+	content: '';
+	flex: 1;
+	border-top: 1px solid var(--vscode-foreground);
+}
+
+.combat-log-turn-divider span {
+	white-space: nowrap;
+	color: var(--vscode-foreground);
+}
+
+#combatActions {
+	display: flex;
+	gap: 10px;
+	justify-content: center;
+}
+
+#combatActions button {
+	flex: 1;
+	max-width: 200px;
+	padding: 10px 20px;
+	font-family: 'silkscreen', var(--vscode-font-family);
+	font-size: 14px;
+}
+
+/**
+ * Move selection grid
+ */
+
+.waiting-overlay {
+	font-family: 'silkscreen', monospace;
+	color: var(--vscode-foreground);
+	background: rgba(0, 0, 0, 0.65);
+}
+
+.move-btn {
+	border: 2px solid var(--type-color, #555);
+	background: var(--vscode-input-background);
+	color: var(--vscode-foreground);
+	font-family: 'silkscreen', var(--vscode-font-family);
+	font-size: 11px;
+	cursor: pointer;
+	transition: opacity 0.15s, transform 0.1s;
+}
+
+.move-btn:hover {
+	background: var(--vscode-editor-background) !important;
+}
+
+.move-btn:hover:not(:disabled) {
+	opacity: 0.9;
+}
+
+.move-btn:disabled {
+	opacity: 0.45;
+	cursor: not-allowed;
+	transform: none;
+}
+
+.move-btn-name {
+	color: var(--type-color, var(--vscode-foreground));
+}
+
+/**
+ * Party / switch button bar (below move grid)
+ */
+
+.party-btn {
+	border: 2px solid var(--vscode-button-border, #555);
+	background: var(--vscode-input-background);
+	color: var(--vscode-foreground);
+	font-family: 'silkscreen', var(--vscode-font-family);
+	font-size: 10px;
+	cursor: pointer;
+	transition: opacity 0.15s;
+}
+
+.party-btn:hover:not(:disabled) {
+	background: var(--vscode-editor-background);
+}
+
+.party-btn:disabled {
+	opacity: 0.45;
+	cursor: not-allowed;
+}
+
+/**
+ * Switch panel — overlays the entire combatUI area
+ */
+
+.switch-panel-overlay {
+	background: rgba(0, 0, 0, 0.88);
+}
+
+.switch-panel {
+	background: var(--vscode-editorWidget-background);
+	border: 1px solid var(--vscode-widget-border, #555);
+}
+
+.switch-panel-title {
+	font-family: 'silkscreen', var(--vscode-font-family);
+	color: var(--vscode-foreground);
+}
+
+.switch-slot-btn {
+	border: 2px solid var(--vscode-input-border, #555);
+	background: var(--vscode-input-background);
+	color: var(--vscode-foreground);
+	font-family: 'silkscreen', var(--vscode-font-family);
+	transition: opacity 0.15s, border-color 0.15s;
+}
+
+.switch-slot-btn:hover:not(:disabled) {
+	border-color: var(--vscode-focusBorder, #007fd4);
+	background: var(--vscode-editor-background);
+}
+
+.switch-slot-btn.switch-slot-active {
+	border-color: var(--vscode-focusBorder, #007fd4);
+	opacity: 0.6;
+	cursor: default;
+}
+
+.switch-slot-btn.switch-slot-fainted {
+	opacity: 0.35;
+	cursor: not-allowed;
+}
+
+.switch-slot-btn:disabled {
+	cursor: not-allowed;
+}
+
+.switch-slot-sprite {
+	image-rendering: pixelated;
+}
+
+.switch-slot-hp-bar {
+	background: var(--vscode-input-background);
+	border: 1px solid var(--vscode-input-border, #555);
+}
+
+.switch-slot-hp-fill {
+	background: linear-gradient(90deg, #4caf50 0%, #8bc34a 100%);
+	transition: width 0.3s ease;
+}
+
+.switch-slot-hp-fill.low {
+	background: linear-gradient(90deg, #ff9800 0%, #ffb74d 100%);
+}
+
+.switch-slot-hp-fill.critical {
+	background: linear-gradient(90deg, #f44336 0%, #e57373 100%);
+}
+
+.switch-panel-cancel {
+	border: 1px solid var(--vscode-button-border, #555);
+	background: var(--vscode-input-background);
+	color: var(--vscode-foreground);
+	font-family: 'silkscreen', var(--vscode-font-family);
+	font-size: 9px;
+}
+
+.switch-panel-cancel:hover {
+	background: var(--vscode-editor-background);
+}
+
+/**
+ * Overheads
+ */
+.overhead {
+	position: absolute;
+	font-family: 'silkscreen', var(--vscode-font-family);
+	font-weight: bold;
+	font-size: 20px;
+	pointer-events: none;
+	z-index: 2001;
+	text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+	animation: floatUp 1s ease-out forwards;
+}
+
+.overhead.damage {
+	color: #ff6b6b;
+}
+
+.overhead.heal {
+	color: #51cf66;
+}
+
+@keyframes floatUp {
+	0% {
+		opacity: 1;
+		transform: translateY(0) scale(1);
+	}
+	100% {
+		opacity: 0;
+		transform: translateY(-60px) scale(1.2);
+	}
+}
+
+.move-badge {
+	position: absolute;
+	top: 70%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	background: rgba(0, 0, 0, 0.5);
+	color: white;
+	padding: 4px 8px;
+	border-radius: 8px;
+	font-family: 'silkscreen', var(--vscode-font-family);
+	font-size: 14px;
+	font-weight: bold;
+	pointer-events: none;
+	z-index: 2002;
+	white-space: nowrap;
+	border: 2px solid rgba(255, 255, 255, 0.3);
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+	animation: moveBadgeFade 2s ease-out forwards;
+}
+
+@keyframes moveBadgeFade {
+	0% {
+		opacity: 0;
+		transform: translate(-50%, -50%) scale(0.8);
+	}
+	10% {
+		opacity: 1;
+		transform: translate(-50%, -50%) scale(1);
+	}
+	70% {
+		opacity: 1;
+		transform: translate(-50%, -50%) scale(1);
+	}
+	100% {
+		opacity: 0;
+		transform: translate(-50%, -50%) scale(0.9);
+	}
+}

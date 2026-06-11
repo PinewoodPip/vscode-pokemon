@@ -1,0 +1,54 @@
+/**
+ * PvP Lobby styles
+ */
+
+#lobbyContainer {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 2000;
+	pointer-events: none;
+}
+
+/* .lobby-overlay is rendered by React and only present when the lobby is open */
+.lobby-overlay {
+	background-color: rgba(0, 0, 0, 0.95);
+}
+
+#lobbyUI {
+	font-family: 'silkscreen', monospace;
+}
+
+.lobby-header {
+	color: var(--vscode-foreground);
+}
+
+.lobby-details {
+	color: var(--vscode-descriptionForeground);
+	line-height: 1.8;
+	white-space: pre-line;
+}
+
+.lobby-copy-btn {
+	font-family: 'silkscreen', monospace;
+	background: var(--vscode-button-background);
+	color: var(--vscode-button-foreground);
+	border: 1px solid var(--vscode-button-border, transparent);
+}
+
+.lobby-copy-btn:hover {
+	background: var(--vscode-button-hoverBackground);
+}
+
+.lobby-cancel-btn {
+	font-family: 'silkscreen', monospace;
+	background: var(--vscode-button-secondaryBackground);
+	color: var(--vscode-button-secondaryForeground);
+	border: 1px solid var(--vscode-button-border, transparent);
+}
+
+.lobby-cancel-btn:hover {
+	background: var(--vscode-button-secondaryHoverBackground);
+}

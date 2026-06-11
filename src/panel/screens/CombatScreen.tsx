@@ -26,9 +26,9 @@ export function CombatScreen(): React.ReactElement | null {
     const canSwitch = moveGridVisible && movesEnabled && playerParty.length > 1 && !showSwitchPanel;
 
     return (
-        <div className="combat-overlay">
-            <div id="combatUI">
-                <div id="combatArena">
+        <div className="combat-overlay w-full h-full flex flex-col pointer-events-auto">
+            <div id="combatUI" className="flex flex-col flex-1 min-h-0 w-full p-[5px] relative">
+                <div id="combatArena" className="flex justify-between mb-[5px] p-5 relative rounded">
                     <PokemonSection
                         id="playerPokemonSection"
                         side="player"
@@ -54,9 +54,9 @@ export function CombatScreen(): React.ReactElement | null {
                     onMoveSelected={(i) => onMoveSelected?.(i)}
                 />
                 {moveGridVisible && playerParty.length > 1 && (
-                    <div className="combat-action-bar">
+                    <div className="flex px-[6px] pb-[6px] gap-[6px]">
                         <button
-                            className="party-btn"
+                            className="party-btn flex-1 px-[10px] py-[5px] rounded-md"
                             disabled={!canSwitch}
                             onClick={() => setSwitchPanel(true, false)}
                         >

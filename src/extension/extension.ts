@@ -1666,12 +1666,12 @@ class PokemonWebviewContainer implements IPokemonPanel {
         // Local path to css styles
         const styleResetPath = vscode.Uri.joinPath(
             this._extensionUri,
-            'media',
+            'media', 'css',
             'reset.css',
         );
         const stylesPathMainPath = vscode.Uri.joinPath(
             this._extensionUri,
-            'media',
+            'media', 'css',
             'pokemon.css',
         );
         const silkScreenFontPath = webview.asWebviewUri(
@@ -1684,8 +1684,15 @@ class PokemonWebviewContainer implements IPokemonPanel {
         const moveTypesCSSUri = webview.asWebviewUri(
             vscode.Uri.joinPath(
                 this._extensionUri,
-                'media',
+                'media', 'css',
                 'move-types.css',
+            ),
+        );
+        const tailwindCSSUri = webview.asWebviewUri(
+            vscode.Uri.joinPath(
+                this._extensionUri,
+                'media', 'css',
+                'tailwind.css',
             ),
         );
 
@@ -1707,6 +1714,7 @@ class PokemonWebviewContainer implements IPokemonPanel {
             .replace(/{nonce}/g, nonce)
             .replace(/{cspSource}/g, webview.cspSource)
             .replace(/{stylesResetUri}/g, stylesResetUri.toString())
+            .replace(/{tailwindCSSUri}/g, tailwindCSSUri.toString())
             .replace(/{stylesMainUri}/g, stylesMainUri.toString())
             .replace(/{moveTypesCSSUri}/g, moveTypesCSSUri.toString())
             .replace(/{silkScreenFontPath}/g, silkScreenFontPath.toString())

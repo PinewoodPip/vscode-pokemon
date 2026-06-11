@@ -8,5 +8,6 @@ coverage/
 .nyc_output/
 .idea/
 media/main-bundle.js
+media/css/tailwind.css
 .DS_Store
 .claude/

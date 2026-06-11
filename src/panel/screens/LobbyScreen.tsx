@@ -31,20 +31,20 @@ export function LobbyScreen(): React.ReactElement | null {
     }
 
     return (
-        <div className="lobby-overlay">
-            <div id="lobbyUI">
-                <div className="lobby-header">{status}</div>
+        <div className="lobby-overlay w-full h-full flex items-center justify-center pointer-events-auto">
+            <div id="lobbyUI" className="flex flex-col items-center gap-4 p-8">
+                <div className="lobby-header text-sm text-center">{status}</div>
                 {hasAddress && (
-                    <div className="lobby-details">
+                    <div className="lobby-details text-[10px] text-center">
                         {`Your IP: ${ip}\nPort: ${port}\nShare this with your opponent.`}
                     </div>
                 )}
                 {hasAddress && (
-                    <button className="lobby-copy-btn" onClick={handleCopy}>
+                    <button className="lobby-copy-btn text-[10px] px-6 py-2 w-auto cursor-pointer" onClick={handleCopy}>
                         {copyLabel}
                     </button>
                 )}
-                <button className="lobby-cancel-btn" onClick={handleCancel}>
+                <button className="lobby-cancel-btn text-[10px] px-6 py-2 w-auto cursor-pointer mt-2" onClick={handleCancel}>
                     Cancel
                 </button>
             </div>

@@ -13,12 +13,12 @@ export function StatModifierBadges({ statModifierStages }: Props): React.ReactEl
     const entries = Object.entries(statModifierStages).filter(([, stage]) => stage !== 0);
 
     return (
-        <div className="stat-modifier-badges">
+        <div className="flex gap-1 mt-1 justify-center flex-wrap">
             {entries.map(([stat, stage]) => {
                 const abbr = STAT_TO_ABBREVIATION[stat] ?? stat.toUpperCase();
                 const sign = stage > 0 ? '+' : '';
                 return (
-                    <div key={stat} className={`stat-modifier-badge ${stage > 0 ? 'positive' : 'negative'}`}>
+                    <div key={stat} className={`stat-modifier-badge inline-flex items-center justify-center px-1 py-[1px] rounded-sm text-[8px] font-bold uppercase tracking-[0.3px] text-white ${stage > 0 ? 'positive' : 'negative'}`}>
                         {`${abbr} ${sign}${stage}`}
                     </div>
                 );
