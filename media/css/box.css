@@ -127,3 +127,44 @@
 .box-grid-level {
 	color: var(--vscode-descriptionForeground);
 }
+
+/* ── Details / Summary screen ── */
+
+#detailsContainer {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 2100;
+	pointer-events: none;
+}
+
+.details-move-card {
+	font-family: 'silkscreen', monospace;
+	background: var(--vscode-button-secondaryBackground);
+	color: var(--vscode-button-secondaryForeground);
+	border: 1px solid transparent;
+	transition: border-color 0.1s;
+}
+
+.details-move-card:hover {
+	filter: brightness(1.15);
+}
+
+.details-move-card.details-move-selected {
+	border-color: var(--vscode-focusBorder, #007fd4);
+	outline: 1px solid var(--vscode-focusBorder, #007fd4);
+}
+
+.details-move-list-item {
+	font-family: 'silkscreen', monospace;
+	background: var(--vscode-button-secondaryBackground);
+	color: var(--vscode-button-secondaryForeground);
+	border: none;
+	border-radius: 4px;
+}
+
+.details-move-list-item:hover {
+	filter: brightness(1.15);
+}

@@ -3086,6 +3086,34 @@ export const LEARNSETS: { [key: string]: PokemonLearnset } = {
 
 
 
+/** Returns all moves a pokemon can learn at or below the given level (including evolution moves), sorted by level learned. */
+export function getAllLearnableMoves(pokemonID: string, pokemonLevel: number): PokemonMove[] {
+    const learnset = LEARNSETS[pokemonID];
+    if (!learnset) { return []; }
+    const result: PokemonMove[] = [];
+    for (const [moveName, moveSource] of Object.entries(learnset.moves)) {
+        const move = ALL_MOVES[moveName];
+        if (!move) { continue; }
+        if (moveSource === 'Evo.' || moveSource === 'Rem.' || pokemonLevel >= moveSource) {
+            result.push(move);
+        }
+    }
+    result.sort((a, b) => {
+        const la = learnset.moves[a.id];
+        const lb = learnset.moves[b.id];
+        const aIsSpecial = la === 'Evo.' || la === 'Rem.';
+        const bIsSpecial = lb === 'Evo.' || lb === 'Rem.';
+        // Evo./Rem. moves sort before level-learned moves
+        if (aIsSpecial && !bIsSpecial) { return -1; }
+        if (bIsSpecial && !aIsSpecial) { return 1; }
+        if (aIsSpecial && bIsSpecial) { return a.name.localeCompare(b.name); }
+        return (la as number) !== (lb as number)
+            ? (la as number) - (lb as number)
+            : a.name.localeCompare(b.name);
+    });
+    return result;
+}
+
 export function getMoves(pokemonID: string, pokemonLevel: number): PokemonMove[] {
     // Get learnset
     let availableMoves: PokemonMove[] = [];

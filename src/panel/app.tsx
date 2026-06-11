@@ -4,6 +4,7 @@ import { LobbyScreen } from './screens/LobbyScreen';
 import { CombatScreen } from './screens/CombatScreen';
 import { PokemonTooltip } from './screens/PokemonTooltip';
 import { PokemonBoxScreen } from './screens/PokemonBoxScreen';
+import { PokemonDetailsScreen } from './screens/PokemonDetailsScreen';
 
 export function mountReactScreens(): void {
     const lobbyContainer = document.getElementById('lobbyContainer');
@@ -24,5 +25,10 @@ export function mountReactScreens(): void {
     const boxContainer = document.getElementById('boxContainer');
     if (boxContainer) {
         ReactDOM.createRoot(boxContainer).render(<PokemonBoxScreen />);
+    }
+
+    const detailsContainer = document.getElementById('detailsContainer');
+    if (detailsContainer) {
+        ReactDOM.createRoot(detailsContainer).render(<PokemonDetailsScreen />);
     }
 }

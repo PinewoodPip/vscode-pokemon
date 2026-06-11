@@ -1,7 +1,7 @@
 import { log } from "../common/util";
 import { ABREVIATION_TO_STAT, Combat, CombatPokemon, CombatPokemonStat, POKEMON_STAT_ORDER, PokemonStat } from "./combat";
 import { getMoves } from "../common/learnsets-data";
-import { PokemonMove } from "../common/move-data";
+import { ALL_MOVES, PokemonMove } from "../common/move-data";
 import { capitalizeString, randomIntegerInRange } from "../common/util";
 import { VscodeStateApi } from "../common/vscode-api";
 import { MESSAGE_HANDLERS } from "./message-handlers";
@@ -108,7 +108,10 @@ export class CombatUIManager {
         this.playerPartyMoves = [];
         this.playerPartyPP = [];
         for (const partyMember of combat.playerParty) {
-            const moves = getMoves(partyMember.type, partyMember.level);
+            const customIds = partyMember.pokemon?.progression.customMoveIds;
+            const moves: PokemonMove[] = customIds
+                ? customIds.map(id => ALL_MOVES[id]).filter(Boolean) as PokemonMove[]
+                : getMoves(partyMember.type, partyMember.level);
             this.playerPartyMoves.push(moves);
             this.playerPartyPP.push(moves.map(m => m.pp));
         }

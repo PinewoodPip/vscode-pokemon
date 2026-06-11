@@ -68,12 +68,21 @@ export function PokemonBoxScreen(): React.ReactElement | null {
         <div className="box-overlay w-full h-full flex flex-col">
             <div className="box-menubar flex items-center justify-center relative px-3 py-[10px] shrink-0">
                 <div className="box-title text-[13px] text-center">Boxes</div>
-                <button className="box-exit-btn absolute right-3 top-1/2 -translate-y-1/2 px-[10px] py-1 w-auto cursor-pointer" onClick={handleClose}>✕</button>
+                {/* Close button */}
+                <button className="box-exit-btn absolute right-3 px-[10px] py-1 w-auto cursor-pointer" onClick={handleClose}>✕</button>
             </div>
             <div className="flex flex-1 overflow-hidden">
                 <div className="box-sidebar w-[180px] shrink-0 flex flex-col overflow-hidden">
                     <div className="box-info-panel p-[10px] min-h-[100px] shrink-0">
                         <PokemonInfoPanel entry={infoEntry} />
+                        {selectedName !== null && (
+                            <button
+                                className="box-exit-btn px-[10px] py-1 mt-1 w-auto cursor-pointer text-[10px]"
+                                onClick={() => callbacks?.onSummary(selectedName)}
+                            >
+                                Summary
+                            </button>
+                        )}
                     </div>
                     <div className="box-party-label text-[9px] pt-[6px] px-[10px] pb-1 shrink-0">Party ({party.length}/{PARTY_SIZE})</div>
                     <div className="flex-1 overflow-y-auto px-[6px] py-1 flex flex-col gap-1">

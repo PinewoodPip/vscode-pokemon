@@ -1,5 +1,6 @@
 import { create } from 'zustand';
 import { PokemonType } from '../../common/types';
+import { PokemonStat } from '../../combat/combat';
 
 export const PARTY_SIZE = 6;
 
@@ -10,12 +11,16 @@ export interface BoxPokemonEntry {
     color: string;
     speciesName: string;
     level: number;
+    ivs: Record<PokemonStat, number>;
+    currentMoveIds: string[];
 }
 
 export interface BoxCallbacks {
     onSwapPokemon: (name1: string, name2: string) => void;
     onStorePartyMember: (name: string) => void;
     onAddToParty: (name: string) => void;
+    onSummary: (name: string) => void;
+    onUpdateMoves: (name: string, moveIds: string[]) => void;
     onClose: () => void;
 }
 

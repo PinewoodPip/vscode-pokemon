@@ -40,6 +40,7 @@ import { initVscodeApi } from './vscode';
 import { useLobbyStore } from './stores/lobbyStore';
 import { usePokemonStore, TooltipLine } from './stores/pokemonStore';
 import { useBoxStore, BoxPokemonEntry, PARTY_SIZE } from './stores/boxStore';
+import { useDetailsStore } from './stores/detailsStore';
 import { mountReactScreens } from './app';
 
 /* This is how the VS Code API can be invoked from the panel */
@@ -1012,14 +1013,22 @@ export function pokemonPanelApp(
                 break;
 
             case 'open-pokemon-box': {
-                const buildBoxEntry = (el: PokemonElement): BoxPokemonEntry => ({
-                    name: el.pokemon.name,
-                    type: el.type,
-                    generation: el.generation,
-                    color: el.color,
-                    speciesName: (el.pokemon as Pokemon).config.name,
-                    level: el.pokemon.progression.level,
-                });
+                const buildBoxEntry = (el: PokemonElement): BoxPokemonEntry => {
+                    const poke = el.pokemon as Pokemon;
+                    const level = poke.progression.level;
+                    const currentMoveIds = poke.progression.customMoveIds
+                        ?? getMoves(el.type, level).map(m => m.id);
+                    return {
+                        name: poke.name,
+                        type: el.type,
+                        generation: el.generation,
+                        color: el.color,
+                        speciesName: poke.config.name,
+                        level,
+                        ivs: poke.progression.ivs,
+                        currentMoveIds,
+                    };
+                };
                 const refreshBoxState = () => {
                     const updatedParty = getPartyPokemon().map(buildBoxEntry);
                     const updatedStored = allPokemon.pokemonCollection.filter(p => p.pokemon.isHidden).map(buildBoxEntry);
@@ -1059,6 +1068,43 @@ export function pokemonPanelApp(
                             el.show();
                             saveState(stateApi);
                             refreshBoxState();
+                        }
+                    },
+                    onSummary: (name) => {
+                        const entry = [...getPartyPokemon(), ...allPokemon.pokemonCollection.filter(p => p.pokemon.isHidden)]
+                            .map(buildBoxEntry)
+                            .find(e => e.name === name);
+                        if (!entry) { return; }
+                        useDetailsStore.getState().show(
+                            {
+                                name: entry.name,
+                                speciesName: entry.speciesName,
+                                speciesId: entry.type,
+                                type: entry.type,
+                                generation: entry.generation,
+                                color: entry.color,
+                                level: entry.level,
+                                ivs: entry.ivs,
+                                currentMoveIds: entry.currentMoveIds,
+                                basePokemonUri,
+                            },
+                            {
+                                onUpdateMoves: (pokemonName, moveIds) => {
+                                    const el = allPokemon.locate(pokemonName);
+                                    if (el) {
+                                        (el.pokemon as Pokemon).progression.customMoveIds = moveIds;
+                                        saveState(stateApi);
+                                    }
+                                },
+                                onClose: () => {},
+                            }
+                        );
+                    },
+                    onUpdateMoves: (name, moveIds) => {
+                        const el = allPokemon.locate(name);
+                        if (el) {
+                            (el.pokemon as Pokemon).progression.customMoveIds = moveIds;
+                            saveState(stateApi);
                         }
                     },
                     onClose: () => {},

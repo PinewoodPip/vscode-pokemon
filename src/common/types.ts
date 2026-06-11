@@ -66,6 +66,8 @@ export abstract class PokemonProgressionState {
         sp_def: 0,
         speed: 0,
     };
+    /** Custom move IDs selected by the player; overrides the default learnset selection in combat. */
+    customMoveIds?: string[];
 }
 
 export class PokemonProgression extends PokemonProgressionState {
@@ -147,6 +149,7 @@ export class PokemonProgression extends PokemonProgressionState {
             experience: this.experience,
             ivs: this.ivs,
             evs: this.evs,
+            customMoveIds: this.customMoveIds,
         };
     }
 
@@ -157,6 +160,9 @@ export class PokemonProgression extends PokemonProgressionState {
         }
         if (data.evs) {
             prog.evs = data.evs;
+        }
+        if (data.customMoveIds) {
+            prog.customMoveIds = data.customMoveIds;
         }
         return prog;
     }
